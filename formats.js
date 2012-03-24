@@ -342,7 +342,7 @@ exports.BattleFormats = {
 
             if (pokemon.prevo !== "")
                 problems.push(set.species + " is not the lowest evolution.");
-            if (pokemon.nexto.length === 0)
+            if (!pokemon.nfe)
                 problems.push(set.species + " is unable to evolve.");
 
             if (set.level !== 5)
