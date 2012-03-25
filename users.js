@@ -196,7 +196,7 @@ function User(name, person, token)
 			getRoom(i).rename(selfP, oldid, joining);
 		}
 		
-		if (authenticated) ChanServ.onUserRename(selfP);
+		ChanServ.onUserRename(selfP);
 		return true;
 	};
 	this.resetName = function() {

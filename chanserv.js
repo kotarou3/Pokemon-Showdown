@@ -17,7 +17,7 @@ function ChanServ()
 
     this.act = function(user)
     {
-        if (!(user.userid in this.autoList))
+        if (!user || !user.authenticated || !(user.userid in this.autoList))
             return false;
         user.group = this.autoList[user.userid].group;
         user.avatar = this.autoList[user.userid].avatar;
