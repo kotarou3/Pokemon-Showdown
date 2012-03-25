@@ -15,6 +15,11 @@ function ChanServ()
         return this.act(user);
     }
 
+    this.onUserMerge = function(user)
+    {
+        return this.act(user);
+    }
+
     this.act = function(user)
     {
         if (!user || !user.authenticated || !(user.userid in this.autoList))
