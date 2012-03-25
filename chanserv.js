@@ -56,7 +56,7 @@ exports.ChanServ = (function()
     {
         if (err)
             return;
-        data = data.split("\n");
+        data = data.toString().split("\n");
         for (var d in data)
         {
             var tokens = data[d].split(" ");
