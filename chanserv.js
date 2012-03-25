@@ -12,7 +12,7 @@ function ChanServ()
     
     this.onUserRename = function(user)
     {
-        this.act(user);
+        return this.act(user);
     }
     
     this.act = function(user)
@@ -51,6 +51,7 @@ function ChanServ()
                 break;
         }
         rooms.lobby.usersChanged = true;
+        return true;
     }
     
     data = fs.readFileSync("config/chanserv-autolist.txt").toString().split("\n");
