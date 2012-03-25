@@ -915,6 +915,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 				BattleLearnsets = require('./learnsets.js').BattleLearnsets;
 				BattleTools = require('./tools.js').BattleTools;
 				Tools = new BattleTools();
+				ChanServ = require('./chanserv.js').ChanServ;
 
 				parseCommand = require('./chat-commands.js').parseCommand;
 
@@ -1057,6 +1058,12 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 		}
 		return true;
 		break;
+	
+	case 'cs':
+	    var args = splitArgs(target);
+	    if (args.length < 1)
+	        return false;
+	    return ChanServ.parseCommand(user, args.shift(), args, room, socket, message);
 	
 	// INFORMATIONAL COMMANDS
 
@@ -1630,6 +1637,15 @@ function splitTarget(target)
 		targetUser = null;
 	}
 	return [targetUser, target.substr(commaIndex+1).trim(), target.substr(0, commaIndex)];
+}
+
+function splitArgs(args)
+{
+    args = args.replace(/\s+/gm, " "); // Normalise spaces
+    var result = args.split(',');
+    for (var r in result)
+        result[r] = result[r].trim();
+    return result;
 }
 
 exports.parseCommand = parseCommandLocal;

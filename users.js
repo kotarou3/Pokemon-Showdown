@@ -356,6 +356,8 @@ function User(name, person, token)
 					catch(e)
 					{
 					}
+					
+					ChanServ.onUserRename(this);
 				}
 				if (users[userid] && users[userid] !== selfP)
 				{
