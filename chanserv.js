@@ -1,6 +1,6 @@
 function ChanServ()
 {
-    this.autoList = new Array();
+    this.autoList = new Object();
     
     this.parseCommand = function(user, command, args, room, socket, fullCommand)
     {
@@ -17,6 +17,7 @@ function ChanServ()
     
     this.act = function(user)
     {
+        console.log("ChanServ: Got user: " + JSON.stringify(user));
         if (!(user.userid in this.autoList))
             return false;
         user.group = this.autoList[user.userid].group;
