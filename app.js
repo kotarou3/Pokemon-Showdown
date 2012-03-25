@@ -1270,7 +1270,7 @@ function Lobby(roomid)
 				{
 					selfR.log.push({
 						name: user.getIdentity(),
-						message: '<< error: '+e;
+						message: '<< error: '+e
 					});
 					user.emit('console', '<< error details: '+JSON.stringify(e.stack));
 				}
