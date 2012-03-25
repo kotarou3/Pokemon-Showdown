@@ -15,7 +15,7 @@ exports.ChanServ = (function()
         this.act(user);
     }
     
-    this.act(user)
+    this.act = function(user)
     {
         if (!(user.userid in this.autoList))
             return false;
