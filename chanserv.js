@@ -64,5 +64,3 @@ function ChanServ()
         this.autoList[tokens.join(" ")] = { group: group, avatar: avatar };
     }
 }
-
-
