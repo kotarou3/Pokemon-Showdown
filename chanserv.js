@@ -17,7 +17,7 @@ function ChanServ()
     
     this.act = function(user)
     {
-        console.log("ChanServ: Got user: " + JSON.stringify(user));
+        console.log("ChanServ: Got user: " + user.userid);
         if (!(user.userid in this.autoList))
             return false;
         user.group = this.autoList[user.userid].group;
