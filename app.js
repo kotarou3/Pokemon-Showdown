@@ -70,7 +70,8 @@ BattleTools = require('./tools.js').BattleTools;
 
 Tools = new BattleTools();
 
-ChanServ = require('./chanserv.js').ChanServ;
+ChanServClass = require('./chanserv.js').ChanServ;
+ChanServ = new ChanServClass();
 
 Users = require('./users.js');
 getUser = Users.getUser;
@@ -105,7 +106,8 @@ function reloadEngine()
 
 	Tools = new BattleTools();
 	
-	ChanServ = require('./chanserv.js').ChanServ;
+	ChanServClass = require('./chanserv.js').ChanServ;
+	ChanServ = new ChanServClass();
 }
 
 function Room(roomid, format, p1, p2, parentid, ranked)

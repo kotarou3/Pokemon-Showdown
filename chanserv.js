@@ -1,4 +1,4 @@
-exports.ChanServ = (function()
+function ChanServ()
 {
     this.autoList = new Array();
     
@@ -52,20 +52,17 @@ exports.ChanServ = (function()
         rooms.lobby.usersChanged = true;
     }
     
-    fs.readFile("config/chanserv-autolist.txt", function (err, data)
+    data = fs.readFileSync("config/chanserv-autolist.txt").toString().split("\n");
+    for (var d in data)
     {
-        if (err)
-            return;
-        data = data.toString().split("\n");
-        for (var d in data)
-        {
-            var tokens = data[d].split(" ");
-            if (tokens.length < 3)
-                continue;
-            
-            var group = tokens.shift();
-            var avatar = tokens.shift();
-            this.autoList[tokens.join(" ")] = { group: group, avatar: avatar };
-        }
-    });
-})();
+        var tokens = data[d].split(" ");
+        if (tokens.length < 3)
+            continue;
+        
+        var group = tokens.shift();
+        var avatar = tokens.shift();
+        this.autoList[tokens.join(" ")] = { group: group, avatar: avatar };
+    }
+}
+
+exports.ChanServ = ChanServ;

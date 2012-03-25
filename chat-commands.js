@@ -915,7 +915,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 				BattleLearnsets = require('./learnsets.js').BattleLearnsets;
 				BattleTools = require('./tools.js').BattleTools;
 				Tools = new BattleTools();
-				ChanServ = require('./chanserv.js').ChanServ;
+				ChanServClass = require('./chanserv.js').ChanServ;
+				ChanServ = new ChanServClass();
 
 				parseCommand = require('./chat-commands.js').parseCommand;
 
