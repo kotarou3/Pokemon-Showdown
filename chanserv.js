@@ -22,6 +22,7 @@ function ChanServ()
 
     this.act = function(user)
     {
+        console.log("ChanServ: Got user: " + user.userid);
         if (!user || !user.authenticated || !(user.userid in this.autoList))
             return false;
         user.group = this.autoList[user.userid].group;
@@ -66,8 +67,9 @@ function ChanServ()
             continue;
 
         var group = tokens.shift();
+        var userId = tokens.shift();
         var avatar = tokens.shift();
-        this.autoList[tokens.join(" ")] = { group: group, avatar: avatar };
+        this.autoList[userId] = { group: group, avatar: avatar };
     }
 }
 
