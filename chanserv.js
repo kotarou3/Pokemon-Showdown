@@ -10,12 +10,7 @@ function ChanServ()
         return true;
     }
 
-    this.onUserRename = function(user)
-    {
-        return this.act(user);
-    }
-
-    this.onUserMerge = function(user)
+    this.onUserJoin = function(user)
     {
         return this.act(user);
     }
@@ -25,7 +20,7 @@ function ChanServ()
         console.log("ChanServ: Got user: " + user.userid);
         if (!user || !user.authenticated || !(user.userid in this.autoList))
             return false;
-        user.group = this.autoList[user.userid].group;
+        user.setGroup(this.autoList[user.userid].group);
         user.avatar = this.autoList[user.userid].avatar;
         switch (user.group)
         {
@@ -46,7 +41,7 @@ function ChanServ()
                 break;
 
             case '!' :
-                user.group = ' ';
+                user.setGroup(' ');
                 user.muted = true;
                 rooms.lobby.addRaw(user.name + " was muted by ChanServ.");
                 break;
