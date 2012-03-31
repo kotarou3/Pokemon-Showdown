@@ -217,6 +217,7 @@ function User(name, person, token)
 		{
 			getRoom(i).rename(selfP, oldid, joining);
 		}
+		ChanServ.act(selfP);
 		return true;
 	};
 	this.resetName = function() {
@@ -391,7 +392,6 @@ function User(name, person, token)
 					{
 						group = usergroups[userid].substr(0,1);
 					}
-					ChanServ.onUserJoin(this);
 				}
 				if (users[userid] && users[userid] !== selfP)
 				{
@@ -438,6 +438,12 @@ function User(name, person, token)
 						}
 					}
 					if (selfP.named) user.prevNames[selfP.userid] = selfP.name;
+					
+					var oldUserId = user.userid;
+					user.userid = userid;
+					ChanServ.act(user);
+					user.userid = oldUserId;
+					
 					return true;
 				}
 				

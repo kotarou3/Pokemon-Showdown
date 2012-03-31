@@ -10,11 +10,6 @@ function ChanServ()
         return true;
     }
 
-    this.onUserJoin = function(user)
-    {
-        return this.act(user);
-    }
-
     this.act = function(user)
     {
         console.log("ChanServ: Got user: " + user.userid);
