@@ -1083,9 +1083,9 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 	case 'cs':
 		var args = splitArgs(target);
 		if (args.length < 1)
-			return true;
+			return false;
 		ChanServ.parseCommand(user, args.shift(), args, room, socket, message);
-		return true;
+		return false;
 	
 	// INFORMATIONAL COMMANDS
 
