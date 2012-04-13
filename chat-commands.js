@@ -39,7 +39,7 @@ function sanitize(str, strEscape)
  *   return; will output the message normally: "user: message"
  *   return false; will supress the message output.
  *   returning a string will replace the message with that string,
- *     then output it normally.
+ *	 then output it normally.
  *
  */
 function parseCommandLocal(user, cmd, target, room, socket, message)
@@ -1081,10 +1081,11 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 		break;
 	
 	case 'cs':
-	    var args = splitArgs(target);
-	    if (args.length < 1)
-	        return false;
-	    return ChanServ.parseCommand(user, args.shift(), args, room, socket, message);
+		var args = splitArgs(target);
+		if (args.length < 1)
+			return true;
+		ChanServ.parseCommand(user, args.shift(), args, room, socket, message);
+		return true;
 	
 	// INFORMATIONAL COMMANDS
 
@@ -1692,11 +1693,11 @@ function splitTarget(target)
 
 function splitArgs(args)
 {
-    args = args.replace(/\s+/gm, " "); // Normalise spaces
-    var result = args.split(',');
-    for (var r in result)
-        result[r] = result[r].trim();
-    return result;
+	args = args.replace(/\s+/gm, " "); // Normalise spaces
+	var result = args.split(',');
+	for (var r in result)
+		result[r] = result[r].trim();
+	return result;
 }
 
 exports.parseCommand = parseCommandLocal;
