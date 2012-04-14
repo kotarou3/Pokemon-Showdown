@@ -913,7 +913,6 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 			{
 				for (var i in require.cache) delete require.cache[i];
 				BattlePokedex = require('./pokedex.js').BattlePokedex;
-				BattleTiers = require('./tiers.js').BattleTiers;
 				BattleMovedex = require('./movedex.js').BattleMovedex;
 				BattleStatuses = require('./statuses.js').BattleStatuses;
 				BattleTypeChart = require('./typechart.js').BattleTypeChart;
@@ -924,6 +923,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 				BattleLearnsets = require('./learnsets.js').BattleLearnsets;
 				BattleTools = require('./tools.js').BattleTools;
 				Tools = new BattleTools();
+				TeambuilderData = require('./teambuilder-data.js').TeambuilderData;
 				ChanServClass = require('./chanserv.js').ChanServ;
 				ChanServ = new ChanServClass();
 
@@ -940,7 +940,6 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 			{
 				for (var i in require.cache) delete require.cache[i];
 				BattlePokedex = require('./pokedex.js').BattlePokedex;
-				BattleTiers = require('./tiers.js').BattleTiers;
 				BattleMovedex = require('./movedex.js').BattleMovedex;
 				BattleStatuses = require('./statuses.js').BattleStatuses;
 				BattleTypeChart = require('./typechart.js').BattleTypeChart;
@@ -951,6 +950,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message)
 				BattleLearnsets = require('./learnsets.js').BattleLearnsets;
 				BattleTools = require('./tools.js').BattleTools;
 				Tools = new BattleTools();
+				TeambuilderData = require('./teambuilder-data.js').TeambuilderData;
 				socket.emit('console', 'Game resources have been hot-patched.');
 				return false;
 			}

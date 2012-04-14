@@ -49,7 +49,6 @@ toId = function(text)
 toUserid = toId;
 
 BattlePokedex = require('./pokedex.js').BattlePokedex;
-BattleTiers = require('./tiers.js').BattleTiers;
 BattleMovedex = require('./movedex.js').BattleMovedex;
 BattleStatuses = require('./statuses.js').BattleStatuses;
 BattleTypeChart = require('./typechart.js').BattleTypeChart;
@@ -58,6 +57,7 @@ BattleItems = require('./items.js').BattleItems;
 BattleAbilities = require('./abilities.js').BattleAbilities;
 BattleFormats = require('./formats.js').BattleFormats;
 BattleLearnsets = require('./learnsets.js').BattleLearnsets;
+TeambuilderData = require('./teambuilder-data.js').TeambuilderData;
 try
 {
 	BattleAliases = require('./aliases.js').BattleAliases;
@@ -93,7 +93,6 @@ function reloadEngine()
 		delete require.cache[i];
 	}
 	BattlePokedex = require('./pokedex.js').BattlePokedex;
-	BattleTiers = require('./tiers.js').BattleTiers;
 	BattleMovedex = require('./movedex.js').BattleMovedex;
 	BattleStatuses = require('./statuses.js').BattleStatuses;
 	BattleTypeChart = require('./typechart.js').BattleTypeChart;
@@ -102,6 +101,7 @@ function reloadEngine()
 	BattleAbilities = require('./abilities.js').BattleAbilities;
 	BattleFormats = require('./formats.js').BattleFormats;
 	BattleLearnsets = require('./learnsets.js').BattleLearnsets;
+	TeambuilderData = require('./teambuilder-data.js').TeambuilderData;
 
 	sim = require('./simulator.js');
 
