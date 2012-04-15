@@ -56,8 +56,8 @@ BattleScripts = require('./scripts.js').BattleScripts;
 BattleItems = require('./items.js').BattleItems;
 BattleAbilities = require('./abilities.js').BattleAbilities;
 BattleFormats = require('./formats.js').BattleFormats;
+BattleFormatsData = require('./formats-data.js').BattleFormatsData;
 BattleLearnsets = require('./learnsets.js').BattleLearnsets;
-TeambuilderData = require('./teambuilder-data.js').TeambuilderData;
 try
 {
 	BattleAliases = require('./aliases.js').BattleAliases;
@@ -97,8 +97,8 @@ function reloadEngine()
 	BattleItems = require('./items.js').BattleItems;
 	BattleAbilities = require('./abilities.js').BattleAbilities;
 	BattleFormats = require('./formats.js').BattleFormats;
+	BattleFormatsData = require('./formats-data.js').BattleFormatsData;
 	BattleLearnsets = require('./learnsets.js').BattleLearnsets;
-	TeambuilderData = require('./teambuilder-data.js').TeambuilderData;
 
 	sim = require('./simulator.js');
 
@@ -1448,6 +1448,7 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	socket.on('command', function(data) {
+		if (typeof data.room !== 'string') return;
 		var youUser = resolveUser(you, socket);
 		if (!youUser) return;
 		parseCommand(youUser, 'command', data, getRoom(data.room), socket);
@@ -1465,6 +1466,7 @@ io.sockets.on('connection', function (socket) {
 		{
 		case 'make':
 			if (typeof data.format !== 'string') data.format = 'debugmode';
+			if (typeof data.userid !== 'string') return;
 			var problems = Tools.validateTeam(youUser.team, data.format);
 			if (problems)
 			{
