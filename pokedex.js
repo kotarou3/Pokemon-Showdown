@@ -1,7 +1,5 @@
-exports.BattlePokedex =
-{
-	missingno:
-	{
+exports.BattlePokedex = {
+	missingno: {
 		num: 0,
 		name: "Missingno.",
 		id: "missingno",
@@ -14,20 +12,18 @@ exports.BattlePokedex =
 		types: ["Normal","Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 33,
 			atk: 136,
 			def: 0,
 			spa: 6,
 			spd: 6,
-			spe: 29,
+			spe: 29
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Download",
 			1: "Normalize",
-			DW: "Truant",
+			DW: "Truant"
 		},
 		heightm: 1.27,
 		weightkg: 37.2,
@@ -36,10 +32,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tomohawk:
-	{
+	tomohawk: {
 		num: -1,
 		name: "Tomohawk",
 		id: "tomohawk",
@@ -52,20 +47,18 @@ exports.BattlePokedex =
 		types: ["Flying","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 60,
 			def: 90,
 			spa: 115,
 			spd: 80,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Prankster",
-			DW: "Justified",
+			DW: "Justified"
 		},
 		heightm: 1.27,
 		weightkg: 37.2,
@@ -74,10 +67,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	necturna:
-	{
+	necturna: {
 		num: -2,
 		name: "Necturna",
 		id: "necturna",
@@ -90,19 +82,17 @@ exports.BattlePokedex =
 		types: ["Grass","Ghost"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 64,
 			atk: 120,
 			def: 100,
 			spa: 85,
 			spd: 120,
-			spe: 81,
+			spe: 81
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Forewarn",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 1.5,
 		weightkg: 35,
@@ -111,10 +101,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	syclant:
-	{
+	syclant: {
 		num: -51,
 		name: "Syclant",
 		id: "syclant",
@@ -127,19 +116,17 @@ exports.BattlePokedex =
 		types: ["Ice","Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 116,
 			def: 70,
 			spa: 114,
 			spd: 64,
-			spe: 121,
+			spe: 121
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Compoundeyes",
-			1: "Mountaineer",
+			1: "Mountaineer"
 		},
 		heightm: 1.27,
 		weightkg: 52,
@@ -148,10 +135,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	revenankh:
-	{
+	revenankh: {
 		num: -52,
 		name: "Revenankh",
 		id: "revenankh",
@@ -164,19 +150,17 @@ exports.BattlePokedex =
 		types: ["Ghost","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 105,
 			def: 90,
 			spa: 65,
 			spd: 110,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			1: "Air Lock",
+			1: "Air Lock"
 		},
 		heightm: 1.27,
 		weightkg: 44,
@@ -185,10 +169,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pyroak:
-	{
+	pyroak: {
 		num: -53,
 		name: "Pyroak",
 		id: "pyroak",
@@ -201,19 +184,17 @@ exports.BattlePokedex =
 		types: ["Fire","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 70,
 			def: 105,
 			spa: 95,
 			spd: 90,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
-			1: "Battle Armor",
+			1: "Battle Armor"
 		},
 		heightm: 1.27,
 		weightkg: 168,
@@ -222,10 +203,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	fidgit:
-	{
+	fidgit: {
 		num: -54,
 		name: "Fidgit",
 		id: "fidgit",
@@ -238,19 +218,17 @@ exports.BattlePokedex =
 		types: ["Poison","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 76,
 			def: 109,
 			spa: 90,
 			spd: 80,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Persistent",
-			1: "Vital Spirit",
+			1: "Vital Spirit"
 		},
 		heightm: 1.27,
 		weightkg: 53,
@@ -259,10 +237,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	stratagem:
-	{
+	stratagem: {
 		num: -55,
 		name: "Stratagem",
 		id: "stratagem",
@@ -275,19 +252,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 60,
 			def: 65,
 			spa: 120,
 			spd: 70,
-			spe: 130,
+			spe: 130
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Levitate",
-			1: "Technician",
+			1: "Technician"
 		},
 		heightm: 1.27,
 		weightkg: 45,
@@ -296,10 +271,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	arghonaut:
-	{
+	arghonaut: {
 		num: -56,
 		name: "Arghonaut",
 		id: "arghonaut",
@@ -312,18 +286,16 @@ exports.BattlePokedex =
 		types: ["Water","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 110,
 			def: 95,
 			spa: 70,
 			spd: 100,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
-			0: "Unaware",
+		abilities: {
+			0: "Unaware"
 		},
 		heightm: 1.27,
 		weightkg: 151,
@@ -332,10 +304,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kitsunoh:
-	{
+	kitsunoh: {
 		num: -57,
 		name: "Kitsunoh",
 		id: "kitsunoh",
@@ -348,19 +319,17 @@ exports.BattlePokedex =
 		types: ["Steel","Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 103,
 			def: 85,
 			spa: 55,
 			spd: 80,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Frisk",
-			1: "Limber",
+			1: "Limber"
 		},
 		heightm: 1.27,
 		weightkg: 51,
@@ -369,10 +338,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cyclohm:
-	{
+	cyclohm: {
 		num: -58,
 		name: "Cyclohm",
 		id: "cyclohm",
@@ -385,19 +353,17 @@ exports.BattlePokedex =
 		types: ["Electric","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 108,
 			atk: 60,
 			def: 118,
 			spa: 112,
 			spd: 70,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shield Dust",
-			1: "Static",
+			1: "Static"
 		},
 		heightm: 1.27,
 		weightkg: 59,
@@ -406,10 +372,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	colossoil:
-	{
+	colossoil: {
 		num: -59,
 		name: "Colossoil",
 		id: "colossoil",
@@ -422,19 +387,17 @@ exports.BattlePokedex =
 		types: ["Dark","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 133,
 			atk: 122,
 			def: 72,
 			spa: 71,
 			spd: 72,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rebound",
-			1: "Guts",
+			1: "Guts"
 		},
 		heightm: 1.27,
 		weightkg: 683.6,
@@ -443,10 +406,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	krilowatt:
-	{
+	krilowatt: {
 		num: -60,
 		name: "Krilowatt",
 		id: "krilowatt",
@@ -459,19 +421,17 @@ exports.BattlePokedex =
 		types: ["Electric","Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 151,
 			atk: 84,
 			def: 73,
 			spa: 83,
 			spd: 74,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Trace",
-			1: "Magic Guard",
+			1: "Magic Guard"
 		},
 		heightm: 1.27,
 		weightkg: 10.6,
@@ -480,10 +440,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	voodoom:
-	{
+	voodoom: {
 		num: -61,
 		name: "Voodoom",
 		id: "voodoom",
@@ -496,19 +455,17 @@ exports.BattlePokedex =
 		types: ["Fighting","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 85,
 			def: 80,
 			spa: 105,
 			spd: 80,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Volt Absorb",
-			1: "Lightningrod",
+			1: "Lightningrod"
 		},
 		heightm: 1.27,
 		weightkg: 75.5,
@@ -517,10 +474,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bulbasaur:
-	{
+	bulbasaur: {
 		num: 1,
 		name: "Bulbasaur",
 		id: "bulbasaur",
@@ -533,19 +489,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 49,
 			def: 49,
 			spa: 65,
 			spd: 65,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Chlorophyll",
+			DW: "Chlorophyll"
 		},
 		heightm: 0.7,
 		weightkg: 6.9,
@@ -554,10 +508,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ivysaur"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ivysaur:
-	{
+	ivysaur: {
 		num: 2,
 		name: "Ivysaur",
 		id: "ivysaur",
@@ -570,19 +523,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 62,
 			def: 63,
 			spa: 80,
 			spd: 80,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Chlorophyll",
+			DW: "Chlorophyll"
 		},
 		heightm: 1,
 		weightkg: 13,
@@ -591,10 +542,9 @@ exports.BattlePokedex =
 		prevo: "bulbasaur",
 		evos: ["venusaur"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	venusaur:
-	{
+	venusaur: {
 		num: 3,
 		name: "Venusaur",
 		id: "venusaur",
@@ -607,19 +557,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 82,
 			def: 83,
 			spa: 100,
 			spd: 100,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Chlorophyll",
+			DW: "Chlorophyll"
 		},
 		heightm: 2,
 		weightkg: 100,
@@ -628,10 +576,9 @@ exports.BattlePokedex =
 		prevo: "ivysaur",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	charmander:
-	{
+	charmander: {
 		num: 4,
 		name: "Charmander",
 		id: "charmander",
@@ -644,19 +591,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 39,
 			atk: 52,
 			def: 43,
 			spa: 60,
 			spd: 50,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Solar Power",
+			DW: "Solar Power"
 		},
 		heightm: 0.6,
 		weightkg: 8.5,
@@ -665,10 +610,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["charmeleon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	charmeleon:
-	{
+	charmeleon: {
 		num: 5,
 		name: "Charmeleon",
 		id: "charmeleon",
@@ -681,19 +625,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 58,
 			atk: 64,
 			def: 58,
 			spa: 80,
 			spd: 65,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Solar Power",
+			DW: "Solar Power"
 		},
 		heightm: 1.1,
 		weightkg: 19,
@@ -702,10 +644,9 @@ exports.BattlePokedex =
 		prevo: "charmander",
 		evos: ["charizard"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	charizard:
-	{
+	charizard: {
 		num: 6,
 		name: "Charizard",
 		id: "charizard",
@@ -718,19 +659,17 @@ exports.BattlePokedex =
 		types: ["Fire","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 78,
 			atk: 84,
 			def: 78,
 			spa: 109,
 			spd: 85,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Solar Power",
+			DW: "Solar Power"
 		},
 		heightm: 1.7,
 		weightkg: 90.5,
@@ -739,10 +678,9 @@ exports.BattlePokedex =
 		prevo: "charmeleon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	squirtle:
-	{
+	squirtle: {
 		num: 7,
 		name: "Squirtle",
 		id: "squirtle",
@@ -755,19 +693,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 44,
 			atk: 48,
 			def: 65,
 			spa: 50,
 			spd: 64,
-			spe: 43,
+			spe: 43
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 0.5,
 		weightkg: 9,
@@ -776,10 +712,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["wartortle"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wartortle:
-	{
+	wartortle: {
 		num: 8,
 		name: "Wartortle",
 		id: "wartortle",
@@ -792,19 +727,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 59,
 			atk: 63,
 			def: 80,
 			spa: 65,
 			spd: 80,
-			spe: 58,
+			spe: 58
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 1,
 		weightkg: 22.5,
@@ -813,10 +746,9 @@ exports.BattlePokedex =
 		prevo: "squirtle",
 		evos: ["blastoise"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	blastoise:
-	{
+	blastoise: {
 		num: 9,
 		name: "Blastoise",
 		id: "blastoise",
@@ -829,19 +761,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 79,
 			atk: 83,
 			def: 100,
 			spa: 85,
 			spd: 105,
-			spe: 78,
+			spe: 78
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 1.6,
 		weightkg: 85.5,
@@ -850,10 +780,9 @@ exports.BattlePokedex =
 		prevo: "wartortle",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	caterpie:
-	{
+	caterpie: {
 		num: 10,
 		name: "Caterpie",
 		id: "caterpie",
@@ -866,19 +795,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 30,
 			def: 35,
 			spa: 20,
 			spd: 20,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shield Dust",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.3,
 		weightkg: 2.9,
@@ -887,10 +814,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["metapod"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	metapod:
-	{
+	metapod: {
 		num: 11,
 		name: "Metapod",
 		id: "metapod",
@@ -903,19 +829,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 20,
 			def: 55,
 			spa: 25,
 			spd: 25,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Shed Skin",
+			DW: "Shed Skin"
 		},
 		heightm: 0.7,
 		weightkg: 9.9,
@@ -924,10 +848,9 @@ exports.BattlePokedex =
 		prevo: "caterpie",
 		evos: ["butterfree"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	butterfree:
-	{
+	butterfree: {
 		num: 12,
 		name: "Butterfree",
 		id: "butterfree",
@@ -940,19 +863,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 45,
 			def: 50,
 			spa: 80,
 			spd: 80,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Compoundeyes",
-			DW: "Tinted Lens",
+			DW: "Tinted Lens"
 		},
 		heightm: 1.1,
 		weightkg: 32,
@@ -961,10 +882,9 @@ exports.BattlePokedex =
 		prevo: "metapod",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	weedle:
-	{
+	weedle: {
 		num: 13,
 		name: "Weedle",
 		id: "weedle",
@@ -977,19 +897,17 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 35,
 			def: 30,
 			spa: 20,
 			spd: 20,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shield Dust",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.3,
 		weightkg: 3.2,
@@ -998,10 +916,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["kakuna"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kakuna:
-	{
+	kakuna: {
 		num: 14,
 		name: "Kakuna",
 		id: "kakuna",
@@ -1014,19 +931,17 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 25,
 			def: 50,
 			spa: 25,
 			spd: 25,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Shed Skin",
+			DW: "Shed Skin"
 		},
 		heightm: 0.6,
 		weightkg: 10,
@@ -1035,10 +950,9 @@ exports.BattlePokedex =
 		prevo: "weedle",
 		evos: ["beedrill"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	beedrill:
-	{
+	beedrill: {
 		num: 15,
 		name: "Beedrill",
 		id: "beedrill",
@@ -1051,19 +965,17 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 80,
 			def: 40,
 			spa: 45,
 			spd: 80,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
-			DW: "Sniper",
+			DW: "Sniper"
 		},
 		heightm: 1,
 		weightkg: 29.5,
@@ -1072,10 +984,9 @@ exports.BattlePokedex =
 		prevo: "kakuna",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pidgey:
-	{
+	pidgey: {
 		num: 16,
 		name: "Pidgey",
 		id: "pidgey",
@@ -1088,20 +999,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 45,
 			def: 40,
 			spa: 35,
 			spd: 35,
-			spe: 56,
+			spe: 56
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Tangled Feet",
-			DW: "Big Pecks",
+			DW: "Big Pecks"
 		},
 		heightm: 0.3,
 		weightkg: 1.8,
@@ -1110,10 +1019,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["pidgeotto"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pidgeotto:
-	{
+	pidgeotto: {
 		num: 17,
 		name: "Pidgeotto",
 		id: "pidgeotto",
@@ -1126,20 +1034,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 63,
 			atk: 60,
 			def: 55,
 			spa: 50,
 			spd: 50,
-			spe: 71,
+			spe: 71
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Tangled Feet",
-			DW: "Big Pecks",
+			DW: "Big Pecks"
 		},
 		heightm: 1.1,
 		weightkg: 30,
@@ -1148,10 +1054,9 @@ exports.BattlePokedex =
 		prevo: "pidgey",
 		evos: ["pidgeot"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pidgeot:
-	{
+	pidgeot: {
 		num: 18,
 		name: "Pidgeot",
 		id: "pidgeot",
@@ -1164,20 +1069,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 83,
 			atk: 80,
 			def: 75,
 			spa: 70,
 			spd: 70,
-			spe: 91,
+			spe: 91
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Tangled Feet",
-			DW: "Big Pecks",
+			DW: "Big Pecks"
 		},
 		heightm: 1.5,
 		weightkg: 39.5,
@@ -1186,10 +1089,9 @@ exports.BattlePokedex =
 		prevo: "pidgeotto",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rattata:
-	{
+	rattata: {
 		num: 19,
 		name: "Rattata",
 		id: "rattata",
@@ -1202,20 +1104,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 56,
 			def: 35,
 			spa: 25,
 			spd: 35,
-			spe: 72,
+			spe: 72
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Guts",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.3,
 		weightkg: 3.5,
@@ -1224,10 +1124,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["raticate"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	raticate:
-	{
+	raticate: {
 		num: 20,
 		name: "Raticate",
 		id: "raticate",
@@ -1240,20 +1139,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 81,
 			def: 60,
 			spa: 50,
 			spd: 70,
-			spe: 97,
+			spe: 97
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Guts",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.7,
 		weightkg: 18.5,
@@ -1262,10 +1159,9 @@ exports.BattlePokedex =
 		prevo: "rattata",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	spearow:
-	{
+	spearow: {
 		num: 21,
 		name: "Spearow",
 		id: "spearow",
@@ -1278,19 +1174,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 60,
 			def: 30,
 			spa: 31,
 			spd: 31,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
-			DW: "Sniper",
+			DW: "Sniper"
 		},
 		heightm: 0.3,
 		weightkg: 2,
@@ -1299,10 +1193,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["fearow"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	fearow:
-	{
+	fearow: {
 		num: 22,
 		name: "Fearow",
 		id: "fearow",
@@ -1315,19 +1208,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 90,
 			def: 65,
 			spa: 61,
 			spd: 61,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
-			DW: "Sniper",
+			DW: "Sniper"
 		},
 		heightm: 1.2,
 		weightkg: 38,
@@ -1336,10 +1227,9 @@ exports.BattlePokedex =
 		prevo: "spearow",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ekans:
-	{
+	ekans: {
 		num: 23,
 		name: "Ekans",
 		id: "ekans",
@@ -1352,20 +1242,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 60,
 			def: 44,
 			spa: 40,
 			spd: 54,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Shed Skin",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 2,
 		weightkg: 6.9,
@@ -1374,10 +1262,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["arbok"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	arbok:
-	{
+	arbok: {
 		num: 24,
 		name: "Arbok",
 		id: "arbok",
@@ -1390,20 +1277,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 69,
 			spa: 65,
 			spd: 79,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Shed Skin",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 3.5,
 		weightkg: 65,
@@ -1412,10 +1297,9 @@ exports.BattlePokedex =
 		prevo: "ekans",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pichu:
-	{
+	pichu: {
 		num: 172,
 		name: "Pichu",
 		id: "pichu",
@@ -1428,19 +1312,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 40,
 			def: 15,
 			spa: 35,
 			spd: 35,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 0.3,
 		weightkg: 2,
@@ -1449,10 +1331,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["pikachu"],
 		otherFormes: ["pichuspikyeared"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pichuspikyeared:
-	{
+	pichuspikyeared: {
 		num: 172,
 		name: "Pichu-Spiky-eared",
 		id: "pichuspikyeared",
@@ -1465,19 +1346,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 40,
 			def: 15,
 			spa: 35,
 			spd: 35,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 0.3,
 		weightkg: 2,
@@ -1486,10 +1365,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["pikachu"],
 		otherFormes: ["pichu"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	pikachu:
-	{
+	pikachu: {
 		num: 25,
 		name: "Pikachu",
 		id: "pikachu",
@@ -1502,19 +1380,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 55,
 			def: 30,
 			spa: 50,
 			spd: 40,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 0.4,
 		weightkg: 6,
@@ -1523,10 +1399,9 @@ exports.BattlePokedex =
 		prevo: "pichu",
 		evos: ["raichu"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	raichu:
-	{
+	raichu: {
 		num: 26,
 		name: "Raichu",
 		id: "raichu",
@@ -1539,19 +1414,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 90,
 			def: 55,
 			spa: 90,
 			spd: 80,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 0.8,
 		weightkg: 30,
@@ -1560,10 +1433,9 @@ exports.BattlePokedex =
 		prevo: "pikachu",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sandshrew:
-	{
+	sandshrew: {
 		num: 27,
 		name: "Sandshrew",
 		id: "sandshrew",
@@ -1576,19 +1448,17 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 75,
 			def: 85,
 			spa: 20,
 			spd: 30,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Sand Rush",
+			DW: "Sand Rush"
 		},
 		heightm: 0.6,
 		weightkg: 12,
@@ -1597,10 +1467,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sandslash"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sandslash:
-	{
+	sandslash: {
 		num: 28,
 		name: "Sandslash",
 		id: "sandslash",
@@ -1613,19 +1482,17 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 100,
 			def: 110,
 			spa: 45,
 			spd: 55,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Sand Rush",
+			DW: "Sand Rush"
 		},
 		heightm: 1,
 		weightkg: 29.5,
@@ -1634,10 +1501,9 @@ exports.BattlePokedex =
 		prevo: "sandshrew",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nidoranf:
-	{
+	nidoranf: {
 		num: 29,
 		name: "Nidoran♀",
 		id: "nidoranf",
@@ -1650,20 +1516,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 47,
 			def: 52,
 			spa: 40,
 			spd: 40,
-			spe: 41,
+			spe: 41
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Rivalry",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.4,
 		weightkg: 7,
@@ -1672,10 +1536,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["nidorina"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nidorina:
-	{
+	nidorina: {
 		num: 30,
 		name: "Nidorina",
 		id: "nidorina",
@@ -1688,20 +1551,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 62,
 			def: 67,
 			spa: 55,
 			spd: 55,
-			spe: 56,
+			spe: 56
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Rivalry",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.8,
 		weightkg: 20,
@@ -1710,10 +1571,9 @@ exports.BattlePokedex =
 		prevo: "nidoran",
 		evos: ["nidoqueen"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nidoqueen:
-	{
+	nidoqueen: {
 		num: 31,
 		name: "Nidoqueen",
 		id: "nidoqueen",
@@ -1726,20 +1586,18 @@ exports.BattlePokedex =
 		types: ["Poison","Ground"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 82,
 			def: 87,
 			spa: 75,
 			spd: 85,
-			spe: 76,
+			spe: 76
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Rivalry",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.3,
 		weightkg: 60,
@@ -1748,10 +1606,9 @@ exports.BattlePokedex =
 		prevo: "nidorina",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nidoranm:
-	{
+	nidoranm: {
 		num: 32,
 		name: "Nidoran♂",
 		id: "nidoranm",
@@ -1764,20 +1621,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 46,
 			atk: 57,
 			def: 40,
 			spa: 40,
 			spd: 40,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Rivalry",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.5,
 		weightkg: 9,
@@ -1786,10 +1641,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["nidorino"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nidorino:
-	{
+	nidorino: {
 		num: 33,
 		name: "Nidorino",
 		id: "nidorino",
@@ -1802,20 +1656,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 61,
 			atk: 72,
 			def: 57,
 			spa: 55,
 			spd: 55,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Rivalry",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.9,
 		weightkg: 19.5,
@@ -1824,10 +1676,9 @@ exports.BattlePokedex =
 		prevo: "nidoran",
 		evos: ["nidoking"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nidoking:
-	{
+	nidoking: {
 		num: 34,
 		name: "Nidoking",
 		id: "nidoking",
@@ -1840,20 +1691,18 @@ exports.BattlePokedex =
 		types: ["Poison","Ground"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 81,
 			atk: 92,
 			def: 77,
 			spa: 85,
 			spd: 75,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Rivalry",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.4,
 		weightkg: 62,
@@ -1862,10 +1711,9 @@ exports.BattlePokedex =
 		prevo: "nidorino",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cleffa:
-	{
+	cleffa: {
 		num: 173,
 		name: "Cleffa",
 		id: "cleffa",
@@ -1878,20 +1726,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 25,
 			def: 28,
 			spa: 45,
 			spd: 55,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Magic Guard",
-			DW: "Friend Guard",
+			DW: "Friend Guard"
 		},
 		heightm: 0.3,
 		weightkg: 3,
@@ -1900,10 +1746,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["clefairy"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	clefairy:
-	{
+	clefairy: {
 		num: 35,
 		name: "Clefairy",
 		id: "clefairy",
@@ -1916,20 +1761,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 45,
 			def: 48,
 			spa: 60,
 			spd: 65,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Magic Guard",
-			DW: "Friend Guard",
+			DW: "Friend Guard"
 		},
 		heightm: 0.6,
 		weightkg: 7.5,
@@ -1938,10 +1781,9 @@ exports.BattlePokedex =
 		prevo: "cleffa",
 		evos: ["clefable"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	clefable:
-	{
+	clefable: {
 		num: 36,
 		name: "Clefable",
 		id: "clefable",
@@ -1954,20 +1796,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 70,
 			def: 73,
 			spa: 85,
 			spd: 90,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Magic Guard",
-			DW: "Unaware",
+			DW: "Unaware"
 		},
 		heightm: 1.3,
 		weightkg: 40,
@@ -1976,10 +1816,9 @@ exports.BattlePokedex =
 		prevo: "clefairy",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vulpix:
-	{
+	vulpix: {
 		num: 37,
 		name: "Vulpix",
 		id: "vulpix",
@@ -1992,19 +1831,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 38,
 			atk: 41,
 			def: 40,
 			spa: 50,
 			spd: 65,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
-			DW: "Drought",
+			DW: "Drought"
 		},
 		heightm: 0.6,
 		weightkg: 9.9,
@@ -2013,10 +1850,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ninetales"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ninetales:
-	{
+	ninetales: {
 		num: 38,
 		name: "Ninetales",
 		id: "ninetales",
@@ -2029,19 +1865,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 73,
 			atk: 76,
 			def: 75,
 			spa: 81,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
-			DW: "Drought",
+			DW: "Drought"
 		},
 		heightm: 1.1,
 		weightkg: 19.9,
@@ -2050,10 +1884,9 @@ exports.BattlePokedex =
 		prevo: "vulpix",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	igglybuff:
-	{
+	igglybuff: {
 		num: 174,
 		name: "Igglybuff",
 		id: "igglybuff",
@@ -2066,19 +1899,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 30,
 			def: 15,
 			spa: 40,
 			spd: 20,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
-			DW: "Friend Guard",
+			DW: "Friend Guard"
 		},
 		heightm: 0.3,
 		weightkg: 1,
@@ -2087,10 +1918,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["jigglypuff"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	jigglypuff:
-	{
+	jigglypuff: {
 		num: 39,
 		name: "Jigglypuff",
 		id: "jigglypuff",
@@ -2103,19 +1933,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 115,
 			atk: 45,
 			def: 20,
 			spa: 45,
 			spd: 25,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
-			DW: "Friend Guard",
+			DW: "Friend Guard"
 		},
 		heightm: 0.5,
 		weightkg: 5.5,
@@ -2124,10 +1952,9 @@ exports.BattlePokedex =
 		prevo: "igglybuff",
 		evos: ["wigglytuff"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wigglytuff:
-	{
+	wigglytuff: {
 		num: 40,
 		name: "Wigglytuff",
 		id: "wigglytuff",
@@ -2140,19 +1967,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 140,
 			atk: 70,
 			def: 45,
 			spa: 75,
 			spd: 50,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
-			DW: "Frisk",
+			DW: "Frisk"
 		},
 		heightm: 1,
 		weightkg: 12,
@@ -2161,10 +1986,9 @@ exports.BattlePokedex =
 		prevo: "jigglypuff",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zubat:
-	{
+	zubat: {
 		num: 41,
 		name: "Zubat",
 		id: "zubat",
@@ -2177,19 +2001,17 @@ exports.BattlePokedex =
 		types: ["Poison","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 45,
 			def: 35,
 			spa: 30,
 			spd: 40,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 0.8,
 		weightkg: 7.5,
@@ -2198,10 +2020,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["golbat"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	golbat:
-	{
+	golbat: {
 		num: 42,
 		name: "Golbat",
 		id: "golbat",
@@ -2214,19 +2035,17 @@ exports.BattlePokedex =
 		types: ["Poison","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 80,
 			def: 70,
 			spa: 65,
 			spd: 75,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 1.6,
 		weightkg: 55,
@@ -2235,10 +2054,9 @@ exports.BattlePokedex =
 		prevo: "zubat",
 		evos: ["crobat"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	crobat:
-	{
+	crobat: {
 		num: 169,
 		name: "Crobat",
 		id: "crobat",
@@ -2251,19 +2069,17 @@ exports.BattlePokedex =
 		types: ["Poison","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 90,
 			def: 80,
 			spa: 70,
 			spd: 80,
-			spe: 130,
+			spe: 130
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 1.8,
 		weightkg: 75,
@@ -2272,10 +2088,9 @@ exports.BattlePokedex =
 		prevo: "golbat",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	oddish:
-	{
+	oddish: {
 		num: 43,
 		name: "Oddish",
 		id: "oddish",
@@ -2288,19 +2103,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 50,
 			def: 55,
 			spa: 75,
 			spd: 65,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.5,
 		weightkg: 5.4,
@@ -2309,10 +2122,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gloom"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gloom:
-	{
+	gloom: {
 		num: 44,
 		name: "Gloom",
 		id: "gloom",
@@ -2325,19 +2137,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 65,
 			def: 70,
 			spa: 85,
 			spd: 75,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Stench",
+			DW: "Stench"
 		},
 		heightm: 0.8,
 		weightkg: 8.6,
@@ -2346,10 +2156,9 @@ exports.BattlePokedex =
 		prevo: "oddish",
 		evos: ["vileplume","bellossom"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vileplume:
-	{
+	vileplume: {
 		num: 45,
 		name: "Vileplume",
 		id: "vileplume",
@@ -2362,19 +2171,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 80,
 			def: 85,
 			spa: 100,
 			spd: 90,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Effect Spore",
+			DW: "Effect Spore"
 		},
 		heightm: 1.2,
 		weightkg: 18.6,
@@ -2383,10 +2190,9 @@ exports.BattlePokedex =
 		prevo: "gloom",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bellossom:
-	{
+	bellossom: {
 		num: 182,
 		name: "Bellossom",
 		id: "bellossom",
@@ -2399,19 +2205,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 80,
 			def: 85,
 			spa: 90,
 			spd: 100,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Healer",
+			DW: "Healer"
 		},
 		heightm: 0.4,
 		weightkg: 5.8,
@@ -2420,10 +2224,9 @@ exports.BattlePokedex =
 		prevo: "gloom",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	paras:
-	{
+	paras: {
 		num: 46,
 		name: "Paras",
 		id: "paras",
@@ -2436,20 +2239,18 @@ exports.BattlePokedex =
 		types: ["Bug","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 70,
 			def: 55,
 			spa: 45,
 			spd: 55,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Effect Spore",
 			1: "Dry Skin",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 0.3,
 		weightkg: 5.4,
@@ -2458,10 +2259,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["parasect"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	parasect:
-	{
+	parasect: {
 		num: 47,
 		name: "Parasect",
 		id: "parasect",
@@ -2474,20 +2274,18 @@ exports.BattlePokedex =
 		types: ["Bug","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 95,
 			def: 80,
 			spa: 60,
 			spd: 80,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Effect Spore",
 			1: "Dry Skin",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 1,
 		weightkg: 29.5,
@@ -2496,10 +2294,9 @@ exports.BattlePokedex =
 		prevo: "paras",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	venonat:
-	{
+	venonat: {
 		num: 48,
 		name: "Venonat",
 		id: "venonat",
@@ -2512,20 +2309,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 55,
 			def: 50,
 			spa: 40,
 			spd: 55,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Compoundeyes",
 			1: "Tinted Lens",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 1,
 		weightkg: 30,
@@ -2534,10 +2329,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["venomoth"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	venomoth:
-	{
+	venomoth: {
 		num: 49,
 		name: "Venomoth",
 		id: "venomoth",
@@ -2550,20 +2344,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 65,
 			def: 60,
 			spa: 90,
 			spd: 75,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shield Dust",
 			1: "Tinted Lens",
-			DW: "Wonder Skin",
+			DW: "Wonder Skin"
 		},
 		heightm: 1.5,
 		weightkg: 12.5,
@@ -2572,10 +2364,9 @@ exports.BattlePokedex =
 		prevo: "venonat",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	diglett:
-	{
+	diglett: {
 		num: 50,
 		name: "Diglett",
 		id: "diglett",
@@ -2588,20 +2379,18 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 10,
 			atk: 55,
 			def: 25,
 			spa: 35,
 			spd: 45,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
 			1: "Arena Trap",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.2,
 		weightkg: 0.8,
@@ -2610,10 +2399,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["dugtrio"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dugtrio:
-	{
+	dugtrio: {
 		num: 51,
 		name: "Dugtrio",
 		id: "dugtrio",
@@ -2626,20 +2414,18 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 80,
 			def: 50,
 			spa: 50,
 			spd: 70,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
 			1: "Arena Trap",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.7,
 		weightkg: 33.3,
@@ -2648,10 +2434,9 @@ exports.BattlePokedex =
 		prevo: "diglett",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	meowth:
-	{
+	meowth: {
 		num: 52,
 		name: "Meowth",
 		id: "meowth",
@@ -2664,20 +2449,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 45,
 			def: 35,
 			spa: 40,
 			spd: 40,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pickup",
 			1: "Technician",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 0.4,
 		weightkg: 4.2,
@@ -2686,10 +2469,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["persian"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	persian:
-	{
+	persian: {
 		num: 53,
 		name: "Persian",
 		id: "persian",
@@ -2702,20 +2484,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 70,
 			def: 60,
 			spa: 65,
 			spd: 65,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Limber",
 			1: "Technician",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1,
 		weightkg: 32,
@@ -2724,10 +2504,9 @@ exports.BattlePokedex =
 		prevo: "meowth",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	psyduck:
-	{
+	psyduck: {
 		num: 54,
 		name: "Psyduck",
 		id: "psyduck",
@@ -2740,20 +2519,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 52,
 			def: 48,
 			spa: 65,
 			spd: 50,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Damp",
 			1: "Cloud Nine",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 0.8,
 		weightkg: 19.6,
@@ -2762,10 +2539,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["golduck"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	golduck:
-	{
+	golduck: {
 		num: 55,
 		name: "Golduck",
 		id: "golduck",
@@ -2778,20 +2554,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 82,
 			def: 78,
 			spa: 95,
 			spd: 80,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Damp",
 			1: "Cloud Nine",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 1.7,
 		weightkg: 76.6,
@@ -2800,10 +2574,9 @@ exports.BattlePokedex =
 		prevo: "psyduck",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mankey:
-	{
+	mankey: {
 		num: 56,
 		name: "Mankey",
 		id: "mankey",
@@ -2816,20 +2589,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 80,
 			def: 35,
 			spa: 35,
 			spd: 45,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Vital Spirit",
 			1: "Anger Point",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 0.5,
 		weightkg: 28,
@@ -2838,10 +2609,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["primeape"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	primeape:
-	{
+	primeape: {
 		num: 57,
 		name: "Primeape",
 		id: "primeape",
@@ -2854,20 +2624,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 105,
 			def: 60,
 			spa: 60,
 			spd: 70,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Vital Spirit",
 			1: "Anger Point",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 1,
 		weightkg: 32,
@@ -2876,10 +2644,9 @@ exports.BattlePokedex =
 		prevo: "mankey",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	growlithe:
-	{
+	growlithe: {
 		num: 58,
 		name: "Growlithe",
 		id: "growlithe",
@@ -2892,20 +2659,18 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 70,
 			def: 45,
 			spa: 70,
 			spd: 50,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Flash Fire",
-			DW: "Justified",
+			DW: "Justified"
 		},
 		heightm: 0.7,
 		weightkg: 19,
@@ -2914,10 +2679,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["arcanine"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	arcanine:
-	{
+	arcanine: {
 		num: 59,
 		name: "Arcanine",
 		id: "arcanine",
@@ -2930,20 +2694,18 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 110,
 			def: 80,
 			spa: 100,
 			spd: 80,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Flash Fire",
-			DW: "Justified",
+			DW: "Justified"
 		},
 		heightm: 1.9,
 		weightkg: 155,
@@ -2952,10 +2714,9 @@ exports.BattlePokedex =
 		prevo: "growlithe",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	poliwag:
-	{
+	poliwag: {
 		num: 60,
 		name: "Poliwag",
 		id: "poliwag",
@@ -2968,20 +2729,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 50,
 			def: 40,
 			spa: 40,
 			spd: 40,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Damp",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 0.6,
 		weightkg: 12.4,
@@ -2990,10 +2749,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["poliwhirl"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	poliwhirl:
-	{
+	poliwhirl: {
 		num: 61,
 		name: "Poliwhirl",
 		id: "poliwhirl",
@@ -3006,20 +2764,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 65,
 			def: 65,
 			spa: 50,
 			spd: 50,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Damp",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 1,
 		weightkg: 20,
@@ -3028,10 +2784,9 @@ exports.BattlePokedex =
 		prevo: "poliwag",
 		evos: ["poliwrath","politoed"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	poliwrath:
-	{
+	poliwrath: {
 		num: 62,
 		name: "Poliwrath",
 		id: "poliwrath",
@@ -3044,20 +2799,18 @@ exports.BattlePokedex =
 		types: ["Water","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 85,
 			def: 95,
 			spa: 70,
 			spd: 90,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Damp",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 1.3,
 		weightkg: 54,
@@ -3066,10 +2819,9 @@ exports.BattlePokedex =
 		prevo: "poliwhirl",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	politoed:
-	{
+	politoed: {
 		num: 186,
 		name: "Politoed",
 		id: "politoed",
@@ -3082,20 +2834,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 75,
 			def: 75,
 			spa: 90,
 			spd: 100,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Damp",
-			DW: "Drizzle",
+			DW: "Drizzle"
 		},
 		heightm: 1.1,
 		weightkg: 33.9,
@@ -3104,10 +2854,9 @@ exports.BattlePokedex =
 		prevo: "poliwhirl",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	abra:
-	{
+	abra: {
 		num: 63,
 		name: "Abra",
 		id: "abra",
@@ -3120,20 +2869,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 25,
 			atk: 20,
 			def: 15,
 			spa: 105,
 			spd: 55,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Inner Focus",
-			DW: "Magic Guard",
+			DW: "Magic Guard"
 		},
 		heightm: 0.9,
 		weightkg: 19.5,
@@ -3142,10 +2889,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["kadabra"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kadabra:
-	{
+	kadabra: {
 		num: 64,
 		name: "Kadabra",
 		id: "kadabra",
@@ -3158,20 +2904,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 35,
 			def: 30,
 			spa: 120,
 			spd: 70,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Inner Focus",
-			DW: "Magic Guard",
+			DW: "Magic Guard"
 		},
 		heightm: 1.3,
 		weightkg: 56.5,
@@ -3180,10 +2924,9 @@ exports.BattlePokedex =
 		prevo: "abra",
 		evos: ["alakazam"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	alakazam:
-	{
+	alakazam: {
 		num: 65,
 		name: "Alakazam",
 		id: "alakazam",
@@ -3196,20 +2939,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 50,
 			def: 45,
 			spa: 135,
 			spd: 85,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Inner Focus",
-			DW: "Magic Guard",
+			DW: "Magic Guard"
 		},
 		heightm: 1.5,
 		weightkg: 48,
@@ -3218,10 +2959,9 @@ exports.BattlePokedex =
 		prevo: "kadabra",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	machop:
-	{
+	machop: {
 		num: 66,
 		name: "Machop",
 		id: "machop",
@@ -3234,20 +2974,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 80,
 			def: 50,
 			spa: 35,
 			spd: 35,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "No Guard",
-			DW: "Steadfast",
+			DW: "Steadfast"
 		},
 		heightm: 0.8,
 		weightkg: 19.5,
@@ -3256,10 +2994,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["machoke"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	machoke:
-	{
+	machoke: {
 		num: 67,
 		name: "Machoke",
 		id: "machoke",
@@ -3272,20 +3009,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 70,
 			spa: 50,
 			spd: 60,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "No Guard",
-			DW: "Steadfast",
+			DW: "Steadfast"
 		},
 		heightm: 1.5,
 		weightkg: 70.5,
@@ -3294,10 +3029,9 @@ exports.BattlePokedex =
 		prevo: "machop",
 		evos: ["machamp"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	machamp:
-	{
+	machamp: {
 		num: 68,
 		name: "Machamp",
 		id: "machamp",
@@ -3310,20 +3044,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 130,
 			def: 80,
 			spa: 65,
 			spd: 85,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "No Guard",
-			DW: "Steadfast",
+			DW: "Steadfast"
 		},
 		heightm: 1.6,
 		weightkg: 130,
@@ -3332,10 +3064,9 @@ exports.BattlePokedex =
 		prevo: "machoke",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bellsprout:
-	{
+	bellsprout: {
 		num: 69,
 		name: "Bellsprout",
 		id: "bellsprout",
@@ -3348,19 +3079,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 75,
 			def: 35,
 			spa: 70,
 			spd: 30,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 0.7,
 		weightkg: 4,
@@ -3369,10 +3098,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["weepinbell"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	weepinbell:
-	{
+	weepinbell: {
 		num: 70,
 		name: "Weepinbell",
 		id: "weepinbell",
@@ -3385,19 +3113,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 90,
 			def: 50,
 			spa: 85,
 			spd: 45,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 1,
 		weightkg: 6.4,
@@ -3406,10 +3132,9 @@ exports.BattlePokedex =
 		prevo: "bellsprout",
 		evos: ["victreebel"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	victreebel:
-	{
+	victreebel: {
 		num: 71,
 		name: "Victreebel",
 		id: "victreebel",
@@ -3422,19 +3147,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 105,
 			def: 65,
 			spa: 100,
 			spd: 60,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 1.7,
 		weightkg: 15.5,
@@ -3443,10 +3166,9 @@ exports.BattlePokedex =
 		prevo: "weepinbell",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tentacool:
-	{
+	tentacool: {
 		num: 72,
 		name: "Tentacool",
 		id: "tentacool",
@@ -3459,20 +3181,18 @@ exports.BattlePokedex =
 		types: ["Water","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 40,
 			def: 35,
 			spa: 50,
 			spd: 100,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
 			1: "Liquid Ooze",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 0.9,
 		weightkg: 45.5,
@@ -3481,10 +3201,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["tentacruel"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tentacruel:
-	{
+	tentacruel: {
 		num: 73,
 		name: "Tentacruel",
 		id: "tentacruel",
@@ -3497,20 +3216,18 @@ exports.BattlePokedex =
 		types: ["Water","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 70,
 			def: 65,
 			spa: 80,
 			spd: 120,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
 			1: "Liquid Ooze",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 1.6,
 		weightkg: 55,
@@ -3519,10 +3236,9 @@ exports.BattlePokedex =
 		prevo: "tentacool",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	geodude:
-	{
+	geodude: {
 		num: 74,
 		name: "Geodude",
 		id: "geodude",
@@ -3535,20 +3251,18 @@ exports.BattlePokedex =
 		types: ["Rock","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 80,
 			def: 100,
 			spa: 30,
 			spd: 30,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Sturdy",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 0.4,
 		weightkg: 20,
@@ -3557,10 +3271,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["graveler"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	graveler:
-	{
+	graveler: {
 		num: 75,
 		name: "Graveler",
 		id: "graveler",
@@ -3573,20 +3286,18 @@ exports.BattlePokedex =
 		types: ["Rock","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 95,
 			def: 115,
 			spa: 45,
 			spd: 45,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Sturdy",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 1,
 		weightkg: 105,
@@ -3595,10 +3306,9 @@ exports.BattlePokedex =
 		prevo: "geodude",
 		evos: ["golem"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	golem:
-	{
+	golem: {
 		num: 76,
 		name: "Golem",
 		id: "golem",
@@ -3611,20 +3321,18 @@ exports.BattlePokedex =
 		types: ["Rock","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 110,
 			def: 130,
 			spa: 55,
 			spd: 65,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Sturdy",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 1.4,
 		weightkg: 300,
@@ -3633,10 +3341,9 @@ exports.BattlePokedex =
 		prevo: "graveler",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ponyta:
-	{
+	ponyta: {
 		num: 77,
 		name: "Ponyta",
 		id: "ponyta",
@@ -3649,20 +3356,18 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 85,
 			def: 55,
 			spa: 65,
 			spd: 65,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Flash Fire",
-			DW: "Flame Body",
+			DW: "Flame Body"
 		},
 		heightm: 1,
 		weightkg: 30,
@@ -3671,10 +3376,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["rapidash"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rapidash:
-	{
+	rapidash: {
 		num: 78,
 		name: "Rapidash",
 		id: "rapidash",
@@ -3687,20 +3391,18 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 100,
 			def: 70,
 			spa: 80,
 			spd: 80,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Flash Fire",
-			DW: "Flame Body",
+			DW: "Flame Body"
 		},
 		heightm: 1.7,
 		weightkg: 95,
@@ -3709,10 +3411,9 @@ exports.BattlePokedex =
 		prevo: "ponyta",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	slowpoke:
-	{
+	slowpoke: {
 		num: 79,
 		name: "Slowpoke",
 		id: "slowpoke",
@@ -3725,20 +3426,18 @@ exports.BattlePokedex =
 		types: ["Water","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 65,
 			def: 65,
 			spa: 40,
 			spd: 40,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Own Tempo",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 1.2,
 		weightkg: 36,
@@ -3747,10 +3446,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["slowbro","slowking"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	slowbro:
-	{
+	slowbro: {
 		num: 80,
 		name: "Slowbro",
 		id: "slowbro",
@@ -3763,20 +3461,18 @@ exports.BattlePokedex =
 		types: ["Water","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 75,
 			def: 110,
 			spa: 100,
 			spd: 80,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Own Tempo",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 1.6,
 		weightkg: 78.5,
@@ -3785,10 +3481,9 @@ exports.BattlePokedex =
 		prevo: "slowpoke",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	slowking:
-	{
+	slowking: {
 		num: 199,
 		name: "Slowking",
 		id: "slowking",
@@ -3801,20 +3496,18 @@ exports.BattlePokedex =
 		types: ["Water","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 75,
 			def: 80,
 			spa: 100,
 			spd: 110,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Own Tempo",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 2,
 		weightkg: 79.5,
@@ -3823,10 +3516,9 @@ exports.BattlePokedex =
 		prevo: "slowpoke",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magnemite:
-	{
+	magnemite: {
 		num: 81,
 		name: "Magnemite",
 		id: "magnemite",
@@ -3839,20 +3531,18 @@ exports.BattlePokedex =
 		types: ["Electric","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 25,
 			atk: 35,
 			def: 70,
 			spa: 95,
 			spd: 55,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Magnet Pull",
 			1: "Sturdy",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.3,
 		weightkg: 6,
@@ -3861,10 +3551,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["magneton"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magneton:
-	{
+	magneton: {
 		num: 82,
 		name: "Magneton",
 		id: "magneton",
@@ -3877,20 +3566,18 @@ exports.BattlePokedex =
 		types: ["Electric","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 60,
 			def: 95,
 			spa: 120,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Magnet Pull",
 			1: "Sturdy",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 1,
 		weightkg: 60,
@@ -3899,10 +3586,9 @@ exports.BattlePokedex =
 		prevo: "magnemite",
 		evos: ["magnezone"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magnezone:
-	{
+	magnezone: {
 		num: 462,
 		name: "Magnezone",
 		id: "magnezone",
@@ -3915,20 +3601,18 @@ exports.BattlePokedex =
 		types: ["Electric","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 70,
 			def: 115,
 			spa: 130,
 			spd: 90,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Magnet Pull",
 			1: "Sturdy",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 1.2,
 		weightkg: 180,
@@ -3937,10 +3621,9 @@ exports.BattlePokedex =
 		prevo: "magneton",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	farfetchd:
-	{
+	farfetchd: {
 		num: 83,
 		name: "Farfetch'd",
 		id: "farfetchd",
@@ -3953,20 +3636,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 52,
 			atk: 65,
 			def: 55,
 			spa: 58,
 			spd: 62,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Inner Focus",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 0.8,
 		weightkg: 15,
@@ -3975,10 +3656,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	doduo:
-	{
+	doduo: {
 		num: 84,
 		name: "Doduo",
 		id: "doduo",
@@ -3991,20 +3671,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 85,
 			def: 45,
 			spa: 35,
 			spd: 35,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Early Bird",
-			DW: "Tangled Feet",
+			DW: "Tangled Feet"
 		},
 		heightm: 1.4,
 		weightkg: 39.2,
@@ -4013,10 +3691,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["dodrio"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dodrio:
-	{
+	dodrio: {
 		num: 85,
 		name: "Dodrio",
 		id: "dodrio",
@@ -4029,20 +3706,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 110,
 			def: 70,
 			spa: 60,
 			spd: 60,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Early Bird",
-			DW: "Tangled Feet",
+			DW: "Tangled Feet"
 		},
 		heightm: 1.8,
 		weightkg: 85.2,
@@ -4051,10 +3726,9 @@ exports.BattlePokedex =
 		prevo: "doduo",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	seel:
-	{
+	seel: {
 		num: 86,
 		name: "Seel",
 		id: "seel",
@@ -4067,20 +3741,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 45,
 			def: 55,
 			spa: 45,
 			spd: 70,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Hydration",
-			DW: "Ice Body",
+			DW: "Ice Body"
 		},
 		heightm: 1.1,
 		weightkg: 90,
@@ -4089,10 +3761,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["dewgong"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dewgong:
-	{
+	dewgong: {
 		num: 87,
 		name: "Dewgong",
 		id: "dewgong",
@@ -4105,20 +3776,18 @@ exports.BattlePokedex =
 		types: ["Water","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 70,
 			def: 80,
 			spa: 70,
 			spd: 95,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Hydration",
-			DW: "Ice Body",
+			DW: "Ice Body"
 		},
 		heightm: 1.7,
 		weightkg: 120,
@@ -4127,10 +3796,9 @@ exports.BattlePokedex =
 		prevo: "seel",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	grimer:
-	{
+	grimer: {
 		num: 88,
 		name: "Grimer",
 		id: "grimer",
@@ -4143,20 +3811,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 80,
 			def: 50,
 			spa: 40,
 			spd: 50,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Stench",
 			1: "Sticky Hold",
-			DW: "Poison Touch",
+			DW: "Poison Touch"
 		},
 		heightm: 0.9,
 		weightkg: 30,
@@ -4165,10 +3831,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["muk"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	muk:
-	{
+	muk: {
 		num: 89,
 		name: "Muk",
 		id: "muk",
@@ -4181,20 +3846,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 105,
 			def: 75,
 			spa: 65,
 			spd: 100,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Stench",
 			1: "Sticky Hold",
-			DW: "Poison Touch",
+			DW: "Poison Touch"
 		},
 		heightm: 1.2,
 		weightkg: 30,
@@ -4203,10 +3866,9 @@ exports.BattlePokedex =
 		prevo: "grimer",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shellder:
-	{
+	shellder: {
 		num: 90,
 		name: "Shellder",
 		id: "shellder",
@@ -4219,20 +3881,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 65,
 			def: 100,
 			spa: 45,
 			spd: 25,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shell Armor",
 			1: "Skill Link",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.3,
 		weightkg: 4,
@@ -4241,10 +3901,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["cloyster"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cloyster:
-	{
+	cloyster: {
 		num: 91,
 		name: "Cloyster",
 		id: "cloyster",
@@ -4257,20 +3916,18 @@ exports.BattlePokedex =
 		types: ["Water","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 95,
 			def: 180,
 			spa: 85,
 			spd: 45,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shell Armor",
 			1: "Skill Link",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 1.5,
 		weightkg: 132.5,
@@ -4279,10 +3936,9 @@ exports.BattlePokedex =
 		prevo: "shellder",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gastly:
-	{
+	gastly: {
 		num: 92,
 		name: "Gastly",
 		id: "gastly",
@@ -4295,18 +3951,16 @@ exports.BattlePokedex =
 		types: ["Ghost","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 35,
 			def: 30,
 			spa: 100,
 			spd: 35,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.3,
 		weightkg: 0.1,
@@ -4315,10 +3969,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["haunter"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	haunter:
-	{
+	haunter: {
 		num: 93,
 		name: "Haunter",
 		id: "haunter",
@@ -4331,18 +3984,16 @@ exports.BattlePokedex =
 		types: ["Ghost","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 50,
 			def: 45,
 			spa: 115,
 			spd: 55,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.6,
 		weightkg: 0.1,
@@ -4351,10 +4002,9 @@ exports.BattlePokedex =
 		prevo: "gastly",
 		evos: ["gengar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gengar:
-	{
+	gengar: {
 		num: 94,
 		name: "Gengar",
 		id: "gengar",
@@ -4367,18 +4017,16 @@ exports.BattlePokedex =
 		types: ["Ghost","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 65,
 			def: 60,
 			spa: 130,
 			spd: 75,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.5,
 		weightkg: 40.5,
@@ -4387,10 +4035,9 @@ exports.BattlePokedex =
 		prevo: "haunter",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	onix:
-	{
+	onix: {
 		num: 95,
 		name: "Onix",
 		id: "onix",
@@ -4403,20 +4050,18 @@ exports.BattlePokedex =
 		types: ["Rock","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 45,
 			def: 160,
 			spa: 30,
 			spd: 45,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Sturdy",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 8.8,
 		weightkg: 210,
@@ -4425,10 +4070,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["steelix"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	steelix:
-	{
+	steelix: {
 		num: 208,
 		name: "Steelix",
 		id: "steelix",
@@ -4441,20 +4085,18 @@ exports.BattlePokedex =
 		types: ["Steel","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 85,
 			def: 200,
 			spa: 55,
 			spd: 65,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Sturdy",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 9.2,
 		weightkg: 400,
@@ -4463,10 +4105,9 @@ exports.BattlePokedex =
 		prevo: "onix",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	drowzee:
-	{
+	drowzee: {
 		num: 96,
 		name: "Drowzee",
 		id: "drowzee",
@@ -4479,20 +4120,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 48,
 			def: 45,
 			spa: 43,
 			spd: 90,
-			spe: 42,
+			spe: 42
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Forewarn",
-			DW: "Inner Focus",
+			DW: "Inner Focus"
 		},
 		heightm: 1,
 		weightkg: 32.4,
@@ -4501,10 +4140,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["hypno"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hypno:
-	{
+	hypno: {
 		num: 97,
 		name: "Hypno",
 		id: "hypno",
@@ -4517,20 +4155,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 73,
 			def: 70,
 			spa: 73,
 			spd: 115,
-			spe: 67,
+			spe: 67
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Forewarn",
-			DW: "Inner Focus",
+			DW: "Inner Focus"
 		},
 		heightm: 1.6,
 		weightkg: 75.6,
@@ -4539,10 +4175,9 @@ exports.BattlePokedex =
 		prevo: "drowzee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	krabby:
-	{
+	krabby: {
 		num: 98,
 		name: "Krabby",
 		id: "krabby",
@@ -4555,20 +4190,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 105,
 			def: 90,
 			spa: 25,
 			spd: 25,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Shell Armor",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 0.4,
 		weightkg: 6.5,
@@ -4577,10 +4210,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["kingler"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kingler:
-	{
+	kingler: {
 		num: 99,
 		name: "Kingler",
 		id: "kingler",
@@ -4593,20 +4225,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 130,
 			def: 115,
 			spa: 50,
 			spd: 50,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Shell Armor",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.3,
 		weightkg: 60,
@@ -4615,10 +4245,9 @@ exports.BattlePokedex =
 		prevo: "krabby",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	voltorb:
-	{
+	voltorb: {
 		num: 100,
 		name: "Voltorb",
 		id: "voltorb",
@@ -4631,20 +4260,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 30,
 			def: 50,
 			spa: 55,
 			spd: 55,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
 			1: "Static",
-			DW: "Aftermath",
+			DW: "Aftermath"
 		},
 		heightm: 0.5,
 		weightkg: 10.4,
@@ -4653,10 +4280,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["electrode"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	electrode:
-	{
+	electrode: {
 		num: 101,
 		name: "Electrode",
 		id: "electrode",
@@ -4669,20 +4295,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 50,
 			def: 70,
 			spa: 80,
 			spd: 80,
-			spe: 140,
+			spe: 140
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
 			1: "Static",
-			DW: "Aftermath",
+			DW: "Aftermath"
 		},
 		heightm: 1.2,
 		weightkg: 66.6,
@@ -4691,10 +4315,9 @@ exports.BattlePokedex =
 		prevo: "voltorb",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	exeggcute:
-	{
+	exeggcute: {
 		num: 102,
 		name: "Exeggcute",
 		id: "exeggcute",
@@ -4707,19 +4330,17 @@ exports.BattlePokedex =
 		types: ["Grass","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 40,
 			def: 80,
 			spa: 60,
 			spd: 45,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Harvest",
+			DW: "Harvest"
 		},
 		heightm: 0.4,
 		weightkg: 2.5,
@@ -4728,10 +4349,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["exeggutor"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	exeggutor:
-	{
+	exeggutor: {
 		num: 103,
 		name: "Exeggutor",
 		id: "exeggutor",
@@ -4744,19 +4364,17 @@ exports.BattlePokedex =
 		types: ["Grass","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 95,
 			def: 85,
 			spa: 125,
 			spd: 65,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
-			DW: "Harvest",
+			DW: "Harvest"
 		},
 		heightm: 2,
 		weightkg: 120,
@@ -4765,10 +4383,9 @@ exports.BattlePokedex =
 		prevo: "exeggcute",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cubone:
-	{
+	cubone: {
 		num: 104,
 		name: "Cubone",
 		id: "cubone",
@@ -4781,20 +4398,18 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 95,
 			spa: 40,
 			spd: 50,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Lightningrod",
-			DW: "Battle Armor",
+			DW: "Battle Armor"
 		},
 		heightm: 0.4,
 		weightkg: 6.5,
@@ -4803,10 +4418,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["marowak"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	marowak:
-	{
+	marowak: {
 		num: 105,
 		name: "Marowak",
 		id: "marowak",
@@ -4819,20 +4433,18 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 80,
 			def: 110,
 			spa: 50,
 			spd: 80,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Lightningrod",
-			DW: "Battle Armor",
+			DW: "Battle Armor"
 		},
 		heightm: 1,
 		weightkg: 45,
@@ -4841,10 +4453,9 @@ exports.BattlePokedex =
 		prevo: "cubone",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tyrogue:
-	{
+	tyrogue: {
 		num: 236,
 		name: "Tyrogue",
 		id: "tyrogue",
@@ -4857,20 +4468,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 35,
 			def: 35,
 			spa: 35,
 			spd: 35,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "Steadfast",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 0.7,
 		weightkg: 21,
@@ -4879,10 +4488,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["hitmonlee","hitmonchan","hitmontop"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hitmonlee:
-	{
+	hitmonlee: {
 		num: 106,
 		name: "Hitmonlee",
 		id: "hitmonlee",
@@ -4895,20 +4503,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 120,
 			def: 53,
 			spa: 35,
 			spd: 110,
-			spe: 87,
+			spe: 87
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Limber",
 			1: "Reckless",
-			DW: "Unburden",
+			DW: "Unburden"
 		},
 		heightm: 1.5,
 		weightkg: 49.8,
@@ -4917,10 +4523,9 @@ exports.BattlePokedex =
 		prevo: "tyrogue",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hitmonchan:
-	{
+	hitmonchan: {
 		num: 107,
 		name: "Hitmonchan",
 		id: "hitmonchan",
@@ -4933,20 +4538,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 105,
 			def: 79,
 			spa: 35,
 			spd: 110,
-			spe: 76,
+			spe: 76
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Iron Fist",
-			DW: "Inner Focus",
+			DW: "Inner Focus"
 		},
 		heightm: 1.4,
 		weightkg: 50.2,
@@ -4955,10 +4558,9 @@ exports.BattlePokedex =
 		prevo: "tyrogue",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hitmontop:
-	{
+	hitmontop: {
 		num: 237,
 		name: "Hitmontop",
 		id: "hitmontop",
@@ -4971,20 +4573,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 95,
 			def: 95,
 			spa: 35,
 			spd: 110,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Technician",
-			DW: "Steadfast",
+			DW: "Steadfast"
 		},
 		heightm: 1.4,
 		weightkg: 48,
@@ -4993,10 +4593,9 @@ exports.BattlePokedex =
 		prevo: "tyrogue",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lickitung:
-	{
+	lickitung: {
 		num: 108,
 		name: "Lickitung",
 		id: "lickitung",
@@ -5009,20 +4608,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 55,
 			def: 75,
 			spa: 60,
 			spd: 75,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Own Tempo",
 			1: "Oblivious",
-			DW: "Cloud Nine",
+			DW: "Cloud Nine"
 		},
 		heightm: 1.2,
 		weightkg: 65.5,
@@ -5031,10 +4628,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lickilicky"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lickilicky:
-	{
+	lickilicky: {
 		num: 463,
 		name: "Lickilicky",
 		id: "lickilicky",
@@ -5047,20 +4643,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 85,
 			def: 95,
 			spa: 80,
 			spd: 95,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Own Tempo",
 			1: "Oblivious",
-			DW: "Cloud Nine",
+			DW: "Cloud Nine"
 		},
 		heightm: 1.7,
 		weightkg: 140,
@@ -5069,10 +4663,9 @@ exports.BattlePokedex =
 		prevo: "lickitung",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	koffing:
-	{
+	koffing: {
 		num: 109,
 		name: "Koffing",
 		id: "koffing",
@@ -5085,18 +4678,16 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 65,
 			def: 95,
 			spa: 60,
 			spd: 45,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.6,
 		weightkg: 1,
@@ -5105,10 +4696,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["weezing"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	weezing:
-	{
+	weezing: {
 		num: 110,
 		name: "Weezing",
 		id: "weezing",
@@ -5121,18 +4711,16 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 90,
 			def: 120,
 			spa: 85,
 			spd: 70,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.2,
 		weightkg: 9.5,
@@ -5141,10 +4729,9 @@ exports.BattlePokedex =
 		prevo: "koffing",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rhyhorn:
-	{
+	rhyhorn: {
 		num: 111,
 		name: "Rhyhorn",
 		id: "rhyhorn",
@@ -5157,20 +4744,18 @@ exports.BattlePokedex =
 		types: ["Ground","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 85,
 			def: 95,
 			spa: 30,
 			spd: 30,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Lightningrod",
 			1: "Rock Head",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 1,
 		weightkg: 115,
@@ -5179,10 +4764,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["rhydon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rhydon:
-	{
+	rhydon: {
 		num: 112,
 		name: "Rhydon",
 		id: "rhydon",
@@ -5195,20 +4779,18 @@ exports.BattlePokedex =
 		types: ["Ground","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 130,
 			def: 120,
 			spa: 45,
 			spd: 45,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Lightningrod",
 			1: "Rock Head",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 1.9,
 		weightkg: 120,
@@ -5217,10 +4799,9 @@ exports.BattlePokedex =
 		prevo: "rhyhorn",
 		evos: ["rhyperior"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rhyperior:
-	{
+	rhyperior: {
 		num: 464,
 		name: "Rhyperior",
 		id: "rhyperior",
@@ -5233,20 +4814,18 @@ exports.BattlePokedex =
 		types: ["Ground","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 115,
 			atk: 140,
 			def: 130,
 			spa: 55,
 			spd: 55,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Lightningrod",
 			1: "Solid Rock",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 2.4,
 		weightkg: 282.8,
@@ -5255,10 +4834,9 @@ exports.BattlePokedex =
 		prevo: "rhydon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	happiny:
-	{
+	happiny: {
 		num: 440,
 		name: "Happiny",
 		id: "happiny",
@@ -5271,20 +4849,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 5,
 			def: 5,
 			spa: 15,
 			spd: 65,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
 			1: "Serene Grace",
-			DW: "Friend Guard",
+			DW: "Friend Guard"
 		},
 		heightm: 0.6,
 		weightkg: 24.4,
@@ -5293,10 +4869,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["chansey"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chansey:
-	{
+	chansey: {
 		num: 113,
 		name: "Chansey",
 		id: "chansey",
@@ -5309,20 +4884,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 250,
 			atk: 5,
 			def: 5,
 			spa: 35,
 			spd: 105,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
 			1: "Serene Grace",
-			DW: "Healer",
+			DW: "Healer"
 		},
 		heightm: 1.1,
 		weightkg: 34.6,
@@ -5331,10 +4904,9 @@ exports.BattlePokedex =
 		prevo: "happiny",
 		evos: ["blissey"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	blissey:
-	{
+	blissey: {
 		num: 242,
 		name: "Blissey",
 		id: "blissey",
@@ -5347,20 +4919,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 255,
 			atk: 10,
 			def: 10,
 			spa: 75,
 			spd: 135,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
 			1: "Serene Grace",
-			DW: "Healer",
+			DW: "Healer"
 		},
 		heightm: 1.5,
 		weightkg: 46.8,
@@ -5369,10 +4939,9 @@ exports.BattlePokedex =
 		prevo: "chansey",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tangela:
-	{
+	tangela: {
 		num: 114,
 		name: "Tangela",
 		id: "tangela",
@@ -5385,20 +4954,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 55,
 			def: 115,
 			spa: 100,
 			spd: 40,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Leaf Guard",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 1,
 		weightkg: 35,
@@ -5407,10 +4974,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["tangrowth"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tangrowth:
-	{
+	tangrowth: {
 		num: 465,
 		name: "Tangrowth",
 		id: "tangrowth",
@@ -5423,20 +4989,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 125,
 			spa: 110,
 			spd: 50,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Leaf Guard",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 2,
 		weightkg: 128.6,
@@ -5445,10 +5009,9 @@ exports.BattlePokedex =
 		prevo: "tangela",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kangaskhan:
-	{
+	kangaskhan: {
 		num: 115,
 		name: "Kangaskhan",
 		id: "kangaskhan",
@@ -5461,20 +5024,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 95,
 			def: 80,
 			spa: 40,
 			spd: 80,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Early Bird",
 			1: "Scrappy",
-			DW: "Inner Focus",
+			DW: "Inner Focus"
 		},
 		heightm: 2.2,
 		weightkg: 80,
@@ -5483,10 +5044,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	horsea:
-	{
+	horsea: {
 		num: 116,
 		name: "Horsea",
 		id: "horsea",
@@ -5499,20 +5059,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 40,
 			def: 70,
 			spa: 70,
 			spd: 25,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Sniper",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 0.4,
 		weightkg: 8,
@@ -5521,10 +5079,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["seadra"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	seadra:
-	{
+	seadra: {
 		num: 117,
 		name: "Seadra",
 		id: "seadra",
@@ -5537,20 +5094,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 65,
 			def: 95,
 			spa: 95,
 			spd: 45,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Sniper",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 1.2,
 		weightkg: 25,
@@ -5559,10 +5114,9 @@ exports.BattlePokedex =
 		prevo: "horsea",
 		evos: ["kingdra"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kingdra:
-	{
+	kingdra: {
 		num: 230,
 		name: "Kingdra",
 		id: "kingdra",
@@ -5575,20 +5129,18 @@ exports.BattlePokedex =
 		types: ["Water","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 95,
 			def: 95,
 			spa: 95,
 			spd: 95,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Sniper",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 1.8,
 		weightkg: 152,
@@ -5597,10 +5149,9 @@ exports.BattlePokedex =
 		prevo: "seadra",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	goldeen:
-	{
+	goldeen: {
 		num: 118,
 		name: "Goldeen",
 		id: "goldeen",
@@ -5613,20 +5164,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 67,
 			def: 60,
 			spa: 35,
 			spd: 50,
-			spe: 63,
+			spe: 63
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Water Veil",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 0.6,
 		weightkg: 15,
@@ -5635,10 +5184,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["seaking"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	seaking:
-	{
+	seaking: {
 		num: 119,
 		name: "Seaking",
 		id: "seaking",
@@ -5651,20 +5199,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 92,
 			def: 65,
 			spa: 65,
 			spd: 80,
-			spe: 68,
+			spe: 68
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Water Veil",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 1.3,
 		weightkg: 39,
@@ -5673,10 +5219,9 @@ exports.BattlePokedex =
 		prevo: "goldeen",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	staryu:
-	{
+	staryu: {
 		num: 120,
 		name: "Staryu",
 		id: "staryu",
@@ -5689,20 +5234,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 45,
 			def: 55,
 			spa: 70,
 			spd: 55,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Illuminate",
 			1: "Natural Cure",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.8,
 		weightkg: 34.5,
@@ -5711,10 +5254,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["starmie"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	starmie:
-	{
+	starmie: {
 		num: 121,
 		name: "Starmie",
 		id: "starmie",
@@ -5727,20 +5269,18 @@ exports.BattlePokedex =
 		types: ["Water","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 75,
 			def: 85,
 			spa: 100,
 			spd: 85,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Illuminate",
 			1: "Natural Cure",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 1.1,
 		weightkg: 80,
@@ -5749,10 +5289,9 @@ exports.BattlePokedex =
 		prevo: "staryu",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mimejr:
-	{
+	mimejr: {
 		num: 439,
 		name: "Mime Jr.",
 		id: "mimejr",
@@ -5765,20 +5304,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 25,
 			def: 45,
 			spa: 70,
 			spd: 90,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
 			1: "Filter",
-			DW: "Technician",
+			DW: "Technician"
 		},
 		heightm: 0.6,
 		weightkg: 13,
@@ -5787,10 +5324,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["mrmime"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mrmime:
-	{
+	mrmime: {
 		num: 122,
 		name: "Mr. Mime",
 		id: "mrmime",
@@ -5803,20 +5339,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 45,
 			def: 65,
 			spa: 100,
 			spd: 120,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
 			1: "Filter",
-			DW: "Technician",
+			DW: "Technician"
 		},
 		heightm: 1.3,
 		weightkg: 54.5,
@@ -5825,10 +5359,9 @@ exports.BattlePokedex =
 		prevo: "mimejr",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	scyther:
-	{
+	scyther: {
 		num: 123,
 		name: "Scyther",
 		id: "scyther",
@@ -5841,20 +5374,18 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 110,
 			def: 80,
 			spa: 55,
 			spd: 80,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Technician",
-			DW: "Steadfast",
+			DW: "Steadfast"
 		},
 		heightm: 1.5,
 		weightkg: 56,
@@ -5863,10 +5394,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["scizor"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	scizor:
-	{
+	scizor: {
 		num: 212,
 		name: "Scizor",
 		id: "scizor",
@@ -5879,20 +5409,18 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 130,
 			def: 100,
 			spa: 55,
 			spd: 80,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Technician",
-			DW: "Light Metal",
+			DW: "Light Metal"
 		},
 		heightm: 1.8,
 		weightkg: 118,
@@ -5901,10 +5429,9 @@ exports.BattlePokedex =
 		prevo: "scyther",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	smoochum:
-	{
+	smoochum: {
 		num: 238,
 		name: "Smoochum",
 		id: "smoochum",
@@ -5917,20 +5444,18 @@ exports.BattlePokedex =
 		types: ["Ice","Psychic"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 30,
 			def: 15,
 			spa: 85,
 			spd: 65,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Forewarn",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 0.4,
 		weightkg: 6,
@@ -5939,10 +5464,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["jynx"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	jynx:
-	{
+	jynx: {
 		num: 124,
 		name: "Jynx",
 		id: "jynx",
@@ -5955,20 +5479,18 @@ exports.BattlePokedex =
 		types: ["Ice","Psychic"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 50,
 			def: 35,
 			spa: 115,
 			spd: 95,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Forewarn",
-			DW: "Dry Skin",
+			DW: "Dry Skin"
 		},
 		heightm: 1.4,
 		weightkg: 40.6,
@@ -5977,10 +5499,9 @@ exports.BattlePokedex =
 		prevo: "smoochum",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	elekid:
-	{
+	elekid: {
 		num: 239,
 		name: "Elekid",
 		id: "elekid",
@@ -5993,19 +5514,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 63,
 			def: 37,
 			spa: 65,
 			spd: 55,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 0.6,
 		weightkg: 23.5,
@@ -6014,10 +5533,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["electabuzz"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	electabuzz:
-	{
+	electabuzz: {
 		num: 125,
 		name: "Electabuzz",
 		id: "electabuzz",
@@ -6030,19 +5548,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 83,
 			def: 57,
 			spa: 95,
 			spd: 85,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 1.1,
 		weightkg: 30,
@@ -6051,10 +5567,9 @@ exports.BattlePokedex =
 		prevo: "elekid",
 		evos: ["electivire"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	electivire:
-	{
+	electivire: {
 		num: 466,
 		name: "Electivire",
 		id: "electivire",
@@ -6067,19 +5582,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 123,
 			def: 67,
 			spa: 95,
 			spd: 85,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Motor Drive",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 1.8,
 		weightkg: 138.6,
@@ -6088,10 +5601,9 @@ exports.BattlePokedex =
 		prevo: "electabuzz",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magby:
-	{
+	magby: {
 		num: 240,
 		name: "Magby",
 		id: "magby",
@@ -6104,19 +5616,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 75,
 			def: 37,
 			spa: 70,
 			spd: 55,
-			spe: 83,
+			spe: 83
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flame Body",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 0.7,
 		weightkg: 21.4,
@@ -6125,10 +5635,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["magmar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magmar:
-	{
+	magmar: {
 		num: 126,
 		name: "Magmar",
 		id: "magmar",
@@ -6141,19 +5650,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 95,
 			def: 57,
 			spa: 100,
 			spd: 85,
-			spe: 93,
+			spe: 93
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flame Body",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 1.3,
 		weightkg: 44.5,
@@ -6162,10 +5669,9 @@ exports.BattlePokedex =
 		prevo: "magby",
 		evos: ["magmortar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magmortar:
-	{
+	magmortar: {
 		num: 467,
 		name: "Magmortar",
 		id: "magmortar",
@@ -6178,19 +5684,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 95,
 			def: 67,
 			spa: 125,
 			spd: 95,
-			spe: 83,
+			spe: 83
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flame Body",
-			DW: "Vital Spirit",
+			DW: "Vital Spirit"
 		},
 		heightm: 1.6,
 		weightkg: 68,
@@ -6199,10 +5703,9 @@ exports.BattlePokedex =
 		prevo: "magmar",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pinsir:
-	{
+	pinsir: {
 		num: 127,
 		name: "Pinsir",
 		id: "pinsir",
@@ -6215,20 +5718,18 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 125,
 			def: 100,
 			spa: 55,
 			spd: 70,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Mold Breaker",
-			DW: "Moxie",
+			DW: "Moxie"
 		},
 		heightm: 1.5,
 		weightkg: 55,
@@ -6237,10 +5738,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tauros:
-	{
+	tauros: {
 		num: 128,
 		name: "Tauros",
 		id: "tauros",
@@ -6253,20 +5753,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 100,
 			def: 95,
 			spa: 40,
 			spd: 70,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Anger Point",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.4,
 		weightkg: 88.4,
@@ -6275,10 +5773,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magikarp:
-	{
+	magikarp: {
 		num: 129,
 		name: "Magikarp",
 		id: "magikarp",
@@ -6291,19 +5788,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 10,
 			def: 55,
 			spa: 15,
 			spd: 20,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.9,
 		weightkg: 10,
@@ -6312,10 +5807,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gyarados"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gyarados:
-	{
+	gyarados: {
 		num: 130,
 		name: "Gyarados",
 		id: "gyarados",
@@ -6328,19 +5822,17 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 125,
 			def: 79,
 			spa: 60,
 			spd: 100,
-			spe: 81,
+			spe: 81
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
-			DW: "Moxie",
+			DW: "Moxie"
 		},
 		heightm: 6.5,
 		weightkg: 235,
@@ -6349,10 +5841,9 @@ exports.BattlePokedex =
 		prevo: "magikarp",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lapras:
-	{
+	lapras: {
 		num: 131,
 		name: "Lapras",
 		id: "lapras",
@@ -6365,20 +5856,18 @@ exports.BattlePokedex =
 		types: ["Water","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 130,
 			atk: 85,
 			def: 80,
 			spa: 85,
 			spd: 95,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Shell Armor",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 2.5,
 		weightkg: 220,
@@ -6387,10 +5876,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ditto:
-	{
+	ditto: {
 		num: 132,
 		name: "Ditto",
 		id: "ditto",
@@ -6403,19 +5891,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 48,
 			def: 48,
 			spa: 48,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Limber",
-			DW: "Imposter",
+			DW: "Imposter"
 		},
 		heightm: 0.3,
 		weightkg: 4,
@@ -6424,10 +5910,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	eevee:
-	{
+	eevee: {
 		num: 133,
 		name: "Eevee",
 		id: "eevee",
@@ -6440,20 +5925,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 55,
 			def: 50,
 			spa: 45,
 			spd: 65,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Adaptability",
-			DW: "Anticipation",
+			DW: "Anticipation"
 		},
 		heightm: 0.3,
 		weightkg: 6.5,
@@ -6462,10 +5945,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["vaporeon","jolteon","flareon","espeon","umbreon","leafeon","glaceon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vaporeon:
-	{
+	vaporeon: {
 		num: 134,
 		name: "Vaporeon",
 		id: "vaporeon",
@@ -6478,19 +5960,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 130,
 			atk: 65,
 			def: 60,
 			spa: 110,
 			spd: 95,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 1,
 		weightkg: 29,
@@ -6499,10 +5979,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	jolteon:
-	{
+	jolteon: {
 		num: 135,
 		name: "Jolteon",
 		id: "jolteon",
@@ -6515,19 +5994,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 65,
 			def: 60,
 			spa: 110,
 			spd: 95,
-			spe: 130,
+			spe: 130
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Volt Absorb",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 0.8,
 		weightkg: 24.5,
@@ -6536,10 +6013,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	flareon:
-	{
+	flareon: {
 		num: 136,
 		name: "Flareon",
 		id: "flareon",
@@ -6552,19 +6028,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 130,
 			def: 60,
 			spa: 95,
 			spd: 110,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
-			DW: "Guts",
+			DW: "Guts"
 		},
 		heightm: 0.9,
 		weightkg: 25,
@@ -6573,10 +6047,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	espeon:
-	{
+	espeon: {
 		num: 196,
 		name: "Espeon",
 		id: "espeon",
@@ -6589,19 +6062,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 65,
 			def: 60,
 			spa: 130,
 			spd: 95,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
-			DW: "Magic Bounce",
+			DW: "Magic Bounce"
 		},
 		heightm: 0.9,
 		weightkg: 26.5,
@@ -6610,10 +6081,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	umbreon:
-	{
+	umbreon: {
 		num: 197,
 		name: "Umbreon",
 		id: "umbreon",
@@ -6626,19 +6096,17 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 65,
 			def: 110,
 			spa: 60,
 			spd: 130,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
-			DW: "Inner Focus",
+			DW: "Inner Focus"
 		},
 		heightm: 1,
 		weightkg: 27,
@@ -6647,10 +6115,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	leafeon:
-	{
+	leafeon: {
 		num: 470,
 		name: "Leafeon",
 		id: "leafeon",
@@ -6663,19 +6130,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 110,
 			def: 130,
 			spa: 60,
 			spd: 65,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Leaf Guard",
-			DW: "Chlorophyll",
+			DW: "Chlorophyll"
 		},
 		heightm: 1,
 		weightkg: 25.5,
@@ -6684,10 +6149,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	glaceon:
-	{
+	glaceon: {
 		num: 471,
 		name: "Glaceon",
 		id: "glaceon",
@@ -6700,19 +6164,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 60,
 			def: 110,
 			spa: 130,
 			spd: 95,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Snow Cloak",
-			DW: "Ice Body",
+			DW: "Ice Body"
 		},
 		heightm: 0.8,
 		weightkg: 25.9,
@@ -6721,10 +6183,9 @@ exports.BattlePokedex =
 		prevo: "eevee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	porygon:
-	{
+	porygon: {
 		num: 137,
 		name: "Porygon",
 		id: "porygon",
@@ -6737,20 +6198,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 60,
 			def: 70,
 			spa: 85,
 			spd: 75,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Trace",
 			1: "Download",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.8,
 		weightkg: 36.5,
@@ -6759,10 +6218,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["porygon2"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	porygon2:
-	{
+	porygon2: {
 		num: 233,
 		name: "Porygon2",
 		id: "porygon2",
@@ -6775,20 +6233,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 80,
 			def: 90,
 			spa: 105,
 			spd: 95,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Trace",
 			1: "Download",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.6,
 		weightkg: 32.5,
@@ -6797,10 +6253,9 @@ exports.BattlePokedex =
 		prevo: "porygon",
 		evos: ["porygonz"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	porygonz:
-	{
+	porygonz: {
 		num: 474,
 		name: "Porygon-Z",
 		id: "porygonz",
@@ -6813,20 +6268,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 80,
 			def: 70,
 			spa: 135,
 			spd: 75,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Adaptability",
 			1: "Download",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.9,
 		weightkg: 34,
@@ -6835,10 +6288,9 @@ exports.BattlePokedex =
 		prevo: "porygon2",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	omanyte:
-	{
+	omanyte: {
 		num: 138,
 		name: "Omanyte",
 		id: "omanyte",
@@ -6851,20 +6303,18 @@ exports.BattlePokedex =
 		types: ["Rock","Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 40,
 			def: 100,
 			spa: 90,
 			spd: 55,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Shell Armor",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.4,
 		weightkg: 7.5,
@@ -6873,10 +6323,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["omastar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	omastar:
-	{
+	omastar: {
 		num: 139,
 		name: "Omastar",
 		id: "omastar",
@@ -6889,20 +6338,18 @@ exports.BattlePokedex =
 		types: ["Rock","Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 60,
 			def: 125,
 			spa: 115,
 			spd: 70,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Shell Armor",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1,
 		weightkg: 35,
@@ -6911,10 +6358,9 @@ exports.BattlePokedex =
 		prevo: "omanyte",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kabuto:
-	{
+	kabuto: {
 		num: 140,
 		name: "Kabuto",
 		id: "kabuto",
@@ -6927,20 +6373,18 @@ exports.BattlePokedex =
 		types: ["Rock","Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 80,
 			def: 90,
 			spa: 55,
 			spd: 45,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Battle Armor",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.5,
 		weightkg: 11.5,
@@ -6949,10 +6393,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["kabutops"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kabutops:
-	{
+	kabutops: {
 		num: 141,
 		name: "Kabutops",
 		id: "kabutops",
@@ -6965,20 +6408,18 @@ exports.BattlePokedex =
 		types: ["Rock","Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 115,
 			def: 105,
 			spa: 65,
 			spd: 70,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Battle Armor",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1.3,
 		weightkg: 40.5,
@@ -6987,10 +6428,9 @@ exports.BattlePokedex =
 		prevo: "kabuto",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	aerodactyl:
-	{
+	aerodactyl: {
 		num: 142,
 		name: "Aerodactyl",
 		id: "aerodactyl",
@@ -7003,20 +6443,18 @@ exports.BattlePokedex =
 		types: ["Rock","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 105,
 			def: 65,
 			spa: 60,
 			spd: 75,
-			spe: 130,
+			spe: 130
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Pressure",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1.8,
 		weightkg: 59,
@@ -7025,10 +6463,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	munchlax:
-	{
+	munchlax: {
 		num: 446,
 		name: "Munchlax",
 		id: "munchlax",
@@ -7041,20 +6478,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 135,
 			atk: 85,
 			def: 40,
 			spa: 40,
 			spd: 85,
-			spe: 5,
+			spe: 5
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pickup",
 			1: "Thick Fat",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 0.6,
 		weightkg: 105,
@@ -7063,10 +6498,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["snorlax"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	snorlax:
-	{
+	snorlax: {
 		num: 143,
 		name: "Snorlax",
 		id: "snorlax",
@@ -7079,20 +6513,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 160,
 			atk: 110,
 			def: 65,
 			spa: 65,
 			spd: 110,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Immunity",
 			1: "Thick Fat",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 2.1,
 		weightkg: 460,
@@ -7101,10 +6533,9 @@ exports.BattlePokedex =
 		prevo: "munchlax",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	articuno:
-	{
+	articuno: {
 		num: 144,
 		name: "Articuno",
 		id: "articuno",
@@ -7117,19 +6548,17 @@ exports.BattlePokedex =
 		types: ["Ice","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 85,
 			def: 100,
 			spa: 95,
 			spd: 125,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Snow Cloak",
+			DW: "Snow Cloak"
 		},
 		heightm: 1.7,
 		weightkg: 55.4,
@@ -7138,10 +6567,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zapdos:
-	{
+	zapdos: {
 		num: 145,
 		name: "Zapdos",
 		id: "zapdos",
@@ -7154,19 +6582,17 @@ exports.BattlePokedex =
 		types: ["Electric","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 90,
 			def: 85,
 			spa: 125,
 			spd: 90,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Lightningrod",
+			DW: "Lightningrod"
 		},
 		heightm: 1.6,
 		weightkg: 52.6,
@@ -7175,10 +6601,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	moltres:
-	{
+	moltres: {
 		num: 146,
 		name: "Moltres",
 		id: "moltres",
@@ -7191,19 +6616,17 @@ exports.BattlePokedex =
 		types: ["Fire","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 100,
 			def: 90,
 			spa: 125,
 			spd: 85,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Flame Body",
+			DW: "Flame Body"
 		},
 		heightm: 2,
 		weightkg: 60,
@@ -7212,10 +6635,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dratini:
-	{
+	dratini: {
 		num: 147,
 		name: "Dratini",
 		id: "dratini",
@@ -7228,19 +6650,17 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 41,
 			atk: 64,
 			def: 45,
 			spa: 50,
 			spd: 50,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Marvel Scale",
+			DW: "Marvel Scale"
 		},
 		heightm: 1.8,
 		weightkg: 3.3,
@@ -7249,10 +6669,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["dragonair"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dragonair:
-	{
+	dragonair: {
 		num: 148,
 		name: "Dragonair",
 		id: "dragonair",
@@ -7265,19 +6684,17 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 61,
 			atk: 84,
 			def: 65,
 			spa: 70,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Marvel Scale",
+			DW: "Marvel Scale"
 		},
 		heightm: 4,
 		weightkg: 16.5,
@@ -7286,10 +6703,9 @@ exports.BattlePokedex =
 		prevo: "dratini",
 		evos: ["dragonite"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dragonite:
-	{
+	dragonite: {
 		num: 149,
 		name: "Dragonite",
 		id: "dragonite",
@@ -7302,19 +6718,17 @@ exports.BattlePokedex =
 		types: ["Dragon","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 91,
 			atk: 134,
 			def: 95,
 			spa: 100,
 			spd: 100,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
-			DW: "Multiscale",
+			DW: "Multiscale"
 		},
 		heightm: 2.2,
 		weightkg: 210,
@@ -7323,10 +6737,9 @@ exports.BattlePokedex =
 		prevo: "dragonair",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mewtwo:
-	{
+	mewtwo: {
 		num: 150,
 		name: "Mewtwo",
 		id: "mewtwo",
@@ -7339,19 +6752,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 106,
 			atk: 110,
 			def: 90,
 			spa: 154,
 			spd: 90,
-			spe: 130,
+			spe: 130
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 2,
 		weightkg: 122,
@@ -7360,10 +6771,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mew:
-	{
+	mew: {
 		num: 151,
 		name: "Mew",
 		id: "mew",
@@ -7376,18 +6786,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 100,
 			spa: 100,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Synchronize",
+		abilities: {
+			0: "Synchronize"
 		},
 		heightm: 0.4,
 		weightkg: 4,
@@ -7396,10 +6804,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chikorita:
-	{
+	chikorita: {
 		num: 152,
 		name: "Chikorita",
 		id: "chikorita",
@@ -7412,19 +6819,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 49,
 			def: 65,
 			spa: 49,
 			spd: 65,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 0.9,
 		weightkg: 6.4,
@@ -7433,10 +6838,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["bayleef"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bayleef:
-	{
+	bayleef: {
 		num: 153,
 		name: "Bayleef",
 		id: "bayleef",
@@ -7449,19 +6853,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 62,
 			def: 80,
 			spa: 63,
 			spd: 80,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 1.2,
 		weightkg: 15.8,
@@ -7470,10 +6872,9 @@ exports.BattlePokedex =
 		prevo: "chikorita",
 		evos: ["meganium"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	meganium:
-	{
+	meganium: {
 		num: 154,
 		name: "Meganium",
 		id: "meganium",
@@ -7486,19 +6887,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 82,
 			def: 100,
 			spa: 83,
 			spd: 100,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 1.8,
 		weightkg: 100.5,
@@ -7507,10 +6906,9 @@ exports.BattlePokedex =
 		prevo: "bayleef",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cyndaquil:
-	{
+	cyndaquil: {
 		num: 155,
 		name: "Cyndaquil",
 		id: "cyndaquil",
@@ -7523,19 +6921,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 39,
 			atk: 52,
 			def: 43,
 			spa: 60,
 			spd: 50,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Flash Fire",
+			DW: "Flash Fire"
 		},
 		heightm: 0.5,
 		weightkg: 7.9,
@@ -7544,10 +6940,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["quilava"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	quilava:
-	{
+	quilava: {
 		num: 156,
 		name: "Quilava",
 		id: "quilava",
@@ -7560,19 +6955,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 58,
 			atk: 64,
 			def: 58,
 			spa: 80,
 			spd: 65,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Flash Fire",
+			DW: "Flash Fire"
 		},
 		heightm: 0.9,
 		weightkg: 19,
@@ -7581,10 +6974,9 @@ exports.BattlePokedex =
 		prevo: "cyndaquil",
 		evos: ["typhlosion"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	typhlosion:
-	{
+	typhlosion: {
 		num: 157,
 		name: "Typhlosion",
 		id: "typhlosion",
@@ -7597,19 +6989,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 78,
 			atk: 84,
 			def: 78,
 			spa: 109,
 			spd: 85,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Flash Fire",
+			DW: "Flash Fire"
 		},
 		heightm: 1.7,
 		weightkg: 79.5,
@@ -7618,10 +7008,9 @@ exports.BattlePokedex =
 		prevo: "quilava",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	totodile:
-	{
+	totodile: {
 		num: 158,
 		name: "Totodile",
 		id: "totodile",
@@ -7634,19 +7023,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 64,
 			spa: 44,
 			spd: 48,
-			spe: 43,
+			spe: 43
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 0.6,
 		weightkg: 9.5,
@@ -7655,10 +7042,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["croconaw"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	croconaw:
-	{
+	croconaw: {
 		num: 159,
 		name: "Croconaw",
 		id: "croconaw",
@@ -7671,19 +7057,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 80,
 			def: 80,
 			spa: 59,
 			spd: 63,
-			spe: 58,
+			spe: 58
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.1,
 		weightkg: 25,
@@ -7692,10 +7076,9 @@ exports.BattlePokedex =
 		prevo: "totodile",
 		evos: ["feraligatr"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	feraligatr:
-	{
+	feraligatr: {
 		num: 160,
 		name: "Feraligatr",
 		id: "feraligatr",
@@ -7708,19 +7091,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 105,
 			def: 100,
 			spa: 79,
 			spd: 83,
-			spe: 78,
+			spe: 78
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 2.3,
 		weightkg: 88.8,
@@ -7729,10 +7110,9 @@ exports.BattlePokedex =
 		prevo: "croconaw",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sentret:
-	{
+	sentret: {
 		num: 161,
 		name: "Sentret",
 		id: "sentret",
@@ -7745,20 +7125,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 46,
 			def: 34,
 			spa: 35,
 			spd: 45,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Keen Eye",
-			DW: "Frisk",
+			DW: "Frisk"
 		},
 		heightm: 0.8,
 		weightkg: 6,
@@ -7767,10 +7145,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["furret"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	furret:
-	{
+	furret: {
 		num: 162,
 		name: "Furret",
 		id: "furret",
@@ -7783,20 +7160,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 76,
 			def: 64,
 			spa: 45,
 			spd: 55,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Keen Eye",
-			DW: "Frisk",
+			DW: "Frisk"
 		},
 		heightm: 1.8,
 		weightkg: 32.5,
@@ -7805,10 +7180,9 @@ exports.BattlePokedex =
 		prevo: "sentret",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hoothoot:
-	{
+	hoothoot: {
 		num: 163,
 		name: "Hoothoot",
 		id: "hoothoot",
@@ -7821,20 +7195,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 30,
 			def: 30,
 			spa: 36,
 			spd: 56,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Keen Eye",
-			DW: "Tinted Lens",
+			DW: "Tinted Lens"
 		},
 		heightm: 0.7,
 		weightkg: 21.2,
@@ -7843,10 +7215,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["noctowl"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	noctowl:
-	{
+	noctowl: {
 		num: 164,
 		name: "Noctowl",
 		id: "noctowl",
@@ -7859,20 +7230,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 50,
 			def: 50,
 			spa: 76,
 			spd: 96,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Keen Eye",
-			DW: "Tinted Lens",
+			DW: "Tinted Lens"
 		},
 		heightm: 1.6,
 		weightkg: 40.8,
@@ -7881,10 +7250,9 @@ exports.BattlePokedex =
 		prevo: "hoothoot",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ledyba:
-	{
+	ledyba: {
 		num: 165,
 		name: "Ledyba",
 		id: "ledyba",
@@ -7897,20 +7265,18 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 20,
 			def: 30,
 			spa: 40,
 			spd: 80,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Early Bird",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 1,
 		weightkg: 10.8,
@@ -7919,10 +7285,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ledian"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ledian:
-	{
+	ledian: {
 		num: 166,
 		name: "Ledian",
 		id: "ledian",
@@ -7935,20 +7300,18 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 35,
 			def: 50,
 			spa: 55,
 			spd: 110,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Early Bird",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 1.4,
 		weightkg: 35.6,
@@ -7957,10 +7320,9 @@ exports.BattlePokedex =
 		prevo: "ledyba",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	spinarak:
-	{
+	spinarak: {
 		num: 167,
 		name: "Spinarak",
 		id: "spinarak",
@@ -7973,20 +7335,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 60,
 			def: 40,
 			spa: 40,
 			spd: 40,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Insomnia",
-			DW: "Sniper",
+			DW: "Sniper"
 		},
 		heightm: 0.5,
 		weightkg: 8.5,
@@ -7995,10 +7355,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ariados"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ariados:
-	{
+	ariados: {
 		num: 168,
 		name: "Ariados",
 		id: "ariados",
@@ -8011,20 +7370,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 90,
 			def: 70,
 			spa: 60,
 			spd: 60,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Insomnia",
-			DW: "Sniper",
+			DW: "Sniper"
 		},
 		heightm: 1.1,
 		weightkg: 33.5,
@@ -8033,10 +7390,9 @@ exports.BattlePokedex =
 		prevo: "spinarak",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chinchou:
-	{
+	chinchou: {
 		num: 170,
 		name: "Chinchou",
 		id: "chinchou",
@@ -8049,20 +7405,18 @@ exports.BattlePokedex =
 		types: ["Water","Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 38,
 			def: 38,
 			spa: 56,
 			spd: 56,
-			spe: 67,
+			spe: 67
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Volt Absorb",
 			1: "Illuminate",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 0.5,
 		weightkg: 12,
@@ -8071,10 +7425,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lanturn"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lanturn:
-	{
+	lanturn: {
 		num: 171,
 		name: "Lanturn",
 		id: "lanturn",
@@ -8087,20 +7440,18 @@ exports.BattlePokedex =
 		types: ["Water","Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 125,
 			atk: 58,
 			def: 58,
 			spa: 76,
 			spd: 76,
-			spe: 67,
+			spe: 67
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Volt Absorb",
 			1: "Illuminate",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 1.2,
 		weightkg: 22.5,
@@ -8109,10 +7460,9 @@ exports.BattlePokedex =
 		prevo: "chinchou",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	togepi:
-	{
+	togepi: {
 		num: 175,
 		name: "Togepi",
 		id: "togepi",
@@ -8125,20 +7475,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 20,
 			def: 65,
 			spa: 40,
 			spd: 65,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hustle",
 			1: "Serene Grace",
-			DW: "Super Luck",
+			DW: "Super Luck"
 		},
 		heightm: 0.3,
 		weightkg: 1.5,
@@ -8147,10 +7495,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["togetic"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	togetic:
-	{
+	togetic: {
 		num: 176,
 		name: "Togetic",
 		id: "togetic",
@@ -8163,20 +7510,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 40,
 			def: 85,
 			spa: 80,
 			spd: 105,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hustle",
 			1: "Serene Grace",
-			DW: "Super Luck",
+			DW: "Super Luck"
 		},
 		heightm: 0.6,
 		weightkg: 3.2,
@@ -8185,10 +7530,9 @@ exports.BattlePokedex =
 		prevo: "togepi",
 		evos: ["togekiss"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	togekiss:
-	{
+	togekiss: {
 		num: 468,
 		name: "Togekiss",
 		id: "togekiss",
@@ -8201,20 +7545,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 50,
 			def: 95,
 			spa: 120,
 			spd: 115,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hustle",
 			1: "Serene Grace",
-			DW: "Super Luck",
+			DW: "Super Luck"
 		},
 		heightm: 1.5,
 		weightkg: 38,
@@ -8223,10 +7565,9 @@ exports.BattlePokedex =
 		prevo: "togetic",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	natu:
-	{
+	natu: {
 		num: 177,
 		name: "Natu",
 		id: "natu",
@@ -8239,20 +7580,18 @@ exports.BattlePokedex =
 		types: ["Psychic","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 50,
 			def: 45,
 			spa: 70,
 			spd: 45,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Early Bird",
-			DW: "Magic Bounce",
+			DW: "Magic Bounce"
 		},
 		heightm: 0.2,
 		weightkg: 2,
@@ -8261,10 +7600,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["xatu"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	xatu:
-	{
+	xatu: {
 		num: 178,
 		name: "Xatu",
 		id: "xatu",
@@ -8277,20 +7615,18 @@ exports.BattlePokedex =
 		types: ["Psychic","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 75,
 			def: 70,
 			spa: 95,
 			spd: 70,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Early Bird",
-			DW: "Magic Bounce",
+			DW: "Magic Bounce"
 		},
 		heightm: 1.5,
 		weightkg: 15,
@@ -8299,10 +7635,9 @@ exports.BattlePokedex =
 		prevo: "natu",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mareep:
-	{
+	mareep: {
 		num: 179,
 		name: "Mareep",
 		id: "mareep",
@@ -8315,19 +7650,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 40,
 			def: 40,
 			spa: 65,
 			spd: 45,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Plus",
+			DW: "Plus"
 		},
 		heightm: 0.6,
 		weightkg: 7.8,
@@ -8336,10 +7669,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["flaaffy"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	flaaffy:
-	{
+	flaaffy: {
 		num: 180,
 		name: "Flaaffy",
 		id: "flaaffy",
@@ -8352,19 +7684,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 55,
 			def: 55,
 			spa: 80,
 			spd: 60,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Plus",
+			DW: "Plus"
 		},
 		heightm: 0.8,
 		weightkg: 13.3,
@@ -8373,10 +7703,9 @@ exports.BattlePokedex =
 		prevo: "mareep",
 		evos: ["ampharos"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ampharos:
-	{
+	ampharos: {
 		num: 181,
 		name: "Ampharos",
 		id: "ampharos",
@@ -8389,19 +7718,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 75,
 			def: 75,
 			spa: 115,
 			spd: 90,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Plus",
+			DW: "Plus"
 		},
 		heightm: 1.4,
 		weightkg: 61.5,
@@ -8410,10 +7737,9 @@ exports.BattlePokedex =
 		prevo: "flaaffy",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	azurill:
-	{
+	azurill: {
 		num: 298,
 		name: "Azurill",
 		id: "azurill",
@@ -8426,20 +7752,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 20,
 			def: 40,
 			spa: 20,
 			spd: 40,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Huge Power",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 0.2,
 		weightkg: 2,
@@ -8448,10 +7772,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["marill"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	marill:
-	{
+	marill: {
 		num: 183,
 		name: "Marill",
 		id: "marill",
@@ -8464,20 +7787,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 20,
 			def: 50,
 			spa: 20,
 			spd: 50,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Huge Power",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 0.4,
 		weightkg: 8.5,
@@ -8486,10 +7807,9 @@ exports.BattlePokedex =
 		prevo: "azurill",
 		evos: ["azumarill"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	azumarill:
-	{
+	azumarill: {
 		num: 184,
 		name: "Azumarill",
 		id: "azumarill",
@@ -8502,20 +7822,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 50,
 			def: 80,
 			spa: 50,
 			spd: 80,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Huge Power",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 0.8,
 		weightkg: 28.5,
@@ -8524,10 +7842,9 @@ exports.BattlePokedex =
 		prevo: "marill",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bonsly:
-	{
+	bonsly: {
 		num: 438,
 		name: "Bonsly",
 		id: "bonsly",
@@ -8540,20 +7857,18 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 80,
 			def: 95,
 			spa: 10,
 			spd: 45,
-			spe: 10,
+			spe: 10
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Rock Head",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.5,
 		weightkg: 15,
@@ -8562,10 +7877,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sudowoodo"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sudowoodo:
-	{
+	sudowoodo: {
 		num: 185,
 		name: "Sudowoodo",
 		id: "sudowoodo",
@@ -8578,20 +7892,18 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 100,
 			def: 115,
 			spa: 30,
 			spd: 65,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Rock Head",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 1.2,
 		weightkg: 38,
@@ -8600,10 +7912,9 @@ exports.BattlePokedex =
 		prevo: "bonsly",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hoppip:
-	{
+	hoppip: {
 		num: 187,
 		name: "Hoppip",
 		id: "hoppip",
@@ -8616,20 +7927,18 @@ exports.BattlePokedex =
 		types: ["Grass","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 35,
 			def: 40,
 			spa: 35,
 			spd: 55,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Leaf Guard",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 0.4,
 		weightkg: 0.5,
@@ -8638,10 +7947,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["skiploom"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	skiploom:
-	{
+	skiploom: {
 		num: 188,
 		name: "Skiploom",
 		id: "skiploom",
@@ -8654,20 +7962,18 @@ exports.BattlePokedex =
 		types: ["Grass","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 45,
 			def: 50,
 			spa: 45,
 			spd: 65,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Leaf Guard",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 0.6,
 		weightkg: 1,
@@ -8676,10 +7982,9 @@ exports.BattlePokedex =
 		prevo: "hoppip",
 		evos: ["jumpluff"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	jumpluff:
-	{
+	jumpluff: {
 		num: 189,
 		name: "Jumpluff",
 		id: "jumpluff",
@@ -8692,20 +7997,18 @@ exports.BattlePokedex =
 		types: ["Grass","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 55,
 			def: 70,
 			spa: 55,
 			spd: 85,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Leaf Guard",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 0.8,
 		weightkg: 3,
@@ -8714,10 +8017,9 @@ exports.BattlePokedex =
 		prevo: "skiploom",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	aipom:
-	{
+	aipom: {
 		num: 190,
 		name: "Aipom",
 		id: "aipom",
@@ -8730,20 +8032,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 70,
 			def: 55,
 			spa: 40,
 			spd: 55,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Pickup",
-			DW: "Skill Link",
+			DW: "Skill Link"
 		},
 		heightm: 0.8,
 		weightkg: 11.5,
@@ -8752,10 +8052,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ambipom"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ambipom:
-	{
+	ambipom: {
 		num: 424,
 		name: "Ambipom",
 		id: "ambipom",
@@ -8768,20 +8067,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 100,
 			def: 66,
 			spa: 60,
 			spd: 66,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Technician",
 			1: "Pickup",
-			DW: "Skill Link",
+			DW: "Skill Link"
 		},
 		heightm: 1.2,
 		weightkg: 20.3,
@@ -8790,10 +8087,9 @@ exports.BattlePokedex =
 		prevo: "aipom",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sunkern:
-	{
+	sunkern: {
 		num: 191,
 		name: "Sunkern",
 		id: "sunkern",
@@ -8806,20 +8102,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 30,
 			def: 30,
 			spa: 30,
 			spd: 30,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Solar Power",
-			DW: "Early Bird",
+			DW: "Early Bird"
 		},
 		heightm: 0.3,
 		weightkg: 1.8,
@@ -8828,10 +8122,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sunflora"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sunflora:
-	{
+	sunflora: {
 		num: 192,
 		name: "Sunflora",
 		id: "sunflora",
@@ -8844,20 +8137,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 75,
 			def: 55,
 			spa: 105,
 			spd: 85,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Solar Power",
-			DW: "Early Bird",
+			DW: "Early Bird"
 		},
 		heightm: 0.8,
 		weightkg: 8.5,
@@ -8866,10 +8157,9 @@ exports.BattlePokedex =
 		prevo: "sunkern",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	yanma:
-	{
+	yanma: {
 		num: 193,
 		name: "Yanma",
 		id: "yanma",
@@ -8882,20 +8172,18 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 65,
 			def: 45,
 			spa: 75,
 			spd: 45,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Speed Boost",
 			1: "Compoundeyes",
-			DW: "Frisk",
+			DW: "Frisk"
 		},
 		heightm: 1.2,
 		weightkg: 38,
@@ -8904,10 +8192,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["yanmega"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	yanmega:
-	{
+	yanmega: {
 		num: 469,
 		name: "Yanmega",
 		id: "yanmega",
@@ -8920,20 +8207,18 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 86,
 			atk: 76,
 			def: 86,
 			spa: 116,
 			spd: 56,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Speed Boost",
 			1: "Tinted Lens",
-			DW: "Frisk",
+			DW: "Frisk"
 		},
 		heightm: 1.9,
 		weightkg: 51.5,
@@ -8942,10 +8227,9 @@ exports.BattlePokedex =
 		prevo: "yanma",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wooper:
-	{
+	wooper: {
 		num: 194,
 		name: "Wooper",
 		id: "wooper",
@@ -8958,20 +8242,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 45,
 			def: 45,
 			spa: 25,
 			spd: 25,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Damp",
 			1: "Water Absorb",
-			DW: "Unaware",
+			DW: "Unaware"
 		},
 		heightm: 0.4,
 		weightkg: 8.5,
@@ -8980,10 +8262,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["quagsire"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	quagsire:
-	{
+	quagsire: {
 		num: 195,
 		name: "Quagsire",
 		id: "quagsire",
@@ -8996,20 +8277,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 85,
 			def: 85,
 			spa: 65,
 			spd: 65,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Damp",
 			1: "Water Absorb",
-			DW: "Unaware",
+			DW: "Unaware"
 		},
 		heightm: 1.4,
 		weightkg: 75,
@@ -9018,10 +8297,9 @@ exports.BattlePokedex =
 		prevo: "wooper",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	murkrow:
-	{
+	murkrow: {
 		num: 198,
 		name: "Murkrow",
 		id: "murkrow",
@@ -9034,20 +8312,18 @@ exports.BattlePokedex =
 		types: ["Dark","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 42,
 			spa: 85,
 			spd: 42,
-			spe: 91,
+			spe: 91
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Super Luck",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 0.5,
 		weightkg: 2.1,
@@ -9056,10 +8332,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["honchkrow"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	honchkrow:
-	{
+	honchkrow: {
 		num: 430,
 		name: "Honchkrow",
 		id: "honchkrow",
@@ -9072,20 +8347,18 @@ exports.BattlePokedex =
 		types: ["Dark","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 125,
 			def: 52,
 			spa: 105,
 			spd: 52,
-			spe: 71,
+			spe: 71
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Super Luck",
-			DW: "Moxie",
+			DW: "Moxie"
 		},
 		heightm: 0.9,
 		weightkg: 27.3,
@@ -9094,10 +8367,9 @@ exports.BattlePokedex =
 		prevo: "murkrow",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	misdreavus:
-	{
+	misdreavus: {
 		num: 200,
 		name: "Misdreavus",
 		id: "misdreavus",
@@ -9110,18 +8382,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 60,
 			spa: 85,
 			spd: 85,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.7,
 		weightkg: 1,
@@ -9130,10 +8400,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["mismagius"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mismagius:
-	{
+	mismagius: {
 		num: 429,
 		name: "Mismagius",
 		id: "mismagius",
@@ -9146,18 +8415,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 60,
 			spa: 105,
 			spd: 105,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.9,
 		weightkg: 4.4,
@@ -9166,10 +8433,9 @@ exports.BattlePokedex =
 		prevo: "misdreavus",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	unown:
-	{
+	unown: {
 		num: 201,
 		name: "Unown",
 		id: "unown",
@@ -9182,18 +8448,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9202,10 +8466,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	unownb:
-	{
+	unownb: {
 		num: 201,
 		name: "Unown-B",
 		id: "unownb",
@@ -9218,18 +8481,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9238,10 +8499,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownc:
-	{
+	unownc: {
 		num: 201,
 		name: "Unown-C",
 		id: "unownc",
@@ -9254,18 +8514,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9274,10 +8532,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownd:
-	{
+	unownd: {
 		num: 201,
 		name: "Unown-D",
 		id: "unownd",
@@ -9290,18 +8547,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9310,10 +8565,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unowne:
-	{
+	unowne: {
 		num: 201,
 		name: "Unown-E",
 		id: "unowne",
@@ -9326,18 +8580,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9346,10 +8598,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownf:
-	{
+	unownf: {
 		num: 201,
 		name: "Unown-F",
 		id: "unownf",
@@ -9362,18 +8613,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9382,10 +8631,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unowng:
-	{
+	unowng: {
 		num: 201,
 		name: "Unown-G",
 		id: "unowng",
@@ -9398,18 +8646,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9418,10 +8664,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownh:
-	{
+	unownh: {
 		num: 201,
 		name: "Unown-H",
 		id: "unownh",
@@ -9434,18 +8679,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9454,10 +8697,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unowni:
-	{
+	unowni: {
 		num: 201,
 		name: "Unown-I",
 		id: "unowni",
@@ -9470,18 +8712,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9490,10 +8730,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownj:
-	{
+	unownj: {
 		num: 201,
 		name: "Unown-J",
 		id: "unownj",
@@ -9506,18 +8745,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9526,10 +8763,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownk:
-	{
+	unownk: {
 		num: 201,
 		name: "Unown-K",
 		id: "unownk",
@@ -9542,18 +8778,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9562,10 +8796,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownl:
-	{
+	unownl: {
 		num: 201,
 		name: "Unown-L",
 		id: "unownl",
@@ -9578,18 +8811,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9598,10 +8829,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownm:
-	{
+	unownm: {
 		num: 201,
 		name: "Unown-M",
 		id: "unownm",
@@ -9614,18 +8844,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9634,10 +8862,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownn:
-	{
+	unownn: {
 		num: 201,
 		name: "Unown-N",
 		id: "unownn",
@@ -9650,18 +8877,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9670,10 +8895,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unowno:
-	{
+	unowno: {
 		num: 201,
 		name: "Unown-O",
 		id: "unowno",
@@ -9686,18 +8910,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9706,10 +8928,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownp:
-	{
+	unownp: {
 		num: 201,
 		name: "Unown-P",
 		id: "unownp",
@@ -9722,18 +8943,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9742,10 +8961,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownq:
-	{
+	unownq: {
 		num: 201,
 		name: "Unown-Q",
 		id: "unownq",
@@ -9758,18 +8976,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9778,10 +8994,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownr:
-	{
+	unownr: {
 		num: 201,
 		name: "Unown-R",
 		id: "unownr",
@@ -9794,18 +9009,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9814,10 +9027,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unowns:
-	{
+	unowns: {
 		num: 201,
 		name: "Unown-S",
 		id: "unowns",
@@ -9830,18 +9042,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9850,10 +9060,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownt:
-	{
+	unownt: {
 		num: 201,
 		name: "Unown-T",
 		id: "unownt",
@@ -9866,18 +9075,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9886,10 +9093,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownu","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownu:
-	{
+	unownu: {
 		num: 201,
 		name: "Unown-U",
 		id: "unownu",
@@ -9902,18 +9108,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9922,10 +9126,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownv","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownv:
-	{
+	unownv: {
 		num: 201,
 		name: "Unown-V",
 		id: "unownv",
@@ -9938,18 +9141,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9958,10 +9159,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownw","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownw:
-	{
+	unownw: {
 		num: 201,
 		name: "Unown-W",
 		id: "unownw",
@@ -9974,18 +9174,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -9994,10 +9192,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownx","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownx:
-	{
+	unownx: {
 		num: 201,
 		name: "Unown-X",
 		id: "unownx",
@@ -10010,18 +9207,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -10030,10 +9225,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unowny","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unowny:
-	{
+	unowny: {
 		num: 201,
 		name: "Unown-Y",
 		id: "unowny",
@@ -10046,18 +9240,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -10066,10 +9258,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unownz","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownz:
-	{
+	unownz: {
 		num: 201,
 		name: "Unown-Z",
 		id: "unownz",
@@ -10082,18 +9273,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -10102,10 +9291,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownem","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownem:
-	{
+	unownem: {
 		num: 201,
 		name: "Unown-!",
 		id: "unownem",
@@ -10118,18 +9306,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -10138,10 +9324,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownqm"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	unownqm:
-	{
+	unownqm: {
 		num: 201,
 		name: "Unown-?",
 		id: "unownqm",
@@ -10154,18 +9339,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 72,
 			def: 48,
 			spa: 72,
 			spd: 48,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -10174,10 +9357,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["unown","unownb","unownc","unownd","unowne","unownf","unowng","unownh","unowni","unownj","unownk","unownl","unownm","unownn","unowno","unownp","unownq","unownr","unowns","unownt","unownu","unownv","unownw","unownx","unowny","unownz","unownem"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	wynaut:
-	{
+	wynaut: {
 		num: 360,
 		name: "Wynaut",
 		id: "wynaut",
@@ -10190,19 +9372,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 23,
 			def: 48,
 			spa: 23,
 			spd: 48,
-			spe: 23,
+			spe: 23
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shadow Tag",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 0.6,
 		weightkg: 14,
@@ -10211,10 +9391,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["wobbuffet"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wobbuffet:
-	{
+	wobbuffet: {
 		num: 202,
 		name: "Wobbuffet",
 		id: "wobbuffet",
@@ -10227,19 +9406,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 190,
 			atk: 33,
 			def: 58,
 			spa: 33,
 			spd: 58,
-			spe: 33,
+			spe: 33
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shadow Tag",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 1.3,
 		weightkg: 28.5,
@@ -10248,10 +9425,9 @@ exports.BattlePokedex =
 		prevo: "wynaut",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	girafarig:
-	{
+	girafarig: {
 		num: 203,
 		name: "Girafarig",
 		id: "girafarig",
@@ -10264,20 +9440,18 @@ exports.BattlePokedex =
 		types: ["Normal","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 80,
 			def: 65,
 			spa: 90,
 			spd: 65,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
 			1: "Early Bird",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 1.5,
 		weightkg: 41.5,
@@ -10286,10 +9460,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pineco:
-	{
+	pineco: {
 		num: 204,
 		name: "Pineco",
 		id: "pineco",
@@ -10302,19 +9475,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 90,
 			spa: 35,
 			spd: 35,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.6,
 		weightkg: 7.2,
@@ -10323,10 +9494,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["forretress"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	forretress:
-	{
+	forretress: {
 		num: 205,
 		name: "Forretress",
 		id: "forretress",
@@ -10339,19 +9509,17 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 90,
 			def: 140,
 			spa: 60,
 			spd: 60,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 1.2,
 		weightkg: 125.8,
@@ -10360,10 +9528,9 @@ exports.BattlePokedex =
 		prevo: "pineco",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dunsparce:
-	{
+	dunsparce: {
 		num: 206,
 		name: "Dunsparce",
 		id: "dunsparce",
@@ -10376,20 +9543,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 70,
 			def: 70,
 			spa: 65,
 			spd: 65,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Serene Grace",
 			1: "Run Away",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 1.5,
 		weightkg: 14,
@@ -10398,10 +9563,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gligar:
-	{
+	gligar: {
 		num: 207,
 		name: "Gligar",
 		id: "gligar",
@@ -10414,20 +9578,18 @@ exports.BattlePokedex =
 		types: ["Ground","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 75,
 			def: 105,
 			spa: 35,
 			spd: 65,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Sand Veil",
-			DW: "Immunity",
+			DW: "Immunity"
 		},
 		heightm: 1.1,
 		weightkg: 64.8,
@@ -10436,10 +9598,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gliscor"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gliscor:
-	{
+	gliscor: {
 		num: 472,
 		name: "Gliscor",
 		id: "gliscor",
@@ -10452,20 +9613,18 @@ exports.BattlePokedex =
 		types: ["Ground","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 95,
 			def: 125,
 			spa: 45,
 			spd: 75,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Sand Veil",
-			DW: "Poison Heal",
+			DW: "Poison Heal"
 		},
 		heightm: 2,
 		weightkg: 42.5,
@@ -10474,10 +9633,9 @@ exports.BattlePokedex =
 		prevo: "gligar",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	snubbull:
-	{
+	snubbull: {
 		num: 209,
 		name: "Snubbull",
 		id: "snubbull",
@@ -10490,20 +9648,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 80,
 			def: 50,
 			spa: 40,
 			spd: 40,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Run Away",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.6,
 		weightkg: 7.8,
@@ -10512,10 +9668,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["granbull"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	granbull:
-	{
+	granbull: {
 		num: 210,
 		name: "Granbull",
 		id: "granbull",
@@ -10528,20 +9683,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 120,
 			def: 75,
 			spa: 60,
 			spd: 60,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Quick Feet",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 1.4,
 		weightkg: 48.7,
@@ -10550,10 +9703,9 @@ exports.BattlePokedex =
 		prevo: "snubbull",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	qwilfish:
-	{
+	qwilfish: {
 		num: 211,
 		name: "Qwilfish",
 		id: "qwilfish",
@@ -10566,20 +9718,18 @@ exports.BattlePokedex =
 		types: ["Water","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 95,
 			def: 75,
 			spa: 55,
 			spd: 55,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Swift Swim",
-			DW: "Intimidate",
+			DW: "Intimidate"
 		},
 		heightm: 0.5,
 		weightkg: 3.9,
@@ -10588,10 +9738,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shuckle:
-	{
+	shuckle: {
 		num: 213,
 		name: "Shuckle",
 		id: "shuckle",
@@ -10604,20 +9753,18 @@ exports.BattlePokedex =
 		types: ["Bug","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 10,
 			def: 230,
 			spa: 10,
 			spd: 230,
-			spe: 5,
+			spe: 5
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Gluttony",
-			DW: "Contrary",
+			DW: "Contrary"
 		},
 		heightm: 0.6,
 		weightkg: 20.5,
@@ -10626,10 +9773,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	heracross:
-	{
+	heracross: {
 		num: 214,
 		name: "Heracross",
 		id: "heracross",
@@ -10642,20 +9788,18 @@ exports.BattlePokedex =
 		types: ["Bug","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 125,
 			def: 75,
 			spa: 40,
 			spd: 95,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Guts",
-			DW: "Moxie",
+			DW: "Moxie"
 		},
 		heightm: 1.5,
 		weightkg: 54,
@@ -10664,10 +9808,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sneasel:
-	{
+	sneasel: {
 		num: 215,
 		name: "Sneasel",
 		id: "sneasel",
@@ -10680,20 +9823,18 @@ exports.BattlePokedex =
 		types: ["Dark","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 95,
 			def: 55,
 			spa: 35,
 			spd: 75,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
 			1: "Keen Eye",
-			DW: "Pickpocket",
+			DW: "Pickpocket"
 		},
 		heightm: 0.9,
 		weightkg: 28,
@@ -10702,10 +9843,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["weavile"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	weavile:
-	{
+	weavile: {
 		num: 461,
 		name: "Weavile",
 		id: "weavile",
@@ -10718,19 +9858,17 @@ exports.BattlePokedex =
 		types: ["Dark","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 120,
 			def: 65,
 			spa: 45,
 			spd: 85,
-			spe: 125,
+			spe: 125
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Pickpocket",
+			DW: "Pickpocket"
 		},
 		heightm: 1.1,
 		weightkg: 34,
@@ -10739,10 +9877,9 @@ exports.BattlePokedex =
 		prevo: "sneasel",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	teddiursa:
-	{
+	teddiursa: {
 		num: 216,
 		name: "Teddiursa",
 		id: "teddiursa",
@@ -10755,20 +9892,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 80,
 			def: 50,
 			spa: 50,
 			spd: 50,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pickup",
 			1: "Quick Feet",
-			DW: "Honey Gather",
+			DW: "Honey Gather"
 		},
 		heightm: 0.6,
 		weightkg: 8.8,
@@ -10777,10 +9912,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ursaring"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ursaring:
-	{
+	ursaring: {
 		num: 217,
 		name: "Ursaring",
 		id: "ursaring",
@@ -10793,20 +9927,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 130,
 			def: 75,
 			spa: 75,
 			spd: 75,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "Quick Feet",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1.8,
 		weightkg: 125.8,
@@ -10815,10 +9947,9 @@ exports.BattlePokedex =
 		prevo: "teddiursa",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	slugma:
-	{
+	slugma: {
 		num: 218,
 		name: "Slugma",
 		id: "slugma",
@@ -10831,20 +9962,18 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 40,
 			def: 40,
 			spa: 70,
 			spd: 40,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Magma Armor",
 			1: "Flame Body",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.7,
 		weightkg: 35,
@@ -10853,10 +9982,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["magcargo"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	magcargo:
-	{
+	magcargo: {
 		num: 219,
 		name: "Magcargo",
 		id: "magcargo",
@@ -10869,20 +9997,18 @@ exports.BattlePokedex =
 		types: ["Fire","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 120,
 			spa: 80,
 			spd: 80,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Magma Armor",
 			1: "Flame Body",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.8,
 		weightkg: 55,
@@ -10891,10 +10017,9 @@ exports.BattlePokedex =
 		prevo: "slugma",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swinub:
-	{
+	swinub: {
 		num: 220,
 		name: "Swinub",
 		id: "swinub",
@@ -10907,20 +10032,18 @@ exports.BattlePokedex =
 		types: ["Ice","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 40,
 			spa: 30,
 			spd: 30,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Snow Cloak",
-			DW: "Thick Fat",
+			DW: "Thick Fat"
 		},
 		heightm: 0.4,
 		weightkg: 6.5,
@@ -10929,10 +10052,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["piloswine"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	piloswine:
-	{
+	piloswine: {
 		num: 221,
 		name: "Piloswine",
 		id: "piloswine",
@@ -10945,20 +10067,18 @@ exports.BattlePokedex =
 		types: ["Ice","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 80,
 			spa: 60,
 			spd: 60,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Snow Cloak",
-			DW: "Thick Fat",
+			DW: "Thick Fat"
 		},
 		heightm: 1.1,
 		weightkg: 55.8,
@@ -10967,10 +10087,9 @@ exports.BattlePokedex =
 		prevo: "swinub",
 		evos: ["mamoswine"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mamoswine:
-	{
+	mamoswine: {
 		num: 473,
 		name: "Mamoswine",
 		id: "mamoswine",
@@ -10983,20 +10102,18 @@ exports.BattlePokedex =
 		types: ["Ice","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 130,
 			def: 80,
 			spa: 70,
 			spd: 60,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Snow Cloak",
-			DW: "Thick Fat",
+			DW: "Thick Fat"
 		},
 		heightm: 2.5,
 		weightkg: 291,
@@ -11005,10 +10122,9 @@ exports.BattlePokedex =
 		prevo: "piloswine",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	corsola:
-	{
+	corsola: {
 		num: 222,
 		name: "Corsola",
 		id: "corsola",
@@ -11021,20 +10137,18 @@ exports.BattlePokedex =
 		types: ["Water","Rock"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 55,
 			def: 85,
 			spa: 65,
 			spd: 85,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hustle",
 			1: "Natural Cure",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 0.6,
 		weightkg: 5,
@@ -11043,10 +10157,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	remoraid:
-	{
+	remoraid: {
 		num: 223,
 		name: "Remoraid",
 		id: "remoraid",
@@ -11059,20 +10172,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 65,
 			def: 35,
 			spa: 65,
 			spd: 35,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hustle",
 			1: "Sniper",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 0.6,
 		weightkg: 12,
@@ -11081,10 +10192,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["octillery"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	octillery:
-	{
+	octillery: {
 		num: 224,
 		name: "Octillery",
 		id: "octillery",
@@ -11097,20 +10207,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 105,
 			def: 75,
 			spa: 105,
 			spd: 75,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Suction Cups",
 			1: "Sniper",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 0.9,
 		weightkg: 28.5,
@@ -11119,10 +10227,9 @@ exports.BattlePokedex =
 		prevo: "remoraid",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	delibird:
-	{
+	delibird: {
 		num: 225,
 		name: "Delibird",
 		id: "delibird",
@@ -11135,20 +10242,18 @@ exports.BattlePokedex =
 		types: ["Ice","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 55,
 			def: 45,
 			spa: 65,
 			spd: 45,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Vital Spirit",
 			1: "Hustle",
-			DW: "Insomnia",
+			DW: "Insomnia"
 		},
 		heightm: 0.9,
 		weightkg: 16,
@@ -11157,10 +10262,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mantyke:
-	{
+	mantyke: {
 		num: 458,
 		name: "Mantyke",
 		id: "mantyke",
@@ -11173,20 +10277,18 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 20,
 			def: 50,
 			spa: 60,
 			spd: 120,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Water Absorb",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 1,
 		weightkg: 65,
@@ -11195,10 +10297,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["mantine"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mantine:
-	{
+	mantine: {
 		num: 226,
 		name: "Mantine",
 		id: "mantine",
@@ -11211,20 +10312,18 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 40,
 			def: 70,
 			spa: 80,
 			spd: 140,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Water Absorb",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 2.1,
 		weightkg: 220,
@@ -11233,10 +10332,9 @@ exports.BattlePokedex =
 		prevo: "mantyke",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	skarmory:
-	{
+	skarmory: {
 		num: 227,
 		name: "Skarmory",
 		id: "skarmory",
@@ -11249,20 +10347,18 @@ exports.BattlePokedex =
 		types: ["Steel","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 80,
 			def: 140,
 			spa: 40,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Sturdy",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1.7,
 		weightkg: 50.5,
@@ -11271,10 +10367,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	houndour:
-	{
+	houndour: {
 		num: 228,
 		name: "Houndour",
 		id: "houndour",
@@ -11287,20 +10382,18 @@ exports.BattlePokedex =
 		types: ["Dark","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 60,
 			def: 30,
 			spa: 80,
 			spd: 50,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Early Bird",
 			1: "Flash Fire",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 0.6,
 		weightkg: 10.8,
@@ -11309,10 +10402,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["houndoom"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	houndoom:
-	{
+	houndoom: {
 		num: 229,
 		name: "Houndoom",
 		id: "houndoom",
@@ -11325,20 +10417,18 @@ exports.BattlePokedex =
 		types: ["Dark","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 90,
 			def: 50,
 			spa: 110,
 			spd: 80,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Early Bird",
 			1: "Flash Fire",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1.4,
 		weightkg: 35,
@@ -11347,10 +10437,9 @@ exports.BattlePokedex =
 		prevo: "houndour",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	phanpy:
-	{
+	phanpy: {
 		num: 231,
 		name: "Phanpy",
 		id: "phanpy",
@@ -11363,19 +10452,17 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 60,
 			def: 60,
 			spa: 40,
 			spd: 40,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pickup",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 0.5,
 		weightkg: 33.5,
@@ -11384,10 +10471,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["donphan"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	donphan:
-	{
+	donphan: {
 		num: 232,
 		name: "Donphan",
 		id: "donphan",
@@ -11400,19 +10486,17 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 120,
 			def: 120,
 			spa: 60,
 			spd: 60,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 1.1,
 		weightkg: 120,
@@ -11421,10 +10505,9 @@ exports.BattlePokedex =
 		prevo: "phanpy",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	stantler:
-	{
+	stantler: {
 		num: 234,
 		name: "Stantler",
 		id: "stantler",
@@ -11437,20 +10520,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 73,
 			atk: 95,
 			def: 62,
 			spa: 85,
 			spd: 65,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Frisk",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 1.4,
 		weightkg: 71.2,
@@ -11459,10 +10540,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	smeargle:
-	{
+	smeargle: {
 		num: 235,
 		name: "Smeargle",
 		id: "smeargle",
@@ -11475,20 +10555,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 20,
 			def: 35,
 			spa: 20,
 			spd: 45,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Own Tempo",
 			1: "Technician",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 1.2,
 		weightkg: 58,
@@ -11497,10 +10575,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	miltank:
-	{
+	miltank: {
 		num: 241,
 		name: "Miltank",
 		id: "miltank",
@@ -11513,20 +10590,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 80,
 			def: 105,
 			spa: 40,
 			spd: 70,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Scrappy",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 1.2,
 		weightkg: 75.5,
@@ -11535,10 +10610,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	raikou:
-	{
+	raikou: {
 		num: 243,
 		name: "Raikou",
 		id: "raikou",
@@ -11551,19 +10625,17 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 85,
 			def: 75,
 			spa: 115,
 			spd: 100,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Volt Absorb",
+			DW: "Volt Absorb"
 		},
 		heightm: 1.9,
 		weightkg: 178,
@@ -11572,10 +10644,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	entei:
-	{
+	entei: {
 		num: 244,
 		name: "Entei",
 		id: "entei",
@@ -11588,19 +10659,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 115,
 			atk: 115,
 			def: 85,
 			spa: 90,
 			spd: 75,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Flash Fire",
+			DW: "Flash Fire"
 		},
 		heightm: 2.1,
 		weightkg: 198,
@@ -11609,10 +10678,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	suicune:
-	{
+	suicune: {
 		num: 245,
 		name: "Suicune",
 		id: "suicune",
@@ -11625,19 +10693,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 75,
 			def: 115,
 			spa: 90,
 			spd: 115,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 2,
 		weightkg: 187,
@@ -11646,10 +10712,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	larvitar:
-	{
+	larvitar: {
 		num: 246,
 		name: "Larvitar",
 		id: "larvitar",
@@ -11662,19 +10727,17 @@ exports.BattlePokedex =
 		types: ["Rock","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 64,
 			def: 50,
 			spa: 45,
 			spd: 50,
-			spe: 41,
+			spe: 41
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 0.6,
 		weightkg: 72,
@@ -11683,10 +10746,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["pupitar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pupitar:
-	{
+	pupitar: {
 		num: 247,
 		name: "Pupitar",
 		id: "pupitar",
@@ -11699,19 +10761,17 @@ exports.BattlePokedex =
 		types: ["Rock","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 84,
 			def: 70,
 			spa: 65,
 			spd: 70,
-			spe: 51,
+			spe: 51
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Shed Skin",
+			DW: "Shed Skin"
 		},
 		heightm: 1.2,
 		weightkg: 152,
@@ -11720,10 +10780,9 @@ exports.BattlePokedex =
 		prevo: "larvitar",
 		evos: ["tyranitar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tyranitar:
-	{
+	tyranitar: {
 		num: 248,
 		name: "Tyranitar",
 		id: "tyranitar",
@@ -11736,19 +10795,17 @@ exports.BattlePokedex =
 		types: ["Rock","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 134,
 			def: 110,
 			spa: 95,
 			spd: 100,
-			spe: 61,
+			spe: 61
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Stream",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 2,
 		weightkg: 202,
@@ -11757,10 +10814,9 @@ exports.BattlePokedex =
 		prevo: "pupitar",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lugia:
-	{
+	lugia: {
 		num: 249,
 		name: "Lugia",
 		id: "lugia",
@@ -11773,19 +10829,17 @@ exports.BattlePokedex =
 		types: ["Psychic","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 106,
 			atk: 90,
 			def: 130,
 			spa: 90,
 			spd: 154,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Multiscale",
+			DW: "Multiscale"
 		},
 		heightm: 5.2,
 		weightkg: 216,
@@ -11794,10 +10848,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hooh:
-	{
+	hooh: {
 		num: 250,
 		name: "Ho-Oh",
 		id: "hooh",
@@ -11810,19 +10863,17 @@ exports.BattlePokedex =
 		types: ["Fire","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 106,
 			atk: 130,
 			def: 90,
 			spa: 110,
 			spd: 154,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 3.8,
 		weightkg: 199,
@@ -11831,10 +10882,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	celebi:
-	{
+	celebi: {
 		num: 251,
 		name: "Celebi",
 		id: "celebi",
@@ -11847,18 +10897,16 @@ exports.BattlePokedex =
 		types: ["Psychic","Grass"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 100,
 			spa: 100,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Natural Cure",
+		abilities: {
+			0: "Natural Cure"
 		},
 		heightm: 0.6,
 		weightkg: 5,
@@ -11867,10 +10915,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	treecko:
-	{
+	treecko: {
 		num: 252,
 		name: "Treecko",
 		id: "treecko",
@@ -11883,19 +10930,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 45,
 			def: 35,
 			spa: 65,
 			spd: 55,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Unburden",
+			DW: "Unburden"
 		},
 		heightm: 0.5,
 		weightkg: 5,
@@ -11904,10 +10949,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["grovyle"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	grovyle:
-	{
+	grovyle: {
 		num: 253,
 		name: "Grovyle",
 		id: "grovyle",
@@ -11920,19 +10964,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 45,
 			spa: 85,
 			spd: 65,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Unburden",
+			DW: "Unburden"
 		},
 		heightm: 0.9,
 		weightkg: 21.6,
@@ -11941,10 +10983,9 @@ exports.BattlePokedex =
 		prevo: "treecko",
 		evos: ["sceptile"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sceptile:
-	{
+	sceptile: {
 		num: 254,
 		name: "Sceptile",
 		id: "sceptile",
@@ -11957,19 +10998,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 85,
 			def: 65,
 			spa: 105,
 			spd: 85,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Unburden",
+			DW: "Unburden"
 		},
 		heightm: 1.7,
 		weightkg: 52.2,
@@ -11978,10 +11017,9 @@ exports.BattlePokedex =
 		prevo: "grovyle",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	torchic:
-	{
+	torchic: {
 		num: 255,
 		name: "Torchic",
 		id: "torchic",
@@ -11994,19 +11032,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 60,
 			def: 40,
 			spa: 70,
 			spd: 50,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Speed Boost",
+			DW: "Speed Boost"
 		},
 		heightm: 0.4,
 		weightkg: 2.5,
@@ -12015,10 +11051,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["combusken"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	combusken:
-	{
+	combusken: {
 		num: 256,
 		name: "Combusken",
 		id: "combusken",
@@ -12031,19 +11066,17 @@ exports.BattlePokedex =
 		types: ["Fire","Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 60,
 			spa: 85,
 			spd: 60,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Speed Boost",
+			DW: "Speed Boost"
 		},
 		heightm: 0.9,
 		weightkg: 19.5,
@@ -12052,10 +11085,9 @@ exports.BattlePokedex =
 		prevo: "torchic",
 		evos: ["blaziken"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	blaziken:
-	{
+	blaziken: {
 		num: 257,
 		name: "Blaziken",
 		id: "blaziken",
@@ -12068,19 +11100,17 @@ exports.BattlePokedex =
 		types: ["Fire","Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 120,
 			def: 70,
 			spa: 110,
 			spd: 70,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Speed Boost",
+			DW: "Speed Boost"
 		},
 		heightm: 1.9,
 		weightkg: 52,
@@ -12089,10 +11119,9 @@ exports.BattlePokedex =
 		prevo: "combusken",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mudkip:
-	{
+	mudkip: {
 		num: 258,
 		name: "Mudkip",
 		id: "mudkip",
@@ -12105,19 +11134,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 70,
 			def: 50,
 			spa: 50,
 			spd: 50,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 0.4,
 		weightkg: 7.6,
@@ -12126,10 +11153,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["marshtomp"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	marshtomp:
-	{
+	marshtomp: {
 		num: 259,
 		name: "Marshtomp",
 		id: "marshtomp",
@@ -12142,19 +11168,17 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 85,
 			def: 70,
 			spa: 60,
 			spd: 70,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 0.7,
 		weightkg: 28,
@@ -12163,10 +11187,9 @@ exports.BattlePokedex =
 		prevo: "mudkip",
 		evos: ["swampert"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swampert:
-	{
+	swampert: {
 		num: 260,
 		name: "Swampert",
 		id: "swampert",
@@ -12179,19 +11202,17 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 110,
 			def: 90,
 			spa: 85,
 			spd: 90,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 1.5,
 		weightkg: 81.9,
@@ -12200,10 +11221,9 @@ exports.BattlePokedex =
 		prevo: "marshtomp",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	poochyena:
-	{
+	poochyena: {
 		num: 261,
 		name: "Poochyena",
 		id: "poochyena",
@@ -12216,20 +11236,18 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 55,
 			def: 35,
 			spa: 30,
 			spd: 30,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Quick Feet",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.5,
 		weightkg: 13.6,
@@ -12238,10 +11256,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["mightyena"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mightyena:
-	{
+	mightyena: {
 		num: 262,
 		name: "Mightyena",
 		id: "mightyena",
@@ -12254,20 +11271,18 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 90,
 			def: 70,
 			spa: 60,
 			spd: 60,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Quick Feet",
-			DW: "Moxie",
+			DW: "Moxie"
 		},
 		heightm: 1,
 		weightkg: 37,
@@ -12276,10 +11291,9 @@ exports.BattlePokedex =
 		prevo: "poochyena",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zigzagoon:
-	{
+	zigzagoon: {
 		num: 263,
 		name: "Zigzagoon",
 		id: "zigzagoon",
@@ -12292,20 +11306,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 38,
 			atk: 30,
 			def: 41,
 			spa: 30,
 			spd: 41,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pickup",
 			1: "Gluttony",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 0.4,
 		weightkg: 17.5,
@@ -12314,10 +11326,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["linoone"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	linoone:
-	{
+	linoone: {
 		num: 264,
 		name: "Linoone",
 		id: "linoone",
@@ -12330,20 +11341,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 78,
 			atk: 70,
 			def: 61,
 			spa: 50,
 			spd: 61,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pickup",
 			1: "Gluttony",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 0.5,
 		weightkg: 32.5,
@@ -12352,10 +11361,9 @@ exports.BattlePokedex =
 		prevo: "zigzagoon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wurmple:
-	{
+	wurmple: {
 		num: 265,
 		name: "Wurmple",
 		id: "wurmple",
@@ -12368,19 +11376,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 45,
 			def: 35,
 			spa: 20,
 			spd: 30,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shield Dust",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.3,
 		weightkg: 3.6,
@@ -12389,10 +11395,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["silcoon","cascoon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	silcoon:
-	{
+	silcoon: {
 		num: 266,
 		name: "Silcoon",
 		id: "silcoon",
@@ -12405,19 +11410,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 35,
 			def: 55,
 			spa: 25,
 			spd: 25,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Shed Skin",
+			DW: "Shed Skin"
 		},
 		heightm: 0.6,
 		weightkg: 10,
@@ -12426,10 +11429,9 @@ exports.BattlePokedex =
 		prevo: "wurmple",
 		evos: ["beautifly"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	beautifly:
-	{
+	beautifly: {
 		num: 267,
 		name: "Beautifly",
 		id: "beautifly",
@@ -12442,19 +11444,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 70,
 			def: 50,
 			spa: 90,
 			spd: 50,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
-			DW: "Rivalry",
+			DW: "Rivalry"
 		},
 		heightm: 1,
 		weightkg: 28.4,
@@ -12463,10 +11463,9 @@ exports.BattlePokedex =
 		prevo: "silcoon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cascoon:
-	{
+	cascoon: {
 		num: 268,
 		name: "Cascoon",
 		id: "cascoon",
@@ -12479,19 +11478,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 35,
 			def: 55,
 			spa: 25,
 			spd: 25,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Shed Skin",
+			DW: "Shed Skin"
 		},
 		heightm: 0.7,
 		weightkg: 11.5,
@@ -12500,10 +11497,9 @@ exports.BattlePokedex =
 		prevo: "wurmple",
 		evos: ["dustox"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dustox:
-	{
+	dustox: {
 		num: 269,
 		name: "Dustox",
 		id: "dustox",
@@ -12516,19 +11512,17 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 50,
 			def: 70,
 			spa: 50,
 			spd: 90,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shield Dust",
-			DW: "Compoundeyes",
+			DW: "Compoundeyes"
 		},
 		heightm: 1.2,
 		weightkg: 31.6,
@@ -12537,10 +11531,9 @@ exports.BattlePokedex =
 		prevo: "cascoon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lotad:
-	{
+	lotad: {
 		num: 270,
 		name: "Lotad",
 		id: "lotad",
@@ -12553,20 +11546,18 @@ exports.BattlePokedex =
 		types: ["Water","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 30,
 			def: 30,
 			spa: 40,
 			spd: 50,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Rain Dish",
-			DW: "Own Tempo",
+			DW: "Own Tempo"
 		},
 		heightm: 0.5,
 		weightkg: 2.6,
@@ -12575,10 +11566,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lombre"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lombre:
-	{
+	lombre: {
 		num: 271,
 		name: "Lombre",
 		id: "lombre",
@@ -12591,20 +11581,18 @@ exports.BattlePokedex =
 		types: ["Water","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 50,
 			def: 50,
 			spa: 60,
 			spd: 70,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Rain Dish",
-			DW: "Own Tempo",
+			DW: "Own Tempo"
 		},
 		heightm: 1.2,
 		weightkg: 32.5,
@@ -12613,10 +11601,9 @@ exports.BattlePokedex =
 		prevo: "lotad",
 		evos: ["ludicolo"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ludicolo:
-	{
+	ludicolo: {
 		num: 272,
 		name: "Ludicolo",
 		id: "ludicolo",
@@ -12629,20 +11616,18 @@ exports.BattlePokedex =
 		types: ["Water","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 70,
 			def: 70,
 			spa: 90,
 			spd: 100,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Rain Dish",
-			DW: "Own Tempo",
+			DW: "Own Tempo"
 		},
 		heightm: 1.5,
 		weightkg: 55,
@@ -12651,10 +11636,9 @@ exports.BattlePokedex =
 		prevo: "lombre",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	seedot:
-	{
+	seedot: {
 		num: 273,
 		name: "Seedot",
 		id: "seedot",
@@ -12667,20 +11651,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 40,
 			def: 50,
 			spa: 30,
 			spd: 30,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Early Bird",
-			DW: "Pickpocket",
+			DW: "Pickpocket"
 		},
 		heightm: 0.5,
 		weightkg: 4,
@@ -12689,10 +11671,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["nuzleaf"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nuzleaf:
-	{
+	nuzleaf: {
 		num: 274,
 		name: "Nuzleaf",
 		id: "nuzleaf",
@@ -12705,20 +11686,18 @@ exports.BattlePokedex =
 		types: ["Grass","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 70,
 			def: 40,
 			spa: 60,
 			spd: 40,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Early Bird",
-			DW: "Pickpocket",
+			DW: "Pickpocket"
 		},
 		heightm: 1,
 		weightkg: 28,
@@ -12727,10 +11706,9 @@ exports.BattlePokedex =
 		prevo: "seedot",
 		evos: ["shiftry"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shiftry:
-	{
+	shiftry: {
 		num: 275,
 		name: "Shiftry",
 		id: "shiftry",
@@ -12743,20 +11721,18 @@ exports.BattlePokedex =
 		types: ["Grass","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 100,
 			def: 60,
 			spa: 90,
 			spd: 60,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Early Bird",
-			DW: "Pickpocket",
+			DW: "Pickpocket"
 		},
 		heightm: 1.3,
 		weightkg: 59.6,
@@ -12765,10 +11741,9 @@ exports.BattlePokedex =
 		prevo: "nuzleaf",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	taillow:
-	{
+	taillow: {
 		num: 276,
 		name: "Taillow",
 		id: "taillow",
@@ -12781,19 +11756,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 55,
 			def: 30,
 			spa: 30,
 			spd: 30,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
-			DW: "Scrappy",
+			DW: "Scrappy"
 		},
 		heightm: 0.3,
 		weightkg: 2.3,
@@ -12802,10 +11775,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["swellow"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swellow:
-	{
+	swellow: {
 		num: 277,
 		name: "Swellow",
 		id: "swellow",
@@ -12818,19 +11790,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 60,
 			spa: 50,
 			spd: 50,
-			spe: 125,
+			spe: 125
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
-			DW: "Scrappy",
+			DW: "Scrappy"
 		},
 		heightm: 0.7,
 		weightkg: 19.8,
@@ -12839,10 +11809,9 @@ exports.BattlePokedex =
 		prevo: "taillow",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wingull:
-	{
+	wingull: {
 		num: 278,
 		name: "Wingull",
 		id: "wingull",
@@ -12855,19 +11824,17 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 30,
 			def: 30,
 			spa: 55,
 			spd: 30,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 0.6,
 		weightkg: 9.5,
@@ -12876,10 +11843,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["pelipper"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pelipper:
-	{
+	pelipper: {
 		num: 279,
 		name: "Pelipper",
 		id: "pelipper",
@@ -12892,19 +11858,17 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 50,
 			def: 100,
 			spa: 85,
 			spd: 70,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 1.2,
 		weightkg: 28,
@@ -12913,10 +11877,9 @@ exports.BattlePokedex =
 		prevo: "wingull",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ralts:
-	{
+	ralts: {
 		num: 280,
 		name: "Ralts",
 		id: "ralts",
@@ -12929,20 +11892,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 28,
 			atk: 25,
 			def: 25,
 			spa: 45,
 			spd: 35,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Trace",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 0.4,
 		weightkg: 6.6,
@@ -12951,10 +11912,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["kirlia"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kirlia:
-	{
+	kirlia: {
 		num: 281,
 		name: "Kirlia",
 		id: "kirlia",
@@ -12967,20 +11927,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 38,
 			atk: 35,
 			def: 35,
 			spa: 65,
 			spd: 55,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Trace",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 0.8,
 		weightkg: 20.2,
@@ -12989,10 +11947,9 @@ exports.BattlePokedex =
 		prevo: "ralts",
 		evos: ["gardevoir","gallade"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gardevoir:
-	{
+	gardevoir: {
 		num: 282,
 		name: "Gardevoir",
 		id: "gardevoir",
@@ -13005,20 +11962,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 68,
 			atk: 65,
 			def: 65,
 			spa: 125,
 			spd: 115,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Synchronize",
 			1: "Trace",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 1.6,
 		weightkg: 48.4,
@@ -13027,10 +11982,9 @@ exports.BattlePokedex =
 		prevo: "kirlia",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gallade:
-	{
+	gallade: {
 		num: 475,
 		name: "Gallade",
 		id: "gallade",
@@ -13043,19 +11997,17 @@ exports.BattlePokedex =
 		types: ["Psychic","Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 68,
 			atk: 125,
 			def: 65,
 			spa: 65,
 			spd: 115,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Steadfast",
-			DW: "Justified",
+			DW: "Justified"
 		},
 		heightm: 1.6,
 		weightkg: 52,
@@ -13064,10 +12016,9 @@ exports.BattlePokedex =
 		prevo: "kirlia",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	surskit:
-	{
+	surskit: {
 		num: 283,
 		name: "Surskit",
 		id: "surskit",
@@ -13080,19 +12031,17 @@ exports.BattlePokedex =
 		types: ["Bug","Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 30,
 			def: 32,
 			spa: 50,
 			spd: 52,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Rain Dish",
+			DW: "Rain Dish"
 		},
 		heightm: 0.5,
 		weightkg: 1.7,
@@ -13101,10 +12050,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["masquerain"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	masquerain:
-	{
+	masquerain: {
 		num: 284,
 		name: "Masquerain",
 		id: "masquerain",
@@ -13117,19 +12065,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 60,
 			def: 62,
 			spa: 80,
 			spd: 82,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 0.8,
 		weightkg: 3.6,
@@ -13138,10 +12084,9 @@ exports.BattlePokedex =
 		prevo: "surskit",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shroomish:
-	{
+	shroomish: {
 		num: 285,
 		name: "Shroomish",
 		id: "shroomish",
@@ -13154,20 +12099,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 40,
 			def: 60,
 			spa: 40,
 			spd: 60,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Effect Spore",
 			1: "Poison Heal",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 0.4,
 		weightkg: 4.5,
@@ -13176,10 +12119,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["breloom"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	breloom:
-	{
+	breloom: {
 		num: 286,
 		name: "Breloom",
 		id: "breloom",
@@ -13192,20 +12134,18 @@ exports.BattlePokedex =
 		types: ["Grass","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 130,
 			def: 80,
 			spa: 60,
 			spd: 60,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Effect Spore",
 			1: "Poison Heal",
-			DW: "Technician",
+			DW: "Technician"
 		},
 		heightm: 1.2,
 		weightkg: 39.2,
@@ -13214,10 +12154,9 @@ exports.BattlePokedex =
 		prevo: "shroomish",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	slakoth:
-	{
+	slakoth: {
 		num: 287,
 		name: "Slakoth",
 		id: "slakoth",
@@ -13230,18 +12169,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 60,
 			spa: 35,
 			spd: 35,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
-			0: "Truant",
+		abilities: {
+			0: "Truant"
 		},
 		heightm: 0.8,
 		weightkg: 24,
@@ -13250,10 +12187,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["vigoroth"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vigoroth:
-	{
+	vigoroth: {
 		num: 288,
 		name: "Vigoroth",
 		id: "vigoroth",
@@ -13266,18 +12202,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 80,
 			def: 80,
 			spa: 55,
 			spd: 55,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Vital Spirit",
+		abilities: {
+			0: "Vital Spirit"
 		},
 		heightm: 1.4,
 		weightkg: 46.5,
@@ -13286,10 +12220,9 @@ exports.BattlePokedex =
 		prevo: "slakoth",
 		evos: ["slaking"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	slaking:
-	{
+	slaking: {
 		num: 289,
 		name: "Slaking",
 		id: "slaking",
@@ -13302,18 +12235,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 150,
 			atk: 160,
 			def: 100,
 			spa: 95,
 			spd: 65,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Truant",
+		abilities: {
+			0: "Truant"
 		},
 		heightm: 2,
 		weightkg: 130.5,
@@ -13322,10 +12253,9 @@ exports.BattlePokedex =
 		prevo: "vigoroth",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nincada:
-	{
+	nincada: {
 		num: 290,
 		name: "Nincada",
 		id: "nincada",
@@ -13338,19 +12268,17 @@ exports.BattlePokedex =
 		types: ["Bug","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 31,
 			atk: 45,
 			def: 90,
 			spa: 30,
 			spd: 30,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Compoundeyes",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.5,
 		weightkg: 5.5,
@@ -13359,10 +12287,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ninjask","shedinja"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ninjask:
-	{
+	ninjask: {
 		num: 291,
 		name: "Ninjask",
 		id: "ninjask",
@@ -13375,19 +12302,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 61,
 			atk: 90,
 			def: 45,
 			spa: 50,
 			spd: 50,
-			spe: 160,
+			spe: 160
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Speed Boost",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 0.8,
 		weightkg: 12,
@@ -13396,10 +12321,9 @@ exports.BattlePokedex =
 		prevo: "nincada",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shedinja:
-	{
+	shedinja: {
 		num: 292,
 		name: "Shedinja",
 		id: "shedinja",
@@ -13412,19 +12336,17 @@ exports.BattlePokedex =
 		types: ["Bug","Ghost"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 1,
 			atk: 90,
 			def: 45,
 			spa: 30,
 			spd: 30,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Wonder Guard",
-			DW: "Wonder Guard",
+			DW: "Wonder Guard"
 		},
 		heightm: 0.8,
 		weightkg: 1.2,
@@ -13433,10 +12355,9 @@ exports.BattlePokedex =
 		prevo: "nincada",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	whismur:
-	{
+	whismur: {
 		num: 293,
 		name: "Whismur",
 		id: "whismur",
@@ -13449,19 +12370,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 64,
 			atk: 51,
 			def: 23,
 			spa: 51,
 			spd: 23,
-			spe: 28,
+			spe: 28
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.6,
 		weightkg: 16.3,
@@ -13470,10 +12389,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["loudred"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	loudred:
-	{
+	loudred: {
 		num: 294,
 		name: "Loudred",
 		id: "loudred",
@@ -13486,19 +12404,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 84,
 			atk: 71,
 			def: 43,
 			spa: 71,
 			spd: 43,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
-			DW: "Scrappy",
+			DW: "Scrappy"
 		},
 		heightm: 1,
 		weightkg: 40.5,
@@ -13507,10 +12423,9 @@ exports.BattlePokedex =
 		prevo: "whismur",
 		evos: ["exploud"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	exploud:
-	{
+	exploud: {
 		num: 295,
 		name: "Exploud",
 		id: "exploud",
@@ -13523,19 +12438,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 104,
 			atk: 91,
 			def: 63,
 			spa: 91,
 			spd: 63,
-			spe: 68,
+			spe: 68
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Soundproof",
-			DW: "Scrappy",
+			DW: "Scrappy"
 		},
 		heightm: 1.5,
 		weightkg: 84,
@@ -13544,10 +12457,9 @@ exports.BattlePokedex =
 		prevo: "loudred",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	makuhita:
-	{
+	makuhita: {
 		num: 296,
 		name: "Makuhita",
 		id: "makuhita",
@@ -13560,20 +12472,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 72,
 			atk: 60,
 			def: 30,
 			spa: 20,
 			spd: 30,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Guts",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1,
 		weightkg: 86.4,
@@ -13582,10 +12492,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["hariyama"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hariyama:
-	{
+	hariyama: {
 		num: 297,
 		name: "Hariyama",
 		id: "hariyama",
@@ -13598,20 +12507,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 144,
 			atk: 120,
 			def: 60,
 			spa: 40,
 			spd: 60,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Guts",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 2.3,
 		weightkg: 253.8,
@@ -13620,10 +12527,9 @@ exports.BattlePokedex =
 		prevo: "makuhita",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	nosepass:
-	{
+	nosepass: {
 		num: 299,
 		name: "Nosepass",
 		id: "nosepass",
@@ -13636,20 +12542,18 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 45,
 			def: 135,
 			spa: 45,
 			spd: 90,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Magnet Pull",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 1,
 		weightkg: 97,
@@ -13658,10 +12562,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["probopass"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	probopass:
-	{
+	probopass: {
 		num: 476,
 		name: "Probopass",
 		id: "probopass",
@@ -13674,20 +12577,18 @@ exports.BattlePokedex =
 		types: ["Rock","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 55,
 			def: 145,
 			spa: 75,
 			spd: 150,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Magnet Pull",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 1.4,
 		weightkg: 340,
@@ -13696,10 +12597,9 @@ exports.BattlePokedex =
 		prevo: "nosepass",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	skitty:
-	{
+	skitty: {
 		num: 300,
 		name: "Skitty",
 		id: "skitty",
@@ -13712,20 +12612,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 45,
 			def: 45,
 			spa: 35,
 			spd: 35,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Normalize",
-			DW: "Wonder Skin",
+			DW: "Wonder Skin"
 		},
 		heightm: 0.6,
 		weightkg: 11,
@@ -13734,10 +12632,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["delcatty"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	delcatty:
-	{
+	delcatty: {
 		num: 301,
 		name: "Delcatty",
 		id: "delcatty",
@@ -13750,20 +12647,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 65,
 			def: 65,
 			spa: 55,
 			spd: 55,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Normalize",
-			DW: "Wonder Skin",
+			DW: "Wonder Skin"
 		},
 		heightm: 1.1,
 		weightkg: 32.6,
@@ -13772,10 +12667,9 @@ exports.BattlePokedex =
 		prevo: "skitty",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sableye:
-	{
+	sableye: {
 		num: 302,
 		name: "Sableye",
 		id: "sableye",
@@ -13788,20 +12682,18 @@ exports.BattlePokedex =
 		types: ["Dark","Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 75,
 			def: 75,
 			spa: 65,
 			spd: 65,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Stall",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 0.5,
 		weightkg: 11,
@@ -13810,10 +12702,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mawile:
-	{
+	mawile: {
 		num: 303,
 		name: "Mawile",
 		id: "mawile",
@@ -13826,20 +12717,18 @@ exports.BattlePokedex =
 		types: ["Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 85,
 			def: 85,
 			spa: 55,
 			spd: 55,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Intimidate",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 0.6,
 		weightkg: 11.5,
@@ -13848,10 +12737,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	aron:
-	{
+	aron: {
 		num: 304,
 		name: "Aron",
 		id: "aron",
@@ -13864,20 +12752,18 @@ exports.BattlePokedex =
 		types: ["Steel","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 70,
 			def: 100,
 			spa: 40,
 			spd: 40,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Rock Head",
-			DW: "Heavy Metal",
+			DW: "Heavy Metal"
 		},
 		heightm: 0.4,
 		weightkg: 60,
@@ -13886,10 +12772,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lairon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lairon:
-	{
+	lairon: {
 		num: 305,
 		name: "Lairon",
 		id: "lairon",
@@ -13902,20 +12787,18 @@ exports.BattlePokedex =
 		types: ["Steel","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 90,
 			def: 140,
 			spa: 50,
 			spd: 50,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Rock Head",
-			DW: "Heavy Metal",
+			DW: "Heavy Metal"
 		},
 		heightm: 0.9,
 		weightkg: 120,
@@ -13924,10 +12807,9 @@ exports.BattlePokedex =
 		prevo: "aron",
 		evos: ["aggron"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	aggron:
-	{
+	aggron: {
 		num: 306,
 		name: "Aggron",
 		id: "aggron",
@@ -13940,20 +12822,18 @@ exports.BattlePokedex =
 		types: ["Steel","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 110,
 			def: 180,
 			spa: 60,
 			spd: 60,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Rock Head",
-			DW: "Heavy Metal",
+			DW: "Heavy Metal"
 		},
 		heightm: 2.1,
 		weightkg: 360,
@@ -13962,10 +12842,9 @@ exports.BattlePokedex =
 		prevo: "lairon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	meditite:
-	{
+	meditite: {
 		num: 307,
 		name: "Meditite",
 		id: "meditite",
@@ -13978,19 +12857,17 @@ exports.BattlePokedex =
 		types: ["Fighting","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 40,
 			def: 55,
 			spa: 40,
 			spd: 55,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pure Power",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 0.6,
 		weightkg: 11.2,
@@ -13999,10 +12876,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["medicham"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	medicham:
-	{
+	medicham: {
 		num: 308,
 		name: "Medicham",
 		id: "medicham",
@@ -14015,19 +12891,17 @@ exports.BattlePokedex =
 		types: ["Fighting","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 75,
 			spa: 60,
 			spd: 75,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pure Power",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 1.3,
 		weightkg: 31.5,
@@ -14036,10 +12910,9 @@ exports.BattlePokedex =
 		prevo: "meditite",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	electrike:
-	{
+	electrike: {
 		num: 309,
 		name: "Electrike",
 		id: "electrike",
@@ -14052,20 +12925,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 45,
 			def: 40,
 			spa: 65,
 			spd: 40,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
 			1: "Lightningrod",
-			DW: "Minus",
+			DW: "Minus"
 		},
 		heightm: 0.6,
 		weightkg: 15.2,
@@ -14074,10 +12945,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["manectric"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	manectric:
-	{
+	manectric: {
 		num: 310,
 		name: "Manectric",
 		id: "manectric",
@@ -14090,20 +12960,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 75,
 			def: 60,
 			spa: 105,
 			spd: 60,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
 			1: "Lightningrod",
-			DW: "Minus",
+			DW: "Minus"
 		},
 		heightm: 1.5,
 		weightkg: 40.2,
@@ -14112,10 +12980,9 @@ exports.BattlePokedex =
 		prevo: "electrike",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	plusle:
-	{
+	plusle: {
 		num: 311,
 		name: "Plusle",
 		id: "plusle",
@@ -14128,18 +12995,16 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 50,
 			def: 40,
 			spa: 85,
 			spd: 75,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
-			0: "Plus",
+		abilities: {
+			0: "Plus"
 		},
 		heightm: 0.4,
 		weightkg: 4.2,
@@ -14148,10 +13013,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	minun:
-	{
+	minun: {
 		num: 312,
 		name: "Minun",
 		id: "minun",
@@ -14164,18 +13028,16 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 40,
 			def: 50,
 			spa: 75,
 			spd: 85,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
-			0: "Minus",
+		abilities: {
+			0: "Minus"
 		},
 		heightm: 0.4,
 		weightkg: 4.2,
@@ -14184,10 +13046,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	volbeat:
-	{
+	volbeat: {
 		num: 313,
 		name: "Volbeat",
 		id: "volbeat",
@@ -14200,20 +13061,18 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 73,
 			def: 55,
 			spa: 47,
 			spd: 75,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Illuminate",
 			1: "Swarm",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 0.7,
 		weightkg: 17.7,
@@ -14222,10 +13081,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	illumise:
-	{
+	illumise: {
 		num: 314,
 		name: "Illumise",
 		id: "illumise",
@@ -14238,20 +13096,18 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 47,
 			def: 55,
 			spa: 73,
 			spd: 75,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Tinted Lens",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 0.6,
 		weightkg: 17.7,
@@ -14260,10 +13116,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	budew:
-	{
+	budew: {
 		num: 406,
 		name: "Budew",
 		id: "budew",
@@ -14276,20 +13131,18 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 30,
 			def: 35,
 			spa: 50,
 			spd: 70,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
 			1: "Poison Point",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 0.2,
 		weightkg: 1.2,
@@ -14298,10 +13151,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["roselia"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	roselia:
-	{
+	roselia: {
 		num: 315,
 		name: "Roselia",
 		id: "roselia",
@@ -14314,20 +13166,18 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 60,
 			def: 45,
 			spa: 100,
 			spd: 80,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
 			1: "Poison Point",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 0.3,
 		weightkg: 2,
@@ -14336,10 +13186,9 @@ exports.BattlePokedex =
 		prevo: "budew",
 		evos: ["roserade"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	roserade:
-	{
+	roserade: {
 		num: 407,
 		name: "Roserade",
 		id: "roserade",
@@ -14352,20 +13201,18 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 70,
 			def: 55,
 			spa: 125,
 			spd: 105,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
 			1: "Poison Point",
-			DW: "Technician",
+			DW: "Technician"
 		},
 		heightm: 0.9,
 		weightkg: 14.5,
@@ -14374,10 +13221,9 @@ exports.BattlePokedex =
 		prevo: "roselia",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gulpin:
-	{
+	gulpin: {
 		num: 316,
 		name: "Gulpin",
 		id: "gulpin",
@@ -14390,20 +13236,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 43,
 			def: 53,
 			spa: 43,
 			spd: 53,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Liquid Ooze",
 			1: "Sticky Hold",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 0.4,
 		weightkg: 10.3,
@@ -14412,10 +13256,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["swalot"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swalot:
-	{
+	swalot: {
 		num: 317,
 		name: "Swalot",
 		id: "swalot",
@@ -14428,20 +13271,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 73,
 			def: 83,
 			spa: 73,
 			spd: 83,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Liquid Ooze",
 			1: "Sticky Hold",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 1.7,
 		weightkg: 80,
@@ -14450,10 +13291,9 @@ exports.BattlePokedex =
 		prevo: "gulpin",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	carvanha:
-	{
+	carvanha: {
 		num: 318,
 		name: "Carvanha",
 		id: "carvanha",
@@ -14466,19 +13306,17 @@ exports.BattlePokedex =
 		types: ["Water","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 90,
 			def: 20,
 			spa: 65,
 			spd: 20,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rough Skin",
-			DW: "Speed Boost",
+			DW: "Speed Boost"
 		},
 		heightm: 0.8,
 		weightkg: 20.8,
@@ -14487,10 +13325,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sharpedo"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sharpedo:
-	{
+	sharpedo: {
 		num: 319,
 		name: "Sharpedo",
 		id: "sharpedo",
@@ -14503,19 +13340,17 @@ exports.BattlePokedex =
 		types: ["Water","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 120,
 			def: 40,
 			spa: 95,
 			spd: 40,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rough Skin",
-			DW: "Speed Boost",
+			DW: "Speed Boost"
 		},
 		heightm: 1.8,
 		weightkg: 88.8,
@@ -14524,10 +13359,9 @@ exports.BattlePokedex =
 		prevo: "carvanha",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wailmer:
-	{
+	wailmer: {
 		num: 320,
 		name: "Wailmer",
 		id: "wailmer",
@@ -14540,20 +13374,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 130,
 			atk: 70,
 			def: 35,
 			spa: 70,
 			spd: 35,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Veil",
 			1: "Oblivious",
-			DW: "Pressure",
+			DW: "Pressure"
 		},
 		heightm: 2,
 		weightkg: 130,
@@ -14562,10 +13394,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["wailord"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wailord:
-	{
+	wailord: {
 		num: 321,
 		name: "Wailord",
 		id: "wailord",
@@ -14578,20 +13409,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 170,
 			atk: 90,
 			def: 45,
 			spa: 90,
 			spd: 45,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Veil",
 			1: "Oblivious",
-			DW: "Pressure",
+			DW: "Pressure"
 		},
 		heightm: 14.5,
 		weightkg: 398,
@@ -14600,10 +13429,9 @@ exports.BattlePokedex =
 		prevo: "wailmer",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	numel:
-	{
+	numel: {
 		num: 322,
 		name: "Numel",
 		id: "numel",
@@ -14616,20 +13444,18 @@ exports.BattlePokedex =
 		types: ["Fire","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 40,
 			spa: 65,
 			spd: 45,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Simple",
-			DW: "Own Tempo",
+			DW: "Own Tempo"
 		},
 		heightm: 0.7,
 		weightkg: 24,
@@ -14638,10 +13464,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["camerupt"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	camerupt:
-	{
+	camerupt: {
 		num: 323,
 		name: "Camerupt",
 		id: "camerupt",
@@ -14654,20 +13479,18 @@ exports.BattlePokedex =
 		types: ["Fire","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 100,
 			def: 70,
 			spa: 105,
 			spd: 75,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Magma Armor",
 			1: "Solid Rock",
-			DW: "Anger Point",
+			DW: "Anger Point"
 		},
 		heightm: 1.9,
 		weightkg: 220,
@@ -14676,10 +13499,9 @@ exports.BattlePokedex =
 		prevo: "numel",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	torkoal:
-	{
+	torkoal: {
 		num: 324,
 		name: "Torkoal",
 		id: "torkoal",
@@ -14692,19 +13514,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 85,
 			def: 140,
 			spa: 85,
 			spd: 70,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "White Smoke",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 0.5,
 		weightkg: 80.4,
@@ -14713,10 +13533,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	spoink:
-	{
+	spoink: {
 		num: 325,
 		name: "Spoink",
 		id: "spoink",
@@ -14729,20 +13548,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 25,
 			def: 35,
 			spa: 70,
 			spd: 80,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Own Tempo",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 0.7,
 		weightkg: 30.6,
@@ -14751,10 +13568,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["grumpig"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	grumpig:
-	{
+	grumpig: {
 		num: 326,
 		name: "Grumpig",
 		id: "grumpig",
@@ -14767,20 +13583,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 45,
 			def: 65,
 			spa: 90,
 			spd: 110,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Own Tempo",
-			DW: "Gluttony",
+			DW: "Gluttony"
 		},
 		heightm: 0.9,
 		weightkg: 71.5,
@@ -14789,10 +13603,9 @@ exports.BattlePokedex =
 		prevo: "spoink",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	spinda:
-	{
+	spinda: {
 		num: 327,
 		name: "Spinda",
 		id: "spinda",
@@ -14805,20 +13618,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 60,
 			spa: 60,
 			spd: 60,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Own Tempo",
 			1: "Tangled Feet",
-			DW: "Contrary",
+			DW: "Contrary"
 		},
 		heightm: 1.1,
 		weightkg: 5,
@@ -14827,10 +13638,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	trapinch:
-	{
+	trapinch: {
 		num: 328,
 		name: "Trapinch",
 		id: "trapinch",
@@ -14843,20 +13653,18 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 100,
 			def: 45,
 			spa: 45,
 			spd: 45,
-			spe: 10,
+			spe: 10
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Arena Trap",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 0.7,
 		weightkg: 15,
@@ -14865,10 +13673,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["vibrava"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vibrava:
-	{
+	vibrava: {
 		num: 329,
 		name: "Vibrava",
 		id: "vibrava",
@@ -14881,19 +13688,17 @@ exports.BattlePokedex =
 		types: ["Ground","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 70,
 			def: 50,
 			spa: 50,
 			spd: 50,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Levitate",
-			DW: "Levitate",
+			DW: "Levitate"
 		},
 		heightm: 1.1,
 		weightkg: 15.3,
@@ -14902,10 +13707,9 @@ exports.BattlePokedex =
 		prevo: "trapinch",
 		evos: ["flygon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	flygon:
-	{
+	flygon: {
 		num: 330,
 		name: "Flygon",
 		id: "flygon",
@@ -14918,19 +13722,17 @@ exports.BattlePokedex =
 		types: ["Ground","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 80,
 			spa: 80,
 			spd: 80,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Levitate",
-			DW: "Levitate",
+			DW: "Levitate"
 		},
 		heightm: 2,
 		weightkg: 82,
@@ -14939,10 +13741,9 @@ exports.BattlePokedex =
 		prevo: "vibrava",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cacnea:
-	{
+	cacnea: {
 		num: 331,
 		name: "Cacnea",
 		id: "cacnea",
@@ -14955,19 +13756,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 85,
 			def: 40,
 			spa: 85,
 			spd: 40,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 0.4,
 		weightkg: 51.3,
@@ -14976,10 +13775,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["cacturne"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cacturne:
-	{
+	cacturne: {
 		num: 332,
 		name: "Cacturne",
 		id: "cacturne",
@@ -14992,19 +13790,17 @@ exports.BattlePokedex =
 		types: ["Grass","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 115,
 			def: 60,
 			spa: 115,
 			spd: 60,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 1.3,
 		weightkg: 77.4,
@@ -15013,10 +13809,9 @@ exports.BattlePokedex =
 		prevo: "cacnea",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swablu:
-	{
+	swablu: {
 		num: 333,
 		name: "Swablu",
 		id: "swablu",
@@ -15029,19 +13824,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 40,
 			def: 60,
 			spa: 40,
 			spd: 75,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
-			DW: "Cloud Nine",
+			DW: "Cloud Nine"
 		},
 		heightm: 0.4,
 		weightkg: 1.2,
@@ -15050,10 +13843,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["altaria"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	altaria:
-	{
+	altaria: {
 		num: 334,
 		name: "Altaria",
 		id: "altaria",
@@ -15066,19 +13858,17 @@ exports.BattlePokedex =
 		types: ["Dragon","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 70,
 			def: 90,
 			spa: 70,
 			spd: 105,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Natural Cure",
-			DW: "Cloud Nine",
+			DW: "Cloud Nine"
 		},
 		heightm: 1.1,
 		weightkg: 20.6,
@@ -15087,10 +13877,9 @@ exports.BattlePokedex =
 		prevo: "swablu",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zangoose:
-	{
+	zangoose: {
 		num: 335,
 		name: "Zangoose",
 		id: "zangoose",
@@ -15103,19 +13892,17 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 73,
 			atk: 115,
 			def: 60,
 			spa: 60,
 			spd: 60,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Immunity",
-			DW: "Toxic Boost",
+			DW: "Toxic Boost"
 		},
 		heightm: 1.3,
 		weightkg: 40.3,
@@ -15124,10 +13911,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	seviper:
-	{
+	seviper: {
 		num: 336,
 		name: "Seviper",
 		id: "seviper",
@@ -15140,19 +13926,17 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 73,
 			atk: 100,
 			def: 60,
 			spa: 100,
 			spd: 60,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 2.7,
 		weightkg: 52.5,
@@ -15161,10 +13945,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lunatone:
-	{
+	lunatone: {
 		num: 337,
 		name: "Lunatone",
 		id: "lunatone",
@@ -15177,18 +13960,16 @@ exports.BattlePokedex =
 		types: ["Rock","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 55,
 			def: 65,
 			spa: 95,
 			spd: 85,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1,
 		weightkg: 168,
@@ -15197,10 +13978,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	solrock:
-	{
+	solrock: {
 		num: 338,
 		name: "Solrock",
 		id: "solrock",
@@ -15213,18 +13993,16 @@ exports.BattlePokedex =
 		types: ["Rock","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 95,
 			def: 85,
 			spa: 55,
 			spd: 65,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.2,
 		weightkg: 154,
@@ -15233,10 +14011,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	barboach:
-	{
+	barboach: {
 		num: 339,
 		name: "Barboach",
 		id: "barboach",
@@ -15249,20 +14026,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 48,
 			def: 43,
 			spa: 46,
 			spd: 41,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Anticipation",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 0.4,
 		weightkg: 1.9,
@@ -15271,10 +14046,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["whiscash"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	whiscash:
-	{
+	whiscash: {
 		num: 340,
 		name: "Whiscash",
 		id: "whiscash",
@@ -15287,20 +14061,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 78,
 			def: 73,
 			spa: 76,
 			spd: 71,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Oblivious",
 			1: "Anticipation",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 0.9,
 		weightkg: 23.6,
@@ -15309,10 +14081,9 @@ exports.BattlePokedex =
 		prevo: "barboach",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	corphish:
-	{
+	corphish: {
 		num: 341,
 		name: "Corphish",
 		id: "corphish",
@@ -15325,20 +14096,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 43,
 			atk: 80,
 			def: 65,
 			spa: 50,
 			spd: 35,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Shell Armor",
-			DW: "Adaptability",
+			DW: "Adaptability"
 		},
 		heightm: 0.6,
 		weightkg: 11.5,
@@ -15347,10 +14116,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["crawdaunt"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	crawdaunt:
-	{
+	crawdaunt: {
 		num: 342,
 		name: "Crawdaunt",
 		id: "crawdaunt",
@@ -15363,20 +14131,18 @@ exports.BattlePokedex =
 		types: ["Water","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 63,
 			atk: 120,
 			def: 85,
 			spa: 90,
 			spd: 55,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hyper Cutter",
 			1: "Shell Armor",
-			DW: "Adaptability",
+			DW: "Adaptability"
 		},
 		heightm: 1.1,
 		weightkg: 32.8,
@@ -15385,10 +14151,9 @@ exports.BattlePokedex =
 		prevo: "corphish",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	baltoy:
-	{
+	baltoy: {
 		num: 343,
 		name: "Baltoy",
 		id: "baltoy",
@@ -15401,18 +14166,16 @@ exports.BattlePokedex =
 		types: ["Ground","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 40,
 			def: 55,
 			spa: 40,
 			spd: 70,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.5,
 		weightkg: 21.5,
@@ -15421,10 +14184,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["claydol"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	claydol:
-	{
+	claydol: {
 		num: 344,
 		name: "Claydol",
 		id: "claydol",
@@ -15437,18 +14199,16 @@ exports.BattlePokedex =
 		types: ["Ground","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 70,
 			def: 105,
 			spa: 70,
 			spd: 120,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.5,
 		weightkg: 108,
@@ -15457,10 +14217,9 @@ exports.BattlePokedex =
 		prevo: "baltoy",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lileep:
-	{
+	lileep: {
 		num: 345,
 		name: "Lileep",
 		id: "lileep",
@@ -15473,19 +14232,17 @@ exports.BattlePokedex =
 		types: ["Rock","Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 66,
 			atk: 41,
 			def: 77,
 			spa: 61,
 			spd: 87,
-			spe: 23,
+			spe: 23
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Suction Cups",
-			DW: "Storm Drain",
+			DW: "Storm Drain"
 		},
 		heightm: 1,
 		weightkg: 23.8,
@@ -15494,10 +14251,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["cradily"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cradily:
-	{
+	cradily: {
 		num: 346,
 		name: "Cradily",
 		id: "cradily",
@@ -15510,19 +14266,17 @@ exports.BattlePokedex =
 		types: ["Rock","Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 86,
 			atk: 81,
 			def: 97,
 			spa: 81,
 			spd: 107,
-			spe: 43,
+			spe: 43
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Suction Cups",
-			DW: "Storm Drain",
+			DW: "Storm Drain"
 		},
 		heightm: 1.5,
 		weightkg: 60.4,
@@ -15531,10 +14285,9 @@ exports.BattlePokedex =
 		prevo: "lileep",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	anorith:
-	{
+	anorith: {
 		num: 347,
 		name: "Anorith",
 		id: "anorith",
@@ -15547,19 +14300,17 @@ exports.BattlePokedex =
 		types: ["Rock","Bug"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 95,
 			def: 50,
 			spa: 40,
 			spd: 50,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Battle Armor",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 0.7,
 		weightkg: 12.5,
@@ -15568,10 +14319,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["armaldo"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	armaldo:
-	{
+	armaldo: {
 		num: 348,
 		name: "Armaldo",
 		id: "armaldo",
@@ -15584,19 +14334,17 @@ exports.BattlePokedex =
 		types: ["Rock","Bug"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 125,
 			def: 100,
 			spa: 70,
 			spd: 80,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Battle Armor",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 1.5,
 		weightkg: 68.2,
@@ -15605,10 +14353,9 @@ exports.BattlePokedex =
 		prevo: "anorith",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	feebas:
-	{
+	feebas: {
 		num: 349,
 		name: "Feebas",
 		id: "feebas",
@@ -15621,19 +14368,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 15,
 			def: 20,
 			spa: 10,
 			spd: 55,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Adaptability",
+			DW: "Adaptability"
 		},
 		heightm: 0.6,
 		weightkg: 7.4,
@@ -15642,10 +14387,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["milotic"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	milotic:
-	{
+	milotic: {
 		num: 350,
 		name: "Milotic",
 		id: "milotic",
@@ -15658,19 +14402,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 60,
 			def: 79,
 			spa: 100,
 			spd: 125,
-			spe: 81,
+			spe: 81
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Marvel Scale",
-			DW: "Cute Charm",
+			DW: "Cute Charm"
 		},
 		heightm: 6.2,
 		weightkg: 162,
@@ -15679,10 +14421,9 @@ exports.BattlePokedex =
 		prevo: "feebas",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	castform:
-	{
+	castform: {
 		num: 351,
 		name: "Castform",
 		id: "castform",
@@ -15695,18 +14436,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 70,
 			def: 70,
 			spa: 70,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Forecast",
+		abilities: {
+			0: "Forecast"
 		},
 		heightm: 0.3,
 		weightkg: 0.8,
@@ -15715,10 +14454,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["castformsunny","castformrainy","castformsnowy"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	castformsunny:
-	{
+	castformsunny: {
 		num: 351,
 		name: "Castform-Sunny",
 		id: "castformsunny",
@@ -15731,18 +14469,16 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 70,
 			def: 70,
 			spa: 70,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Forecast",
+		abilities: {
+			0: "Forecast"
 		},
 		heightm: 0.3,
 		weightkg: 0.8,
@@ -15751,10 +14487,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["castform","castformrainy","castformsnowy"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	castformrainy:
-	{
+	castformrainy: {
 		num: 351,
 		name: "Castform-Rainy",
 		id: "castformrainy",
@@ -15767,18 +14502,16 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 70,
 			def: 70,
 			spa: 70,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Forecast",
+		abilities: {
+			0: "Forecast"
 		},
 		heightm: 0.3,
 		weightkg: 0.8,
@@ -15787,10 +14520,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["castform","castformsunny","castformsnowy"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	castformsnowy:
-	{
+	castformsnowy: {
 		num: 351,
 		name: "Castform-Snowy",
 		id: "castformsnowy",
@@ -15803,18 +14535,16 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 70,
 			def: 70,
 			spa: 70,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Forecast",
+		abilities: {
+			0: "Forecast"
 		},
 		heightm: 0.3,
 		weightkg: 0.8,
@@ -15823,10 +14553,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["castform","castformsunny","castformrainy"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	kecleon:
-	{
+	kecleon: {
 		num: 352,
 		name: "Kecleon",
 		id: "kecleon",
@@ -15839,18 +14568,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 90,
 			def: 70,
 			spa: 60,
 			spd: 120,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
-			0: "Color Change",
+		abilities: {
+			0: "Color Change"
 		},
 		heightm: 1,
 		weightkg: 22,
@@ -15859,10 +14586,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shuppet:
-	{
+	shuppet: {
 		num: 353,
 		name: "Shuppet",
 		id: "shuppet",
@@ -15875,20 +14601,18 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 44,
 			atk: 75,
 			def: 35,
 			spa: 63,
 			spd: 33,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Frisk",
-			DW: "Cursed Body",
+			DW: "Cursed Body"
 		},
 		heightm: 0.6,
 		weightkg: 2.3,
@@ -15897,10 +14621,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["banette"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	banette:
-	{
+	banette: {
 		num: 354,
 		name: "Banette",
 		id: "banette",
@@ -15913,20 +14636,18 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 64,
 			atk: 115,
 			def: 65,
 			spa: 83,
 			spd: 63,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Insomnia",
 			1: "Frisk",
-			DW: "Cursed Body",
+			DW: "Cursed Body"
 		},
 		heightm: 1.1,
 		weightkg: 12.5,
@@ -15935,10 +14656,9 @@ exports.BattlePokedex =
 		prevo: "shuppet",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	duskull:
-	{
+	duskull: {
 		num: 355,
 		name: "Duskull",
 		id: "duskull",
@@ -15951,18 +14671,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 20,
 			atk: 40,
 			def: 90,
 			spa: 30,
 			spd: 90,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.8,
 		weightkg: 15,
@@ -15971,10 +14689,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["dusclops"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dusclops:
-	{
+	dusclops: {
 		num: 356,
 		name: "Dusclops",
 		id: "dusclops",
@@ -15987,18 +14704,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 70,
 			def: 130,
 			spa: 60,
 			spd: 130,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 1.6,
 		weightkg: 30.6,
@@ -16007,10 +14722,9 @@ exports.BattlePokedex =
 		prevo: "duskull",
 		evos: ["dusknoir"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dusknoir:
-	{
+	dusknoir: {
 		num: 477,
 		name: "Dusknoir",
 		id: "dusknoir",
@@ -16023,18 +14737,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 100,
 			def: 135,
 			spa: 65,
 			spd: 135,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 2.2,
 		weightkg: 106.6,
@@ -16043,10 +14755,9 @@ exports.BattlePokedex =
 		prevo: "dusclops",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tropius:
-	{
+	tropius: {
 		num: 357,
 		name: "Tropius",
 		id: "tropius",
@@ -16059,20 +14770,18 @@ exports.BattlePokedex =
 		types: ["Grass","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 99,
 			atk: 68,
 			def: 83,
 			spa: 72,
 			spd: 87,
-			spe: 51,
+			spe: 51
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Solar Power",
-			DW: "Harvest",
+			DW: "Harvest"
 		},
 		heightm: 2,
 		weightkg: 100,
@@ -16081,10 +14790,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chingling:
-	{
+	chingling: {
 		num: 433,
 		name: "Chingling",
 		id: "chingling",
@@ -16097,18 +14805,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 30,
 			def: 50,
 			spa: 65,
 			spd: 50,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.2,
 		weightkg: 0.6,
@@ -16117,10 +14823,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["chimecho"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chimecho:
-	{
+	chimecho: {
 		num: 358,
 		name: "Chimecho",
 		id: "chimecho",
@@ -16133,18 +14838,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 50,
 			def: 70,
 			spa: 95,
 			spd: 80,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.6,
 		weightkg: 1,
@@ -16153,10 +14856,9 @@ exports.BattlePokedex =
 		prevo: "chingling",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	absol:
-	{
+	absol: {
 		num: 359,
 		name: "Absol",
 		id: "absol",
@@ -16169,20 +14871,18 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 130,
 			def: 60,
 			spa: 75,
 			spd: 60,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
 			1: "Super Luck",
-			DW: "Justified",
+			DW: "Justified"
 		},
 		heightm: 1.2,
 		weightkg: 47,
@@ -16191,10 +14891,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	snorunt:
-	{
+	snorunt: {
 		num: 361,
 		name: "Snorunt",
 		id: "snorunt",
@@ -16207,20 +14906,18 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 50,
 			spa: 50,
 			spd: 50,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
 			1: "Ice Body",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 0.7,
 		weightkg: 16.8,
@@ -16229,10 +14926,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["glalie","froslass"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	glalie:
-	{
+	glalie: {
 		num: 362,
 		name: "Glalie",
 		id: "glalie",
@@ -16245,20 +14941,18 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 80,
 			def: 80,
 			spa: 80,
 			spd: 80,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
 			1: "Ice Body",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 1.5,
 		weightkg: 256.5,
@@ -16267,10 +14961,9 @@ exports.BattlePokedex =
 		prevo: "snorunt",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	froslass:
-	{
+	froslass: {
 		num: 478,
 		name: "Froslass",
 		id: "froslass",
@@ -16283,19 +14976,17 @@ exports.BattlePokedex =
 		types: ["Ice","Ghost"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 80,
 			def: 70,
 			spa: 80,
 			spd: 70,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Snow Cloak",
-			DW: "Cursed Body",
+			DW: "Cursed Body"
 		},
 		heightm: 1.3,
 		weightkg: 26.6,
@@ -16304,10 +14995,9 @@ exports.BattlePokedex =
 		prevo: "snorunt",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	spheal:
-	{
+	spheal: {
 		num: 363,
 		name: "Spheal",
 		id: "spheal",
@@ -16320,20 +15010,18 @@ exports.BattlePokedex =
 		types: ["Ice","Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 40,
 			def: 50,
 			spa: 55,
 			spd: 50,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Ice Body",
-			DW: "Oblivious",
+			DW: "Oblivious"
 		},
 		heightm: 0.8,
 		weightkg: 39.5,
@@ -16342,10 +15030,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sealeo"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sealeo:
-	{
+	sealeo: {
 		num: 364,
 		name: "Sealeo",
 		id: "sealeo",
@@ -16358,20 +15045,18 @@ exports.BattlePokedex =
 		types: ["Ice","Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 60,
 			def: 70,
 			spa: 75,
 			spd: 70,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Ice Body",
-			DW: "Oblivious",
+			DW: "Oblivious"
 		},
 		heightm: 1.1,
 		weightkg: 87.6,
@@ -16380,10 +15065,9 @@ exports.BattlePokedex =
 		prevo: "spheal",
 		evos: ["walrein"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	walrein:
-	{
+	walrein: {
 		num: 365,
 		name: "Walrein",
 		id: "walrein",
@@ -16396,20 +15080,18 @@ exports.BattlePokedex =
 		types: ["Ice","Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 80,
 			def: 90,
 			spa: 95,
 			spd: 90,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Ice Body",
-			DW: "Oblivious",
+			DW: "Oblivious"
 		},
 		heightm: 1.4,
 		weightkg: 150.6,
@@ -16418,10 +15100,9 @@ exports.BattlePokedex =
 		prevo: "sealeo",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	clamperl:
-	{
+	clamperl: {
 		num: 366,
 		name: "Clamperl",
 		id: "clamperl",
@@ -16434,19 +15115,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 64,
 			def: 85,
 			spa: 74,
 			spd: 55,
-			spe: 32,
+			spe: 32
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shell Armor",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.4,
 		weightkg: 52.5,
@@ -16455,10 +15134,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["huntail","gorebyss"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	huntail:
-	{
+	huntail: {
 		num: 367,
 		name: "Huntail",
 		id: "huntail",
@@ -16471,19 +15149,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 104,
 			def: 105,
 			spa: 94,
 			spd: 75,
-			spe: 52,
+			spe: 52
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 1.7,
 		weightkg: 27,
@@ -16492,10 +15168,9 @@ exports.BattlePokedex =
 		prevo: "clamperl",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gorebyss:
-	{
+	gorebyss: {
 		num: 368,
 		name: "Gorebyss",
 		id: "gorebyss",
@@ -16508,19 +15183,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 84,
 			def: 105,
 			spa: 114,
 			spd: 75,
-			spe: 52,
+			spe: 52
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 1.8,
 		weightkg: 22.6,
@@ -16529,10 +15202,9 @@ exports.BattlePokedex =
 		prevo: "clamperl",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	relicanth:
-	{
+	relicanth: {
 		num: 369,
 		name: "Relicanth",
 		id: "relicanth",
@@ -16545,20 +15217,18 @@ exports.BattlePokedex =
 		types: ["Water","Rock"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 90,
 			def: 130,
 			spa: 45,
 			spd: 65,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Rock Head",
-			DW: "Sturdy",
+			DW: "Sturdy"
 		},
 		heightm: 1,
 		weightkg: 23.4,
@@ -16567,10 +15237,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	luvdisc:
-	{
+	luvdisc: {
 		num: 370,
 		name: "Luvdisc",
 		id: "luvdisc",
@@ -16583,19 +15252,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 43,
 			atk: 30,
 			def: 55,
 			spa: 40,
 			spd: 65,
-			spe: 97,
+			spe: 97
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 0.6,
 		weightkg: 8.7,
@@ -16604,10 +15271,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bagon:
-	{
+	bagon: {
 		num: 371,
 		name: "Bagon",
 		id: "bagon",
@@ -16620,19 +15286,17 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 75,
 			def: 60,
 			spa: 40,
 			spd: 30,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 0.6,
 		weightkg: 42.1,
@@ -16641,10 +15305,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["shelgon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shelgon:
-	{
+	shelgon: {
 		num: 372,
 		name: "Shelgon",
 		id: "shelgon",
@@ -16657,19 +15320,17 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 95,
 			def: 100,
 			spa: 60,
 			spd: 50,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 1.1,
 		weightkg: 110.5,
@@ -16678,10 +15339,9 @@ exports.BattlePokedex =
 		prevo: "bagon",
 		evos: ["salamence"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	salamence:
-	{
+	salamence: {
 		num: 373,
 		name: "Salamence",
 		id: "salamence",
@@ -16694,19 +15354,17 @@ exports.BattlePokedex =
 		types: ["Dragon","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 135,
 			def: 80,
 			spa: 110,
 			spd: 80,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
-			DW: "Moxie",
+			DW: "Moxie"
 		},
 		heightm: 1.5,
 		weightkg: 102.6,
@@ -16715,10 +15373,9 @@ exports.BattlePokedex =
 		prevo: "shelgon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	beldum:
-	{
+	beldum: {
 		num: 374,
 		name: "Beldum",
 		id: "beldum",
@@ -16731,19 +15388,17 @@ exports.BattlePokedex =
 		types: ["Steel","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 55,
 			def: 80,
 			spa: 35,
 			spd: 60,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
-			DW: "Light Metal",
+			DW: "Light Metal"
 		},
 		heightm: 0.6,
 		weightkg: 95.2,
@@ -16752,10 +15407,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["metang"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	metang:
-	{
+	metang: {
 		num: 375,
 		name: "Metang",
 		id: "metang",
@@ -16768,19 +15422,17 @@ exports.BattlePokedex =
 		types: ["Steel","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 75,
 			def: 100,
 			spa: 55,
 			spd: 80,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
-			DW: "Light Metal",
+			DW: "Light Metal"
 		},
 		heightm: 1.2,
 		weightkg: 202.5,
@@ -16789,10 +15441,9 @@ exports.BattlePokedex =
 		prevo: "beldum",
 		evos: ["metagross"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	metagross:
-	{
+	metagross: {
 		num: 376,
 		name: "Metagross",
 		id: "metagross",
@@ -16805,19 +15456,17 @@ exports.BattlePokedex =
 		types: ["Steel","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 135,
 			def: 130,
 			spa: 95,
 			spd: 90,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
-			DW: "Light Metal",
+			DW: "Light Metal"
 		},
 		heightm: 1.6,
 		weightkg: 550,
@@ -16826,10 +15475,9 @@ exports.BattlePokedex =
 		prevo: "metang",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	regirock:
-	{
+	regirock: {
 		num: 377,
 		name: "Regirock",
 		id: "regirock",
@@ -16842,19 +15490,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 200,
 			spa: 50,
 			spd: 100,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
-			DW: "Sturdy",
+			DW: "Sturdy"
 		},
 		heightm: 1.7,
 		weightkg: 230,
@@ -16863,10 +15509,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	regice:
-	{
+	regice: {
 		num: 378,
 		name: "Regice",
 		id: "regice",
@@ -16879,19 +15524,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 50,
 			def: 100,
 			spa: 100,
 			spd: 200,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
-			DW: "Ice Body",
+			DW: "Ice Body"
 		},
 		heightm: 1.8,
 		weightkg: 175,
@@ -16900,10 +15543,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	registeel:
-	{
+	registeel: {
 		num: 379,
 		name: "Registeel",
 		id: "registeel",
@@ -16916,19 +15558,17 @@ exports.BattlePokedex =
 		types: ["Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 75,
 			def: 150,
 			spa: 75,
 			spd: 150,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Clear Body",
-			DW: "Light Metal",
+			DW: "Light Metal"
 		},
 		heightm: 1.9,
 		weightkg: 205,
@@ -16937,10 +15577,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	latias:
-	{
+	latias: {
 		num: 380,
 		name: "Latias",
 		id: "latias",
@@ -16953,18 +15592,16 @@ exports.BattlePokedex =
 		types: ["Dragon","Psychic"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 80,
 			def: 90,
 			spa: 110,
 			spd: 130,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.4,
 		weightkg: 40,
@@ -16973,10 +15610,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	latios:
-	{
+	latios: {
 		num: 381,
 		name: "Latios",
 		id: "latios",
@@ -16989,18 +15625,16 @@ exports.BattlePokedex =
 		types: ["Dragon","Psychic"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 90,
 			def: 80,
 			spa: 130,
 			spd: 110,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 2,
 		weightkg: 60,
@@ -17009,10 +15643,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kyogre:
-	{
+	kyogre: {
 		num: 382,
 		name: "Kyogre",
 		id: "kyogre",
@@ -17025,18 +15658,16 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 90,
 			spa: 150,
 			spd: 140,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Drizzle",
+		abilities: {
+			0: "Drizzle"
 		},
 		heightm: 4.5,
 		weightkg: 352,
@@ -17045,10 +15676,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	groudon:
-	{
+	groudon: {
 		num: 383,
 		name: "Groudon",
 		id: "groudon",
@@ -17061,18 +15691,16 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 150,
 			def: 140,
 			spa: 100,
 			spd: 90,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Drought",
+		abilities: {
+			0: "Drought"
 		},
 		heightm: 3.5,
 		weightkg: 950,
@@ -17081,10 +15709,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rayquaza:
-	{
+	rayquaza: {
 		num: 384,
 		name: "Rayquaza",
 		id: "rayquaza",
@@ -17097,18 +15724,16 @@ exports.BattlePokedex =
 		types: ["Dragon","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 150,
 			def: 90,
 			spa: 150,
 			spd: 90,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
-			0: "Air Lock",
+		abilities: {
+			0: "Air Lock"
 		},
 		heightm: 7,
 		weightkg: 206.5,
@@ -17117,10 +15742,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	jirachi:
-	{
+	jirachi: {
 		num: 385,
 		name: "Jirachi",
 		id: "jirachi",
@@ -17133,18 +15757,16 @@ exports.BattlePokedex =
 		types: ["Steel","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 100,
 			spa: 100,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Serene Grace",
+		abilities: {
+			0: "Serene Grace"
 		},
 		heightm: 0.3,
 		weightkg: 1.1,
@@ -17153,10 +15775,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	deoxys:
-	{
+	deoxys: {
 		num: 386,
 		name: "Deoxys",
 		id: "deoxys",
@@ -17169,18 +15790,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 150,
 			def: 50,
 			spa: 150,
 			spd: 50,
-			spe: 150,
+			spe: 150
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 1.7,
 		weightkg: 60.8,
@@ -17189,10 +15808,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["deoxysattack","deoxysdefense","deoxysspeed"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	deoxysattack:
-	{
+	deoxysattack: {
 		num: 386,
 		name: "Deoxys-Attack",
 		id: "deoxysattack",
@@ -17205,18 +15823,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 180,
 			def: 20,
 			spa: 180,
 			spd: 20,
-			spe: 150,
+			spe: 150
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 1.7,
 		weightkg: 60.8,
@@ -17225,10 +15841,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["deoxys","deoxysdefense","deoxysspeed"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	deoxysdefense:
-	{
+	deoxysdefense: {
 		num: 386,
 		name: "Deoxys-Defense",
 		id: "deoxysdefense",
@@ -17241,18 +15856,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 70,
 			def: 160,
 			spa: 70,
 			spd: 160,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 1.7,
 		weightkg: 60.8,
@@ -17261,10 +15874,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["deoxys","deoxysattack","deoxysspeed"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	deoxysspeed:
-	{
+	deoxysspeed: {
 		num: 386,
 		name: "Deoxys-Speed",
 		id: "deoxysspeed",
@@ -17277,18 +15889,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 95,
 			def: 90,
 			spa: 95,
 			spd: 90,
-			spe: 180,
+			spe: 180
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 1.7,
 		weightkg: 60.8,
@@ -17297,10 +15907,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["deoxys","deoxysattack","deoxysdefense"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	turtwig:
-	{
+	turtwig: {
 		num: 387,
 		name: "Turtwig",
 		id: "turtwig",
@@ -17313,19 +15922,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 68,
 			def: 64,
 			spa: 45,
 			spd: 55,
-			spe: 31,
+			spe: 31
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 0.4,
 		weightkg: 10.2,
@@ -17334,10 +15941,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["grotle"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	grotle:
-	{
+	grotle: {
 		num: 388,
 		name: "Grotle",
 		id: "grotle",
@@ -17350,19 +15956,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 89,
 			def: 85,
 			spa: 55,
 			spd: 65,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 1.1,
 		weightkg: 97,
@@ -17371,10 +15975,9 @@ exports.BattlePokedex =
 		prevo: "turtwig",
 		evos: ["torterra"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	torterra:
-	{
+	torterra: {
 		num: 389,
 		name: "Torterra",
 		id: "torterra",
@@ -17387,19 +15990,17 @@ exports.BattlePokedex =
 		types: ["Grass","Ground"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 109,
 			def: 105,
 			spa: 75,
 			spd: 85,
-			spe: 56,
+			spe: 56
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 2.2,
 		weightkg: 310,
@@ -17408,10 +16009,9 @@ exports.BattlePokedex =
 		prevo: "grotle",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chimchar:
-	{
+	chimchar: {
 		num: 390,
 		name: "Chimchar",
 		id: "chimchar",
@@ -17424,19 +16024,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 44,
 			atk: 58,
 			def: 44,
 			spa: 58,
 			spd: 44,
-			spe: 61,
+			spe: 61
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 0.5,
 		weightkg: 6.2,
@@ -17445,10 +16043,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["monferno"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	monferno:
-	{
+	monferno: {
 		num: 391,
 		name: "Monferno",
 		id: "monferno",
@@ -17461,19 +16058,17 @@ exports.BattlePokedex =
 		types: ["Fire","Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 64,
 			atk: 78,
 			def: 52,
 			spa: 78,
 			spd: 52,
-			spe: 81,
+			spe: 81
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 0.9,
 		weightkg: 22,
@@ -17482,10 +16077,9 @@ exports.BattlePokedex =
 		prevo: "chimchar",
 		evos: ["infernape"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	infernape:
-	{
+	infernape: {
 		num: 392,
 		name: "Infernape",
 		id: "infernape",
@@ -17498,19 +16092,17 @@ exports.BattlePokedex =
 		types: ["Fire","Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 76,
 			atk: 104,
 			def: 71,
 			spa: 104,
 			spd: 71,
-			spe: 108,
+			spe: 108
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 1.2,
 		weightkg: 55,
@@ -17519,10 +16111,9 @@ exports.BattlePokedex =
 		prevo: "monferno",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	piplup:
-	{
+	piplup: {
 		num: 393,
 		name: "Piplup",
 		id: "piplup",
@@ -17535,19 +16126,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 53,
 			atk: 51,
 			def: 53,
 			spa: 61,
 			spd: 56,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 0.4,
 		weightkg: 5.2,
@@ -17556,10 +16145,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["prinplup"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	prinplup:
-	{
+	prinplup: {
 		num: 394,
 		name: "Prinplup",
 		id: "prinplup",
@@ -17572,19 +16160,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 64,
 			atk: 66,
 			def: 68,
 			spa: 81,
 			spd: 76,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 0.8,
 		weightkg: 23,
@@ -17593,10 +16179,9 @@ exports.BattlePokedex =
 		prevo: "piplup",
 		evos: ["empoleon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	empoleon:
-	{
+	empoleon: {
 		num: 395,
 		name: "Empoleon",
 		id: "empoleon",
@@ -17609,19 +16194,17 @@ exports.BattlePokedex =
 		types: ["Water","Steel"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 84,
 			atk: 86,
 			def: 88,
 			spa: 111,
 			spd: 101,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 1.7,
 		weightkg: 84.5,
@@ -17630,10 +16213,9 @@ exports.BattlePokedex =
 		prevo: "prinplup",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	starly:
-	{
+	starly: {
 		num: 396,
 		name: "Starly",
 		id: "starly",
@@ -17646,19 +16228,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 55,
 			def: 30,
 			spa: 30,
 			spd: 30,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
-			DW: "Keen Eye",
+			DW: "Keen Eye"
 		},
 		heightm: 0.3,
 		weightkg: 2,
@@ -17667,10 +16247,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["staravia"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	staravia:
-	{
+	staravia: {
 		num: 397,
 		name: "Staravia",
 		id: "staravia",
@@ -17683,19 +16262,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 75,
 			def: 50,
 			spa: 40,
 			spd: 40,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 0.6,
 		weightkg: 15.5,
@@ -17704,10 +16281,9 @@ exports.BattlePokedex =
 		prevo: "starly",
 		evos: ["staraptor"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	staraptor:
-	{
+	staraptor: {
 		num: 398,
 		name: "Staraptor",
 		id: "staraptor",
@@ -17720,19 +16296,17 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 120,
 			def: 70,
 			spa: 50,
 			spd: 50,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 1.2,
 		weightkg: 24.9,
@@ -17741,10 +16315,9 @@ exports.BattlePokedex =
 		prevo: "staravia",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bidoof:
-	{
+	bidoof: {
 		num: 399,
 		name: "Bidoof",
 		id: "bidoof",
@@ -17757,20 +16330,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 59,
 			atk: 45,
 			def: 40,
 			spa: 35,
 			spd: 40,
-			spe: 31,
+			spe: 31
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Simple",
 			1: "Unaware",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 0.5,
 		weightkg: 20,
@@ -17779,10 +16350,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["bibarel"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bibarel:
-	{
+	bibarel: {
 		num: 400,
 		name: "Bibarel",
 		id: "bibarel",
@@ -17795,20 +16365,18 @@ exports.BattlePokedex =
 		types: ["Normal","Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 79,
 			atk: 85,
 			def: 60,
 			spa: 55,
 			spd: 60,
-			spe: 71,
+			spe: 71
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Simple",
 			1: "Unaware",
-			DW: "Moody",
+			DW: "Moody"
 		},
 		heightm: 1,
 		weightkg: 31.5,
@@ -17817,10 +16385,9 @@ exports.BattlePokedex =
 		prevo: "bidoof",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kricketot:
-	{
+	kricketot: {
 		num: 401,
 		name: "Kricketot",
 		id: "kricketot",
@@ -17833,19 +16400,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 37,
 			atk: 25,
 			def: 41,
 			spa: 25,
 			spd: 41,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.3,
 		weightkg: 2.2,
@@ -17854,10 +16419,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["kricketune"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kricketune:
-	{
+	kricketune: {
 		num: 402,
 		name: "Kricketune",
 		id: "kricketune",
@@ -17870,19 +16434,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 77,
 			atk: 85,
 			def: 51,
 			spa: 55,
 			spd: 51,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
-			DW: "Technician",
+			DW: "Technician"
 		},
 		heightm: 1,
 		weightkg: 25.5,
@@ -17891,10 +16453,9 @@ exports.BattlePokedex =
 		prevo: "kricketot",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shinx:
-	{
+	shinx: {
 		num: 403,
 		name: "Shinx",
 		id: "shinx",
@@ -17907,20 +16468,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 65,
 			def: 34,
 			spa: 40,
 			spd: 34,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rivalry",
 			1: "Intimidate",
-			DW: "Guts",
+			DW: "Guts"
 		},
 		heightm: 0.5,
 		weightkg: 9.5,
@@ -17929,10 +16488,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["luxio"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	luxio:
-	{
+	luxio: {
 		num: 404,
 		name: "Luxio",
 		id: "luxio",
@@ -17945,20 +16503,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 49,
 			spa: 60,
 			spd: 49,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rivalry",
 			1: "Intimidate",
-			DW: "Guts",
+			DW: "Guts"
 		},
 		heightm: 0.9,
 		weightkg: 30.5,
@@ -17967,10 +16523,9 @@ exports.BattlePokedex =
 		prevo: "shinx",
 		evos: ["luxray"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	luxray:
-	{
+	luxray: {
 		num: 405,
 		name: "Luxray",
 		id: "luxray",
@@ -17983,20 +16538,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 120,
 			def: 79,
 			spa: 95,
 			spd: 79,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rivalry",
 			1: "Intimidate",
-			DW: "Guts",
+			DW: "Guts"
 		},
 		heightm: 1.4,
 		weightkg: 42,
@@ -18005,10 +16558,9 @@ exports.BattlePokedex =
 		prevo: "luxio",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cranidos:
-	{
+	cranidos: {
 		num: 408,
 		name: "Cranidos",
 		id: "cranidos",
@@ -18021,19 +16573,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 67,
 			atk: 125,
 			def: 40,
 			spa: 30,
 			spd: 30,
-			spe: 58,
+			spe: 58
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Mold Breaker",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 0.9,
 		weightkg: 31.5,
@@ -18042,10 +16592,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["rampardos"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rampardos:
-	{
+	rampardos: {
 		num: 409,
 		name: "Rampardos",
 		id: "rampardos",
@@ -18058,19 +16607,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 97,
 			atk: 165,
 			def: 60,
 			spa: 65,
 			spd: 50,
-			spe: 58,
+			spe: 58
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Mold Breaker",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.6,
 		weightkg: 102.5,
@@ -18079,10 +16626,9 @@ exports.BattlePokedex =
 		prevo: "cranidos",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shieldon:
-	{
+	shieldon: {
 		num: 410,
 		name: "Shieldon",
 		id: "shieldon",
@@ -18095,19 +16641,17 @@ exports.BattlePokedex =
 		types: ["Rock","Steel"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 42,
 			def: 118,
 			spa: 42,
 			spd: 88,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Soundproof",
+			DW: "Soundproof"
 		},
 		heightm: 0.5,
 		weightkg: 57,
@@ -18116,10 +16660,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["bastiodon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bastiodon:
-	{
+	bastiodon: {
 		num: 411,
 		name: "Bastiodon",
 		id: "bastiodon",
@@ -18132,19 +16675,17 @@ exports.BattlePokedex =
 		types: ["Rock","Steel"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 52,
 			def: 168,
 			spa: 47,
 			spd: 138,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Soundproof",
+			DW: "Soundproof"
 		},
 		heightm: 1.3,
 		weightkg: 149.5,
@@ -18153,10 +16694,9 @@ exports.BattlePokedex =
 		prevo: "shieldon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	burmy:
-	{
+	burmy: {
 		num: 412,
 		name: "Burmy",
 		id: "burmy",
@@ -18169,19 +16709,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 29,
 			def: 45,
 			spa: 29,
 			spd: 45,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.2,
 		weightkg: 3.4,
@@ -18190,10 +16728,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["wormadam","wormadamsandy","wormadamtrash","mothim"],
 		otherFormes: ["burmysandy","burmytrash"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	burmysandy:
-	{
+	burmysandy: {
 		num: 412,
 		name: "Burmy-Sandy",
 		id: "burmysandy",
@@ -18206,19 +16743,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 29,
 			def: 45,
 			spa: 29,
 			spd: 45,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.2,
 		weightkg: 3.4,
@@ -18227,10 +16762,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["wormadam","wormadamsandy","wormadamtrash","mothim"],
 		otherFormes: ["burmy","burmytrash"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	burmytrash:
-	{
+	burmytrash: {
 		num: 412,
 		name: "Burmy-Trash",
 		id: "burmytrash",
@@ -18243,19 +16777,17 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 29,
 			def: 45,
 			spa: 29,
 			spd: 45,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.2,
 		weightkg: 3.4,
@@ -18264,10 +16796,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["wormadam","wormadamsandy","wormadamtrash","mothim"],
 		otherFormes: ["burmy","burmysandy"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	wormadam:
-	{
+	wormadam: {
 		num: 413,
 		name: "Wormadam",
 		id: "wormadam",
@@ -18280,19 +16811,17 @@ exports.BattlePokedex =
 		types: ["Bug","Grass"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 59,
 			def: 85,
 			spa: 79,
 			spd: 105,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Anticipation",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.5,
 		weightkg: 6.5,
@@ -18301,10 +16830,9 @@ exports.BattlePokedex =
 		prevo: "burmy",
 		evos: [],
 		otherFormes: ["wormadamsandy","wormadamtrash"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	wormadamsandy:
-	{
+	wormadamsandy: {
 		num: 413,
 		name: "Wormadam-Sandy",
 		id: "wormadamsandy",
@@ -18317,19 +16845,17 @@ exports.BattlePokedex =
 		types: ["Bug","Ground"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 79,
 			def: 105,
 			spa: 59,
 			spd: 85,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Anticipation",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.5,
 		weightkg: 6.5,
@@ -18338,10 +16864,9 @@ exports.BattlePokedex =
 		prevo: "burmy",
 		evos: [],
 		otherFormes: ["wormadam","wormadamtrash"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	wormadamtrash:
-	{
+	wormadamtrash: {
 		num: 413,
 		name: "Wormadam-Trash",
 		id: "wormadamtrash",
@@ -18354,19 +16879,17 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 69,
 			def: 95,
 			spa: 69,
 			spd: 95,
-			spe: 36,
+			spe: 36
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Anticipation",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.5,
 		weightkg: 6.5,
@@ -18375,10 +16898,9 @@ exports.BattlePokedex =
 		prevo: "burmy",
 		evos: [],
 		otherFormes: ["wormadam","wormadamsandy"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	mothim:
-	{
+	mothim: {
 		num: 414,
 		name: "Mothim",
 		id: "mothim",
@@ -18391,19 +16913,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 94,
 			def: 50,
 			spa: 94,
 			spd: 50,
-			spe: 66,
+			spe: 66
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
-			DW: "Tinted Lens",
+			DW: "Tinted Lens"
 		},
 		heightm: 0.9,
 		weightkg: 23.3,
@@ -18412,10 +16932,9 @@ exports.BattlePokedex =
 		prevo: "burmy",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	combee:
-	{
+	combee: {
 		num: 415,
 		name: "Combee",
 		id: "combee",
@@ -18428,19 +16947,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 30,
 			def: 42,
 			spa: 30,
 			spd: 42,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Honey Gather",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.3,
 		weightkg: 5.5,
@@ -18449,10 +16966,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["vespiquen"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vespiquen:
-	{
+	vespiquen: {
 		num: 416,
 		name: "Vespiquen",
 		id: "vespiquen",
@@ -18465,19 +16981,17 @@ exports.BattlePokedex =
 		types: ["Bug","Flying"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 80,
 			def: 102,
 			spa: 80,
 			spd: 102,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1.2,
 		weightkg: 38.5,
@@ -18486,10 +17000,9 @@ exports.BattlePokedex =
 		prevo: "combee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pachirisu:
-	{
+	pachirisu: {
 		num: 417,
 		name: "Pachirisu",
 		id: "pachirisu",
@@ -18502,20 +17015,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 45,
 			def: 70,
 			spa: 45,
 			spd: 90,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Pickup",
-			DW: "Volt Absorb",
+			DW: "Volt Absorb"
 		},
 		heightm: 0.4,
 		weightkg: 3.9,
@@ -18524,10 +17035,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	buizel:
-	{
+	buizel: {
 		num: 418,
 		name: "Buizel",
 		id: "buizel",
@@ -18540,19 +17050,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 65,
 			def: 35,
 			spa: 60,
 			spd: 30,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 0.7,
 		weightkg: 29.5,
@@ -18561,10 +17069,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["floatzel"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	floatzel:
-	{
+	floatzel: {
 		num: 419,
 		name: "Floatzel",
 		id: "floatzel",
@@ -18577,19 +17084,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 105,
 			def: 55,
 			spa: 85,
 			spd: 50,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 1.1,
 		weightkg: 33.5,
@@ -18598,10 +17103,9 @@ exports.BattlePokedex =
 		prevo: "buizel",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cherubi:
-	{
+	cherubi: {
 		num: 420,
 		name: "Cherubi",
 		id: "cherubi",
@@ -18614,18 +17118,16 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 35,
 			def: 45,
 			spa: 62,
 			spd: 53,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
-			0: "Chlorophyll",
+		abilities: {
+			0: "Chlorophyll"
 		},
 		heightm: 0.4,
 		weightkg: 3.3,
@@ -18634,10 +17136,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["cherrim"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cherrim:
-	{
+	cherrim: {
 		num: 421,
 		name: "Cherrim",
 		id: "cherrim",
@@ -18650,18 +17151,16 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 60,
 			def: 70,
 			spa: 87,
 			spd: 78,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
-			0: "Flower Gift",
+		abilities: {
+			0: "Flower Gift"
 		},
 		heightm: 0.5,
 		weightkg: 9.3,
@@ -18670,10 +17169,9 @@ exports.BattlePokedex =
 		prevo: "cherubi",
 		evos: [],
 		otherFormes: ["cherrimsunshine"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cherrimsunshine:
-	{
+	cherrimsunshine: {
 		num: 421,
 		name: "Cherrim-Sunshine",
 		id: "cherrimsunshine",
@@ -18686,18 +17184,16 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 60,
 			def: 70,
 			spa: 87,
 			spd: 78,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
-			0: "Flower Gift",
+		abilities: {
+			0: "Flower Gift"
 		},
 		heightm: 0.5,
 		weightkg: 9.3,
@@ -18706,10 +17202,9 @@ exports.BattlePokedex =
 		prevo: "cherubi",
 		evos: [],
 		otherFormes: ["cherrim"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	shellos:
-	{
+	shellos: {
 		num: 422,
 		name: "Shellos",
 		id: "shellos",
@@ -18722,20 +17217,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 76,
 			atk: 48,
 			def: 48,
 			spa: 57,
 			spd: 62,
-			spe: 34,
+			spe: 34
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sticky Hold",
 			1: "Storm Drain",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.3,
 		weightkg: 6.3,
@@ -18744,10 +17237,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gastrodon","gastrodoneast"],
 		otherFormes: ["shelloseast"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shelloseast:
-	{
+	shelloseast: {
 		num: 422,
 		name: "Shellos-East",
 		id: "shelloseast",
@@ -18760,20 +17252,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 76,
 			atk: 48,
 			def: 48,
 			spa: 57,
 			spd: 62,
-			spe: 34,
+			spe: 34
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sticky Hold",
 			1: "Storm Drain",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.3,
 		weightkg: 6.3,
@@ -18782,10 +17272,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gastrodon","gastrodoneast"],
 		otherFormes: ["shellos"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	gastrodon:
-	{
+	gastrodon: {
 		num: 423,
 		name: "Gastrodon",
 		id: "gastrodon",
@@ -18798,20 +17287,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 111,
 			atk: 83,
 			def: 68,
 			spa: 92,
 			spd: 82,
-			spe: 39,
+			spe: 39
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sticky Hold",
 			1: "Storm Drain",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.9,
 		weightkg: 29.9,
@@ -18820,10 +17307,9 @@ exports.BattlePokedex =
 		prevo: "shellos",
 		evos: [],
 		otherFormes: ["gastrodoneast"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gastrodoneast:
-	{
+	gastrodoneast: {
 		num: 423,
 		name: "Gastrodon-East",
 		id: "gastrodoneast",
@@ -18836,20 +17322,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 111,
 			atk: 83,
 			def: 68,
 			spa: 92,
 			spd: 82,
-			spe: 39,
+			spe: 39
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sticky Hold",
 			1: "Storm Drain",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.9,
 		weightkg: 29.9,
@@ -18858,10 +17342,9 @@ exports.BattlePokedex =
 		prevo: "shellos",
 		evos: [],
 		otherFormes: ["gastrodon"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	drifloon:
-	{
+	drifloon: {
 		num: 425,
 		name: "Drifloon",
 		id: "drifloon",
@@ -18874,20 +17357,18 @@ exports.BattlePokedex =
 		types: ["Ghost","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 50,
 			def: 34,
 			spa: 60,
 			spd: 44,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Aftermath",
 			1: "Unburden",
-			DW: "Flare Boost",
+			DW: "Flare Boost"
 		},
 		heightm: 0.4,
 		weightkg: 1.2,
@@ -18896,10 +17377,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["drifblim"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	drifblim:
-	{
+	drifblim: {
 		num: 426,
 		name: "Drifblim",
 		id: "drifblim",
@@ -18912,20 +17392,18 @@ exports.BattlePokedex =
 		types: ["Ghost","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 150,
 			atk: 80,
 			def: 44,
 			spa: 90,
 			spd: 54,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Aftermath",
 			1: "Unburden",
-			DW: "Flare Boost",
+			DW: "Flare Boost"
 		},
 		heightm: 1.2,
 		weightkg: 15,
@@ -18934,10 +17412,9 @@ exports.BattlePokedex =
 		prevo: "drifloon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	buneary:
-	{
+	buneary: {
 		num: 427,
 		name: "Buneary",
 		id: "buneary",
@@ -18950,20 +17427,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 66,
 			def: 44,
 			spa: 44,
 			spd: 56,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Klutz",
-			DW: "Limber",
+			DW: "Limber"
 		},
 		heightm: 0.4,
 		weightkg: 5.5,
@@ -18972,10 +17447,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lopunny"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lopunny:
-	{
+	lopunny: {
 		num: 428,
 		name: "Lopunny",
 		id: "lopunny",
@@ -18988,20 +17462,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 76,
 			def: 84,
 			spa: 54,
 			spd: 96,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Klutz",
-			DW: "Limber",
+			DW: "Limber"
 		},
 		heightm: 1.2,
 		weightkg: 33.3,
@@ -19010,10 +17482,9 @@ exports.BattlePokedex =
 		prevo: "buneary",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	glameow:
-	{
+	glameow: {
 		num: 431,
 		name: "Glameow",
 		id: "glameow",
@@ -19026,20 +17497,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 49,
 			atk: 55,
 			def: 42,
 			spa: 42,
 			spd: 37,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Limber",
 			1: "Own Tempo",
-			DW: "Keen Eye",
+			DW: "Keen Eye"
 		},
 		heightm: 0.5,
 		weightkg: 3.9,
@@ -19048,10 +17517,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["purugly"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	purugly:
-	{
+	purugly: {
 		num: 432,
 		name: "Purugly",
 		id: "purugly",
@@ -19064,20 +17532,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 82,
 			def: 64,
 			spa: 64,
 			spd: 59,
-			spe: 112,
+			spe: 112
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Thick Fat",
 			1: "Own Tempo",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 1,
 		weightkg: 43.8,
@@ -19086,10 +17552,9 @@ exports.BattlePokedex =
 		prevo: "glameow",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	stunky:
-	{
+	stunky: {
 		num: 434,
 		name: "Stunky",
 		id: "stunky",
@@ -19102,20 +17567,18 @@ exports.BattlePokedex =
 		types: ["Poison","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 63,
 			atk: 63,
 			def: 47,
 			spa: 41,
 			spd: 41,
-			spe: 74,
+			spe: 74
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Stench",
 			1: "Aftermath",
-			DW: "Keen Eye",
+			DW: "Keen Eye"
 		},
 		heightm: 0.4,
 		weightkg: 19.2,
@@ -19124,10 +17587,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["skuntank"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	skuntank:
-	{
+	skuntank: {
 		num: 435,
 		name: "Skuntank",
 		id: "skuntank",
@@ -19140,20 +17602,18 @@ exports.BattlePokedex =
 		types: ["Poison","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 103,
 			atk: 93,
 			def: 67,
 			spa: 71,
 			spd: 61,
-			spe: 84,
+			spe: 84
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Stench",
 			1: "Aftermath",
-			DW: "Keen Eye",
+			DW: "Keen Eye"
 		},
 		heightm: 1,
 		weightkg: 38,
@@ -19162,10 +17622,9 @@ exports.BattlePokedex =
 		prevo: "stunky",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bronzor:
-	{
+	bronzor: {
 		num: 436,
 		name: "Bronzor",
 		id: "bronzor",
@@ -19178,20 +17637,18 @@ exports.BattlePokedex =
 		types: ["Steel","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 57,
 			atk: 24,
 			def: 86,
 			spa: 24,
 			spd: 86,
-			spe: 23,
+			spe: 23
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Levitate",
 			1: "Heatproof",
-			DW: "Heavy Metal",
+			DW: "Heavy Metal"
 		},
 		heightm: 0.5,
 		weightkg: 60.5,
@@ -19200,10 +17657,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["bronzong"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bronzong:
-	{
+	bronzong: {
 		num: 437,
 		name: "Bronzong",
 		id: "bronzong",
@@ -19216,20 +17672,18 @@ exports.BattlePokedex =
 		types: ["Steel","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 67,
 			atk: 89,
 			def: 116,
 			spa: 79,
 			spd: 116,
-			spe: 33,
+			spe: 33
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Levitate",
 			1: "Heatproof",
-			DW: "Heavy Metal",
+			DW: "Heavy Metal"
 		},
 		heightm: 1.3,
 		weightkg: 187,
@@ -19238,10 +17692,9 @@ exports.BattlePokedex =
 		prevo: "bronzor",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chatot:
-	{
+	chatot: {
 		num: 441,
 		name: "Chatot",
 		id: "chatot",
@@ -19254,20 +17707,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 76,
 			atk: 65,
 			def: 45,
 			spa: 92,
 			spd: 42,
-			spe: 91,
+			spe: 91
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Tangled Feet",
-			DW: "Big Pecks",
+			DW: "Big Pecks"
 		},
 		heightm: 0.5,
 		weightkg: 1.9,
@@ -19276,10 +17727,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	spiritomb:
-	{
+	spiritomb: {
 		num: 442,
 		name: "Spiritomb",
 		id: "spiritomb",
@@ -19292,19 +17742,17 @@ exports.BattlePokedex =
 		types: ["Ghost","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 92,
 			def: 108,
 			spa: 92,
 			spd: 108,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Infiltrator",
+			DW: "Infiltrator"
 		},
 		heightm: 1,
 		weightkg: 108,
@@ -19313,10 +17761,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gible:
-	{
+	gible: {
 		num: 443,
 		name: "Gible",
 		id: "gible",
@@ -19329,19 +17776,17 @@ exports.BattlePokedex =
 		types: ["Dragon","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 58,
 			atk: 70,
 			def: 45,
 			spa: 40,
 			spd: 45,
-			spe: 42,
+			spe: 42
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Rough Skin",
+			DW: "Rough Skin"
 		},
 		heightm: 0.7,
 		weightkg: 20.5,
@@ -19350,10 +17795,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gabite"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gabite:
-	{
+	gabite: {
 		num: 444,
 		name: "Gabite",
 		id: "gabite",
@@ -19366,19 +17810,17 @@ exports.BattlePokedex =
 		types: ["Dragon","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 68,
 			atk: 90,
 			def: 65,
 			spa: 50,
 			spd: 55,
-			spe: 82,
+			spe: 82
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Rough Skin",
+			DW: "Rough Skin"
 		},
 		heightm: 1.4,
 		weightkg: 56,
@@ -19387,10 +17829,9 @@ exports.BattlePokedex =
 		prevo: "gible",
 		evos: ["garchomp"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	garchomp:
-	{
+	garchomp: {
 		num: 445,
 		name: "Garchomp",
 		id: "garchomp",
@@ -19403,19 +17844,17 @@ exports.BattlePokedex =
 		types: ["Dragon","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 108,
 			atk: 130,
 			def: 95,
 			spa: 80,
 			spd: 85,
-			spe: 102,
+			spe: 102
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Veil",
-			DW: "Rough Skin",
+			DW: "Rough Skin"
 		},
 		heightm: 1.9,
 		weightkg: 95,
@@ -19424,10 +17863,9 @@ exports.BattlePokedex =
 		prevo: "gabite",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	riolu:
-	{
+	riolu: {
 		num: 447,
 		name: "Riolu",
 		id: "riolu",
@@ -19440,20 +17878,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 70,
 			def: 40,
 			spa: 35,
 			spd: 40,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Steadfast",
 			1: "Inner Focus",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 0.7,
 		weightkg: 20.2,
@@ -19462,10 +17898,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lucario"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lucario:
-	{
+	lucario: {
 		num: 448,
 		name: "Lucario",
 		id: "lucario",
@@ -19478,20 +17913,18 @@ exports.BattlePokedex =
 		types: ["Fighting","Steel"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 110,
 			def: 70,
 			spa: 115,
 			spd: 70,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Steadfast",
 			1: "Inner Focus",
-			DW: "Justified",
+			DW: "Justified"
 		},
 		heightm: 1.2,
 		weightkg: 54,
@@ -19500,10 +17933,9 @@ exports.BattlePokedex =
 		prevo: "riolu",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hippopotas:
-	{
+	hippopotas: {
 		num: 449,
 		name: "Hippopotas",
 		id: "hippopotas",
@@ -19516,19 +17948,17 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 68,
 			atk: 72,
 			def: 78,
 			spa: 38,
 			spd: 42,
-			spe: 32,
+			spe: 32
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Stream",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.8,
 		weightkg: 49.5,
@@ -19537,10 +17967,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["hippowdon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hippowdon:
-	{
+	hippowdon: {
 		num: 450,
 		name: "Hippowdon",
 		id: "hippowdon",
@@ -19553,19 +17982,17 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 108,
 			atk: 112,
 			def: 118,
 			spa: 68,
 			spd: 72,
-			spe: 47,
+			spe: 47
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Stream",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 2,
 		weightkg: 300,
@@ -19574,10 +18001,9 @@ exports.BattlePokedex =
 		prevo: "hippopotas",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	skorupi:
-	{
+	skorupi: {
 		num: 451,
 		name: "Skorupi",
 		id: "skorupi",
@@ -19590,20 +18016,18 @@ exports.BattlePokedex =
 		types: ["Poison","Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 50,
 			def: 90,
 			spa: 30,
 			spd: 55,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Battle Armor",
 			1: "Sniper",
-			DW: "Keen Eye",
+			DW: "Keen Eye"
 		},
 		heightm: 0.8,
 		weightkg: 12,
@@ -19612,10 +18036,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["drapion"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	drapion:
-	{
+	drapion: {
 		num: 452,
 		name: "Drapion",
 		id: "drapion",
@@ -19628,20 +18051,18 @@ exports.BattlePokedex =
 		types: ["Poison","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 90,
 			def: 110,
 			spa: 60,
 			spd: 75,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Battle Armor",
 			1: "Sniper",
-			DW: "Keen Eye",
+			DW: "Keen Eye"
 		},
 		heightm: 1.3,
 		weightkg: 61.5,
@@ -19650,10 +18071,9 @@ exports.BattlePokedex =
 		prevo: "skorupi",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	croagunk:
-	{
+	croagunk: {
 		num: 453,
 		name: "Croagunk",
 		id: "croagunk",
@@ -19666,20 +18086,18 @@ exports.BattlePokedex =
 		types: ["Poison","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 48,
 			atk: 61,
 			def: 40,
 			spa: 61,
 			spd: 40,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Anticipation",
 			1: "Dry Skin",
-			DW: "Poison Touch",
+			DW: "Poison Touch"
 		},
 		heightm: 0.7,
 		weightkg: 23,
@@ -19688,10 +18106,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["toxicroak"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	toxicroak:
-	{
+	toxicroak: {
 		num: 454,
 		name: "Toxicroak",
 		id: "toxicroak",
@@ -19704,20 +18121,18 @@ exports.BattlePokedex =
 		types: ["Poison","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 83,
 			atk: 106,
 			def: 65,
 			spa: 86,
 			spd: 65,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Anticipation",
 			1: "Dry Skin",
-			DW: "Poison Touch",
+			DW: "Poison Touch"
 		},
 		heightm: 1.3,
 		weightkg: 44.4,
@@ -19726,10 +18141,9 @@ exports.BattlePokedex =
 		prevo: "croagunk",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	carnivine:
-	{
+	carnivine: {
 		num: 455,
 		name: "Carnivine",
 		id: "carnivine",
@@ -19742,18 +18156,16 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 74,
 			atk: 100,
 			def: 72,
 			spa: 90,
 			spd: 72,
-			spe: 46,
+			spe: 46
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.4,
 		weightkg: 27,
@@ -19762,10 +18174,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	finneon:
-	{
+	finneon: {
 		num: 456,
 		name: "Finneon",
 		id: "finneon",
@@ -19778,20 +18189,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 49,
 			atk: 49,
 			def: 56,
 			spa: 49,
 			spd: 61,
-			spe: 66,
+			spe: 66
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Storm Drain",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 0.4,
 		weightkg: 7,
@@ -19800,10 +18209,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lumineon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lumineon:
-	{
+	lumineon: {
 		num: 457,
 		name: "Lumineon",
 		id: "lumineon",
@@ -19816,20 +18224,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 69,
 			atk: 69,
 			def: 76,
 			spa: 69,
 			spd: 86,
-			spe: 91,
+			spe: 91
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Storm Drain",
-			DW: "Water Veil",
+			DW: "Water Veil"
 		},
 		heightm: 1.2,
 		weightkg: 24,
@@ -19838,10 +18244,9 @@ exports.BattlePokedex =
 		prevo: "finneon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	snover:
-	{
+	snover: {
 		num: 459,
 		name: "Snover",
 		id: "snover",
@@ -19854,19 +18259,17 @@ exports.BattlePokedex =
 		types: ["Grass","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 62,
 			def: 50,
 			spa: 62,
 			spd: 60,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Snow Warning",
-			DW: "Soundproof",
+			DW: "Soundproof"
 		},
 		heightm: 1,
 		weightkg: 50.5,
@@ -19875,10 +18278,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["abomasnow"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	abomasnow:
-	{
+	abomasnow: {
 		num: 460,
 		name: "Abomasnow",
 		id: "abomasnow",
@@ -19891,19 +18293,17 @@ exports.BattlePokedex =
 		types: ["Grass","Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 92,
 			def: 75,
 			spa: 92,
 			spd: 85,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Snow Warning",
-			DW: "Soundproof",
+			DW: "Soundproof"
 		},
 		heightm: 2.2,
 		weightkg: 135.5,
@@ -19912,10 +18312,9 @@ exports.BattlePokedex =
 		prevo: "snover",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rotom:
-	{
+	rotom: {
 		num: 479,
 		name: "Rotom",
 		id: "rotom",
@@ -19928,18 +18327,16 @@ exports.BattlePokedex =
 		types: ["Electric","Ghost"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 77,
 			spa: 95,
 			spd: 77,
-			spe: 91,
+			spe: 91
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -19948,10 +18345,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["rotomheat","rotomwash","rotomfrost","rotomfan","rotommow"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rotomheat:
-	{
+	rotomheat: {
 		num: 479,
 		name: "Rotom-Heat",
 		id: "rotomheat",
@@ -19964,18 +18360,16 @@ exports.BattlePokedex =
 		types: ["Electric","Fire"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 107,
 			spa: 105,
 			spd: 107,
-			spe: 86,
+			spe: 86
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -19984,10 +18378,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["rotom","rotomwash","rotomfrost","rotomfan","rotommow"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	rotomwash:
-	{
+	rotomwash: {
 		num: 479,
 		name: "Rotom-Wash",
 		id: "rotomwash",
@@ -20000,18 +18393,16 @@ exports.BattlePokedex =
 		types: ["Electric","Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 107,
 			spa: 105,
 			spd: 107,
-			spe: 86,
+			spe: 86
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20020,10 +18411,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["rotom","rotomheat","rotomfrost","rotomfan","rotommow"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	rotomfrost:
-	{
+	rotomfrost: {
 		num: 479,
 		name: "Rotom-Frost",
 		id: "rotomfrost",
@@ -20036,18 +18426,16 @@ exports.BattlePokedex =
 		types: ["Electric","Ice"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 107,
 			spa: 105,
 			spd: 107,
-			spe: 86,
+			spe: 86
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20056,10 +18444,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["rotom","rotomheat","rotomwash","rotomfan","rotommow"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	rotomfan:
-	{
+	rotomfan: {
 		num: 479,
 		name: "Rotom-Fan",
 		id: "rotomfan",
@@ -20072,18 +18459,16 @@ exports.BattlePokedex =
 		types: ["Electric","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 107,
 			spa: 105,
 			spd: 107,
-			spe: 86,
+			spe: 86
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20092,10 +18477,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["rotom","rotomheat","rotomwash","rotomfrost","rotommow"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	rotommow:
-	{
+	rotommow: {
 		num: 479,
 		name: "Rotom-Mow",
 		id: "rotommow",
@@ -20108,18 +18492,16 @@ exports.BattlePokedex =
 		types: ["Electric","Grass"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 107,
 			spa: 105,
 			spd: 107,
-			spe: 86,
+			spe: 86
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20128,10 +18510,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["rotom","rotomheat","rotomwash","rotomfrost","rotomfan"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	uxie:
-	{
+	uxie: {
 		num: 480,
 		name: "Uxie",
 		id: "uxie",
@@ -20144,18 +18525,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 75,
 			def: 130,
 			spa: 75,
 			spd: 130,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20164,10 +18543,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mesprit:
-	{
+	mesprit: {
 		num: 481,
 		name: "Mesprit",
 		id: "mesprit",
@@ -20180,18 +18558,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 105,
 			def: 105,
 			spa: 105,
 			spd: 105,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20200,10 +18576,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	azelf:
-	{
+	azelf: {
 		num: 482,
 		name: "Azelf",
 		id: "azelf",
@@ -20216,18 +18591,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 125,
 			def: 70,
 			spa: 125,
 			spd: 70,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.3,
 		weightkg: 0.3,
@@ -20236,10 +18609,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dialga:
-	{
+	dialga: {
 		num: 483,
 		name: "Dialga",
 		id: "dialga",
@@ -20252,19 +18624,17 @@ exports.BattlePokedex =
 		types: ["Steel","Dragon"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 120,
 			def: 120,
 			spa: 150,
 			spd: 100,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 5.4,
 		weightkg: 683,
@@ -20273,10 +18643,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	palkia:
-	{
+	palkia: {
 		num: 484,
 		name: "Palkia",
 		id: "palkia",
@@ -20289,19 +18658,17 @@ exports.BattlePokedex =
 		types: ["Water","Dragon"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 120,
 			def: 100,
 			spa: 150,
 			spd: 120,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 4.2,
 		weightkg: 336,
@@ -20310,10 +18677,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	heatran:
-	{
+	heatran: {
 		num: 485,
 		name: "Heatran",
 		id: "heatran",
@@ -20326,19 +18692,17 @@ exports.BattlePokedex =
 		types: ["Fire","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 91,
 			atk: 90,
 			def: 106,
 			spa: 130,
 			spd: 106,
-			spe: 77,
+			spe: 77
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
-			DW: "Flame Body",
+			DW: "Flame Body"
 		},
 		heightm: 1.7,
 		weightkg: 430,
@@ -20347,10 +18711,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	regigigas:
-	{
+	regigigas: {
 		num: 486,
 		name: "Regigigas",
 		id: "regigigas",
@@ -20363,18 +18726,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 160,
 			def: 110,
 			spa: 80,
 			spd: 110,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Slow Start",
+		abilities: {
+			0: "Slow Start"
 		},
 		heightm: 3.7,
 		weightkg: 420,
@@ -20383,10 +18744,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	giratina:
-	{
+	giratina: {
 		num: 487,
 		name: "Giratina",
 		id: "giratina",
@@ -20399,19 +18759,17 @@ exports.BattlePokedex =
 		types: ["Ghost","Dragon"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 150,
 			atk: 100,
 			def: 120,
 			spa: 100,
 			spd: 120,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Pressure",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 4.5,
 		weightkg: 750,
@@ -20420,10 +18778,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["giratinaorigin"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	giratinaorigin:
-	{
+	giratinaorigin: {
 		num: 487,
 		name: "Giratina-Origin",
 		id: "giratinaorigin",
@@ -20436,19 +18793,17 @@ exports.BattlePokedex =
 		types: ["Ghost","Dragon"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 150,
 			atk: 120,
 			def: 100,
 			spa: 120,
 			spd: 100,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Levitate",
-			DW: "Levitate",
+			DW: "Levitate"
 		},
 		heightm: 6.9,
 		weightkg: 650,
@@ -20457,10 +18812,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["giratina"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	cresselia:
-	{
+	cresselia: {
 		num: 488,
 		name: "Cresselia",
 		id: "cresselia",
@@ -20473,18 +18827,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 70,
 			def: 120,
 			spa: 75,
 			spd: 130,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.5,
 		weightkg: 85.6,
@@ -20493,10 +18845,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	phione:
-	{
+	phione: {
 		num: 489,
 		name: "Phione",
 		id: "phione",
@@ -20509,18 +18860,16 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 80,
 			def: 80,
 			spa: 80,
 			spd: 80,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
-			0: "Hydration",
+		abilities: {
+			0: "Hydration"
 		},
 		heightm: 0.4,
 		weightkg: 3.1,
@@ -20529,10 +18878,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	manaphy:
-	{
+	manaphy: {
 		num: 490,
 		name: "Manaphy",
 		id: "manaphy",
@@ -20545,18 +18893,16 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 100,
 			spa: 100,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Hydration",
+		abilities: {
+			0: "Hydration"
 		},
 		heightm: 0.3,
 		weightkg: 1.4,
@@ -20565,10 +18911,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	darkrai:
-	{
+	darkrai: {
 		num: 491,
 		name: "Darkrai",
 		id: "darkrai",
@@ -20581,18 +18926,16 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 90,
 			def: 90,
 			spa: 135,
 			spd: 90,
-			spe: 125,
+			spe: 125
 		},
-		abilities:
-		{
-			0: "Bad Dreams",
+		abilities: {
+			0: "Bad Dreams"
 		},
 		heightm: 1.5,
 		weightkg: 50.5,
@@ -20601,10 +18944,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shaymin:
-	{
+	shaymin: {
 		num: 492,
 		name: "Shaymin",
 		id: "shaymin",
@@ -20617,18 +18959,16 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 100,
 			spa: 100,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Natural Cure",
+		abilities: {
+			0: "Natural Cure"
 		},
 		heightm: 0.2,
 		weightkg: 2.1,
@@ -20637,10 +18977,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["shayminsky"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shayminsky:
-	{
+	shayminsky: {
 		num: 492,
 		name: "Shaymin-Sky",
 		id: "shayminsky",
@@ -20653,18 +18992,16 @@ exports.BattlePokedex =
 		types: ["Grass","Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 103,
 			def: 75,
 			spa: 120,
 			spd: 75,
-			spe: 127,
+			spe: 127
 		},
-		abilities:
-		{
-			0: "Serene Grace",
+		abilities: {
+			0: "Serene Grace"
 		},
 		heightm: 0.4,
 		weightkg: 5.2,
@@ -20673,10 +19010,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["shaymin"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceus:
-	{
+	arceus: {
 		num: 493,
 		name: "Arceus",
 		id: "arceus",
@@ -20689,18 +19025,16 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20709,10 +19043,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	arceusbug:
-	{
+	arceusbug: {
 		num: 493,
 		name: "Arceus-Bug",
 		id: "arceusbug",
@@ -20725,18 +19058,16 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20745,10 +19076,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusdark:
-	{
+	arceusdark: {
 		num: 493,
 		name: "Arceus-Dark",
 		id: "arceusdark",
@@ -20761,18 +19091,16 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20781,10 +19109,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusdragon:
-	{
+	arceusdragon: {
 		num: 493,
 		name: "Arceus-Dragon",
 		id: "arceusdragon",
@@ -20797,18 +19124,16 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20817,10 +19142,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceuselectric:
-	{
+	arceuselectric: {
 		num: 493,
 		name: "Arceus-Electric",
 		id: "arceuselectric",
@@ -20833,18 +19157,16 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20853,10 +19175,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusfighting:
-	{
+	arceusfighting: {
 		num: 493,
 		name: "Arceus-Fighting",
 		id: "arceusfighting",
@@ -20869,18 +19190,16 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20889,10 +19208,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusfire:
-	{
+	arceusfire: {
 		num: 493,
 		name: "Arceus-Fire",
 		id: "arceusfire",
@@ -20905,18 +19223,16 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20925,10 +19241,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusflying:
-	{
+	arceusflying: {
 		num: 493,
 		name: "Arceus-Flying",
 		id: "arceusflying",
@@ -20941,18 +19256,16 @@ exports.BattlePokedex =
 		types: ["Flying"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20961,10 +19274,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusghost:
-	{
+	arceusghost: {
 		num: 493,
 		name: "Arceus-Ghost",
 		id: "arceusghost",
@@ -20977,18 +19289,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -20997,10 +19307,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusgrass:
-	{
+	arceusgrass: {
 		num: 493,
 		name: "Arceus-Grass",
 		id: "arceusgrass",
@@ -21013,18 +19322,16 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21033,10 +19340,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusground:
-	{
+	arceusground: {
 		num: 493,
 		name: "Arceus-Ground",
 		id: "arceusground",
@@ -21049,18 +19355,16 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21069,10 +19373,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusice:
-	{
+	arceusice: {
 		num: 493,
 		name: "Arceus-Ice",
 		id: "arceusice",
@@ -21085,18 +19388,16 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21105,10 +19406,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceuspoison:
-	{
+	arceuspoison: {
 		num: 493,
 		name: "Arceus-Poison",
 		id: "arceuspoison",
@@ -21121,18 +19421,16 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21141,10 +19439,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspsychic","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceuspsychic:
-	{
+	arceuspsychic: {
 		num: 493,
 		name: "Arceus-Psychic",
 		id: "arceuspsychic",
@@ -21157,18 +19454,16 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21177,10 +19472,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceusrock","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusrock:
-	{
+	arceusrock: {
 		num: 493,
 		name: "Arceus-Rock",
 		id: "arceusrock",
@@ -21193,18 +19487,16 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21213,10 +19505,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceussteel","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceussteel:
-	{
+	arceussteel: {
 		num: 493,
 		name: "Arceus-Steel",
 		id: "arceussteel",
@@ -21229,18 +19520,16 @@ exports.BattlePokedex =
 		types: ["Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21249,10 +19538,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceuswater","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceuswater:
-	{
+	arceuswater: {
 		num: 493,
 		name: "Arceus-Water",
 		id: "arceuswater",
@@ -21265,18 +19553,16 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21285,10 +19571,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceusunknown"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	arceusunknown:
-	{
+	arceusunknown: {
 		num: 493,
 		name: "Arceus-???",
 		id: "arceusunknown",
@@ -21301,18 +19586,16 @@ exports.BattlePokedex =
 		types: ["???"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 120,
 			def: 120,
 			spa: 120,
 			spd: 120,
-			spe: 120,
+			spe: 120
 		},
-		abilities:
-		{
-			0: "Multitype",
+		abilities: {
+			0: "Multitype"
 		},
 		heightm: 3.2,
 		weightkg: 320,
@@ -21321,10 +19604,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["arceus","arceusbug","arceusdark","arceusdragon","arceuselectric","arceusfighting","arceusfire","arceusflying","arceusghost","arceusgrass","arceusground","arceusice","arceuspoison","arceuspsychic","arceusrock","arceussteel","arceuswater"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	victini:
-	{
+	victini: {
 		num: 494,
 		name: "Victini",
 		id: "victini",
@@ -21337,18 +19619,16 @@ exports.BattlePokedex =
 		types: ["Psychic","Fire"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 100,
 			def: 100,
 			spa: 100,
 			spd: 100,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
-			0: "Victory Star",
+		abilities: {
+			0: "Victory Star"
 		},
 		heightm: 0.4,
 		weightkg: 4,
@@ -21357,10 +19637,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	snivy:
-	{
+	snivy: {
 		num: 495,
 		name: "Snivy",
 		id: "snivy",
@@ -21373,19 +19652,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 45,
 			def: 55,
 			spa: 45,
 			spd: 55,
-			spe: 63,
+			spe: 63
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Contrary",
+			DW: "Contrary"
 		},
 		heightm: 0.6,
 		weightkg: 8.1,
@@ -21394,10 +19671,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["servine"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	servine:
-	{
+	servine: {
 		num: 496,
 		name: "Servine",
 		id: "servine",
@@ -21410,19 +19686,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 75,
 			spa: 60,
 			spd: 75,
-			spe: 83,
+			spe: 83
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Contrary",
+			DW: "Contrary"
 		},
 		heightm: 0.8,
 		weightkg: 16,
@@ -21431,10 +19705,9 @@ exports.BattlePokedex =
 		prevo: "snivy",
 		evos: ["serperior"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	serperior:
-	{
+	serperior: {
 		num: 497,
 		name: "Serperior",
 		id: "serperior",
@@ -21447,19 +19720,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 75,
 			def: 95,
 			spa: 75,
 			spd: 95,
-			spe: 113,
+			spe: 113
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overgrow",
-			DW: "Contrary",
+			DW: "Contrary"
 		},
 		heightm: 3.3,
 		weightkg: 63,
@@ -21468,10 +19739,9 @@ exports.BattlePokedex =
 		prevo: "servine",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tepig:
-	{
+	tepig: {
 		num: 498,
 		name: "Tepig",
 		id: "tepig",
@@ -21484,19 +19754,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 63,
 			def: 45,
 			spa: 45,
 			spd: 45,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Thick Fat",
+			DW: "Thick Fat"
 		},
 		heightm: 0.5,
 		weightkg: 9.9,
@@ -21505,10 +19773,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["pignite"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pignite:
-	{
+	pignite: {
 		num: 499,
 		name: "Pignite",
 		id: "pignite",
@@ -21521,19 +19788,17 @@ exports.BattlePokedex =
 		types: ["Fire","Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 90,
 			atk: 93,
 			def: 55,
 			spa: 70,
 			spd: 55,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Thick Fat",
+			DW: "Thick Fat"
 		},
 		heightm: 1,
 		weightkg: 55.5,
@@ -21542,10 +19807,9 @@ exports.BattlePokedex =
 		prevo: "tepig",
 		evos: ["emboar"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	emboar:
-	{
+	emboar: {
 		num: 500,
 		name: "Emboar",
 		id: "emboar",
@@ -21558,19 +19822,17 @@ exports.BattlePokedex =
 		types: ["Fire","Fighting"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 123,
 			def: 65,
 			spa: 100,
 			spd: 65,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Blaze",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 1.6,
 		weightkg: 150,
@@ -21579,10 +19841,9 @@ exports.BattlePokedex =
 		prevo: "pignite",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	oshawott:
-	{
+	oshawott: {
 		num: 501,
 		name: "Oshawott",
 		id: "oshawott",
@@ -21595,19 +19856,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 55,
 			def: 45,
 			spa: 63,
 			spd: 45,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 0.5,
 		weightkg: 5.9,
@@ -21616,10 +19875,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["dewott"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dewott:
-	{
+	dewott: {
 		num: 502,
 		name: "Dewott",
 		id: "dewott",
@@ -21632,19 +19890,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 75,
 			def: 60,
 			spa: 83,
 			spd: 60,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 0.8,
 		weightkg: 24.5,
@@ -21653,10 +19909,9 @@ exports.BattlePokedex =
 		prevo: "oshawott",
 		evos: ["samurott"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	samurott:
-	{
+	samurott: {
 		num: 503,
 		name: "Samurott",
 		id: "samurott",
@@ -21669,19 +19924,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 100,
 			def: 85,
 			spa: 108,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Torrent",
-			DW: "Shell Armor",
+			DW: "Shell Armor"
 		},
 		heightm: 1.5,
 		weightkg: 94.6,
@@ -21690,10 +19943,9 @@ exports.BattlePokedex =
 		prevo: "dewott",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	patrat:
-	{
+	patrat: {
 		num: 504,
 		name: "Patrat",
 		id: "patrat",
@@ -21706,20 +19958,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 55,
 			def: 39,
 			spa: 35,
 			spd: 39,
-			spe: 42,
+			spe: 42
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Run Away",
 			1: "Keen Eye",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.5,
 		weightkg: 11.6,
@@ -21728,10 +19978,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["watchog"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	watchog:
-	{
+	watchog: {
 		num: 505,
 		name: "Watchog",
 		id: "watchog",
@@ -21744,20 +19993,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 69,
 			spa: 60,
 			spd: 69,
-			spe: 77,
+			spe: 77
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Illuminate",
 			1: "Keen Eye",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 1.1,
 		weightkg: 27,
@@ -21766,10 +20013,9 @@ exports.BattlePokedex =
 		prevo: "patrat",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lillipup:
-	{
+	lillipup: {
 		num: 506,
 		name: "Lillipup",
 		id: "lillipup",
@@ -21782,20 +20028,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 60,
 			def: 45,
 			spa: 25,
 			spd: 45,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Vital Spirit",
 			1: "Pickup",
-			DW: "Run Away",
+			DW: "Run Away"
 		},
 		heightm: 0.4,
 		weightkg: 4.1,
@@ -21804,10 +20048,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["herdier"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	herdier:
-	{
+	herdier: {
 		num: 507,
 		name: "Herdier",
 		id: "herdier",
@@ -21820,20 +20063,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 80,
 			def: 65,
 			spa: 35,
 			spd: 65,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Sand Rush",
-			DW: "Scrappy",
+			DW: "Scrappy"
 		},
 		heightm: 0.9,
 		weightkg: 14.7,
@@ -21842,10 +20083,9 @@ exports.BattlePokedex =
 		prevo: "lillipup",
 		evos: ["stoutland"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	stoutland:
-	{
+	stoutland: {
 		num: 508,
 		name: "Stoutland",
 		id: "stoutland",
@@ -21858,20 +20098,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 100,
 			def: 90,
 			spa: 45,
 			spd: 90,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Sand Rush",
-			DW: "Scrappy",
+			DW: "Scrappy"
 		},
 		heightm: 1.2,
 		weightkg: 61,
@@ -21880,10 +20118,9 @@ exports.BattlePokedex =
 		prevo: "herdier",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	purrloin:
-	{
+	purrloin: {
 		num: 509,
 		name: "Purrloin",
 		id: "purrloin",
@@ -21896,20 +20133,18 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 41,
 			atk: 50,
 			def: 37,
 			spa: 50,
 			spd: 37,
-			spe: 66,
+			spe: 66
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Limber",
 			1: "Unburden",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 0.4,
 		weightkg: 10.1,
@@ -21918,10 +20153,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["liepard"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	liepard:
-	{
+	liepard: {
 		num: 510,
 		name: "Liepard",
 		id: "liepard",
@@ -21934,20 +20168,18 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 64,
 			atk: 88,
 			def: 50,
 			spa: 88,
 			spd: 50,
-			spe: 106,
+			spe: 106
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Limber",
 			1: "Unburden",
-			DW: "Prankster",
+			DW: "Prankster"
 		},
 		heightm: 1.1,
 		weightkg: 37.5,
@@ -21956,10 +20188,9 @@ exports.BattlePokedex =
 		prevo: "purrloin",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pansage:
-	{
+	pansage: {
 		num: 511,
 		name: "Pansage",
 		id: "pansage",
@@ -21972,19 +20203,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 53,
 			def: 48,
 			spa: 53,
 			spd: 48,
-			spe: 64,
+			spe: 64
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
-			DW: "Overgrow",
+			DW: "Overgrow"
 		},
 		heightm: 0.6,
 		weightkg: 10.5,
@@ -21993,10 +20222,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["simisage"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	simisage:
-	{
+	simisage: {
 		num: 512,
 		name: "Simisage",
 		id: "simisage",
@@ -22009,19 +20237,17 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 98,
 			def: 63,
 			spa: 98,
 			spd: 63,
-			spe: 101,
+			spe: 101
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
-			DW: "Overgrow",
+			DW: "Overgrow"
 		},
 		heightm: 1.1,
 		weightkg: 30.5,
@@ -22030,10 +20256,9 @@ exports.BattlePokedex =
 		prevo: "pansage",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pansear:
-	{
+	pansear: {
 		num: 513,
 		name: "Pansear",
 		id: "pansear",
@@ -22046,19 +20271,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 53,
 			def: 48,
 			spa: 53,
 			spd: 48,
-			spe: 64,
+			spe: 64
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
-			DW: "Blaze",
+			DW: "Blaze"
 		},
 		heightm: 0.6,
 		weightkg: 11,
@@ -22067,10 +20290,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["simisear"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	simisear:
-	{
+	simisear: {
 		num: 514,
 		name: "Simisear",
 		id: "simisear",
@@ -22083,19 +20305,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 98,
 			def: 63,
 			spa: 98,
 			spd: 63,
-			spe: 101,
+			spe: 101
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
-			DW: "Blaze",
+			DW: "Blaze"
 		},
 		heightm: 1,
 		weightkg: 28,
@@ -22104,10 +20324,9 @@ exports.BattlePokedex =
 		prevo: "pansear",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	panpour:
-	{
+	panpour: {
 		num: 515,
 		name: "Panpour",
 		id: "panpour",
@@ -22120,19 +20339,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 53,
 			def: 48,
 			spa: 53,
 			spd: 48,
-			spe: 64,
+			spe: 64
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
-			DW: "Torrent",
+			DW: "Torrent"
 		},
 		heightm: 0.6,
 		weightkg: 13.5,
@@ -22141,10 +20358,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["simipour"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	simipour:
-	{
+	simipour: {
 		num: 516,
 		name: "Simipour",
 		id: "simipour",
@@ -22157,19 +20373,17 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 98,
 			def: 63,
 			spa: 98,
 			spd: 63,
-			spe: 101,
+			spe: 101
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
-			DW: "Torrent",
+			DW: "Torrent"
 		},
 		heightm: 1,
 		weightkg: 29,
@@ -22178,10 +20392,9 @@ exports.BattlePokedex =
 		prevo: "panpour",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	munna:
-	{
+	munna: {
 		num: 517,
 		name: "Munna",
 		id: "munna",
@@ -22194,20 +20407,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 76,
 			atk: 25,
 			def: 45,
 			spa: 67,
 			spd: 55,
-			spe: 24,
+			spe: 24
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Forewarn",
 			1: "Synchronize",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 0.6,
 		weightkg: 23.3,
@@ -22216,10 +20427,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["musharna"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	musharna:
-	{
+	musharna: {
 		num: 518,
 		name: "Musharna",
 		id: "musharna",
@@ -22232,20 +20442,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 116,
 			atk: 55,
 			def: 85,
 			spa: 107,
 			spd: 95,
-			spe: 29,
+			spe: 29
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Forewarn",
 			1: "Synchronize",
-			DW: "Telepathy",
+			DW: "Telepathy"
 		},
 		heightm: 1.1,
 		weightkg: 60.5,
@@ -22254,10 +20462,9 @@ exports.BattlePokedex =
 		prevo: "munna",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pidove:
-	{
+	pidove: {
 		num: 519,
 		name: "Pidove",
 		id: "pidove",
@@ -22270,20 +20477,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 55,
 			def: 50,
 			spa: 36,
 			spd: 30,
-			spe: 43,
+			spe: 43
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Big Pecks",
 			1: "Super Luck",
-			DW: "Rivalry",
+			DW: "Rivalry"
 		},
 		heightm: 0.3,
 		weightkg: 2.1,
@@ -22292,10 +20497,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["tranquill"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tranquill:
-	{
+	tranquill: {
 		num: 520,
 		name: "Tranquill",
 		id: "tranquill",
@@ -22308,20 +20512,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 62,
 			atk: 77,
 			def: 62,
 			spa: 50,
 			spd: 42,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Big Pecks",
 			1: "Super Luck",
-			DW: "Rivalry",
+			DW: "Rivalry"
 		},
 		heightm: 0.6,
 		weightkg: 15,
@@ -22330,10 +20532,9 @@ exports.BattlePokedex =
 		prevo: "pidove",
 		evos: ["unfezant"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	unfezant:
-	{
+	unfezant: {
 		num: 521,
 		name: "Unfezant",
 		id: "unfezant",
@@ -22346,20 +20547,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 105,
 			def: 80,
 			spa: 65,
 			spd: 55,
-			spe: 93,
+			spe: 93
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Big Pecks",
 			1: "Super Luck",
-			DW: "Rivalry",
+			DW: "Rivalry"
 		},
 		heightm: 1.2,
 		weightkg: 29,
@@ -22368,10 +20567,9 @@ exports.BattlePokedex =
 		prevo: "tranquill",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	blitzle:
-	{
+	blitzle: {
 		num: 522,
 		name: "Blitzle",
 		id: "blitzle",
@@ -22384,20 +20582,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 60,
 			def: 32,
 			spa: 50,
 			spd: 32,
-			spe: 76,
+			spe: 76
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Lightningrod",
 			1: "Motor Drive",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 0.8,
 		weightkg: 29.8,
@@ -22406,10 +20602,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["zebstrika"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zebstrika:
-	{
+	zebstrika: {
 		num: 523,
 		name: "Zebstrika",
 		id: "zebstrika",
@@ -22422,20 +20617,18 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 100,
 			def: 63,
 			spa: 80,
 			spd: 63,
-			spe: 116,
+			spe: 116
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Lightningrod",
 			1: "Motor Drive",
-			DW: "Sap Sipper",
+			DW: "Sap Sipper"
 		},
 		heightm: 1.6,
 		weightkg: 79.5,
@@ -22444,10 +20637,9 @@ exports.BattlePokedex =
 		prevo: "blitzle",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	roggenrola:
-	{
+	roggenrola: {
 		num: 524,
 		name: "Roggenrola",
 		id: "roggenrola",
@@ -22460,19 +20652,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 75,
 			def: 85,
 			spa: 25,
 			spd: 25,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.4,
 		weightkg: 18,
@@ -22481,10 +20671,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["boldore"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	boldore:
-	{
+	boldore: {
 		num: 525,
 		name: "Boldore",
 		id: "boldore",
@@ -22497,19 +20686,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 105,
 			def: 105,
 			spa: 50,
 			spd: 40,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 0.9,
 		weightkg: 102,
@@ -22518,10 +20705,9 @@ exports.BattlePokedex =
 		prevo: "roggenrola",
 		evos: ["gigalith"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gigalith:
-	{
+	gigalith: {
 		num: 526,
 		name: "Gigalith",
 		id: "gigalith",
@@ -22534,19 +20720,17 @@ exports.BattlePokedex =
 		types: ["Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 135,
 			def: 130,
 			spa: 60,
 			spd: 70,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
-			DW: "Sand Force",
+			DW: "Sand Force"
 		},
 		heightm: 1.7,
 		weightkg: 260,
@@ -22555,10 +20739,9 @@ exports.BattlePokedex =
 		prevo: "boldore",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	woobat:
-	{
+	woobat: {
 		num: 527,
 		name: "Woobat",
 		id: "woobat",
@@ -22571,20 +20754,18 @@ exports.BattlePokedex =
 		types: ["Psychic","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 45,
 			def: 43,
 			spa: 55,
 			spd: 43,
-			spe: 72,
+			spe: 72
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Unaware",
 			1: "Klutz",
-			DW: "Simple",
+			DW: "Simple"
 		},
 		heightm: 0.4,
 		weightkg: 2.1,
@@ -22593,10 +20774,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["swoobat"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swoobat:
-	{
+	swoobat: {
 		num: 528,
 		name: "Swoobat",
 		id: "swoobat",
@@ -22609,20 +20789,18 @@ exports.BattlePokedex =
 		types: ["Psychic","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 67,
 			atk: 57,
 			def: 55,
 			spa: 77,
 			spd: 55,
-			spe: 114,
+			spe: 114
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Unaware",
 			1: "Klutz",
-			DW: "Simple",
+			DW: "Simple"
 		},
 		heightm: 0.9,
 		weightkg: 10.5,
@@ -22631,10 +20809,9 @@ exports.BattlePokedex =
 		prevo: "woobat",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	drilbur:
-	{
+	drilbur: {
 		num: 529,
 		name: "Drilbur",
 		id: "drilbur",
@@ -22647,20 +20824,18 @@ exports.BattlePokedex =
 		types: ["Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 85,
 			def: 40,
 			spa: 30,
 			spd: 45,
-			spe: 68,
+			spe: 68
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Rush",
 			1: "Sand Force",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 0.3,
 		weightkg: 8.5,
@@ -22669,10 +20844,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["excadrill"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	excadrill:
-	{
+	excadrill: {
 		num: 530,
 		name: "Excadrill",
 		id: "excadrill",
@@ -22685,20 +20859,18 @@ exports.BattlePokedex =
 		types: ["Ground","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 135,
 			def: 60,
 			spa: 50,
 			spd: 65,
-			spe: 88,
+			spe: 88
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Rush",
 			1: "Sand Force",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 0.7,
 		weightkg: 40.4,
@@ -22707,10 +20879,9 @@ exports.BattlePokedex =
 		prevo: "drilbur",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	audino:
-	{
+	audino: {
 		num: 531,
 		name: "Audino",
 		id: "audino",
@@ -22723,20 +20894,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 103,
 			atk: 60,
 			def: 86,
 			spa: 60,
 			spd: 86,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Healer",
 			1: "Regenerator",
-			DW: "Klutz",
+			DW: "Klutz"
 		},
 		heightm: 1.1,
 		weightkg: 31,
@@ -22745,10 +20914,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	timburr:
-	{
+	timburr: {
 		num: 532,
 		name: "Timburr",
 		id: "timburr",
@@ -22761,20 +20929,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 80,
 			def: 55,
 			spa: 25,
 			spd: 35,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "Sheer Force",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 0.6,
 		weightkg: 12.5,
@@ -22783,10 +20949,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gurdurr"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gurdurr:
-	{
+	gurdurr: {
 		num: 533,
 		name: "Gurdurr",
 		id: "gurdurr",
@@ -22799,20 +20964,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 105,
 			def: 85,
 			spa: 40,
 			spd: 50,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "Sheer Force",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 1.2,
 		weightkg: 40,
@@ -22821,10 +20984,9 @@ exports.BattlePokedex =
 		prevo: "timburr",
 		evos: ["conkeldurr"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	conkeldurr:
-	{
+	conkeldurr: {
 		num: 534,
 		name: "Conkeldurr",
 		id: "conkeldurr",
@@ -22837,20 +20999,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.75,"f":0.25},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 140,
 			def: 95,
 			spa: 55,
 			spd: 65,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "Sheer Force",
-			DW: "Iron Fist",
+			DW: "Iron Fist"
 		},
 		heightm: 1.4,
 		weightkg: 87,
@@ -22859,10 +21019,9 @@ exports.BattlePokedex =
 		prevo: "gurdurr",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tympole:
-	{
+	tympole: {
 		num: 535,
 		name: "Tympole",
 		id: "tympole",
@@ -22875,20 +21034,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 40,
 			spa: 50,
 			spd: 40,
-			spe: 64,
+			spe: 64
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Hydration",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 0.5,
 		weightkg: 4.5,
@@ -22897,10 +21054,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["palpitoad"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	palpitoad:
-	{
+	palpitoad: {
 		num: 536,
 		name: "Palpitoad",
 		id: "palpitoad",
@@ -22913,20 +21069,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 65,
 			def: 55,
 			spa: 65,
 			spd: 55,
-			spe: 69,
+			spe: 69
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Hydration",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 0.8,
 		weightkg: 17,
@@ -22935,10 +21089,9 @@ exports.BattlePokedex =
 		prevo: "tympole",
 		evos: ["seismitoad"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	seismitoad:
-	{
+	seismitoad: {
 		num: 537,
 		name: "Seismitoad",
 		id: "seismitoad",
@@ -22951,20 +21104,18 @@ exports.BattlePokedex =
 		types: ["Water","Ground"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 85,
 			def: 75,
 			spa: 85,
 			spd: 75,
-			spe: 74,
+			spe: 74
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swift Swim",
 			1: "Poison Touch",
-			DW: "Water Absorb",
+			DW: "Water Absorb"
 		},
 		heightm: 1.5,
 		weightkg: 62,
@@ -22973,10 +21124,9 @@ exports.BattlePokedex =
 		prevo: "palpitoad",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	throh:
-	{
+	throh: {
 		num: 538,
 		name: "Throh",
 		id: "throh",
@@ -22989,20 +21139,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 120,
 			atk: 100,
 			def: 85,
 			spa: 30,
 			spd: 85,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Guts",
 			1: "Inner Focus",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 1.3,
 		weightkg: 55.5,
@@ -23011,10 +21159,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sawk:
-	{
+	sawk: {
 		num: 539,
 		name: "Sawk",
 		id: "sawk",
@@ -23027,20 +21174,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 125,
 			def: 75,
 			spa: 30,
 			spd: 75,
-			spe: 85,
+			spe: 85
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Inner Focus",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 1.4,
 		weightkg: 51,
@@ -23049,10 +21194,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sewaddle:
-	{
+	sewaddle: {
 		num: 540,
 		name: "Sewaddle",
 		id: "sewaddle",
@@ -23065,20 +21209,18 @@ exports.BattlePokedex =
 		types: ["Bug","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 53,
 			def: 70,
 			spa: 40,
 			spd: 60,
-			spe: 42,
+			spe: 42
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Chlorophyll",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.3,
 		weightkg: 2.5,
@@ -23087,10 +21229,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["swadloon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swadloon:
-	{
+	swadloon: {
 		num: 541,
 		name: "Swadloon",
 		id: "swadloon",
@@ -23103,20 +21244,18 @@ exports.BattlePokedex =
 		types: ["Bug","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 63,
 			def: 90,
 			spa: 50,
 			spd: 80,
-			spe: 42,
+			spe: 42
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Leaf Guard",
 			1: "Chlorophyll",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.5,
 		weightkg: 7.3,
@@ -23125,10 +21264,9 @@ exports.BattlePokedex =
 		prevo: "sewaddle",
 		evos: ["leavanny"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	leavanny:
-	{
+	leavanny: {
 		num: 542,
 		name: "Leavanny",
 		id: "leavanny",
@@ -23141,20 +21279,18 @@ exports.BattlePokedex =
 		types: ["Bug","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 103,
 			def: 80,
 			spa: 70,
 			spd: 70,
-			spe: 92,
+			spe: 92
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Chlorophyll",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 1.2,
 		weightkg: 20.5,
@@ -23163,10 +21299,9 @@ exports.BattlePokedex =
 		prevo: "swadloon",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	venipede:
-	{
+	venipede: {
 		num: 543,
 		name: "Venipede",
 		id: "venipede",
@@ -23179,20 +21314,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 30,
 			atk: 45,
 			def: 59,
 			spa: 30,
 			spd: 39,
-			spe: 57,
+			spe: 57
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Swarm",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 0.4,
 		weightkg: 5.3,
@@ -23201,10 +21334,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["whirlipede"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	whirlipede:
-	{
+	whirlipede: {
 		num: 544,
 		name: "Whirlipede",
 		id: "whirlipede",
@@ -23217,20 +21349,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 55,
 			def: 99,
 			spa: 40,
 			spd: 79,
-			spe: 47,
+			spe: 47
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Swarm",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 1.2,
 		weightkg: 58.5,
@@ -23239,10 +21369,9 @@ exports.BattlePokedex =
 		prevo: "venipede",
 		evos: ["scolipede"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	scolipede:
-	{
+	scolipede: {
 		num: 545,
 		name: "Scolipede",
 		id: "scolipede",
@@ -23255,20 +21384,18 @@ exports.BattlePokedex =
 		types: ["Bug","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 90,
 			def: 89,
 			spa: 55,
 			spd: 69,
-			spe: 112,
+			spe: 112
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Poison Point",
 			1: "Swarm",
-			DW: "Quick Feet",
+			DW: "Quick Feet"
 		},
 		heightm: 2.5,
 		weightkg: 200.5,
@@ -23277,10 +21404,9 @@ exports.BattlePokedex =
 		prevo: "whirlipede",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cottonee:
-	{
+	cottonee: {
 		num: 546,
 		name: "Cottonee",
 		id: "cottonee",
@@ -23293,20 +21419,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 27,
 			def: 60,
 			spa: 37,
 			spd: 50,
-			spe: 66,
+			spe: 66
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Prankster",
 			1: "Infiltrator",
-			DW: "Chlorophyll",
+			DW: "Chlorophyll"
 		},
 		heightm: 0.3,
 		weightkg: 0.6,
@@ -23315,10 +21439,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["whimsicott"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	whimsicott:
-	{
+	whimsicott: {
 		num: 547,
 		name: "Whimsicott",
 		id: "whimsicott",
@@ -23331,20 +21454,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 67,
 			def: 85,
 			spa: 77,
 			spd: 75,
-			spe: 116,
+			spe: 116
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Prankster",
 			1: "Infiltrator",
-			DW: "Chlorophyll",
+			DW: "Chlorophyll"
 		},
 		heightm: 0.7,
 		weightkg: 6.6,
@@ -23353,10 +21474,9 @@ exports.BattlePokedex =
 		prevo: "cottonee",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	petilil:
-	{
+	petilil: {
 		num: 548,
 		name: "Petilil",
 		id: "petilil",
@@ -23369,20 +21489,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 35,
 			def: 50,
 			spa: 70,
 			spd: 50,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Own Tempo",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 0.5,
 		weightkg: 6.6,
@@ -23391,10 +21509,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lilligant"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lilligant:
-	{
+	lilligant: {
 		num: 549,
 		name: "Lilligant",
 		id: "lilligant",
@@ -23407,20 +21524,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 60,
 			def: 75,
 			spa: 110,
 			spd: 75,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Own Tempo",
-			DW: "Leaf Guard",
+			DW: "Leaf Guard"
 		},
 		heightm: 1.1,
 		weightkg: 16.3,
@@ -23429,10 +21544,9 @@ exports.BattlePokedex =
 		prevo: "petilil",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	basculin:
-	{
+	basculin: {
 		num: 550,
 		name: "Basculin",
 		id: "basculin",
@@ -23445,20 +21559,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 92,
 			def: 65,
 			spa: 80,
 			spd: 55,
-			spe: 98,
+			spe: 98
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Reckless",
 			1: "Adaptability",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 1,
 		weightkg: 18,
@@ -23467,10 +21579,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["basculinbluestriped"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	basculinbluestriped:
-	{
+	basculinbluestriped: {
 		num: 550,
 		name: "Basculin-Blue-Striped",
 		id: "basculinbluestriped",
@@ -23483,20 +21594,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 92,
 			def: 65,
 			spa: 80,
 			spd: 55,
-			spe: 98,
+			spe: 98
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rock Head",
 			1: "Adaptability",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 1,
 		weightkg: 18,
@@ -23505,10 +21614,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["basculin"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	sandile:
-	{
+	sandile: {
 		num: 551,
 		name: "Sandile",
 		id: "sandile",
@@ -23521,20 +21629,18 @@ exports.BattlePokedex =
 		types: ["Ground","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 72,
 			def: 35,
 			spa: 35,
 			spd: 35,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Moxie",
-			DW: "Anger Point",
+			DW: "Anger Point"
 		},
 		heightm: 0.7,
 		weightkg: 15.2,
@@ -23543,10 +21649,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["krokorok"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	krokorok:
-	{
+	krokorok: {
 		num: 552,
 		name: "Krokorok",
 		id: "krokorok",
@@ -23559,20 +21664,18 @@ exports.BattlePokedex =
 		types: ["Ground","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 82,
 			def: 45,
 			spa: 45,
 			spd: 45,
-			spe: 74,
+			spe: 74
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Moxie",
-			DW: "Anger Point",
+			DW: "Anger Point"
 		},
 		heightm: 1,
 		weightkg: 33.4,
@@ -23581,10 +21684,9 @@ exports.BattlePokedex =
 		prevo: "sandile",
 		evos: ["krookodile"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	krookodile:
-	{
+	krookodile: {
 		num: 553,
 		name: "Krookodile",
 		id: "krookodile",
@@ -23597,20 +21699,18 @@ exports.BattlePokedex =
 		types: ["Ground","Dark"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 117,
 			def: 70,
 			spa: 65,
 			spd: 70,
-			spe: 92,
+			spe: 92
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Intimidate",
 			1: "Moxie",
-			DW: "Anger Point",
+			DW: "Anger Point"
 		},
 		heightm: 1.5,
 		weightkg: 96.3,
@@ -23619,10 +21719,9 @@ exports.BattlePokedex =
 		prevo: "krokorok",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	darumaka:
-	{
+	darumaka: {
 		num: 554,
 		name: "Darumaka",
 		id: "darumaka",
@@ -23635,19 +21734,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 90,
 			def: 45,
 			spa: 15,
 			spd: 45,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hustle",
-			DW: "Inner Focus",
+			DW: "Inner Focus"
 		},
 		heightm: 0.6,
 		weightkg: 37.5,
@@ -23656,10 +21753,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["darmanitan"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	darmanitan:
-	{
+	darmanitan: {
 		num: 555,
 		name: "Darmanitan",
 		id: "darmanitan",
@@ -23672,19 +21768,17 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 140,
 			def: 55,
 			spa: 30,
 			spd: 55,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sheer Force",
-			DW: "Zen Mode",
+			DW: "Zen Mode"
 		},
 		heightm: 1.3,
 		weightkg: 92.9,
@@ -23693,10 +21787,9 @@ exports.BattlePokedex =
 		prevo: "darumaka",
 		evos: [],
 		otherFormes: ["darmanitanzen"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	darmanitanzen:
-	{
+	darmanitanzen: {
 		num: 555,
 		name: "Darmanitan-Zen",
 		id: "darmanitanzen",
@@ -23709,19 +21802,17 @@ exports.BattlePokedex =
 		types: ["Fire","Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 105,
 			atk: 30,
 			def: 105,
 			spa: 140,
 			spd: 105,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sheer Force",
-			DW: "Zen Mode",
+			DW: "Zen Mode"
 		},
 		heightm: 1.3,
 		weightkg: 92.9,
@@ -23730,10 +21821,9 @@ exports.BattlePokedex =
 		prevo: "darumaka",
 		evos: [],
 		otherFormes: ["darmanitan"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	maractus:
-	{
+	maractus: {
 		num: 556,
 		name: "Maractus",
 		id: "maractus",
@@ -23746,20 +21836,18 @@ exports.BattlePokedex =
 		types: ["Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 86,
 			def: 67,
 			spa: 106,
 			spd: 67,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Chlorophyll",
-			DW: "Storm Drain",
+			DW: "Storm Drain"
 		},
 		heightm: 1,
 		weightkg: 28,
@@ -23768,10 +21856,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	dwebble:
-	{
+	dwebble: {
 		num: 557,
 		name: "Dwebble",
 		id: "dwebble",
@@ -23784,20 +21871,18 @@ exports.BattlePokedex =
 		types: ["Bug","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 65,
 			def: 85,
 			spa: 35,
 			spd: 35,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Shell Armor",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.3,
 		weightkg: 14.5,
@@ -23806,10 +21891,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["crustle"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	crustle:
-	{
+	crustle: {
 		num: 558,
 		name: "Crustle",
 		id: "crustle",
@@ -23822,20 +21906,18 @@ exports.BattlePokedex =
 		types: ["Bug","Rock"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 95,
 			def: 125,
 			spa: 65,
 			spd: 75,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sturdy",
 			1: "Shell Armor",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1.4,
 		weightkg: 200,
@@ -23844,10 +21926,9 @@ exports.BattlePokedex =
 		prevo: "dwebble",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	scraggy:
-	{
+	scraggy: {
 		num: 559,
 		name: "Scraggy",
 		id: "scraggy",
@@ -23860,20 +21941,18 @@ exports.BattlePokedex =
 		types: ["Dark","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 75,
 			def: 70,
 			spa: 35,
 			spd: 70,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
 			1: "Moxie",
-			DW: "Intimidate",
+			DW: "Intimidate"
 		},
 		heightm: 0.6,
 		weightkg: 11.8,
@@ -23882,10 +21961,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["scrafty"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	scrafty:
-	{
+	scrafty: {
 		num: 560,
 		name: "Scrafty",
 		id: "scrafty",
@@ -23898,20 +21976,18 @@ exports.BattlePokedex =
 		types: ["Dark","Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 90,
 			def: 115,
 			spa: 45,
 			spd: 115,
-			spe: 58,
+			spe: 58
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Shed Skin",
 			1: "Moxie",
-			DW: "Intimidate",
+			DW: "Intimidate"
 		},
 		heightm: 1.1,
 		weightkg: 30,
@@ -23920,10 +21996,9 @@ exports.BattlePokedex =
 		prevo: "scraggy",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sigilyph:
-	{
+	sigilyph: {
 		num: 561,
 		name: "Sigilyph",
 		id: "sigilyph",
@@ -23936,20 +22011,18 @@ exports.BattlePokedex =
 		types: ["Psychic","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 72,
 			atk: 58,
 			def: 80,
 			spa: 103,
 			spd: 80,
-			spe: 97,
+			spe: 97
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Wonder Skin",
 			1: "Magic Guard",
-			DW: "Tinted Lens",
+			DW: "Tinted Lens"
 		},
 		heightm: 1.4,
 		weightkg: 14,
@@ -23958,10 +22031,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	yamask:
-	{
+	yamask: {
 		num: 562,
 		name: "Yamask",
 		id: "yamask",
@@ -23974,18 +22046,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 38,
 			atk: 30,
 			def: 85,
 			spa: 55,
 			spd: 65,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
-			0: "Mummy",
+		abilities: {
+			0: "Mummy"
 		},
 		heightm: 0.5,
 		weightkg: 1.5,
@@ -23994,10 +22064,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["cofagrigus"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cofagrigus:
-	{
+	cofagrigus: {
 		num: 563,
 		name: "Cofagrigus",
 		id: "cofagrigus",
@@ -24010,18 +22079,16 @@ exports.BattlePokedex =
 		types: ["Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 58,
 			atk: 50,
 			def: 145,
 			spa: 95,
 			spd: 105,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
-			0: "Mummy",
+		abilities: {
+			0: "Mummy"
 		},
 		heightm: 1.7,
 		weightkg: 76.5,
@@ -24030,10 +22097,9 @@ exports.BattlePokedex =
 		prevo: "yamask",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tirtouga:
-	{
+	tirtouga: {
 		num: 564,
 		name: "Tirtouga",
 		id: "tirtouga",
@@ -24046,20 +22112,18 @@ exports.BattlePokedex =
 		types: ["Water","Rock"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 54,
 			atk: 78,
 			def: 103,
 			spa: 53,
 			spd: 45,
-			spe: 22,
+			spe: 22
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Solid Rock",
 			1: "Sturdy",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 0.7,
 		weightkg: 16.5,
@@ -24068,10 +22132,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["carracosta"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	carracosta:
-	{
+	carracosta: {
 		num: 565,
 		name: "Carracosta",
 		id: "carracosta",
@@ -24084,20 +22147,18 @@ exports.BattlePokedex =
 		types: ["Water","Rock"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 74,
 			atk: 108,
 			def: 133,
 			spa: 83,
 			spd: 65,
-			spe: 32,
+			spe: 32
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Solid Rock",
 			1: "Sturdy",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 1.2,
 		weightkg: 81,
@@ -24106,10 +22167,9 @@ exports.BattlePokedex =
 		prevo: "tirtouga",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	archen:
-	{
+	archen: {
 		num: 566,
 		name: "Archen",
 		id: "archen",
@@ -24122,18 +22182,16 @@ exports.BattlePokedex =
 		types: ["Rock","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 112,
 			def: 45,
 			spa: 74,
 			spd: 45,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
-			0: "Defeatist",
+		abilities: {
+			0: "Defeatist"
 		},
 		heightm: 0.5,
 		weightkg: 9.5,
@@ -24142,10 +22200,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["archeops"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	archeops:
-	{
+	archeops: {
 		num: 567,
 		name: "Archeops",
 		id: "archeops",
@@ -24158,18 +22215,16 @@ exports.BattlePokedex =
 		types: ["Rock","Flying"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 140,
 			def: 65,
 			spa: 112,
 			spd: 65,
-			spe: 110,
+			spe: 110
 		},
-		abilities:
-		{
-			0: "Defeatist",
+		abilities: {
+			0: "Defeatist"
 		},
 		heightm: 1.4,
 		weightkg: 32,
@@ -24178,10 +22233,9 @@ exports.BattlePokedex =
 		prevo: "archen",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	trubbish:
-	{
+	trubbish: {
 		num: 568,
 		name: "Trubbish",
 		id: "trubbish",
@@ -24194,20 +22248,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 50,
 			def: 62,
 			spa: 40,
 			spd: 62,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Stench",
 			1: "Sticky Hold",
-			DW: "Aftermath",
+			DW: "Aftermath"
 		},
 		heightm: 0.6,
 		weightkg: 31,
@@ -24216,10 +22268,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["garbodor"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	garbodor:
-	{
+	garbodor: {
 		num: 569,
 		name: "Garbodor",
 		id: "garbodor",
@@ -24232,20 +22283,18 @@ exports.BattlePokedex =
 		types: ["Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 95,
 			def: 82,
 			spa: 60,
 			spd: 82,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Stench",
 			1: "Weak Armor",
-			DW: "Aftermath",
+			DW: "Aftermath"
 		},
 		heightm: 1.9,
 		weightkg: 107.3,
@@ -24254,10 +22303,9 @@ exports.BattlePokedex =
 		prevo: "trubbish",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zorua:
-	{
+	zorua: {
 		num: 570,
 		name: "Zorua",
 		id: "zorua",
@@ -24270,18 +22318,16 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 65,
 			def: 40,
 			spa: 80,
 			spd: 40,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
-			0: "Illusion",
+		abilities: {
+			0: "Illusion"
 		},
 		heightm: 0.7,
 		weightkg: 12.5,
@@ -24290,10 +22336,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["zoroark"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zoroark:
-	{
+	zoroark: {
 		num: 571,
 		name: "Zoroark",
 		id: "zoroark",
@@ -24306,18 +22351,16 @@ exports.BattlePokedex =
 		types: ["Dark"],
 		genderRatio: {"m":0.875,"f":0.125},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 105,
 			def: 60,
 			spa: 120,
 			spd: 60,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
-			0: "Illusion",
+		abilities: {
+			0: "Illusion"
 		},
 		heightm: 1.6,
 		weightkg: 81.1,
@@ -24326,10 +22369,9 @@ exports.BattlePokedex =
 		prevo: "zorua",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	minccino:
-	{
+	minccino: {
 		num: 572,
 		name: "Minccino",
 		id: "minccino",
@@ -24342,20 +22384,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 50,
 			def: 40,
 			spa: 40,
 			spd: 40,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Technician",
-			DW: "Skill Link",
+			DW: "Skill Link"
 		},
 		heightm: 0.4,
 		weightkg: 5.8,
@@ -24364,10 +22404,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["cinccino"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cinccino:
-	{
+	cinccino: {
 		num: 573,
 		name: "Cinccino",
 		id: "cinccino",
@@ -24380,20 +22419,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 95,
 			def: 60,
 			spa: 65,
 			spd: 60,
-			spe: 115,
+			spe: 115
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Cute Charm",
 			1: "Technician",
-			DW: "Skill Link",
+			DW: "Skill Link"
 		},
 		heightm: 0.5,
 		weightkg: 7.5,
@@ -24402,10 +22439,9 @@ exports.BattlePokedex =
 		prevo: "minccino",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gothita:
-	{
+	gothita: {
 		num: 574,
 		name: "Gothita",
 		id: "gothita",
@@ -24418,19 +22454,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 30,
 			def: 50,
 			spa: 55,
 			spd: 65,
-			spe: 45,
+			spe: 45
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Frisk",
-			DW: "Shadow Tag",
+			DW: "Shadow Tag"
 		},
 		heightm: 0.4,
 		weightkg: 5.8,
@@ -24439,10 +22473,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["gothorita"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gothorita:
-	{
+	gothorita: {
 		num: 575,
 		name: "Gothorita",
 		id: "gothorita",
@@ -24455,19 +22488,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 45,
 			def: 70,
 			spa: 75,
 			spd: 85,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Frisk",
-			DW: "Shadow Tag",
+			DW: "Shadow Tag"
 		},
 		heightm: 0.7,
 		weightkg: 18,
@@ -24476,10 +22507,9 @@ exports.BattlePokedex =
 		prevo: "gothita",
 		evos: ["gothitelle"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	gothitelle:
-	{
+	gothitelle: {
 		num: 576,
 		name: "Gothitelle",
 		id: "gothitelle",
@@ -24492,19 +22522,17 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.25,"f":0.75},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 55,
 			def: 95,
 			spa: 95,
 			spd: 110,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Frisk",
-			DW: "Shadow Tag",
+			DW: "Shadow Tag"
 		},
 		heightm: 1.5,
 		weightkg: 44,
@@ -24513,10 +22541,9 @@ exports.BattlePokedex =
 		prevo: "gothorita",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	solosis:
-	{
+	solosis: {
 		num: 577,
 		name: "Solosis",
 		id: "solosis",
@@ -24529,20 +22556,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 30,
 			def: 40,
 			spa: 105,
 			spd: 50,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overcoat",
 			1: "Magic Guard",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 0.3,
 		weightkg: 1,
@@ -24551,10 +22576,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["duosion"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	duosion:
-	{
+	duosion: {
 		num: 578,
 		name: "Duosion",
 		id: "duosion",
@@ -24567,20 +22591,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 40,
 			def: 50,
 			spa: 125,
 			spd: 60,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overcoat",
 			1: "Magic Guard",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 0.6,
 		weightkg: 8,
@@ -24589,10 +22611,9 @@ exports.BattlePokedex =
 		prevo: "solosis",
 		evos: ["reuniclus"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	reuniclus:
-	{
+	reuniclus: {
 		num: 579,
 		name: "Reuniclus",
 		id: "reuniclus",
@@ -24605,20 +22626,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 65,
 			def: 75,
 			spa: 125,
 			spd: 85,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Overcoat",
 			1: "Magic Guard",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 1,
 		weightkg: 20.1,
@@ -24627,10 +22646,9 @@ exports.BattlePokedex =
 		prevo: "duosion",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ducklett:
-	{
+	ducklett: {
 		num: 580,
 		name: "Ducklett",
 		id: "ducklett",
@@ -24643,20 +22661,18 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 62,
 			atk: 44,
 			def: 50,
 			spa: 44,
 			spd: 50,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Big Pecks",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 0.5,
 		weightkg: 5.5,
@@ -24665,10 +22681,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["swanna"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	swanna:
-	{
+	swanna: {
 		num: 581,
 		name: "Swanna",
 		id: "swanna",
@@ -24681,20 +22696,18 @@ exports.BattlePokedex =
 		types: ["Water","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 87,
 			def: 63,
 			spa: 87,
 			spd: 63,
-			spe: 98,
+			spe: 98
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Big Pecks",
-			DW: "Hydration",
+			DW: "Hydration"
 		},
 		heightm: 1.3,
 		weightkg: 24.2,
@@ -24703,10 +22716,9 @@ exports.BattlePokedex =
 		prevo: "ducklett",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vanillite:
-	{
+	vanillite: {
 		num: 582,
 		name: "Vanillite",
 		id: "vanillite",
@@ -24719,19 +22731,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 36,
 			atk: 50,
 			def: 50,
 			spa: 65,
 			spd: 60,
-			spe: 44,
+			spe: 44
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Ice Body",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.4,
 		weightkg: 5.7,
@@ -24740,10 +22750,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["vanillish"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vanillish:
-	{
+	vanillish: {
 		num: 583,
 		name: "Vanillish",
 		id: "vanillish",
@@ -24756,19 +22765,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 51,
 			atk: 65,
 			def: 65,
 			spa: 80,
 			spd: 75,
-			spe: 59,
+			spe: 59
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Ice Body",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1.1,
 		weightkg: 41,
@@ -24777,10 +22784,9 @@ exports.BattlePokedex =
 		prevo: "vanillite",
 		evos: ["vanilluxe"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vanilluxe:
-	{
+	vanilluxe: {
 		num: 584,
 		name: "Vanilluxe",
 		id: "vanilluxe",
@@ -24793,19 +22799,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 95,
 			def: 85,
 			spa: 110,
 			spd: 95,
-			spe: 79,
+			spe: 79
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Ice Body",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1.3,
 		weightkg: 57.5,
@@ -24814,10 +22818,9 @@ exports.BattlePokedex =
 		prevo: "vanillish",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	deerling:
-	{
+	deerling: {
 		num: 585,
 		name: "Deerling",
 		id: "deerling",
@@ -24830,20 +22833,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 50,
 			spa: 40,
 			spd: 50,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 0.6,
 		weightkg: 19.5,
@@ -24852,10 +22853,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sawsbuck"],
 		otherFormes: ["deerlingsummer","deerlingautumn","deerlingwinter"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	deerlingsummer:
-	{
+	deerlingsummer: {
 		num: 585,
 		name: "Deerling-Summer",
 		id: "deerlingsummer",
@@ -24868,20 +22868,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 50,
 			spa: 40,
 			spd: 50,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 0.6,
 		weightkg: 19.5,
@@ -24890,10 +22888,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sawsbuck"],
 		otherFormes: ["deerling","deerlingautumn","deerlingwinter"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	deerlingautumn:
-	{
+	deerlingautumn: {
 		num: 585,
 		name: "Deerling-Autumn",
 		id: "deerlingautumn",
@@ -24906,20 +22903,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 50,
 			spa: 40,
 			spd: 50,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 0.6,
 		weightkg: 19.5,
@@ -24928,10 +22923,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sawsbuck"],
 		otherFormes: ["deerling","deerlingsummer","deerlingwinter"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	deerlingwinter:
-	{
+	deerlingwinter: {
 		num: 585,
 		name: "Deerling-Winter",
 		id: "deerlingwinter",
@@ -24944,20 +22938,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 60,
 			def: 50,
 			spa: 40,
 			spd: 50,
-			spe: 75,
+			spe: 75
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 0.6,
 		weightkg: 19.5,
@@ -24966,10 +22958,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["sawsbuck"],
 		otherFormes: ["deerling","deerlingsummer","deerlingautumn"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	sawsbuck:
-	{
+	sawsbuck: {
 		num: 586,
 		name: "Sawsbuck",
 		id: "sawsbuck",
@@ -24982,20 +22973,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 70,
 			spa: 60,
 			spd: 70,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 1.9,
 		weightkg: 92.5,
@@ -25004,10 +22993,9 @@ exports.BattlePokedex =
 		prevo: "deerling",
 		evos: [],
 		otherFormes: ["sawsbucksummer","sawsbuckautumn","sawsbuckwinter"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	sawsbucksummer:
-	{
+	sawsbucksummer: {
 		num: 586,
 		name: "Sawsbuck-Summer",
 		id: "sawsbucksummer",
@@ -25020,20 +23008,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 70,
 			spa: 60,
 			spd: 70,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 1.9,
 		weightkg: 92.5,
@@ -25042,10 +23028,9 @@ exports.BattlePokedex =
 		prevo: "deerling",
 		evos: [],
 		otherFormes: ["sawsbuck","sawsbuckautumn","sawsbuckwinter"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	sawsbuckautumn:
-	{
+	sawsbuckautumn: {
 		num: 586,
 		name: "Sawsbuck-Autumn",
 		id: "sawsbuckautumn",
@@ -25058,20 +23043,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 70,
 			spa: 60,
 			spd: 70,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 1.9,
 		weightkg: 92.5,
@@ -25080,10 +23063,9 @@ exports.BattlePokedex =
 		prevo: "deerling",
 		evos: [],
 		otherFormes: ["sawsbuck","sawsbucksummer","sawsbuckwinter"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	sawsbuckwinter:
-	{
+	sawsbuckwinter: {
 		num: 586,
 		name: "Sawsbuck-Winter",
 		id: "sawsbuckwinter",
@@ -25096,20 +23078,18 @@ exports.BattlePokedex =
 		types: ["Normal","Grass"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 100,
 			def: 70,
 			spa: 60,
 			spd: 70,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Chlorophyll",
 			1: "Sap Sipper",
-			DW: "Serene Grace",
+			DW: "Serene Grace"
 		},
 		heightm: 1.9,
 		weightkg: 92.5,
@@ -25118,10 +23098,9 @@ exports.BattlePokedex =
 		prevo: "deerling",
 		evos: [],
 		otherFormes: ["sawsbuck","sawsbucksummer","sawsbuckautumn"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	emolga:
-	{
+	emolga: {
 		num: 587,
 		name: "Emolga",
 		id: "emolga",
@@ -25134,19 +23113,17 @@ exports.BattlePokedex =
 		types: ["Electric","Flying"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 75,
 			def: 60,
 			spa: 75,
 			spd: 60,
-			spe: 103,
+			spe: 103
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
-			DW: "Motor Drive",
+			DW: "Motor Drive"
 		},
 		heightm: 0.4,
 		weightkg: 5,
@@ -25155,10 +23132,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	karrablast:
-	{
+	karrablast: {
 		num: 588,
 		name: "Karrablast",
 		id: "karrablast",
@@ -25171,20 +23147,18 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 75,
 			def: 45,
 			spa: 40,
 			spd: 45,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Shed Skin",
-			DW: "No Guard",
+			DW: "No Guard"
 		},
 		heightm: 0.5,
 		weightkg: 5.9,
@@ -25193,10 +23167,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["escavalier"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	escavalier:
-	{
+	escavalier: {
 		num: 589,
 		name: "Escavalier",
 		id: "escavalier",
@@ -25209,20 +23182,18 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 135,
 			def: 105,
 			spa: 60,
 			spd: 105,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Shell Armor",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 1,
 		weightkg: 33,
@@ -25231,10 +23202,9 @@ exports.BattlePokedex =
 		prevo: "karrablast",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	foongus:
-	{
+	foongus: {
 		num: 590,
 		name: "Foongus",
 		id: "foongus",
@@ -25247,19 +23217,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 69,
 			atk: 55,
 			def: 45,
 			spa: 55,
 			spd: 55,
-			spe: 15,
+			spe: 15
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Effect Spore",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 0.2,
 		weightkg: 1,
@@ -25268,10 +23236,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["amoonguss"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	amoonguss:
-	{
+	amoonguss: {
 		num: 591,
 		name: "Amoonguss",
 		id: "amoonguss",
@@ -25284,19 +23251,17 @@ exports.BattlePokedex =
 		types: ["Grass","Poison"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 114,
 			atk: 85,
 			def: 70,
 			spa: 85,
 			spd: 80,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Effect Spore",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 0.6,
 		weightkg: 10.5,
@@ -25305,10 +23270,9 @@ exports.BattlePokedex =
 		prevo: "foongus",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	frillish:
-	{
+	frillish: {
 		num: 592,
 		name: "Frillish",
 		id: "frillish",
@@ -25321,20 +23285,18 @@ exports.BattlePokedex =
 		types: ["Water","Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 40,
 			def: 50,
 			spa: 65,
 			spd: 85,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Cursed Body",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 1.2,
 		weightkg: 33,
@@ -25343,10 +23305,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["jellicent"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	jellicent:
-	{
+	jellicent: {
 		num: 593,
 		name: "Jellicent",
 		id: "jellicent",
@@ -25359,20 +23320,18 @@ exports.BattlePokedex =
 		types: ["Water","Ghost"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 60,
 			def: 70,
 			spa: 85,
 			spd: 105,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Water Absorb",
 			1: "Cursed Body",
-			DW: "Damp",
+			DW: "Damp"
 		},
 		heightm: 2.2,
 		weightkg: 135,
@@ -25381,10 +23340,9 @@ exports.BattlePokedex =
 		prevo: "frillish",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	alomomola:
-	{
+	alomomola: {
 		num: 594,
 		name: "Alomomola",
 		id: "alomomola",
@@ -25397,20 +23355,18 @@ exports.BattlePokedex =
 		types: ["Water"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 165,
 			atk: 75,
 			def: 80,
 			spa: 40,
 			spd: 45,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Healer",
 			1: "Hydration",
-			DW: "Regenerator",
+			DW: "Regenerator"
 		},
 		heightm: 1.2,
 		weightkg: 31.6,
@@ -25419,10 +23375,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	joltik:
-	{
+	joltik: {
 		num: 595,
 		name: "Joltik",
 		id: "joltik",
@@ -25435,20 +23390,18 @@ exports.BattlePokedex =
 		types: ["Bug","Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 47,
 			def: 50,
 			spa: 57,
 			spd: 50,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Compoundeyes",
 			1: "Unnerve",
-			DW: "Swarm",
+			DW: "Swarm"
 		},
 		heightm: 0.1,
 		weightkg: 0.6,
@@ -25457,10 +23410,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["galvantula"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	galvantula:
-	{
+	galvantula: {
 		num: 596,
 		name: "Galvantula",
 		id: "galvantula",
@@ -25473,20 +23425,18 @@ exports.BattlePokedex =
 		types: ["Bug","Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 77,
 			def: 60,
 			spa: 97,
 			spd: 60,
-			spe: 108,
+			spe: 108
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Compoundeyes",
 			1: "Unnerve",
-			DW: "Swarm",
+			DW: "Swarm"
 		},
 		heightm: 0.8,
 		weightkg: 14.3,
@@ -25495,10 +23445,9 @@ exports.BattlePokedex =
 		prevo: "joltik",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ferroseed:
-	{
+	ferroseed: {
 		num: 597,
 		name: "Ferroseed",
 		id: "ferroseed",
@@ -25511,18 +23460,16 @@ exports.BattlePokedex =
 		types: ["Grass","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 44,
 			atk: 50,
 			def: 91,
 			spa: 24,
 			spd: 86,
-			spe: 10,
+			spe: 10
 		},
-		abilities:
-		{
-			0: "Iron Barbs",
+		abilities: {
+			0: "Iron Barbs"
 		},
 		heightm: 0.6,
 		weightkg: 18.8,
@@ -25531,10 +23478,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["ferrothorn"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	ferrothorn:
-	{
+	ferrothorn: {
 		num: 598,
 		name: "Ferrothorn",
 		id: "ferrothorn",
@@ -25547,18 +23493,16 @@ exports.BattlePokedex =
 		types: ["Grass","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 74,
 			atk: 94,
 			def: 131,
 			spa: 54,
 			spd: 116,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
-			0: "Iron Barbs",
+		abilities: {
+			0: "Iron Barbs"
 		},
 		heightm: 1,
 		weightkg: 110,
@@ -25567,10 +23511,9 @@ exports.BattlePokedex =
 		prevo: "ferroseed",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	klink:
-	{
+	klink: {
 		num: 599,
 		name: "Klink",
 		id: "klink",
@@ -25583,20 +23526,18 @@ exports.BattlePokedex =
 		types: ["Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 40,
 			atk: 55,
 			def: 70,
 			spa: 45,
 			spd: 60,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Plus",
 			1: "Minus",
-			DW: "Clear Body",
+			DW: "Clear Body"
 		},
 		heightm: 0.3,
 		weightkg: 21,
@@ -25605,10 +23546,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["klang"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	klang:
-	{
+	klang: {
 		num: 600,
 		name: "Klang",
 		id: "klang",
@@ -25621,20 +23561,18 @@ exports.BattlePokedex =
 		types: ["Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 80,
 			def: 95,
 			spa: 70,
 			spd: 85,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Plus",
 			1: "Minus",
-			DW: "Clear Body",
+			DW: "Clear Body"
 		},
 		heightm: 0.6,
 		weightkg: 51,
@@ -25643,10 +23581,9 @@ exports.BattlePokedex =
 		prevo: "klink",
 		evos: ["klinklang"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	klinklang:
-	{
+	klinklang: {
 		num: 601,
 		name: "Klinklang",
 		id: "klinklang",
@@ -25659,20 +23596,18 @@ exports.BattlePokedex =
 		types: ["Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 100,
 			def: 115,
 			spa: 70,
 			spd: 85,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Plus",
 			1: "Minus",
-			DW: "Clear Body",
+			DW: "Clear Body"
 		},
 		heightm: 0.6,
 		weightkg: 81,
@@ -25681,10 +23616,9 @@ exports.BattlePokedex =
 		prevo: "klang",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tynamo:
-	{
+	tynamo: {
 		num: 602,
 		name: "Tynamo",
 		id: "tynamo",
@@ -25697,18 +23631,16 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 35,
 			atk: 55,
 			def: 40,
 			spa: 45,
 			spd: 40,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 0.2,
 		weightkg: 0.3,
@@ -25717,10 +23649,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["eelektrik"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	eelektrik:
-	{
+	eelektrik: {
 		num: 603,
 		name: "Eelektrik",
 		id: "eelektrik",
@@ -25733,18 +23664,16 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 85,
 			def: 70,
 			spa: 75,
 			spd: 70,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.2,
 		weightkg: 22,
@@ -25753,10 +23682,9 @@ exports.BattlePokedex =
 		prevo: "tynamo",
 		evos: ["eelektross"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	eelektross:
-	{
+	eelektross: {
 		num: 604,
 		name: "Eelektross",
 		id: "eelektross",
@@ -25769,18 +23697,16 @@ exports.BattlePokedex =
 		types: ["Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 115,
 			def: 80,
 			spa: 105,
 			spd: 80,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 2.1,
 		weightkg: 80.5,
@@ -25789,10 +23715,9 @@ exports.BattlePokedex =
 		prevo: "eelektrik",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	elgyem:
-	{
+	elgyem: {
 		num: 605,
 		name: "Elgyem",
 		id: "elgyem",
@@ -25805,20 +23730,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 55,
 			def: 55,
 			spa: 85,
 			spd: 55,
-			spe: 30,
+			spe: 30
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Telepathy",
 			1: "Synchronize",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 0.5,
 		weightkg: 9,
@@ -25827,10 +23750,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["beheeyem"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	beheeyem:
-	{
+	beheeyem: {
 		num: 606,
 		name: "Beheeyem",
 		id: "beheeyem",
@@ -25843,20 +23765,18 @@ exports.BattlePokedex =
 		types: ["Psychic"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 75,
 			atk: 75,
 			def: 75,
 			spa: 125,
 			spd: 95,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Telepathy",
 			1: "Synchronize",
-			DW: "Analytic",
+			DW: "Analytic"
 		},
 		heightm: 1,
 		weightkg: 34.5,
@@ -25865,10 +23785,9 @@ exports.BattlePokedex =
 		prevo: "elgyem",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	litwick:
-	{
+	litwick: {
 		num: 607,
 		name: "Litwick",
 		id: "litwick",
@@ -25881,20 +23800,18 @@ exports.BattlePokedex =
 		types: ["Ghost","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 30,
 			def: 55,
 			spa: 65,
 			spd: 55,
-			spe: 20,
+			spe: 20
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
 			1: "Flame Body",
-			DW: "Shadow Tag",
+			DW: "Shadow Tag"
 		},
 		heightm: 0.3,
 		weightkg: 3.1,
@@ -25903,10 +23820,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["lampent"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	lampent:
-	{
+	lampent: {
 		num: 608,
 		name: "Lampent",
 		id: "lampent",
@@ -25919,20 +23835,18 @@ exports.BattlePokedex =
 		types: ["Ghost","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 40,
 			def: 60,
 			spa: 95,
 			spd: 60,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
 			1: "Flame Body",
-			DW: "Shadow Tag",
+			DW: "Shadow Tag"
 		},
 		heightm: 0.6,
 		weightkg: 13,
@@ -25941,10 +23855,9 @@ exports.BattlePokedex =
 		prevo: "litwick",
 		evos: ["chandelure"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	chandelure:
-	{
+	chandelure: {
 		num: 609,
 		name: "Chandelure",
 		id: "chandelure",
@@ -25957,20 +23870,18 @@ exports.BattlePokedex =
 		types: ["Ghost","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 60,
 			atk: 55,
 			def: 90,
 			spa: 145,
 			spd: 90,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flash Fire",
 			1: "Flame Body",
-			DW: "Shadow Tag",
+			DW: "Shadow Tag"
 		},
 		heightm: 1,
 		weightkg: 34.3,
@@ -25979,10 +23890,9 @@ exports.BattlePokedex =
 		prevo: "lampent",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	axew:
-	{
+	axew: {
 		num: 610,
 		name: "Axew",
 		id: "axew",
@@ -25995,20 +23905,18 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 46,
 			atk: 87,
 			def: 60,
 			spa: 30,
 			spd: 40,
-			spe: 57,
+			spe: 57
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rivalry",
 			1: "Mold Breaker",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 0.6,
 		weightkg: 18,
@@ -26017,10 +23925,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["fraxure"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	fraxure:
-	{
+	fraxure: {
 		num: 611,
 		name: "Fraxure",
 		id: "fraxure",
@@ -26033,20 +23940,18 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 66,
 			atk: 117,
 			def: 70,
 			spa: 40,
 			spd: 50,
-			spe: 67,
+			spe: 67
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rivalry",
 			1: "Mold Breaker",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1,
 		weightkg: 36,
@@ -26055,10 +23960,9 @@ exports.BattlePokedex =
 		prevo: "axew",
 		evos: ["haxorus"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	haxorus:
-	{
+	haxorus: {
 		num: 612,
 		name: "Haxorus",
 		id: "haxorus",
@@ -26071,20 +23975,18 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 76,
 			atk: 147,
 			def: 90,
 			spa: 60,
 			spd: 70,
-			spe: 97,
+			spe: 97
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rivalry",
 			1: "Mold Breaker",
-			DW: "Unnerve",
+			DW: "Unnerve"
 		},
 		heightm: 1.8,
 		weightkg: 105.5,
@@ -26093,10 +23995,9 @@ exports.BattlePokedex =
 		prevo: "fraxure",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cubchoo:
-	{
+	cubchoo: {
 		num: 613,
 		name: "Cubchoo",
 		id: "cubchoo",
@@ -26109,19 +24010,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 70,
 			def: 40,
 			spa: 60,
 			spd: 40,
-			spe: 40,
+			spe: 40
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Snow Cloak",
-			DW: "Rattled",
+			DW: "Rattled"
 		},
 		heightm: 0.5,
 		weightkg: 8.5,
@@ -26130,10 +24029,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["beartic"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	beartic:
-	{
+	beartic: {
 		num: 614,
 		name: "Beartic",
 		id: "beartic",
@@ -26146,19 +24044,17 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 110,
 			def: 80,
 			spa: 70,
 			spd: 80,
-			spe: 50,
+			spe: 50
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Snow Cloak",
-			DW: "Swift Swim",
+			DW: "Swift Swim"
 		},
 		heightm: 2.6,
 		weightkg: 260,
@@ -26167,10 +24063,9 @@ exports.BattlePokedex =
 		prevo: "cubchoo",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cryogonal:
-	{
+	cryogonal: {
 		num: 615,
 		name: "Cryogonal",
 		id: "cryogonal",
@@ -26183,18 +24078,16 @@ exports.BattlePokedex =
 		types: ["Ice"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 50,
 			def: 30,
 			spa: 95,
 			spd: 135,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.1,
 		weightkg: 148,
@@ -26203,10 +24096,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	shelmet:
-	{
+	shelmet: {
 		num: 616,
 		name: "Shelmet",
 		id: "shelmet",
@@ -26219,20 +24111,18 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 50,
 			atk: 40,
 			def: 85,
 			spa: 40,
 			spd: 65,
-			spe: 25,
+			spe: 25
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hydration",
 			1: "Shell Armor",
-			DW: "Overcoat",
+			DW: "Overcoat"
 		},
 		heightm: 0.4,
 		weightkg: 7.7,
@@ -26241,10 +24131,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["accelgor"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	accelgor:
-	{
+	accelgor: {
 		num: 617,
 		name: "Accelgor",
 		id: "accelgor",
@@ -26257,20 +24146,18 @@ exports.BattlePokedex =
 		types: ["Bug"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 80,
 			atk: 70,
 			def: 40,
 			spa: 100,
 			spd: 60,
-			spe: 145,
+			spe: 145
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Hydration",
 			1: "Sticky Hold",
-			DW: "Unburden",
+			DW: "Unburden"
 		},
 		heightm: 0.8,
 		weightkg: 25.3,
@@ -26279,10 +24166,9 @@ exports.BattlePokedex =
 		prevo: "shelmet",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	stunfisk:
-	{
+	stunfisk: {
 		num: 618,
 		name: "Stunfisk",
 		id: "stunfisk",
@@ -26295,20 +24181,18 @@ exports.BattlePokedex =
 		types: ["Ground","Electric"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 109,
 			atk: 66,
 			def: 84,
 			spa: 81,
 			spd: 99,
-			spe: 32,
+			spe: 32
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Static",
 			1: "Limber",
-			DW: "Sand Veil",
+			DW: "Sand Veil"
 		},
 		heightm: 0.7,
 		weightkg: 11,
@@ -26317,10 +24201,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mienfoo:
-	{
+	mienfoo: {
 		num: 619,
 		name: "Mienfoo",
 		id: "mienfoo",
@@ -26333,20 +24216,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 85,
 			def: 50,
 			spa: 55,
 			spd: 50,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
 			1: "Regenerator",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 0.9,
 		weightkg: 20,
@@ -26355,10 +24236,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["mienshao"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mienshao:
-	{
+	mienshao: {
 		num: 620,
 		name: "Mienshao",
 		id: "mienshao",
@@ -26371,20 +24251,18 @@ exports.BattlePokedex =
 		types: ["Fighting"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 125,
 			def: 60,
 			spa: 95,
 			spd: 60,
-			spe: 105,
+			spe: 105
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Inner Focus",
 			1: "Regenerator",
-			DW: "Reckless",
+			DW: "Reckless"
 		},
 		heightm: 1.4,
 		weightkg: 35.5,
@@ -26393,10 +24271,9 @@ exports.BattlePokedex =
 		prevo: "mienfoo",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	druddigon:
-	{
+	druddigon: {
 		num: 621,
 		name: "Druddigon",
 		id: "druddigon",
@@ -26409,20 +24286,18 @@ exports.BattlePokedex =
 		types: ["Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 77,
 			atk: 120,
 			def: 90,
 			spa: 60,
 			spd: 90,
-			spe: 48,
+			spe: 48
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Rough Skin",
 			1: "Sheer Force",
-			DW: "Mold Breaker",
+			DW: "Mold Breaker"
 		},
 		heightm: 1.6,
 		weightkg: 139,
@@ -26431,10 +24306,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	golett:
-	{
+	golett: {
 		num: 622,
 		name: "Golett",
 		id: "golett",
@@ -26447,20 +24321,18 @@ exports.BattlePokedex =
 		types: ["Ground","Ghost"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 59,
 			atk: 74,
 			def: 50,
 			spa: 35,
 			spd: 50,
-			spe: 35,
+			spe: 35
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Iron Fist",
 			1: "Klutz",
-			DW: "No Guard",
+			DW: "No Guard"
 		},
 		heightm: 1,
 		weightkg: 92,
@@ -26469,10 +24341,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["golurk"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	golurk:
-	{
+	golurk: {
 		num: 623,
 		name: "Golurk",
 		id: "golurk",
@@ -26485,20 +24356,18 @@ exports.BattlePokedex =
 		types: ["Ground","Ghost"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 89,
 			atk: 124,
 			def: 80,
 			spa: 55,
 			spd: 80,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Iron Fist",
 			1: "Klutz",
-			DW: "No Guard",
+			DW: "No Guard"
 		},
 		heightm: 2.8,
 		weightkg: 330,
@@ -26507,10 +24376,9 @@ exports.BattlePokedex =
 		prevo: "golett",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	pawniard:
-	{
+	pawniard: {
 		num: 624,
 		name: "Pawniard",
 		id: "pawniard",
@@ -26523,20 +24391,18 @@ exports.BattlePokedex =
 		types: ["Dark","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 45,
 			atk: 85,
 			def: 70,
 			spa: 40,
 			spd: 40,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Defiant",
 			1: "Inner Focus",
-			DW: "Pressure",
+			DW: "Pressure"
 		},
 		heightm: 0.5,
 		weightkg: 10.2,
@@ -26545,10 +24411,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["bisharp"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bisharp:
-	{
+	bisharp: {
 		num: 625,
 		name: "Bisharp",
 		id: "bisharp",
@@ -26561,20 +24426,18 @@ exports.BattlePokedex =
 		types: ["Dark","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 65,
 			atk: 125,
 			def: 100,
 			spa: 60,
 			spd: 70,
-			spe: 70,
+			spe: 70
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Defiant",
 			1: "Inner Focus",
-			DW: "Pressure",
+			DW: "Pressure"
 		},
 		heightm: 1.6,
 		weightkg: 70,
@@ -26583,10 +24446,9 @@ exports.BattlePokedex =
 		prevo: "pawniard",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	bouffalant:
-	{
+	bouffalant: {
 		num: 626,
 		name: "Bouffalant",
 		id: "bouffalant",
@@ -26599,20 +24461,18 @@ exports.BattlePokedex =
 		types: ["Normal"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 95,
 			atk: 110,
 			def: 95,
 			spa: 40,
 			spd: 95,
-			spe: 55,
+			spe: 55
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Reckless",
 			1: "Sap Sipper",
-			DW: "Soundproof",
+			DW: "Soundproof"
 		},
 		heightm: 1.6,
 		weightkg: 94.6,
@@ -26621,10 +24481,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	rufflet:
-	{
+	rufflet: {
 		num: 627,
 		name: "Rufflet",
 		id: "rufflet",
@@ -26637,20 +24496,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 83,
 			def: 50,
 			spa: 37,
 			spd: 50,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Sheer Force",
-			DW: "Hustle",
+			DW: "Hustle"
 		},
 		heightm: 0.5,
 		weightkg: 10.5,
@@ -26659,10 +24516,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["braviary"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	braviary:
-	{
+	braviary: {
 		num: 628,
 		name: "Braviary",
 		id: "braviary",
@@ -26675,20 +24531,18 @@ exports.BattlePokedex =
 		types: ["Normal","Flying"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 123,
 			def: 75,
 			spa: 57,
 			spd: 75,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Keen Eye",
 			1: "Sheer Force",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 1.5,
 		weightkg: 41,
@@ -26697,10 +24551,9 @@ exports.BattlePokedex =
 		prevo: "rufflet",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	vullaby:
-	{
+	vullaby: {
 		num: 629,
 		name: "Vullaby",
 		id: "vullaby",
@@ -26713,20 +24566,18 @@ exports.BattlePokedex =
 		types: ["Dark","Flying"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 70,
 			atk: 55,
 			def: 75,
 			spa: 45,
 			spd: 65,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Big Pecks",
 			1: "Overcoat",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 0.5,
 		weightkg: 9,
@@ -26735,10 +24586,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["mandibuzz"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	mandibuzz:
-	{
+	mandibuzz: {
 		num: 630,
 		name: "Mandibuzz",
 		id: "mandibuzz",
@@ -26751,20 +24601,18 @@ exports.BattlePokedex =
 		types: ["Dark","Flying"],
 		genderRatio: {"m":0,"f":1},
 		gender: "F",
-		baseStats:
-		{
+		baseStats: {
 			hp: 110,
 			atk: 65,
 			def: 105,
 			spa: 55,
 			spd: 95,
-			spe: 80,
+			spe: 80
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Big Pecks",
 			1: "Overcoat",
-			DW: "Weak Armor",
+			DW: "Weak Armor"
 		},
 		heightm: 1.2,
 		weightkg: 39.5,
@@ -26773,10 +24621,9 @@ exports.BattlePokedex =
 		prevo: "vullaby",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	heatmor:
-	{
+	heatmor: {
 		num: 631,
 		name: "Heatmor",
 		id: "heatmor",
@@ -26789,20 +24636,18 @@ exports.BattlePokedex =
 		types: ["Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 97,
 			def: 66,
 			spa: 105,
 			spd: 66,
-			spe: 65,
+			spe: 65
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Gluttony",
 			1: "Flash Fire",
-			DW: "White Smoke",
+			DW: "White Smoke"
 		},
 		heightm: 1.4,
 		weightkg: 58,
@@ -26811,10 +24656,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	durant:
-	{
+	durant: {
 		num: 632,
 		name: "Durant",
 		id: "durant",
@@ -26827,20 +24671,18 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 58,
 			atk: 109,
 			def: 112,
 			spa: 48,
 			spd: 48,
-			spe: 109,
+			spe: 109
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Swarm",
 			1: "Hustle",
-			DW: "Truant",
+			DW: "Truant"
 		},
 		heightm: 0.3,
 		weightkg: 33,
@@ -26849,10 +24691,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	deino:
-	{
+	deino: {
 		num: 633,
 		name: "Deino",
 		id: "deino",
@@ -26865,18 +24706,16 @@ exports.BattlePokedex =
 		types: ["Dark","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 52,
 			atk: 65,
 			def: 50,
 			spa: 45,
 			spd: 50,
-			spe: 38,
+			spe: 38
 		},
-		abilities:
-		{
-			0: "Hustle",
+		abilities: {
+			0: "Hustle"
 		},
 		heightm: 0.8,
 		weightkg: 17.3,
@@ -26885,10 +24724,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["zweilous"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zweilous:
-	{
+	zweilous: {
 		num: 634,
 		name: "Zweilous",
 		id: "zweilous",
@@ -26901,18 +24739,16 @@ exports.BattlePokedex =
 		types: ["Dark","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 72,
 			atk: 85,
 			def: 70,
 			spa: 65,
 			spd: 70,
-			spe: 58,
+			spe: 58
 		},
-		abilities:
-		{
-			0: "Hustle",
+		abilities: {
+			0: "Hustle"
 		},
 		heightm: 1.4,
 		weightkg: 50,
@@ -26921,10 +24757,9 @@ exports.BattlePokedex =
 		prevo: "deino",
 		evos: ["hydreigon"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	hydreigon:
-	{
+	hydreigon: {
 		num: 635,
 		name: "Hydreigon",
 		id: "hydreigon",
@@ -26937,18 +24772,16 @@ exports.BattlePokedex =
 		types: ["Dark","Dragon"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 92,
 			atk: 105,
 			def: 90,
 			spa: 125,
 			spd: 90,
-			spe: 98,
+			spe: 98
 		},
-		abilities:
-		{
-			0: "Levitate",
+		abilities: {
+			0: "Levitate"
 		},
 		heightm: 1.8,
 		weightkg: 160,
@@ -26957,10 +24790,9 @@ exports.BattlePokedex =
 		prevo: "zweilous",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	larvesta:
-	{
+	larvesta: {
 		num: 636,
 		name: "Larvesta",
 		id: "larvesta",
@@ -26973,19 +24805,17 @@ exports.BattlePokedex =
 		types: ["Bug","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 55,
 			atk: 85,
 			def: 55,
 			spa: 50,
 			spd: 55,
-			spe: 60,
+			spe: 60
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flame Body",
-			DW: "Swarm",
+			DW: "Swarm"
 		},
 		heightm: 1.1,
 		weightkg: 28.8,
@@ -26994,10 +24824,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: ["volcarona"],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	volcarona:
-	{
+	volcarona: {
 		num: 637,
 		name: "Volcarona",
 		id: "volcarona",
@@ -27010,19 +24839,17 @@ exports.BattlePokedex =
 		types: ["Bug","Fire"],
 		genderRatio: {"m":0.5,"f":0.5},
 		gender: "",
-		baseStats:
-		{
+		baseStats: {
 			hp: 85,
 			atk: 60,
 			def: 65,
 			spa: 135,
 			spd: 105,
-			spe: 100,
+			spe: 100
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Flame Body",
-			DW: "Swarm",
+			DW: "Swarm"
 		},
 		heightm: 1.6,
 		weightkg: 46,
@@ -27031,10 +24858,9 @@ exports.BattlePokedex =
 		prevo: "larvesta",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	cobalion:
-	{
+	cobalion: {
 		num: 638,
 		name: "Cobalion",
 		id: "cobalion",
@@ -27047,18 +24873,16 @@ exports.BattlePokedex =
 		types: ["Steel","Fighting"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 91,
 			atk: 90,
 			def: 129,
 			spa: 90,
 			spd: 72,
-			spe: 108,
+			spe: 108
 		},
-		abilities:
-		{
-			0: "Justified",
+		abilities: {
+			0: "Justified"
 		},
 		heightm: 2.1,
 		weightkg: 250,
@@ -27067,10 +24891,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	terrakion:
-	{
+	terrakion: {
 		num: 639,
 		name: "Terrakion",
 		id: "terrakion",
@@ -27083,18 +24906,16 @@ exports.BattlePokedex =
 		types: ["Rock","Fighting"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 91,
 			atk: 129,
 			def: 90,
 			spa: 72,
 			spd: 90,
-			spe: 108,
+			spe: 108
 		},
-		abilities:
-		{
-			0: "Justified",
+		abilities: {
+			0: "Justified"
 		},
 		heightm: 1.9,
 		weightkg: 260,
@@ -27103,10 +24924,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	virizion:
-	{
+	virizion: {
 		num: 640,
 		name: "Virizion",
 		id: "virizion",
@@ -27119,18 +24939,16 @@ exports.BattlePokedex =
 		types: ["Grass","Fighting"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 91,
 			atk: 90,
 			def: 72,
 			spa: 90,
 			spd: 129,
-			spe: 108,
+			spe: 108
 		},
-		abilities:
-		{
-			0: "Justified",
+		abilities: {
+			0: "Justified"
 		},
 		heightm: 2,
 		weightkg: 200,
@@ -27139,10 +24957,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	tornadus:
-	{
+	tornadus: {
 		num: 641,
 		name: "Tornadus",
 		id: "tornadus",
@@ -27155,19 +24972,17 @@ exports.BattlePokedex =
 		types: ["Flying"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 79,
 			atk: 115,
 			def: 70,
 			spa: 125,
 			spd: 80,
-			spe: 111,
+			spe: 111
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Prankster",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 1.5,
 		weightkg: 63,
@@ -27176,10 +24991,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	thundurus:
-	{
+	thundurus: {
 		num: 642,
 		name: "Thundurus",
 		id: "thundurus",
@@ -27192,19 +25006,17 @@ exports.BattlePokedex =
 		types: ["Electric","Flying"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 79,
 			atk: 115,
 			def: 70,
 			spa: 125,
 			spd: 80,
-			spe: 111,
+			spe: 111
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Prankster",
-			DW: "Defiant",
+			DW: "Defiant"
 		},
 		heightm: 1.5,
 		weightkg: 61,
@@ -27213,10 +25025,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	reshiram:
-	{
+	reshiram: {
 		num: 643,
 		name: "Reshiram",
 		id: "reshiram",
@@ -27229,18 +25040,16 @@ exports.BattlePokedex =
 		types: ["Dragon","Fire"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 120,
 			def: 100,
 			spa: 150,
 			spd: 120,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Turboblaze",
+		abilities: {
+			0: "Turboblaze"
 		},
 		heightm: 3.2,
 		weightkg: 330,
@@ -27249,10 +25058,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	zekrom:
-	{
+	zekrom: {
 		num: 644,
 		name: "Zekrom",
 		id: "zekrom",
@@ -27265,18 +25073,16 @@ exports.BattlePokedex =
 		types: ["Dragon","Electric"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 150,
 			def: 120,
 			spa: 120,
 			spd: 100,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Teravolt",
+		abilities: {
+			0: "Teravolt"
 		},
 		heightm: 2.9,
 		weightkg: 345,
@@ -27285,10 +25091,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	landorus:
-	{
+	landorus: {
 		num: 645,
 		name: "Landorus",
 		id: "landorus",
@@ -27301,19 +25106,17 @@ exports.BattlePokedex =
 		types: ["Ground","Flying"],
 		genderRatio: {"m":1,"f":0},
 		gender: "M",
-		baseStats:
-		{
+		baseStats: {
 			hp: 89,
 			atk: 125,
 			def: 90,
 			spa: 115,
 			spd: 80,
-			spe: 101,
+			spe: 101
 		},
-		abilities:
-		{
+		abilities: {
 			0: "Sand Force",
-			DW: "Sheer Force",
+			DW: "Sheer Force"
 		},
 		heightm: 1.5,
 		weightkg: 68,
@@ -27322,10 +25125,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	kyurem:
-	{
+	kyurem: {
 		num: 646,
 		name: "Kyurem",
 		id: "kyurem",
@@ -27338,18 +25140,16 @@ exports.BattlePokedex =
 		types: ["Dragon","Ice"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 125,
 			atk: 130,
 			def: 90,
 			spa: 130,
 			spd: 90,
-			spe: 95,
+			spe: 95
 		},
-		abilities:
-		{
-			0: "Pressure",
+		abilities: {
+			0: "Pressure"
 		},
 		heightm: 3,
 		weightkg: 325,
@@ -27358,10 +25158,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	keldeo:
-	{
+	keldeo: {
 		num: 647,
 		name: "Keldeo",
 		id: "keldeo",
@@ -27374,18 +25173,16 @@ exports.BattlePokedex =
 		types: ["Water","Fighting"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 91,
 			atk: 72,
 			def: 90,
 			spa: 129,
 			spd: 90,
-			spe: 108,
+			spe: 108
 		},
-		abilities:
-		{
-			0: "Justified",
+		abilities: {
+			0: "Justified"
 		},
 		heightm: 1.4,
 		weightkg: 48.5,
@@ -27394,10 +25191,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: [],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	meloetta:
-	{
+	meloetta: {
 		num: 648,
 		name: "Meloetta",
 		id: "meloetta",
@@ -27410,18 +25206,16 @@ exports.BattlePokedex =
 		types: ["Normal","Psychic"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 77,
 			def: 77,
 			spa: 128,
 			spd: 128,
-			spe: 90,
+			spe: 90
 		},
-		abilities:
-		{
-			0: "Serene Grace",
+		abilities: {
+			0: "Serene Grace"
 		},
 		heightm: 0.6,
 		weightkg: 6.5,
@@ -27430,10 +25224,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["meloettapirouette"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	meloettapirouette:
-	{
+	meloettapirouette: {
 		num: 648,
 		name: "Meloetta-Pirouette",
 		id: "meloettapirouette",
@@ -27446,18 +25239,16 @@ exports.BattlePokedex =
 		types: ["Normal","Fighting"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 100,
 			atk: 128,
 			def: 90,
 			spa: 77,
 			spd: 77,
-			spe: 128,
+			spe: 128
 		},
-		abilities:
-		{
-			0: "Serene Grace",
+		abilities: {
+			0: "Serene Grace"
 		},
 		heightm: 0.6,
 		weightkg: 6.5,
@@ -27466,10 +25257,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["meloetta"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	genesect:
-	{
+	genesect: {
 		num: 649,
 		name: "Genesect",
 		id: "genesect",
@@ -27482,18 +25272,16 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 120,
 			def: 95,
 			spa: 120,
 			spd: 95,
-			spe: 99,
+			spe: 99
 		},
-		abilities:
-		{
-			0: "Download",
+		abilities: {
+			0: "Download"
 		},
 		heightm: 1.5,
 		weightkg: 82.5,
@@ -27502,10 +25290,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["genesectdouse","genesectshock","genesectburn","genesectchill"],
-		isDefaultForme: true,
+		isDefaultForme: true
 	},
-	genesectdouse:
-	{
+	genesectdouse: {
 		num: 649,
 		name: "Genesect-Douse",
 		id: "genesectdouse",
@@ -27518,18 +25305,16 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 120,
 			def: 95,
 			spa: 120,
 			spd: 95,
-			spe: 99,
+			spe: 99
 		},
-		abilities:
-		{
-			0: "Download",
+		abilities: {
+			0: "Download"
 		},
 		heightm: 1.5,
 		weightkg: 82.5,
@@ -27538,10 +25323,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["genesect","genesectshock","genesectburn","genesectchill"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	genesectshock:
-	{
+	genesectshock: {
 		num: 649,
 		name: "Genesect-Shock",
 		id: "genesectshock",
@@ -27554,18 +25338,16 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 120,
 			def: 95,
 			spa: 120,
 			spd: 95,
-			spe: 99,
+			spe: 99
 		},
-		abilities:
-		{
-			0: "Download",
+		abilities: {
+			0: "Download"
 		},
 		heightm: 1.5,
 		weightkg: 82.5,
@@ -27574,10 +25356,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["genesect","genesectdouse","genesectburn","genesectchill"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	genesectburn:
-	{
+	genesectburn: {
 		num: 649,
 		name: "Genesect-Burn",
 		id: "genesectburn",
@@ -27590,18 +25371,16 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 120,
 			def: 95,
 			spa: 120,
 			spd: 95,
-			spe: 99,
+			spe: 99
 		},
-		abilities:
-		{
-			0: "Download",
+		abilities: {
+			0: "Download"
 		},
 		heightm: 1.5,
 		weightkg: 82.5,
@@ -27610,10 +25389,9 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["genesect","genesectdouse","genesectshock","genesectchill"],
-		isDefaultForme: false,
+		isDefaultForme: false
 	},
-	genesectchill:
-	{
+	genesectchill: {
 		num: 649,
 		name: "Genesect-Chill",
 		id: "genesectchill",
@@ -27626,18 +25404,16 @@ exports.BattlePokedex =
 		types: ["Bug","Steel"],
 		genderRatio: {"m":0,"f":0},
 		gender: "N",
-		baseStats:
-		{
+		baseStats: {
 			hp: 71,
 			atk: 120,
 			def: 95,
 			spa: 120,
 			spd: 95,
-			spe: 99,
+			spe: 99
 		},
-		abilities:
-		{
-			0: "Download",
+		abilities: {
+			0: "Download"
 		},
 		heightm: 1.5,
 		weightkg: 82.5,
@@ -27646,6 +25422,6 @@ exports.BattlePokedex =
 		prevo: "",
 		evos: [],
 		otherFormes: ["genesect","genesectdouse","genesectshock","genesectburn"],
-		isDefaultForme: false,
-	},
+		isDefaultForme: false
+	}
 };

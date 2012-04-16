@@ -7,71 +7,52 @@ var customPokemonPath = "../data/custom-pokemon.json";
 
 var assert = require("assert").ok;
 var getVeekunDatabase = require("./veekun-database._js").getVeekunDatabase;
+var miscFunctions = require("./misc.js");
+writeLine = miscFunctions.writeLine;
+ObjectIsLastKey = miscFunctions.ObjectIsLastKey;
+toId = miscFunctions.toId;
+toIdForForme = miscFunctions.toIdForForme;
+toIdForName = miscFunctions.toIdForName;
 
-function main(argv, _)
-{
+function main(argv, _) {
 	var veekunDatabase = getVeekunDatabase(_);
 	var languageId = veekunDatabase.getLanguageId("en", _); // Don't change the language! Bad things will happen if you do
 	var formeIds = veekunDatabase.getAllFormeIds(_);
 	
 	console.warn("Starting to output.");
-	writeLine("exports.BattlePokedex =");
-	writeLine("{", 1);
+	writeLine("exports.BattlePokedex = {", 1);
 	console.warn("Outputting custom pokemon.");
 	outputCustomPokemon();
 	console.warn("Outputting real pokemon.");
-	for (var f = 0; f < formeIds.length; ++f)
-	{
-		var veekunPokemon = veekunDatabase.getFormeData(formeIds[f], languageId, _);
+	for (var f = 0; f < formeIds.length; ++f) {
+		var veekunPokemon = veekunDatabase.getFormeData(formeIds[f], languageId, _, {
+				name: true,
+				formes: true,
+				pokedexNumbers: true,
+				types: true,
+				baseStats: true,
+				abilities: true,
+				prevo: true,
+				evos: true,
+				misc: true
+			});
 		var convertedPokemon = convertVeekunPokemon(veekunPokemon, veekunDatabase, _);
-		outputPokemon(convertedPokemon);
+		outputPokemon(convertedPokemon, f === formeIds.length - 1);
 		if ((f + 1) % 50 === 0)
-			console.warn("Finished outputting " + (f + 1) + " pokemon.");
+			console.warn("Finished outputting " + (f + 1) + "/" + formeIds.length + " pokemon.");
 	}
 	writeLine("};", -1);
 	console.warn("Finished outputting.");
 	veekunDatabase.close(_);
 }
 
-function outputCustomPokemon()
-{
+function outputCustomPokemon() {
 	var customPokemon = JSON.parse(require("fs").readFileSync(customPokemonPath).toString());
 	for (var c = 0; c < customPokemon.length; ++c)
 		outputPokemon(customPokemon[c]);
 }
 
-function convertVeekunPokemon(pokemon, veekunDatabase, _)
-{
-	function toIdForForme(combinedName, forme)
-	{
-		switch (combinedName)
-		{
-			case "Unown-!" :
-				return "em";
-
-			case "Unown-?" :
-				return "qm";
-
-			case "Arceus-???" :
-				return "unknown";
-
-			case "Basculin-Blue-Striped" :
-				return "blue";
-		}
-		return toId(forme);
-	}
-	function toIdForName(combinedName, forme)
-	{
-		var result = toId(combinedName.replace("♂", "M").replace("♀", "F"));
-		var formeId = toIdForForme(combinedName, forme);
-		if (result.indexOf(formeId) === -1)
-			if (toId(forme).length === 0)
-				result += formeId;
-			else
-				if(result.indexOf(toId(forme)) !== -1)
-					result.replace(toId(forme), formeId);
-		return result;
-	}
+function convertVeekunPokemon(pokemon, veekunDatabase, _) {
 
 	var result = new Object();
 
@@ -93,8 +74,7 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _)
 	result.speciesid = result.id;
 	if (result.isDefaultForme)
 		result.spriteid = result.id;
-	else
-	{
+	else {
 		result.spriteid = toId(result.name.replace("-" + pokemon.forme, ""));
 		result.spriteid += "-";
 		result.spriteid += toIdForForme(result.name, pokemon.forme);
@@ -108,11 +88,9 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _)
 
 	// Convert the base stats to PS! format
 	result.baseStats = new Object();
-	for (var b in pokemon.baseStats)
-	{
+	for (var b in pokemon.baseStats) {
 		var identifier = "";
-		switch (b)
-		{
+		switch (b) {
 			case "HP" :
 				identifier = "hp";
 				break;
@@ -148,16 +126,13 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _)
 	var abilitiesCount = 0;
 	var dwAbilitiesCount = 0;
 	for (var a = 0; a < pokemon.abilities.length; ++a)
-		if (pokemon.abilities[a].isDreamWorld)
-		{
+		if (pokemon.abilities[a].isDreamWorld) {
 			if (dwAbilitiesCount === 0)
 				result.abilities["DW"] = pokemon.abilities[a].name;
 			else
 				result.abilities["DW" + dwAbilitiesCount] = pokemon.abilities[a].name;
 			++dwAbilitiesCount;
-		}
-		else
-		{
+		} else {
 			result.abilities[abilitiesCount] = pokemon.abilities[a].name;
 			++abilitiesCount;
 		}
@@ -175,12 +150,10 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _)
 	return result;
 }
 
-function outputPokemon(pokemon)
-{
+function outputPokemon(pokemon, isNotNeedFinalNewline) {
 	// Work out the formeletter
 	var formeletter = pokemon.forme && !pokemon.isDefaultForme ? pokemon.forme[0] : '';
-	switch (pokemon.id)
-	{
+	switch (pokemon.id) {
 		case "rotommow" :
 			formeletter = 'C';
 			break;
@@ -211,8 +184,7 @@ function outputPokemon(pokemon)
 	var nfe = pokemon.evos.length > 0;
 
 	// Start outputting!
-	writeLine(pokemon.id + ":");
-	writeLine("{", 1);
+	writeLine(pokemon.id + ": {", 1);
 
 	writeLine("num: " + JSON.stringify(pokemon.num) + ",");
 	writeLine("name: " + JSON.stringify(pokemon.name) + ",");
@@ -227,16 +199,14 @@ function outputPokemon(pokemon)
 	writeLine("genderRatio: " + JSON.stringify(pokemon.genderRatio) + ",");
 	writeLine("gender: " + JSON.stringify(gender) + ",");
 
-	writeLine("baseStats:");
-	writeLine("{", 1);
+	writeLine("baseStats: {", 1);
 	for (var b in pokemon.baseStats)
-		writeLine(b + ": " + JSON.stringify(pokemon.baseStats[b]) + ",");
+		writeLine(b + ": " + JSON.stringify(pokemon.baseStats[b]) + (ObjectIsLastKey(pokemon.baseStats, b) ? "" : ","));
 	writeLine("},", -1);
 
-	writeLine("abilities:");
-	writeLine("{", 1);
+	writeLine("abilities: {", 1);
 	for (var a in pokemon.abilities)
-		writeLine(a + ": " + JSON.stringify(pokemon.abilities[a]) + ",");
+		writeLine(a + ": " + JSON.stringify(pokemon.abilities[a]) + (ObjectIsLastKey(pokemon.abilities, a) ? "" : ","));
 	writeLine("},", -1);
 
 	writeLine("heightm: " + JSON.stringify(pokemon.heightm) + ",");
@@ -248,34 +218,9 @@ function outputPokemon(pokemon)
 	writeLine("prevo: " + JSON.stringify(pokemon.prevo) + ",");
 	writeLine("evos: " + JSON.stringify(pokemon.evos) + ",");
 	writeLine("otherFormes: " + JSON.stringify(pokemon.otherFormes) + ",");
-	writeLine("isDefaultForme: " + JSON.stringify(pokemon.isDefaultForme) + ",");
-	//writeLine("isBattleOnlyForme: " + JSON.stringify(pokemon.isBattleOnlyForme) + ",");
+	writeLine("isDefaultForme: " + JSON.stringify(pokemon.isDefaultForme));
 
-	writeLine("},", -1);
-}
-
-function toId(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, ""); }
-
-var currentIndentLevel = 0;
-function writeLine(line, indent)
-{
-	if (!indent || typeof indent !== "number")
-		indent = 0;
-
-	var nextIndentLevel = currentIndentLevel + indent;
-	if (nextIndentLevel < 0)
-		nextIndentLevel = 0;
-
-	if (indent < 0)
-		for (var indentLevel = nextIndentLevel; indentLevel > 0; --indentLevel)
-			process.stdout.write("\t");
-	else
-		for (; currentIndentLevel > 0; --currentIndentLevel)
-			process.stdout.write("\t");
-
-	process.stdout.write(line);
-	process.stdout.write("\n");
-	currentIndentLevel = nextIndentLevel;
+	writeLine("}" + (isNotNeedFinalNewline ? "" : ","), -1);
 }
 
 main(process.argv);
