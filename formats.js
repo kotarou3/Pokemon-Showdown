@@ -87,16 +87,6 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Standard', 'Team Preview'],
 		banlist: ['Uber','OU','BL','UU','BL2','RU','BL3', 'Snow Warning','Drought', 'Shell Smash + Baton Pass']
 	},
-	lc: {
-		effectType: 'Format',
-		name: "LC",
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Standard', 'Team Preview', 'Little Cup'],
-		banlist: ['Sonicboom', 'Dragon Rage', 'Berry Juice', 'Carvanha', 'Meditite', 'Gligar', 'Scyther', 'Sneasel', 'Tangela', 'Vulpix', 'Yanma']
-	},
 	lcubers: {
 		effectType: 'Format',
 		name: "LC Ubers",
@@ -297,22 +287,6 @@ exports.BattleFormats = {
 			this.callback('team-preview');
 		}
 	},
-	littlecup: {
-		effectType: 'Rule',
-		validateSet: function(set) {
-			var template = this.getTemplate(set.species || set.name)
-
-			if (template.prevo) {
-				return [set.species+" isn't the first in its evolution family."];
-			}
-			if (!template.nfe) {
-				return [set.species+" doesn't have an evolution family."];
-			}
-			if (!set.level || set.level > 5) {
-				set.level = 5;
-			}
-		}
-	},
 	haxclause: {
 		effectType: 'Rule',
 		onStart: function() {
@@ -374,7 +348,7 @@ exports.BattleFormats = {
 			this.add('rule', 'Freeze Clause');
 		}
 	},
-    LCUbersBans: {
+    lcubersbans: {
         effectType: 'Banlist',
         banlist: [
             // Items
@@ -395,7 +369,7 @@ exports.BattleFormats = {
             return problems;
         }
     },
-    LCBans: {
+    lcbans: {
         effectType: 'Banlist',
         banlist: [
             'Carvanha',
