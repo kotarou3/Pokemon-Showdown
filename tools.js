@@ -60,6 +60,7 @@ function BattleTools() {
 				template.isNonstandard = BattleFormatsData[id].isNonstandard;
 				template.viable = BattleFormatsData[id].viable;
 				template.viablemoves = BattleFormatsData[id].viablemoves;
+				template.eventPokemon = BattleFormatsData[id].eventPokemon;
 			}
 			if (BattleLearnsets[id]) {
 				template.learnset = BattleLearnsets[id].learnset;
@@ -209,28 +210,7 @@ function BattleTools() {
 	};
 
 
-	this.checkLearnset = function(move, template) {
-		if (move.id) move = move.id;
-		do {
-			if (!template.learnset || template.learnset[move]) {
-				return true;
-			}
-			if (template.learnset['Sketch']) {
-				var lset = template.learnset['Sketch'];
-				if (typeof lset === 'string') lset = [lset];
-				for (var i=0; i<lset.length; i++) if (lset[i].substr(1) !== 'E') return true;
-				return 1;
-			}
-			if (template.species === 'Deoxys-S' || template.species === 'Deoxys-A' || template.species === 'Deoxys-D') {
-				template = selfT.getTemplate('Deoxys');
-			} else if (template.species.substr(0,7) === 'Arceus-') {
-				template = selfT.getTemplate('Arceus');
-			} else {
-				template = selfT.getTemplate(template.prevo);
-			}
-		} while (template && template.species);
-		return false;
-	};
+	this.validateMoveset = require("./moveset-checker.js").check;
 	this.getBanlistTable = function(format, subformat, depth) {
 		var banlistTable;
 		if (!depth) depth = 0;
@@ -364,7 +344,6 @@ function BattleTools() {
 		set.species = set.species || set.name || 'Bulbasaur';
 		set.name = set.name || set.species;
 		var template = selfT.getTemplate(set.species);
-		var source = '';
 
 		var setHas = {};
 
@@ -381,47 +360,16 @@ function BattleTools() {
 		}
 		setHas[toId(set.ability)] = true;
 		if (banlistTable[toId(set.ability)]) {
-			problems.push(set.name+"'s ability "+set.ability+" is banned.");
+			problems.push(set.name+"'s ("+set.species+") ability "+set.ability+" is banned.");
 		}
 		setHas[toId(set.item)] = true;
 		if (banlistTable[toId(set.item)]) {
-			problems.push(set.name+"'s item "+set.item+" is banned.");
+			problems.push(set.name+"'s ("+set.species+") item "+set.item+" is banned.");
 		}
 		if (banlistTable['Unreleased'] && setHas['souldew']) {
-			problems.push(set.name+"'s item "+set.item+" is unreleased.");
+			problems.push(set.name+"'s ("+set.species+") item "+set.item+" is unreleased.");
 		}
 		setHas[toId(set.ability)] = true;
-		if (banlistTable['Rule:standard']) {
-			var totalEV = 0;
-			for (var k in set.evs) {
-				totalEV += set.evs[k];
-			}
-			if (totalEV > 510) {
-				problems.push(set.name+" has more than 510 total EVs.");
-			}
-
-			var ability = selfT.getAbility(set.ability).name;
-			if (ability !== template.abilities['0'] &&
-				ability !== template.abilities['1'] &&
-				ability !== template.abilities['DW']) {
-				problems.push(set.name+" ("+set.species+") can't have "+set.ability+".");
-			}
-			if (ability === template.abilities['DW']) {
-				source = 'DW';
-
-				unreleasedDW = {
-					Serperior: 1, Chandelure: 1, Ditto: 1,
-					Breloom: 1, Zapdos: 1, Feraligatr: 1, Gothitelle: 1,
-					'Ho-Oh': 1, Lugia: 1, Raikou: 1, Cinccino: 1
-				};
-
-				if (unreleasedDW[set.species] && banlistTable['Unreleased']) {
-					problems.push(set.name+" ("+set.species+")'s Dream World ability is unreleased.");
-				} else if (template.num >= 494 && set.species !== 'Darmanitan' && set.species !== 'Munna') {
-					problems.push(set.name+" ("+set.species+")'s Dream World ability is unreleased.");
-				}
-			}
-		}
 		var limit1 = 0;
 		if (!set.moves || !set.moves.length) {
 			problems.push(set.name+" has no moves.");
@@ -439,27 +387,15 @@ function BattleTools() {
 				var move = selfT.getMove(set.moves[i]);
 				setHas[move.id] = true;
 				if (banlistTable[move.id]) {
-					problems.push(set.name+"'s move "+set.moves[i]+" is banned.");
+					problems.push(set.name+"'s ("+set.species+") move "+set.moves[i]+" is banned.");
 				} else if (move.ohko && banlistTable['OHKO']) {
-					problems.push(set.name+"'s move "+set.moves[i]+" is an OHKO move, which is banned.");
-				}
-
-				if (banlistTable['Rule:standard']) {
-					var lset = selfT.checkLearnset(move, template);
-					if (!lset) {
-						problems.push(set.name+" ("+set.species+") can't learn "+move.name);
-					} else if (lset === 1) {
-						limit1++;
-					}
-					if (limit1 > 1) {
-						problems.push(set.name+" ("+set.species+") can't Sketch "+move.name+" - it's limited to 1 Sketch move");
-					}
+					problems.push(set.name+"'s ("+set.species+") move "+set.moves[i]+" is an OHKO move, which is banned.");
 				}
 			}
 		}
 		setHas[toId(template.tier)] = true;
 		if (banlistTable[template.tier]) {
-			problems.push(set.name+" is in "+template.tier+", which is banned.");
+			problems.push(set.name+" ("+set.species+") is in "+template.tier+", which is banned.");
 		}
 
 		if (teamHas) {
@@ -482,7 +418,7 @@ function BattleTools() {
 				}
 			}
 			if (bannedCombo) {
-				problems.push(set.name+" has the combination of "+bannedCombo+", which is banned.");
+				problems.push(set.name+" ("+set.species+") has the combination of "+bannedCombo+", which is banned.");
 			}
 		}
 
@@ -501,13 +437,6 @@ function BattleTools() {
 		if (!problems.length) return false;
 		return problems;
 	};
-
-	/* for (var i in BattleScripts) {
-		var script = BattleScripts[i];
-		this[i] = function() {
-			return script.apply(selfT, arguments);
-		};
-	} */
 }
 
 exports.BattleTools = BattleTools;

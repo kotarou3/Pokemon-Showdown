@@ -18,7 +18,7 @@ function main(argv, _) {
 	var veekunDatabase = getVeekunDatabase(_);
 	var languageId = veekunDatabase.getLanguageId("en", _); // Don't change the language! Bad things will happen if you do
 	var formeIds = veekunDatabase.getAllFormeIds(_);
-	
+
 	console.warn("Starting to output.");
 	writeLine("exports.BattlePokedex = {", 1);
 	console.warn("Outputting custom pokemon.");
@@ -27,19 +27,21 @@ function main(argv, _) {
 	for (var f = 0; f < formeIds.length; ++f) {
 		var veekunPokemon = veekunDatabase.getFormeData(formeIds[f], languageId, _, {
 				name: true,
-				formes: true,
+				otherFormes: true,
 				pokedexNumbers: true,
 				types: true,
 				baseStats: true,
 				abilities: true,
 				prevo: true,
 				evos: true,
+				eggGroups: true,
 				misc: true
 			});
-		var convertedPokemon = convertVeekunPokemon(veekunPokemon, veekunDatabase, _);
+		var convertedPokemon = convertVeekunPokemon(veekunPokemon);
 		outputPokemon(convertedPokemon, f === formeIds.length - 1);
-		if ((f + 1) % 50 === 0)
+		if ((f + 1) % 50 === 0) {
 			console.warn("Finished outputting " + (f + 1) + "/" + formeIds.length + " pokemon.");
+		}
 	}
 	writeLine("};", -1);
 	console.warn("Finished outputting.");
@@ -48,12 +50,12 @@ function main(argv, _) {
 
 function outputCustomPokemon() {
 	var customPokemon = JSON.parse(require("fs").readFileSync(customPokemonPath).toString());
-	for (var c = 0; c < customPokemon.length; ++c)
+	for (var c = 0; c < customPokemon.length; ++c) {
 		outputPokemon(customPokemon[c]);
+	}
 }
 
-function convertVeekunPokemon(pokemon, veekunDatabase, _) {
-
+function convertVeekunPokemon(pokemon) {
 	var result = new Object();
 
 	// Copy some stuff
@@ -64,6 +66,7 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _) {
 	result.forme = pokemon.forme;
 	result.isDefaultForme = pokemon.isDefaultForme;
 	result.isBattleOnlyForme = pokemon.isBattleOnlyForme;
+	result.eggGroups = pokemon.eggGroups;
 	result.genderRatio = pokemon.genderRatio;
 	result.heightm = pokemon.heightm;
 	result.weightkg = pokemon.masskg;
@@ -72,19 +75,20 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _) {
 	// Create some ids
 	result.id = toIdForName(result.name, pokemon.forme);
 	result.speciesid = result.id;
-	if (result.isDefaultForme)
+	if (result.isDefaultForme) {
 		result.spriteid = result.id;
-	else {
+	} else {
 		result.spriteid = toId(result.name.replace("-" + pokemon.forme, ""));
 		result.spriteid += "-";
 		result.spriteid += toIdForForme(result.name, pokemon.forme);
 	}
-	result.prevo = toId(pokemon.prevo);
+	result.prevo = toIdForName(pokemon.prevo, ""); // The prevo is always in it's normal forme
 
 	// Copy the type, modifing Arceus' types to the PS! style
 	result.types = pokemon.types;
-	if (pokemon.nationalPokedexNumber === 493)
+	if (pokemon.nationalPokedexNumber === 493) {
 		result.types = [pokemon.forme];
+	}
 
 	// Convert the base stats to PS! format
 	result.baseStats = new Object();
@@ -125,27 +129,31 @@ function convertVeekunPokemon(pokemon, veekunDatabase, _) {
 	result.abilities = new Object();
 	var abilitiesCount = 0;
 	var dwAbilitiesCount = 0;
-	for (var a = 0; a < pokemon.abilities.length; ++a)
+	for (var a = 0; a < pokemon.abilities.length; ++a) {
 		if (pokemon.abilities[a].isDreamWorld) {
-			if (dwAbilitiesCount === 0)
+			if (dwAbilitiesCount === 0) {
 				result.abilities["DW"] = pokemon.abilities[a].name;
-			else
+			} else {
 				result.abilities["DW" + dwAbilitiesCount] = pokemon.abilities[a].name;
+			}
 			++dwAbilitiesCount;
 		} else {
 			result.abilities[abilitiesCount] = pokemon.abilities[a].name;
 			++abilitiesCount;
 		}
+	}
 
 	// Convert the evolutions to ids
 	result.evos = new Array();
-	for (var e = 0; e < pokemon.evos.length; ++e)
+	for (var e = 0; e < pokemon.evos.length; ++e) {
 		result.evos.push(toIdForName(pokemon.evos[e].combinedName, pokemon.evos[e].forme));
+	}
 
 	// Convert the other formes to ids
 	result.otherFormes = new Array();
-	for (var f = 0; f < pokemon.otherFormes.length; ++f)
+	for (var f = 0; f < pokemon.otherFormes.length; ++f) {
 		result.otherFormes.push(toIdForName(pokemon.otherFormes[f].combinedName, pokemon.otherFormes[f].forme));
+	}
 
 	return result;
 }
@@ -173,12 +181,13 @@ function outputPokemon(pokemon, isNotNeedFinalNewline) {
 
 	// Work out gender exclusiveness
 	var gender = 'N';
-	if (pokemon.genderRatio.m > 0 && pokemon.genderRatio.f > 0)
+	if (pokemon.genderRatio.m > 0 && pokemon.genderRatio.f > 0) {
 		gender = '';
-	else if (pokemon.genderRatio.m > 0)
+	} else if (pokemon.genderRatio.m > 0) {
 		gender = 'M';
-	else if (pokemon.genderRatio.f > 0)
+	} else if (pokemon.genderRatio.f > 0) {
 		gender = 'F';
+	}
 
 	// Deduce NFE'ness
 	var nfe = pokemon.evos.length > 0;
@@ -200,13 +209,15 @@ function outputPokemon(pokemon, isNotNeedFinalNewline) {
 	writeLine("gender: " + JSON.stringify(gender) + ",");
 
 	writeLine("baseStats: {", 1);
-	for (var b in pokemon.baseStats)
+	for (var b in pokemon.baseStats) {
 		writeLine(b + ": " + JSON.stringify(pokemon.baseStats[b]) + (ObjectIsLastKey(pokemon.baseStats, b) ? "" : ","));
+	}
 	writeLine("},", -1);
 
 	writeLine("abilities: {", 1);
-	for (var a in pokemon.abilities)
+	for (var a in pokemon.abilities) {
 		writeLine(a + ": " + JSON.stringify(pokemon.abilities[a]) + (ObjectIsLastKey(pokemon.abilities, a) ? "" : ","));
+	}
 	writeLine("},", -1);
 
 	writeLine("heightm: " + JSON.stringify(pokemon.heightm) + ",");
@@ -217,6 +228,7 @@ function outputPokemon(pokemon, isNotNeedFinalNewline) {
 	writeLine("nfe: " + JSON.stringify(nfe) + ",");
 	writeLine("prevo: " + JSON.stringify(pokemon.prevo) + ",");
 	writeLine("evos: " + JSON.stringify(pokemon.evos) + ",");
+	writeLine("eggGroups: " + JSON.stringify(pokemon.eggGroups) + ",");
 	writeLine("otherFormes: " + JSON.stringify(pokemon.otherFormes) + ",");
 	writeLine("isDefaultForme: " + JSON.stringify(pokemon.isDefaultForme));
 
