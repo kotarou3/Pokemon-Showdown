@@ -56,8 +56,8 @@ var server = require('http').createServer(function(request) {
 							  .replace(/{shortMessage}/g, payload.commits[c].message.split('\n')[0]);
 
 			// Fix up the long description for merges
-			var messageLines = payload.commits[c].message.split('\n');
-			if (messageLines[0].substr(0, 5) === "Merge") {
+			var messageLines = payload.commits[c].message.replace(/\n+/g, '\n').split('\n');
+			if (messageLines[0].substr(0, 5) === "Merge" && messageLines[1]) {
 				messageLines[0] += ":";
 			}
 			message = message.replace(/{message}/g, messageLines.join(' '));
