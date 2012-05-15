@@ -61,6 +61,8 @@ function BattleTools() {
 				template.viable = BattleFormatsData[id].viable;
 				template.viablemoves = BattleFormatsData[id].viablemoves;
 				template.eventPokemon = BattleFormatsData[id].eventPokemon;
+			} else {
+				template.tier = 'Illegal';
 			}
 			if (BattleLearnsets[id]) {
 				template.learnset = BattleLearnsets[id].learnset;
@@ -209,7 +211,6 @@ function BattleTools() {
 		return type;
 	};
 
-
 	this.validateMoveset = require("./moveset-checker.js").check;
 	this.getBanlistTable = function(format, subformat, depth) {
 		var banlistTable;
@@ -335,10 +336,10 @@ function BattleTools() {
 			return ["This is not a pokemon."];
 		}
 
-		set.species = (''+set.species).trim();
-		set.name = (''+set.name).trim();
-		set.item = ''+set.item;
-		set.ability = ''+set.ability;
+		set.species = (''+(set.species||'')).trim();
+		set.name = (''+(set.name||'')).trim();
+		set.item = ''+(set.item||'');
+		set.ability = ''+(set.ability||'');
 		if (!Array.isArray(set.moves)) set.moves = [];
 
 		set.species = set.species || set.name || 'Bulbasaur';
@@ -366,6 +367,27 @@ function BattleTools() {
 		if (banlistTable[toId(set.item)]) {
 			problems.push(set.name+"'s ("+set.species+") item "+set.item+" is banned.");
 		}
+		var item = selfT.getItem(set.item);
+		if (banlistTable['Unreleased'] && item.isUnreleased) {
+			problems.push(set.name+"'s ("+set.species+") item "+set.item+" is unreleased.");
+		}
+		if (toId(set.ability) === toId(template.abilities['DW'])) {
+			var unreleasedDW = {
+					Serperior: 1, Chandelure: 1, Ditto: 1,
+					Breloom: 1, Zapdos: 1, Feraligatr: 1, Gothitelle: 1,
+					'Ho-Oh': 1, Lugia: 1, Raikou: 1, Cinccino: 1
+				};
+
+			if (unreleasedDW[set.species] && banlistTable['Unreleased']) {
+				problems.push(set.name+" ("+set.species+")'s Dream World ability is unreleased.");
+			} else if (template.num >= 494 && set.species !== 'Darmanitan' && set.species !== 'Munna') {
+				problems.push(set.name+" ("+set.species+")'s Dream World ability is unreleased.");
+			}
+		}
+		setHas[toId(set.item)] = true;
+		if (banlistTable[toId(set.item)]) {
+			problems.push(set.name+"'s ("+set.species+") item "+set.item+" is banned.");
+		}
 		if (banlistTable['Unreleased'] && setHas['souldew']) {
 			problems.push(set.name+"'s ("+set.species+") item "+set.item+" is unreleased.");
 		}
@@ -383,7 +405,7 @@ function BattleTools() {
 
 			for (var i=0; i<set.moves.length; i++) {
 				if (!set.moves[i]) continue;
-				set.moves[i] = ''+set.moves[i];
+				set.moves[i] = ''+(set.moves[i]||'');
 				var move = selfT.getMove(set.moves[i]);
 				setHas[move.id] = true;
 				if (banlistTable[move.id]) {
