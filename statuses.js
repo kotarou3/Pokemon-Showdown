@@ -136,6 +136,7 @@ exports.BattleStatuses = {
 	},
 	flinch: {
 		duration: 1,
+		onBeforeMovePriority: 1,
 		onBeforeMove: function(pokemon) {
 			if (!this.runEvent('Flinch', pokemon)) {
 				return;
@@ -263,7 +264,7 @@ exports.BattleStatuses = {
 				var target = side.foe.active[posData.targetPosition];
 				var move = this.getMove(posData.move);
 				if (target.fainted) {
-					this.add('hint', ''+move.name+' did not hit because the target is fainted.');
+					this.add('-hint', ''+move.name+' did not hit because the target is fainted.');
 					this.effectData.positions[i] = null;
 					continue;
 				}

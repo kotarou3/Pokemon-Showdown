@@ -115,7 +115,7 @@ exports.BattleFormats = {
 		searchShow: true,
 		isTeambuilderFormat: true,
 		ruleset: ['Pokemon'],
-		banlist: ['OHKO', 'Wonder Guard']
+		banlist: ['OHKO', 'Wonder Guard', 'Pure Power', 'Huge Power']
 	},
 	haxmons: {
 		effectType: 'Format',
@@ -155,6 +155,15 @@ exports.BattleFormats = {
 			}
 			set.moves = moves;
 
+			// Check for unreleased pokemon
+			switch (template.num) {
+				case 647: // Keldeo
+				case 648: // Meloetta
+				case 649: // Genesect
+					problems.push(set.name+" ("+set.species+") is unreleased.");
+					break;
+			}
+
 			// Check for more than 510 total EVs
 			var totalEV = 0;
 			for (var k in set.evs) totalEV += set.evs[k];
@@ -169,20 +178,8 @@ exports.BattleFormats = {
 				ability !== template.abilities['DW']) {
 				problems.push(set.name+" ("+set.species+") can't have "+set.ability+".");
 			}
-			if (ability === template.abilities['DW']) {
-				var unreleasedDW = {
-						Serperior: 1, Chandelure: 1, Ditto: 1,
-						Breloom: 1, Zapdos: 1, Feraligatr: 1, Gothitelle: 1,
-						'Ho-Oh': 1, Lugia: 1, Raikou: 1, Cinccino: 1
-					};
 
-				if (unreleasedDW[set.species] && banlistTable['Unreleased']) {
-					problems.push(set.name+" ("+set.species+")'s Dream World ability is unreleased.");
-				} else if (template.num >= 494 && set.species !== 'Darmanitan' && set.species !== 'Munna') {
-					problems.push(set.name+" ("+set.species+")'s Dream World ability is unreleased.");
-				}
-			}
-
+			// Check the pokemon's moveset
 			problems = problems.concat(Tools.validateMoveset(set, template));
 
 			return problems;
@@ -204,8 +201,8 @@ exports.BattleFormats = {
 				}
 			}
 			if (template.num == 487) { // Giratina
-				if (item.id === 'GriseousOrb') {
-					set.species = 'Giratina-O';
+				if (item.id === 'griseousorb') {
+					set.species = 'Giratina-Origin';
 				} else {
 					set.species = 'Giratina';
 				}
