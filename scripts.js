@@ -51,7 +51,7 @@ exports.BattleScripts = {
 			}
 		}
 		pokemon.lastDamage = 0;
-		pokemon.deductPP(move);
+		pokemon.deductPP(move, 1, target);
 		this.useMove(move, pokemon, target);
 		this.runEvent('AfterMove', target, pokemon, move);
 		this.runEvent('AfterMoveSelf', pokemon, target, move);
@@ -248,6 +248,8 @@ exports.BattleScripts = {
 				if (!this.runEvent('TryFieldHit', target, pokemon, move)) {
 					return false;
 				}
+			} else if (isSecondary && !moveData.self) {
+				hitResult = this.runEvent('TrySecondaryHit', target, pokemon, moveData);
 			}
 
 			if (hitResult === 0) {
@@ -359,8 +361,8 @@ exports.BattleScripts = {
 				this.dragIn(target.side);
 			}
 		}
-		if (move.selfSwitch || move.batonPass) {
-			pokemon.switchFlag = true;
+		if (move.selfSwitch) {
+			pokemon.switchFlag = move.selfSwitch;
 		}
 		return damage;
 	},
@@ -660,11 +662,6 @@ exports.BattleScripts = {
 						rejected = true;
 					}
 
-					var todoMoves = {
-						beatup:1
-					};
-					if (todoMoves[move.id]) rejected = true;
-
 					if (rejected && j<moveKeys.length) {
 						moves.splice(k,1);
 						break;
@@ -800,6 +797,16 @@ exports.BattleScripts = {
 					item = 'Flame Orb';
 				} else if (ability === 'Sheer Force' || ability === 'Magic Guard') {
 					item = 'Life Orb';
+				} else if (ability === 'Unburden' && (counter['Physical'] || counter['Special'])) {
+					// Give Unburden mons a random Gem of the type of one of their damaging moves
+					var shuffledMoves = shuffle(moves);
+					for (var m in shuffledMoves) {
+						var move = this.getMove(shuffledMoves[m]);
+						if (move.basePower || move.basePowerCallback) {
+							item = move.type + ' Gem';
+							break;
+						}
+					}
 				} else if (hasMove['trick'] || hasMove['switcheroo']) {
 					item = 'Choice Scarf';
 				} else if (ability === 'Guts') {
@@ -887,6 +894,7 @@ exports.BattleScripts = {
 			var levelScale = {
 				NFE: 95,
 				NU: 90,
+				BL3: 88,
 				RU: 85,
 				BL2: 83,
 				UU: 80,
@@ -911,7 +919,6 @@ exports.BattleScripts = {
 
 			if (template.name === 'Chandelure' && ability === 'Shadow Tag') level = 70;
 			if (template.name === 'Serperior' && ability === 'Contrary') level = 75;
-			if (template.name === 'Rotom-Fan' && item === 'Air Balloon') level = 95;
 			if (template.name === 'Magikarp' && hasMove['magikarpsrevenge']) level = 85;
 
 			pokemon.push({

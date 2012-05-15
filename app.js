@@ -1134,6 +1134,8 @@ mutedIps = {
 };
 bannedIps = {
 };
+nameLockedIps = {
+};
 
 function resolveUser(you, socket) {
 	if (!you) {
@@ -1192,7 +1194,8 @@ io.sockets.on('connection', function (socket) {
 		var youUser = resolveUser(you, socket);
 		if (!youUser) return;
 		if (!message) return;
-		getRoom(message.room).chat(youUser, message.message, socket);
+		var room = getRoom(message.room);
+		room.chat(youUser, message.message, socket);
 	});
 	socket.on('leave', function(data) {
 		if (typeof data.room !== 'string') return;
@@ -1206,13 +1209,15 @@ io.sockets.on('connection', function (socket) {
 		var youUser = resolveUser(you, socket);
 		if (!youUser) return;
 		if (!data) return;
-		getRoom(data.room).leaveBattle(youUser);
+		var room = getRoom(data.room);
+		if (room.leaveBattle) room.leaveBattle(youUser);
 	});
 	socket.on('joinBattle', function(data) {
 		if (typeof data.room !== 'string') return;
 		var youUser = resolveUser(you, socket);
 		if (!youUser) return;
-		getRoom(data.room).joinBattle(youUser);
+		var room = getRoom(data.room);
+		if (room.joinBattle) room.joinBattle(youUser);
 	});
 
 	socket.on('command', function(data) {
