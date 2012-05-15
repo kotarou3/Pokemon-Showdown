@@ -58,6 +58,8 @@ function BattleTools() {
 			if (BattleTiers[id]) {
 				template.tier = BattleTiers[id].tier;
 				template.isNonstandard = BattleTiers[id].isNonstandard;
+			} else {
+				template.tier = 'Illegal';
 			}
 			if (BattleLearnsets[id]) {
 				template.learnset = BattleLearnsets[id].learnset;
@@ -207,22 +209,23 @@ function BattleTools() {
 	};
 
 
-	this.checkLearnset = function(move, template) {
+	this.checkLearnset = function(move, template, lsetData) {
+		lsetData = lsetData || {};
 		if (move.id) move = move.id;
 		do {
-			if (!template.learnset || template.learnset[move]) {
-				return true;
+			if (template.learnset) {
+				if (template.learnset[move]) {
+					return true;
+				}
+				if (template.learnset['sketch']) {
+					var lset = template.learnset['sketch'];
+					if (typeof lset === 'string') lset = [lset];
+					for (var i=0; i<lset.length; i++) if (lset[i].substr(1) !== 'E') return true;
+					return 1;
+				}
 			}
-			if (template.learnset['sketch']) {
-				var lset = template.learnset['sketch'];
-				if (typeof lset === 'string') lset = [lset];
-				for (var i=0; i<lset.length; i++) if (lset[i].substr(1) !== 'E') return true;
-				return 1;
-			}
-			if (template.species === 'Deoxys-Speed' || template.species === 'Deoxys-Attack' || template.species === 'Deoxys-Defense') {
-				template = selfT.getTemplate('Deoxys');
-			} else if (template.species.substr(0,7) === 'Arceus-') {
-				template = selfT.getTemplate('Arceus');
+			if (template.basespecies !== template.species) {
+				template = selfT.getTemplate(template.basespecies);
 			} else {
 				template = selfT.getTemplate(template.prevo);
 			}
@@ -353,10 +356,10 @@ function BattleTools() {
 			return ["This is not a pokemon."];
 		}
 
-		set.species = (''+set.species).trim();
-		set.name = (''+set.name).trim();
-		set.item = ''+set.item;
-		set.ability = ''+set.ability;
+		set.species = (''+(set.species||'')).trim();
+		set.name = (''+(set.name||'')).trim();
+		set.item = ''+(set.item||'');
+		set.ability = ''+(set.ability||'');
 		if (!Array.isArray(set.moves)) set.moves = [];
 
 		set.species = set.species || set.name || 'Bulbasaur';
@@ -385,7 +388,8 @@ function BattleTools() {
 		if (banlistTable[toId(set.item)]) {
 			problems.push(set.name+"'s item "+set.item+" is banned.");
 		}
-		if (banlistTable['Unreleased'] && setHas['souldew']) {
+		var item = selfT.getItem(set.item);
+		if (banlistTable['Unreleased'] && item.isUnreleased) {
 			problems.push(set.name+"'s item "+set.item+" is unreleased.");
 		}
 		setHas[toId(set.ability)] = true;
@@ -433,7 +437,7 @@ function BattleTools() {
 
 			for (var i=0; i<set.moves.length; i++) {
 				if (!set.moves[i]) continue;
-				set.moves[i] = ''+set.moves[i];
+				set.moves[i] = ''+(set.moves[i]||'');
 				var move = selfT.getMove(set.moves[i]);
 				setHas[move.id] = true;
 				if (banlistTable[move.id]) {

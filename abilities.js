@@ -1698,11 +1698,9 @@ exports.BattleAbilities = {
 	},
 	"shielddust": {
 		desc: "If the opponent uses a move that has secondary effects that affect this Pokemon in addition to damage, the move's secondary effects will not trigger. (For example, an Ice Beam will lose its 10% chance to freeze this Pokemon.)",
-		onSourceModifyMove: function(move) {
-			if (move.secondaries) {
-				this.debug('Shield Dust remove secondary');
-				delete move.secondaries;
-			}
+		onTrySecondaryHit: function() {
+			this.debug('Shield Dust prevent secondary');
+			return null;
 		},
 		id: "shielddust",
 		name: "Shield Dust",
@@ -1884,6 +1882,19 @@ exports.BattleAbilities = {
 	},
 	"stench": {
 		desc: "Damaging moves have a 10% chance to flinch.",
+		onModifyMove: function(move) {
+			if (move.category !== "Status") {
+				this.debug('Adding Stench flinch');
+				if (!move.secondaries) move.secondaries = [];
+				for (var i=0; i<move.secondaries.length; i++) {
+					if (move.secondaries[i].volatileStatus === 'flinch') return;
+				}
+				move.secondaries.push({
+					chance: 10,
+					volatileStatus: 'flinch'
+				});
+			}
+		},
 		id: "stench",
 		name: "Stench",
 		rating: 0,
@@ -2326,12 +2337,32 @@ exports.BattleAbilities = {
 			if (pokemon.baseTemplate.species !== 'Darmanitan') {
 				return;
 			}
-			if (pokemon.hp <= pokemon.maxhp/2 && pokemon.template.speciesid==='darmanitan' && pokemon.transformInto('Darmanitan-Zen')) {
-				this.add('-formechange', pokemon, 'Darmanitan-Zen');
-			} else if (pokemon.hp > pokemon.maxhp/2 && pokemon.template.speciesid==='darmanitanzen' && pokemon.transformInto('Darmanitan')) {
-				this.add('-formechange', pokemon, 'Darmanitan');
+			if (pokemon.hp <= pokemon.maxhp/2 && pokemon.template.speciesid==='darmanitan'){
+				pokemon.addVolatile('zenmode');
+			} else if (pokemon.hp > pokemon.maxhp/2 && pokemon.template.speciesid==='darmanitanzen') {
+				pokemon.removeVolatile('zenmode');
 			}
-			// renderer takes care of this for us
+		},
+		effect: {
+			onStart: function(pokemon) {
+				if (pokemon.transformInto('Darmanitan-Zen')) {
+					this.add('-formechange', pokemon, 'Darmanitan-Zen');
+				} else {
+					return false;
+				}
+			},
+			onEnd: function(pokemon) {
+				if (pokemon.transformInto('Darmanitan')) {
+					this.add('-formechange', pokemon, 'Darmanitan');
+				} else {
+					return false;
+				}
+			},
+			onUpdate: function(pokemon) {
+				if (pokemon.ability !== 'zenmode') {
+					pokemon.removeVolatile('zenmode');
+				}
+			}
 		},
 		id: "zenmode",
 		name: "Zen Mode",

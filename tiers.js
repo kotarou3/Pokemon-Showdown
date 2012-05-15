@@ -840,7 +840,7 @@ exports.BattleTiers = {
 		tier: "NU"
 	},
 	"jynx": {
-		tier: "NU"
+		tier: "BL3"
 	},
 	"kabuto": {
 		tier: "NU"
@@ -1097,7 +1097,7 @@ exports.BattleTiers = {
 	"meloetta": {
 		tier: "Unreleased"
 	},
-	"meloettas": {
+	"meloettapirouette": {
 		tier: "Illegal"
 	},
 	"meowth": {

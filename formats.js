@@ -115,7 +115,7 @@ exports.BattleFormats = {
 		searchShow: true,
 		isTeambuilderFormat: true,
 		ruleset: ['Pokemon'],
-		banlist: ['OHKO', 'Wonder Guard']
+		banlist: ['OHKO', 'Wonder Guard', 'Pure Power', 'Huge Power']
 	},
 	haxmons: {
 		effectType: 'Format',
@@ -168,8 +168,8 @@ exports.BattleFormats = {
 				}
 			}
 			if (template.num == 487) { // Giratina
-				if (item.id === 'GriseousOrb') {
-					set.species = 'Giratina-O';
+				if (item.id === 'griseousorb') {
+					set.species = 'Giratina-Origin';
 				} else {
 					set.species = 'Giratina';
 				}
