@@ -267,7 +267,7 @@ var User = (function () {
 		for (var i in this.roomCount) {
 			getRoom(i).rename(this, oldid, joining);
 		}
-		ChanServ.act(selfP);
+		ChanServ.act(this);
 		rooms.lobby.usersChanged = true;
 		return true;
 	};
