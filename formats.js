@@ -122,6 +122,17 @@ exports.BattleFormats = {
 		name: "Haxmons",
 		ruleset: ['Hax Clause', 'Team Preview']
 	},
+	glitchmons: {
+		effectType: 'Format',
+		name: "Glitchmons",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Team Preview'],
+		banlist: ['Illegal', 'Unreleased'],
+		mimicGlitch: true
+	},
 	debugmode: {
 		effectType: 'Format',
 		name: "Debug Mode",
@@ -135,7 +146,7 @@ exports.BattleFormats = {
 
 	standard: {
 		effectType: 'Banlist',
-		banlist: ['Unreleased', 'Illegal', 'OHKO', 'Moody', 'BrightPowder', 'LaxIncense', 'Minimize', 'DoubleTeam', 'Legal'],
+		banlist: ['Unreleased', 'Illegal', 'OHKO', 'Moody', 'BrightPowder', 'Lax Incense', 'Minimize', 'Double Team'],
 		validateSet: function(set) {
 			// limit one of each move in Standard
 			var moves = [];
