@@ -97,14 +97,24 @@ exports.BattleFormats = {
 		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Standard', 'Team Preview'],
 		banlist: ['Uber','OU','BL','UU','BL2','RU','BL3', 'Snow Warning', 'Drought', 'Sand Stream', 'Shell Smash + Baton Pass', 'Soul Dew']
 	},
-	lc: {
+	lcubers: {
 		effectType: 'Format',
-		name: "LC",
-		rated: true,
+		name: "LC Ubers",
+		ranked: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Standard', 'Team Preview', 'Little Cup'],
+		ruleset: ['Pokemon', 'SleepClause', 'Species Clause', 'Standard', 'Team Preview', 'Little Cup'],
+		banlist: []
+	},
+	lc: {
+		effectType: 'Format',
+		name: "LC",
+		ranked: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'SleepClause', 'Species Clause', 'Standard', 'Team Preview', 'Little Cup'],
 		banlist: ['Sonicboom', 'Dragon Rage', 'Berry Juice', 'Carvanha', 'Meditite', 'Gligar', 'Scyther', 'Sneasel', 'Tangela', 'Vulpix', 'Yanma', 'Soul Dew']
 	},
 	dwubers: {
@@ -358,22 +368,6 @@ exports.BattleFormats = {
 			this.callback('team-preview');
 		}
 	},
-	littlecup: {
-		effectType: 'Rule',
-		validateSet: function(set) {
-			var template = this.getTemplate(set.species || set.name)
-
-			if (template.prevo) {
-				return [set.species+" isn't the first in its evolution family."];
-			}
-			if (!template.nfe) {
-				return [set.species+" doesn't have an evolution family."];
-			}
-			if (!set.level || set.level > 5) {
-				set.level = 5;
-			}
-		}
-	},
 	haxclause: {
 		effectType: 'Rule',
 		onStart: function() {
@@ -436,5 +430,22 @@ exports.BattleFormats = {
 		onStart: function() {
 			this.add('rule', 'Freeze Clause');
 		}
-	}
+	},
+    littlecup: {
+        effectType: 'Rule',
+        validateSet: function(set) {
+            var pokemon = this.getTemplate(set.species);
+            var problems = [];
+
+            if (pokemon.prevo !== "")
+                problems.push(set.species + " is not the lowest evolution.");
+            if (!pokemon.nfe)
+                problems.push(set.species + " is unable to evolve.");
+
+            if (set.level !== 5)
+                problems.push(set.species + " is not level 5.");
+
+            return problems;
+        }
+    }
 };
