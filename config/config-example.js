@@ -28,7 +28,7 @@ exports.crashguard = true;
 
 // local sysop - automatically promote users who connect from
 //   127.0.0.1 to the highest ranking group (Usually &, or sysop)
-exports.localsysop = false;
+exports.localsysop = true;
 
 // report joins and leaves - shows messages like "<USERNAME> joined"
 //   Join and leave messages are small and consolidated, so there will never
@@ -46,10 +46,6 @@ exports.reportbattles = true;
 //   This should only be enabled temporarily, when you're dealing with
 //   huge influxes of spammy users.
 exports.modchat = false;
-
-// protocol - WebSockets ("ws") or Socket.IO ("io").
-//	We recommend using WebSockets unless you have a really compelling reason not to.
-exports.protocol = 'ws';
 
 // permissions and groups:
 //   Each entry in `groupsranking' specifies the ranking of the groups.
@@ -89,17 +85,22 @@ exports.protocol = 'ws';
 //     - potd: Set PotD.
 //     - forcewin: /forcewin command.
 //     - battlemessage: /a command.
-exports.groupsranking = [' ', '+', '%', '@', '&'];
+//     - modtournament: Create, run and delete tournaments.
+exports.groupsranking = [' ', '\u85', '\uc', '\t', '\n', '\r'];
 exports.groups = {
-	'&': {
+	'\r': {
+		name: "Muted",
+		root: true
+	},
+	'\n': {
 		id: "sysop",
 		name: "System Operator",
 		root: true
 	},
-	'@': {
+	'\t': {
 		id: "admin",
 		name: "Admin",
-		inherit: '%',
+		inherit: '\uc',
 		jurisdiction: '@u',
 		promote: 'u',
 		forcewin: true,
@@ -110,10 +111,10 @@ exports.groups = {
 		announce: true,
 		modchat: true
 	},
-	'%': {
+	'\uc': {
 		id: "mod",
 		name: "Moderator",
-		inherit: '+',
+		inherit: '\u85',
 		jurisdiction: 'su',
 		ban: 'u',
 		mute: 'u',
@@ -121,15 +122,20 @@ exports.groups = {
 		forcerename: 'u',
 		redirect: true
 	},
-	'+': {
+	'\u85': {
 		id: "voice",
 		name: "Voiced",
 		inherit: ' ',
-		broadcast: true
+		broadcast: true,
+		modtournament: true
 	},
 	' ': {
 		jurisdiction: 's',
 		ip: true,
 		alts: true
-	}
+	},
+	'\uao': {
+		id: "failop",
+		name: "Failop"
+	},
 };

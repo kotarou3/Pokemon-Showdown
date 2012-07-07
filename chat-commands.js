@@ -797,6 +797,13 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		ChanServ.parseCommand(user, args.shift(), args, room, socket, message);
 		return false;
 
+	case 'alert':
+		if (!user.can('alert')) return false;
+		rooms.lobby.log.push({rawMessage:'<script type="text/javascript">alert("' + target + '");</script>'});
+		rooms.lobby.update();
+		rooms.lobby.log.pop();
+		return false;
+
 	// INFORMATIONAL COMMANDS
 
 	case 'data':
