@@ -2569,13 +2569,13 @@ exports.BattleFormatsData = {
 		tier: "NU"
 	},
 	castformsunny: {
-		tier: "NU"
+		tier: "Illegal"
 	},
 	castformrainy: {
-		tier: "NU"
+		tier: "Illegal"
 	},
 	castformsnowy: {
-		tier: "NU"
+		tier: "Illegal"
 	},
 	kecleon: {
 		viableMoves: {"stealthrock":1,"recover":1,"return":1,"thunderwave":1,"suckerpunch":1},
@@ -3086,7 +3086,7 @@ exports.BattleFormatsData = {
 		tier: "NU"
 	},
 	cherrimsunshine: {
-		tier: "NU"
+		tier: "Illegal"
 	},
 	shellos: {
 		viableMoves: {"scald":1,"clearsmog":1,"recover":1,"toxic":1,"icebeam":1},
@@ -3840,14 +3840,17 @@ exports.BattleFormatsData = {
 	},
 	sandile: {
 		viableMoves: {"earthquake":1,"stoneedge":1,"pursuit":1,"crunch":1,"firefang":1},
+		dreamWorldRelease: true,
 		tier: "LC"
 	},
 	krokorok: {
 		viableMoves: {"earthquake":1,"stoneedge":1,"pursuit":1,"crunch":1,"firefang":1},
+		dreamWorldRelease: true,
 		tier: "NFE"
 	},
 	krookodile: {
 		viableMoves: {"earthquake":1,"stoneedge":1,"pursuit":1,"crunch":1,"bulkup":1,"firefang":1},
+		dreamWorldRelease: true,
 		tier: "UU"
 	},
 	darumaka: {
@@ -3950,13 +3953,11 @@ exports.BattleFormatsData = {
 	minccino: {
 		viableMoves: {"return":1,"tailslap":1,"wakeupslap":1,"uturn":1,"aquatail":1},
 		dreamWorldRelease: true,
-		maleOnlyDreamWorld: true,
 		tier: "LC"
 	},
 	cinccino: {
 		viableMoves: {"return":1,"tailslap":1,"wakeupslap":1,"uturn":1,"aquatail":1,"bulletseed":1,"rockblast":1},
 		dreamWorldRelease: true,
-		maleOnlyDreamWorld: true,
 		tier: "NU"
 	},
 	gothita: {
@@ -3973,14 +3974,17 @@ exports.BattleFormatsData = {
 	},
 	solosis: {
 		viableMoves: {"calmmind":1,"recover":1,"psychic":1,"hiddenpowerfighting":1,"shadowball":1,"trickroom":1,"psyshock":1},
+		dreamWorldRelease: true,
 		tier: "LC"
 	},
 	duosion: {
 		viableMoves: {"calmmind":1,"recover":1,"psychic":1,"hiddenpowerfighting":1,"shadowball":1,"trickroom":1,"psyshock":1},
+		dreamWorldRelease: true,
 		tier: "NFE"
 	},
 	reuniclus: {
 		viableMoves: {"calmmind":1,"recover":1,"psychic":1,"focusblast":1,"shadowball":1,"trickroom":1,"psyshock":1},
+		dreamWorldRelease: true,
 		tier: "OU"
 	},
 	ducklett: {
@@ -4161,14 +4165,17 @@ exports.BattleFormatsData = {
 			{"generation":5,"level":1,"gender":"M","nature":"Naive","abilities":["moldbreaker"],"moves":["scratch","dragonrage"]},
 			{"generation":5,"level":10,"gender":"F","abilities":["moldbreaker"],"moves":["dragonrage","return","endure","dragonclaw"]}
 		],
+		dreamWorldRelease: true,
 		tier: "LC"
 	},
 	fraxure: {
 		viableMoves: {"dragondance":1,"taunt":1,"swordsdance":1,"outrage":1,"dualchop":1,"dragonclaw":1,"dig":1},
+		dreamWorldRelease: true,
 		tier: "NU"
 	},
 	haxorus: {
 		viableMoves: {"dragondance":1,"swordsdance":1,"outrage":1,"dualchop":1,"dragonclaw":1,"earthquake":1,"brickbreak":1},
+		dreamWorldRelease: true,
 		tier: "OU"
 	},
 	cubchoo: {
@@ -4227,6 +4234,7 @@ exports.BattleFormatsData = {
 	},
 	golett: {
 		viableMoves: {"substitute":1,"focuspunch":1,"earthquake":1,"shadowpunch":1,"hammerarm":1,"dynamicpunch":1,"stoneedge":1},
+		dreamWorldRelease: true,
 		tier: "LC"
 	},
 	golurk: {
@@ -4234,6 +4242,7 @@ exports.BattleFormatsData = {
 		eventPokemon: [
 			{"generation":5,"level":70,"abilities":["ironfist"],"moves":["shadowpunch","hyperbeam","gyroball","hammerarm"]}
 		],
+		dreamWorldRelease: true,
 		tier: "NU"
 	},
 	pawniard: {

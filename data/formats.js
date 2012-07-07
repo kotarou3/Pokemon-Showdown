@@ -188,23 +188,31 @@ exports.BattleFormats = {
 		// no restrictions, for serious
 		ruleset: []
 	},
-	hackmonsgen4: {
+	gen4hackmons: {
 		mod: 'gen4',
 		effectType: 'Format',
-		name: "Hackmons (Gen 4)",
+		name: "[Gen 4] Hackmons",
 		challengeShow: true,
 		ruleset: ['Pokemon'],
 		banlist: []
 	},
-	debugmodegen4: {
+	gen4debugmode: {
 		mod: 'gen4',
 		effectType: 'Format',
-		name: "Debug Mode (Gen 4)",
+		name: "[Gen 4] Debug Mode",
 		challengeShow: true,
 		canUseRandomTeam: true,
 		debug: true,
 		// no restrictions, for serious
 		ruleset: []
+	},
+	gennextnextou: {
+		mod: 'gennext',
+		effectType: 'Format',
+		name: "[Gen NEXT] NEXT-OU",
+		challengeShow: true,
+		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Soul Dew', 'Kyurem']
 	},
 
 	// rules
@@ -359,8 +367,10 @@ exports.BattleFormats = {
 		},
 		onModifyMovePriority: -100,
 		onModifyMove: function(move) {
-			if (move.secondary) {
-				move.secondary.chance = 100;
+			if (move.secondaries) {
+				for (var s = 0; s < move.secondaries.length; ++s) {
+					move.secondaries[s].chance = 100;
+				}
 			}
 			if (move.accuracy !== true && move.accuracy <= 99) {
 				move.accuracy = 0;
