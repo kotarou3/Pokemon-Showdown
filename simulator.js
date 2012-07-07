@@ -17,7 +17,7 @@ function BattlePokemon(set, side) {
 	if (set.name === set.species || !set.name || !set.species) {
 		set.name = this.species;
 	}
-	this.name = set.name || set.species || 'Bulbasaur';
+	this.name = (set.name || set.species || 'Bulbasaur').substr(0,20);
 	this.speciesid = toId(this.species);
 	this.template = this.baseTemplate;
 	this.moves = [];
@@ -195,7 +195,6 @@ function BattlePokemon(set, side) {
 	};
 
 	this.update = function(init) {
-		selfP.illusion = null;
 		selfP.baseStats = selfP.template.baseStats;
 		// reset for Light Metal etc
 		selfP.weightkg = selfP.template.weightkg;
@@ -288,7 +287,6 @@ function BattlePokemon(set, side) {
 	this.gotAttacked = function(move, damage, source) {
 		if (!damage) damage = 0;
 		move = selfB.getMove(move);
-		source.lastDamage = damage;
 		selfP.lastAttackedBy = {
 			pokemon: source,
 			damage: damage,
@@ -462,6 +460,7 @@ function BattlePokemon(set, side) {
 		selfP.movedThisTurn = false;
 		selfP.newlySwitched = true;
 		selfP.beingCalledBack = false;
+		selfP.illusion = null;
 		selfP.update(init);
 	};
 
@@ -777,14 +776,20 @@ function BattlePokemon(set, side) {
 		//return Math.floor(Math.floor(d*48/selfP.maxhp + 0.5)*100/48);
 		return Math.floor(d*100/selfP.maxhp + 0.5);
 	};
-	this.getHealth = function() {
+	this.getHealth = function(realHp) {
 		if (selfP.fainted) return ' (0 fnt)';
 		//var hpp = Math.floor(48*selfP.hp/selfP.maxhp) || 1;
-		var hpp = Math.floor(selfP.hp*100/selfP.maxhp + 0.5) || 1;
-		if (!selfP.hp) hpp = 0;
+		var hpstring;
+		if (realHp) {
+			hpstring = ''+selfP.hp+'/'+selfP.maxhp;
+		} else {
+			var hpp = Math.floor(selfP.hp*100/selfP.maxhp + 0.5) || 1;
+			if (!selfP.hp) hpp = 0;
+			hpstring = ''+hpp+'/100';
+		}
 		var status = '';
 		if (selfP.status) status = ' '+selfP.status;
-		return ' ('+hpp+'/100'+status+')';
+		return ' ('+hpstring+status+')';
 	};
 	this.hpChange = function(d) {
 		return ''+selfP.hpPercent(d)+selfP.getHealth();
@@ -888,7 +893,7 @@ function BattleSide(user, battle, n) {
 			data.pokemon.push({
 				ident: pokemon.fullname,
 				details: pokemon.details,
-				condition: pokemon.getHealth(),
+				condition: pokemon.getHealth(true),
 				active: (pokemon.position < pokemon.side.active.length),
 				moves: pokemon.moves,
 				ability: pokemon.ability,
@@ -1044,8 +1049,8 @@ function Battle(roomid, format, rated) {
 
 	this.setWeather = function(status, source, sourceEffect) {
 		status = selfB.getEffect(status);
-		if (!sourceEffect && selfB.effect) sourceEffect = selfB.effect;
-		if (!source && selfB.event && selfB.event.target) source = selfB.event.target;
+		if (sourceEffect === undefined && selfB.effect) sourceEffect = selfB.effect;
+		if (source === undefined && selfB.event && selfB.event.target) source = selfB.event.target;
 
 		if (selfB.weather === status.id) return false;
 		if (selfB.weather && !status.id) {
@@ -1652,6 +1657,7 @@ function Battle(roomid, format, rated) {
 		if (side.active[0] && !side.active[0].fainted) {
 			//selfB.add('switch-out '+side.active[0].id);
 		}
+		selfB.runEvent('BeforeSwitchIn', pokemon);
 		if (side.active[0]) {
 			var oldActive = side.active[0];
 			var oldpos = pokemon.position;
@@ -1675,8 +1681,8 @@ function Battle(roomid, format, rated) {
 		for (var m in pokemon.moveset) {
 			pokemon.moveset[m].used = false;
 		}
-		pokemon.update();
 		selfB.add('switch', side.active[0], side.active[0].getDetails());
+		pokemon.update();
 		selfB.runEvent('SwitchIn', pokemon);
 		selfB.addQueue({pokemon: pokemon, choice: 'runSwitch'});
 	};
@@ -1706,6 +1712,7 @@ function Battle(roomid, format, rated) {
 	this.dragIn = function(side) {
 		var pokemon = selfB.getRandomSwitchable(side);
 		if (!pokemon) return false;
+		selfB.runEvent('BeforeSwitchIn', pokemon);
 		if (side.active[0]) {
 			var oldActive = side.active[0];
 			var oldpos = pokemon.position;
@@ -1729,8 +1736,8 @@ function Battle(roomid, format, rated) {
 		for (var m in pokemon.moveset) {
 			pokemon.moveset[m].used = false;
 		}
-		pokemon.update();
 		selfB.add('drag', side.active[0], side.active[0].getDetails());
+		pokemon.update();
 		selfB.runEvent('SwitchIn', pokemon);
 		selfB.addQueue({pokemon: pokemon, choice: 'runSwitch'});
 		return true;
@@ -1821,6 +1828,9 @@ function Battle(roomid, format, rated) {
 					boost[i] = -boost[i];
 				}
 				switch (effect.id) {
+				case 'intimidate':
+					selfB.add(msg, target, i, boost[i]);
+					break;
 				default:
 					if (effect.effectType === 'Move') {
 						selfB.add(msg, target, i, boost[i]);
@@ -1862,6 +1872,7 @@ function Battle(roomid, format, rated) {
 			this.debug('pokemon.damage said zero');
 			return 0;
 		}
+		if (source) source.lastDamage = damage;
 		var name = effect.fullname;
 		if (name === 'tox') name = 'psn';
 		switch (effect.id) {
