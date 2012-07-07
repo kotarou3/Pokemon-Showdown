@@ -681,13 +681,13 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		socket.emit('console', 'Running git pull...');
 		var git = require("child_process").spawn('git', ['pull']);
 		git.stdout.on('data', function(data) {
-			socket.emit('console', 'stdout: ' + data);
+			emit(socket, 'console', 'stdout: ' + data);
 		});
 		git.stderr.on('data', function(data) {
-			socket.emit('console', 'stderr: ' + data);
+			emit(socket, 'console', 'stderr: ' + data);
 		});
 		git.on('exit', function(code) {
-			socket.emit('console', 'child process exited with code ' + code);
+			emit(socket, 'console', 'child process exited with code ' + code);
 		});
 		return false;
 		break;
