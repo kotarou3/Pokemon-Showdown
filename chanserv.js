@@ -43,15 +43,15 @@ function ChanServ()
                                 break;
 
                         case '%':
-                                group = '\\uc';
+                                group = '\u000c';
                                 break;
 
                         case '+':
-                                group = '\\u85';
+                                group = '\u0085';
                                 break;
 
                         case '&':
-                                group = '\\uao';
+                                group = '\u00a0';
                                 break;
                 }
                 user.setGroup(group);

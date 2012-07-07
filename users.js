@@ -429,19 +429,17 @@ var User = (function () {
 						var data = JSON.parse(body);
 						switch (data.group) {
 						case '2':
-							group = '~';
+							group = '\u00a0';
 							break;
 						case '3':
-							group = '+';
+							group = '\u0085';
 							break;
 						case '4':
-							group = '%';
-							break;
 						case '5':
-							group = '@';
+							group = '\u000c';
 							break;
 						case '6':
-							group = '&';
+							group = '\t';
 							break;
 						}
 						/* var userdata = JSON.parse(body.userdata);
