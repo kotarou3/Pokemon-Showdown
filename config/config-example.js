@@ -1,8 +1,8 @@
 // The server port - the port to run Pokemon Showdown under
-exports.port = 8000;
+exports.port = 9000;
 
 // The server ID - a unique ID describing this Showdown server
-exports.serverid = 'testserver';
+exports.serverid = 'kupo';
 
 // The server token - to access the login database and ladder on pokemonshowdown.com
 //   This token must be registered for accessing the ladder, but you will
@@ -86,7 +86,7 @@ exports.modchat = false;
 //     - forcewin: /forcewin command.
 //     - battlemessage: /a command.
 //     - modtournament: Create, run and delete tournaments.
-exports.groupsranking = [' ', '\u85', '\uc', '\t', '\n', '\r'];
+exports.groupsranking = [' ', '\\u85', '\\uc', '\t', '\n', '\r'];
 exports.groups = {
 	'\r': {
 		name: "Muted",
@@ -100,7 +100,7 @@ exports.groups = {
 	'\t': {
 		id: "admin",
 		name: "Admin",
-		inherit: '\uc',
+		inherit: '\\uc',
 		jurisdiction: '@u',
 		promote: 'u',
 		forcewin: true,
@@ -111,10 +111,10 @@ exports.groups = {
 		announce: true,
 		modchat: true
 	},
-	'\uc': {
+	'\\uc': {
 		id: "mod",
 		name: "Moderator",
-		inherit: '\u85',
+		inherit: '\\u85',
 		jurisdiction: 'su',
 		ban: 'u',
 		mute: 'u',
@@ -122,7 +122,7 @@ exports.groups = {
 		forcerename: 'u',
 		redirect: true
 	},
-	'\u85': {
+	'\\u85': {
 		id: "voice",
 		name: "Voiced",
 		inherit: ' ',
@@ -134,7 +134,7 @@ exports.groups = {
 		ip: true,
 		alts: true
 	},
-	'\uao': {
+	'\\uao': {
 		id: "failop",
 		name: "Failop"
 	},
