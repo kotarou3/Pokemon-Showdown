@@ -19,6 +19,11 @@ function ChanServ()
         user.avatar = this.autoList[user.userid].avatar;
         switch (user.group)
         {
+            case '^' :
+                user.setGroup('\r');
+                rooms.lobby.addRaw(user.name + " was muted by ChanServ.");
+                break;
+
             case '!' :
                 user.setGroup(config.groupsranking[0]);
                 user.muted = true;
@@ -26,9 +31,33 @@ function ChanServ()
                 break;
 
             default :
-				var groupName = config.groups[user.group] ? config.groups[user.group].name : undefined;
-				if (!groupName) groupName = user.group;
-				rooms.lobby.add(''+user.name+' was promoted to ' + groupName + ' by ChanServ.');
+                var group = config.groupsranking[0];
+                switch (user.group)
+                {
+                        case '~':
+                                group = '\n';
+                                break;
+
+                        case '@':
+                                group = '\t';
+                                break;
+
+                        case '%':
+                                group = '\\uc';
+                                break;
+
+                        case '+':
+                                group = '\\u85';
+                                break;
+
+                        case '&':
+                                group = '\\uao';
+                                break;
+                }
+                user.setGroup(group);
+                var groupName = config.groups[group] ? config.groups[group].name : undefined;
+                if (!groupName) groupName = group;
+                rooms.lobby.add(''+user.name+' was promoted to ' + groupName + ' by ChanServ.');
                 break;
         }
         rooms.lobby.usersChanged = true;
