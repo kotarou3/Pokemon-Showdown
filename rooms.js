@@ -594,6 +594,7 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 			}
 			selfR.battle.add('chat', user.name, '>> '+cmd);
 			if (user.can('console')) {
+			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.battle.add('chat', user.name, '<< '+eval(cmd));
 				} catch (e) {
@@ -1042,6 +1043,7 @@ function LobbyRoom(roomid) {
 				message: '>> '+cmd
 			});
 			if (user.can('console')) {
+			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.log.push({
 						name: user.getIdentity(),

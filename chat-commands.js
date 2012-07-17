@@ -1432,7 +1432,7 @@ function splitArgs(args)
 	return result;
 }
 
-function logModCommand(room, result, noBroadcast) {
+global.logModCommand = function(room, result, noBroadcast) {
 	if (!noBroadcast) room.add(result);
 	modlog.write('['+(new Date().toJSON())+'] ('+room.id+') '+result+'\n');
 }
