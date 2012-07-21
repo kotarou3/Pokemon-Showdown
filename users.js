@@ -143,7 +143,7 @@ var User = (function () {
 		this.userid = toUserid(this.name);
 		this.group = config.groupsranking[0];
 
-		var trainersprites = [1, 2, 101, 102, 169, 170];
+		var trainersprites = [43, 114, 252];
 		this.avatar = trainersprites[parseInt(Math.random()*trainersprites.length)];
 
 		this.connected = true;
