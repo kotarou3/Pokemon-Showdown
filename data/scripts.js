@@ -49,6 +49,13 @@ exports.BattleScripts = {
 		if (pokemon.fainted) {
 			return false;
 		}
+
+		if (move.isTwoTurnMove && !pokemon.removeVolatile('twoturnmove')) {
+			var result = pokemon.addVolatile('twoturnmove', pokemon, move);
+			if (result) return; // false means "keep going", e.g. Power Herb activates
+			attrs = ' | [silent]'; // suppress the "X used Y!" message if we're executing the attack in the same turn
+		}
+
 		var boostTable = [1, 4/3, 5/3, 2, 7/3, 8/3, 3];
 		var accuracy = move.accuracy;
 		if (accuracy !== true) {
@@ -73,10 +80,10 @@ exports.BattleScripts = {
 		}
 		if (move.alwaysHit) accuracy = true; // bypasses ohko accuracy modifiers
 		if (target.fainted && !canTargetFainted[move.target]) {
-			attrs = ' | [notarget]';
+			attrs += ' | [notarget]';
 		} else if (accuracy !== true && this.random(100) >= accuracy) {
 			missed = true;
-			attrs = ' | [miss]';
+			attrs += ' | [miss]';
 		}
 		var movename = move.name;
 		if (move.id === 'hiddenpower') movename = 'Hidden Power';
@@ -127,7 +134,7 @@ exports.BattleScripts = {
 				}
 			}
 			hits = Math.floor(hits);
-			for (var i=0; i<hits && target.hp; i++) {
+			for (var i=0; i<hits && target.hp && pokemon.hp; i++) {
 				var moveDamage = this.moveHit(target, pokemon, move);
 				if (moveDamage === false) return true;
 				damage += (moveDamage || 0);
@@ -349,14 +356,12 @@ exports.BattleScripts = {
 		return damage;
 	},
 	getTeam: function(side, team) {
-		if (team) {
-			return team;
-		} if (side.battle.getFormat().team === 'cc') {
+		if (side.battle.getFormat().team === 'cc') {
 			return this.ChallengeCup(side);
 		} else if (side.battle.getFormat().team === 'random') {
 			return this.randomTeam(side);
-		} else if (side.user && side.user.team && side.user.team !== 'random' && side.user.team !== 'cc') {
-			return side.user.team;
+		} else if (team) {
+			return team;
 		} else {
 			return this.randomTeam(side);
 		}

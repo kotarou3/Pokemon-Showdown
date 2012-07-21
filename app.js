@@ -1,12 +1,37 @@
 require('sugar');
 
 fs = require('fs');
-path = require('path');
+if (!fs.existsSync) {
+	var path = require('path');
+	fs.existsSync = function(loc) { return path.existsSync(loc) };
+}
 
-request = require('request');
+//request = require('request');
+var http = require("http");
+var url = require('url');
+request = function(options, callback) {
+    var req = http.get(url.parse(options.uri), function(res) {
+        var buffer = '';
+        res.setEncoding('utf8');
+
+        res.on('data', function(chunk) {
+            buffer += chunk;
+        });
+
+        res.on('end', function() {
+            callback(null, res.statusCode, buffer);
+        });
+    });
+
+    req.on('error', function(error) {
+        callback(error);
+    });
+
+    req.end();
+}
 
 // Synchronously copy config-example.js over to config.js if it doesn't exist
-if (!path.existsSync('./config/config.js')) {
+if (!fs.existsSync('./config/config.js')) {
 	console.log("config.js doesn't exist - creating one with default settings...");
 	var BUF_LENGTH, buff, bytesRead, fdr, fdw, pos;
 	BUF_LENGTH = 64 * 1024;
@@ -47,6 +72,9 @@ app.listen(8000); */
 
 if (process.argv[2] && parseInt(process.argv[2])) {
 	config.port = parseInt(process.argv[2]);
+}
+if (process.argv[3]) {
+	config.setuid = process.argv[3];
 }
 
 if (config.protocol !== 'io') config.protocol = 'ws';
@@ -232,7 +260,7 @@ var events = {
 		if (!data) return;
 		var youUser = resolveUser(you, socket);
 		if (!youUser) return;
-		console.log('CHALLENGE: '+youUser.name+' => '+data.userid+' ('+data.act+')');
+		//console.log('CHALLENGE: '+youUser.name+' => '+data.userid+' ('+data.act+')');
 		switch (data.act) {
 		case 'make':
 			if (typeof data.format !== 'string') data.format = 'debugmode';
@@ -356,4 +384,16 @@ if (config.protocol === 'io') { // Socket.IO
 }
 
 console.log("Server started on port "+config.port);
+
+try {
+	if (config.setuid) {
+		process.setuid(config.setuid);
+		console.log("setuid succeeded, we are now running as "+config.setuid);
+	}
+}
+catch (err) {
+	console.log("ERROR: setuid failed: [%s] Call: [%s]", err.message, err.syscall);
+	process.exit(1);
+}
+
 console.log("Test your server at http://psim.tk/~~localhost:"+config.port);
