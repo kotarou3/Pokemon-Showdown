@@ -777,10 +777,14 @@ exports.BattleItems = {
 		fling: {
 			basePower: 30
 		},
+		onHit: function(target, source, move) {
+			if (source && source !== target && move && move.selfSwitch) {
+				move.selfSwitch = false;
+			}
+		},
 		onAfterMoveSecondary: function(target, source, move) {
 			if (source && source !== target && move && move.category !== 'Status') {
 				if (target.useItem()) {
-					this.add("-message",target.name+" is switched out with the Eject Button! (placeholder)");
 					target.switchFlag = true;
 				}
 			}
@@ -1041,8 +1045,10 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10
 		},
-		onModifyPriority: function(priority) {
-			return priority - 0.1;
+		onModifyPriority: function(priority, pokemon) {
+			if (pokemon.ability !== 'stall') {
+				return priority - 0.1;
+			}
 		},
 		desc: "Makes the holder move last. Allows breeding of Munchlax."
 	},
@@ -1407,8 +1413,10 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10
 		},
-		onModifyPriority: function(priority) {
-			return priority - 0.1;
+		onModifyPriority: function(priority, pokemon) {
+			if (pokemon.ability !== 'stall') {
+				return priority - 0.1;
+			}
 		},
 		desc: "The holder will go last within its move's priority bracket, regardless of Speed."
 	},
@@ -2127,17 +2135,10 @@ exports.BattleItems = {
 	},
 	"powerherb": {
 		id: "powerherb",
-		onBeforeMovePriority: -10,
-		onBeforeMove: function(pokemon, target, move) {
-			// this is a horrible hack; todo: not this
-			// a proper fix is currently blocked by the BH Assist bug
-			if (move.id === 'solarbeam' && this.weather === 'sunnyday') {
-				return;
-			}
-			if (move.isTwoTurnMove && pokemon.useItem()) {
+		onChargeMove: function(pokemon, move) {
+			if (pokemon.useItem()) {
 				this.debug('power herb - remove charge turn for '+move.id);
-				this.add('-prepare',pokemon,move,target);
-				pokemon.addVolatile(move.id);
+				return false; // skip charge turn
 			}
 		},
 		name: "Power Herb",
