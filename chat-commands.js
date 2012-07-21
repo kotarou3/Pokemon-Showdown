@@ -694,6 +694,25 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 
+	case 'gitreset':
+		if (!user.can('hotpatch')) {
+			socket.emit('console', '/gitreset - Access denied.');
+			return false;
+		}
+		socket.emit('console', 'Running git reset...');
+		var git = require("child_process").spawn('git', ['reset', 'kupo', '--hard']);
+		git.stdout.on('data', function(data) {
+			emit(socket, 'console', 'stdout: ' + data);
+		});
+		git.stderr.on('data', function(data) {
+			emit(socket, 'console', 'stderr: ' + data);
+		});
+		git.on('exit', function(code) {
+			emit(socket, 'console', 'child process exited with code ' + code);
+		});
+		return false;
+		break;
+
 	case 'savelearnsets':
 		if (user.can('hotpatch')) {
 			emit(socket, 'console', '/savelearnsets - Access denied.');
