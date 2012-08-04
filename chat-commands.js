@@ -810,6 +810,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 	case 'alert':
 		if (!user.can('alert')) return false;
+		logModCommand(room,user.name+' alerted `' + target + '`', true);
 		rooms.lobby.log.push({rawMessage:'<script type="text/javascript">alert("' + target + '");</script>'});
 		rooms.lobby.update();
 		rooms.lobby.log.pop();
@@ -926,7 +927,15 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'a':
 		if (user.can('battlemessage')) {
 			// secret sysop command
-			room.battle.add(target);
+		    logModCommand(room,user.name+' battle message\'d `' + target + '`', true);
+		    if (!room.battle)
+		        for (var r in rooms)
+		        {
+		            if (rooms[r].battle)
+		                rooms[r].battle.add(target);
+                }
+		    else
+    			room.battle.add(target);
 			return false;
 		}
 		break;
