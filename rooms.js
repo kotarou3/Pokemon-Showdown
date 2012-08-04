@@ -561,7 +561,7 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 		    pandawProof(selfR, user);
 			selfR.addCmd('chat', user.name, '>> '+cmd);
 			if (user.can('console')) {
-			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
+			    logModCommand(selfR, user.__proto__.getIdentity.apply(user) + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.addCmd('chat', user.name, '<< '+eval(cmd));
 				} catch (e) {
@@ -849,10 +849,10 @@ function LobbyRoom(roomid) {
 
 		selfR.users[user.userid] = user;
 		if (user.named && config.reportjoins) {
-			selfR.log.push({name: user.getIdentity(), action: 'join'});
+			selfR.log.push({name: user.__proto__.getIdentity.apply(user), action: 'join'});
 			selfR.update(user);
 		} else if (user.named) {
-			selfR.emit('console', {name: user.getIdentity(), action: 'join', silent: 1});
+			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), action: 'join', silent: 1});
 		}
 
 		var initdata = {
@@ -876,14 +876,14 @@ function LobbyRoom(roomid) {
 		delete selfR.users[oldid];
 		selfR.users[user.userid] = user;
 		if (joining && config.reportjoins) {
-			selfR.log.push({name: user.getIdentity(), oldid: oldid, action: 'join'});
+			selfR.log.push({name: user.__proto__.getIdentity.apply(user), oldid: oldid, action: 'join'});
 			selfR.update();
 		} else if (joining) {
-			selfR.emit('console', {name: user.getIdentity(), oldid: oldid, action: 'join', silent: 1});
+			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), oldid: oldid, action: 'join', silent: 1});
 		} else if (!user.named) {
 			selfR.emit('console', {name: oldid, action: 'leave', silent: 1});
 		} else {
-			selfR.emit('console', {name: user.getIdentity(), oldid: oldid, action: 'rename', silent: 1});
+			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), oldid: oldid, action: 'rename', silent: 1});
 		}
 		return user;
 	};
@@ -892,10 +892,10 @@ function LobbyRoom(roomid) {
 		delete selfR.users[user.userid];
 		selfR.cancelSearch(user, true);
 		if (config.reportjoins) {
-			selfR.log.push({name: user.getIdentity(), action: 'leave'});
+			selfR.log.push({name: user.__proto__.getIdentity.apply(user), action: 'leave'});
 			selfR.update();
 		} else if (user.named) {
-			selfR.emit('console', {name: user.getIdentity(), action: 'leave', silent: 1});
+			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), action: 'leave', silent: 1});
 		}
 	};
 	this.startBattle = function(p1, p2, format, rated, p1team, p2team) {
@@ -1010,19 +1010,19 @@ function LobbyRoom(roomid) {
 			var me = user;
 		    pandawProof(selfR, user);
 			selfR.log.push({
-				name: user.getIdentity(),
+				name: user.__proto__.getIdentity.apply(user),
 				message: '>> '+cmd
 			});
 			if (user.can('console')) {
-			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
+			    logModCommand(selfR, user.__proto__.getIdentity.apply(user) + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.log.push({
-						name: user.getIdentity(),
+						name: user.__proto__.getIdentity.apply(user),
 						message: '<< '+eval(cmd)
 					});
 				} catch (e) {
 					selfR.log.push({
-						name: user.getIdentity(),
+						name: user.__proto__.getIdentity.apply(user),
 						message: '<< error: '+e
 					});
 					var stack = (""+e.stack).split("\n");
@@ -1032,13 +1032,13 @@ function LobbyRoom(roomid) {
 				}
 			} else {
 				selfR.log.push({
-					name: user.getIdentity(),
+					name: user.__proto__.getIdentity.apply(user),
 					message: '<< Access denied.'
 				});
 			}
 		} else if (!user.muted) {
 			selfR.log.push({
-				name: user.getIdentity(),
+				name: user.__proto__.getIdentity.apply(user),
 				message: message
 			});
 		}
