@@ -652,6 +652,14 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 
+	case 'seal':
+		if (user.can('announce')) {
+			room.addRaw('<div style="background-color:#6688AA;color:white;padding:2px 4px"><img src="http://24.media.tumblr.com/tumblr_lwxx15se5y1r3amgko1_500.gif" /></div>');
+			logModCommand(room,user.name+' used seal!',true);
+			return false;
+		}
+		break;
+
 	case 'hotpatch':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
 		if (!user.can('hotpatch')) {
