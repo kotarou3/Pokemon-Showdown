@@ -55,15 +55,15 @@ function connectUser(name, socket, token, room) {
 	if (users[userid]) {
 		user = users[userid];
 		if (!user.add(name, person, token)) {
-			console.log('JOIN: '+name+' ['+(''+token).substr(0,30)+'] ['+socket.id+']');
+			console.log('JOIN: '+name+' ['+token+'] ['+socket.id+']');
 			user = new User('', person, token);
 			user.rename(name, token);
 			user = person.user;
 		} else {
-			console.log('MERGE: '+name+' ['+(''+token).substr(0,30)+'] ['+socket.id+']');
+			console.log('MERGE: '+name+' ['+token+'] ['+socket.id+']');
 		}
 	} else {
-		console.log('JOIN: '+name+' ['+(''+token).substr(0,30)+'] ['+socket.id+']');
+		console.log('JOIN: '+name+' ['+token+'] ['+socket.id+']');
 		user = new User(name, person, token);
 		var nameSuggestion = nameLock(user);
 		if (nameSuggestion !== user.name) {
@@ -372,6 +372,7 @@ var User = (function () {
 			return false;
 		}
 
+		console.log('RENAME: '+this.name+' -> '+name+' ['+token+']');
 		if (token && token.substr(0,1) !== ';') {
 			var tokenSemicolonPos = token.indexOf(';');
 			var tokenData = token.substr(0, tokenSemicolonPos);
