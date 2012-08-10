@@ -34,7 +34,7 @@ toId = function(text) {
 	if (text && text.id) text = text.id;
 	text = string(text);
 	if (typeof text !== 'string') return ''; //???
-	return text.toLowerCase().replace(/[^a-z0-9]+/g, '');
+	return text.toLowerCase().replace(/[^a-z0-9\u4e00-\u9eff]+/g, '');
 };
 toUserid = toId;
 
