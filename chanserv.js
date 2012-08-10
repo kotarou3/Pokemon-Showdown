@@ -4,7 +4,7 @@ function ChanServ()
 
     this.parseCommand = function(user, command, args, room, socket, fullCommand)
     {
-        var targetUser = getUser(command);
+        var targetUser = Users.get(command);
         if (targetUser)
             this.act(targetUser);
         return true;
