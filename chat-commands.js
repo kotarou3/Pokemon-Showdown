@@ -38,11 +38,29 @@
 var modlog = modlog || fs.createWriteStream('logs/modlog.txt', {flags:'a+'});
 
 function parseCommandLocal(user, cmd, target, room, socket, message) {
+	if (!room) return;
 	cmd = cmd.toLowerCase();
 	switch (cmd) {
 	case 'me':
 		if (canTalk(user, room)) {
 			return '/me '+target;
+		}
+		break;
+
+	case '!birkal':
+	case 'birkal':
+		if (canTalk(user, room) && user.can('broadcast') && room.id === 'lobby') {
+			if (cmd === '!birkal') {
+				room.log.push({
+					name: user.getIdentity(),
+					message: '!birkal '+target
+				});
+			}
+			room.log.push({
+				name: ' Birkal',
+				message: '/me '+target
+			});
+			return false;
 		}
 		break;
 
@@ -127,15 +145,10 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 				var targetRoom = Rooms.get(i);
 				if (!targetRoom) continue;
 				var roomData = {};
-				if (targetRoom.battle && targetRoom.battle.sides[0] && targetRoom.battle.sides[1]) {
-					if (targetRoom.battle.sides[0].user && targetRoom.battle.sides[1].user) {
-						roomData.p1 = targetRoom.battle.sides[0].user.getIdentity();
-						roomData.p2 = targetRoom.battle.sides[1].user.getIdentity();
-					} else if (targetRoom.battle.sides[0].user) {
-						roomData.p1 = targetRoom.battle.sides[0].user.getIdentity();
-					} else if (targetRoom.battle.sides[1].user) {
-						roomData.p1 = targetRoom.battle.sides[1].user.getIdentity();
-					}
+				if (targetRoom.battle) {
+					var battle = targetRoom.battle;
+					roomData.p1 = battle.p1?' '+battle.p1:'';
+					roomData.p2 = battle.p2?' '+battle.p2:'';
 				}
 				roomList[i] = roomData;
 			}
@@ -187,7 +200,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 		user.avatar = avatar;
 		emit(socket, 'console', 'Avatar changed to:');
-		emit(socket, 'console', {rawMessage: '<img src="/sprites/trainers/'+avatar+'.png" alt="" />'});
+		emit(socket, 'console', {rawMessage: '<img src="/sprites/trainers/'+avatar+'.png" alt="" width="80" height="80" />'});
 
 		return false;
 		break;
@@ -430,10 +443,11 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			}
 			return parseCommand(user, '?', cmd, room, socket);
 		}
-		if (user.muted && !targetUser.can('mute', user)) {
+		// temporarily disable this because blarajan
+		/* if (user.muted && !targetUser.can('mute', user)) {
 			emit(socket, 'console', 'You can only private message members of the Moderation Team (users marked by %, @, &, or ~) when muted.');
 			return false;
-		}
+		} */
 
 		var message = {
 			name: user.getIdentity(),
@@ -557,27 +571,33 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'promote':
 	case 'demote':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
-		var targets = splitTarget(target);
-		var targetUser = Users.get(targets[0]);
-		if (!targetUser) {
-			emit(socket, 'console', 'User '+target+' not found.');
-			return false;
+		var targets = splitTarget(target, true);
+		var targetUser = targets[0];
+		var userid = toUserid(targets[2]);
+
+		var currentGroup = ' ';
+		if (targetUser) {
+			currentGroup = targetUser.group;
+		} else if (Users.usergroups[userid]) {
+			currentGroup = Users.usergroups[userid].substr(0,1);
 		}
-		var nextGroup = targets[1] ? targets[1] : targetUser.getNextGroupSymbol(cmd === 'demote');
+		var name = targetUser ? targetUser.name : targets[2];
+
+		var nextGroup = targets[1] ? targets[1] : Users.getNextGroupSymbol(currentGroup, cmd === 'demote');
 		if (!config.groups[nextGroup]) {
 			emit(socket, 'console', 'Group \'' + nextGroup + '\' does not exist.');
 			return false;
 		}
-		if (!user.checkPromotePermission(targetUser, nextGroup)) {
+		if (!user.checkPromotePermission(currentGroup, nextGroup)) {
 			emit(socket, 'console', '/promote - Access denied.');
 			return false;
 		}
 
-		var isDemotion = (config.groups[nextGroup].rank < config.groups[targetUser.group].rank);
-		targetUser.setGroup(nextGroup);
+		var isDemotion = (config.groups[nextGroup].rank < config.groups[currentGroup].rank);
+		Users.setOfflineGroup(name, nextGroup);
 		rooms.lobby.usersChanged = true;
-		var groupName = config.groups[targetUser.group].name || targetUser.group || '';
-		logModCommand(room,''+targetUser.name+' was '+(isDemotion?'demoted':'promoted')+' to ' + (groupName.trim() || 'a regular user') + ' by '+user.name+'.');
+		var groupName = config.groups[nextGroup].name || nextGroup || '';
+		logModCommand(room,''+name+' was '+(isDemotion?'demoted':'promoted')+' to ' + (groupName.trim() || 'a regular user') + ' by '+user.name+'.');
 		return false;
 		break;
 
@@ -652,7 +672,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 			parseCommand = require('./chat-commands.js').parseCommand;
 
-			sim = require('./simulator.js');
+			sim = require('./battles.js');
 			BattlePokemon = sim.BattlePokemon;
 			BattleSide = sim.BattleSide;
 			Battle = sim.Battle;
@@ -687,28 +707,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'ranking':
 	case 'rank':
 	case 'ladder':
-		target = toUserid(target) || user.userid;
-		request({
-			uri: config.loginserver+'action.php?act=ladderget&serverid='+config.serverid+'&user='+target,
-		}, function(error, response, body) {
-			if (body) {
-				try {
-					var data = JSON.parse(body);
-
-					emit(socket, 'console', 'User: '+target);
-
-					if (!data.length) {
-						emit(socket, 'console', 'has not played a ladder game yet');
-					} else for (var i=0; i<data.length; i++) {
-						var row = data[i];
-						emit(socket, 'console', row.formatid+': '+Math.round(row.acre)+' (GXE:'+Math.round(row.pgxe,1)+') (Glicko2:'+Math.round(row.rpr)+','+Math.round(row.rprd)+') (W:'+row.w+'/L:'+row.l+'/T:'+row.t+')');
-					}
-				} catch(e) {
-				}
-			} else {
-				emit(socket, 'console', 'Error');
-			}
-		});
+		emit(socket, 'console', 'You are using an old version of Pokemon Showdown. Please reload the page.');
 		return false;
 		break;
 
@@ -851,7 +850,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		showOrBroadcastStart(user, cmd, room, socket, message);
 		showOrBroadcast(user, cmd, room, socket,
 			'<div style="border:1px solid #6688AA;padding:2px 4px">Please follow the rules:<br />' +
-			'- <a href="http://pokemonshowdown.com/rules" target="_blank">Rules</a><br />' +
+			'- <a href="http://www.smogon.com/sim/rules" target="_blank">Rules</a><br />' +
 			'</div>');
 		return false;
 		break;
@@ -1376,12 +1375,12 @@ function getDataMessage(target) {
 	return response;
 }
 
-function splitTarget(target) {
+function splitTarget(target, exactName) {
 	var commaIndex = target.indexOf(',');
 	if (commaIndex < 0) {
-		return [Users.get(target), '', target];
+		return [Users.get(target, exactName), '', target];
 	}
-	var targetUser = Users.get(target.substr(0, commaIndex));
+	var targetUser = Users.get(target.substr(0, commaIndex), exactName);
 	if (!targetUser || !targetUser.connected) {
 		targetUser = null;
 	}

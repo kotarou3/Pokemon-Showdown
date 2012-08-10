@@ -1,12 +1,10 @@
-var THROTTLE_DELAY = 400;
+var THROTTLE_DELAY = 900;
 
 var users = {};
 var prevUsers = {};
 var numUsers = 0;
 var people = {};
 var numPeople = 0;
-
-var crypto = require('crypto');
 
 function sanitizeName(name) {
 	name = name.trim();
@@ -18,12 +16,12 @@ function sanitizeName(name) {
 	return name;
 }
 
-function getUser(name) {
+function getUser(name, exactName) {
 	if (!name || name === '!') return null;
 	if (name && name.userid) return name;
 	var userid = toUserid(name);
 	var i = 0;
-	while (userid && !users[userid] && i < 1000) {
+	while (!exactName && userid && !users[userid] && i < 1000) {
 		userid = prevUsers[userid];
 		i++;
 	}
@@ -52,19 +50,20 @@ function nameLock(user,name,ip) {
 function connectUser(name, socket, token, room) {
 	var userid = toUserid(name);
 	var user;
-	console.log("NEW PERSON: "+socket.id);
 	var person = new Person(name, socket, true);
 	if (person.banned) return person;
 	if (users[userid]) {
 		user = users[userid];
 		if (!user.add(name, person, token)) {
-			console.log("NEW USER: [guest] (userid: "+userid+" taken) "+name);
+			console.log('JOIN: '+name+' ['+(''+token).substr(0,30)+'] ['+socket.id+']');
 			user = new User('', person, token);
 			user.rename(name, token);
 			user = person.user;
+		} else {
+			console.log('MERGE: '+name+' ['+(''+token).substr(0,30)+'] ['+socket.id+']');
 		}
 	} else {
-		console.log("NEW USER: [guest] "+name);
+		console.log('JOIN: '+name+' ['+(''+token).substr(0,30)+'] ['+socket.id+']');
 		user = new User(name, person, token);
 		var nameSuggestion = nameLock(user);
 		if (nameSuggestion !== user.name) {
@@ -80,10 +79,12 @@ function connectUser(name, socket, token, room) {
 
 var usergroups = {};
 function importUsergroups() {
+	// can't just say usergroups = {} because it's exported
+	for (var i in usergroups) delete usergroups[i];
+
 	fs.readFile('config/usergroups.csv', function(err, data) {
 		if (err) return;
 		data = (''+data).split("\n");
-		usergroups = {};
 		for (var i = 0; i < data.length; i++) {
 			if (!data[i]) continue;
 			var row = data[i].split(",");
@@ -154,7 +155,7 @@ var User = (function () {
 
 		this.muted = !!ipSearch(this.ip,mutedIps);
 		this.prevNames = {};
-		this.sides = {};
+		this.battles = {};
 		this.roomCount = {};
 
 		// challenges
@@ -229,22 +230,8 @@ var User = (function () {
 		return false;
 	};
 	// Special permission check is needed for promoting and demoting
-	User.prototype.checkPromotePermission = function(targetUser, targetGroupSymbol) {
-		if (!this.can('promote', targetUser)) return false;
-		var fakeUser = {group:targetGroupSymbol};
-		if (!this.can('promote', fakeUser)) return false;
-		return true;
-	};
-	User.prototype.getNextGroupSymbol = function(isDown) {
-		var nextGroupRank = config.groupsranking[config.groupsranking.indexOf(this.group) + (isDown ? -1 : 1)];
-		if (!nextGroupRank) {
-			if (isDown) {
-				return config.groupsranking[0];
-			} else {
-				return config.groupsranking[config.groupsranking.length - 1];
-			}
-		}
-		return nextGroupRank;
+	User.prototype.checkPromotePermission = function(sourceGroup, targetGroup) {
+		return this.can('promote', {group:sourceGroup}) && this.can('promote', {group:targetGroup});
 	};
 	User.prototype.forceRename = function(name, authenticated) {
 		// skip the login server
@@ -351,15 +338,14 @@ var User = (function () {
 		}
 		if (!name) name = '';
 		name = sanitizeName(name);
-		console.log("checking name lock for: "+this.name+" renaming to "+name);
 		name = nameLock(this,name);
-		console.log("returned "+name);
 		var userid = toUserid(name);
 		if (this.authenticated) auth = false;
 
 		if (!userid) {
 			// technically it's not "taken", but if your client doesn't warn you
-			// before it gets to this stage it's your own fault
+			// before it gets to this stage it's your own fault for getting a
+			// bad error message
 			this.emit('nameTaken', {userid: '', reason: "You did not specify a name."});
 			return false;
 		} else {
@@ -374,34 +360,50 @@ var User = (function () {
 			}
 		}
 		if (users[userid] && !users[userid].authenticated && users[userid].connected && !auth) {
-			this.emit('nameTaken', {userid:this.userid, token:token, reason: "Someone is already using the name \""+users[userid].name+"\"."});
+			this.emit('nameTaken', {userid:this.userid, reason: "Someone is already using the name \""+users[userid].name+"\"."});
 			return false;
 		}
 
-		var body = '';
 		if (token && token.substr(0,1) !== ';') {
 			var tokenSemicolonPos = token.indexOf(';');
 			var tokenData = token.substr(0, tokenSemicolonPos);
 			var tokenSig = token.substr(tokenSemicolonPos+1);
-			var verifier = crypto.createVerify(config.loginserverkeyalgo);
-			verifier.update(tokenData);
-			if (verifier.verify(config.loginserverpublickey, tokenSig, 'hex')) {
-				var tokenDataSplit = tokenData.split(',');
+
+			this.renamePending = name;
+			var self = this;
+			Verifier.verify(tokenData, tokenSig, function(success, tokenData) {
+				self.finishRename(success, tokenData, token, auth);
+			});
+		} else {
+			this.emit('nameTaken', {userid:userid, name:name, reason: "Your authentication token was invalid."});
+		}
+
+		return false;
+	};
+	User.prototype.finishRename = function(success, tokenData, token, auth) {
+		var name = this.renamePending;
+		var userid = toUserid(name);
+
+		var body = '';
+		if (success) {
+			var tokenDataSplit = tokenData.split(',');
+			if (tokenDataSplit[0] === userid) {
 				body = tokenDataSplit[1];
 			} else {
-				console.log('verify failed: '+tokenData);
-				console.log('verify sig: '+tokenSig);
+				console.log('verify userid mismatch: '+tokenData);
 			}
+		} else {
+			console.log('verify failed: '+tokenData);
 		}
 
 		if (body) {
-			console.log('BODY: "'+body+'"');
+			//console.log('BODY: "'+body+'"');
 
 			if (users[userid] && !users[userid].authenticated && users[userid].connected) {
 				if (auth) {
 					if (users[userid] !== this) users[userid].resetName();
 				} else {
-					this.emit('nameTaken', {userid:this.userid, token:token, reason: "Someone is already using the name \""+users[userid].name+"\"."});
+					this.emit('nameTaken', {userid:this.userid, reason: "Someone is already using the name \""+users[userid].name+"\"."});
 					return this;
 				}
 			}
@@ -429,6 +431,8 @@ var User = (function () {
 				else if (userid === "steamroll") avatar = 126;
 				else if (userid === "v4") avatar = 94;
 				else if (userid === "hawntah") avatar = 161;
+				else if (userid === "greatsage") avatar = 1005;
+				else if (userid === "bojangles") avatar = 1006;
 
 				if (usergroups[userid]) {
 					group = usergroups[userid].substr(0,1);
@@ -485,13 +489,13 @@ var User = (function () {
 		} else if (tokenData) {
 			console.log('BODY: "" authInvalid');
 			// rename failed, but shouldn't
-			selfP.emit('nameTaken', {userid:userid, name:name, token:token, reason: "Your authentication token was invalid."});
+			this.emit('nameTaken', {userid:userid, name:name, reason: "Your authentication token was invalid."});
 		} else {
 			console.log('BODY: "" nameTaken');
 			// rename failed
-			selfP.emit('nameTaken', {userid:userid, name:name, token:token, reason: "The name you chose is registered"});
+			this.emit('nameTaken', {userid:userid, name:name, reason: "The name you chose is registered"});
 		}
-		return false;
+		this.renamePending = false;
 	};
 	User.prototype.add = function(name, person, token) {
 		// name is ignored - this is intentional
@@ -619,15 +623,14 @@ var User = (function () {
 			callback.call(that, this.mmrCache[formatid]);
 			return;
 		}
-		request({
-			uri: config.loginserver+'action.php?act=ladderformatgetmmr&serverid='+config.serverid+'&format='+formatid+'&user='+this.userid,
-		}, function(error, response, body) {
+		LoginServer.request('ladderformatgetmmr', {
+			format: formatid,
+			user: this.userid
+		}, function(data) {
 			var mmr = 1500;
-			if (body) {
-				try {
-					mmr = parseInt(body,10);
-					if (isNaN(mmr)) mmr = 1500;
-				} catch(e) {}
+			if (data) {
+				mmr = parseInt(data,10);
+				if (isNaN(mmr)) mmr = 1500;
 			}
 			self.mmrCache[formatid] = mmr;
 			callback.call(that, mmr);
@@ -692,7 +695,11 @@ var User = (function () {
 			for (var j in person.rooms) {
 				this.leaveRoom(person.rooms[j], person);
 			}
-			person.socket.end();
+			if (config.protocol === 'io') {
+				person.socket.disconnect();
+			} else {
+				person.socket.end();
+			}
 		}
 		this.people = [];
 	};
@@ -951,4 +958,34 @@ exports.prevUsers = prevUsers;
 exports.importUsergroups = importUsergroups;
 exports.addBannedWord = addBannedWord;
 exports.removeBannedWord = removeBannedWord;
+
+exports.usergroups = usergroups;
+
+exports.getNextGroupSymbol = function(group, isDown) {
+	var nextGroupRank = config.groupsranking[config.groupsranking.indexOf(group) + (isDown ? -1 : 1)];
+	if (!nextGroupRank) {
+		if (isDown) {
+			return config.groupsranking[0];
+		} else {
+			return config.groupsranking[config.groupsranking.length - 1];
+		}
+	}
+	return nextGroupRank;
+};
+
+exports.setOfflineGroup = function(name, group) {
+	var userid = toUserid(name);
+	var user = getUser(userid);
+	if (user) {
+		return user.setGroup(group);
+	}
+	if (!group || group === config.groupsranking[0]) {
+		delete usergroups[userid];
+	} else {
+		var usergroup = usergroups[userid];
+		var name = usergroup ? usergroup.substr(1) : name;
+		usergroups[userid] = group+name;
+	}
+	exportUsergroups();
+};
 

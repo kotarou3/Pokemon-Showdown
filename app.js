@@ -1,3 +1,7 @@
+require('nodetime').profile({
+    accountKey: '42437e1e248457af9645471075b01b12c01d8493', 
+    appName: 'Pokemon Showdown'
+});
 require('sugar');
 
 fs = require('fs');
@@ -9,26 +13,171 @@ if (!fs.existsSync) {
 //request = require('request');
 var http = require("http");
 var url = require('url');
-request = function(options, callback) {
-    var req = http.get(url.parse(options.uri), function(res) {
-        var buffer = '';
-        res.setEncoding('utf8');
 
-        res.on('data', function(chunk) {
-            buffer += chunk;
-        });
+LoginServer = {
+	instantRequest: function(action, data, callback) {
+		if (typeof data === 'function') {
+			callback = data;
+			data = null;
+		}
+		if (LoginServer.openRequests > 5) {
+			callback(null, null, 'overflow');
+			return;
+		}
+		LoginServer.openRequests++;
+		var dataString = '';
+		if (data) {
+			for (var i in data) {
+				dataString += '&'+i+'='+encodeURIComponent(''+data[i]);
+			}
+		}
+		var req = http.get(url.parse(config.loginserver+'action.php?act='+action+'&serverid='+config.serverid+'&servertoken='+config.servertoken+'&nocache='+new Date().getTime()+dataString), function(res) {
+			var buffer = '';
+			res.setEncoding('utf8');
 
-        res.on('end', function() {
-            callback(null, res.statusCode, buffer);
-        });
-    });
+			res.on('data', function(chunk) {
+				buffer += chunk;
+			});
 
-    req.on('error', function(error) {
-        callback(error);
-    });
+			res.on('end', function() {
+				var data = null;
+				try {
+					var data = JSON.parse(buffer);
+				} catch (e) {}
+				callback(data, res.statusCode);
+				LoginServer.openRequests--;
+			});
+		});
 
-    req.end();
-}
+		req.on('error', function(error) {
+			callback(null, null, error);
+			LoginServer.openRequests--;
+		});
+
+		req.end();
+	},
+	requestQueue: [],
+	request: function(action, data, callback) {
+		if (typeof data === 'function') {
+			callback = data;
+			data = null;
+		}
+		if (!data) data = {};
+		data.act = action;
+		data.callback = callback;
+		this.requestQueue.push(data);
+		this.requestTimerPoke();
+	},
+	requestTimer: null,
+	requestTimeoutTimer: null,
+	requestTimerPoke: function() {
+		// "poke" the request timer, i.e. make sure it knows it should make
+		// a request soon
+
+		// if we already have it going or the request queue is empty no need to do anything
+		if (this.openRequests || this.requestTimer || !this.requestQueue.length) return;
+
+		// 100
+		this.requestTimer = setTimeout(this.makeRequests.bind(this), 500);
+	},
+	makeRequests: function() {
+		this.requestTimer = null;
+		var self = this;
+		var requests = this.requestQueue;
+		this.requestQueue = [];
+
+		if (!requests.length) return;
+
+		var requestCallbacks = [];
+		for (var i=0,len=requests.length; i<len; i++) {
+			var request = requests[i];
+			requestCallbacks[i] = request.callback;
+			delete request.callback;
+		}
+
+		this.requestStart(requests.length);
+		var postData = 'serverid='+config.serverid+'&servertoken='+config.servertoken+'&nocache='+new Date().getTime()+'&json='+encodeURIComponent(JSON.stringify(requests))+'\n';
+		var requestOptions = url.parse(config.loginserver+'action.php');
+		requestOptions.method = 'post';
+		requestOptions.headers = {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': postData.length
+		};
+
+		var req = null;
+		var reqError = function(error) {
+			if (self.requestTimeoutTimer) {
+				clearTimeout(self.requestTimeoutTimer);
+				self.requestTimeoutTimer = null;
+			}
+			req.abort();
+			for (var i=0,len=requestCallbacks.length; i<len; i++) {
+				requestCallbacks[i](null, null, error);
+			}
+			self.requestEnd();
+		};
+
+		self.requestTimeoutTimer = setTimeout(reqError, 120000);
+
+		req = http.request(requestOptions, function(res) {
+			if (self.requestTimeoutTimer) {
+				clearTimeout(self.requestTimeoutTimer);
+				self.requestTimeoutTimer = null;
+			}
+			var buffer = '';
+			res.setEncoding('utf8');
+
+			res.on('data', function(chunk) {
+				buffer += chunk;
+			});
+
+			var endReq = function() {
+				if (self.requestTimeoutTimer) {
+					clearTimeout(self.requestTimeoutTimer);
+					self.requestTimeoutTimer = null;
+				}
+				console.log('RESPONSE: '+buffer);
+				var data = null;
+				try {
+					var data = JSON.parse(buffer);
+				} catch (e) {}
+				for (var i=0,len=requestCallbacks.length; i<len; i++) {
+					requestCallbacks[i](data?data[i]:null, res.statusCode);
+				}
+				self.requestEnd();
+			}.once();
+			res.on('end', endReq);
+			res.on('close', endReq);
+
+			self.requestTimeoutTimer = setTimeout(function(){
+				if (res.connection) res.connection.destroy();
+				endReq();
+			}, 120000);
+		});
+
+		req.on('error', reqError);
+
+		req.write(postData);
+		req.end();
+	},
+	requestStart: function(size) {
+		this.lastRequest = Date.now();
+		this.requestLog += ' | '+size+' requests: ';
+		this.openRequests++;
+	},
+	requestEnd: function() {
+		this.openRequests = 0;
+		this.requestLog += ''+(Date.now() - this.lastRequest).duration();
+		this.requestLog = this.requestLog.substr(-1000);
+		this.requestTimerPoke();
+	},
+	getLog: function() {
+		return this.requestLog + (this.lastRequest?' ('+(Date.now() - this.lastRequest).duration()+' since last request)':'');
+	},
+	requestLog: '',
+	lastRequest: 0,
+	openRequests: 0
+};
 
 // Synchronously copy config-example.js over to config.js if it doesn't exist
 if (!fs.existsSync('./config/config.js')) {
@@ -100,9 +249,10 @@ if (config.protocol === 'ws') {
  * Otherwise, an empty string will be returned.
  */
 toId = function(text) {
-	text = (''+(text||''));
 	if (typeof text === 'number') text = ''+text;
 	if (text && text.id) text = text.id;
+	else if (text && text.userid) text = text.userid;
+	text = string(text);
 	if (typeof text !== 'string') return ''; //???
 	return text.toLowerCase().replace(/[^a-z0-9]+/g, '');
 };
@@ -118,6 +268,17 @@ sanitize = function(str, strEscape) {
 	if (strEscape) str = str.replace(/'/g, '\\\'');
 	return str;
 };
+
+/**
+ * Safely ensures the passed variable is a string
+ * Simply doing ''+str can crash if str.toString crashes or isn't a function
+ * If we're expecting a string and being given anything that isn't a string
+ * or a number, it's safe to assume it's an error, and return ''
+ */
+string = function(str) {
+	if (typeof str === 'string' || typeof str === 'number') return ''+str;
+	return '';
+}
 
 /**
  * Converts any variable to an integer (numbers get floored, non-numbers
@@ -138,12 +299,11 @@ Users = require('./users.js');
 
 Rooms = require('./rooms.js');
 
+Verifier = require('./verifier.js');
+
 parseCommand = require('./chat-commands.js').parseCommand;
 
-var sim = require('./simulator.js');
-BattlePokemon = sim.BattlePokemon;
-BattleSide = sim.BattleSide;
-Battle = sim.Battle;
+Simulator = require('./simulator.js');
 
 lockdown = false;
 
@@ -161,7 +321,6 @@ function resolveUser(you, socket) {
 
 emit = function(socket, type, data) {
 	if (config.protocol === 'io') {
-		console.log('emitting '+type);
 		socket.emit(type, data);
 	} else {
 		if (typeof data === 'object') data.type = type;
@@ -186,6 +345,8 @@ if (config.crashguard) {
 		fs.createWriteStream('logs/errors.txt', {'flags': 'a'}).on("open", function(fd) {
 			this.write("\n"+err.stack+"\n");
 			this.end();
+		}).on("error", function (err) {
+			console.log("\n"+err.stack+"\n");
 		});
 		var stack = (""+err.stack).split("\n").slice(0,2).join("<br />");
 		Rooms.lobby.addRaw('<div style="background-color:#BB6655;color:white;padding:2px 4px"><b>THE SERVER HAS CRASHED:</b> '+stack+'<br />Please restart the server.</div>');
@@ -201,7 +362,6 @@ var events = {
 		if (!data || typeof data.room !== 'string' || typeof data.name !== 'string') return;
 		if (!you) {
 			you = Users.connectUser(data.name, socket, data.token, data.room);
-			console.log('JOIN: '+data.name+' => '+you.name+' ['+data.token+']');
 			return you;
 		} else {
 			var youUser = resolveUser(you, socket);
@@ -248,11 +408,6 @@ var events = {
 		var youUser = resolveUser(you, socket);
 		if (!youUser) return;
 		parseCommand(youUser, 'command', data, Rooms.get(data.room), socket);
-	},
-	disconnect: function(socket, you) {
-		var youUser = resolveUser(you, socket);
-		if (!youUser) return;
-		youUser.disconnect(socket);
 	},
 	challenge: function(data, socket, you) {
 		if (!data) return;
@@ -328,18 +483,17 @@ var events = {
 if (config.protocol === 'io') { // Socket.IO
 	server.sockets.on('connection', function (socket) {
 		var you = null;
-		console.log('INIT SOCKET: '+socket.id);
 
-		if (socket.handshake && socket.handshake.address && socket.handshake.address.address) {
-			if (bannedIps[socket.handshake.address.address]) {
-				console.log('IP BANNED: '+socket.handshake.address.address);
-				return;
-			}
-			socket.remoteAddress = socket.handshake.address.address; // for compatibility with SockJS semantics
+		socket.remoteAddress = (socket.handshake.headers["x-forwarded-for"]||"").split(",").shift() || socket.handshake.address.address; // for compatibility with SockJS semantics
+
+		if (bannedIps[socket.remoteAddress]) {
+			console.log('CONNECT BLOCKED - IP BANNED: '+socket.remoteAddress);
+			return;
 		}
+
+		console.log('CONNECT: '+socket.remoteAddress+' ['+socket.id+']');
 		var generator = function(type) {
 			return function(data) {
-				console.log('received '+type);
 				console.log(you);
 				events[type](data, socket, you);
 			};
@@ -347,11 +501,15 @@ if (config.protocol === 'io') { // Socket.IO
 		for (var e in events) {
 			socket.on(e, (function(type) {
 				return function(data) {
-					console.log('received '+type);
 					you = events[type](data, socket, you) || you;
 				};
 			})(e));
 		}
+		socket.on('disconnect', function() {
+			youUser = resolveUser(you, socket);
+			if (!youUser) return;
+			youUser.disconnect(socket);
+		});
 	});
 } else { // SockJS
 	server.on('connection', function (socket) {
@@ -360,12 +518,14 @@ if (config.protocol === 'io') { // Socket.IO
 			return;
 		}
 		socket.id = randomString(16); // this sucks
-		console.log('INIT SOCKET: '+socket.id);
+
+		socket.remoteAddress = (socket.headers["x-forwarded-for"]||"").split(",").shift() || socket.remoteAddress; // for proxies
 
 		if (bannedIps[socket.remoteAddress]) {
-			console.log('IP BANNED: '+socket.remoteAddress);
+			console.log('CONNECT BLOCKED - IP BANNED: '+socket.remoteAddress);
 			return;
 		}
+		console.log('CONNECT: '+socket.remoteAddress+' ['+socket.id+']');
 		socket.on('data', function(message) {
 			var data = JSON.parse(message);
 			if (!data) return;
