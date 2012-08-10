@@ -100,22 +100,18 @@ exports.modchat = false;
 //     - forcewin: /forcewin command.
 //     - battlemessage: /a command.
 //     - modtournament: Create, run and delete tournaments.
-exports.groupsranking = [' ', '\u0085', '\u000c', '\t', '\n', '\r'];
+exports.groupsranking = ['東', '南', '西', '北', '中'];
 exports.groups = {
-	'\r': {
-		name: "Muted",
+	'中': {
+		id: "中",
+		name: "中",
 		root: true
 	},
-	'\n': {
-		id: "sysop",
-		name: "System Operator",
-		root: true
-	},
-	'\t': {
-		id: "admin",
-		name: "Admin",
-		inherit: '\u000c',
-		jurisdiction: '@u',
+	'北': {
+		id: "北",
+		name: "北",
+		inherit: '西',
+		jurisdiction: '北u',
 		promote: 'u',
 		forcewin: true,
 		ban: true,
@@ -125,10 +121,10 @@ exports.groups = {
 		announce: true,
 		modchat: true
 	},
-	'\u000c': {
-		id: "mod",
-		name: "Moderator",
-		inherit: '\u0085',
+	'西': {
+		id: "西",
+		name: "西",
+		inherit: '南',
 		jurisdiction: 'su',
 		ban: 'u',
 		mute: 'u',
@@ -136,20 +132,16 @@ exports.groups = {
 		forcerename: 'u',
 		redirect: true
 	},
-	'\u0085': {
-		id: "voice",
-		name: "Voiced",
-		inherit: ' ',
+	'南': {
+		id: "南",
+		name: "南",
+		inherit: '東',
 		broadcast: true,
 		modtournament: true
 	},
-	' ': {
+	'東': {
 		jurisdiction: 's',
 		ip: true,
 		alts: true
-	},
-	'\u00a0': {
-		id: "failop",
-		name: "Failop"
-	},
+	}
 };

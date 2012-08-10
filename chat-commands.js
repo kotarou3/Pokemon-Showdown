@@ -51,7 +51,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		if (canTalk(user, room) && user.can('broadcast') && room.id === 'lobby') {
 			if (cmd === '!birkal') {
 				room.log.push({
-					name: user.__proto__.getIdentity.apply(user),
+					name: user.getIdentity(),
 					message: '!birkal '+target
 				});
 			}
@@ -449,8 +449,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		} */
 
 		var message = {
-			name: user.__proto__.getIdentity.apply(user),
-			pm: targetUser.__proto__.getIdentity.apply(targetUser),
+			name: user.getIdentity(),
+			pm: targetUser.getIdentity(),
 			message: targets[1]
 		};
 		user.emit('console', message);
@@ -1383,7 +1383,7 @@ function showOrBroadcastStart(user, cmd, room, socket, message) {
 			emit(socket, 'console', "To see it for yourself, use: /"+message.substr(1));
 		} else if (canTalk(user, room, socket)) {
 			room.add({
-				name: user.__proto__.getIdentity.apply(user),
+				name: user.getIdentity(),
 				message: message
 			});
 		}

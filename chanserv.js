@@ -4,7 +4,7 @@ function ChanServ()
 
     this.parseCommand = function(user, command, args, room, socket, fullCommand)
     {
-        var targetUser = Users.get(command);
+        var targetUser = getUser(command);
         if (targetUser)
             this.act(targetUser);
         return true;
@@ -19,11 +19,6 @@ function ChanServ()
         user.avatar = this.autoList[user.userid].avatar;
         switch (user.group)
         {
-            case '^' :
-                user.setGroup('\r');
-                rooms.lobby.addRaw(user.name + " was muted by ChanServ.");
-                break;
-
             case '!' :
                 user.setGroup(config.groupsranking[0]);
                 user.muted = true;
@@ -31,33 +26,9 @@ function ChanServ()
                 break;
 
             default :
-                var group = config.groupsranking[0];
-                switch (user.group)
-                {
-                        case '~':
-                                group = '\n';
-                                break;
-
-                        case '@':
-                                group = '\t';
-                                break;
-
-                        case '%':
-                                group = '\u000c';
-                                break;
-
-                        case '+':
-                                group = '\u0085';
-                                break;
-
-                        case '&':
-                                group = '\u00a0';
-                                break;
-                }
-                user.setGroup(group);
-                var groupName = config.groups[group] ? config.groups[group].name : undefined;
-                if (!groupName) groupName = group;
-                rooms.lobby.add(''+user.name+' was promoted to ' + groupName + ' by ChanServ.');
+				var groupName = config.groups[user.group] ? config.groups[user.group].name : undefined;
+				if (!groupName) groupName = user.group;
+				rooms.lobby.add(''+user.name+' was promoted to ' + groupName + ' by ChanServ.');
                 break;
         }
         rooms.lobby.usersChanged = true;
