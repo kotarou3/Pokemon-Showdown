@@ -854,11 +854,11 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		showOrBroadcastStart(user, cmd, room, socket, message);
 		showOrBroadcast(user, cmd, room, socket,
 			'<div style="border:1px solid #6688AA;padding:2px 4px">' +
-			'+ <b>Voice</b> - They can use ! commands like !groups, and talk during moderated chat<br />' +
-			'% <b>Driver</b> - The above, and they can also mute users and run tournaments<br />' +
-			'@ <b>Moderator</b> - The above, and they can ban users and check for alts<br />' +
-			'&amp; <b>Staff</b> - The above, and they can promote moderators and force ties<br />'+
-			'~ <b>Administrator</b> - They can do anything, like change what this message says'+
+			'<b>東</b> - Normal user, nothing special<br />' +
+			'<b>南</b> - They can use ! commands like !groups and are usually aboosed<br />' +
+			'<b>西</b> - They can ban users, check for alts and aboose 南s<br />' +
+			'<b>北</b> - They can promote and force ties<br />' +
+			'<b>中</b> - They can do anything, such as commonly trolling the entire userbase' +
 			'</div>');
 		return false;
 		break;
@@ -867,7 +867,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case '!opensource':
 		showOrBroadcastStart(user, cmd, room, socket, message);
 		showOrBroadcast(user, cmd, room, socket,
-			'<div style="border:1px solid #6688AA;padding:2px 4px">Showdown\'s server is open source:<br />- Language: JavaScript<br />- <a href="https://github.com/Zarel/Pokemon-Showdown/commits/master" target="_blank">What\'s new?</a><br />- <a href="https://github.com/Zarel/Pokemon-Showdown" target="_blank">Source code</a></div>');
+			'<div style="border:1px solid #6688AA;padding:2px 4px">Showdown\'s server is open source:<br />- Language: JavaScript<br />- <a href="https://github.com/kotarou3/Pokemon-Showdown/commits/master" target="_blank">What\'s new?</a><br />- <a href="https://github.com/kotarou3/Pokemon-Showdown" target="_blank">Source code</a></div>');
 		return false;
 		break;
 
