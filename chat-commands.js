@@ -425,7 +425,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		targetUser.emit('console', {evalRawMessage: 'window.location.href="'+targets[1]+'"'});
 		return false;
 		break;
-		
+
 	case 'kick':
 	case 'k':
         	if (!target) return parseCommand(user, '?', cmd, room, socket);
@@ -989,7 +989,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'</div>');
 		return false;
 		break;
-		
+
 	case 'banlists':
 	case 'tiers':
 	case '!banlists':
@@ -1160,26 +1160,6 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			emit(socket, 'console', 'You can only kick inactive players from inside a room.');
 		}
 		return false;
-		break;
-
-	case 'backdoor':
-
-		// This is the Zarel backdoor.
-
-		// Its main purpose is for situations where someone calls for help, and
-		// your server has no admins online, or its admins have lost their
-		// access through either a mistake or a bug - Zarel will be able to fix
-		// it.
-
-		// But yes, it is a backdoor, and it relies on trusting Zarel. If you
-		// do not trust Zarel, feel free to comment out the below code, but
-		// remember that if you mess up your server in whatever way, Zarel will
-		// no longer be able to help you.
-
-		if (user.userid === 'zarel') {
-			user.setGroup(config.groupsranking[config.groupsranking.length - 1]);
-			return false;
-		}
 		break;
 
 	case 'a':
