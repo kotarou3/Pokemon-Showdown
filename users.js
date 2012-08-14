@@ -77,30 +77,6 @@ function connectUser(name, socket, token, room) {
 	return person;
 }
 
-var usergroups = {};
-function importUsergroups() {
-	// can't just say usergroups = {} because it's exported
-	for (var i in usergroups) delete usergroups[i];
-
-	fs.readFile('config/usergroups.csv', function(err, data) {
-		if (err) return;
-		data = (''+data).split("\n");
-		for (var i = 0; i < data.length; i++) {
-			if (!data[i]) continue;
-			var row = data[i].split(",");
-			usergroups[toUserid(row[0])] = (row[1]||config.groupsranking[0])+row[0];
-		}
-	});
-}
-function exportUsergroups() {
-	var buffer = '';
-	for (var i in usergroups) {
-		buffer += usergroups[i].substr(1).replace(/,/g,'') + ',' + usergroups[i].substr(0,1) + "\n";
-	}
-	fs.writeFile('config/usergroups.csv', buffer);
-}
-importUsergroups();
-
 var bannedWords = {};
 function importBannedWords() {
 	fs.readFile('config/bannedwords.txt', function(err, data) {
@@ -435,10 +411,6 @@ var User = (function () {
 				else if (userid === "hawntah") avatar = 161;
 				else if (userid === "greatsage") avatar = 1005;
 				else if (userid === "bojangles") avatar = 1006;
-
-				if (usergroups[userid]) {
-					group = usergroups[userid].substr(0,1);
-				}
 			}
 			if (users[userid] && users[userid] !== this) {
 				// This user already exists; let's merge
@@ -552,12 +524,6 @@ var User = (function () {
 	};
 	User.prototype.setGroup = function(group) {
 		this.group = group.substr(0,1);
-		if (!this.group || this.group === config.groupsranking[0]) {
-			delete usergroups[this.userid];
-		} else {
-			usergroups[this.userid] = this.group+this.name;
-		}
-		exportUsergroups();
 	};
 	User.prototype.disconnect = function(socket) {
 		var person = null;
@@ -962,11 +928,8 @@ exports.searchUser = searchUser;
 exports.connectUser = connectUser;
 exports.users = users;
 exports.prevUsers = prevUsers;
-exports.importUsergroups = importUsergroups;
 exports.addBannedWord = addBannedWord;
 exports.removeBannedWord = removeBannedWord;
-
-exports.usergroups = usergroups;
 
 exports.getNextGroupSymbol = function(group, isDown) {
 	var nextGroupRank = config.groupsranking[config.groupsranking.indexOf(group) + (isDown ? -1 : 1)];
@@ -978,20 +941,4 @@ exports.getNextGroupSymbol = function(group, isDown) {
 		}
 	}
 	return nextGroupRank;
-};
-
-exports.setOfflineGroup = function(name, group) {
-	var userid = toUserid(name);
-	var user = getUser(userid);
-	if (user) {
-		return user.setGroup(group);
-	}
-	if (!group || group === config.groupsranking[0]) {
-		delete usergroups[userid];
-	} else {
-		var usergroup = usergroups[userid];
-		var name = usergroup ? usergroup.substr(1) : name;
-		usergroups[userid] = group+name;
-	}
-	exportUsergroups();
 };

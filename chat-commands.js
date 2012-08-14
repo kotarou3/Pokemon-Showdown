@@ -627,13 +627,11 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		var targets = splitTarget(target, true);
 		var targetUser = targets[0];
 		var userid = toUserid(targets[2]);
-
-		var currentGroup = ' ';
-		if (targetUser) {
-			currentGroup = targetUser.group;
-		} else if (Users.usergroups[userid]) {
-			currentGroup = Users.usergroups[userid].substr(0,1);
+		if (!targetUser) {
+			emit(socket, 'console', targets[2] + ' is not online.');
 		}
+
+		var currentGroup = targetUser.group;
 		var name = targetUser ? targetUser.name : targets[2];
 
 		var nextGroup = targets[1] ? targets[1] : Users.getNextGroupSymbol(currentGroup, cmd === 'demote');
@@ -646,8 +644,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			return false;
 		}
 
-		var isDemotion = (config.groups[nextGroup].rank < config.groups[currentGroup].rank);
-		Users.setOfflineGroup(name, nextGroup);
+		var isDemotion = (config.groupsranking.indexOf(nextGroup) < config.groupsranking.indexOf(currentGroup));
+		targetUser.group = nextGroup;
 		rooms.lobby.usersChanged = true;
 		var groupName = config.groups[nextGroup].name || nextGroup || '';
 		logModCommand(room,''+name+' was '+(isDemotion?'demoted':'promoted')+' to ' + (groupName.trim() || 'a regular user') + ' by '+user.name+'.');
