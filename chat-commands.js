@@ -895,10 +895,15 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 	case 'alert':
 		if (!user.can('alert')) return false;
+		var targetUser = Users.get(target);
+		if (!targetUser || !targetUser.connected) {
+			emit(socket, 'console', 'User '+target+' not found.');
+			return false;
+		}
+
 		logModCommand(room,user.name+' alerted `' + target + '`', true);
-		rooms.lobby.log.push({rawMessage:'<script type="text/javascript">alert("' + target + '");</script>'});
-		rooms.lobby.update();
-		rooms.lobby.log.pop();
+		targetUser.emit('console', {evalRawMessage: 'var message = ' + JSON.stringify(user.name) + ' + " has alerted you."; setTimeout(function(){alert(message);},0); message;'});
+		user.emit('console', 'You have alerted ' + user.name);
 		return false;
 
 	// INFORMATIONAL COMMANDS
