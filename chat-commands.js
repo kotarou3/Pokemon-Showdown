@@ -35,6 +35,88 @@
  *
  */
 
+tour = {
+	shuffle: function(o){
+		for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	},
+	nextRound: function(room) {
+		if (tour[room].winners.length == 1) {
+			rooms[room].addRaw("<hr /><h2>Congragulations " + htmlescape(Users.get(tour[room].winners[0]).name) + " you won the " + tour[room].tier + " tournament.</h2><hr />");
+			tour.endTour(room);
+			return;
+		}
+
+		tour[room].round = [];
+
+		tour[room].Round = tour[room].Round + 1;
+		var msg = "<hr /><h2>Start of Round " + tour[room].Round + " of the " + tour[room].tier + " Tournament</h2>";
+
+		var object = "winners";
+		if (tour[room].Round == 1) {
+			var object = "players";
+		}
+
+		var len = tour[room][object].length;
+		var ceil = Math.ceil(len / 2);
+		var norm = len / 2;
+		for (var i = 0; i < ceil; i++) {
+			var p1 = tour[room][object][i * 2];
+			if (ceil - 1 == i && ceil > norm) {
+				//this person gets a bye
+				tour[room].winners[tour[room].winners.length] = p1;
+				tour[room].round[tour[room].round.length] = p1 + "|" + 0 + "|" + 2 + "|" + p1;
+				msg += "<div><b><font color=\"red\">" + htmlescape(Users.get(p1).name) + " gets a bye.</font></b></div>";
+			}
+			else {
+				//normal opponent
+				var p2 = tour[room][object][eval((i * 2) + '+' + 1)];
+				tour[room].round[tour[room].round.length] = p1 + "|" + p2 + "|" + 0 + "|" + 0;
+				msg += "<div><b>" + htmlescape(Users.get(p1).name) + " vs. " + htmlescape(Users.get(p2).name) + "</b></div>";
+			}
+		}
+		msg += "<hr />";
+		rooms[room].addRaw(msg);
+
+		if (tour[room].Round > 1) {
+			tour[room].winners = [];
+		}
+	},
+	startTour: function(room) {
+		tour[room].status = 2;
+		tour.shuffle(tour[room].players);
+		tour.nextRound(room);
+	},
+	endTour: function(room) {
+		tour[room] = {
+			status: 0,
+			toursize: 0,
+			tier: "",
+			players: [],
+			round: [],
+			winners: [],
+			losers: [],
+			overallLoser: [],
+			Round: 0
+		};
+	}
+};
+for (var i in rooms) {
+	if (rooms[i].type == "lobby") {
+		tour[i] = {
+			status: 0,
+			toursize: 0,
+			tier: "",
+			players: [],
+			round: [],
+			winners: [],
+			losers: [],
+			overallLoser: [],
+			Round: 0
+		};
+	}
+}
+
 var modlog = modlog || fs.createWriteStream('logs/modlog.txt', {flags:'a+'});
 
 function parseCommandLocal(user, cmd, target, room, socket, message) {
@@ -942,8 +1024,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case '!opensource':
 		showOrBroadcastStart(user, cmd, room, socket, message);
 		showOrBroadcast(user, cmd, room, socket,
-			'<div style="border:1px solid #6688AA;padding:2px 4px">Showdown\'s server is open source:<br />- Language: JavaScript<br />- <a href="https://github.com/kotarou3/Pokemon-Showdown/commits/master" target="_blank">What\'s new?</a><br />- <a href="https://github.com/kotarou3/Pokemon-Showdown" target="_blank">Source code</a></div>');
-		return false;
+			'<div style="border:1px solid #6688AA;padding:2px 4px">Showdown\'s server is open source:<br />- Language: JavaScript<br />- <a href="https://github.com/kotarou3/Pokemon-Showdown/commits/kupo" target="_blank">What\'s new?</a><br />- <a href="https://github.com/kotarou3/Pokemon-Showdown/tree/kupo" target="_blank">Source code</a></div>');
+			return false;
 		break;
 
 	case 'avatars':
@@ -1283,6 +1365,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		break;
 
 	case 'crashfixed':
+	case 'fixcrash':
 		if (!lockdown) {
 			emit(socket, 'console', '/crashfixed - There is no active crash.');
 			return false;
@@ -1299,6 +1382,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		break;
 	case 'crashnoted':
 	case 'crashlogged':
+	case 'notecrash':
 		if (!lockdown) {
 			emit(socket, 'console', '/crashnoted - There is no active crash.');
 			return false;
@@ -1540,6 +1624,317 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 
+	//tournament commands
+	case 'tour':
+		if (user.group == "") {
+			emit(socket, 'console', 'You do not have enough authority to use this command.');
+			return false;
+		}
+		if (tour[room.id].status > 0) {
+			emit(socket, 'console', 'A tournament is already running.');
+			return false;
+		}
+		if (!target) {
+			emit(socket, 'console', "You forgot to enter the tournament info.");
+			return false;
+		}
+		var part = target.split(',');
+		if (part.length - 1 == 0) {
+			emit(socket, 'console', "You didn't enter the tournament size.");
+			return false;
+		}
+		if (!Tools.data.Formats[part[0]]) {
+			emit(socket, 'console', "You did not enter a valid tier.");
+			return false;
+		}
+		if (isNaN(part[1]) == true || part[1] == "" || part[1] < 3) {
+			emit(socket, 'console', "You did not enter a valid amount of participants.");
+			return false;
+		}
+		tour[room.id].status = 1;
+		tour[room.id].toursize = part[1].split(' ').join('');
+		tour[room.id].tier = part[0];
+		room.addRaw('<hr /><h2><font color="green">A Tournament has been started by: ' + htmlescape(user.name) + ' <button onclick="emit(socket, \'chat\', {room:\'' + room.id + '\',message:\'/j\'});"><b>Join</b></button></font></h2><b><font color="blueviolet">PLAYERS:</font></b> ' + part[1] + '<br /><font color="blue"><b>TYPE:</b></font> ' + part[0] + '<hr />');
+		return false;
+		break;
+
+	case 'jointour':
+	case 'jt':
+	case 'j':
+		if (tour[room.id].status == 0) {
+			emit(socket, 'console', 'A tournament is not currently running.');
+			return false;
+		}
+		if (tour[room.id].status > 1) {
+			emit(socket, 'console', 'Too late. The tournament already started.');
+			return false;
+		}
+		var joined = false;
+		for (var i in tour[room.id].players) {
+			if (tour[room.id].players[i] == user.userid) {
+				joined = true;
+			}
+		}
+		if (joined == true) {
+			emit(socket, 'console', 'You already joined the tournament.');
+			return false;
+		}
+		tour[room.id].players.push(user.userid);
+		var spots = tour[room.id].toursize - tour[room.id].players.length;
+		room.addRaw('<timestamp/><b>' + htmlescape(user.name) + ' has joined the tournament. ' + spots + ' spots left.</b>');
+		if (spots == 0) {
+			tour.startTour(room.id);
+		}
+		return false;
+		break;
+
+	case 'forcejoin':
+	case 'fj':
+		if (user.group == "") {
+			emit(socket, 'console', 'You do not have enough authority to use this command.');
+			return false;
+		}
+		if (tour[room.id].status == 0) {
+			emit(socket, 'console', 'A tournament is not currently running.');
+			return false;
+		}
+		if (tour[room.id].status > 1) {
+			emit(socket, 'console', 'Too late. The tournament already started.');
+			return false;
+		}
+		var tar = Users.get(target).userid;
+		if (tar == 0) {
+			emit(socket, 'console', 'That user does not exist.');
+			return false;
+		}
+		var joined = false;
+		for (var i in tour[room.id].players) {
+			if (tour[room.id].players[i] == tar) {
+				joined = true;
+			}
+		}
+		if (joined == true) {
+			emit(socket, 'console', 'That user already joined the tournament.');
+			return false;
+		}
+		tour[room.id].players.push(tar);
+		var spots = tour[room.id].toursize - tour[room.id].players.length;
+		room.addRaw('<timestamp/><b>' + htmlescape(Users.get(tar).name) + ' was forced to join the tournament by ' + htmlescape(user.name) + '. ' + spots + ' spots left.</b>');
+		if (spots == 0) {
+			tour.startTour(room.id);
+		}
+		return false;
+		break;
+
+	case 'forceleave':
+	case 'fl':
+		if (user.group == "") {
+			emit(socket, 'console', 'You do not have enough authority to use this command.');
+			return false;
+		}
+		if (tour[room.id].status == 0) {
+			emit(socket, 'console', 'A tournament is not currently running.');
+			return false;
+		}
+		if (tour[room.id].status > 1) {
+			emit(socket, 'console', 'You cannot force someone to leave while the tournament is running. They are trapped. >:D');
+			return false;
+		}
+		var tar = Users.get(target).userid;
+		if (tar == 0) {
+			emit(socket, 'console', 'That user does not exist.');
+			return false;
+		}
+		var joined = false;
+		for (var i in tour[room.id].players) {
+			if (tour[room.id].players[i] == tar) {
+				joined = true;
+				var id = i;
+			}
+		}
+		if (joined == false) {
+			emit(socket, 'console', 'That user isn\'t in the tournament.');
+			return false;
+		}
+		tour[room.id].players.splice(i, 1);
+		var spots = tour[room.id].toursize - tour[room.id].players.length;
+		room.addRaw('<timestamp/><b>' + htmlescape(Users.get(tar).name) + ' has been forced to leave the tournament by ' + htmlescape(user.name) + '. ' + spots + ' spots left.</b>');
+		return false;
+		break;
+
+	case 'leavetour':
+	case 'lt':
+	case 'l':
+		if (tour[room.id].status == 0) {
+			emit(socket, 'console', 'A tournament is not currently running.');
+			return false;
+		}
+		if (tour[room.id].status > 1) {
+			emit(socket, 'console', 'You cannot leave while the tournament is running. You are trapped. >:D');
+			return false;
+		}
+		var joined = false;
+		for (var i in tour[room.id].players) {
+			if (tour[room.id].players[i] == user.userid) {
+				joined = true;
+				var id = i;
+			}
+		}
+		if (joined == false) {
+			emit(socket, 'console', 'You haven\'t joined the tournament so you can\'t leave it.');
+			return false;
+		}
+		tour[room.id].players.splice(i, 1);
+		var spots = tour[room.id].toursize - tour[room.id].players.length;
+		room.addRaw('<timestamp/><b>' + htmlescape(user.name) + ' has left the tournament. ' + spots + ' spots left.</b>');
+		return false;
+		break;
+
+	case 'toursize':
+	case 'ts':
+		if (user.group == "") {
+			emit(socket, 'console', 'You do not have enough authority to use this command.');
+			return false;
+		}
+		if (tour[room.id].status == 0) {
+			emit(socket, 'console', 'A tournament is not currently running.');
+			return false;
+		}
+		if (tour[room.id].status > 1) {
+			emit(socket, 'console', 'The tournament already started.');
+			return false;
+		}
+		if (isNaN(target) == true || target == "" || target < 3) {
+			emit(socket, 'console', 'You cannot change the tournament size to: ' + target);
+			return false;
+		}
+		if (target < tour[room.id].players.length) {
+			emit(socket, 'console', tour[room.id].players.length + ' players have joined already. You are trying to set the tournament size to ' + target + '.');
+			return false;
+		}
+		tour[room.id].toursize = target;
+		var spots = tour[room.id].toursize - tour[room.id].players.length;
+		room.addRaw('<timestamp/><b>The tournament size has been changed to ' + target + ' by ' + htmlescape(user.name) + '. ' + spots + ' spots left.</b>');
+		if (spots == 0) {
+			tour.startTour(room.id);
+		}
+		return false;
+		break;
+
+	case 'disqualify':
+	case 'dq':
+		if (tour[room.id].status < 2) {
+			emit(socket, 'console', 'A tournament hasn\'t started yet.');
+			return false;
+		}
+		if (user.group == "") {
+			emit(socket, 'console', 'You don\'t have enough authority to use this command.');
+			return false;
+		}
+		var tar = Users.get(target).userid;
+		if (!tar) {
+			emit(socket, 'console', 'That user does not exist.');
+			return false;
+		}
+		var init = false;
+		var wait = false;
+		for (var i in tour[room.id].round) {
+			var current = tour[room.id].round[i].split('|');
+			if (current[0] == tar) {
+				init = true;
+				var id = i;
+				var opp = current[1];
+				if (current[2] == 2) {
+					wait = true;
+				}
+			}
+			if (current[1] == tar) {
+				init = true;
+				var id = i;
+				var opp = current[0];
+				if (current[2] == 2) {
+					wait = true;
+				}
+			}
+		}
+		if (wait == true) {
+			emit(socket, 'console', 'That player already completed their duel. Wait for the next round to start to disqualify this user.');
+			return false;
+		}
+		if (init == false) {
+			emit(socket, 'console', 'That player is not in the tournament');
+			return false;
+		}
+		var object = tour[room.id].round[id].split('|');
+		object[2] = 2;
+		object[3] = opp;
+		tour[room.id].round[id] = object.join('|');
+		tour[room.id].winners[tour[room.id].winners.length] = opp;
+		tour[room.id].losers[tour[room.id].losers.length] = tar;
+		room.addRaw('<b>' + htmlescape(Users.get(tar).name) + ' was disqualified by ' + htmlescape(user.name) + '. ' + htmlescape(Users.get(opp).name) + " won their battle by default.</b>");
+		if (tour[room.id].winners.length >= tour[room.id].round.length) {
+			tour.nextRound(room.id);
+		}
+		return false;
+		break;
+
+	case 'switch':
+
+		break;
+
+	case 'viewround':
+	case 'vr':
+		if (tour[room.id].status < 2) {
+			emit(socket, 'console', 'A tournament hasn\'t started yet.');
+			return false;
+		}
+		var msg = "<br /><h3>Round " + tour[room.id].Round + " of " + tour[room.id].tier + " tournament.</h3><small><i>** Bold means they are battling. Green means they won. Red means they lost. **</i></small><br />";
+		for (var i in tour[room.id].round) {
+			var current = tour[room.id].round[i].split('|');
+			var p1 = current[0];
+			var p2 = current[1];
+			var status = current[2];
+			var winner = current[3];
+
+			var fontweight = "";
+			var p1c = "";
+			var p2c = "";
+
+			if (status == 2) {
+				p1c = "color: red;";
+				p2c = "color: green;";
+				if (winner == p1) {
+					p1c = "color: green;";
+					p2c = "color: red;";
+				}
+			}
+
+			if (status == 1) {
+				var fontweight = "font-weight: bold;";
+			}
+
+			if (p2 != 0) msg += "<div style=\"" + fontweight + "\"><span style=\"" + p1c + "\">" + htmlescape(Users.get(p1).name) + "</span> vs. <span style=\"" + p2c + "\">" + htmlescape(Users.get(p2).name) + "</span></div>";
+			else msg += "<div style=\"" + fontweight + "\"><span style=\"" + p1c + "\">" + htmlescape(Users.get(p1).name) + "</span> gets a bye.</div>";
+		}
+		msg += "<br />";
+		emit(socket, 'console', {rawMessage: msg});
+		return false;
+		break;
+
+	case 'endtour':
+		if (tour[room.id].status == 0) {
+			emit(socket, 'console', 'There is currently no tournament running.');
+			return false;
+		}
+		if (user.group == "") {
+			emit(socket, 'console', 'You do not have enough authority to use this command.');
+			return false;
+		}
+		room.addRaw('<h2>The tournament was ended by ' + htmlescape(user.name) + '.</h2>');
+		tour.endTour(room.id);
+		return false;
+		break;
+
 	default:
 		// Check for mod/demod/admin/deadmin/etc depending on the group ids
 		for (var g in config.groups) {
@@ -1706,3 +2101,13 @@ global.logModCommand = function(room, result, noBroadcast) {
 }
 
 exports.parseCommand = parseCommandLocal;
+
+function htmlescape(text) {
+	var m = text.toString();
+	if(m.length > 0) {
+		return m.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\"/g, '&quot;');
+	}
+	else {
+		return "";
+	}
+}
