@@ -136,6 +136,52 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 		}
 		selfR.active = false;
 		selfR.update();
+		
+		//tournaments
+		var winner = toId(winner);
+		var loser = toId(selfR.battle.p1);
+		if (winner == toId(selfR.battle.p1)) {
+			var loser = toId(selfR.battle.p2);
+		}
+		var joined1 = false;
+		var joined2 = false;
+		var room = selfR.parentid;
+		for (var i in tour[room].players) {
+			if (tour[room].players[i] == winner) {
+				joined1 = true;
+			}
+			if (tour[room].players[i] == loser) {
+				joined2 = true;
+			}
+		}
+		var opps = false;
+		if (joined1 == joined2 && joined1 == true) {
+			for (var i in tour[room].round) {
+				var current = tour[room].round[i].split('|');
+				if ((current[0] == winner && current[1] == loser) || (current[0] == loser && current[1] == winner)) {
+					if (Math.floor(current[2]) == 1) {
+						opps = true;
+						var part = i;
+					}
+				}
+			}
+		}
+		if (opps == true) {
+			//both players are in the tournament and are opponents
+			if (rooms[selfR.id].format == tour[room].tier) {
+				//tier matches tournament tier
+				var obj = tour[room].round[part].split('|');
+				obj[2] = 2;
+				obj[3] = winner;
+				tour[room].round[part] = obj.join('|');
+				tour[room].winners[tour[room].winners.length] = winner;
+				tour[room].losers[tour[room].losers.length] = loser;
+				rooms[room].addRaw('<timestamp/><b>' + htmlescape(Users.get(loser).name) + ' lost their tournament battle against ' + htmlescape(Users.get(winner).name) + '.</b>');
+				if (tour[room].winners.length >= tour[room].round.length) {
+					tour.nextRound(room);
+				}
+			}
+		}
 	};
 	this.update = function(excludeUser) {
 		if (selfR.log.length < selfR.lastUpdate) return;
@@ -253,7 +299,7 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 		var otherids = ['p2', 'p1'];
 
 		var name = 'An unknown player';
-		if (user) {
+		if (user) { 
 			name = user.name;
 		} else if (selfR.rated) {
 			name = selfR.rated[ids[side]];
@@ -566,11 +612,10 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 			var me = user;
 			selfR.addCmd('chat', user.name, '>> '+cmd);
 			if (user.can('console')) {
-			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.addCmd('chat', user.name, '<< '+eval(cmd));
 				} catch (e) {
-					selfR.addCmd('chat', user.name, '<< error: '+e);
+					selfR.addCmd('chat', user.name, '<< error: '+e.message);
 					var stack = (""+e.stack).split("\n");
 					for (var i=0; i<stack.length; i++) {
 						user.emit('console', '<< '+stack[i]);
@@ -604,8 +649,6 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 		}
 		selfR.users = null;
 
-		rooms.lobby.removeRoom(selfR.id);
-
 		// deallocate children and get rid of references to them
 		if (selfR.battle) {
 			selfR.battle.destroy();
@@ -619,6 +662,8 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 
 		// get rid of some possibly-circular references
 		delete rooms[selfR.id];
+
+		rooms.lobby.removeRoom(selfR.id);
 
 		selfR = null;
 	};
@@ -954,15 +999,53 @@ function LobbyRoom(roomid) {
 		selfR.cancelSearch(p1, true);
 		selfR.cancelSearch(p2, true);
 		selfR.roomsChanged = true;
+		var nrid = newRoom.id;
 		if (config.reportbattles) {
 			selfR.log.push({
 				name: p1.name,
 				name2: p2.name,
-				room: newRoom.id,
+				room: nrid,
 				format: format,
 				action: 'battle'
 			});
 			selfR.update();
+		}
+				
+		//tournaments
+		var p1 = p1.userid;
+		var p2 = p2.userid;
+		var joined1 = false;
+		var joined2 = false;
+		var room = selfR.id;
+		for (var i in tour[room].players) {
+			if (tour[room].players[i] == p1) {
+				joined1 = true;
+			}
+			if (tour[room].players[i] == p2) {
+				joined2 = true;
+			}
+		}
+		var opps = false;
+		if (joined1 == joined2 && joined1 == true) {
+			for (var i in tour[room].round) {
+				var current = tour[room].round[i].split('|');
+				if ((current[0] == p1 && current[1] == p2) || (current[0] == p2 && current[1] == p1)) {
+					if (Math.floor(current[2]) == 0) {
+						opps = true;
+						var part = i;
+					}
+				}
+			}
+		}
+		if (opps == true) {
+			//both players are in the tournament and are opponents
+			if (rooms[nrid].format == tour[room].tier) {
+				//same tier as tournament
+				var obj = tour[room].round[part].split('|');
+				obj[2] = 1;
+				tour[room].round[part] = obj.join('|');
+				rooms[room].addRaw('<a href="./' + nrid + '" onclick="selectTab(\'' + nrid + '\'); return false;" style="color: green;" class="battle-start"><timestamp/><b>Tournament battle between ' + htmlescape(Users.get(p1).name) + ' and ' + htmlescape(Users.get(p2).name) + ' has started.</b></a>');
+			}
 		}
 	};
 	this.addRoom = function(room, format, p1, p2, parent, rated) {
@@ -1028,7 +1111,6 @@ function LobbyRoom(roomid) {
 				message: '>> '+cmd
 			});
 			if (user.can('console')) {
-			    logModCommand(selfR, user.getIdentity() + " eval'd `" + cmd + "`", true);
 				try {
 					selfR.log.push({
 						name: user.getIdentity(),
@@ -1037,7 +1119,7 @@ function LobbyRoom(roomid) {
 				} catch (e) {
 					selfR.log.push({
 						name: user.getIdentity(),
-						message: '<< error: '+e
+						message: '<< error: '+e.message
 					});
 					var stack = (""+e.stack).split("\n");
 					for (var i=0; i<stack.length; i++) {
@@ -1091,3 +1173,13 @@ exports.get = getRoom;
 exports.create = newRoom;
 exports.rooms = rooms;
 exports.lobby = rooms.lobby;
+
+function htmlescape(text) {
+	var m = text.toString();
+	if(m.length > 0) {
+		return m.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\"/g, '&quot;');
+	}
+	else {
+		return "";
+	}
+}
