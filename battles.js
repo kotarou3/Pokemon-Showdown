@@ -399,34 +399,45 @@ function BattlePokemon(set, side) {
 		};
 	};
 	this.getMoves = function() {
+		var lockedMove = selfB.runEvent('LockMove', selfP);
+		if (lockedMove === true) lockedMove = false;
+		if (lockedMove) {
+			lockedMove = toId(lockedMove);
+			selfP.trapped = true;
+		}
+		if (selfP.volatiles['mustRecharge'] || lockedMove === 'recharge') {
+			return [{
+				move: 'Recharge',
+				id: 'Recharge'
+			}];
+		}
 		var moves = [];
 		var hasValidMove = false;
 		for (var i=0; i<selfP.moveset.length; i++) {
 			var move = selfP.moveset[i];
+			if (lockedMove) {
+				if (lockedMove === move.id) {
+					return [move];
+				}
+				continue;
+			}
 			if (selfP.disabledMoves[move.id] || !move.pp) {
 				move.disabled = true;
-			}
-			moves.push(move);
-			if (!move.disabled) {
+			} else if (!move.disabled) {
 				hasValidMove = true;
 			}
+			moves.push(move);
 		}
-		if (!hasValidMove) {
-			moves = [{
-				move: 'Struggle',
-				id: 'struggle',
-				pp: 1,
-				maxpp: 1,
-				disabled: false
+		if (lockedMove) {
+			return [{
+				move: selfB.getMove(lockedMove).name,
+				id: lockedMove
 			}];
 		}
-		if (selfP.volatiles['mustRecharge']) {
-			moves = [{
-				move: 'Recharge',
-				id: 'Recharge',
-				pp: 1,
-				maxpp: 1,
-				disabled: false
+		if (!hasValidMove) {
+			return [{
+				move: 'Struggle',
+				id: 'struggle'
 			}];
 		}
 		return moves;
@@ -901,20 +912,6 @@ function BattlePokemon(set, side) {
 	this.hpChange = function(d) {
 		return ''+selfP.hpPercent(d)+selfP.getHealth();
 	};
-	this.lockMove = function(moveid) {
-		// shortcut function for locking a pokemon into a move
-		// not really necessary, btw: you can do this all in effect script
-		// actually, you can do nearly everything in effect script
-		if (!moveid || (!selfP.hasMove(moveid) && moveid !== 'recharge')) return;
-		if (moveid === 'recharge') selfP.disabledMoves['recharge'] = false;
-		var moves = selfP.moveset;
-		for (var i=0; i<moves.length; i++) {
-			if (moves[i].id !== moveid) {
-				moves[i].disabled = true;
-			}
-		}
-		selfP.trapped = true;
-	};
 	this.runImmunity = function(type, message) {
 		if (selfP.fainted) {
 			return false;
@@ -939,10 +936,6 @@ function BattlePokemon(set, side) {
 			return false;
 		}
 		return true;
-	};
-	this.runBeforeMove = function(target, move) {
-		if (selfP.fainted) return true;
-		return !selfB.runEvent('BeforeMove', selfP, target, move);
 	};
 	this.destroy = function() {
 		// deallocate ourself
@@ -1180,6 +1173,20 @@ function Battle(roomid, format, rated) {
 	};
 	this.clearWeather = function() {
 		return selfB.setWeather('');
+	};
+	this.effectiveWeather = function(target) {
+		if (selfB.event) {
+			if (!target) target = selfB.event.target;
+		}
+		if (!selfB.runEvent('TryWeather', target)) return '';
+		return this.weather;
+	};
+	this.isWeather = function(weather, target) {
+		var ourWeather = selfB.effectiveWeather(target);
+		if (!Array.isArray(weather)) {
+			return ourWeather === toId(weather);
+		}
+		return (weather.map(toId).indexOf(ourWeather) >= 0);
 	};
 	this.getWeather = function() {
 		return selfB.getEffect(selfB.weather);
@@ -1677,17 +1684,23 @@ function Battle(roomid, format, rated) {
 				selfB.add('message BATTLE CRASHED.');
 				return;
 			}
+			moves = pokemon.getMoves();
 			if (pokemon.disabledMoves['recharge'] === false) {
 				moves = [{move: 'recharge'}];
 			}
-			selfB.p1.emitUpdate({request: {moves: pokemon.getMoves(), trapped: pokemon.trapped, side: pokemon.side.getData()}});
+			selfB.p1.emitUpdate({request: {moves: moves, trapped: pokemon.trapped, side: pokemon.side.getData()}});
 
 			selfB.p2.decision = null;
 			pokemon = selfB.p2.active[0];
+			if (!pokemon) {
+				selfB.add('message BATTLE CRASHED.');
+				return;
+			}
+			moves = pokemon.getMoves();
 			if (pokemon.disabledMoves['recharge'] === false) {
 				moves = [{move: 'recharge'}];
 			}
-			selfB.p2.emitUpdate({request: {moves: pokemon.getMoves(), trapped: pokemon.trapped, side: pokemon.side.getData()}});
+			selfB.p2.emitUpdate({request: {moves: moves, trapped: pokemon.trapped, side: pokemon.side.getData()}});
 			selfB.decisionWaiting = true;
 		}
 		if (selfB.p2.decision && selfB.p1.decision) {
@@ -2133,19 +2146,24 @@ function Battle(roomid, format, rated) {
 			pokemon = target;
 		}
 
-		var attack = move.category==='Physical'?pokemon.stats.atk:pokemon.stats.spa;
-		var defense = move.defensiveCategory==='Physical'?target.stats.def:target.stats.spd;
+		var attacker = pokemon;
+		var defender = target;
+		if (move.useTargetOffensive) attacker = target;
+		if (move.useSourceDefensive) defender = pokemon;
+
+		var attack = move.category==='Physical'?attacker.stats.atk:attacker.stats.spa;
+		var defense = move.defensiveCategory==='Physical'?defender.stats.def:defender.stats.spd;
 
 		if (move.crit) {
 			move.ignoreNegativeOffensive = true;
 			move.ignorePositiveDefensive = true;
 		}
-		if (move.ignoreNegativeOffensive && attack < (move.category==='Physical'?pokemon.unboostedStats.atk:pokemon.unboostedStats.spa)) {
+		if (move.ignoreNegativeOffensive && attack < (move.category==='Physical'?attacker.unboostedStats.atk:attacker.unboostedStats.spa)) {
 			move.ignoreOffensive = true;
 		}
 		if (move.ignoreOffensive) {
 			selfB.debug('Negating (sp)atk boost/penalty.');
-			attack = (move.category==='Physical'?pokemon.unboostedStats.atk:pokemon.unboostedStats.spa);
+			attack = (move.category==='Physical'?attacker.unboostedStats.atk:attacker.unboostedStats.spa);
 		}
 		if (move.ignorePositiveDefensive && defense > (move.defensiveCategory==='Physical'?target.unboostedStats.def:target.unboostedStats.spd)) {
 			move.ignoreDefensive = true;
@@ -2160,6 +2178,9 @@ function Battle(roomid, format, rated) {
 		//int(int(int(2*L/5+2)*A*P/D)/50);
 		var baseDamage = Math.floor(Math.floor(Math.floor(2*level/5+2) * basePower * attack/defense)/50) + 2;
 
+		// fudge factor because there's apparently something wrong with this formula
+		baseDamage--;
+
 		// multi-target modifier (doubles only)
 		// weather modifier (TODO: relocate here)
 		// crit
@@ -2173,7 +2194,7 @@ function Battle(roomid, format, rated) {
 		// gen 1-2
 		//var randFactor = Math.floor(Math.random()*39)+217;
 		//baseDamage *= Math.floor(randFactor * 100 / 255) / 100;
-		baseDamage = Math.round(baseDamage * selfB.random(85,101) / 100);
+		baseDamage = Math.floor(baseDamage * (100 - selfB.random(16)) / 100);
 
 		// STAB
 		if (type !== '???' && pokemon.hasType(type)) {
@@ -2194,12 +2215,11 @@ function Battle(roomid, format, rated) {
 		}
 		if (totalTypeMod < 0) {
 			if (!suppressMessages) selfB.add('-resisted', target);
-			baseDamage /= 2;
+			baseDamage = Math.floor(baseDamage/2);
 			if (totalTypeMod <= -2) {
-				baseDamage /= 2;
+				baseDamage = Math.floor(baseDamage/2);
 			}
 		}
-		baseDamage = Math.round(baseDamage);
 
 		if (basePower && !Math.floor(baseDamage)) {
 			return 1;
@@ -2698,7 +2718,12 @@ function Battle(roomid, format, rated) {
 		switch (data[1]) {
 		case 'join':
 			var team = null;
-			if (more) team = JSON.parse(more);
+			try {
+				if (more) team = JSON.parse(more);
+			} catch (e) {
+				console.log('TEAM PARSE ERROR: '+more);
+				team = null;
+			}
 			this.join(data[2], data[3], data[4], team);
 			break;
 
@@ -2730,8 +2755,8 @@ function Battle(roomid, format, rated) {
 			var battle = this;
 			var p1 = this.p1;
 			var p2 = this.p2;
-			var p1active = p1?p1.actives[0]:null;
-			var p2active = p2?p2.actives[0]:null;
+			var p1active = p1?p1.active[0]:null;
+			var p2active = p2?p2.active[0]:null;
 			try {
 				this.send('update', '|chat|server|<<< '+eval(data[2]));
 			} catch (e) {

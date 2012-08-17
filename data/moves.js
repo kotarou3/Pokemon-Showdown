@@ -777,6 +777,7 @@ exports.BattleMovedex = {
 		volatileStatus: 'bide',
 		effect: {
 			duration: 3,
+			onLockMove: 'bide',
 			onStart: function(pokemon) {
 				this.effectData.totalDamage = 0;
 				this.add('-start', pokemon, 'Bide');
@@ -787,9 +788,6 @@ exports.BattleMovedex = {
 				this.effectData.totalDamage += damage;
 				this.effectData.sourcePosition = source.position;
 				this.effectData.sourceSide = source.side;
-			},
-			onModifyPokemon: function(pokemon) {
-				pokemon.lockMove('bide');
 			},
 			onAfterSetStatus: function(status, pokemon) {
 				if (status.id === 'slp') {
@@ -903,7 +901,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		onModifyMove: function(move) {
-			if (this.weather === 'hail') move.accuracy = true;
+			if (this.isWeather('hail')) move.accuracy = true;
 		},
 		secondary: {
 			chance: 10,
@@ -1057,7 +1055,21 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
 		effect: {
+			duration: 2,
+			onLockMove: 'bounce',
 			onSourceModifyMove: function(move) {
 
 				// warning: does not work the same way as Fly
@@ -1196,6 +1208,13 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		isContact: true,
+		onHit: function(target, source) {
+			var item = target.getItem();
+			if (source.hp && item.isBerry && target.takeItem(source)) {
+				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Bug Bite', '[of] '+source);
+				this.singleEvent('Eat', item, null, source, null, null);
+			}
+		},
 		secondary: false,
 		target: "normal",
 		type: "Bug"
@@ -2264,7 +2283,21 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
 		effect: {
+			duration: 2,
+			onLockMove: 'dig',
 			onImmunity: function(type, pokemon) {
 				if (type === 'sandstorm' || type === 'hail') return false;
 			},
@@ -2382,7 +2415,21 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
 		effect: {
+			duration: 2,
+			onLockMove: 'dive',
 			onImmunity: function(type, pokemon) {
 				if (type === 'sandstorm' || type === 'hail') return false;
 			},
@@ -3792,7 +3839,21 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
 		effect: {
+			duration: 2,
+			onLockMove: 'fly',
 			onSourceModifyMove: function(move) {
 				if (move.target === 'foeSide') return;
 				// warning: does not work the same way as Bounce
@@ -3972,6 +4033,7 @@ exports.BattleMovedex = {
 		name: "Foul Play",
 		pp: 15,
 		priority: 0,
+		useTargetOffensive: true,
 		isContact: true,
 		secondary: false,
 		target: "normal",
@@ -3989,6 +4051,22 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onLockMove: 'freezeshock'
+		},
 		secondary: {
 			chance: 30,
 			status: 'par'
@@ -4461,7 +4539,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		isSnatchable: true,
 		onModifyMove: function(move) {
-			if (this.weather === 'sunnyday') move.boosts = {atk: 2, spa: 2};
+			if (this.isWeather('sunnyday')) move.boosts = {atk: 2, spa: 2};
 		},
 		boosts: {
 			atk: 1,
@@ -5446,8 +5524,8 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		onModifyMove: function(move) {
-			if (this.weather === 'raindance') move.accuracy = true;
-			else if (this.weather === 'sunnyday') move.accuracy = 50;
+			if (this.isWeather('raindance')) move.accuracy = true;
+			else if (this.isWeather('sunnyday')) move.accuracy = 50;
 		},
 		secondary: {
 			chance: 30,
@@ -5588,6 +5666,7 @@ exports.BattleMovedex = {
 		isContact: true,
 		effect: {
 			duration: 2,
+			onLockMove: 'iceball',
 			onStart: function() {
 				this.effectData.hitCount = 1;
 			},
@@ -5603,9 +5682,6 @@ exports.BattleMovedex = {
 					// don't lock
 					delete target.volatiles['iceball'];
 				}
-			},
-			onModifyPokemon: function(pokemon) {
-				pokemon.lockMove("iceball");
 			},
 			onBeforeTurn: function(pokemon) {
 				if (pokemon.lastMove === 'iceball') {
@@ -5649,6 +5725,22 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onLockMove: 'iceburn'
+		},
 		secondary: {
 			chance: 30,
 			status: 'brn'
@@ -7237,8 +7329,8 @@ exports.BattleMovedex = {
 		isSnatchable: true,
 		heal: [1,2],
 		onModifyMove: function(move) {
-			if (this.weather === 'sunnyday') move.heal = [2,3];
-			else if (this.weather === 'raindance' || this.weather === 'sandstorm' || this.weather === 'hail') move.heal = [1,4];
+			if (this.isWeather('sunnyday')) move.heal = [2,3];
+			else if (this.isWeather(['raindance','sandstorm','hail'])) move.heal = [1,4];
 		},
 		secondary: false,
 		target: "self",
@@ -7259,8 +7351,8 @@ exports.BattleMovedex = {
 		isSnatchable: true,
 		heal: [1,2],
 		onModifyMove: function(move) {
-			if (this.weather === 'sunnyday') move.heal = [2,3];
-			else if (this.weather === 'raindance' || this.weather === 'sandstorm' || this.weather === 'hail') move.heal = [1,4];
+			if (this.isWeather('sunnyday')) move.heal = [2,3];
+			else if (this.isWeather(['raindance','sandstorm','hail'])) move.heal = [1,4];
 		},
 		secondary: false,
 		target: "self",
@@ -7830,6 +7922,13 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		isContact: true,
+		onHit: function(target, source) {
+			var item = target.getItem();
+			if (source.hp && item.isBerry && target.takeItem(source)) {
+				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Pluck', '[of] '+source);
+				this.singleEvent('Eat', item, null, source, null, null);
+			}
+		},
 		secondary: false,
 		target: "any",
 		type: "Flying"
@@ -8395,6 +8494,9 @@ exports.BattleMovedex = {
 			}
 			target.side.sideConditions['pursuit'].sources.push(pokemon);
 		},
+		onModifyMove: function(move, source, target) {
+			if (target && target.beingCalledBack) move.accuracy = true;
+		},
 		onTryHit: function(target, pokemon) {
 			target.side.removeSideCondition('pursuit');
 		},
@@ -8656,6 +8758,22 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onLockMove: 'razorwind'
+		},
 		critRatio: 2,
 		secondary: false,
 		target: "foes",
@@ -9204,6 +9322,7 @@ exports.BattleMovedex = {
 		isContact: true,
 		effect: {
 			duration: 2,
+			onLockMove: 'rollout',
 			onStart: function() {
 				this.effectData.hitCount = 1;
 			},
@@ -9219,9 +9338,6 @@ exports.BattleMovedex = {
 					// don't lock
 					delete target.volatiles['rollout'];
 				}
-			},
-			onModifyPokemon: function(pokemon) {
-				pokemon.lockMove("rollout");
 			},
 			onBeforeTurn: function(pokemon) {
 				if (pokemon.lastMove === 'rollout') {
@@ -9674,12 +9790,21 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
-		onTryHit: function(target) {
-			if (target.volatiles['protect']) {
-				target.removeVolatile('protect');
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
 			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
 		},
 		effect: {
+			duration: 2,
+			onLockMove: 'shadowforce',
 			onSourceModifyMove: function(move) {
 				if (move.target === 'foeSide') return;
 				move.accuracy = 0;
@@ -9991,7 +10116,21 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
 		effect: {
+			duration: 2,
+			onLockMove: 'skullbash',
 			onStart: function(pokemon) {
 				this.boost({def:1}, pokemon, pokemon, this.getMove('skullbash'));
 			}
@@ -10012,6 +10151,22 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onLockMove: 'skyattack'
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch'
@@ -10032,14 +10187,29 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
 		effect: {
-			onSourceModifyPokemon: function(pokemon) {
-				pokemon.lockMove('recharge');
+			duration: 2,
+			onLockMove: 'skydrop',
+			onAnyLockMove: function(target) {
+				if (target === this.effectData.source) return 'recharge';
 			},
-			onSourceBeforeMovePriority: 10,
-			onSourceBeforeMove: false,
 			onAnyModifyMove: function(move, attacker, defender) {
 				if (defender !== this.effectData.target && defender !== this.effectData.source) {
+					return;
+				}
+				if (attacker === this.effectData.target && defender === this.effectData.source) {
 					return;
 				}
 				if (move.id === 'gust' || move.id === 'twister') {
@@ -10457,7 +10627,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 120,
 		basePowerCallback: function(pokemon, target) {
-			if (this.weather === 'raindance' || this.weather === 'sandstorm' || this.weather === 'hail') {
+			if (this.isWeather(['raindance','sandstorm','hail'])) {
 				this.debug('weakened by weather');
 				return 60;
 			}
@@ -10472,8 +10642,21 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		isTwoTurnMove: true,
-		onChargeMove: function() {
-			if (this.weather === 'sunnyday') return false; // skip charge turn
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (this.isWeather('sunnyday') || !this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onLockMove: 'solarbeam'
 		},
 		secondary: false,
 		target: "normal",
@@ -11377,8 +11560,8 @@ exports.BattleMovedex = {
 		isSnatchable: true,
 		heal: [1,2],
 		onModifyMove: function(move) {
-			if (this.weather === 'sunnyday') move.heal = [2,3];
-			else if (this.weather === 'raindance' || this.weather === 'sandstorm' || this.weather === 'hail') move.heal = [1,4];
+			if (this.isWeather('sunnyday')) move.heal = [2,3];
+			else if (this.isWeather(['raindance','sandstorm','hail'])) move.heal = [1,4];
 		},
 		secondary: false,
 		target: "self",
@@ -11705,8 +11888,8 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		onModifyMove: function(move) {
-			if (this.weather === 'raindance') move.accuracy = true;
-			else if (this.weather === 'sunnyday') move.accuracy = 50;
+			if (this.isWeather('raindance')) move.accuracy = true;
+			else if (this.isWeather('sunnyday')) move.accuracy = 50;
 		},
 		secondary: {
 			chance: 30,
