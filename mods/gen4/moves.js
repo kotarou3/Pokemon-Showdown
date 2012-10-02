@@ -229,6 +229,16 @@ exports.BattleMovedex = {
 		basePower: 60,
 		pp: 5
 	},
+	dreameater: {
+		inherit: true,
+		desc: "Deals damage to one adjacent target, if it is asleep and does not have a Substitute. The user recovers half of the HP lost by the target, rounded up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		onTryHit: function(target) {
+			if (target.status !== 'slp' || target.volatiles['substitute']) {
+				this.add('-immune', target.id, '[msg]');
+				return null;
+			}
+		}
+	},
 	embargo: {
 		inherit: true,
 		//desc: "",
@@ -409,6 +419,27 @@ exports.BattleMovedex = {
 			onEnd: function(target) {
 				this.add('-end', target, 'Magnet Rise');
 			}
+		}
+	},
+	mimic: {
+		inherit: true,
+		//desc: "",
+		onHit: function(target, source) {
+			var disallowedMoves = {chatter:1, metronome:1, mimic:1, sketch:1, struggle:1, transform:1};
+			if (source.transformed || !target.lastMove || disallowedMoves[target.lastMove] || source.moves.indexOf(target.lastMove) !== -1) return false;
+			var moveslot = source.moves.indexOf('mimic');
+			if (moveslot === -1) return false;
+			var move = Tools.getMove(target.lastMove);
+			source.moveset[moveslot] = {
+				move: move.name,
+				id: move.id,
+				pp: 5,
+				maxpp: move.pp * 8/5,
+				disabled: false,
+				used: false
+			};
+			source.moves[moveslot] = toId(move.name);
+			this.add('-message', source.name+' learned '+move.name+'! (placeholder)');
 		}
 	},
 	miracleeye: {

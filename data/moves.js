@@ -137,8 +137,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Physical",
-		desc: "Deals damage to one adjacent or non-adjacent target and ignores Accuracy and Evasion modifiers. Makes contact.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent or non-adjacent target and ignores accuracy and evasion modifiers. Makes contact.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "aerialace",
 		isViable: true,
 		name: "Aerial Ace",
@@ -514,8 +514,9 @@ exports.BattleMovedex = {
 					pokemon.removeVolatile('attract');
 					return;
 				}
+				this.add('-message', pokemon.name+' is in love with '+this.effectData.source.name+'! (placeholder)');
 				if (this.random(2) === 0) {
-					this.add('cant', pokemon, 'Attract', move);
+					this.add('-message', pokemon.name+' is immobilized by love! (placeholder)');
 					return false;
 				}
 			}
@@ -529,8 +530,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 90,
 		category: "Special",
-		desc: "Deals damage to one adjacent or non-adjacent target and ignores Accuracy and Evasion modifiers.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent or non-adjacent target and ignores accuracy and evasion modifiers.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "aurasphere",
 		isViable: true,
 		name: "Aura Sphere",
@@ -566,13 +567,18 @@ exports.BattleMovedex = {
 		basePower: false,
 		category: "Status",
 		desc: "Raises the user's Speed by 2 stages. If the user's Speed was changed, the user's weight is reduced by 100kg as long as it remains active. This effect is stackable but cannot reduce the user's weight to less than 0.1kg.",
-		shortDesc: "Boosts the user's Speed by 2 and halves weight.",
+		shortDesc: "Boosts the user's Speed by 2; user loses 100kg.",
 		id: "autotomize",
 		isViable: true,
 		name: "Autotomize",
 		pp: 15,
 		priority: 0,
 		isSnatchable: true,
+		onTryHit: function(pokemon) {
+			if ((pokemon.ability !== 'contrary' && pokemon.boosts.spe === 6) || (pokemon.ability === 'contrary' && pokemon.boosts.spe === -6)) {
+				return false;
+			}
+		},
 		boosts: {
 			spe: 2
 		},
@@ -580,10 +586,22 @@ exports.BattleMovedex = {
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart: function(pokemon) {
-				this.add('-start', pokemon, 'Autotomize');
+				if (pokemon.weightkg !== 0.1) {
+					this.effectData.multiplier = 1;
+					this.add('-message', pokemon.name+' became nimble! (placeholder)');
+				}
+			},
+			onRestart: function(pokemon) {
+				if (pokemon.weightkg !== 0.1) {
+					this.effectData.multiplier++;
+					this.add('-message', pokemon.name+' became nimble! (placeholder)');
+				}
 			},
 			onModifyPokemon: function(pokemon) {
-				pokemon.weightkg /= 2;
+				if (this.effectData.multiplier) {
+					pokemon.weightkg -= this.effectData.multiplier*100;
+					if (pokemon.weightkg < 0.1) pokemon.weightkg = 0.1;
+				}
 			}
 		},
 		secondary: false,
@@ -767,7 +785,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: false,
 		category: "Physical",
-		desc: "The user spends two turns locked into this move and then, on the second turn after using this move, the user attacks the last Pokemon that hit it, inflicting double the damage in HP it lost during the two turns. If the last Pokemon that hit it is no longer on the field, the user attacks a random foe instead. If the user is prevented from moving during this move's use, the effect ends. This move ignores Accuracy and Evasion modifiers and can hit Ghost-types. Makes contact. Priority +1.",
+		desc: "The user spends two turns locked into this move and then, on the second turn after using this move, the user attacks the last Pokemon that hit it, inflicting double the damage in HP it lost during the two turns. If the last Pokemon that hit it is no longer on the field, the user attacks a random foe instead. If the user is prevented from moving during this move's use, the effect ends. This move ignores accuracy and evasion modifiers and can hit Ghost-types. Makes contact. Priority +1.",
 		shortDesc: "Waits 2 turns; deals double the damage taken.",
 		id: "bide",
 		name: "Bide",
@@ -818,7 +836,7 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 15,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move. Makes contact.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move. Makes contact.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "bind",
 		name: "Bind",
@@ -915,7 +933,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Prevents one adjacent target from switching out. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if the user leaves the field. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
+		desc: "Prevents one adjacent target from switching out. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if the user leaves the field. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
 		shortDesc: "The target cannot switch out.",
 		id: "block",
 		isViable: true,
@@ -1352,6 +1370,7 @@ exports.BattleMovedex = {
 		isSnatchable: true,
 		volatileStatus: 'camouflage',
 		effect: {
+			noCopy: true,
 			onStart: function(pokemon) {
 				this.add('-start', pokemon, 'typechange', 'Ground');
 			},
@@ -1490,7 +1509,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 70,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and ignores the target's defensive stat stage changes, including Accuracy and Evasion modifiers. Makes contact.",
+		desc: "Deals damage to one adjacent target and ignores the target's defensive stat stage changes, including accuracy and evasion modifiers. Makes contact.",
 		shortDesc: "Ignores the target's stat modifiers.",
 		id: "chipaway",
 		name: "Chip Away",
@@ -1525,7 +1544,7 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 35,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move. Makes contact.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move. Makes contact.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "clamp",
 		name: "Clamp",
@@ -1585,8 +1604,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: false,
 		category: "Status",
-		desc: "Raises the user's Attack, Defense, and Accuracy by 1 stage.",
-		shortDesc: "Boosts user's Attack, Defense, and Accuracy by 1.",
+		desc: "Raises the user's Attack, Defense, and accuracy by 1 stage.",
+		shortDesc: "Boosts user's Attack, Defense, and accuracy by 1.",
 		id: "coil",
 		isViable: true,
 		name: "Coil",
@@ -1690,6 +1709,7 @@ exports.BattleMovedex = {
 		isSnatchable: true,
 		volatileStatus: 'conversion',
 		effect: {
+			noCopy: true,
 			onStart: function(pokemon) {
 				var possibleTypes = pokemon.moveset.map(function(val){
 					var move = this.getMove(val.id);
@@ -1742,6 +1762,7 @@ exports.BattleMovedex = {
 			source.addVolatile("conversion2", target);
 		},
 		effect: {
+			noCopy: true,
 			onStart: function(pokemon, target, move) {
 				if (!target.lastMove) {
 					this.add('-fail', pokemon);
@@ -2034,7 +2055,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: false,
 		basePowerCallback: function(pokemon, target) {
-			return parseInt(120*target.hp/target.maxhp);
+			return 120*target.hp/target.maxhp;
 		},
 		category: "Physical",
 		desc: "Deals damage to one adjacent target. Power is equal to 120 * (target's current HP / target's maximum HP), rounded half down, but not less than 1. Makes contact.",
@@ -2181,8 +2202,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Lowers one adjacent target's Evasion by 1 stage. Whether or not the target's Evasion was affected, the effects of Reflect, Light Screen, Safeguard, Mist, Spikes, Toxic Spikes, and Stealth Rock end for the target's side. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute, although a Substitute will still block the Evasion lowering.",
-		shortDesc: "Removes target's hazards, lowers Evasion by 1.",
+		desc: "Lowers one adjacent target's evasion by 1 stage. Whether or not the target's evasion was affected, the effects of Reflect, Light Screen, Safeguard, Mist, Spikes, Toxic Spikes, and Stealth Rock end for the target's side. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute, although a Substitute will still block the evasion lowering.",
+		shortDesc: "Removes target's hazards, lowers evasion by 1.",
 		id: "defog",
 		name: "Defog",
 		pp: 15,
@@ -2225,7 +2246,7 @@ exports.BattleMovedex = {
 					source.faint();
 				}
 			},
-			onBeforeMovePriority: -10,
+			onBeforeMovePriority: 100,
 			onBeforeMove: function(pokemon) {
 				this.debug('removing Destiny Bond before attack');
 				pokemon.removeVolatile('destinybond');
@@ -2580,8 +2601,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Raises the user's Evasion by 1 stage.",
-		shortDesc: "Boosts the user's Evasion by 1.",
+		desc: "Raises the user's evasion by 1 stage.",
+		shortDesc: "Boosts the user's evasion by 1.",
 		id: "doubleteam",
 		name: "Double Team",
 		pp: 15,
@@ -2895,13 +2916,36 @@ exports.BattleMovedex = {
 		num: 497,
 		accuracy: 100,
 		basePower: 40,
+		basePowerCallback: function() {
+			if (this.pseudoWeather.echoedvoice) {
+				return 40 * this.pseudoWeather.echoedvoice.multiplier;
+			}
+			return 40;
+		},
 		category: "Special",
 		desc: "Deals damage to one adjacent target. For every consecutive turn that this move is used by at least one Pokemon, this move's power is multiplied by the number of turns to pass, but not more than 5. Pokemon with the Ability Soundproof are immune.",
-		shortDesc: "Power increases when used consecutively.",
+		shortDesc: "Power increases when used on consecutive turns.",
 		id: "echoedvoice",
 		name: "Echoed Voice",
 		pp: 15,
 		priority: 0,
+		onTry: function() {
+			this.addPseudoWeather('echoedvoice');
+		},
+		effect: {
+			duration: 2,
+			onStart: function() {
+				this.effectData.multiplier = 1;
+			},
+			onRestart: function() {
+				if (this.effectData.duration !== 2) {
+					this.effectData.duration = 2;
+					if (this.effectData.multiplier < 5) {
+						this.effectData.multiplier++;
+					}
+				}
+			}
+		},
 		isSoundBased: true,
 		secondary: false,
 		target: "normal",
@@ -3028,7 +3072,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "For 3 turns, one adjacent target is forced to repeat its last move used. If the affected move runs out of PP, the effect ends. Fails if the target is already under this effect, if it has not moved yet, if the move has 0PP, or if the move is Encore, Mimic, Mirror Move, Sketch, or Transform. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
+		desc: "For 3 turns, one adjacent target is forced to repeat its last move used. If the affected move runs out of PP, the effect ends. Fails if the target is already under this effect, if it has not moved yet, if the move has 0PP, or if the move is Encore, Mimic, Mirror Move, Sketch, Struggle, or Transform. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
 		shortDesc: "The target repeats its last move for 3 turns.",
 		id: "encore",
 		isViable: true,
@@ -3040,7 +3084,7 @@ exports.BattleMovedex = {
 		effect: {
 			duration: 3,
 			onStart: function(target) {
-				var noEncore = {encore:1,mimic:1,mirrormove:1,sketch:1,transform:1};
+				var noEncore = {encore:1, mimic:1, mirrormove:1, sketch:1, struggle:1, transform:1};
 				var moveIndex = target.moves.indexOf(target.lastMove);
 				if (!target.lastMove || noEncore[target.lastMove] || (target.moveset[moveIndex] && target.moveset[moveIndex].pp <= 0)) {
 					// it failed
@@ -3217,7 +3261,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: false,
 		basePowerCallback: function(pokemon) {
-			return parseInt(150*pokemon.hp/pokemon.maxhp);
+			return 150*pokemon.hp/pokemon.maxhp;
 		},
 		category: "Special",
 		desc: "Deals damage to all adjacent foes. Power is equal to (user's current HP * 150 / user's maximum HP), rounded down, but not less than 1.",
@@ -3311,8 +3355,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers. Makes contact.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers. Makes contact.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "faintattack",
 		name: "Faint Attack",
 		pp: 20,
@@ -3412,6 +3456,7 @@ exports.BattleMovedex = {
 		name: "Feint",
 		pp: 10,
 		priority: 2,
+		isNotProtectable: true,
 		onHit: function(target, source) {
 			if (target.removeVolatile('protect')) {
 				this.add("-activate", target, "move: Feint");
@@ -3552,7 +3597,7 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 35,
 		category: "Special",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "firespin",
 		name: "Fire Spin",
@@ -3568,7 +3613,7 @@ exports.BattleMovedex = {
 		accuracy: 30,
 		basePower: false,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target equal to the target's max HP. Ignores Accuracy and Evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune.",
+		desc: "Deals damage to one adjacent target equal to the target's max HP. Ignores accuracy and evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune.",
 		shortDesc: "OHKOs the target. Fails if user is a lower level.",
 		id: "fissure",
 		name: "Fissure",
@@ -3720,8 +3765,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Lowers one adjacent target's Accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. (Field: Can be used to light up dark caves.)",
-		shortDesc: "Lowers the target's Accuracy by 1.",
+		desc: "Lowers one adjacent target's accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. (Field: Can be used to light up dark caves.)",
+		shortDesc: "Lowers the target's accuracy by 1.",
 		id: "flash",
 		name: "Flash",
 		pp: 20,
@@ -3995,8 +4040,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes one adjacent target to have its positive Evasion stat stage set to 0 while it is active. Normal and Fighting-type attacks can hit the target if it is a Ghost-type. The effect ends when the target is no longer active. Fails if the target is already affected. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
-		shortDesc: "Blocks Evasion mods. Fighting, Normal hit Ghost.",
+		desc: "Causes one adjacent target to have its positive evasion stat stage set to 0 while it is active. Normal and Fighting-type attacks can hit the target if it is a Ghost-type. The effect ends when the target is no longer active. Fails if the target is already affected. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
+		shortDesc: "Blocks evasion mods. Fighting, Normal hit Ghost.",
 		id: "foresight",
 		name: "Foresight",
 		pp: 40,
@@ -4466,7 +4511,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "For 5 turns, the Evasion of all active Pokemon is 0.6x. At the time of use, Bounce, Fly, Magnet Rise, Sky Drop, and Telekinesis end immediately for all active Pokemon. During the effect, Bounce, Fly, Hi Jump Kick, Jump Kick, Magnet Rise, Sky Drop, Splash, and Telekinesis are prevented from being used by all active Pokemon. Ground-type attacks, Spikes, Toxic Spikes, and the Ability Arena Trap can affect Flying-types or Pokemon with the Ability Levitate. Fails if this move is already in effect.",
+		desc: "For 5 turns, the evasion of all active Pokemon is 0.6x. At the time of use, Bounce, Fly, Magnet Rise, Sky Drop, and Telekinesis end immediately for all active Pokemon. During the effect, Bounce, Fly, Hi Jump Kick, Jump Kick, Magnet Rise, Sky Drop, Splash, and Telekinesis are prevented from being used by all active Pokemon. Ground-type attacks, Spikes, Toxic Spikes, and the Ability Arena Trap can affect Flying-types or Pokemon with the Ability Levitate. Fails if this move is already in effect.",
 		shortDesc: "For 5 turns, negates all Ground immunities.",
 		id: "gravity",
 		isViable: true,
@@ -4636,7 +4681,7 @@ exports.BattleMovedex = {
 		accuracy: 30,
 		basePower: false,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target equal to the target's maximum HP. Ignores Accuracy and Evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune. Makes contact.",
+		desc: "Deals damage to one adjacent target equal to the target's maximum HP. Ignores accuracy and evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune. Makes contact.",
 		shortDesc: "OHKOs the target. Fails if user is a lower level.",
 		id: "guillotine",
 		name: "Guillotine",
@@ -5424,8 +5469,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: false,
 		category: "Status",
-		desc: "Raises the user's Attack and Accuracy by 1 stage.",
-		shortDesc: "Boosts the user's Attack and Accuracy by 1.",
+		desc: "Raises the user's Attack and accuracy by 1 stage.",
+		shortDesc: "Boosts the user's Attack and accuracy by 1.",
 		id: "honeclaws",
 		isViable: true,
 		name: "Hone Claws",
@@ -5461,7 +5506,7 @@ exports.BattleMovedex = {
 		accuracy: 30,
 		basePower: false,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target equal to the target's maximum HP. Ignores Accuracy and Evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune. Makes contact.",
+		desc: "Deals damage to one adjacent target equal to the target's maximum HP. Ignores accuracy and evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune. Makes contact.",
 		shortDesc: "OHKOs the target. Fails if user is a lower level.",
 		id: "horndrill",
 		name: "Horn Drill",
@@ -5943,7 +5988,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user has 1/16 of its maximum HP restored at the end of each turn, but it is prevented from switching out and other Pokemon cannot force the user to switch out. The user can still switch out if it uses Baton Pass, U-Turn, or Volt Switch. If the user leaves the field using Baton Pass, the replacement will remain trapped and still receive the healing effect. During the effect, the user can be hit normally by Ground-type attacks and be affected by Spikes and Toxic Spikes, even if the user is a Flying-type or has the Ability Levitate.",
+		desc: "The user has 1/16 of its maximum HP restored at the end of each turn, but it is prevented from switching out and other Pokemon cannot force the user to switch out. The user can still switch out if it uses Baton Pass, U-turn, or Volt Switch. If the user leaves the field using Baton Pass, the replacement will remain trapped and still receive the healing effect. During the effect, the user can be hit normally by Ground-type attacks and be affected by Spikes and Toxic Spikes, even if the user is a Flying-type or has the Ability Levitate.",
 		shortDesc: "User recovers 1/16 max HP per turn. Traps user.",
 		id: "ingrain",
 		isViable: true,
@@ -6093,8 +6138,8 @@ exports.BattleMovedex = {
 		accuracy: 80,
 		basePower: 0,
 		category: "Status",
-		desc: "Lowers one adjacent target's Accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
-		shortDesc: "Lowers the target's Accuracy by 1.",
+		desc: "Lowers one adjacent target's accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
+		shortDesc: "Lowers the target's accuracy by 1.",
 		id: "kinesis",
 		name: "Kinesis",
 		pp: 15,
@@ -6220,8 +6265,8 @@ exports.BattleMovedex = {
 		accuracy: 90,
 		basePower: 65,
 		category: "Special",
-		desc: "Deals damage to one adjacent target with a 50% chance to lower its Accuracy by 1 stage.",
-		shortDesc: "50% chance to lower the target's Accuracy by 1.",
+		desc: "Deals damage to one adjacent target with a 50% chance to lower its accuracy by 1 stage.",
+		shortDesc: "50% chance to lower the target's accuracy by 1.",
 		id: "leaftornado",
 		name: "Leaf Tornado",
 		pp: 10,
@@ -6674,8 +6719,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Special",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "magicalleaf",
 		name: "Magical Leaf",
 		pp: 20,
@@ -6689,7 +6734,7 @@ exports.BattleMovedex = {
 		accuracy: 75,
 		basePower: 120,
 		category: "Special",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "magmastorm",
 		isViable: true,
@@ -6706,8 +6751,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "magnetbomb",
 		name: "Magnet Bomb",
 		pp: 20,
@@ -6827,7 +6872,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Prevents one adjacent target from switching out. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if the user leaves the field. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
+		desc: "Prevents one adjacent target from switching out. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if the user leaves the field. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
 		shortDesc: "The target cannot switch out.",
 		id: "meanlook",
 		isViable: true,
@@ -7105,7 +7150,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		onHit: function(target, source) {
-			var disallowedMoves = {transform:1,struggle:1,sketch:1,mimic:1,chatter:1};
+			var disallowedMoves = {chatter:1, mimic:1, sketch:1, struggle:1, transform:1};
 			if (source.transformed || !target.lastMove || disallowedMoves[target.lastMove] || source.moves.indexOf(target.lastMove) !== -1) return false;
 			var moveslot = source.moves.indexOf('mimic');
 			if (moveslot === -1) return false;
@@ -7113,8 +7158,8 @@ exports.BattleMovedex = {
 			source.moveset[moveslot] = {
 				move: move.name,
 				id: move.id,
-				pp: (move.noPPBoosts ? move.pp : move.pp * 8/5),
-				maxpp: (move.noPPBoosts ? move.pp : move.pp * 8/5),
+				pp: move.pp,
+				maxpp: move.pp,
 				disabled: false,
 				used: false
 			};
@@ -7146,8 +7191,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Raises the user's Evasion by 2 stages. After using this move, Stomp and Steamroller will have their power doubled if used against the user while it is active.",
-		shortDesc: "Boosts the user's Evasion by 2.",
+		desc: "Raises the user's evasion by 2 stages. After using this move, Stomp and Steamroller will have their power doubled if used against the user while it is active.",
+		shortDesc: "Boosts the user's evasion by 2.",
 		id: "minimize",
 		name: "Minimize",
 		pp: 20,
@@ -7166,8 +7211,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes one adjacent target to have its positive Evasion stat stage set to 0 while it is active. Psychic-type attacks can hit the target if it is a Dark-type. The effect ends when the target is no longer active. Fails if the target is already affected. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
-		shortDesc: "Blocks Evasion mods. Psychic hits Dark.",
+		desc: "Causes one adjacent target to have its positive evasion stat stage set to 0 while it is active. Psychic-type attacks can hit the target if it is a Dark-type. The effect ends when the target is no longer active. Fails if the target is already affected. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
+		shortDesc: "Blocks evasion mods. Psychic hits Dark.",
 		id: "miracleeye",
 		name: "Miracle Eye",
 		pp: 40,
@@ -7242,8 +7287,8 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 65,
 		category: "Special",
-		desc: "Deals damage to one adjacent target with a 30% chance to lower its Accuracy by 1 stage.",
-		shortDesc: "30% chance to lower the target's Accuracy by 1.",
+		desc: "Deals damage to one adjacent target with a 30% chance to lower its accuracy by 1 stage.",
+		shortDesc: "30% chance to lower the target's accuracy by 1.",
 		id: "mirrorshot",
 		name: "Mirror Shot",
 		pp: 10,
@@ -7363,8 +7408,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 20,
 		category: "Special",
-		desc: "Deals damage to one adjacent target with a 100% chance to lower its Accuracy by 1 stage.",
-		shortDesc: "100% chance to lower the target's Accuracy by 1.",
+		desc: "Deals damage to one adjacent target with a 100% chance to lower its accuracy by 1 stage.",
+		shortDesc: "100% chance to lower the target's accuracy by 1.",
 		id: "mudslap",
 		name: "Mud-Slap",
 		pp: 10,
@@ -7383,8 +7428,8 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 65,
 		category: "Special",
-		desc: "Deals damage to one adjacent target with a 30% chance to lower its Accuracy by 1 stage.",
-		shortDesc: "30% chance to lower the target's Accuracy by 1.",
+		desc: "Deals damage to one adjacent target with a 30% chance to lower its accuracy by 1 stage.",
+		shortDesc: "30% chance to lower the target's accuracy by 1.",
 		id: "mudbomb",
 		name: "Mud Bomb",
 		pp: 10,
@@ -7451,8 +7496,8 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 95,
 		category: "Special",
-		desc: "Deals damage to all adjacent foes with a 30% chance to lower their Accuracy by 1 stage each.",
-		shortDesc: "30% chance to lower the foe(s) Accuracy by 1.",
+		desc: "Deals damage to all adjacent foes with a 30% chance to lower their accuracy by 1 stage each.",
+		shortDesc: "30% chance to lower the foe(s) accuracy by 1.",
 		id: "muddywater",
 		isViable: true,
 		name: "Muddy Water",
@@ -7567,8 +7612,8 @@ exports.BattleMovedex = {
 		accuracy: 95,
 		basePower: 85,
 		category: "Special",
-		desc: "Deals damage to one adjacent target with a 40% chance to lower its Accuracy by 1 stage.",
-		shortDesc: "40% chance to lower the target's Accuracy by 1.",
+		desc: "Deals damage to one adjacent target with a 40% chance to lower its accuracy by 1 stage.",
+		shortDesc: "40% chance to lower the target's accuracy by 1.",
 		id: "nightdaze",
 		isViable: true,
 		name: "Night Daze",
@@ -7656,8 +7701,8 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 65,
 		category: "Special",
-		desc: "Deals damage to one adjacent target with a 50% chance to lower its Accuracy by 1 stage.",
-		shortDesc: "50% chance to lower the target's Accuracy by 1.",
+		desc: "Deals damage to one adjacent target with a 50% chance to lower its accuracy by 1 stage.",
+		shortDesc: "50% chance to lower the target's accuracy by 1.",
 		id: "octazooka",
 		name: "Octazooka",
 		pp: 10,
@@ -7676,8 +7721,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes one adjacent target to have its positive Evasion stat stage set to 0 while it is active. Normal and Fighting-type attacks can hit the target if it is a Ghost-type. The effect ends when the target is no longer active. Fails if the target is already affected. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
-		shortDesc: "Blocks Evasion mods. Fighting, Normal hit Ghost.",
+		desc: "Causes one adjacent target to have its positive evasion stat stage set to 0 while it is active. Normal and Fighting-type attacks can hit the target if it is a Ghost-type. The effect ends when the target is no longer active. Fails if the target is already affected. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. Ignores a target's Substitute.",
+		shortDesc: "Blocks evasion mods. Fighting, Normal hit Ghost.",
 		id: "odorsleuth",
 		name: "Odor Sleuth",
 		pp: 40,
@@ -7768,7 +7813,7 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		onHit: function(target, pokemon) {
-			var averagehp = parseInt(target.hp + pokemon.hp) / 2;
+			var averagehp = Math.floor((target.hp + pokemon.hp) / 2) || 1;
 			target.sethp(averagehp);
 			pokemon.sethp(averagehp);
 			this.add('-sethp', target, target.getHealth(), pokemon, pokemon.hpChange(), '[from] move: Pain Split');
@@ -8252,6 +8297,10 @@ exports.BattleMovedex = {
 			},
 			onTryHitPriority: 1,
 			onTryHit: function(target, source, move) {
+				if (move.breaksProtect) {
+					target.removeVolatile('Protect');
+					return;
+				}
 				if (move && (move.target === 'self' || move.isNotProtectable)) return;
 				this.add('-activate', target, 'Protect');
 				var lockedmove = source.getVolatile('lockedmove');
@@ -8876,7 +8925,13 @@ exports.BattleMovedex = {
 			source.addVolatile("reflecttype", target);
 		},
 		effect: {
+			noCopy: true,
 			onStart: function(target, source) {
+				this.effectData.types = source.types;
+				this.add("-message", target.name+"'s type changed to match "+source.name+"'s! (placeholder)");
+				//this.add("-start", target, "Reflect Type", "[of] "+source);
+			},
+			onRestart: function(target, source) {
 				this.effectData.types = source.types;
 				this.add("-message", target.name+"'s type changed to match "+source.name+"'s! (placeholder)");
 				//this.add("-start", target, "Reflect Type", "[of] "+source);
@@ -9392,7 +9447,7 @@ exports.BattleMovedex = {
 		basePower: 60,
 		category: "Special",
 		desc: "Deals damage to one adjacent target. If there are other active Pokemon that chose this move for use this turn, those Pokemon take their turn immediately after the user, in Speed order, and this move's power is 120 for each other user. Pokemon with the Ability Soundproof are immune.",
-		shortDesc: "Power doubles if an ally used Round this turn.",
+		shortDesc: "Power doubles if others used Round this turn.",
 		id: "round",
 		name: "Round",
 		pp: 15,
@@ -9427,7 +9482,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and ignores the target's defensive stat stage changes, including Accuracy and Evasion modifiers. Makes contact.",
+		desc: "Deals damage to one adjacent target and ignores the target's defensive stat stage changes, including accuracy and evasion modifiers. Makes contact.",
 		shortDesc: "Ignores the target's stat modifiers.",
 		id: "sacredsword",
 		isViable: true,
@@ -9492,8 +9547,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Lowers one adjacent target's Accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
-		shortDesc: "Lowers the target's Accuracy by 1.",
+		desc: "Lowers one adjacent target's accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
+		shortDesc: "Lowers the target's accuracy by 1.",
 		id: "sandattack",
 		name: "Sand-Attack",
 		pp: 15,
@@ -9510,7 +9565,7 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 35,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "sandtomb",
 		name: "Sand Tomb",
@@ -9634,8 +9689,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 70,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target with a 30% chance to cause a secondary effect on the target based on the battle terrain. Lowers Accuracy by 1 stage in Wi-Fi battles. (In-game: Causes sleeping in grass, lowers Speed by 1 stage in puddles, lowers Attack by 1 stage on water, flinching in caves, lowers Accuracy by 1 stage on rocky ground and sand, freezing on snow and ice, and causes paralysis everywhere else.) The secondary effect chance is not affected by the Ability Serene Grace.",
-		shortDesc: "Effect varies with terrain. (30% Accuracy lower 1)",
+		desc: "Deals damage to one adjacent target with a 30% chance to cause a secondary effect on the target based on the battle terrain. Lowers accuracy by 1 stage in Wi-Fi battles. (In-game: Causes sleeping in grass, lowers Speed by 1 stage in puddles, lowers Attack by 1 stage on water, flinching in caves, lowers accuracy by 1 stage on rocky ground and sand, freezing on snow and ice, and causes paralysis everywhere else.) The secondary effect chance is not affected by the Ability Serene Grace.",
+		shortDesc: "Effect varies with terrain. (30% accuracy lower 1)",
 		id: "secretpower",
 		name: "Secret Power",
 		pp: 20,
@@ -9790,6 +9845,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		isContact: true,
 		isTwoTurnMove: true,
+		breaksProtect: true,
 		onTry: function(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -9819,8 +9875,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers. Makes contact. Damage is boosted to 1.2x by the Ability Iron Fist.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers. Makes contact. Damage is boosted to 1.2x by the Ability Iron Fist.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "shadowpunch",
 		isViable: true,
 		name: "Shadow Punch",
@@ -9874,7 +9930,7 @@ exports.BattleMovedex = {
 		accuracy: 30,
 		basePower: false,
 		category: "Special",
-		desc: "Deals damage to one adjacent target equal to the target's max HP. Ignores Accuracy and Evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune.",
+		desc: "Deals damage to one adjacent target equal to the target's max HP. Ignores accuracy and evasion modifiers. This attack's accuracy is equal to (user's level - target's level + 30)%, and fails if the target is at a higher level. Pokemon with the Ability Sturdy are immune.",
 		shortDesc: "OHKOs the target. Fails if user is a lower level.",
 		id: "sheercold",
 		name: "Sheer Cold",
@@ -9935,8 +9991,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Special",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers.",
+		shortDesc: "Ignores accuracy and evasion modifiers.",
 		id: "shockwave",
 		name: "Shock Wave",
 		pp: 20,
@@ -10050,7 +10106,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		isNotProtectable: true,
 		onHit: function(target, source) {
-			var disallowedMoves = {chatter:1,sketch:1,struggle:1};
+			var disallowedMoves = {chatter:1, sketch:1, struggle:1};
 			if (source.transformed || !target.lastMove || disallowedMoves[target.lastMove] || source.moves.indexOf(target.lastMove) !== -1) return false;
 			var moveslot = source.moves.indexOf('sketch');
 			if (moveslot === -1) return false;
@@ -10058,8 +10114,8 @@ exports.BattleMovedex = {
 			var sketchedMove = {
 				move: move.name,
 				id: move.id,
-				pp: (move.noPPBoosts ? move.pp : move.pp * 8/5),
-				maxpp: (move.noPPBoosts ? move.pp : move.pp * 8/5),
+				pp: move.pp,
+				maxpp: move.pp,
 				disabled: false,
 				used: false
 			};
@@ -10191,6 +10247,18 @@ exports.BattleMovedex = {
 			if (attacker.removeVolatile(move.id)) {
 				return;
 			}
+			if (defender.volatiles['substitute']) {
+				this.add('-fail', target);
+				return null;
+			}
+			if (defender.volatiles['protect']) {
+				this.add('-activate', target, 'Protect');
+				return null;
+			}
+			if (defender.volatiles['bounce'] || defender.volatiles['dig'] || defender.volatiles['dive'] || defender.volatiles['fly'] || defender.volatiles['shadowforce']) {
+				this.add('-miss', attacker);
+				return null;
+			}
 			this.add('-prepare', attacker, move.name, defender);
 			if (!this.runEvent('ChargeMove', attacker, defender)) {
 				this.add('-anim', attacker, move.name, defender);
@@ -10199,11 +10267,27 @@ exports.BattleMovedex = {
 			attacker.addVolatile(move.id, defender);
 			return null;
 		},
+		onTryHit: function(target) {
+			if (target.hasType('Flying')) {
+				this.add('-immune', target, '[msg]');
+				return null;
+			}
+		},
 		effect: {
 			duration: 2,
 			onLockMove: 'skydrop',
-			onAnyLockMove: function(target) {
-				if (target === this.effectData.source) return 'recharge';
+			onDragOut: false,
+			onSourceDragOut: false,
+			onFoeModifyPokemon: function(defender) {
+				if (defender !== this.effectData.source) return;
+				defender.trapped = true;
+			},
+			onFoeBeforeMove: function(attacker, defender, move) {
+				if (attacker === this.effectData.source) {
+					this.debug('Sky drop nullifying.');
+					this.add('-message', '(Sky Drop prevented a pokemon from moving.)');
+					return null;
+				}
 			},
 			onAnyModifyMove: function(move, attacker, defender) {
 				if (defender !== this.effectData.target && defender !== this.effectData.source) {
@@ -10219,7 +10303,7 @@ exports.BattleMovedex = {
 					// BasePower event
 					move.basePower *= 2;
 					return;
-				} else if (move.id === 'skyuppercut' || move.id === 'thunder' || move.id === 'hurricane' || move.id === 'smackdown') {
+				} else if (move.id === 'gust' || move.id === 'hurricane' || move.id === 'skyuppercut' || move.id === 'thunder' || move.id === 'smackdown') {
 					return;
 				}
 				move.accuracy = 0;
@@ -10490,8 +10574,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Lowers one adjacent target's Accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
-		shortDesc: "Lowers the target's Accuracy by 1.",
+		desc: "Lowers one adjacent target's accuracy by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
+		shortDesc: "Lowers the target's accuracy by 1.",
 		id: "smokescreen",
 		name: "SmokeScreen",
 		pp: 20,
@@ -10592,6 +10676,7 @@ exports.BattleMovedex = {
 		isBounceable: true,
 		volatileStatus: 'soak',
 		effect: {
+			noCopy: true,
 			onStart: function(pokemon) {
 				this.add('-start', pokemon, 'typechange', 'Water');
 			},
@@ -10720,7 +10805,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Prevents one adjacent target from switching out. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if the user leaves the field. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
+		desc: "Prevents one adjacent target from switching out. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if the user leaves the field. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves.",
 		shortDesc: "The target cannot switch out.",
 		id: "spiderweb",
 		isViable: true,
@@ -11050,6 +11135,7 @@ exports.BattleMovedex = {
 		type: "Fighting"
 	},
 	"steamroller": {
+		num: 537,
 		accuracy: 100,
 		basePower: 65,
 		basePowerCallback: function(pokemon, target) {
@@ -11218,7 +11304,8 @@ exports.BattleMovedex = {
 		effect: {
 			onStart: function(target) {
 				this.add('-start', target, 'Substitute');
-				this.effectData.hp = parseInt(target.maxhp/4);
+				this.effectData.hp = Math.floor(target.maxhp/4);
+				delete target.volatiles['partiallytrapped'];
 			},
 			onTryHit: function(target, source, move) {
 				if (target === source) {
@@ -11280,7 +11367,7 @@ exports.BattleMovedex = {
 		isContact: true,
 		onTryHit: function(target) {
 			decision = this.willMove(target);
-			if (!decision || decision.choice !== 'move' || decision.move.category === 'Status') {
+			if (!decision || decision.choice !== 'move' || (decision.move.category === 'Status' && decision.move.id !== 'mefirst')) {
 				return false;
 			}
 		},
@@ -11445,8 +11532,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Lowers all adjacent foes' Evasion by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. (Field: Can be used to attract wild Pokemon while standing in grass. Fails if the weather is not clear.)",
-		shortDesc: "Lowers the foe(s) Evasion by 1.",
+		desc: "Lowers all adjacent foes' evasion by 1 stage. Pokemon protected by Magic Coat or the Ability Magic Bounce are unaffected and instead use this move themselves. (Field: Can be used to attract wild Pokemon while standing in grass. Fails if the weather is not clear.)",
+		shortDesc: "Lowers the foe(s) evasion by 1.",
 		id: "sweetscent",
 		name: "Sweet Scent",
 		pp: 20,
@@ -11463,8 +11550,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 60,
 		category: "Special",
-		desc: "Deals damage to all adjacent foes and ignores Accuracy and Evasion modifiers.",
-		shortDesc: "Ignores Accuracy and Evasion modifiers of foes.",
+		desc: "Deals damage to all adjacent foes and ignores accuracy and evasion modifiers.",
+		shortDesc: "Ignores accuracy and evasion modifiers of foes.",
 		id: "swift",
 		name: "Swift",
 		pp: 20,
@@ -12290,7 +12377,7 @@ exports.BattleMovedex = {
 			}
 		},
 		category: "Special",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers. The power of this move is based on the amount of PP remaining after normal PP reduction and the Ability Pressure resolve. 200 power for 0PP, 80 power for 1PP, 60 power for 2PP, 50 power for 3PP, and 40 power for 4 or more PP. Makes contact.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers. The power of this move is based on the amount of PP remaining after normal PP reduction and the Ability Pressure resolve. 200 power for 0PP, 80 power for 1PP, 60 power for 2PP, 50 power for 3PP, and 40 power for 4 or more PP. Makes contact.",
 		shortDesc: "More power the fewer PP this move has left.",
 		id: "trumpcard",
 		name: "Trump Card",
@@ -12471,8 +12558,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 70,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and ignores Accuracy and Evasion modifiers. Makes contact. Priority -1.",
-		shortDesc: "Ignores Accuracy and Evasion mods. Goes last.",
+		desc: "Deals damage to one adjacent target and ignores accuracy and evasion modifiers. Makes contact. Priority -1.",
+		shortDesc: "Ignores accuracy and evasion mods. Goes last.",
 		id: "vitalthrow",
 		name: "Vital Throw",
 		pp: 10,
@@ -12624,7 +12711,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: false,
 		basePowerCallback: function(pokemon) {
-			return parseInt(150*pokemon.hp/pokemon.maxhp);
+			return 150*pokemon.hp/pokemon.maxhp;
 		},
 		category: "Special",
 		desc: "Deals damage to all adjacent foes. Power is equal to (user's current HP * 150 / user's maximum HP), rounded down, but not less than 1.",
@@ -12699,7 +12786,7 @@ exports.BattleMovedex = {
 		accuracy: 85,
 		basePower: 35,
 		category: "Special",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Power doubles if the target is using Dive. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Power doubles if the target is using Dive. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "whirlpool",
 		name: "Whirlpool",
@@ -12962,7 +13049,7 @@ exports.BattleMovedex = {
 		accuracy: 90,
 		basePower: 15,
 		category: "Physical",
-		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-Turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move. Makes contact.",
+		desc: "Deals damage to one adjacent target and prevents it from switching for four or five turns; always five turns if the user is holding Grip Claw. Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin. This effect is not stackable or reset by using this or another partial-trapping move. Makes contact.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		id: "wrap",
 		name: "Wrap",
@@ -12979,7 +13066,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: false,
 		basePowerCallback: function(pokemon, target) {
-			return parseInt(120*target.hp/target.maxhp);
+			return 120*target.hp/target.maxhp;
 		},
 		category: "Special",
 		desc: "Deals damage to one adjacent target. Power is equal to 120 * (target's current HP / target's maximum HP), rounded half down, but not less than 1. Makes contact.",

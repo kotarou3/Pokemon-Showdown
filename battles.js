@@ -920,7 +920,7 @@ function BattlePokemon(set, side) {
 			return true;
 		}
 		if (selfP.negateImmunity[type]) return true;
-		if (!selfB.getImmunity(type, selfP)) {
+		if (!selfP.negateImmunity['Type'] && !selfB.getImmunity(type, selfP)) {
 			selfB.debug('natural immunity');
 			if (message) {
 				selfB.add('-immune', selfP, '[msg]');
@@ -2059,7 +2059,7 @@ function Battle(roomid, format, rated) {
 			numerator = numerator[0];
 		}
 		var modifier = Math.floor(numerator*4096/denominator);
-		return Math.round(value * modifier / 4096);
+		return Math.floor((value * modifier + 2048 - 1) / 4096);
 	};
 	this.getDamage = function(pokemon, target, move, suppressMessages) {
 		if (typeof move === 'string') move = selfB.getMove(move);
@@ -2076,7 +2076,7 @@ function Battle(roomid, format, rated) {
 			}
 		}
 
-		if (move.isSoundBased) {
+		if (move.isSoundBased && (pokemon !== target || this.gen <= 4)) {
 			if (!target.runImmunity('sound', true)) {
 				return false;
 			}
@@ -2112,7 +2112,9 @@ function Battle(roomid, format, rated) {
 		if (move.basePowerCallback) {
 			basePower = move.basePowerCallback.call(selfB, pokemon, target);
 		}
+		console.log('['+move.id+'] bp='+basePower);
 		if (!basePower) return 0;
+		basePower = clampIntRange(basePower, 1);
 
 		move.critRatio = clampIntRange(move.critRatio, 0, 5);
 		var critMult = [0, 16, 8, 4, 3, 2];
@@ -2136,15 +2138,9 @@ function Battle(roomid, format, rated) {
 			}
 		}
 		if (!basePower) return 0;
+		basePower = clampIntRange(basePower, 1);
 
 		var level = pokemon.level;
-
-		var oldpokemon;
-		if (move.id === 'foulplay') { // evil hack, kill this with fire as soon as possible
-			selfB.debug('using target\'s attack');
-			oldpokemon = pokemon;
-			pokemon = target;
-		}
 
 		var attacker = pokemon;
 		var defender = target;
@@ -2173,13 +2169,8 @@ function Battle(roomid, format, rated) {
 			defense = move.defensiveCategory==='Physical'?target.unboostedStats.def:target.unboostedStats.spd;
 		}
 
-		if (oldpokemon) pokemon = oldpokemon;
-
 		//int(int(int(2*L/5+2)*A*P/D)/50);
 		var baseDamage = Math.floor(Math.floor(Math.floor(2*level/5+2) * basePower * attack/defense)/50) + 2;
-
-		// fudge factor because there's apparently something wrong with this formula
-		baseDamage--;
 
 		// multi-target modifier (doubles only)
 		// weather modifier (TODO: relocate here)
@@ -2402,8 +2393,28 @@ function Battle(roomid, format, rated) {
 			selfB.runEvent(decision.event, decision.pokemon);
 			break;
 		case 'team':
-			var i = parseInt(decision.team[0], 10);
+			var i = parseInt(decision.team[0], 10)-1;
 			if (i >= 6 || i < 0) return;
+
+			if (decision.team[1]) {
+				// validate the choice
+				var newPokemon = [null,null,null,null,null,null];
+				for (var j=0; j<6; j++) {
+					var i = parseInt(decision.team[j], 10)-1;
+					newPokemon[j] = decision.side.pokemon[i];
+				}
+				var reject = false;
+				for (var j=0; j<6; j++) {
+					if (!newPokemon[j]) reject = true;
+				}
+				if (!reject) {
+					for (var j=0; j<6; j++) {
+						newPokemon[j].position = j;
+					}
+					decision.side.pokemon = newPokemon;
+					return;
+				}
+			}
 
 			if (i == 0) return;
 			var pokemon = decision.side.pokemon[i];

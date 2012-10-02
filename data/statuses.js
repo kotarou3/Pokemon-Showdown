@@ -163,12 +163,12 @@ exports.BattleStatuses = {
 	partiallytrapped: {
 		duration: 5,
 		durationCallback: function(target, source) {
-			if (source.item === 'gripclaw') return 5;
-			return this.random(4,6);
+			if (source.item === 'gripclaw') return 6;
+			return this.random(5,7);
 		},
 		onResidualOrder: 11,
 		onResidual: function(pokemon) {
-			if (this.effectData.source && !this.effectData.source.isActive) {
+			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0)) {
 				pokemon.removeVolatile('partiallytrapped');
 				return;
 			}

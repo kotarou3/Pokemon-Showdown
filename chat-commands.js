@@ -4,6 +4,8 @@
 
 */
 
+var crypto = require('crypto');
+
 /**
  * `parseCommand`. This is the function most of you are interested in,
  * apparently.
@@ -141,6 +143,10 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 				room.log.push('|c|'+user.getIdentity()+'|!birkal '+target);
 			}
 			room.log.push('|c| Birkal|/me '+target);
+			if (!parseCommand.lastBirkal) parseCommand.lastBirkal = [];
+			parseCommand.lastBirkal.push(user.name);
+			parseCommand.lastBirkal.push(target);
+			if (parseCommand.lastBirkal.length > 100) parseCommand.lastBirkal.shift();
 			return false;
 		}
 		break;
@@ -422,9 +428,9 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		
 	case 'kick':
 	case 'k':
-        	if (!target) return parseCommand(user, '?', cmd, room, socket);
-        	return parseCommand(user, 'redirect', ''+target+', http://www.smogon.com/sim/rules', room, socket);
-        	break;
+			if (!target) return parseCommand(user, '?', cmd, room, socket);
+			return parseCommand(user, 'redirect', ''+target+', http://www.smogon.com/sim/rules', room, socket);
+			break;
 
 	case 'unban':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
@@ -631,6 +637,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		var name = targetUser ? targetUser.name : targets[2];
 
 		var nextGroup = targets[1] ? targets[1] : Users.getNextGroupSymbol(currentGroup, cmd === 'demote');
+		if (targets[1] === 'deauth') nextGroup = ' ';
 		if (!config.groups[nextGroup]) {
 			emit(socket, 'console', 'Group \'' + nextGroup + '\' does not exist.');
 			return false;
@@ -642,10 +649,14 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 		var isDemotion = (config.groups[nextGroup].rank < config.groups[currentGroup].rank);
 		Users.setOfflineGroup(name, nextGroup);
-		rooms.lobby.usersChanged = true;
 		var groupName = config.groups[nextGroup].name || nextGroup || '';
 		logModCommand(room,''+name+' was '+(isDemotion?'demoted':'promoted')+' to ' + (groupName.trim() || 'a regular user') + ' by '+user.name+'.');
+		if (targetUser && targetUser.connected) room.send('|N|'+targetUser.getIdentity()+'|'+targetUser.userid);
 		return false;
+		break;
+
+	case 'deauth':
+		return parseCommand(user, 'demote', target+', deauth', room, socket);
 		break;
 
 	case 'modchat':
@@ -774,6 +785,28 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 
+	case 'savereplay':
+		if (!room || !room.battle) return false;
+		var data = room.log.join("\n");
+		var datahash = crypto.createHash('md5').update(data.replace(/[^(\x20-\x7F)]+/g,'')).digest('hex');
+
+		LoginServer.request('prepreplay', {
+			id: room.id.substr(7),
+			loghash: datahash,
+			p1: room.p1.name,
+			p2: room.p2.name,
+			format: room.format
+		}, function(success) {
+			emit(socket, 'command', {
+				command: 'savereplay',
+				log: data,
+				room: 'lobby',
+				id: room.id.substr(7)
+			});
+		});
+		return false;
+		break;
+
 	case 'trn':
 		var commaIndex = target.indexOf(',');
 		var targetName = target;
@@ -862,6 +895,70 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 
+	case 'learnset':
+	case '!learnset':
+	case 'learn':
+	case '!learn':
+	case 'learnall':
+	case '!learnall':
+		var lsetData = {};
+		var targets = target.split(',');
+		if (!targets[1]) return parseCommand(user, 'help', 'learn', room, socket);
+		var template = Tools.getTemplate(targets[0]);
+		var move = {};
+		var result;
+		var all = (cmd.substr(cmd.length-3) === 'all');
+
+		showOrBroadcastStart(user, cmd, room, socket, message);
+
+		if (!template.exists) {
+			showOrBroadcast(user, cmd, room, socket,
+				'Pokemon "'+template.id+'" not found.');
+			return false;
+		}
+
+		for (var i=1, len=targets.length; i<len; i++) {
+			move = Tools.getMove(targets[i]);
+			if (!move.exists) {
+				showOrBroadcast(user, cmd, room, socket,
+					'Move "'+move.id+'" not found.');
+				return false;
+			}
+			result = Tools.checkLearnset(move, template, lsetData);
+			if (!result) break;
+		}
+		var buffer = ''+template.name+(result?" <strong style=\"color:#228822;text-decoration:underline\">can</strong> learn ":" <strong style=\"color:#CC2222;text-decoration:underline\">can't</strong> learn ")+(targets.length>2?"these moves":move.name);
+		if (result) {
+			var sourceNames = {E:"egg",S:"event",D:"dream world"};
+			if (lsetData.sources || lsetData.sourcesBefore) buffer += " only when obtained from:<ul style=\"margin-top:0;margin-bottom:0\">";
+			if (lsetData.sources) {
+				var sources = lsetData.sources.sort();
+				var prevSource;
+				var prevSourceType;
+				for (var i=0, len=sources.length; i<len; i++) {
+					var source = sources[i];
+					if (source.substr(0,2) === prevSourceType) {
+						if (prevSourceCount < 0) buffer += ": "+source.substr(2);
+						else if (all || prevSourceCount < 3) buffer += ', '+source.substr(2);
+						else if (prevSourceCount == 3) buffer += ', ...';
+						prevSourceCount++;
+						continue;
+					}
+					prevSourceType = source.substr(0,2);
+					prevSourceCount = source.substr(2)?0:-1;
+					buffer += "<li>gen "+source.substr(0,1)+" "+sourceNames[source.substr(1,1)];
+					if (prevSourceType === '5E' && template.maleOnlyDreamWorld) buffer += " (cannot have DW ability)";
+					if (source.substr(2)) buffer += ": "+source.substr(2);
+				}
+			}
+			if (lsetData.sourcesBefore) buffer += "<li>any generation before "+(lsetData.sourcesBefore+1);
+			buffer += "</ul>";
+		}
+		showOrBroadcast(user, cmd, room, socket,
+			buffer);
+		return false;
+		break;
+
 	case 'groups':
 	case '!groups':
 		showOrBroadcastStart(user, cmd, room, socket, message);
@@ -870,7 +967,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'+ <b>Voice</b> - They can use ! commands like !groups, and talk during moderated chat<br />' +
 			'% <b>Driver</b> - The above, and they can also mute users and run tournaments<br />' +
 			'@ <b>Moderator</b> - The above, and they can ban users and check for alts<br />' +
-			'&amp; <b>Staff</b> - The above, and they can promote moderators and force ties<br />'+
+			'&amp; <b>Leader</b> - The above, and they can promote moderators and force ties<br />'+
 			'~ <b>Administrator</b> - They can do anything, like change what this message says'+
 			'</div>');
 		return false;
@@ -948,6 +1045,62 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
                 	'</div>');
         return false;
         break;
+        
+        case 'analysis':
+	case 'dex':
+	case 'pokedex':
+	case 'strategy':
+	case '!analysis':
+	case '!dex':
+	case '!pokedex':
+	case '!strategy':
+		var targets = target.split(',');
+		var template = Tools.getTemplate(targets[0]);
+		var generation = (targets[1] || "bw").trim().toLowerCase();
+		var genNumber = 5;	
+
+		showOrBroadcastStart(user, cmd, room, socket, message);
+
+		if(!template.exists) {
+			showOrBroadcast(user, cmd, room, socket,
+				'Pokemon "'+template.id+'" not found.');
+			return false;
+		}
+
+		if(generation === "bw" || generation === "bw2")
+			generation = "bw";
+		else if(generation === "dp" || generation === "dpp") {
+			generation = "dp";
+			genNumber = 4;
+		}
+		else if(generation === "adv" || generation === "rse" || generation === "rs") {
+			generation = "rs";
+			genNumber = 3;
+		}
+		else if(generation === "gsc" || generation === "gs") {
+			generation = "gs";
+			genNumber = 2;
+		}
+		else if(generation === "rby" || generation === "rb") {
+			generation = "rb";
+			genNumber = 1;
+		}
+		else {
+			showOrBroadcast(user, cmd, room, socket,
+				'Generation "'+generation+'" does not exist.');
+			return false;
+		}
+
+		if (genNumber < template.gen) {
+			showOrBroadcast(user, cmd, room, socket,
+				''+template.name+' did not exist in '+generation.toUpperCase()+'!');
+			return false;
+		}
+
+		showOrBroadcast(user, cmd, room, socket,
+			'<a href="http://www.smogon.com/'+generation+'/pokemon/'+template.name+'" target="_blank">'+generation.toUpperCase()+' '+template.name+' analysis</a>, brought to you by <a href="http://www.smogon.com" target="_blank">Smogon University</a>');
+	return false;
+	break;
 
 	case 'join':
 		var targetRoom = Rooms.get(target);
@@ -1009,7 +1162,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'team':
 		if (!room.decision) { emit(socket, 'console', 'You can only do this in battle rooms.'); return false; }
 
-		room.decision(user, 'team', parseInt(target,10)-1);
+		room.decision(user, 'team', target);
 		return false;
 		break;
 
@@ -1142,7 +1295,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 
 		room.battle.endType = 'forced';
 		if (!target) {
-			room.battle.win('');
+			room.battle.tie();
 			logModCommand(room,user.name+' forced a tie.',true);
 			return false;
 		}
@@ -1264,18 +1417,21 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 		break;
 	case 'modlog':
-		if (!user.can('mute')) {
+		if (!user.can('modlog')) {
 			emit(socket, 'console', '/modlog - Access denied.');
 			return false;
 		}
 		var lines = parseInt(target || 15, 10);
-		var command = 'tail -'+lines+' ';
+		if (lines > 100) lines = 100;
 		var filename = 'logs/modlog.txt';
-		if (target.match(/^["'].+["']$/)) target = target.substring(1,target.length-1);
+		var command = 'tail -'+lines+' '+filename;
+		var grepLimit = 100;
 		if (!lines || lines < 0) { // searching for a word instead
-			command = 'grep -i \''+target.replace(/\\/g,'\\\\\\\\').replace(/["'`]/g,'\\$&').replace(/[\{\}\[\]\(\)\$\^\.\?\+\-\*]/g,'[$&]')+'\' ';
+			if (target.match(/^["'].+["']$/)) target = target.substring(1,target.length-1);
+			command = "awk '{print NR,$0}' "+filename+" | sort -nr | cut -d' ' -f2- | grep -m"+grepLimit+" -i '"+target.replace(/\\/g,'\\\\\\\\').replace(/["'`]/g,'\'\\$&\'').replace(/[\{\}\[\]\(\)\$\^\.\?\+\-\*]/g,'[$&]')+"'";
 		}
-		require('child_process').exec(command+filename, function(error, stdout, stderr) {
+		
+		require('child_process').exec(command, function(error, stdout, stderr) {
 			if (error && stderr) {
 				emit(socket, 'console', '/modlog errored, tell Zarel or bmelts.');
 				console.log('/modlog error: '+error);
@@ -1291,7 +1447,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 				if (!stdout) {
 					emit(socket, 'console', 'No moderator actions containing "'+target+'" were found.');
 				} else {
-					emit(socket, 'message', 'Displaying all logged actions containing "'+target+'":\n\n'+sanitize(stdout));
+					emit(socket, 'message', 'Displaying the last '+grepLimit+' logged actions containing "'+target+'":\n\n'+sanitize(stdout));
 				}
 			}
 		});
@@ -1372,6 +1528,11 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			emit(socket, 'console', '/data [pokemon/item/move/ability] - Get details on this pokemon/item/move/ability.');
 			emit(socket, 'console', '!data [pokemon/item/move/ability] - Show everyone these details. Requires: + % @ & ~');
 		}
+		if (target === "all" || target === 'data') {
+			matched = true;
+			emit(socket, 'console', '/analysis [pokemon], [generation] - Links to the Smogon University analysis for this Pokemon in the given generation.');
+			emit(socket, 'console', '!analysis [pokemon], [generation] - Shows everyone this link. Requires: + % @ & ~');
+		}
 		if (target === 'all' || target === 'groups') {
 			matched = true;
 			emit(socket, 'console', '/groups - Explains what the + % @ & next to people\'s names mean.');
@@ -1396,6 +1557,11 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			matched = true;
 			emit(socket, 'console', '/cap - Provides an introduction to the Create-A-Pokemon project.');
 			emit(socket, 'console', '!cap - Show everyone that information. Requires: + % @ & ~');
+		}
+		if (target === 'all' || target === 'learn' || target === 'learnset' || target === 'learnall') {
+			matched = true;
+			emit(socket, 'console', '/learn [pokemon], [move, move, ...] - Displays how a Pokemon can learn the given moves, if it can at all.')
+			emit(socket, 'console', '!learn [pokemon], [move, move, ...] - Show everyone that information. Requires: + % @ & ~')
 		}
 		if (target === '@' || target === 'altcheck' || target === 'alt' || target === 'alts' || target === 'getalts') {
 			matched = true;
@@ -1479,7 +1645,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		}
 		if (!target) {
 			emit(socket, 'console', 'COMMANDS: /msg, /reply, /ip, /rating, /nick, /avatar, /rooms, /whois, /help');
-			emit(socket, 'console', 'INFORMATIONAL COMMANDS: /data, /groups, /opensource, /avatars, /tiers, /intro (replace / with ! to broadcast)');
+			emit(socket, 'console', 'INFORMATIONAL COMMANDS: /data, /groups, /opensource, /avatars, /tiers, /intro, /learn, /analysis (replace / with ! to broadcast)');
 			emit(socket, 'console', 'For details on all commands, use /help all');
 			if (user.group !== config.groupsranking[0]) {
 				emit(socket, 'console', 'DRIVER COMMANDS: /mute, /unmute, /forcerename, /modlog, /announce')
@@ -1527,6 +1693,9 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		return false;
 	}
 
+	// remove zalgo
+	message = message.replace(/[\u0300-\u036f]{3,}/g,'');
+
 	if (message.substr(0,1) === '/' && message.substr(0,2) !== '//') {
 		// To the client, "/text" has special meaning, so "//" is used to
 		// escape "/" at the beginning of a message
@@ -1537,7 +1706,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		// Here, we are automatically escaping unrecognized commands.
 		return '/'+message;
 	}
-	return;
+	return message;
 }
 
 /**
@@ -1545,6 +1714,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
  * Pass the corresponding socket to give the user an error, if not
  */
 function canTalk(user, room, socket) {
+	if (!user.named) return false;
 	if (user.muted) {
 		if (socket) emit(socket, 'console', 'You are muted.');
 		return false;

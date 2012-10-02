@@ -859,7 +859,7 @@ exports.BattleItems = {
 			basePower: 40
 		},
 		onModifyStats: function(stats, pokemon) {
-			if (pokemon.template.nfe) {
+			if (pokemon.baseTemplate.nfe) {
 				stats.def *= 1.5;
 				stats.spd *= 1.5;
 			}
@@ -910,7 +910,7 @@ exports.BattleItems = {
 			}
 		},
 		onEat: function(pokemon) {
-			pokemon.heal(pokemon.maxhp/8);
+			this.heal(pokemon.maxhp/8);
 			if (pokemon.getNature().minus === 'atk') {
 				pokemon.addVolatile('confusion');
 			}
@@ -958,7 +958,7 @@ exports.BattleItems = {
 		onResidualOrder: 26,
 		onResidualSubOrder: 2,
 		onResidual: function(pokemon) {
-			if (!pokemon.status) {
+			if (!pokemon.status && !pokemon.hasType('Fire') && pokemon.ability !== 'waterveil') {
 				this.add('-activate', pokemon, 'item: Flame Orb');
 				pokemon.trySetStatus('brn');
 			}
@@ -1778,7 +1778,6 @@ exports.BattleItems = {
 		id: "micleberry",
 		name: "Micle Berry",
 		spritenum: 290,
-		isUnreleased: true,
 		isBerry: true,
 		naturalGift: {
 			basePower: 80,
@@ -1801,7 +1800,7 @@ exports.BattleItems = {
 				move.alwaysHit = true;
 			}
 		},
-		desc: "Activates at 25% HP. Next move used will always hit. Unobtainable in BW. One-time use."
+		desc: "Activates at 25% HP. Next move used will always hit. One-time use."
 	},
 	"mindplate": {
 		id: "mindplate",
@@ -2338,6 +2337,18 @@ exports.BattleItems = {
 		onEat: function() { },
 		desc: "Reduces damage from a super effective Grass-type attack by 50%."
 	},
+	"ringtarget": {
+		id: "ringtarget",
+		name: "Ring Target",
+		spritenum: 410,
+		fling: {
+			basePower: 10
+		},
+		onModifyPokemon: function(pokemon) {
+			pokemon.negateImmunity['Type'] = true;
+		},
+		desc: "Negates any type-based immunities. Does not affect abilities."
+	},
 	"rockgem": {
 		id: "rockgem",
 		name: "Rock Gem",
@@ -2855,7 +2866,7 @@ exports.BattleItems = {
 		onResidualOrder: 26,
 		onResidualSubOrder: 2,
 		onResidual: function(pokemon) {
-			if (!pokemon.status && !pokemon.hasType('Steel')) {
+			if (!pokemon.status && !pokemon.hasType('Poison') && !pokemon.hasType('Steel') && pokemon.ability !== 'immunity') {
 				this.add('-activate', pokemon, 'item: Toxic Orb');
 				pokemon.trySetStatus('tox');
 			}
