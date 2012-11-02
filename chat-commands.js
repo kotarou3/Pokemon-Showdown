@@ -131,9 +131,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		break;
 
 	case 'me':
-		if (canTalk(user, room)) {
-			return '/me '+target;
-		}
+	case 'mee':
+		if (canTalk(user, room)) return true;
 		break;
 
 	case '!birkal':
@@ -225,7 +224,10 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'forfeit':
 	case 'concede':
 	case 'surrender':
-		if (!room.battle) return;
+		if (!room.battle) {
+			emit(socket, 'console', "There's nothing to forfeit here.");
+			return false;
+		}
 		if (!room.forfeit(user)) {
 			emit(socket, 'console', "You can't forfeit this battle.");
 		}
@@ -240,7 +242,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	case 'avatar':
 		if (!target) return parseCommand(user, 'avatars', '', room, socket);
 		var avatar = parseInt(target);
-		if (!avatar || avatar > 263 || avatar < 1) {
+		if (!avatar || avatar > 294 || avatar < 1) {
 			emit(socket, 'console', 'Invalid avatar.');
 			return false;
 		}
@@ -425,7 +427,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		targetUser.emit('console', {evalRawMessage: 'window.location.href="'+targets[1]+'"'});
 		return false;
 		break;
-		
+
 	case 'kick':
 	case 'k':
 			if (!target) return parseCommand(user, '?', cmd, room, socket);
@@ -704,28 +706,28 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		logModCommand(room,user.name+' set modchat to '+config.modchat,true);
 		return false;
 		break;
-	
+
 	case 'declare':
-        if (!target) return parseCommand(user, '?', cmd, room, socket);
-        if (!user.can('declare')) {
-                emit(socket, 'console', '/declare - Access denied.');
-                return false;
-        }
-        target = target.replace(/\[\[([A-Za-z0-9-]+)\]\]/, '<button onclick="selectTab(\'$1\');return false">Go to $1</button>');
-        room.addRaw('<div style="background:#7067AB;color:white;padding:2px 4px"><b>'+target+'</b></div>');
-        logModCommand(room,user.name+' declared '+target,true);
-        return false;
-        break;
- 
+		if (!target) return parseCommand(user, '?', cmd, room, socket);
+		if (!user.can('declare')) {
+			emit(socket, 'console', '/declare - Access denied.');
+			return false;
+		}
+		target = target.replace(/\[\[([A-Za-z0-9-]+)\]\]/, '<button onclick="selectTab(\'$1\');return false">Go to $1</button>');
+		room.addRaw('<div style="background:#7067AB;color:white;padding:2px 4px"><b>'+target+'</b></div>');
+		logModCommand(room,user.name+' declared '+target,true);
+		return false;
+		break;
+
 	case 'announce':
 	case 'wall':
-        if (!target) return parseCommand(user, '?', cmd, room, socket);
-        if (!user.can('announce')) {
-                emit(socket, 'console', '/announce - Access denied.');
-                return false;
-        }
-        return '/announce '+target;
-        break;
+		if (!target) return parseCommand(user, '?', cmd, room, socket);
+		if (!user.can('announce')) {
+			emit(socket, 'console', '/announce - Access denied.');
+			return false;
+		}
+		return '/announce '+target;
+		break;
 
 	case 'hotpatch':
 		if (!target) return parseCommand(user, '?', cmd, room, socket);
@@ -1027,26 +1029,26 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'</div>');
 		return false;
 		break;
-		
+
 	case 'banlists':
 	case 'tiers':
 	case '!banlists':
 	case '!tiers':
-        	showOrBroadcastStart(user, cmd, room, socket, message);
-        	showOrBroadcast(user, cmd, room, socket,
-                	'<div style="border:1px solid #6688AA;padding:2px 4px">Smogon tiers:<br />' +
-                	'- <a href="http://www.smogon.com/bw/banlist/" target="_blank">The banlists for each tier</a><br />' +
-                	'- <a href="http://www.smogon.com/bw/tiers/uber" target="_blank">Uber Pokemon</a><br />' +
-                	'- <a href="http://www.smogon.com/bw/tiers/ou" target="_blank">Overused Pokemon</a><br />' +
-                	'- <a href="http://www.smogon.com/bw/tiers/uu" target="_blank">Underused Pokemon</a><br />' +
-                	'- <a href="http://www.smogon.com/bw/tiers/ru" target="_blank">Rarelyused Pokemon</a><br />' +
-                	'- <a href="http://www.smogon.com/bw/tiers/nu" target="_blank">Neverused Pokemon</a><br />' +
-                	'- <a href="http://www.smogon.com/bw/tiers/lc" target="_blank">Little Cup Pokemon</a><br />' +
-                	'</div>');
-        return false;
-        break;
-        
-        case 'analysis':
+		showOrBroadcastStart(user, cmd, room, socket, message);
+		showOrBroadcast(user, cmd, room, socket,
+			'<div style="border:1px solid #6688AA;padding:2px 4px">Smogon tiers:<br />' +
+			'- <a href="http://www.smogon.com/bw/banlist/" target="_blank">The banlists for each tier</a><br />' +
+			'- <a href="http://www.smogon.com/bw/tiers/uber" target="_blank">Uber Pokemon</a><br />' +
+			'- <a href="http://www.smogon.com/bw/tiers/ou" target="_blank">Overused Pokemon</a><br />' +
+			'- <a href="http://www.smogon.com/bw/tiers/uu" target="_blank">Underused Pokemon</a><br />' +
+			'- <a href="http://www.smogon.com/bw/tiers/ru" target="_blank">Rarelyused Pokemon</a><br />' +
+			'- <a href="http://www.smogon.com/bw/tiers/nu" target="_blank">Neverused Pokemon</a><br />' +
+			'- <a href="http://www.smogon.com/bw/tiers/lc" target="_blank">Little Cup Pokemon</a><br />' +
+			'</div>');
+		return false;
+		break;
+
+	case 'analysis':
 	case 'dex':
 	case 'pokedex':
 	case 'strategy':
@@ -1057,50 +1059,46 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 		var targets = target.split(',');
 		var template = Tools.getTemplate(targets[0]);
 		var generation = (targets[1] || "bw").trim().toLowerCase();
-		var genNumber = 5;	
+		var genNumber = 5;
 
 		showOrBroadcastStart(user, cmd, room, socket, message);
 
 		if(!template.exists) {
-			showOrBroadcast(user, cmd, room, socket,
-				'Pokemon "'+template.id+'" not found.');
+			showOrBroadcast(user, cmd, room, socket, 'Pokemon "'+template.id+'" not found.');
 			return false;
 		}
 
-		if(generation === "bw" || generation === "bw2")
+		if(generation === "bw" || generation === "bw2" || generation === "5" || generation === "five")
 			generation = "bw";
-		else if(generation === "dp" || generation === "dpp") {
+		else if(generation === "dp" || generation === "dpp" || generation === "4" || generation === "four") {
 			generation = "dp";
 			genNumber = 4;
 		}
-		else if(generation === "adv" || generation === "rse" || generation === "rs") {
+		else if(generation === "adv" || generation === "rse" || generation === "rs" || generation === "3" || generation === "three") {
 			generation = "rs";
 			genNumber = 3;
 		}
-		else if(generation === "gsc" || generation === "gs") {
+		else if(generation === "gsc" || generation === "gs" || generation === "2" || generation === "two") {
 			generation = "gs";
 			genNumber = 2;
 		}
-		else if(generation === "rby" || generation === "rb") {
+		else if(generation === "rby" || generation === "rb" || generation === "1" || generation === "one") {
 			generation = "rb";
 			genNumber = 1;
 		}
 		else {
-			showOrBroadcast(user, cmd, room, socket,
-				'Generation "'+generation+'" does not exist.');
-			return false;
+			generation = "bw";
 		}
 
 		if (genNumber < template.gen) {
-			showOrBroadcast(user, cmd, room, socket,
-				''+template.name+' did not exist in '+generation.toUpperCase()+'!');
+			showOrBroadcast(user, cmd, room, socket, template.name+' did not exist in '+generation.toUpperCase()+'!');
 			return false;
 		}
 
 		showOrBroadcast(user, cmd, room, socket,
 			'<a href="http://www.smogon.com/'+generation+'/pokemon/'+template.name+'" target="_blank">'+generation.toUpperCase()+' '+template.name+' analysis</a>, brought to you by <a href="http://www.smogon.com" target="_blank">Smogon University</a>');
-	return false;
-	break;
+		return false;
+		break;
 
 	case 'join':
 		var targetRoom = Rooms.get(target);
@@ -1430,7 +1428,7 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			if (target.match(/^["'].+["']$/)) target = target.substring(1,target.length-1);
 			command = "awk '{print NR,$0}' "+filename+" | sort -nr | cut -d' ' -f2- | grep -m"+grepLimit+" -i '"+target.replace(/\\/g,'\\\\\\\\').replace(/["'`]/g,'\'\\$&\'').replace(/[\{\}\[\]\(\)\$\^\.\?\+\-\*]/g,'[$&]')+"'";
 		}
-		
+
 		require('child_process').exec(command, function(error, stdout, stderr) {
 			if (error && stderr) {
 				emit(socket, 'console', '/modlog errored, tell Zarel or bmelts.');
@@ -1585,8 +1583,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			emit(socket, 'console', '/redirect OR /redir [username], [url] - Redirects user to a different URL. ~~intl and ~~dev are accepted redirects. Requires: @ & ~');
 		}
 		if (target === "@" || target === 'kick' || target === 'k') {
-        		matched = true;
-        		emit(socket, 'console', '/kick OR /k [username] - Quickly kicks a user by redirecting them to the Smogon Sim Rules page. Requires: @ & ~');
+			matched = true;
+			emit(socket, 'console', '/kick OR /k [username] - Quickly kicks a user by redirecting them to the Smogon Sim Rules page. Requires: @ & ~');
 		}
 		if (target === '@' || target === 'banredirect' || target === 'br') {
 			matched = true;
@@ -1621,12 +1619,12 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			emit(socket, 'console', '/demote [username], [group] - Demotes the user to the specified group or previous ranked group. Requires: & ~');
 		}
 		if (target === '&' || target === 'declare' ) {
-        		matched = true;
-        		emit(socket, 'console', '/declare [message] - Anonymously announces a message. Requires: & ~');
+			matched = true;
+			emit(socket, 'console', '/declare [message] - Anonymously announces a message. Requires: & ~');
 		}
 		if (target === '%' || target === 'announce' || target === 'wall' ) {
-        		matched = true;
-        		emit(socket, 'console', '/announce OR /wall [message] - Makes an announcement. Requires: % @ & ~');
+			matched = true;
+			emit(socket, 'console', '/announce OR /wall [message] - Makes an announcement. Requires: % @ & ~');
 		}
 		if (target === '@' || target === 'modchat') {
 			matched = true;
@@ -1671,15 +1669,12 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 				return parseCommand(user, 'demote', toUserid(target) + ',' + nextGroup, room, socket);
 			}
 		}
+	}
 
-		// There is no default case for unrecognised commands
-
-		// If a user types "/text" and there is no command "/text", it will be displayed:
-		// no error message will be given about unrecognized commands.
-
-		// This is intentional: Some people like to say things like "/shrug" - this
-		// means they don't need to manually escape it like "//shrug" - we will
-		// do it automatically for them
+	if (message.substr(0,1) === '/' && cmd) {
+		// To guard against command typos, we now emit an error message
+		emit(socket, 'console', 'The command "/'+cmd+'" was unrecognized. To send a message starting with "/'+cmd+'", type "//'+cmd+'".');
+		return false;
 	}
 
 	// chat moderation
@@ -1696,16 +1691,6 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	// remove zalgo
 	message = message.replace(/[\u0300-\u036f]{3,}/g,'');
 
-	if (message.substr(0,1) === '/' && message.substr(0,2) !== '//') {
-		// To the client, "/text" has special meaning, so "//" is used to
-		// escape "/" at the beginning of a message
-
-		// For instance: "/me did blah" will show as "* USER did blah", and
-		// "//me did blah" will show as "/me did blah"
-
-		// Here, we are automatically escaping unrecognized commands.
-		return '/'+message;
-	}
 	return message;
 }
 
@@ -1783,7 +1768,7 @@ function getDataMessage(target) {
 		atLeastOne = true;
 	}
 	if (!atLeastOne) {
-		response.push("||No pokemon, item, move, or ability named '"+target+"' was found. (Check your capitalization?)");
+		response.push("||No pokemon, item, move, or ability named '"+target+"' was found. (Check your spelling?)");
 	}
 	return response;
 }

@@ -793,6 +793,7 @@ exports.BattleMovedex = {
 		priority: 1,
 		isContact: true,
 		volatileStatus: 'bide',
+		affectedByImmunities: false,
 		effect: {
 			duration: 3,
 			onLockMove: 'bide',
@@ -815,6 +816,7 @@ exports.BattleMovedex = {
 			onBeforeMove: function(pokemon) {
 				if (this.effectData.duration === 1) {
 					if (!this.effectData.totalDamage) {
+						this.add('-end', pokemon, 'Bide');
 						this.add('-fail', pokemon);
 						return false;
 					}
@@ -2330,8 +2332,6 @@ exports.BattleMovedex = {
 					// onFoeBasePower
 					if (!move.basePowerModifier) move.basePowerModifier = 1;
 					move.basePowerModifier *= 2;
-					return;
-				} else if (move.id === 'fissure') {
 					return;
 				}
 				move.accuracy = 0;
@@ -5206,6 +5206,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		isContact: true,
+		hasCustomRecoil: true,
 		onMoveFail: function(target, source, move) {
 			this.damage(source.maxhp/2, source);
 		},
@@ -6109,6 +6110,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		isContact: true,
+		hasCustomRecoil: true,
 		onMoveFail: function(target, source, move) {
 			this.damage(source.maxhp/2, source);
 		},
@@ -6433,13 +6435,13 @@ exports.BattleMovedex = {
 		volatileStatus: 'lockon',
 		effect: {
 			duration: 2,
-			onModifyMove: function(move) {
+			onFoeModifyMove: function(move) {
 				move.accuracy = true;
 				move.alwaysHit = true;
 			}
 		},
 		secondary: false,
-		target: "self",
+		target: "normal",
 		type: "Normal"
 	},
 	"lovelykiss": {
@@ -7183,7 +7185,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		volatileStatus: 'lockon',
 		secondary: false,
-		target: "self",
+		target: "normal",
 		type: "Normal"
 	},
 	"minimize": {
@@ -7318,7 +7320,7 @@ exports.BattleMovedex = {
 		effect: {
 			duration: 5,
 			onBoost: function(boost, target, source) {
-				if (source && target === source) return;
+				if (!source || target === source) return;
 				for (var i in boost) {
 					if (boost[i] < 0) {
 						delete boost[i];
@@ -7484,7 +7486,7 @@ exports.BattleMovedex = {
 				this.add("-start", pokemon, 'Mud Sport');
 			},
 			onAnyBasePower: function(basePower, user, target, move) {
-				if (move.type === 'Electric') return basePower / 3;
+				if (move.type === 'Electric') return basePower * 0.33;
 			}
 		},
 		secondary: false,
@@ -12699,7 +12701,7 @@ exports.BattleMovedex = {
 				this.add("-start", pokemon, 'move: Water Sport');
 			},
 			onAnyBasePower: function(basePower, user, target, move) {
-				if (move.type === 'Fire') return basePower / 3;
+				if (move.type === 'Fire') return basePower * 0.33;
 			}
 		},
 		secondary: false,

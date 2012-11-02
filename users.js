@@ -260,6 +260,9 @@ var User = (function () {
 			// doing it this way mathematically ensures no cycles
 			delete prevUsers[userid];
 			prevUsers[this.userid] = userid;
+
+			// also MMR is different for each userid
+			this.mmrCache = {};
 		}
 
 		this.name = name;
@@ -442,6 +445,7 @@ var User = (function () {
 				else if (userid === "hawntah") avatar = 161;
 				else if (userid === "greatsage") avatar = 1005;
 				else if (userid === "bojangles") avatar = 1006;
+				else if (userid === "dtc") avatar = 30;
 
 				if (usergroups[userid]) {
 					group = usergroups[userid].substr(0,1);
@@ -1001,4 +1005,3 @@ exports.setOfflineGroup = function(name, group) {
 	}
 	exportUsergroups();
 };
-

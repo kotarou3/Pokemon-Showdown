@@ -163,7 +163,7 @@ module.exports = (function () {
 			}
 			if (!move.id) move.id = id;
 			if (!move.name) move.name = name;
-			if (!move.fullname) move.fullname = 'move: '+name;
+			if (!move.fullname) move.fullname = 'move: '+move.name;
 			move.toString = this.effectToString;
 			if (!move.critRatio) move.critRatio = 1;
 			if (!move.baseType) move.baseType = move.type;
@@ -232,7 +232,7 @@ module.exports = (function () {
 			}
 			if (!effect.id) effect.id = id;
 			if (!effect.name) effect.name = name;
-			if (!effect.fullname) effect.fullname = name;
+			if (!effect.fullname) effect.fullname = effect.name;
 			effect.toString = this.effectToString;
 			if (!effect.category) effect.category = 'Effect';
 			if (!effect.effectType) effect.effectType = 'Effect';
@@ -252,7 +252,7 @@ module.exports = (function () {
 			}
 			if (!effect.id) effect.id = id;
 			if (!effect.name) effect.name = name;
-			if (!effect.fullname) effect.fullname = name;
+			if (!effect.fullname) effect.fullname = effect.name;
 			effect.toString = this.effectToString;
 			if (!effect.category) effect.category = 'Effect';
 			if (!effect.effectType) effect.effectType = 'Effect';
@@ -271,7 +271,7 @@ module.exports = (function () {
 			}
 			if (!item.id) item.id = id;
 			if (!item.name) item.name = name;
-			if (!item.fullname) item.fullname = 'item: '+name;
+			if (!item.fullname) item.fullname = 'item: '+item.name;
 			item.toString = this.effectToString;
 			if (!item.category) item.category = 'Effect';
 			if (!item.effectType) item.effectType = 'Item';
@@ -290,7 +290,7 @@ module.exports = (function () {
 			}
 			if (!ability.id) ability.id = id;
 			if (!ability.name) ability.name = name;
-			if (!ability.fullname) ability.fullname = 'ability: '+name;
+			if (!ability.fullname) ability.fullname = 'ability: '+ability.name;
 			ability.toString = this.effectToString;
 			if (!ability.category) ability.category = 'Effect';
 			if (!ability.effectType) ability.effectType = 'Ability';
@@ -485,19 +485,21 @@ module.exports = (function () {
 		if (!sourcesBefore && !sources.length) {
 			return false;
 		}
+		if (!sources.length) sources = null;
 		if (sourcesBefore || lsetData.sourcesBefore) {
 			// having sourcesBefore is the equivalent of having everything before that gen
 			// in sources, so we fill the other array in preparation for intersection
 			if (sourcesBefore && lsetData.sources) {
+				if (!sources) sources = [];
 				for (var i=0, len=lsetData.sources.length; i<len; i++) {
 					var learned = lsetData.sources[i];
 					if (parseInt(learned.substr(0,1),10) <= sourcesBefore) {
 						sources.push(learned);
 					}
 				}
-				sourcesBefore = 0;
+				if (!lsetData.sourcesBefore) sourcesBefore = 0;
 			}
-			if (lsetData.sourcesBefore && sources.length) {
+			if (lsetData.sourcesBefore && sources) {
 				if (!lsetData.sources) lsetData.sources = [];
 				for (var i=0, len=sources.length; i<len; i++) {
 					var learned = sources[i];
@@ -505,13 +507,13 @@ module.exports = (function () {
 						lsetData.sources.push(learned);
 					}
 				}
-				delete lsetData.sourcesBefore;
+				if (!sourcesBefore) delete lsetData.sourcesBefore;
 			}
 		}
-		if (sources.length) {
+		if (sources) {
 			if (lsetData.sources) {
 				var intersectSources = lsetData.sources.intersect(sources);
-				if (!intersectSources.length) {
+				if (!intersectSources.length && !(sourcesBefore && lsetData.sourcesBefore)) {
 					lsetData.incompatible = true;
 					return false;
 				}
@@ -662,7 +664,7 @@ module.exports = (function () {
 		var template = this.getTemplate(string(set.species));
 		set.species = template.species;
 
-		set.name = string(set.name).trim();
+		set.name = string(set.name).trim().replace(/\|/g,'');
 		var item = this.getItem(string(set.item));
 		set.item = item.name;
 		var ability = this.getAbility(string(set.ability));

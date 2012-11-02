@@ -10,9 +10,9 @@ exports.BattleStatuses = {
 		onStart: function(target) {
 			this.add('-status', target.id, 'brn');
 		},
-		onModifyStats: function(stats, pokemon) {
-			if (pokemon.ability !== 'guts') {
-				stats.atk /= 2;
+		onBasePower: function(basePower, attacker, defender, move) {
+			if (move && move.category === 'Physical' && attacker && attacker.ability !== 'guts') {
+				return basePower / 2;
 			}
 		},
 		onResidualOrder: 9,
@@ -192,7 +192,7 @@ exports.BattleStatuses = {
 		},
 		onResidual: function(target) {
 			var move = this.getMove(target.lastMove);
-			if (!move.self || move.self.volatileStatus !== 'lockedmove') {
+			if (!move.self || move.self.volatileStatus !== 'lockedmove' || target.status === 'slp') {
 				// don't lock, and bypass confusion for calming
 				delete target.volatiles['lockedmove'];
 			}

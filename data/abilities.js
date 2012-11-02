@@ -404,9 +404,9 @@ exports.BattleAbilities = {
 				totaldef += foeactive[i].stats.def;
 				totalspd += foeactive[i].stats.spd;
 			}
-			if (totaldef >= totalspd) {
+			if (totaldef && totaldef >= totalspd) {
 				this.boost({spa:1});
-			} else {
+			} else if (totalspd) {
 				this.boost({atk:1});
 			}
 		},
@@ -674,7 +674,7 @@ exports.BattleAbilities = {
 		shortDesc: "When this Pokemon has 1/2 or less of its max HP, it uses certain Berries early.",
 		id: "gluttony",
 		name: "Gluttony",
-		rating: 1.5,
+		rating: 0,
 		num: 82
 	},
 	"guts": {
@@ -705,7 +705,7 @@ exports.BattleAbilities = {
 				}
 			}
 		},
-		rating: 4,
+		rating: 0.5,
 		num: 139
 	},
 	"healer": {
@@ -1548,7 +1548,7 @@ exports.BattleAbilities = {
 		},
 		id: "prankster",
 		name: "Prankster",
-		rating: 4,
+		rating: 4.5,
 		num: 158
 	},
 	"pressure": {

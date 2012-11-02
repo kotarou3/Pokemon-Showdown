@@ -68,7 +68,13 @@ exports.BattleMovedex = {
 	},
 	rocksmash: {
 		inherit: true,
-		basePower: 50
+		basePower: 50,
+		secondary: {
+			chance: 100,
+			boosts: {
+				def: -1
+			}
+		}
 	},
 	/******************************************************************
 	Weather moves:
@@ -293,6 +299,66 @@ exports.BattleMovedex = {
 		},
 		breaksProtect: true
 	},
+	hyperbeam: {
+		inherit: true,
+		accuracy: true,
+		basePower: 75,
+		willCrit: true,
+		self: null,
+		onHit: function(target, source) {
+			if (!target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		}
+	},
+	gigaimpact: {
+		inherit: true,
+		accuracy: true,
+		basePower: 75,
+		willCrit: true,
+		self: null,
+		onHit: function(target, source) {
+			if (!target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		}
+	},
+	blastburn: {
+		inherit: true,
+		accuracy: true,
+		basePower: 75,
+		willCrit: true,
+		self: null,
+		onHit: function(target, source) {
+			if (!target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		}
+	},
+	frenzyplant: {
+		inherit: true,
+		accuracy: true,
+		basePower: 75,
+		willCrit: true,
+		self: null,
+		onHit: function(target, source) {
+			if (!target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		}
+	},
+	hydrocannon: {
+		inherit: true,
+		accuracy: true,
+		basePower: 75,
+		willCrit: true,
+		self: null,
+		onHit: function(target, source) {
+			if (!target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		}
+	},
 	/******************************************************************
 	Snore:
 	- base power increased to 100
@@ -402,9 +468,9 @@ exports.BattleMovedex = {
 				this.add('-sidestart',side,'move: Stealth Rock');
 			},
 			onSwitchIn: function(pokemon) {
-				var factor = 8;
+				var factor = 2;
 				if (pokemon.hasType('Flying')) factor = 4;
-				var damage = this.damage(pokemon.maxhp/factor);
+				var damage = this.damage(pokemon.maxhp*factor/16);
 			}
 		}
 	},
@@ -668,10 +734,11 @@ exports.BattleMovedex = {
 	******************************************************************/
 	leechlife: {
 		inherit: true,
-		basePower: 60
+		basePower: 75
 	},
 	drainpunch: {
 		inherit: true,
+		basePower: 80,
 		type: 'Poison'
 	},
 	/******************************************************************
@@ -777,9 +844,15 @@ exports.BattleMovedex = {
 		basePower: 100,
 		pp: 10
 	},
+	autotomize: {
+		inherit: true,
+		boosts: {
+			spe: 3
+		},
+	},
 	smog: {
 		inherit: true,
-		basePower: 60,
+		basePower: 80,
 		secondary: {
 			chance: 100,
 			status: 'psn'

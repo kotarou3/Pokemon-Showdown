@@ -258,7 +258,7 @@ function BattleRoom(roomid, format, p1, p2, parentid, rated) {
 		var otherids = ['p2', 'p1'];
 
 		var name = 'An unknown player';
-		if (user) { 
+		if (user) {
 			name = user.name;
 		} else if (selfR.rated) {
 			name = selfR.rated[ids[side]];
@@ -647,6 +647,29 @@ function LobbyRoom(roomid) {
 		this.numRooms = parseInt(fs.readFileSync('logs/lastbattle.txt')) || 0;
 	} catch (e) {} // file doesn't exist [yet]
 
+	// generate and cache the format list
+	{
+		var formatListText = '|formats';
+		var curSection = '';
+		for (var i in Tools.data.Formats) {
+			var format = Tools.data.Formats[i];
+			if (!format.challengeShow && !format.searchShow) continue;
+
+			var section = format.section;
+			if (section === undefined) section = format.mod;
+			if (!section) section = '';
+			if (section !== curSection) {
+				curSection = section;
+				formatListText += '||'+section;
+			}
+			formatListText += '|'+format.name;
+			if (!format.challengeShow) formatListText += ',,';
+			else if (!format.searchShow) formatListText += ',';
+			if (format.team) formatListText += ',#';
+		}
+		this.formatListText = formatListText;
+	}
+
 	this.getUpdate = function(since, omitUsers, omitRoomList) {
 		var update = {room: roomid};
 		var i = since;
@@ -769,8 +792,8 @@ function LobbyRoom(roomid) {
 		// search must be within range
 		var searchRange = 400, formatid = search1.formatid, elapsed = Math.abs(search1.time-search2.time);
 		if (formatid === 'ou' || formatid === 'randombattle') searchRange = 200;
-		searchRange += elapsed/600; // +1 every .6 seconds
-		if (searchRange > 1000) searchRange = 1000;
+		searchRange += elapsed/300; // +1 every .3 seconds
+		if (searchRange > 1200) searchRange = 1200;
 		if (Math.abs(search1.rating - search2.rating) > searchRange) return false;
 
 		user1.lastMatch = user2.userid;
@@ -879,7 +902,7 @@ function LobbyRoom(roomid) {
 			rooms: selfR.getRoomList(),
 			u: selfR.getUserList(),
 			roomType: 'lobby',
-			log: selfR.log.slice(-100)
+			log: selfR.log.slice(-100).include(this.formatListText)
 		};
 		user.emit('init', initdata);
 
