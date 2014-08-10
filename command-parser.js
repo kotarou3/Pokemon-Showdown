@@ -33,7 +33,7 @@ const MAX_PARSE_RECURSION = 10;
 var fs = require('fs');
 
 /*********************************************************
- * Load command files
+ * Load base command files
  *********************************************************/
 
 var commands = exports.commands = require('./commands.js').commands;
@@ -42,12 +42,6 @@ var customCommands = require('./config/commands.js');
 if (customCommands && customCommands.commands) {
 	Object.merge(commands, customCommands.commands);
 }
-
-// Install plug-in commands
-
-fs.readdirSync('./chat-plugins').forEach(function (file) {
-	if (file.substr(-3) === '.js') Object.merge(commands, require('./chat-plugins/' + file).commands);
-});
 
 /*********************************************************
  * Parser
@@ -266,9 +260,9 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 				}
 				modlog[room.id].write('[' + (new Date().toJSON()) + '] (' + room.id + ') ' + result + '\n');
 			},
-			can: function (permission, target, room) {
+			can: function (permission, target, room, customCmd) {
 				if (!user.can(permission, target, room)) {
-					this.sendReply("/" + cmd + " - Access denied.");
+					this.sendReply("/" + (customCmd || cmd) + " - Access denied.");
 					return false;
 				}
 				return true;
@@ -385,6 +379,51 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 	return message;
 };
 
+var createSubParser = exports.createSubParser = function (commands, defaultHandler) {
+	return function (target, room, user, connection, cmd, message, parserChain) {
+		var newCmd = target;
+		var newTarget = '';
+		var newMessage = message.replace(cmd + (target ? ' ' : ''), '');
+		var newParserChain = (parserChain || []).concat(cmd);
+
+		var spaceIndex = target.indexOf(' ');
+		if (spaceIndex > 0) {
+			newCmd = target.substr(0, spaceIndex);
+			newTarget = target.substr(spaceIndex + 1);
+		}
+		newCmd = newCmd.toLowerCase();
+
+		if (!this._parse) this._parse = this.parse;
+		this.parse = function (message) {
+			if (message[0] === '/' || message[0] === '!') {
+				return this._parse(message[0] + newParserChain.concat(message.slice(1)).join(" "));
+			}
+			return this._parse(message);
+		};
+		if (!this._can) this._can = this.can;
+		this.can = function (permission, target, room, customCmd) {
+			return this._can(permission, target, room, newParserChain.concat(newCmd || customCmd).join(' '));
+		};
+
+		var commandHandler = commands[newCmd];
+		if (typeof commandHandler === 'string') {
+			commandHandler = commands[commandHandler];
+		}
+		if (!commandHandler && defaultHandler !== undefined) {
+			if (typeof defaultHandler === 'string') {
+				commandHandler = commands[defaultHandler];
+			} else {
+				commandHandler = defaultHandler;
+			}
+		}
+		if (commandHandler) {
+			return commandHandler.call(this, newTarget, room, user, connection, newCmd, newMessage, newParserChain);
+		} else {
+			connection.sendTo(room.id, "The " + newParserChain.concat("command").join(" ") + " '" + newCmd + "' was unrecognised.");
+		}
+	};
+};
+
 exports.package = {};
 fs.readFile('package.json', function (err, data) {
 	if (err) return;
@@ -409,3 +448,20 @@ exports.uncacheTree = function (root) {
 		uncache = newuncache;
 	} while (uncache.length > 0);
 };
+
+/*********************************************************
+ * Load chat plugins
+ *********************************************************/
+
+fs.readdirSync('./chat-plugins').forEach(function (file) {
+	if (file.substr(-3) === '.js') {
+		var plugin = require('./chat-plugins/' + file);
+		if (plugin.namespace) {
+			if (!Array.isArray(plugin.namespace)) plugin.namespace = [plugin.namespace];
+			commands[plugin.namespace[0]] = createSubParser(plugin.commands, plugin.defaultHandler);
+			for (var n = 1; n < plugin.namespace.length; ++n) commands[plugin.namespace[n]] = plugin.namespace[0];
+		} else {
+			Object.merge(commands, plugin.commands);
+		}
+	}
+});
