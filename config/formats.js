@@ -371,6 +371,17 @@ exports.Formats = [
 		}
 	},
 	{
+		name: "[Gen 4] STABmons",
+		section: "OM of the Month",
+
+		mod: 'gen4',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Ignore STAB Moves', 'BrightPowder', 'Soul Dew', 'Belly Drum',
+			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Garchomp', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre',
+			'Lugia', 'Mewtwo', 'Palkia', 'Rayquaza', 'Shaymin-Sky', 'Wobbuffet', 'Wynaut'
+		]
+	},
+	{
 		name: "CAP",
 		section: "Other Metagames",
 		column: 2,
@@ -703,6 +714,57 @@ exports.Formats = [
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview']
+	},
+
+	// Past Generations
+	///////////////////////////////////////////////////////////////////
+
+	{
+		name: "[Gen 4] OU",
+		section: "Past Generations",
+		column: 3,
+
+		mod: 'gen4',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber']
+	},
+	{
+		name: "[Gen 4] Ubers",
+		section: "Past Generations",
+
+		mod: 'gen4',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Arceus']
+	},
+	{
+		name: "[Gen 4] UU",
+		section: "Past Generations",
+
+		mod: 'gen4',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL']
+	},
+	{
+		name: "[Gen 4] LC",
+		section: "Past Generations",
+
+		mod: 'gen4',
+		maxLevel: 5,
+		ruleset: ['Pokemon', 'Standard', 'Little Cup'],
+		banlist: ['Berry Juice', 'DeepSeaTooth', 'Dragon Rage', 'Sonic Boom', 'Meditite', 'Misdreavus', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela', 'Yanma']
+	},
+	{
+		name: "[Gen 4] Custom Game",
+		section: "Past Generations",
+
+		mod: 'gen4',
+		searchShow: false,
+		canUseRandomTeam: true,
+		debug: true,
+		maxLevel: 9999,
+		defaultLevel: 100,
+		// no restrictions
+		ruleset: []
 	}
 
 ];
