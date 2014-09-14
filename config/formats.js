@@ -337,15 +337,18 @@ exports.Formats = [
 		}
 	},
 	{
-		name: "[Gen 4] STABmons",
+		name: "[Gen 3] 1v1",
 		section: "OM of the Month",
 
-		mod: 'gen4',
+		mod: 'gen3',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Ignore STAB Moves', 'BrightPowder', 'Soul Dew', 'Belly Drum',
-			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Garchomp', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre',
-			'Lugia', 'Mewtwo', 'Palkia', 'Rayquaza', 'Shaymin-Sky', 'Wobbuffet', 'Wynaut'
-		]
+		banlist: ['Uber', 'Smeargle + Ingrain'],
+		onBegin: function () {
+			this.p1.pokemon = this.p1.pokemon.slice(0, 1);
+			this.p1.pokemonLeft = this.p1.pokemon.length;
+			this.p2.pokemon = this.p2.pokemon.slice(0, 1);
+			this.p2.pokemonLeft = this.p2.pokemon.length;
+		}
 	},
 	{
 		name: "CAP",
@@ -803,6 +806,51 @@ exports.Formats = [
 		defaultLevel: 100,
 		// no restrictions
 		ruleset: []
+	},
+	{
+		name: "[Gen 3] OU (beta)",
+		section: "Past Generations",
+
+		mod: 'gen3',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'Smeargle + Ingrain']
+	},
+	{
+		name: "[Gen 3] Custom Game",
+		section: "Past Generations",
+
+		mod: 'gen3',
+		searchShow: false,
+		debug: true,
+		ruleset: ['Pokemon', 'HP Percentage Mod']
+	},
+	{
+		name: "[Gen 2] OU (beta)",
+		section: "Past Generations",
+
+		mod: 'gen2',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber',
+			'Hypnosis + Perish Song + Mean Look',
+			'Hypnosis + Perish Song + Spider Web',
+			'Lovely Kiss + Perish Song + Mean Look',
+			'Lovely Kiss + Perish Song + Spider Web',
+			'Sing + Perish Song + Mean Look',
+			'Sing + Perish Song + Spider Web',
+			'Sleep Powder + Perish Song + Mean Look',
+			'Sleep Powder + Perish Song + Spider Web',
+			'Spore + Perish Song + Mean Look',
+			'Spore + Perish Song + Spider Web'
+		]
+	},
+	{
+		name: "[Gen 2] Custom Game",
+		section: "Past Generations",
+
+		mod: 'gen2',
+		searchShow: false,
+		debug: true,
+		ruleset: ['Pokemon', 'HP Percentage Mod']
 	},
 	{
 		name: "[Gen 1] OU (beta)",
