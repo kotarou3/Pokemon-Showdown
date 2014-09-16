@@ -512,7 +512,7 @@ User = (function () {
 			if (room.auth[this.userid]) {
 				return room.auth[this.userid] + this.name;
 			}
-			if (room.isPrivate) {
+			if (room.isPrivate || room.isClanRoom) {
 				return Config.groups.default[room.type + 'Room'] + this.name;
 			}
 		}
