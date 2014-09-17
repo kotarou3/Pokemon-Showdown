@@ -64,12 +64,12 @@ exports.loginServer = {
 //   be more than one line of messages.
 //   This feature can lag larger servers - turn this off if your server is
 //   getting more than 80 or so users.
-exports.reportJoins = true;
+exports.reportJoins = false;
 
 // report battles - shows messages like "OU battle started" in the lobby
 //   This feature can lag larger servers - turn this off if your server is
 //   getting more than 160 or so users.
-exports.reportBattles = true;
+exports.reportBattles = false;
 
 // moderated chat - prevent unvoiced users from speaking
 //   This should only be enabled in special situations, such as temporarily
@@ -231,13 +231,13 @@ exports.groups = {
 		'~': {
 			id: 'admin',
 			name: "Administrator",
-			description: "They can do anything, like change what this message says",
+			description: "Son capaces de hacer cualquier cosa, como cambiar este mensaje",
 			root: true
 		},
 		'&': {
 			id: 'leader',
 			name: "Leader",
-			description: "They can promote to moderator and force ties",
+			description: "Pueden promover a moderador y forzar empates",
 			inherit: '@',
 			jurisdiction: '@u',
 			banword: true,
@@ -253,7 +253,7 @@ exports.groups = {
 		'#': {
 			id: 'owner',
 			name: "Room Owner",
-			description: "They are administrators of the room and can almost totally control it",
+			description: "Son los dueños de la sala por lo tanto, tienen completo control sobre la misma",
 			inherit: '@',
 			jurisdiction: 'u',
 			declare: true,
@@ -266,7 +266,7 @@ exports.groups = {
 		'\u2605': {
 			id: 'player',
 			name: "Player",
-			description: "Only in battles, they are the players that are battling",
+			description: "Sólo en las batallas, son los jugadores que están luchando",
 			inherit: '+',
 			modchat: true,
 			privateroom: true,
@@ -275,7 +275,7 @@ exports.groups = {
 		'@': {
 			id: 'mod',
 			name: "Moderator",
-			description: "They can ban users and set modchat",
+			description: "Pueden banear usuarios y colocar el chat moderado",
 			inherit: '%',
 			jurisdiction: 'u',
 			alts: '@u',
@@ -290,7 +290,7 @@ exports.groups = {
 		'%': {
 			id: 'driver',
 			name: "Driver",
-			description: "They can mute. Global % can also lock and check users for alts",
+			description: "Pueden mutear. Driver global tambien puede ver alts y dar lock",
 			inherit: '+',
 			jurisdiction: 'u',
 			alts: '%u',
@@ -309,7 +309,7 @@ exports.groups = {
 		'+': {
 			id: 'voice',
 			name: "Voice",
-			description: "They can use ! commands like !groups, and talk during moderated chat",
+			description: "Pueden usar comandos ! como !groups y hablar durante el chat moderado",
 			inherit: ' ',
 			broadcast: true,
 			joinbattle: true
