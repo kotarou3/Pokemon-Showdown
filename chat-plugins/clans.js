@@ -199,7 +199,7 @@ var ClanRoom = exports.ClanRoom = (function () {
 		for (var c in this.challengesFrom) this.rejectChallengeFrom(c);
 		this.endCurrentWar();
 
-		Rooms.ChatRoom.destroy.call(this);
+		Rooms.ChatRoom.prototype.destroy.call(this);
 	};
 
 	return ClanRoom;
@@ -283,6 +283,18 @@ var War = exports.War = (function () {
 	return War;
 })();
 
+var patchRooms = exports.patchRooms = function () {
+	for (var r = 0; r < Rooms.global.chatRooms.length; ++r) {
+		var room = Rooms.global.chatRooms[r];
+		if (room.isClanRoom && !room.availableMembers) {
+			var newRoom = new ClanRoom(room.title, room.chatRoomData);
+			Rooms.global.chatRooms[r] = newRoom;
+			Rooms.rooms[room.id] = newRoom;
+		}
+	}
+};
+patchRooms();
+
 var getClans = exports.getClans = function () {
 	var results = [];
 	for (var r in Rooms.rooms)
@@ -305,22 +317,19 @@ var getClansFromMember = exports.getFromMember = function (user) {
 
 var createClan = exports.createClan = function (name) {
 	if (Rooms.get(toId(name))) return false;
-	return Rooms.global.addChatRoom(name, {isClanRoom: true});
+	if (!Rooms.global.addChatRoom(name)) return false;
+
+	var room = Rooms.get(toId(name));
+	room.isClanRoom = room.chatRoomData.isClanRoom = true;
+	Rooms.global.writeChatRoomData();
+	patchRooms();
+	return room;
 };
 var deleteClan = exports.deleteClan = function (name) {
 	var room = getClan(name);
 	if (!room) return false;
 	return Rooms.global.removeChatRoom(toId(name));
 };
-
-for (var r = 0; r < Rooms.global.chatRooms.length; ++r) {
-	var room = Rooms.global.chatRooms[r];
-	if (room.isClanRoom && !room.availableMembers) {
-		var newRoom = new ClanRoom(room.title, room.chatRoomData);
-		Rooms.global.chatRooms[r] = newRoom;
-		Rooms.rooms[room.id] = newRoom;
-	}
-}
 
 var oldWin = Rooms.BattleRoom.prototype.win;
 Rooms.BattleRoom.prototype.win = function (winner) {
