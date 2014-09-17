@@ -1027,30 +1027,30 @@ var commands = exports.commands = {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
 			"Room drivers (%) can use:<br />" +
-			"- /warn OR /k <em>username</em>: warn a user and show the Pokemon Showdown rules<br />" +
-			"- /mute OR /m <em>username</em>: 7 minute mute<br />" +
-			"- /hourmute OR /hm <em>username</em>: 60 minute mute<br />" +
+			"- /warn OR /k <em>username</em>: Advierte a un usuario y le muestra las reglas del servidor<br />" +
+			"- /mute OR /m <em>username</em>: Mutea a un usuario por 7 minutos<br />" +
+			"- /hourmute OR /hm <em>username</em>: Mutea a un usuario durante 1 hora<br />" +
 			"- /unmute <em>username</em>: unmute<br />" +
-			"- /announce OR /wall <em>message</em>: make an announcement<br />" +
-			"- /modlog <em>username</em>: search the moderator log of the room<br />" +
-			"- /modnote <em>note</em>: adds a moderator note that can be read through modlog<br />" +
+			"- /announce OR /wall <em>message</em>: haz un anuncio<br />" +
+			"- /modlog <em>username</em>: revisa el registro de actividad de la sala<br />" +
+			"- /modnote <em>note</em>: añade una nota que puede ser leída a través de modlog<br />" +
 			"<br />" +
 			"Room moderators (@) can also use:<br />" +
-			"- /roomban OR /rb <em>username</em>: bans user from the room<br />" +
-			"- /roomunban <em>username</em>: unbans user from the room<br />" +
-			"- /roomvoice <em>username</em>: appoint a room voice<br />" +
-			"- /roomdevoice <em>username</em>: remove a room voice<br />" +
-			"- /modchat <em>[off/autoconfirmed/+]</em>: set modchat level<br />" +
+			"- /roomban OR /rb <em>username</em>: Banea a un usuario de la sala<br />" +
+			"- /roomunban <em>username</em>: Desbanea a un usuario de la sala<br />" +
+			"- /roomvoice <em>username</em>: Asciende a vocero a un usuario<br />" +
+			"- /roomdevoice <em>username</em>: Degrada a un vocero de la sala<br />" +
+			"- /modchat <em>[off/autoconfirmed/+]</em>: Activa el chat moderado<br />" +
 			"<br />" +
 			"Room owners (#) can also use:<br />" +
-			"- /roomintro <em>intro</em>: sets the room introduction that will be displayed for all users joining the room<br />" +
-			"- /rules <em>rules link</em>: set the room rules link seen when using /rules<br />" +
-			"- /roommod, /roomdriver <em>username</em>: appoint a room moderator/driver<br />" +
-			"- /roomdemod, /roomdedriver <em>username</em>: remove a room moderator/driver<br />" +
-			"- /modchat <em>[%/@/#]</em>: set modchat level<br />" +
-			"- /declare <em>message</em>: make a large blue declaration to the room<br />" +
-			"- !htmlbox <em>HTML code</em>: broadcasts a box of HTML code to the room<br />" +
-			"- !showimage <em>[url], [width], [height]</em>: shows an image to the room<br />" +
+			"- /roomintro <em>intro</em>: establece una intro que se mostrará a todos los usuarios que entran a la sala<br />" +
+			"- /rules <em>rules link</em>: establece el link de las reglas, para verlas utiliza /rules<br />" +
+			"- /roommod, /roomdriver <em>username</em>: Asciende a moderador/driver a un usuario<br />" +
+			"- /roomdemod, /roomdedriver <em>username</em>: Degrada a un moderador/driver<br />" +
+			"- /modchat <em>[%/@/#]</em>: Activa el chat moderado<br />" +
+			"- /declare <em>message</em>: Haz una declaracion a los usuarios de la sala<br />" +
+			"- !htmlbox <em>HTML code</em>: Emite un codigo html a la sala<br />" +
+			"- !showimage <em>[url], [width], [height]</em>: Muestra una imagen en la sala<br />" +
 			"</div>"
 		);
 	},
@@ -1059,11 +1059,11 @@ var commands = exports.commands = {
 		if (room.id === 'lobby' && !this.can('lockdown')) return false;
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
-			"The server is restarting. Things to know:<br />" +
-			"- We wait a few minutes before restarting so people can finish up their battles<br />" +
-			"- The restart itself will take around 0.6 seconds<br />" +
-			"- Your ladder ranking and teams will not change<br />" +
-			"- We are restarting to update Pokémon Showdown to a newer version"
+			"El servidor se esta reiniciando. Cosas que debes saber:<br />" +
+			"- Esperamos unos minutos antes de reiniciar para que la gente termine sus batallas<br />" +
+			"- El reinicio toma alrededor de 0.6 segundos<br />" +
+			"- Tu rank en el ladder se mantendra igual<br />" +
+			"- Reiniciamos el servidor para incorporar nuevas y mejores cosas"
 		);
 	},
 
@@ -1078,11 +1078,11 @@ var commands = exports.commands = {
 		}
 		if (!this.can('declare', room)) return;
 		if (target.length > 80) {
-			return this.sendReply("Error: Room rules link is too long (must be under 80 characters). You can use a URL shortener to shorten the link.");
+			return this.sendReply("Error: El link es demasiado largo (debe ser menor a 80 caracteres). Puedes usar un cortador de URL para hacer mas pequeño el link.");
 		}
 
 		room.rulesLink = target.trim();
-		this.sendReply("(The room rules link is now: " + target + ")");
+		this.sendReply("(El link de las reglas es ahora: " + target + ")");
 
 		if (room.chatRoomData) {
 			room.chatRoomData.rulesLink = room.rulesLink;
@@ -1290,11 +1290,11 @@ var commands = exports.commands = {
 		Config.potd = target;
 		Simulator.SimulatorProcess.eval('Config.potd = \'' + toId(target) + '\'');
 		if (target) {
-			if (Rooms.lobby) Rooms.lobby.addRaw("<div class=\"broadcast-blue\"><b>The Pokemon of the Day is now " + target + "!</b><br />This Pokemon will be guaranteed to show up in random battles.</div>");
-			this.logModCommand("The Pokemon of the Day was changed to " + target + " by " + user.name + ".");
+			if (Rooms.lobby) Rooms.lobby.addRaw("<div class=\"broadcast-green\"><b>El pokemon del dia es ahora " + target + "!</b><br />Este pokemon aparecera en cada batalla random.</div>");
+			this.logModCommand("El pokemon del dia a sido cambiado a" + target + " por " + user.name + ".");
 		} else {
-			if (Rooms.lobby) Rooms.lobby.addRaw("<div class=\"broadcast-blue\"><b>The Pokemon of the Day was removed!</b><br />No pokemon will be guaranteed in random battles.</div>");
-			this.logModCommand("The Pokemon of the Day was removed by " + user.name + ".");
+			if (Rooms.lobby) Rooms.lobby.addRaw("<div class=\"broadcast-green\"><b>El pokemon del dia a sido removido!</b><br />No aparecera mas en batallas random.</div>");
+			this.logModCommand("El pokemon del dia a sido removido por " + user.name + ".");
 		}
 	},
 
@@ -1308,8 +1308,8 @@ var commands = exports.commands = {
 			var faces;
 			if (target.length > d) faces = parseInt(target.substring(d + 1));
 			if (isNaN(num)) num = 1;
-			if (isNaN(faces)) return this.sendReply("The number of faces must be a valid integer.");
-			if (faces < 1 || faces > 1000) return this.sendReply("The number of faces must be between 1 and 1000");
+			if (isNaN(faces)) return this.sendReply("El número de caras debe ser un entero válido.");
+			if (faces < 1 || faces > 1000) return this.sendReply("El número de caras debe estar entre 1 y 1000");
 			if (num < 1 || num > 20) return this.sendReply("The number of dice must be between 1 and 20");
 			var rolls = [];
 			var total = 0;
@@ -1319,7 +1319,7 @@ var commands = exports.commands = {
 			}
 			return this.sendReplyBox("Random number " + num + "x(1 - " + faces + "): " + rolls.join(", ") + "<br />Total: " + total);
 		}
-		if (target && isNaN(target) || target.length > 21) return this.sendReply("The max roll must be a number under 21 digits.");
+		if (target && isNaN(target) || target.length > 21) return this.sendReply("El rollo máximo debe ser un número menor de 21 dígitos.");
 		var maxRoll = (target)? target : 6;
 		var rand = Math.floor(maxRoll * Math.random()) + 1;
 		return this.sendReplyBox("Random number (1 - " + maxRoll + "): " + rand);
@@ -1331,7 +1331,7 @@ var commands = exports.commands = {
 		var options = target.split(',');
 		if (options.length < 2) return this.parse('/help pick');
 		if (!this.canBroadcast()) return false;
-		return this.sendReplyBox('<em>We randomly picked:</em> ' + Tools.escapeHTML(options.sample().trim()));
+		return this.sendReplyBox('<em>Elegimos al azar:</em> ' + Tools.escapeHTML(options.sample().trim()));
 	},
 
 	register: function () {
