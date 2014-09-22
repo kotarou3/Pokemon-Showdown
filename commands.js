@@ -150,6 +150,7 @@ var commands = exports.commands = {
 		if (!id) return this.parse('/help makechatroom');
 		if (Rooms.rooms[id]) return this.sendReply("The room '" + target + "' already exists.");
 		if (Rooms.global.addChatRoom(target)) {
+			hangman.reset(id);
 			return this.sendReply("The room '" + target + "' was created.");
 		}
 		return this.sendReply("An error occurred while trying to create the room '" + target + "'.");
