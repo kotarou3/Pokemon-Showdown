@@ -8,7 +8,6 @@ background-image:url('http://i.imgur.com/nFBwgsk.jpg');
 background-repeat:no-repeat;
 background-position:center fixed;
 }
-
 /*PM Box*/
 .pm-log {
 min-height: 100px;
@@ -22,67 +21,59 @@ border-top-left-radius: 0px;
 border-top-right-radius: 0px;
 }
 .pm-window h3 {
-    background: #000000;
-   border: 2px;
+background: #000000;
+border: 2px;
 }
 .pm-window.focused h3, .pm-window.focused h3:hover {
 background: #cbc8c8;
 border: 2px;
 }
 .pm-log-add {
-        background: #000000;
-   border: 2px;
-     border-color: #000;
+background: #000000;
+border: 2px;
+border-color: #000;
 }
-
 /*Chat*/
 .chat-log {
-     font-size: 10pt;
-     background: url("http://fc01.deviantart.net/fs71/f/2013/255/3/5/mega_mewtwo_y_by_dashinghero-d60p0r2.png") repeat;
-     opacity: 1;
-     border-left: 1px solid rgb(95, 200, 255);
-     overflow: auto;
+font-size: 10pt;
+background: url("http://fc01.deviantart.net/fs71/f/2013/255/3/5/mega_mewtwo_y_by_dashinghero-d60p0r2.png") repeat;
+opacity: 1;
+border-left: 1px solid rgb(95, 200, 255);
+overflow: auto;
 }
-
 .userbar{
 border:1px solid #000000;
 padding:5px;
 background: #000000;
 margin-top:-5px
 }
-
 /*"Look for a battle" buttons (when hovered over)*/
 .menugroup .button:hover {
-    background: #5B595F;
-   color: #F9F8F8
-}
-
+background: #5B595F;
+color: #F9F8F8
+}   		
 /*"Look for a battle" buttons*/
 .menugroup .button {
-     background: #242425;
-   color: #FEFEFE
+background: #242425;
+color: #FEFEFE
 }
-
 .userlist {
-  background: #cccccc;
-  color: #000000;
-  border: 1px solid;
+background: #cccccc;
+color: #000000;
+border: 1px solid;
 }
-
 .tabbar a.button.cur,.tabbar a.button.cur:hover {
 color: #000000;
 text-shadow:none;
-   border: 2px;
+border: 2px;
 background: #fefefe;
 cursor: default;
 }
-
 .tabbar a.button {
 background: #1D1D1E;
 color: #cccccc;
 }
-
 .char {
-  background: url(http://img.webme.com/pic/s/samuel600-xp/fondo_black-1452aaa.jpg) center;
-  color: #eff;
-  }
+background: url(http://img.webme.com/pic/s/samuel600-xp/fondo_black-1452aaa.jpg) center;
+color: #eff;
+}
