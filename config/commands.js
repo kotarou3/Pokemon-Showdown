@@ -920,7 +920,7 @@ var commands = exports.commands = {
 		if (target === 'monotype') {
 			matched = true;
 			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3493087/\">Monotype</a><br />";
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3507565/\">Monotype Viability Rankings</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3517737/\">Monotype Viability Rankings</a><br />";
 		}
 		if (target === 'tiershift' || target === 'ts') {
 			matched = true;
@@ -952,7 +952,7 @@ var commands = exports.commands = {
 		}
 		if (target === 'inversebattle' || target === 'inverse') {
 			matched = true;
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3492433/\">Inverse Battle</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3518146/\">Inverse Battle</a><br />";
 		}
 		if (target === '350cup') {
 			matched = true;
@@ -1148,9 +1148,9 @@ var commands = exports.commands = {
 		}
 		if (target === 'overused' || target === 'ou') {
 			matched = true;
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3511596/\">np: OU Stage 5</a><br />";
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3491371/\">OU Banlist</a><br />";
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3502428/\">OU Viability Rankings</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3514144/\">np: OU Stage 6</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/dex/xy/tags/ou/\">OU Banlist</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3515714/\">OU Viability Rankings</a><br />";
 		}
 		if (target === 'ubers' || target === 'uber') {
 			matched = true;
@@ -1160,17 +1160,19 @@ var commands = exports.commands = {
 		if (target === 'underused' || target === 'uu') {
 			matched = true;
 			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3516640/\">np: UU Stage 3</a><br />";
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3502698/#post-5323505\">UU Banlist</a><br />";
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3500340/\">UU Viability Rankings</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/dex/xy/tags/uu/\">UU Banlist</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3516418/\">UU Viability Rankings</a><br />";
 		}
 		if (target === 'rarelyused' || target === 'ru') {
 			matched = true;
 			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3515615/\">np: RU Stage 4</a><br />";
-			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3506500/\">RU Viability Rankings</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/dex/xy/tags/ru/\">RU Banlist</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3516783/\">RU Viability Rankings</a><br />";
 		}
 		if (target === 'neverused' || target === 'nu') {
 			matched = true;
 			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3516675/\">np: NU Stage 2</a><br />";
+			buffer += "- <a href=\"https://www.smogon.com/dex/xy/tags/nu/\">NU Banlist</a><br />";
 			buffer += "- <a href=\"https://www.smogon.com/forums/threads/3509494/\">NU Viability Rankings</a><br />";
 		}
 		if (target === 'littlecup' || target === 'lc') {
@@ -1379,107 +1381,6 @@ var commands = exports.commands = {
 		// secret sysop command
 		room.add(target);
 	},
-
-	/*********************************************************
-	 * Custom commands
-	 *********************************************************/
-
-	customavatars: 'customavatar',
-	customavatar: (function () {
-		const script = function () {/*
-			FILENAME=`mktemp`
-			function cleanup {
-				rm -f $FILENAME
-			}
-			trap cleanup EXIT
-
-			set -xe
-
-			timeout 10 wget "$1" -nv -O $FILENAME
-
-			FRAMES=`identify $FILENAME | wc -l`
-			if [ $FRAMES -gt 1 ]; then
-				EXT=".gif"
-			else
-				EXT=".png"
-			fi
-
-			timeout 10 convert $FILENAME -layers TrimBounds -coalesce -adaptive-resize 80x80\> -background transparent -gravity center -extent 80x80 "$2$EXT"
-		*/}.toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
-
-		var pendingAdds = {};
-		return function (target) {
-			var parts = target.split(',');
-			var cmd = parts[0].trim().toLowerCase();
-
-			if (cmd in {'':1, show:1, view:1, display:1}) {
-				var message = "";
-				for (var a in Config.customAvatars)
-					message += "<strong>" + Tools.escapeHTML(a) + ":</strong> " + Tools.escapeHTML(Config.customAvatars[a]) + "<br />";
-				return this.sendReplyBox(message);
-			}
-
-			if (!this.can('customavatar')) return false;
-
-			switch (cmd) {
-				case 'set':
-					var userid = toId(parts[1]);
-					var user = Users.getExact(userid);
-					var avatar = parts.slice(2).join(',').trim();
-
-					if (!userid) return this.sendReply("You didn't specify a user.");
-					if (Config.customAvatars[userid]) return this.sendReply(userid + " already has a custom avatar.");
-
-					var hash = require('crypto').createHash('sha512').update(userid + '\u0000' + avatar).digest('hex').slice(0, 8);
-					pendingAdds[hash] = {userid: userid, avatar: avatar};
-					parts[1] = hash;
-
-					if (!user) {
-						this.sendReply("Warning: " + userid + " is not online.");
-						this.sendReply("If you want to continue, use: /customavatar forceset, " + hash);
-						return;
-					}
-
-					/* falls through */
-				case 'forceset':
-					var hash = parts[1].trim();
-					if (!pendingAdds[hash]) return this.sendReply("Invalid hash.");
-
-					var userid = pendingAdds[hash].userid;
-					var avatar = pendingAdds[hash].avatar;
-					delete pendingAdds[hash];
-
-					require('child_process').execFile('bash', ['-c', script, '-', avatar, './config/avatars/' + userid], function (e, out, err) {
-						if (e) {
-							this.sendReply(userid + "'s custom avatar failed to be set. Script output:");
-							(out + err).split('\n').forEach(this.sendReply.bind(this));
-							return;
-						}
-
-						reloadCustomAvatars();
-						this.sendReply(userid + "'s custom avatar has been set.");
-					}.bind(this));
-					break;
-
-				case 'delete':
-					var userid = toId(parts[1]);
-					if (!Config.customAvatars[userid]) return this.sendReply(userid + " does not have a custom avatar.");
-
-					if (Config.customAvatars[userid].toString().split('.').slice(0, -1).join('.') !== userid)
-						return this.sendReply(userid + "'s custom avatar (" + Config.customAvatars[userid] + ") cannot be removed with this script.");
-					require('fs').unlink('./config/avatars/' + Config.customAvatars[userid], function (e) {
-						if (e) return this.sendReply(userid + "'s custom avatar (" + Config.customAvatars[userid] + ") could not be removed: " + e.toString());
-
-						delete Config.customAvatars[userid];
-						this.sendReply(userid + "'s custom avatar removed successfully");
-					}.bind(this));
-					break;
-
-				default:
-					return this.sendReply("Invalid command. Valid commands are `/customavatar set, user, avatar` and `/customavatar delete, user`.");
-			}
-		};
-	})(),
 
 	/*********************************************************
 	 * Help commands
