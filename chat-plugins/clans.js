@@ -513,5 +513,5 @@ exports.commands = {
 				return matchup.isEnded ? "" : '<strong>' + Tools.escapeHTML(matchup.from) + "</strong> vs <strong>" + Tools.escapeHTML(matchup.to);
 			}).join('<br />')
 		);
-	},
+	}
 };
