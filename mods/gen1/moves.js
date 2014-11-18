@@ -437,8 +437,7 @@ exports.BattleMovedex = {
 		}
 	},
 	karatechop: {
-		inherit: true,
-		type: "Normal"
+		inherit: true
 	},
 	leechseed: {
 		inherit: true,
@@ -876,7 +875,6 @@ exports.BattleMovedex = {
 	},
 	triattack: {
 		inherit: true,
-		secondary: false
 	},
 	whirlwind: {
 		inherit: true,
