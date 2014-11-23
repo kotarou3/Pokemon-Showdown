@@ -1,0 +1,105 @@
+.header {
+    background: #A71212 !important;
+}
+
+body {
+    background: #ececec !important;
+}
+
+.maintabbarbottom {
+    background: #131313 !important;
+    border: 1px solid #131313 !important;
+}
+
+.tabbar a.button.cur, .tabbar a.button.cur:hover {
+    background: #131313 !important;
+    color: white !important;
+    border: 1px solid #131313 !important;
+    text-shadow: 0 0 0 !important;
+}
+
+.tabbar a.button, .tabbar a.closable {
+    background: white !important;
+    border: 1px solid #131313 !important;
+}
+
+.tabbar a.closable:hover {
+    background: #ececec !important;
+    border: 1px solid #131313 !important;
+}
+
+.userbar .username {
+    color: white !important;
+    text-shadow: 0px 0px 5px white !important;
+    margin-right: 6px !important;
+}
+
+i.icon-user {
+    color: #131313 !important;
+}
+
+.userbar button.icon {
+    background: white !important;
+    border: 1px solid #131313 !important;
+}
+
+.menugroup {
+    background: rgb(027,027,027) !important;
+    background: rgba(027,027,027,0.9) !important;
+}
+
+.menugroup button.big, .menugroup .button {
+    background: #a71212 !important;
+    border: 1px solid #a71212 !important;
+}
+
+.menugroup button.big:hover, .menugroup .button:hover {
+    background: #131313 !important;
+    border: 1px solid #131313 !important;
+}
+
+.pm-window h3 {
+    background: #cacaca !important;
+    color: #131313 !important;
+}
+
+.mainmenufooter {
+    text-shadow: 0 0 0 !important;
+}
+
+.mainmenufooter a {
+    color: #131313 !important;
+    text-shadow: 0 0 0 !important;
+    text-decoration: none !important;
+}
+
+.mainmenufooter a:hover {
+    text-decoration: underline !important;
+}
+
+.pm-log {
+    max-height: 300px !important;
+    border-bottom: 1px solid #aaa !important;
+    background: #f9f9f9 !important;
+}
+
+.notice .infobox {
+    margin-left: -9px !important;
+    margin-right: -9px !important;
+    padding: 0 !important;
+    border: 0px !important;
+    border-top: 1px solid #131313 !important;
+}
+
+.popupmenu h3 {
+    color: #a71212 !important;
+}
+
+.ps-popup, .chat-log .inner, .pm-log .inner {
+    background: #f9f9f9 !important;
+}
+
+.select {
+    background: #ececec;
+    border: 1px solid #cacaca !important;
+}
