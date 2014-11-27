@@ -909,7 +909,7 @@ exports.BattleMovedex = {
 		}
 	},
 	toxic: {
-	inherit: true,
+		inherit: true,
 		accuracy: 100
 	},
 	triattack: {
