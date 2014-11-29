@@ -797,6 +797,10 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Normal"
 	},
+	submission: {
+		inherit: true,
+		accuracy: 100
+	},
 	substitute: {
 		num: 164,
 		accuracy: true,
@@ -888,7 +892,7 @@ exports.BattleMovedex = {
 	},
 	thrash: {
 		inherit: true,
-		basePower: 70,
+		basePower: 90,
 		type: "dragon"
 	},
 	thunder: {
@@ -907,6 +911,10 @@ exports.BattleMovedex = {
 				return null;
 			}
 		}
+	},
+	toxic: {
+		inherit: true,
+		accuracy: 100
 	},
 	triattack: {
 		inherit: true,
