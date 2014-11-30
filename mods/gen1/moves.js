@@ -296,7 +296,7 @@ exports.BattleMovedex = {
 	dreameater: {
 		inherit: true,
 		basePower: 200,
-		type: "ghost",
+		type: "Ghost",
 		onTryHit: function (target) {
 			if (target.status !== 'psn') {
 				this.add('-immune', target, '[msg]');
@@ -893,7 +893,7 @@ exports.BattleMovedex = {
 	thrash: {
 		inherit: true,
 		basePower: 90,
-		type: "dragon"
+		type: "Dragon"
 	},
 	thunder: {
 		inherit: true,
@@ -918,7 +918,7 @@ exports.BattleMovedex = {
 	},
 	triattack: {
 		inherit: true,
-		type: "ghost"
+		type: "Ghost"
 	},
 	twineedle: {
 		inherit: true,
@@ -926,7 +926,7 @@ exports.BattleMovedex = {
 	},
 	vicegrip: {
 		inherit: true,
-		type: "bug",
+		type: "Bug",
 		critRatio: 2
 	},
 	whirlwind: {
