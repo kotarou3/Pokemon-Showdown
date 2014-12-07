@@ -57,7 +57,7 @@ exports.BattleFormatsData = {
 	},
 	pidgeot: {
 		randomBattleMoves: ["doubleedge","hyperbeam","agility","mimic","mirrormove"],
-		tier: "Uber"
+		tier: "UU"
 	},
 	rattata: {
 		tier: "Uber"
@@ -74,7 +74,7 @@ exports.BattleFormatsData = {
 		eventPokemon: [
 			{"generation":1,"level":20,"moves":["growl","leer","furyattack","payday"]}
 		],
-		tier: "UU"
+		tier: "Uber"
 	},
 	ekans: {
 		tier: "Uber"
@@ -209,7 +209,7 @@ exports.BattleFormatsData = {
 	},
 	arcanine: {
 		randomBattleMoves: ["fireblast","bodyslam","hyperbeam","mimic","reflect"],
-		tier: "UU"
+		tier: "Uber"
 	},
 	poliwag: {
 		tier: "Uber"
@@ -493,7 +493,7 @@ exports.BattleFormatsData = {
 	},
 	flareon: {
 		randomBattleMoves: ["fireblast","bodyslam","hyperbeam","focusenergy","quickattack"],
-		tier: "Uber"
+		tier: "UU"
 	},
 	porygon: {
 		randomBattleMoves: ["thunderwave","thunderbolt","blizzard","icebeam","doubleedge","hyperbeam","sharpen","psychic","recover","agility"],

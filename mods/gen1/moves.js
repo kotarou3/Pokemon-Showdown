@@ -5,7 +5,7 @@
 exports.BattleMovedex = {
 	acid: {
 		inherit: true,
-		basePower: 60,
+		basePower: 70,
 		secondary: {
 			chance: 50,
 			boosts: {
@@ -404,7 +404,13 @@ exports.BattleMovedex = {
 	},
 	gust: {
 		inherit: true,
-		type: "Normal"
+		basePower: 80,
+		secondary: {
+			chance: 30,
+			boosts: {
+				atk: -1
+			}
+		}
 	},
 	haze: {
 		inherit: true,
@@ -586,7 +592,7 @@ exports.BattleMovedex = {
 				}
 			}
 			var move = this.getMove(move);
-			source.moveset[moveslot] = {
+			var mimicMove = {
 				move: move.name,
 				id: move.id,
 				pp: move.pp,
@@ -595,6 +601,8 @@ exports.BattleMovedex = {
 				disabled: false,
 				used: false
 			};
+			source.moveset[moveslot] = mimicMove;
+			source.baseMoveset[moveslot] = mimicMove;
 			source.moves[moveslot] = toId(move.name);
 			this.add('-start', source, 'Mimic', move.name);
 		}
@@ -634,9 +642,9 @@ exports.BattleMovedex = {
 	},
 	poisonsting: {
 		inherit: true,
-		basePower: 80,
+		basePower: 95,
 		secondary: {
-			chance: 20,
+			chance: 30,
 			status: 'psn'
 		}
 	},

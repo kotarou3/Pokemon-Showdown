@@ -1370,7 +1370,7 @@ var ChatRoom = (function () {
 		this.send(update);
 	};
 	ChatRoom.prototype.getIntroMessage = function () {
-		var html = this.introMessage || 'Hiya, have fun with the Violet Version format! Full changelog: http://tinyurl.com/ln5vkzg';
+		var html = this.introMessage || '<img src="http://cdn.bulbagarden.net/upload/5/5a/Spr_1g_038.png" align="left">   <img src="http://cdn.bulbagarden.net/upload/2/23/Spr_1g_055.png" align="right">  <center>  <font size="5">Violet Version</font>  </center>  <br><br><br> Violet Version is a gen 1 balance mod with more variety, less chaff, and some fun type changes!  See <a href="https://iblamegames.wordpress.com/2014/12/07/violet-version-legal-pokemon-quick-reference/">here</a> for a quick reference of important changes. <br><br> See <a href="https://iblamegames.wordpress.com/2014/11/23/pokemon-violet-version-changelog/">here</a> for the full up-to-date changelog.  <br><br> Have fun!';
 		if (this.modchat) {
 			if (html) html += '<br /><br />';
 			html += '<div class="broadcast-red">';
