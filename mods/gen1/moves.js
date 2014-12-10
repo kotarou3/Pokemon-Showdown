@@ -242,6 +242,7 @@ exports.BattleMovedex = {
 	},
 	disable: {
 		inherit: true,
+		accuracy: 100,
 		desc: "The target cannot choose a random move for 0-6 turns. Disable only works on one move at a time and fails if the target has not yet used a move or if its move has run out of PP. The target does nothing if it is about to use a move that becomes disabled.",
 		effect: {
 			duration: 4,
