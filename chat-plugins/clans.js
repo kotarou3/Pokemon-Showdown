@@ -351,9 +351,7 @@ Rooms.BattleRoom.prototype.win = function (winner) {
 	return oldWin.call(this, winner);
 };
 
-exports.namespace = ['clan', 'clans'];
-exports.defaultHandler = '';
-exports.commands = {
+var commands = {
 	help: function () {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
@@ -370,7 +368,7 @@ exports.commands = {
 		);
 	},
 
-	'': function (target, room, user, connection, cmd) {
+	default: function (target, room, user, connection, cmd) {
 		if (!this.canBroadcast()) return;
 		target = target || cmd;
 
@@ -514,4 +512,8 @@ exports.commands = {
 			}).join('<br />')
 		);
 	}
+};
+exports.commands = {
+	clans: 'clan',
+	clan: commands
 };

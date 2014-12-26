@@ -33,7 +33,7 @@ const MAX_PARSE_RECURSION = 10;
 var fs = require('fs');
 
 /*********************************************************
- * Load base command files
+ * Load command files
  *********************************************************/
 
 var commands = exports.commands = require('./commands.js').commands;
@@ -42,6 +42,12 @@ var customCommands = require('./config/commands.js');
 if (customCommands && customCommands.commands) {
 	Object.merge(commands, customCommands.commands);
 }
+
+// Install plug-in commands
+
+fs.readdirSync('./chat-plugins').forEach(function (file) {
+	if (file.substr(-3) === '.js') Object.merge(commands, require('./chat-plugins/' + file).commands);
+});
 
 /*********************************************************
  * Parser
@@ -78,7 +84,7 @@ function canTalk(user, room, connection, message) {
 			if (room.auth) {
 				if (room.auth[user.userid]) {
 					userGroup = room.auth[user.userid];
-				} else if (room.isPrivate) {
+				} else if (room.isPrivate === true) {
 					userGroup = Config.groups.default[roomType];
 				}
 			}
@@ -200,11 +206,43 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 		cmd = cmd.substr(1);
 	}
 
-	var commandHandler = commands[cmd];
-	if (typeof commandHandler === 'string') {
-		// in case someone messed up, don't loop
-		commandHandler = commands[commandHandler];
+	var namespaces = [];
+	var currentCommands = commands;
+	var originalMessage = message;
+	var commandHandler;
+	do {
+		commandHandler = currentCommands[cmd];
+		if (typeof commandHandler === 'string') {
+			// in case someone messed up, don't loop
+			commandHandler = currentCommands[commandHandler];
+		}
+		if (commandHandler && typeof commandHandler === 'object') {
+			namespaces.push(cmd);
+
+			var newCmd = target;
+			var newTarget = '';
+			var spaceIndex = target.indexOf(' ');
+			if (spaceIndex > 0) {
+				newCmd = target.substr(0, spaceIndex);
+				newTarget = target.substr(spaceIndex + 1);
+			}
+			newCmd = newCmd.toLowerCase();
+			var newMessage = message.replace(cmd + (target ? ' ' : ''), '');
+
+			cmd = newCmd;
+			target = newTarget;
+			message = newMessage;
+			currentCommands = commandHandler;
+		}
+	} while (commandHandler && typeof commandHandler === 'object');
+	if (!commandHandler && currentCommands.default) {
+		commandHandler = currentCommands.default;
+		if (typeof commandHandler === 'string') {
+			commandHandler = currentCommands[commandHandler];
+		}
 	}
+	var fullCmd = namespaces.concat(cmd).join(' ');
+
 	if (commandHandler) {
 		var context = {
 			sendReply: function (data) {
@@ -256,16 +294,16 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 				}
 				modlog[room.id].write('[' + (new Date().toJSON()) + '] (' + room.id + ') ' + result + '\n');
 			},
-			can: function (permission, target, room, customCmd) {
+			can: function (permission, target, room) {
 				if (!user.can(permission, target, room)) {
-					this.sendReply("/" + (customCmd || cmd) + " - Access denied.");
+					this.sendReply("/" + fullCmd + " - Access denied.");
 					return false;
 				}
 				return true;
 			},
 			canBroadcast: function (suppressMessage) {
 				if (broadcast) {
-					message = this.canTalk(message);
+					var message = this.canTalk(originalMessage);
 					if (!message) return false;
 					if (!user.can('broadcast', room)) {
 						connection.sendTo(room, "You need to be voiced to broadcast this command's information.");
@@ -288,7 +326,10 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 				}
 				return true;
 			},
-			parse: function (message) {
+			parse: function (message, inNamespace) {
+				if (inNamespace && (message[0] === '/' || message[0] === '!')) {
+					message = message[0] + namespaces.concat(message.slice(1)).join(" ");
+				}
 				return parse(message, room, user, connection, levelsDeep + 1);
 			},
 			canTalk: function (message, relevantRoom) {
@@ -376,9 +417,9 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 			}
 		}
 
-		if (message.substr(0, 1) === '/' && cmd) {
+		if (message.substr(0, 1) === '/' && fullCmd) {
 			// To guard against command typos, we now emit an error message
-			return connection.sendTo(room.id, "The command '/" + cmd + "' was unrecognized. To send a message starting with '/" + cmd + "', type '//" + cmd + "'.");
+			return connection.sendTo(room.id, "The command '/" + fullCmd + "' was unrecognized. To send a message starting with '/" + fullCmd + "', type '//" + fullCmd + "'.");
 		}
 	}
 
@@ -392,51 +433,6 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 	}
 
 	return message;
-};
-
-var createSubParser = exports.createSubParser = function (commands, defaultHandler) {
-	return function (target, room, user, connection, cmd, message, parserChain) {
-		var newCmd = target;
-		var newTarget = '';
-		var newMessage = message.replace(cmd + (target ? ' ' : ''), '');
-		var newParserChain = (parserChain || []).concat(cmd);
-
-		var spaceIndex = target.indexOf(' ');
-		if (spaceIndex > 0) {
-			newCmd = target.substr(0, spaceIndex);
-			newTarget = target.substr(spaceIndex + 1);
-		}
-		newCmd = newCmd.toLowerCase();
-
-		if (!this._parse) this._parse = this.parse;
-		this.parse = function (message) {
-			if (message[0] === '/' || message[0] === '!') {
-				return this._parse(message[0] + newParserChain.concat(message.slice(1)).join(" "));
-			}
-			return this._parse(message);
-		};
-		if (!this._can) this._can = this.can;
-		this.can = function (permission, target, room, customCmd) {
-			return this._can(permission, target, room, newParserChain.concat(newCmd || customCmd).join(' '));
-		};
-
-		var commandHandler = commands[newCmd];
-		if (typeof commandHandler === 'string') {
-			commandHandler = commands[commandHandler];
-		}
-		if (!commandHandler && defaultHandler !== undefined) {
-			if (typeof defaultHandler === 'string') {
-				commandHandler = commands[defaultHandler];
-			} else {
-				commandHandler = defaultHandler;
-			}
-		}
-		if (commandHandler) {
-			return commandHandler.call(this, newTarget, room, user, connection, newCmd, newMessage, newParserChain);
-		} else {
-			connection.sendTo(room.id, "The " + newParserChain.concat("command").join(" ") + " '" + newCmd + "' was unrecognised.");
-		}
-	};
 };
 
 exports.package = {};
@@ -463,20 +459,3 @@ exports.uncacheTree = function (root) {
 		uncache = newuncache;
 	} while (uncache.length > 0);
 };
-
-/*********************************************************
- * Load chat plugins
- *********************************************************/
-
-fs.readdirSync('./chat-plugins').forEach(function (file) {
-	if (file.substr(-3) === '.js') {
-		var plugin = require('./chat-plugins/' + file);
-		if (plugin.namespace) {
-			if (!Array.isArray(plugin.namespace)) plugin.namespace = [plugin.namespace];
-			commands[plugin.namespace[0]] = createSubParser(plugin.commands, plugin.defaultHandler);
-			for (var n = 1; n < plugin.namespace.length; ++n) commands[plugin.namespace[n]] = plugin.namespace[0];
-		} else {
-			Object.merge(commands, plugin.commands);
-		}
-	}
-});
