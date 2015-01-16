@@ -550,6 +550,12 @@ exports.BattleMovedex = {
 			volatileStatus: 'flinch'
 		}
 	},
+	megapunch: {
+		inherit: true,
+		basePower: 80,
+		accuracy: 100,
+		recoil: [1, 4]
+	},
 	metronome: {
 		inherit: true,
 		onHit: function (target) {
@@ -677,15 +683,7 @@ exports.BattleMovedex = {
 		target: "normal"
 	},
 	recover: {
-		inherit: true,
-		heal: null,
-		onHit: function (target) {
-			// Fail when health is 255 or 511 less than max
-			if (target.hp === (target.maxhp - 255) || target.hp === (target.maxhp - 511) || target.hp === target.maxhp) {
-				return false;
-			}
-			this.heal(Math.floor(target.maxhp / 2), target, target);
-		}
+		inherit: true
 	},
 	reflect: {
 		num: 115,
@@ -774,15 +772,7 @@ exports.BattleMovedex = {
 		critRatio: 1
 	},
 	softboiled: {
-		inherit: true,
-		heal: null,
-		onHit: function (target) {
-			// Fail when health is 255 or 511 less than max
-			if (target.hp === (target.maxhp - 255) || target.hp === (target.maxhp - 511) || target.hp === target.maxhp) {
-				return false;
-			}
-			this.heal(Math.floor(target.maxhp / 2), target, target);
-		}
+		inherit: true
 	},
 	struggle: {
 		num: 165,
@@ -807,7 +797,31 @@ exports.BattleMovedex = {
 	},
 	submission: {
 		inherit: true,
-		accuracy: 100
+		basePower: 50,
+		pp: 5,
+		accuracy: 75,
+		affectedByImmunities: false,
+		volatileStatus: 'partiallytrapped',
+		self: {
+			volatileStatus: 'partialtrappinglock'
+		},
+		onBeforeMove: function (pokemon, target, move) {
+			// Removes must recharge volatile even if it misses
+			target.removeVolatile('mustrecharge');
+		},
+		onHit: function (target, source) {
+			/**
+			 * The duration of the partially trapped must be always renewed to 2
+			 * so target doesn't move on trapper switch out as happens in gen 1.
+			 * However, this won't happen if there's no switch and the trapper is
+			 * about to end its partial trapping.
+			 **/
+			if (target.volatiles['partiallytrapped']) {
+				if (source.volatiles['partialtrappinglock'] && source.volatiles['partialtrappinglock'].duration > 1) {
+					target.volatiles['partiallytrapped'].duration = 2;
+				}
+			}
+		}
 	},
 	substitute: {
 		num: 164,
