@@ -555,7 +555,7 @@ exports.BattleMovedex = {
 		basePower: 80,
 		accuracy: 100,
 		recoil: [1, 4]
-	}
+	},
 	metronome: {
 		inherit: true,
 		onHit: function (target) {
@@ -822,7 +822,6 @@ exports.BattleMovedex = {
 				}
 			}
 		}
-	}
 	},
 	substitute: {
 		num: 164,
