@@ -223,13 +223,6 @@ exports.BattleScripts = {
 		if (move.alwaysHit) accuracy = true;
 		accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
 
-		// Gen 1, 1/256 chance of missing always, no matter what
-		if (accuracy !== true && this.random(256) >= accuracy) {
-			this.attrLastMove('[miss]');
-			this.add('-miss', pokemon);
-			damage = false;
-		}
-
 		if (move.affectedByImmunities && !target.runImmunity(move.type, true)) {
 			damage = false;
 		}
