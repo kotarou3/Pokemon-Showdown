@@ -9,9 +9,8 @@ exports.Formats = [
 		section: "Violet Version",
 
 		mod: 'gen1',
-		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber'
-		]
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber']
 	},
 	// XY Singles
 	///////////////////////////////////////////////////////////////////
