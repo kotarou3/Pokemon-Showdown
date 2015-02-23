@@ -694,8 +694,8 @@ exports.BattleMovedex = {
 		affectedByImmunities: false
 	},
 	/******************************************************************
-	Bonemerang, Bone Rush moves:
-	- not affected by immunities
+	Bonemerang, Bone Rush, Bone Club moves:
+	- not affected by Ground immunities
 	- Bone Rush nerfed to 20 base power so it's not viable on Lucario
 
 	Justification:
@@ -711,6 +711,11 @@ exports.BattleMovedex = {
 		basePower: 20,
 		affectedByImmunities: false,
 		accuracy: true
+	},
+	boneclub: {
+		inherit: true,
+		affectedByImmunities: false,
+		accuracy: 90
 	},
 	/******************************************************************
 	Relic Song:
@@ -1558,6 +1563,14 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 100
 	},
+	originpulse: {
+		inherit: true,
+		accuracy: 90
+	},
+	precipiceblades: {
+		inherit: true,
+		accuracy: 90
+	},
 	airslash: {
 		inherit: true,
 		accuracy: 100
@@ -1674,6 +1687,30 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 80
 	},
+	slam: {
+		inherit: true,
+		accuracy: 80
+	},
+	rollingkick: {
+		inherit: true,
+		accuracy: 90
+	},
+	takedown: {
+		inherit: true,
+		accuracy: 90
+	},
+	mudbomb: {
+		inherit: true,
+		accuracy: 90
+	},
+	mirrorshot: {
+		inherit: true,
+		accuracy: 90
+	},
+	rockclimb: {
+		inherit: true,
+		accuracy: 90
+	},
 	poisonpowder: {
 		inherit: true,
 		accuracy: 80
@@ -1698,6 +1735,22 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 90
 	},
+	firespin: {
+		inherit: true,
+		accuracy: 90
+	},
+	clamp: {
+		inherit: true,
+		accuracy: 90
+	},
+	sandtomb: {
+		inherit: true,
+		accuracy: 90
+	},
+	bind: {
+		inherit: true,
+		accuracy: 90
+	},
 	grasswhistle: {
 		inherit: true,
 		accuracy: 60
@@ -1705,6 +1758,18 @@ exports.BattleMovedex = {
 	sing: {
 		inherit: true,
 		accuracy: 60
+	},
+	supersonic: {
+		inherit: true,
+		accuracy: 60
+	},
+	screech: {
+		inherit: true,
+		accuracy: 90
+	},
+	metalsound: {
+		inherit: true,
+		accuracy: 90
 	},
 	/******************************************************************
 	Signature moves and other moves with limited distribution:
@@ -1846,7 +1911,7 @@ exports.BattleMovedex = {
 		basePower: 30,
 		category: "Special",
 		desc: "Hits 3 times. Has a 10% chance to burn, paralyze or freeze the target each time.",
-		shortDesc: "hits 3x; 10% chance to paralyze/burn/freeze.",
+		shortDesc: "Hits 3x; 10% chance to paralyze/burn/freeze.",
 		id: "triattack",
 		name: "Tri Attack",
 		pp: 10,

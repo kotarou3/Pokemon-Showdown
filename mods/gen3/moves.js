@@ -261,14 +261,6 @@ exports.BattleMovedex = {
 	},
 	explosion: {
 		inherit: true,
-		onAfterMove: function (pokemon) {
-			for (var i = 0; i < pokemon.side.active.length; i++) {
-				this.cancelMove(pokemon.side.active[i]);
-			}
-			for (var i = 0; i < pokemon.side.foe.active.length; i++) {
-				this.cancelMove(pokemon.side.foe.active[i]);
-			}
-		},
 		basePower: 500
 	},
 	extrasensory: {
@@ -477,6 +469,30 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Flying"
 	},
+	moonlight: {
+		inherit: true,
+		onHit: function (pokemon) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
+				this.heal(pokemon.maxhp * 2 / 3);
+			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+				this.heal(pokemon.maxhp / 4);
+			} else {
+				this.heal(pokemon.maxhp / 2);
+			}
+		}
+	},
+	morningsun: {
+		inherit: true,
+		onHit: function (pokemon) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
+				this.heal(pokemon.maxhp * 2 / 3);
+			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+				this.heal(pokemon.maxhp / 4);
+			} else {
+				this.heal(pokemon.maxhp / 2);
+			}
+		}
+	},
 	naturepower: {
 		inherit: true,
 		accuracy: true,
@@ -503,15 +519,6 @@ exports.BattleMovedex = {
 	overheat: {
 		inherit: true,
 		isContact: true
-	},
-	payback: {
-		inherit: true,
-		basePowerCallback: function (pokemon, target) {
-			if (this.willMove(target)) {
-				return 50;
-			}
-			return 100;
-		}
 	},
 	petaldance: {
 		inherit: true,
@@ -554,14 +561,6 @@ exports.BattleMovedex = {
 	},
 	selfdestruct: {
 		inherit: true,
-		onAfterMove: function (pokemon) {
-			for (var i = 0; i < pokemon.side.active.length; i++) {
-				this.cancelMove(pokemon.side.active[i]);
-			}
-			for (var i = 0; i < pokemon.side.foe.active.length; i++) {
-				this.cancelMove(pokemon.side.foe.active[i]);
-			}
-		},
 		basePower: 400
 	},
 	skillswap: {
@@ -616,6 +615,18 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Normal"
+	},
+	synthesis: {
+		inherit: true,
+		onHit: function (pokemon) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
+				this.heal(pokemon.maxhp * 2 / 3);
+			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+				this.heal(pokemon.maxhp / 4);
+			} else {
+				this.heal(pokemon.maxhp / 2);
+			}
+		}
 	},
 	tackle: {
 		inherit: true,

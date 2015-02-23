@@ -8,22 +8,22 @@ exports.BattleFormats = {
 
 	standard: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal']
 	},
 	standardnext: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'HP Percentage Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Illegal', 'Soul Dew']
 	},
 	standardubers: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal']
 	},
 	standardgbu: {
 		effectType: 'Banlist',
-		ruleset: ['Species Clause', 'Item Clause'],
+		ruleset: ['Species Clause', 'Nickname Clause', 'Item Clause', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal', 'Soul Dew',
 			'Mewtwo',
 			'Mew',
@@ -58,7 +58,7 @@ exports.BattleFormats = {
 	},
 	standarddoubles: {
 		effectType: 'Banlist',
-		ruleset: ['Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Abilities Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
+		ruleset: ['Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Abilities Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal']
 	},
 	pokemon: {
@@ -130,6 +130,16 @@ exports.BattleFormats = {
 			// only in gen 1 and 2 it was legal to max out all EVs
 			if (this.gen >= 3 && totalEV > 510) {
 				problems.push((set.name || set.species) + " has more than 510 total EVs.");
+			}
+
+			// "Undiscovered" egg group Pokemon caught in the wild in gen 6 must have at least 3 perfect IVs
+			if (set.ivs && this.gen >= 6 && ((template.species in {Xerneas:1, Yveltal:1, Zygarde:1}) ||
+				(format.requirePentagon && template.eggGroups.indexOf('Undiscovered') > -1 && !template.evos.length))) {
+				var perfectIVs = 0;
+				for (var i in set.ivs) {
+					if (set.ivs[i] >= 31) perfectIVs++;
+				}
+				if (perfectIVs < 3) problems.push((set.name || set.species) + " has less than three perfect IVs.");
 			}
 
 			// limit one of each move
@@ -210,20 +220,20 @@ exports.BattleFormats = {
 			}
 			if (template.num === 649) { // Genesect
 				switch (item.id) {
-					case 'burndrive':
-						set.species = 'Genesect-Burn';
-						break;
-					case 'chilldrive':
-						set.species = 'Genesect-Chill';
-						break;
-					case 'dousedrive':
-						set.species = 'Genesect-Douse';
-						break;
-					case 'shockdrive':
-						set.species = 'Genesect-Shock';
-						break;
-					default:
-						set.species = 'Genesect';
+				case 'burndrive':
+					set.species = 'Genesect-Burn';
+					break;
+				case 'chilldrive':
+					set.species = 'Genesect-Chill';
+					break;
+				case 'dousedrive':
+					set.species = 'Genesect-Douse';
+					break;
+				case 'shockdrive':
+					set.species = 'Genesect-Shock';
+					break;
+				default:
+					set.species = 'Genesect';
 				}
 			}
 			if (template.num === 681) { // Aegislash
@@ -244,6 +254,17 @@ exports.BattleFormats = {
 			};
 			if (!(set.species in validKalosDex)) {
 				return [set.species + " is not in the Kalos Pokedex."];
+			}
+		}
+	},
+	hoennpokedex: {
+		effectType: 'Rule',
+		validateSet: function (set) {
+			var hoennDex = {
+				"Abra":1, "Absol":1, "Aggron":1, "Alakazam":1, "Altaria":1, "Anorith":1, "Armaldo":1, "Aron":1, "Azumarill":1, "Azurill":1, "Bagon":1, "Baltoy":1, "Banette":1, "Barboach":1, "Beautifly":1, "Beldum":1, "Bellossom":1, "Blaziken":1, "Breloom":1, "Budew":1, "Cacnea":1, "Cacturne":1, "Camerupt":1, "Carvanha":1, "Cascoon":1, "Castform":1, "Chimecho":1, "Chinchou":1, "Chingling":1, "Clamperl":1, "Claydol":1, "Combusken":1, "Corphish":1, "Corsola":1, "Cradily":1, "Crawdaunt":1, "Crobat":1, "Delcatty":1, "Dodrio":1, "Doduo":1, "Donphan":1, "Dusclops":1, "Dusknoir":1, "Duskull":1, "Dustox":1, "Electrike":1, "Electrode":1, "Exploud":1, "Feebas":1, "Flygon":1, "Froslass":1, "Gallade":1, "Gardevoir":1, "Geodude":1, "Girafarig":1, "Glalie":1, "Gloom":1, "Golbat":1, "Goldeen":1, "Golduck":1, "Golem":1, "Gorebyss":1, "Graveler":1, "Grimer":1, "Grovyle":1, "Grumpig":1, "Gulpin":1, "Gyarados":1, "Hariyama":1, "Heracross":1, "Horsea":1, "Huntail":1, "Igglybuff":1, "Illumise":1, "Jigglypuff":1, "Kadabra":1, "Kecleon":1, "Kingdra":1, "Kirlia":1, "Koffing":1, "Lairon":1, "Lanturn":1, "Latias":1, "Latios":1, "Lileep":1, "Linoone":1, "Lombre":1, "Lotad":1, "Loudred":1, "Ludicolo":1, "Lunatone":1, "Luvdisc":1, "Machamp":1, "Machoke":1, "Machop":1, "Magcargo":1, "Magikarp":1, "Magnemite":1, "Magneton":1, "Magnezone":1, "Makuhita":1, "Manectric":1, "Marill":1, "Marshtomp":1, "Masquerain":1, "Mawile":1, "Medicham":1, "Meditite":1, "Metagross":1, "Metang":1, "Mightyena":1, "Milotic":1, "Minun":1, "Mudkip":1, "Muk":1, "Natu":1, "Ninetales":1, "Ninjask":1, "Nosepass":1, "Numel":1, "Nuzleaf":1, "Oddish":1, "Pelipper":1, "Phanpy":1, "Pichu":1, "Pikachu":1, "Pikachu-Belle":1, "Pikachu-Cosplay":1, "Pikachu-Libre":1, "Pikachu-PhD":1, "Pikachu-Pop-Star":1, "Pikachu-Rock-Star":1, "Pinsir":1, "Plusle":1, "Poochyena":1, "Probopass":1, "Psyduck":1, "Raichu":1, "Ralts":1, "Regice":1, "Regirock":1, "Registeel":1, "Relicanth":1, "Rhydon":1, "Rhyhorn":1, "Rhyperior":1, "Roselia":1, "Roserade":1, "Sableye":1, "Salamence":1, "Sandshrew":1, "Sandslash":1, "Sceptile":1, "Seadra":1, "Seaking":1, "Sealeo":1, "Seedot":1, "Seviper":1, "Sharpedo":1, "Shedinja":1, "Shelgon":1, "Shiftry":1, "Shroomish":1, "Shuppet":1, "Silcoon":1, "Skarmory":1, "Skitty":1, "Slaking":1, "Slakoth":1, "Slugma":1, "Snorunt":1, "Solrock":1, "Spheal":1, "Spinda":1, "Spoink":1, "Starmie":1, "Staryu":1, "Surskit":1, "Swablu":1, "Swalot":1, "Swampert":1, "Swellow":1, "Taillow":1, "Tentacool":1, "Tentacruel":1, "Torchic":1, "Torkoal":1, "Trapinch":1, "Treecko":1, "Tropius":1, "Vibrava":1, "Vigoroth":1, "Vileplume":1, "Volbeat":1, "Voltorb":1, "Vulpix":1, "Wailmer":1, "Wailord":1, "Walrein":1, "Weezing":1, "Whiscash":1, "Whismur":1, "Wigglytuff":1, "Wingull":1, "Wobbuffet":1, "Wurmple":1, "Wynaut":1, "Xatu":1, "Zangoose":1, "Zigzagoon":1, "Zubat":1
+			};
+			if (!(set.species in hoennDex)) {
+				return [set.species + " is not in the Hoenn Pokedex."];
 			}
 		}
 	},
@@ -343,6 +364,24 @@ exports.BattleFormats = {
 			}
 		}
 	},
+	nicknameclause: {
+		effectType: 'Rule',
+		validateTeam: function (team, format) {
+			var nameTable = {};
+			for (var i = 0; i < team.length; i++) {
+				var name = team[i].name;
+				if (name) {
+					if (name === team[i].species) continue;
+					if (nameTable[name]) {
+						return ["Your Pokémon must have different nicknames.",  "(You have more than one " + name + ")"];
+					}
+					nameTable[name] = true;
+				}
+			}
+			// Illegality of impersonation of other species is
+			// hardcoded in team-validator.js, so we are done.
+		}
+	},
 	itemclause: {
 		effectType: 'Rule',
 		onStart: function () {
@@ -377,6 +416,22 @@ exports.BattleFormats = {
 					abilityTable[ability]++;
 				} else {
 					abilityTable[ability] = 1;
+				}
+			}
+		}
+	},
+	ateclause: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.add('rule', '-ate Clause: Limit one of Aerilate/Refrigerate/Pixilate');
+		},
+		validateTeam: function (team, format) {
+			var ateAbility = false;
+			for (var i = 0; i < team.length; i++) {
+				var ability = toId(team[i].ability);
+				if (ability === 'refrigerate' || ability === 'pixilate' || ability === 'aerilate') {
+					if (ateAbility) return ["You have more than one of Aerilate/Refrigerate/Pixilate, which is banned by -ate Clause."];
+					ateAbility = true;
 				}
 			}
 		}
@@ -464,6 +519,20 @@ exports.BattleFormats = {
 			this.reportPercentages = true;
 		}
 	},
+	exacthpmod: {
+		effectType: 'Rule',
+		name: 'Exact HP Mod',
+		onStart: function () {
+			this.add('rule', 'Exact HP Mod: Exact HP is shown');
+			this.reportExactHP = true;
+		}
+	},
+	cancelmod: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.supportCancel = true;
+		}
+	},
 	sleepclausemod: {
 		effectType: 'Rule',
 		onStart: function () {
@@ -476,9 +545,8 @@ exports.BattleFormats = {
 			if (status.id === 'slp') {
 				for (var i = 0; i < target.side.pokemon.length; i++) {
 					var pokemon = target.side.pokemon[i];
-					if (pokemon.status === 'slp') {
-						if (!pokemon.statusData.source ||
-							pokemon.statusData.source.side !== pokemon.side) {
+					if (pokemon.hp && pokemon.status === 'slp') {
+						if (!pokemon.statusData.source || pokemon.statusData.source.side !== pokemon.side) {
 							this.add('-message', 'Sleep Clause Mod activated.');
 							return false;
 						}
@@ -487,10 +555,10 @@ exports.BattleFormats = {
 			}
 		}
 	},
-	freezeclause: {
+	freezeclausemod: {
 		effectType: 'Rule',
 		onStart: function () {
-			this.add('rule', 'Freeze Clause: Limit one foe frozen');
+			this.add('rule', 'Freeze Clause Mod: Limit one foe frozen');
 		},
 		onSetStatus: function (status, target, source) {
 			if (source && source.side === target.side) {
@@ -531,8 +599,8 @@ exports.BattleFormats = {
 				case 'Dragon':
 					if (teamHas['kyuremwhite']) return ["Kyurem-White is banned from Dragon monotype teams."];
 					break;
-				case 'Flying':
-					if (teamHas['shayminsky']) return ["Shaymin-Sky is banned from Flying monotype teams."];
+				case 'Psychic':
+					if (teamHas['galladite']) return ["Galladite is banned from Psychic monotype teams."];
 					break;
 				case 'Steel':
 					if (teamHas['aegislash']) return ["Aegislash is banned from Steel monotype teams."];

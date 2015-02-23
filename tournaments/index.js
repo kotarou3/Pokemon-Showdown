@@ -133,6 +133,7 @@ Tournament = (function () {
 		this.room.send('|tournament|update|' + JSON.stringify({generator: generator.name}));
 		this.isBracketInvalidated = true;
 		this.update();
+		return true;
 	};
 
 	Tournament.prototype.forceEnd = function () {
@@ -357,7 +358,8 @@ Tournament = (function () {
 		}
 
 		this.purgeGhostUsers();
-		if (this.generator.getUsers().length < 2) {
+		var users = this.generator.getUsers();
+		if (users.length < 2) {
 			output.sendReply('|tournament|error|NotEnoughUsers');
 			return false;
 		}
@@ -370,13 +372,8 @@ Tournament = (function () {
 		this.disqualifiedUsers = new Map();
 		this.isAutoDisqualifyWarned = new Map();
 		this.lastActionTimes = new Map();
-		var users = this.generator.getUsers();
 		users.forEach(function (user) {
-			var availableMatches = new Map();
-			users.forEach(function (user) {
-				availableMatches.set(user, false);
-			});
-			this.availableMatches.set(user, availableMatches);
+			this.availableMatches.set(user, new Map());
 			this.inProgressMatches.set(user, null);
 			this.pendingChallenges.set(user, null);
 			this.disqualifiedUsers.set(user, false);
@@ -402,19 +399,19 @@ Tournament = (function () {
 		var users = this.generator.getUsers();
 		var challenges = new Map();
 		var challengeBys = new Map();
-		var oldAvailableMatchCounts = new Map();
+		var oldAvailableMatches = new Map();
 
 		users.forEach(function (user) {
 			challenges.set(user, []);
 			challengeBys.set(user, []);
 
+			var oldAvailableMatch = false;
 			var availableMatches = this.availableMatches.get(user);
-			var oldAvailableMatchCount = 0;
-			availableMatches.forEach(function (isAvailable, user) {
-				oldAvailableMatchCount += isAvailable;
-				availableMatches.set(user, false);
-			});
-			oldAvailableMatchCounts.set(user, oldAvailableMatchCount);
+			if (availableMatches.size) {
+				oldAvailableMatch = true;
+				availableMatches.clear();
+			}
+			oldAvailableMatches.set(user, oldAvailableMatch);
 		}, this);
 
 		matches.forEach(function (match) {
@@ -425,13 +422,9 @@ Tournament = (function () {
 		}, this);
 
 		this.availableMatches.forEach(function (availableMatches, user) {
-			if (oldAvailableMatchCounts.get(user) !== 0) return;
+			if (oldAvailableMatches.get(user)) return;
 
-			var availableMatchCount = 0;
-			availableMatches.forEach(function (isAvailable, user) {
-				availableMatchCount += isAvailable;
-			});
-			if (availableMatchCount > 0) this.lastActionTimes.set(user, Date.now());
+			if (availableMatches.size) this.lastActionTimes.set(user, Date.now());
 		}, this);
 
 		return {
@@ -528,13 +521,11 @@ Tournament = (function () {
 			return false;
 		}
 		this.lastActionTimes.forEach(function (time, user) {
-			var availableMatches = 0;
-			this.availableMatches.get(user).forEach(function (isAvailable) {
-				availableMatches += isAvailable;
-			});
+			var availableMatches = false;
+			if (this.availableMatches.get(user).size) availableMatches = true;
 			var pendingChallenge = this.pendingChallenges.get(user);
 
-			if (availableMatches === 0 && !pendingChallenge) return;
+			if (!availableMatches && !pendingChallenge) return;
 			if (pendingChallenge && pendingChallenge.to) return;
 
 			if (Date.now() > time + this.autoDisqualifyTimeout && this.isAutoDisqualifyWarned.get(user)) {
@@ -633,6 +624,9 @@ Tournament = (function () {
 	};
 	Tournament.prototype.finishAcceptChallenge = function (user, challenge, result) {
 		if (!result) return;
+
+		// Prevent battles between offline users from starting
+		if (!challenge.from.connected || !user.connected) return;
 
 		// Prevent double accepts and users that have been disqualified while between these two functions
 		if (!this.pendingChallenges.get(challenge.from)) return;
@@ -736,8 +730,8 @@ var commands = {
 		},
 		getusers: function (tournament) {
 			if (!this.canBroadcast()) return;
-			var users = usersToNames(tournament.generator.getUsers().sort());
-			this.sendReplyBox("<strong>" + users.length + " users are in this tournament:</strong><br />" + Tools.escapeHTML(users.join(", ")));
+			var users = usersToNames(tournament.generator.getUsers(true).sort());
+			this.sendReplyBox("<strong>" + users.length + " users remain in this tournament:</strong><br />" + Tools.escapeHTML(users.join(", ")));
 		},
 		getupdate: function (tournament, user) {
 			tournament.updateFor(user);
@@ -766,7 +760,15 @@ var commands = {
 				return this.sendReply("Usage: " + cmd + " <type> [, <comma-separated arguments>]");
 			}
 			var generator = createTournamentGenerator(params.shift(), params, this);
-			if (generator) tournament.setGenerator(generator, this);
+			if (generator && tournament.setGenerator(generator, this)) {
+				if (params[2] && parseInt(params[2]) >= 2) {
+					tournament.playerCap = parseInt(params[2]);
+					if (Config.tournamentDefaultPlayerCap && tournament.playerCap > Config.tournamentDefaultPlayerCap) {
+						ResourceMonitor.log('[ResourceMonitor] Room ' + tournament.room.id + ' starting a tour over default cap (' + tournament.playerCap + ')');
+					}
+				}
+				this.sendReply("Tournament set to " + generator.name + (params[2] ? " with a player cap of " + tournament.playerCap : "") + ".");
+			}
 		},
 		begin: 'start',
 		start: function (tournament, user) {
