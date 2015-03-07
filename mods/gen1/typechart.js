@@ -4,6 +4,7 @@
  * Bug and Poison were weak to eachother
  * Ice was neutral to fire
  * Psychic was immune to ghost
+ * In Violet, all of these things are modernized back to Gen 2-5
  */
 exports.BattleTypeChart = {
 	"Bug": {
@@ -19,7 +20,7 @@ exports.BattleTypeChart = {
 			"Ground": 2,
 			"Ice": 0,
 			"Normal": 0,
-			"Poison": 1,
+			"Poison": 0,
 			"Psychic": 0,
 			"Rock": 1,
 			"Water": 0
@@ -36,7 +37,7 @@ exports.BattleTypeChart = {
 			"Ghost": 0,
 			"Grass": 2,
 			"Ground": 1,
-			"Ice": 0,
+			"Ice": 2,
 			"Normal": 0,
 			"Poison": 0,
 			"Psychic": 0,
@@ -46,7 +47,7 @@ exports.BattleTypeChart = {
 	},
 	"Ghost": {
 		damageTaken: {
-			"Bug": 0,
+			"Bug": 2,
 			"Dragon": 0,
 			"Electric": 0,
 			"Fighting": 3,
@@ -89,7 +90,7 @@ exports.BattleTypeChart = {
 		damageTaken: {
 			psn: 3,
 			tox: 3,
-			"Bug": 1,
+			"Bug": 2,
 			"Dragon": 0,
 			"Electric": 0,
 			"Fighting": 2,
