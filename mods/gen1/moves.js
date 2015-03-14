@@ -307,7 +307,7 @@ exports.BattleMovedex = {
 		basePower: 200,
 		type: "Ghost",
 		onTryHit: function (target) {
-			if (target.status !== 'psn') {
+			if (target.status !== 'psn' || target.status !== 'tox' || target.status !== 'slp') {
 				this.add('-immune', target, '[msg]');
 				return null;
 			}
