@@ -769,6 +769,7 @@ exports.BattleMovedex = {
 	},
 	skyattack: {
 		inherit: true,
+		secondary: false,
 		critRatio: 1,
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
@@ -784,7 +785,6 @@ exports.BattleMovedex = {
 			attacker.addVolatile('twoturnmove', defender);
 			return null;
 		}
-		secondary: {}
 	},
 	softboiled: {
 		inherit: true
