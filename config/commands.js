@@ -1,4 +1,5 @@
-* System commands
+/**
+ * System commands
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
  * These are system commands - commands required for Pokemon Showdown
@@ -804,122 +805,6 @@ var commands = exports.commands = {
         if (!Poll[room.id].question) return this.sendReply('There is no poll currently going on in this room.');
         if (!this.canBroadcast()) return;
         this.sendReplyBox(Poll[room.id].display);
-    },
-
-    /*********************************************************
-	 * Money BullShit
-	 *********************************************************/
-
-	 shop: function (target, room, user) {
-        if (!this.canBroadcast()) return;
-        return this.sendReply('|raw|' + Core.shop(true));
-    },
-
-    buy: function (target, room, user) {
-        if (!target) this.parse('/help buy');
-        var userMoney = Number(Core.stdin('money', user.userid));
-        var shop = Core.shop(false);
-        var len = shop.length;
-        while (len--) {
-            if (target.toLowerCase() === shop[len][0].toLowerCase()) {
-                var price = shop[len][2];
-                if (price > userMoney) return this.sendReply('You don\'t have enough money for this. You need ' + (price - userMoney) + ' more bucks to buy ' + target + '.');
-                Core.stdout('money', user.userid, (userMoney - price));
-                if (target.toLowerCase() === 'symbol') {
-                    user.canCustomSymbol = true;
-                    this.sendReply('You have purchased a custom symbol. You will have this until you log off for more than an hour. You may now use /customsymbol now.');
-                    this.parse('/help customsymbol');
-                    this.sendReply('If you do not want your custom symbol anymore, you may use /resetsymbol to go back to your old symbol.');
-                } else {
-                    this.sendReply('You have purchased ' + target + '. Please contact an admin to get ' + target + '.');
-                    for (var u in Users.users) {
-                        if (Users.get(u).group === '~') Users.get(u).send('|pm|' + user.group + user.name + '|' + Users.get(u).group + Users.get(u).name + '|' + 'I have bought ' + target + ' from the shop.');
-                    }
-                }
-                room.add(user.name + ' has bought ' + target + ' from the shop.');
-            }
-        }
-    },
-
-    transferbuck: 'transfermoney',
-    transferbucks: 'transfermoney',
-    transfermoney: function (target, room, user) {
-        if (!target) return this.parse('/help transfermoney');
-        if (!this.canTalk()) return;
-
-        if (target.indexOf(',') >= 0) {
-            var parts = target.split(',');
-            parts[0] = this.splitTarget(parts[0]);
-            var targetUser = this.targetUser;
-        }
-
-        if (!targetUser) return this.sendReply('User ' + this.targetUsername + ' not found.');
-        if (targetUser.userid === user.userid) return this.sendReply('You cannot transfer money to yourself.');
-        if (isNaN(parts[1])) return this.sendReply('Very funny, now use a real number.');
-        if (parts[1] < 1) return this.sendReply('You can\'t transfer less than one buck at a time.');
-        if (String(parts[1]).indexOf('.') >= 0) return this.sendReply('You cannot transfer money with decimals.');
-
-        var userMoney = Core.stdin('money', user.userid);
-        var targetMoney = Core.stdin('money', targetUser.userid);
-
-        if (parts[1] > Number(userMoney)) return this.sendReply('You cannot transfer more money than what you have.');
-
-        var b = 'bucks';
-        var cleanedUp = parts[1].trim();
-        var transferMoney = Number(cleanedUp);
-        if (transferMoney === 1) b = 'buck';
-
-        userMoney = Number(userMoney) - transferMoney;
-        targetMoney = Number(targetMoney) + transferMoney;
-
-        Core.stdout('money', user.userid, userMoney, function () {
-            Core.stdout('money', targetUser.userid, targetMoney);
-        });
-
-        this.sendReply('You have successfully transferred ' + transferMoney + ' ' + b + ' to ' + targetUser.name + '. You now have ' + userMoney + ' bucks.');
-        targetUser.send(user.name + ' has transferred ' + transferMoney + ' ' + b + ' to you. You now have ' + targetMoney + ' bucks.');
-    },
-
-        atm: 'profile',
-    profile: function (target, room, user, connection, cmd) {
-        if (!this.canBroadcast()) return;
-        if (cmd === 'atm') return this.sendReply('Use /profile instead.');
-        if (target.length >= 19) return this.sendReply('Usernames are required to be less than 19 characters long.');
-
-        var targetUser = this.targetUserOrSelf(target);
-
-        if (!targetUser) {
-            var userId = toId(target);
-            var money = Core.profile.money(userId);
-            var elo = Core.profile.tournamentElo(userId);
-            var about = Core.profile.about(userId);
-
-            if (elo === 1000 && about === 0) {
-                return this.sendReplyBox(Core.profile.avatar(false, userId) + Core.profile.name(false, userId) + Core.profile.group(false, userId) + Core.profile.lastSeen(false, userId) + Core.profile.display('money', money) + '<br clear="all">');
-            }
-            if (elo === 1000) {
-                return this.sendReplyBox(Core.profile.avatar(false, userId) + Core.profile.name(false, userId) + Core.profile.group(false, userId) + Core.profile.display('about', about) + Core.profile.lastSeen(false, userId) + Core.profile.display('money', money) + '<br clear="all">');
-            }
-            if (about === 0) {
-                return this.sendReplyBox(Core.profile.avatar(false, userId) + Core.profile.name(false, userId) + Core.profile.group(false, userId) + Core.profile.lastSeen(false, userId) + Core.profile.display('money', money) + Core.profile.display('elo', elo, Core.profile.rank(userId)) + '<br clear="all">');
-            }
-            return this.sendReplyBox(Core.profile.avatar(false, userId) + Core.profile.name(false, target) + Core.profile.group(false, userId) + Core.profile.display('about', about) + Core.profile.lastSeen(false, userId) + Core.profile.display('money', money) + Core.profile.display('elo', elo, Core.profile.rank(userId)) + '<br clear="all">');
-        }
-
-        var money = Core.profile.money(targetUser.userid);
-        var elo = Core.profile.tournamentElo(toId(targetUser.userid));
-        var about = Core.profile.about(targetUser.userid);
-
-        if (elo === 1000 && about === 0) {
-            return this.sendReplyBox(Core.profile.avatar(true, targetUser, targetUser.avatar) + Core.profile.name(true, targetUser) + Core.profile.group(true, targetUser) + Core.profile.lastSeen(true, targetUser) + Core.profile.display('money', money) + '<br clear="all">');
-        }
-        if (elo === 1000) {
-            return this.sendReplyBox(Core.profile.avatar(true, targetUser, targetUser.avatar) + Core.profile.name(true, targetUser) + Core.profile.group(true, targetUser) + Core.profile.display('about', about) + Core.profile.lastSeen(true, targetUser) + Core.profile.display('money', money) + '<br clear="all">');
-        }
-        if (about === 0) {
-            return this.sendReplyBox(Core.profile.avatar(true, targetUser, targetUser.avatar) + Core.profile.name(true, targetUser) + Core.profile.group(true, targetUser) + Core.profile.lastSeen(true, targetUser) + Core.profile.display('money', money) + Core.profile.display('elo', elo, Core.profile.rank(targetUser.userid)) + '<br clear="all">');
-        }
-        return this.sendReplyBox(Core.profile.avatar(true, targetUser, targetUser.avatar) + Core.profile.name(true, targetUser) + Core.profile.group(true, targetUser) + Core.profile.display('about', about) + Core.profile.lastSeen(true, targetUser) + Core.profile.display('money', money) + Core.profile.display('elo', elo, Core.profile.rank(targetUser.userid)) + '<br clear="all">');
     },
 
 
@@ -2389,4 +2274,3 @@ back: function(target, room, user, connection) {
 	}
 
 };
-
