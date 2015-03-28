@@ -39,6 +39,20 @@ exports.Formats = [
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite']
 	},
 	{
+		name: "OU (no Mega)",
+		section: "ORAS Singles",
+
+		ruleset: ['OU'],
+		onBegin: function () {
+			for (var i = 0; i < this.p1.pokemon.length; i++) {
+				this.p1.pokemon[i].canMegaEvo = false;
+			}
+			for (var i = 0; i < this.p2.pokemon.length; i++) {
+				this.p2.pokemon[i].canMegaEvo = false;
+			}
+		}
+	},
+	{
 		name: "Ubers",
 		section: "ORAS Singles",
 
@@ -49,36 +63,22 @@ exports.Formats = [
 		name: "UU",
 		section: "ORAS Singles",
 
-		searchShow: false,
 		ruleset: ['OU'],
 		banlist: ['OU', 'BL', 'Alakazite', 'Altarianite', 'Diancite', 'Heracronite', 'Galladite', 'Gardevoirite', 'Lopunnite', 'Medichamite',
 			'Metagrossite', 'Pinsirite', 'Drizzle', 'Drought', 'Shadow Tag'
 		]
 	},
 	{
-		name: "UU (suspect test)",
+		name: "UU (no Scald)",
 		section: "ORAS Singles",
 
-		ruleset: ['OU'],
-		banlist: ['OU', 'Venomoth', 'Togekiss', 'Weavile', 'Smeargle', 'Crawdaunt', 'Staraptor', 'Victini', 'Scolipede', 'Volcarona',
-			'Terrakion', 'Tornadus-Therian', 'Thundurus-Therian', 'Diggersby', 'Hawlucha', 'Klefki', 'Zygarde',
-			'Alakazite', 'Altarianite', 'Diancite', 'Heracronite', 'Galladite', 'Gardevoirite', 'Lopunnite', 'Medichamite', 'Metagrossite', 'Pinsirite',
-			'Drizzle', 'Drought', 'Shadow Tag'
-		]
+		ruleset: ['UU'],
+		banlist: ['Scald']
 	},
 	{
 		name: "RU",
 		section: "ORAS Singles",
 
-		searchShow: false,
-		ruleset: ['UU'],
-		banlist: ['UU', 'BL2', 'Galladite', 'Houndoominite', 'Pidgeotite']
-	},
-	{
-		name: "RU (suspect test)",
-		section: "ORAS Singles",
-
-		challengeShow: false,
 		ruleset: ['UU'],
 		banlist: ['UU', 'BL2', 'Galladite', 'Houndoominite', 'Pidgeotite']
 	},
@@ -86,32 +86,13 @@ exports.Formats = [
 		name: "NU",
 		section: "ORAS Singles",
 
-		searchShow: false,
 		ruleset: ['RU'],
-		banlist: ['RU', 'BL3', 'Glalitite']
-	},
-	{
-		name: "NU (suspect test)",
-		section: "ORAS Singles",
-
-		challengeShow: false,
-		ruleset: ['RU'],
-		banlist: ['RU', 'BL3', 'Glalitite']
+		banlist: ['RU', 'BL3', 'Glalitite', 'Steelixite']
 	},
 	{
 		name: "LC",
 		section: "ORAS Singles",
 
-		searchShow: false,
-		maxLevel: 5,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
-		banlist: ['LC Uber', 'Gligar', 'Misdreavus', 'Scyther', 'Sneasel', 'Tangela', 'Dragon Rage', 'Sonic Boom', 'Swagger']
-	},
-	{
-		name: "LC (suspect test)",
-		section: "ORAS Singles",
-
-		challengeShow: false,
 		maxLevel: 5,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
 		banlist: ['LC Uber', 'Gligar', 'Misdreavus', 'Scyther', 'Sneasel', 'Tangela', 'Dragon Rage', 'Sonic Boom', 'Swagger']
@@ -225,60 +206,6 @@ exports.Formats = [
 			this.p1.pokemonLeft = this.p1.pokemon.length;
 			this.p2.pokemon = this.p2.pokemon.slice(0, 4);
 			this.p2.pokemonLeft = this.p2.pokemon.length;
-		}
-	},
-	{
-		name: "Battle Spot Special 8",
-		section: "ORAS Doubles",
-
-		gameType: 'doubles',
-		maxForcedLevel: 50,
-		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview VGC'],
-		requirePentagon: true,
-		validateTeam: function (team, format) {
-			if (team.length < 4) return ['You must bring at least four Pokémon.'];
-			for (var i = 0; i < team.length; i++) {
-				var item = this.getItem(team[i].item);
-				if (item.id && !item.isBerry) return ['All items other than berries are banned.'];
-			}
-		},
-		onBegin: function () {
-			this.debug('cutting down to 4');
-			this.p1.pokemon = this.p1.pokemon.slice(0, 4);
-			this.p1.pokemonLeft = this.p1.pokemon.length;
-			this.p2.pokemon = this.p2.pokemon.slice(0, 4);
-			this.p2.pokemonLeft = this.p2.pokemon.length;
-		}
-	},
-	{
-		name: "Enter the Dragon Type",
-		section: "ORAS Doubles",
-
-		gameType: 'doubles',
-		maxForcedLevel: 50,
-		ruleset: ['Pokemon', 'Species Clause', 'Item Clause', 'Team Preview', 'Cancel Mod'],
-		banlist: ['Illegal', 'Unreleased', 'Soul Dew'],
-		validateTeam: function (team, format) {
-			if (team.length !== 4) return ['You must use exactly four Pokémon.'];
-			var limitedPokemon = {'Mewtwo':1, 'Mew':1, 'Lugia':1, 'Ho-Oh':1, 'Celebi':1, 'Kyogre':1, 'Groudon':1, 'Rayquaza':1, 'Jirachi':1, 'Deoxys':1, 'Dialga':1, 'Palkia':1, 'Giratina':1, 'Phione':1, 'Manaphy':1, 'Darkrai':1, 'Shaymin':1, 'Arceus':1, 'Victini':1, 'Reshiram':1, 'Zekrom':1, 'Kyurem':1, 'Keldeo':1, 'Meloetta':1, 'Genesect':1, 'Xerneas':1, 'Yveltal':1, 'Zygarde':1, 'Diancie':1};
-			var hasDragon = false;
-			var has = [];
-			for (var i = 0; i < team.length; i++) {
-				var template = this.getTemplate(team[i].species);
-				if (template.baseSpecies in limitedPokemon) has.push(template.species);
-				if (hasDragon) continue;
-				var types = template.types || [];
-				if (types.indexOf('Dragon') > -1) {
-					hasDragon = true;
-					continue;
-				}
-				var item = Tools.getItem(team[i].item);
-				if (item.megaEvolves && item.megaEvolves === template.species && Tools.getTemplate(item.megaStone).types.indexOf('Dragon') > -1) hasDragon = true;
-			}
-			var problems = [];
-			if (!hasDragon) problems.push("You have to use a Dragon-type Pokémon.");
-			if (has.length > 2) problems.push("You can only use up to two of: " + has.join(', ') + ".");
-			return problems;
 		}
 	},
 	{
@@ -557,7 +484,7 @@ exports.Formats = [
 		ruleset: ['Cancel Mod']
 	},
 	{
-		name: "[Gen 3] OU (beta)",
+		name: "[Gen 3] OU",
 		section: "Past Generations",
 
 		mod: 'gen3',
@@ -565,7 +492,7 @@ exports.Formats = [
 		banlist: ['Uber', 'Smeargle + Ingrain']
 	},
 	{
-		name: "[Gen 3] Ubers (beta)",
+		name: "[Gen 3] Ubers",
 		section: "Past Generations",
 
 		mod: 'gen3',

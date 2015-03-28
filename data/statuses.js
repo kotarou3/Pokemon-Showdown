@@ -9,7 +9,7 @@ exports.BattleStatuses = {
 			this.add('-status', target, 'brn');
 		},
 		onBasePower: function (basePower, attacker, defender, move) {
-			if (move && move.category === 'Physical' && attacker && attacker.ability !== 'guts' && move.id !== 'facade') {
+			if (move && move.category === 'Physical' && attacker && !attacker.hasAbility('guts') && move.id !== 'facade') {
 				return this.chainModify(0.5); // This should really take place directly in the damage function but it's here for now
 			}
 		},
@@ -24,7 +24,7 @@ exports.BattleStatuses = {
 			this.add('-status', target, 'par');
 		},
 		onModifySpe: function (speMod, pokemon) {
-			if (pokemon.ability !== 'quickfeet') {
+			if (!pokemon.hasAbility('quickfeet')) {
 				return this.chain(speMod, 0.25);
 			}
 		},
@@ -46,7 +46,7 @@ exports.BattleStatuses = {
 		},
 		onBeforeMovePriority: 10,
 		onBeforeMove: function (pokemon, target, move) {
-			if (pokemon.getAbility().isHalfSleep) {
+			if (pokemon.hasAbility('earlybird')) {
 				pokemon.statusData.time--;
 			}
 			pokemon.statusData.time--;
@@ -326,6 +326,15 @@ exports.BattleStatuses = {
 					}
 				}
 
+				// Prior to gen 5, these moves had no STAB and no effectiveness.
+				// This is done here and to moveData's type for two reasons:
+				// - modifyMove event happens before the moveHit function is run.
+				// - moveData here is different from move, as one is generated here and the other by the move itself.
+				// So here we centralise any future hit move getting typeless on hit as it should be.
+				if (this.gen < 5) {
+					posData.moveData.type = '???';
+				}
+
 				this.moveHit(target, posData.source, move, posData.moveData);
 
 				this.effectData.positions[i] = null;
@@ -377,8 +386,6 @@ exports.BattleStatuses = {
 			return this.chainModify([modifier, 0x1000]);
 		}
 	},
-
-		// weather
 
 	// weather is implemented here since it's so important to the game
 
