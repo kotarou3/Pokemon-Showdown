@@ -470,7 +470,6 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 60,
 		drain: [1]
-		
 	},
 	leechseed: {
 		inherit: true,
@@ -789,7 +788,7 @@ exports.BattleMovedex = {
 			this.boost({def:1}, attacker, attacker, this.getMove('skyattack'));
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				this.add('-anim', attacker, move.name, defender);
-				attacker.removeVolatile(move.id);	
+				attacker.removeVolatile(move.id);
 				return;
 			}
 			attacker.addVolatile('twoturnmove', defender);
@@ -812,7 +811,7 @@ exports.BattleMovedex = {
 			this.boost({spa:1}, {spd:1}, attacker, attacker, this.getMove('solarbeam'));
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				this.add('-anim', attacker, move.name, defender);
-				attacker.removeVolatile(move.id);	
+				attacker.removeVolatile(move.id);
 				return;
 			}
 			attacker.addVolatile('twoturnmove', defender);
