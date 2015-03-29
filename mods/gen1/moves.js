@@ -468,7 +468,8 @@ exports.BattleMovedex = {
 	},
 	leechlife: {
 		inherit: true,
-		basePower: 60
+		basePower: 60,
+		drain: [1]
 	},
 	leechseed: {
 		inherit: true,
@@ -535,6 +536,10 @@ exports.BattleMovedex = {
 			chance: 30,
 			volatileStatus: 'flinch'
 		}
+	},
+	megadrain: {
+		inherit: true,
+		drain: [1]
 	},
 	metronome: {
 		inherit: true,
@@ -676,15 +681,7 @@ exports.BattleMovedex = {
 		target: "normal"
 	},
 	recover: {
-		inherit: true,
-		heal: null,
-		onHit: function (target) {
-			// Fail when health is 255 or 511 less than max
-			if (target.hp === (target.maxhp - 255) || target.hp === (target.maxhp - 511) || target.hp === target.maxhp) {
-				return false;
-			}
-			this.heal(Math.floor(target.maxhp / 2), target, target);
-		}
+		inherit: true
 	},
 	reflect: {
 		num: 115,
@@ -781,18 +778,42 @@ exports.BattleMovedex = {
 	},
 	skyattack: {
 		inherit: true,
-		critRatio: 1,
-		secondary: {}
+		secondary: false,
+ 		critRatio: 1,
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			this.boost({def:1}, attacker, attacker, this.getMove('skyattack'));
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				attacker.removeVolatile(move.id);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		}
 	},
 	softboiled: {
+		inherit: true
+	},
+	solarbeam: {
 		inherit: true,
-		heal: null,
-		onHit: function (target) {
-			// Fail when health is 255 or 511 less than max
-			if (target.hp === (target.maxhp - 255) || target.hp === (target.maxhp - 511) || target.hp === target.maxhp) {
-				return false;
+		basePower: 100,
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
 			}
-			this.heal(Math.floor(target.maxhp / 2), target, target);
+			this.add('-prepare', attacker, move.name, defender);
+			this.boost({spa:1}, {spd:1}, attacker, attacker, this.getMove('solarbeam'));
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				attacker.removeVolatile(move.id);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
 		}
 	},
 	struggle: {
@@ -818,6 +839,7 @@ exports.BattleMovedex = {
 	},
 	submission: {
 		inherit: true,
+		basePower: 100,
 		accuracy: 100
 	},
 	substitute: {
