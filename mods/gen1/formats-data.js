@@ -437,11 +437,11 @@ exports.BattleFormatsData = {
 		tier: "UU"
 	},
 	krabby: {
-		randomBattleMoves: ["bodyslam","crabhammer","leer","swordsdance","blizzard"],
+		randomBattleMoves: ["bodyslam","crabhammer","swordsdance","blizzard"],
 		tier: "Uber"
 	},
 	kingler: {
-		randomBattleMoves: ["bodyslam","hyperbeam","blizzard","swordsdance"],
+		randomBattleMoves: ["bodyslam","hyperbeam","swordsdance","blizzard"],
 		essentialMove: "crabhammer",
 		tier: "Uber"
 	},

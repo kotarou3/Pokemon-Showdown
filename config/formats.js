@@ -69,13 +69,6 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "UU (no Scald)",
-		section: "ORAS Singles",
-
-		ruleset: ['UU'],
-		banlist: ['Scald']
-	},
-	{
 		name: "RU",
 		section: "ORAS Singles",
 
@@ -517,6 +510,15 @@ exports.Formats = [
 		banlist: ['Uber']
 	},
 	{
+		name: "[Gen 2] Random Battle",
+		section: "Past Generations",
+
+		mod: 'gen2',
+		searchShow: false,
+		team: 'random',
+		ruleset: ['Pokemon', 'Standard']
+	},
+	{
 		name: "[Gen 2] Custom Game",
 		section: "Past Generations",
 
@@ -551,6 +553,15 @@ exports.Formats = [
 
 		mod: 'gen1',
 		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+	},
+	{
+		name: "[Gen 1] Challenge Cup",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		searchShow: false,
+		team: 'randomCC',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
