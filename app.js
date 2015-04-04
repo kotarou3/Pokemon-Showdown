@@ -381,6 +381,12 @@ process.on('uncaughtException', function (err) {
 
 global.Sockets = require('./sockets.js');
 
+global.Core = require('./core.js').core;
+
+global.Components = require('./components.js');
+
+global.Poll = require('./core.js').core.poll();
+
 /*********************************************************
  * Set up our last global
  *********************************************************/
