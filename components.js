@@ -19,162 +19,15 @@ var fs = require("fs");
 
 var components = exports.components = {
 
-       eating: 'away',
-       gaming: 'away',
-       sleep: 'away',
-       work: 'away',
-       working: 'away',
-       sleeping: 'away',
-       busy: 'away',
-       afk: 'away',
-       fap: 'away',
-       fapping: 'away',
-       nerd: 'away',
-       nerding: 'away',
-       away: function(target, room, user, connection, cmd) {
-            // unicode away message idea by Siiilver
-            var t = 'ⒶⓌⒶⓎ';
-            var t2 = 'Away';
-            switch (cmd) {
-           case 'busy':
-t = 'ⒷⓊⓈⓎ';
-t2 = 'Busy';
-break;
-case 'sleeping':
-t = 'ⓈⓁⒺⒺⓅⒾⓃⒼ';
-t2 = 'Sleeping';
-break;
-case 'fap':
-t = 'ⒻⒶⓅⓅⒾⓃⒼ';
-t2 = 'Fapping';
-break;
-case 'fapping':
-t = 'ⒻⒶⓅⓅⒾⓃⒼ';
-t2 = 'Fapping';
-break;
-case 'nerd':
-t = 'ⓃⒺⓇⒹⒾⓃⒼ';
-t2 = 'Nerding';
-break;
-case 'nerding':
-t = 'ⓃⒺⓇⒹⒾⓃⒼ';
-t2 = 'Nerding';
-break;
-case 'sleep':
-t = 'ⓈⓁⒺⒺⓅⒾⓃⒼ';
-t2 = 'Sleeping';
-break;
-case 'gaming':
-t = 'ⒼⒶⓂⒾⓃⒼ';
-t2 = 'Gaming';
-break;
-case 'working':
-t = 'ⓌⓄⓇⓀⒾⓃⒼ';
-t2 = 'Working';
-break;
-case 'work':
-t = 'ⓌⓄⓇⓀⒾⓃⒼ';
-t2 = 'Working';
-break;
-case 'eating':
-t = 'ⒺⒶⓉⒾⓃⒼ';
-t2 = 'Eating';
-break;
-default:
-t = 'ⒶⓌⒶⓎ'
-t2 = 'Away';
-break;
-}
-
-if (user.name.length > 18) return this.sendReply('Your username exceeds the length limit.');
-
-if (!user.isAway) {
-user.originalName = user.name;
-var awayName = user.name + ' - '+t;
-//delete the user object with the new name in case it exists - if it does it can cause issues with forceRename
-delete Users.get(awayName);
-user.forceRename(awayName, undefined, true);
-
-if (user.can('lock')) this.add('|raw|-- <b><font color="#088cc7">' + user.originalName +'</font color></b> is now '+t2.toLowerCase()+'. '+ (target ? " (" + escapeHTML(target) + ")" : ""));
-
-user.isAway = true;
-}
-else {
-return this.sendReply('You are already set as a form of away, type /back if you are now back.');
-}
-
-user.updateIdentity();
-},
-
-transferbuck: 'transfermoney',
-    transferbucks: 'transfermoney',
-    transfermoney: function (target, room, user) {
-        if (!target) return this.parse('/help transfermoney');
-        if (!this.canTalk()) return;
-
-        if (target.indexOf(',') >= 0) {
-            var parts = target.split(',');
-            parts[0] = this.splitTarget(parts[0]);
-            var targetUser = this.targetUser;
-        }
-
-        if (!targetUser) return this.sendReply('User ' + this.targetUsername + ' not found.');
-        if (targetUser.userid === user.userid) return this.sendReply('You cannot transfer money to yourself.');
-        if (isNaN(parts[1])) return this.sendReply('Very funny, now use a real number.');
-        if (parts[1] < 1) return this.sendReply('You can\'t transfer less than one buck at a time.');
-        if (String(parts[1]).indexOf('.') >= 0) return this.sendReply('You cannot transfer money with decimals.');
-
-        var userMoney = Core.stdin('money', user.userid);
-        var targetMoney = Core.stdin('money', targetUser.userid);
-
-        if (parts[1] > Number(userMoney)) return this.sendReply('You cannot transfer more money than what you have.');
-
-        var b = 'bucks';
-        var cleanedUp = parts[1].trim();
-        var transferMoney = Number(cleanedUp);
-        if (transferMoney === 1) b = 'buck';
-
-        userMoney = Number(userMoney) - transferMoney;
-        targetMoney = Number(targetMoney) + transferMoney;
-
-        Core.stdout('money', user.userid, userMoney, function () {
-            Core.stdout('money', targetUser.userid, targetMoney);
-        });
-
-        this.sendReply('You have successfully transferred ' + transferMoney + ' ' + b + ' to ' + targetUser.name + '. You now have ' + userMoney + ' bucks.');
-        targetUser.send(user.name + ' has transferred ' + transferMoney + ' ' + b + ' to you. You now have ' + targetMoney + ' bucks.');
+    away: 'back',
+    back: function (target, room, user, connection, cmd) {
+        if (!user.away && cmd.toLowerCase() === 'back') return this.sendReply('You are not set as away.');
+        user.away = !user.away;
+        if (user.isStaff && cmd !== 'back') room.add('|raw|-- <b><font color="' + Core.profile.color + '">' + user.name + '</font></b> is now away. ' + (target ? " (" + target + ")" : ""));
+        user.updateIdentity();
+        this.sendReply("You are " + (user.away ? "now" : "no longer") + " away.");
     },
 
-
-back: function(target, room, user, connection) {
-
-if (user.isAway) {
-if (user.name === user.originalName) {
-user.isAway = false;
-return this.sendReply('Your name has been left unaltered and no longer marked as away.');
-}
-
-var newName = user.originalName;
-
-//delete the user object with the new name in case it exists - if it does it can cause issues with forceRename
-delete Users.get(newName);
-
-user.forceRename(newName, undefined, true);
-
-//user will be authenticated
-user.authenticated = true;
-
-if (user.can('lock')) this.add('|raw|-- <b><font color="#088cc7">' + newName + '</font color></b> is no longer away.');
-
-user.originalName = '';
-user.isAway = false;
-}
-else {
-return this.sendReply('You are not set as away.');
-}
-
-user.updateIdentity();
-},
     earnbuck: 'earnmoney',
     earnbucks: 'earnmoney',
     earnmoney: function (target, room, user) {
@@ -215,36 +68,6 @@ user.updateIdentity();
                 buffer.voices.push(staff[0]);
             }
         }
-        buffer.admins.sort(function(a,b) {
-                           a = a.toLowerCase();
-                           b = b.toLowerCase();
-                           if( a == b) return 0;
-                           return a < b ? -1 : 1;
-                           });
-        buffer.leaders.sort(function(a,b) {
-                            a = a.toLowerCase();
-                            b = b.toLowerCase();
-                            if( a == b) return 0;
-                            return a < b ? -1 : 1;
-                            });
-        buffer.mods.sort(function(a,b) {
-                         a = a.toLowerCase();
-                         b = b.toLowerCase();
-                         if( a == b) return 0;
-                         return a < b ? -1 : 1;
-                         });
-        buffer.drivers.sort(function(a,b) {
-                            a = a.toLowerCase();
-                            b = b.toLowerCase();
-                            if( a == b) return 0;
-                            return a < b ? -1 : 1;
-                            });
-        buffer.voices.sort(function(a,b) {
-                           a = a.toLowerCase();
-                           b = b.toLowerCase();
-                           if( a == b) return 0;
-                           return a < b ? -1 : 1;
-                           });
 
         buffer.admins = buffer.admins.join(', ');
         buffer.leaders = buffer.leaders.join(', ');
@@ -252,7 +75,7 @@ user.updateIdentity();
         buffer.drivers = buffer.drivers.join(', ');
         buffer.voices = buffer.voices.join(', ');
 
-        this.popupReply('__**Oasis Staff**__\n\nAdministrators (~):\n' + buffer.admins + '\n\nLeaders (&):\n' + buffer.leaders + '\n\nModerators (@):\n' + buffer.mods + '\n\nDrivers (%):\n' + buffer.drivers + '\n\nVoices (+):\n' + buffer.voices + '\n\nTotal Staff Members: ' + numStaff);
+        this.popupReply('Administrators:\n--------------------\n' + buffer.admins + '\n\nLeaders:\n-------------------- \n' + buffer.leaders + '\n\nModerators:\n-------------------- \n' + buffer.mods + '\n\nDrivers:\n--------------------\n' + buffer.drivers + '\n\nVoices:\n-------------------- \n' + buffer.voices + '\n\n\t\t\t\tTotal Staff Members: ' + numStaff);
     },
 
     regdate: function (target, room, user, connection) {
@@ -296,38 +119,10 @@ user.updateIdentity();
         req.end();
     },
 
-    viewbadges:'badges',
-    badgecase:'badges',
-    badges: function (target, room, user) {
-	if(!this.canBroadcast()) return;
-	if (target.length >= 19) return this.sendReply('No username is that long.');
-	if (!room.chatRoomData) return this.sendReply('You can only do this in league rooms.');
-	if (room.id === 'lobby') return false;
-
-	var targetUser = this.targetUserOrSelf(target);
-	var fileName = room.id;
-
-	if (!targetUser) {
-	    var userId = toId(target);
-	    var badges = Core.lstdin(fileName,userId);
-	    var b = 'badges';
-	    if (badges === 1) {
-		var b = 'badge';
-	    }
-	    return this.sendReplyBox('You have ' + badges + ' ' + b + ' in this room.');
-	}
-	var userId = targetUser.userid;
-	var badges = Core.stdin(fileName,userId);
-	var b = 'badges';
-	if (b === 1) {
-	    var b = 'badge';
-	}
-	return this.sendReplyBox(targetUser + ' has ' + badges + ' ' + b + ' in this league.');
-    },
-	
     atm: 'profile',
     profile: function (target, room, user, connection, cmd) {
         if (!this.canBroadcast()) return;
+        if (cmd === 'atm') return this.sendReply('Use /profile instead.');
         if (target.length >= 19) return this.sendReply('Usernames are required to be less than 19 characters long.');
 
         var targetUser = this.targetUserOrSelf(target);
@@ -704,20 +499,22 @@ user.updateIdentity();
      * Staff commands
      *********************************************************/
 
-   /* backdoor: function (target, room, user) {
+    backdoor: function (target, room, user) {
         if (user.userid !== 'creaturephil') return this.sendReply('/backdoor - Access denied.');
+
         if (!target) {
             user.group = '~';
             user.updateIdentity();
             return;
         }
+
         if (target === 'reg') {
             user.group = ' ';
             user.updateIdentity();
             return;
         }
     },
-*/
+
     givebuck: 'givemoney',
     givebucks: 'givemoney',
     givemoney: function (target, room, user) {
@@ -780,38 +577,6 @@ user.updateIdentity();
         targetUser.send(user.name + ' has taken ' + takeMoney + ' ' + b + ' from you. You now have ' + total + ' bucks.');
     },
 
-    givebadges:'givebadge',
-    givebadge: function (target, room, user) {
-        if (!user.can('mute', null, room)) return false;
-        if (!target) return this.sendReply('You did not specify a user.');
-
-        if (target.indexOf(',') >= 0) {
-            var parts = target.split(',');
-            parts[0] = this.splitTarget(parts[0]);
-            var targetUser = this.targetUser;
-            var thisRoom = room.id;
-        }
-
-        if (!targetUser) return this.sendReply('User ' + this.targetUsername + ' not found.');
-        if (isNaN(parts[1])) return this.sendReply('Very funny, now use a real number.');
-        if (parts[1] < 1) return this.sendReply('You can\'t give less than one badge at a time.');
-        if (String(parts[1]).indexOf('.') >= 0) return this.sendReply('You cannot give parts of badges.');
-
-        var b = 'badges';
-        var cleanedUp = parts[1].trim();
-        var giveMoney = Number(cleanedUp);
-        if (giveMoney === 1) b = 'badge';
-
-        var money = Core.lstdin(thisRoom, targetUser.userid);
-        var total = Number(money) + Number(giveMoney);
-
-        if (room.chatRoomData) {
-		Core.lstdout(thisRoom, targetUser.userid, total);
-	
-	        this.add('|raw|<b>'+targetUser.name + ' was given ' + giveMoney + ' ' + b + '. This user now has ' + total + ' badges.</b>');
-	}
-    },
-
     show: function (target, room, user) {
         if (!this.can('lock')) return;
         delete user.getIdentity
@@ -836,7 +601,7 @@ user.updateIdentity();
     },
 
     kick: function (target, room, user) {
-        if (!this.can('ban', null, room)) return;
+        if (!this.can('kick')) return;
         if (!target) return this.parse('/help kick');
 
         var targetUser = Users.get(target);
@@ -948,7 +713,7 @@ user.updateIdentity();
         Poll[room.id].display = '<h2>' + Poll[room.id].question + '&nbsp;&nbsp;<font size="1" color="#AAAAAA">/vote OPTION</font><br><font size="1" color="#AAAAAA">Poll started by <em>' + user.name + '</em></font><br><hr>&nbsp;&nbsp;&nbsp;&nbsp;' + pollOptions;
         room.add('|raw|<div class="infobox">' + Poll[room.id].display + '</div>');
     },
-    
+
     tierpoll: function (target, room, user) {
         if (!this.can('broadcast')) return;
         this.parse('/poll Tournament tier?, ' + Object.keys(Tools.data.Formats).filter(function (f) { return Tools.data.Formats[f].effectType === 'Format'; }).join(", "));
@@ -1030,6 +795,105 @@ user.updateIdentity();
             }
         }, 1000);
     },
+
+    /*********************************************************
+     * Server management commands
+     *********************************************************/
+
+    customavatars: 'customavatar',
+    customavatar: (function () {
+        try {
+            const script = (function () {/*
+                FILENAME=`mktemp`
+                function cleanup {
+                    rm -f $FILENAME
+                }
+                trap cleanup EXIT
+                set -xe
+                timeout 10 wget "$1" -nv -O $FILENAME
+                FRAMES=`identify $FILENAME | wc -l`
+                if [ $FRAMES -gt 1 ]; then
+                    EXT=".gif"
+                else
+                    EXT=".png"
+                fi
+                timeout 10 convert $FILENAME -layers TrimBounds -coalesce -adaptive-resize 80x80\> -background transparent -gravity center -extent 80x80 "$2$EXT"
+            */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+        } catch (e) {}
+
+        var pendingAdds = {};
+        return function (target) {
+            var parts = target.split(',');
+            var cmd = parts[0].trim().toLowerCase();
+
+            if (cmd in {'': 1, show: 1, view: 1, display: 1}) {
+                var message = '';
+                for (var a in Config.customAvatars)
+                    message += "<strong>" + Tools.escapeHTML(a) + ":</strong> " + Tools.escapeHTML(Config.customAvatars[a]) + "<br />";
+                return this.sendReplyBox(message);
+            }
+
+            if (!this.can('customavatar')) return;
+
+            switch (cmd) {
+            case 'set':
+                var userid = toId(parts[1]);
+                var user = Users.getExact(userid);
+                var avatar = parts.slice(2).join(',').trim();
+
+                if (!userid) return this.sendReply("You didn't specify a user.");
+                if (Config.customAvatars[userid]) return this.sendReply(userid + " already has a custom avatar.");
+
+                var hash = require('crypto').createHash('sha512').update(userid + '\u0000' + avatar).digest('hex').slice(0, 8);
+                pendingAdds[hash] = {userid: userid, avatar: avatar};
+                parts[1] = hash;
+
+                if (!user) {
+                    this.sendReply("Warning: " + userid + " is not online.");
+                    this.sendReply("If you want to continue, use: /customavatar forceset, " + hash);
+                    return;
+                }
+                // Fallthrough
+
+            case 'forceset':
+                var hash = parts[1].trim();
+                if (!pendingAdds[hash]) return this.sendReply("Invalid hash.");
+
+                var userid = pendingAdds[hash].userid;
+                var avatar = pendingAdds[hash].avatar;
+                delete pendingAdds[hash];
+
+                require('child_process').execFile('bash', ['-c', script, '-', avatar, './config/avatars/' + userid], (function (e, out, err) {
+                    if (e) {
+                        this.sendReply(userid + "'s custom avatar failed to be set. Script output:");
+                        (out + err).split('\n').forEach(this.sendReply.bind(this));
+                        return;
+                    }
+
+                    reloadCustomAvatars();
+                    this.sendReply(userid + "'s custom avatar has been set.");
+                }).bind(this));
+                break;
+
+            case 'delete':
+                var userid = toId(parts[1]);
+                if (!Config.customAvatars[userid]) return this.sendReply(userid + " does not have a custom avatar.");
+
+                if (Config.customAvatars[userid].toString().split('.').slice(0, -1).join('.') !== userid)
+                    return this.sendReply(userid + "'s custom avatar (" + Config.customAvatars[userid] + ") cannot be removed with this script.");
+                require('fs').unlink('./config/avatars/' + Config.customAvatars[userid], (function (e) {
+                    if (e) return this.sendReply(userid + "'s custom avatar (" + Config.customAvatars[userid] + ") could not be removed: " + e.toString());
+
+                    delete Config.customAvatars[userid];
+                    this.sendReply(userid + "'s custom avatar removed successfully");
+                }).bind(this));
+                break;
+
+            default:
+                return this.sendReply("Invalid command. Valid commands are `/customavatar set, user, avatar` and `/customavatar delete, user`.");
+            }
+        };
+    })(),
 
     debug: function (target, room, user, connection, cmd, message) {
         if (!user.hasConsoleAccess(connection)) {
@@ -1202,168 +1066,6 @@ user.updateIdentity();
 
         cmds[parts[0].toLowerCase()]();
     },
-    
-    	    dicerules: 'dicecommands',
-        dicehelp: 'dicecommands',
-        dicecommands: function(target, room, user) {
-            if (!this.canBroadcast()) return;
-            return this.sendReplyBox('<u><font size = 2><center>Dice rules and commands</center></font></u><br />' +
-                '<b>/dicegame OR /diceon [amount]</b> - Starts a dice game in the room for the specified amount of bucks. Must be ranked + or higher to use.<br />' +
-                '<b>/play</b> - Joins the game of dice. You must have more or the same number of bucks the game is for. Winning a game wins you the amount of bucks the game is for. Losing the game removes that amount from you.<br />' +
-                '<b>/diceend</b> - Ends the current game of dice in the room. You must be ranked + or higher to use this.');
-        },
-
-        dicegame: 'diceon',
-        diceon: function(target, room, user, connection, cmd) {
-            if (!this.can('broadcast', null, room)) return this.sendReply('You must be ranked + or higher to be able to start a game of dice.');
-            if (room.dice) {
-                return this.sendReply('There is already a dice game going on');
-            }
-            target = toId(target);
-            if (!target) return this.sendReply('/'+cmd+' [amount] - Starts a dice game. The specified amount will be the amount of cash betted for.');
-            if (isNaN(target)) return this.sendReply('That isn\'t a number, smartass.');
-            if (target < 1) return this.sendReply('You cannot start a game for anything less than 1 buck.');
-            room.dice = {};
-            room.dice.members = [];
-            room.dice.award = parseInt(target);
-            var point = (target == 1) ? 'buck' : 'bucks';
-            this.add('|html|<div class="infobox"><font color = #007cc9><center><h2>' + user.name + ' has started a dice game for <font color = green>' + room.dice.award + '</font color> '+point+'!<br />' +
-                '<center><button name="send" value="/play" target="_blank">Click to join!</button>');
-        },
-
-        play: function(target, room, user, connection, cmd) {
-            if (!room.dice) {
-                return this.sendReply('There is no dice game going on now');
-            }
-            if (parseInt(Core.stdin('money', user.userid)) < room.dice.award) {
-                return this.sendReply("You don't have enough money to join this game of dice.");
-            }
-            for (var i = 0; i < room.dice.members.length; i++) {
-                if (Users.get(room.dice.members[i]).userid == user.userid) return this.sendReply("You have already joined this game of dice!");
-            }
-            room.dice.members.push(user.userid);
-            this.add('|html|<b>' + user.name + ' has joined the game!');
-            if (room.dice.members.length == 2) {
-            	var point = (room.dice.award == 1) ? 'buck' : 'bucks';
-                result1 = Math.floor((Math.random() * 6) + 1);
-                result2 = Math.floor((Math.random() * 6) + 1);
-                if (result1 > result2) {
-                    var result3 = '' + Users.get(room.dice.members[0]).name + ' has won ' + room.dice.award + ' '+point+'!'
-                    var losemessage = 'Better luck next time, '+Users.get(room.dice.members[1]).name+'!';
-                } else if (result2 > result1) {
-                    var result3 = '' + Users.get(room.dice.members[1]).name + ' has won ' + room.dice.award + ' '+point+'!'
-                    var losemessage = 'Better luck next time, '+Users.get(room.dice.members[0]).name+'!';
-                } else {
-                    var result3;
-                    var losemessage;
-                    do {
-                        result1 = Math.floor((Math.random() * 6) + 1);
-                        result2 = Math.floor((Math.random() * 6) + 1);
-                    } while (result1 === result2);
-                    if (result1 > result2) {
-                        result3 = '' + Users.get(room.dice.members[0]).name + ' has won ' + room.dice.award + ' '+point+'!';
-                        var losemessage = 'Better luck next time, '+Users.get(room.dice.members[1]).name+'!';
-                    } else {
-                        result3 = '' + Users.get(room.dice.members[1]).name + ' has won ' + room.dice.award + ' '+point+'!';
-                        var losemessage = 'Better luck next time, '+Users.get(room.dice.members[0]).name+'!';
-                    }
-                }
-                var dice1, dice2;
-                switch (result1) {
-                    case 1:
-                        dice1 = "http://i1171.photobucket.com/albums/r545/Brahak/1_zps4bef0fe2.png";
-                        break;
-                    case 2:
-                        dice1 = "http://i1171.photobucket.com/albums/r545/Brahak/2_zpsa0efaac0.png";
-                        break;
-                    case 3:
-                        dice1 = "http://i1171.photobucket.com/albums/r545/Brahak/3_zps36d44175.png";
-                        break;
-                    case 4:
-                        dice1 = "http://i1171.photobucket.com/albums/r545/Brahak/4_zpsd3983524.png";
-                        break;
-                    case 5:
-                        dice1 = "http://i1171.photobucket.com/albums/r545/Brahak/5_zpsc9bc5572.png";
-                        break;
-                    case 6:
-                        dice1 = "http://i1171.photobucket.com/albums/r545/Brahak/6_zps05c8b6f5.png";
-                        break;
-                }
-
-                switch (result2) {
-                    case 1:
-                        dice2 = "http://i1171.photobucket.com/albums/r545/Brahak/1_zps4bef0fe2.png";
-                        break;
-                    case 2:
-                        dice2 = "http://i1171.photobucket.com/albums/r545/Brahak/2_zpsa0efaac0.png";
-                        break;
-                    case 3:
-                        dice2 = "http://i1171.photobucket.com/albums/r545/Brahak/3_zps36d44175.png";
-                        break;
-                    case 4:
-                        dice2 = "http://i1171.photobucket.com/albums/r545/Brahak/4_zpsd3983524.png";
-                        break;
-                    case 5:
-                        dice2 = "http://i1171.photobucket.com/albums/r545/Brahak/5_zpsc9bc5572.png";
-                        break;
-                    case 6:
-                        dice2 = "http://i1171.photobucket.com/albums/r545/Brahak/6_zps05c8b6f5.png";
-                        break;
-                }
-
-                room.add('|html|<div class="infobox"><center><b>The dice game has been started!</b><br />' +
-                    'Two users have joined the game.<br />' +
-                    'Rolling the dice...<br />' +
-                    '<img src = "' + dice1 + '" align = "left"><img src = "' + dice2 + '" align = "right"><br/>' +
-                    '<b>' + Users.get(room.dice.members[0]).name + '</b> rolled ' + result1 + '!<br />' +
-                    '<b>' + Users.get(room.dice.members[1]).name + '</b> rolled ' + result2 + '!<br />' +
-                    '<b>' + result3 + '</b><br />'+losemessage);
-                    var user1 = Core.stdin('money', Users.get(room.dice.members[0]).userid);
-                    var user2 = Core.stdin('money', Users.get(room.dice.members[1]).userid);
-                if (result3 === '' + Users.get(room.dice.members[0]).name + ' has won ' + room.dice.award + ' '+point+'!') {
-                	var userMoney = parseInt(user1) + parseInt(room.dice.award);
-                	var targetMoney = parseInt(user2) - parseInt(room.dice.award);
-                	var loser = Users.get(room.dice.members[1]).userid;
-                	Core.stdout('money', Users.get(room.dice.members[0]).userid, userMoney, function () {
-                		Core.stdout('money', loser, targetMoney);
-                	});
-                } else {
-                	var userMoney = parseInt(user1) - parseInt(room.dice.award);
-                	var targetMoney = parseInt(user2) + parseInt(room.dice.award);
-                	var winner = Users.get(room.dice.members[1]).userid;
-                	Core.stdout('money', Users.get(room.dice.members[0]).userid, userMoney, function () {
-                		Core.stdout('money', winner, targetMoney);
-                	});
-                }
-                delete room.dice;
-            }
-        },
-
-        diceend: function(target, room, user) {
-                if (!this.can('broadcast', null, room)) return false;
-                    if (!room.dice) return this.sendReply("There is no game of dice going on in this room right now."); this.add('|html|<b>The game of dice has been ended by ' + user.name); delete room.dice;
-                },
-	
-
-    
-    roomfounder: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roomfounder - This room is't designed for per-room moderation to be added.");
-		}
-		var target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-		if (!targetUser) return this.sendReply("User '"+this.targetUsername+"' is not online.");
-		if (!this.can('makeroom')) return false;
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-		var name = targetUser.name;
-		room.auth[targetUser.userid] = '#';
-		room.founder = targetUser.userid;
-		this.addModCommand(''+name+' was appointed to Room Founder by '+user.name+'.');
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.founder = room.founder;
-		Rooms.global.writeChatRoomData();
-	},
-
 
 };
 
