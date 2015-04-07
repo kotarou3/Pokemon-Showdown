@@ -14,7 +14,12 @@ exports.Formats = [
 	},
 	// XY Singles
 	///////////////////////////////////////////////////////////////////
-
+	{
+                name: "PP ORAS Ubers",
+ 
+                ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
+                banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
+        },
 	{
 		name: "Random Battle",
 		section: "ORAS Singles",
