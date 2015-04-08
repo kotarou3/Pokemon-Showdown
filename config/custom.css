@@ -15,3 +15,8 @@ body {
     margin: auto;
     text-align: center;
 }
+
+.chat-log {
+    font-size: 8pt !important;
+    font-family: "Museo Sans Rounded" !important;
+}
