@@ -2,6 +2,15 @@ body {
     background-image: url(http://images.forwallpaper.com/files/images/c/c75d/c75d34d8/319146/circles-color-background.jpg) !important;
 }
 
+.header .logo {
+    display: none;
+}
+
+.header {
+    background-image: url(http://i.picresize.com/images/2015/04/08/a6ikf.png);
+    background-repeat: no-repeat;
+}
+
 .roomlist {
     margin: auto;
     text-align: center;
