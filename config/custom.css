@@ -7,7 +7,7 @@ body {
 }
 
 .header {
-    background-image: url(http://i.picresize.com/images/2015/04/09/HIKO.png);
+    background-image: url(http://i.picresize.com/images/2015/04/09/M0gYV.png);
     background-repeat: no-repeat;
 }
 
@@ -17,6 +17,6 @@ body {
 }
 
 .chat-log {
-    font-size: 8pt !important;
-    font-family: "Futura PT Condensed" !important;
+    font-size: 9pt !important;
+    font-family: "Lucida Console" !important;
 }
