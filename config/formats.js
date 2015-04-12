@@ -3996,6 +3996,82 @@ exports.Formats = [
 		searchShow: false,
 		ruleset: ['HP Percentage Mod', 'Cancel Mod']
 	},
+	{
+		name: "Weather Wars",
+		section: "Other Metagames",
+
+		mod: 'weatherwars',
+		ruleset: ['OU'],
+		banlist: ['Drizzle ++ Swift Swim']
+	},
+	{
+		name: "Immunemons",
+		section: "Other Metagames",
+
+		mod: 'immune',
+		ruleset: ['OU']
+	},
+
+	// Parukian Tiers
+	///////////////////////////////////////////////////////////////////
+
+	{
+		name: "Parukia Ubers",
+		section: "Parukian Tiers",
+		column: 2,
+
+		mod: 'parukia',
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod'],
+		banlist: ['Blue Orb', 'Red Orb']
+	},
+	{
+		name: "Parukia OU",
+		section: "Parukian Tiers",
+
+		mod: 'parukia',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Parukian Baton Pass Clause'],
+		banlist: ['Uber', 'Soul Dew', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mewtwonite X',  'Mewtwonite Y', 'Salamencite', 'Darkrai + Dark Void', 'Blaziken + Baton Pass']
+	},
+	{
+		name: "Parukia MU",
+		section: "Parukian Tiers",
+
+		mod: 'parukia',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['OU', 'Charizardite X', 'Galladite', 'Latiosite', 'Lucarionite', 'Mawilite', 'Metagrossite', 'Sablenite', 'Slowbronite']
+	},
+	{
+		name: "Parukia UU",
+		section: "Parukian Tiers",
+
+		mod: 'parukia',
+		ruleset: ['Parukia MU'],
+		banlist: ['MU', 'Drizzle', 'Drought', 'Shadow Tag', 'Alakazite', 'Altarianite', 'Charizardite Y', 'Diancite', 'Garchompite', 'Gardevoirite', 'Gyaradosite', 'Heracronite', 'Latiasite', 'Lopunnite', 'Medichamite', 'Pinsirite', 'Scizorite', 'Tyranitarite', 'Venusaurite']
+	},
+	{
+		name: "Parukia RU",
+		section: "Parukian Tiers",
+
+		mod: 'parukia',
+		ruleset: ['Parukia UU'],
+		banlist: ['UU', 'Absolite', 'Aerodactylite', 'Aggronite', 'Ampharosite', 'Beedrillite', 'Blastoisinite', 'Houndoominite', 'Manectite', 'Pidgeotite', 'Sceptilite', 'Sharpedonite', 'Swampertite']
+	},
+	{
+		name: "Parukia BU",
+		section: "Parukian Tiers",
+
+		mod: 'parukia',
+		ruleset: ['Parukia RU'],
+		banlist: ['RU', 'Abomasite', 'Banettite', 'Glalitite', 'Steelixite']
+	},
+	{
+		name: "Parukia NU",
+		section: "Parukian Tiers",
+
+		mod: 'parukia',
+		ruleset: ['Parukia BU'],
+		banlist: ['BU', 'Audinite', 'Cameruptite']
+	},
 
 	// BW2 Singles
 	///////////////////////////////////////////////////////////////////
