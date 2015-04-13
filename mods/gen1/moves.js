@@ -305,6 +305,7 @@ exports.BattleMovedex = {
 	dreameater: {
 		inherit: true,
 		basePower: 200,
+		drain: [1, 1],
 		type: "Ghost",
 		onTryHit: function (target) {
 			if (target.status !== 'psn' && target.status !== 'tox' && target.status !== 'slp') {
@@ -469,7 +470,7 @@ exports.BattleMovedex = {
 	leechlife: {
 		inherit: true,
 		basePower: 60,
-		drain: [1]
+		drain: [1, 1]
 	},
 	leechseed: {
 		inherit: true,
@@ -539,7 +540,7 @@ exports.BattleMovedex = {
 	},
 	megadrain: {
 		inherit: true,
-		drain: [1]
+		drain: [1, 1]
 	},
 	metronome: {
 		inherit: true,
