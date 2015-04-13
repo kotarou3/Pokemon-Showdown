@@ -469,7 +469,7 @@ exports.BattleMovedex = {
 	leechlife: {
 		inherit: true,
 		basePower: 60,
-		drain: [1]
+		drain: [9,10]
 	},
 	leechseed: {
 		inherit: true,
@@ -539,7 +539,7 @@ exports.BattleMovedex = {
 	},
 	megadrain: {
 		inherit: true,
-		drain: [1]
+		drain: [9,10]
 	},
 	metronome: {
 		inherit: true,
