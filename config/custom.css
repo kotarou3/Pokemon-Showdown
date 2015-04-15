@@ -3,21 +3,7 @@ body {
     background-color: #999CA1;
 }
 
-#header {
-    background: url("http://i.imgur.com/XkjakIM.png");
-}
-
-.ps-room.ps-room-light.scrollable {
-    color: #FFF;
-    background: rgba(44, 44, 44, 0.8);
-}
-
-.menugroup {
-    background: rgba(255, 255, 255, 0);
-}
-
 .battleform label {
-    background: url("http://i.imgur.com/yFWeHx0.png") no-repeat scroll left center transparent !important;
     padding: 4px;
     color: #FFF;
     text-align: left;
@@ -89,7 +75,7 @@ body {
 .mainmenufooter a {
     color: #101010;
     text-shadow: none;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .mainmenufooter a:hover {
@@ -120,7 +106,7 @@ body {
 }
 
 .select {
-    border-top-left-radius: 0;
+    border-top-left-radius: 0px;
 }
 
 .pm-log {
@@ -131,7 +117,7 @@ body {
 
 .pm-window h3 {
     border: 1px solid #000;
-    border-top-left-radius: 0;
+    border-top-left-radius: 0px;
     color: #E4E4E4;
     font-size: 14px;
     background: rgba(0, 0, 0, 0.9);
@@ -151,10 +137,11 @@ body {
 }
 
 .ps-popup {
+    background: url("http://i.imgur.com/rFSFXGg.png") repeat;
     color: #E4E4E4;
-    box-shadow: 1px 1px 0 #000 inset, -1px -1px 0 #101010 inset, 2px 2px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 0px #000 inset, -1px -1px 0px #101010 inset, 2px 2px 3px rgba(0, 0, 0, 0.2);
     border: 1px solid #000;
-    border-top-left-radius: 0;
+    border-top-left-radius: 0px;
 }
 
 .popupmenu button {
@@ -239,8 +226,8 @@ a.subtle {
     width: 640px;
     height: 360px;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     overflow: hidden;
     background: -50px -90px;
     opacity: 1 !important;
@@ -258,21 +245,21 @@ a.subtle {
 }
 
 .battle-log-add {
-    border-color: #000;
-    background: #000;
-    text-shadow: 1px 1px #000;
+    border-color: #000000;
+    background: #000000;
+    text-shadow: 1px 1px black;
 }
 
 .battle-log {
     background: url("http://i.imgur.com/rFSFXGg.png");
     color: #ecf0f1;
-    border: 0 solid #000;
+    border: 0px solid #000000;
 }
 
 .battle-log h2 {
     position: relative;
-    border: 0 solid #000;
-    background: #000;
+    border: 0px solid #000000;
+    background: #000000;
 }
 
 .battle-log h2:after {
@@ -298,7 +285,7 @@ a.subtle {
 
 .ps-room.ps-room-opaque {
     background: #202020;
-    color: #000;
+    color: BLACK;
 }
 
 .ps-room {
@@ -314,7 +301,7 @@ a.subtle {
 
 .ps-room .battle {
     top: 60px;
-    border-width: 0;
+    border-width: 0px;
 }
 
 .foehint {
@@ -323,7 +310,7 @@ a.subtle {
 }
 
 .battle {
-    border: 0 solid #AAA;
+    border: 0px solid #AAAAAA;
     width: 640px;
     height: 360px;
     overflow: visible;
@@ -342,9 +329,9 @@ a.subtle {
     width: 101px;
     height: 17px;
     font-size: 8pt;
-    font-weight: 700;
-    margin: 0;
-    padding: 0;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
     padding-top: 35px;
     border: 0;
     border-radius: 0;
@@ -361,14 +348,14 @@ a.subtle {
     height: 100px;
     width: 320px;
     background-color: rgba(255, 255, 255, 0);
-    border: 0 solid rgba(215, 215, 215, 0.5);
+    border: 0px solid rgba(215, 215, 215, 0.5);
     color: #FFF;
     background-image: url("http://i.imgur.com/Ttx9rhp.png");
-    background-position: 0 -35px;
+    background-position: 0px -35px;
 }
 
 .rightbar .trainer {
-    margin-top: 0;
+    margin-top: 0px;
     text-align: right;
 }
 
@@ -402,14 +389,14 @@ a.subtle {
     height: 100px;
     width: 320px;
     background-color: rgba(255, 255, 255, 0);
-    border: 0 solid rgba(215, 215, 215, 0.5);
-    color: #777;
+    border: 0px solid rgba(215, 215, 215, 0.5);
+    color: #777777;
     background-image: url("http://i.imgur.com/vinIupZ.png");
-    background-position: 0 -35px;
+    background-position: 0px -35px;
 }
 
 .leftbar .trainer {
-    margin-top: 0;
+    margin-top: 0px;
     text-align: left;
 }
 
@@ -442,8 +429,8 @@ a.subtle {
 
 .weather em small {
     font-size: 7pt;
-    color: #fff;
-    text-shadow: 1px 1px #000;
+    color: white;
+    text-shadow: 1px 1px black;
     position: absolute;
     left: 0;
     top: 85px;
@@ -480,8 +467,8 @@ a.subtle {
 }
 
 .switchmenu button {
-    color: #fff;
-    text-shadow: 1px 1px #000;
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 .switchmenu button:disabled {
@@ -494,8 +481,8 @@ a.subtle {
     border-radius: 0;
     border-width: 0;
     box-shadow: none;
-    color: #fff;
-    text-shadow: 1px 1px #000;
+    color: white;
+    text-shadow: 1px 1px black;
     font-size: 10pt;
     padding-top: 10px;
 }
@@ -508,7 +495,7 @@ a.subtle {
 
 .movemenu button small.type, .movemenu button small.pp {
     padding-top: 8px;
-    color: #fff;
+    color: white;
 }
 
 .movemenu button.type-Normal {
@@ -648,7 +635,7 @@ a.subtle {
 }
 
 .movemenu button.type-Fairy {
-    background: #ee99ac url("http://i.imgur.com/jFpUONv.png");
+    background: rgb(238, 153, 172) url("http://i.imgur.com/jFpUONv.png");
 }
 
 .movemenu button.type-Fairy:hover {
@@ -686,7 +673,7 @@ a.subtle {
     bottom: 0;
     left: 0;
     width: 300px;
-    border: 2px solid #000;
+    border: 2px solid #000000;
     background: url("http://i.imgur.com/w19OJXc.png");
     border-radius: 1px;
 }
@@ -694,12 +681,12 @@ a.subtle {
 #tooltipwrapper .tooltip h2 {
     padding: 2px 4px;
     margin: 0;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #000000;
     font-size: 10pt;
 }
 
 #tooltipwrapper .tooltip h2 small {
-    font-weight: 400;
+    font-weight: normal;
 }
 
 #tooltipwrapper .tooltip p {
@@ -709,11 +696,22 @@ a.subtle {
 }
 
 #tooltipwrapper .tooltip p.section {
-    border-top: 1px solid #000;
+    border-top: 1px solid #000000;
 }
 
 .message-error {
     color: #FF7373;
+}
+
+.utilichart:after, .infobox:after, .ladder:after, .ps-popup:after, #tooltipwrapper .tooltip:after {
+    display: block;
+    content: "";
+    background: url("http://i.imgur.com/wleX36y.png");
+    width: 45px;
+    height: 7px;
+    position: absolute;
+    left: -1px;
+    top: -7px;
 }
 
 .broadcast-red, .broadcast-blue, .broadcast-green {
@@ -726,13 +724,13 @@ a.subtle {
 }
 
 .broadcast-red {
-    background: none repeat scroll 0 0 #EC5C4D;
+    background: none repeat scroll 0% 0% #EC5C4D;
 }
 
 .broadcast-blue {
-    background: none repeat scroll 0 0 #8FA6B3;
+    background: none repeat scroll 0% 0% #8FA6B3;
 }
 
 .broadcast-green {
-    background: none repeat scroll 0 0 #9BB38F;
+    background: none repeat scroll 0% 0% #9BB38F;
 }
