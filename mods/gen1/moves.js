@@ -111,8 +111,10 @@ exports.BattleMovedex = {
 	},
 	bind: {
 		inherit: true,
+		type: "Bug",
 		basePower: 30,
-		pp: 10,
+		accuracy: 75,
+		pp: 5,
 		affectedByImmunities: false,
 		volatileStatus: 'partiallytrapped',
 		self: {
@@ -157,7 +159,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 70,
 		accuracy: 75,
-		pp: 5,
+		maxpp: 5,
 		volatileStatus: 'partiallytrapped',
 		self: {
 			volatileStatus: 'partialtrappinglock'
@@ -989,8 +991,8 @@ exports.BattleMovedex = {
 	},
 	wrap: {
 		inherit: true,
-		basePower: 30,
-		pp: 10,
+		basePower: 40,
+		pp: 5,
 		accuracy: 85,
 		affectedByImmunities: false,
 		volatileStatus: 'partiallytrapped',

@@ -134,7 +134,7 @@ exports.BattleScripts = {
 				} else {
 					if (pokemon.volatiles['partialtrappinglock'].locked !== target && target !== pokemon) {
 						// The target switched, therefor, we must re-roll the duration, damage, and accuracy.
-						var duration = [1, 2, 3][this.random(3)];
+						var duration = [2, 3][this.random(2)];
 						pokemon.volatiles['partialtrappinglock'].duration = duration;
 						pokemon.volatiles['partialtrappinglock'].locked = target;
 						// Duration reset thus partially trapped at 2 always.
@@ -146,8 +146,8 @@ exports.BattleScripts = {
 							if (pokemon.moveset[m].id === move.id) usedMovePos = m;
 						}
 						if (usedMovePos > -1 && pokemon.moveset[usedMovePos].pp === 0) {
-							// If we were on the middle of the 0 PP sequence, the PPs get reset to 63.
-							pokemon.moveset[usedMovePos].pp = 63;
+							// If we were on the middle of the 0 PP sequence, the PPs don't get reset in Violet.
+							pokemon.moveset[usedMovePos].pp = 0;
 						} else {
 							// Otherwise, plain reduct.
 							pokemon.deductPP(move, null, target);
