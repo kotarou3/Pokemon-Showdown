@@ -326,7 +326,7 @@ exports.BattleFormatsData = {
 	},
 	tentacruel: {
 		randomBattleMoves: ["swordsdance","blizzard","hyperbeam","hydropump","surf"],
-		tier: "UU"
+		tier: "Uber"
 	},
 	geodude: {
 		randomBattleMoves: ["bodyslam","earthquake","rockslide","explosion"],
