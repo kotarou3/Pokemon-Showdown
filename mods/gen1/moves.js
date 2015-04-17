@@ -159,6 +159,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 70,
 		accuracy: 75,
+		pp: 5,
 		maxpp: 5,
 		volatileStatus: 'partiallytrapped',
 		self: {
@@ -809,7 +810,8 @@ exports.BattleMovedex = {
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
-			this.boost({spa:1}, {spd:1}, attacker, attacker, this.getMove('solarbeam'));
+			this.boost({spa:1}, attacker, attacker, this.getMove('solarbeam'));
+			this.boost({spd:1}, attacker, attacker, this.getMove('solarbeam'));
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				this.add('-anim', attacker, move.name, defender);
 				attacker.removeVolatile(move.id);
