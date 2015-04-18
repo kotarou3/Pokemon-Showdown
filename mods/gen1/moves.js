@@ -740,6 +740,7 @@ exports.BattleMovedex = {
 	},
 	rockslide: {
 		inherit: true,
+		basePower: 85,
 		desc: "Deals damage to a foe.",
 		shortDesc: "Deals damage.",
 		secondary: false,
