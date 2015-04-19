@@ -315,6 +315,46 @@ exports.commands = {
 			"<a href=\"http://parukia.net/carelesswhispers.html\">http://parukia.net/carelesswhispers.html</a>"
 		);
 	},
+	
+	realrules: function () {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox(
+			"<b>These rules apply to all users on Parukia, including staff of any rank. They <u>will</u> be enforced.</b><br />" +
+			"<br />" +
+			"<b>Fights</b>" +
+			"If a fight starts, every user involved will be warned. If any user continues the fight after being told to take it to PMs or stop it, they will be muted. If they continue to argue with anyone after that, publicly or in PM, the following punishments in order will be delivered:" +
+			"-Hourmute" +
+			"-Lock for the day" +
+			"-If they start another fight on the same or a similar topic, lock for the week." +
+			"-If they persist in fighting with other users of the community or disrespecting the authority of the staff, they will be banned." +
+			"Staff members involved in fights will be warned and muted at first, and if they continue after, they'll be demoted by one rank. If that still doesn't stop them, they'll continue to be demoted one rank at a time until they either do stop or are a regular user and can have the regular rules applied to them. <b>Voice are not Staff but are punished under the Staff rules.</b>" +
+			"<b>The Golden Rules of fights:</b>" +
+			"<i>It does not matter who started the fight. What matters is who continues it.</i>" +
+			"<i>We cannot deliver the proper punishment for PM-Harassment if you don't report it.</i>" +
+			"<i>Trust in the staff to do what's best. Don't argue with a decision.</i>" +
+			"<i>If you get demoted, you won't get it back anytime soon until you prove you deserve it.</i>" +
+			"<br />" +
+			"<b>Promotion Requirements</b>" +
+			"+ Voice - 3 months of high activity, has to be on good terms with most of the community." +
+			"% Driver - Has to be consistently active, on good terms with most of the community, and also be online often, even if no one else is, to prevent spammers and trolls from lowering the quality of the chat via locking/muting them, as well as handling fights through the above guidelines." +
+			"@ Moderator - Same as driver, and a driver has to assist in important staff decisions to become a mod." +
+			"& Leader - 9 months or more of activity, has to have high authority (read: other users respect you) and help to make the server look better (be it CSS, graphics or quality conversations) and grow, and set a good example to other staff and members in general." +
+			"~ Administrator - Needs a lot of experience, know the active members, help the server to grow and make it better, represents our community on other servers and do the most work in important discussions related to staff, as well as being neutral and not choosing sides." +
+			"<b>Alternate usernames: Each staff member is allowed to have only 1 alt ranked alongside their regular account.</b>" +
+			"<br />" +
+			"<b>Rooms</b>" +
+			"New rooms are only added if and when the staff approve. We don't host leagues that won't be active." +
+			"# Room Owners - They control a room and nothing else. Room Owners are chosen when they ask for a room and set it up, and other Room Owners of the same room are chosen by the original Room Owner." +
+			"<br />" +
+			"<b>Custom Avatars</b>" +
+			"<i>Only available from September 2015 onwards!</i>" +
+			"Rules about how custom avatars work are explained here:" +
+			"<a href=\"http://parukia.net/community/threads/server-custom-avatars-thread.693/\">http://parukia.net/community/threads/server-custom-avatars-thread.693/</a>" +
+			"You must be registered on the forum to request a custom avatar." +
+			"<br />" +
+			"In the event that staff capable of handling something are not there, appropriate action and/or punishment will be given when they return."
+		);
+	},
 
 	smashhype: function () {
 		if (!this.canBroadcast()) return;
