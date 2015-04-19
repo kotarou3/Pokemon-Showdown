@@ -283,6 +283,13 @@ exports.BattleScripts = {
 		// Moves that target the user do not suffer from the 1/256 miss chance.
 		if (move.target === 'self' && accuracy !== true) accuracy++;
 
+		// 1/256 chance of missing always, no matter what. Besides the aforementioned exceptions.
+		if (accuracy !== true && this.random(256) >= accuracy) {
+			this.attrLastMove('[miss]');
+			this.add('-miss', pokemon);
+			damage = false;
+		}
+
 		// Check if the Pokémon is immune to this move.
 		if (move.affectedByImmunities && !target.runImmunity(move.type, true)) {
 			damage = false;
