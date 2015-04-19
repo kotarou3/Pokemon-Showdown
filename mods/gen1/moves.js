@@ -160,7 +160,7 @@ exports.BattleMovedex = {
 		basePower: 70,
 		accuracy: 75,
 		pp: 5,
-		maxpp: 5,
+		noPPBoosts: true,
 		volatileStatus: 'partiallytrapped',
 		self: {
 			volatileStatus: 'partialtrappinglock'
