@@ -307,6 +307,7 @@ exports.BattleMovedex = {
 	},
 	dreameater: {
 		inherit: true,
+		category: "Physical",
 		basePower: 200,
 		drain: [1, 1],
 		type: "Ghost",
