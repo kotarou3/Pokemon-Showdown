@@ -254,7 +254,7 @@ exports.BattleFormatsData = {
 	},
 	primeape: {
 		randomBattleMoves: ["submission","rockslide","bodyslam","hyperbeam","megakick"],
-		tier: "UU"
+		tier: "OU"
 	},
 	growlithe: {
 		randomBattleMoves: ["fireblast","bodyslam","mimic","reflect"],
@@ -277,7 +277,7 @@ exports.BattleFormatsData = {
 	poliwrath: {
 		randomBattleMoves: ["blizzard","hypnosis","surf","submission"],
 		essentialMove: "amnesia",
-		tier: "Uber"
+		tier: "OU"
 	},
 	abra: {
 		randomBattleMoves: ["psychic","thunderwave","reflect","seismictoss"],
