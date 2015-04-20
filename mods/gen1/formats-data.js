@@ -510,7 +510,7 @@ exports.BattleFormatsData = {
 	},
 	tangela: {
 		randomBattleMoves: ["sleeppowder","hyperbeam","stunspore","megadrain","growth","swordsdance","bodyslam"],
-		tier: "Uber"
+		tier: "OU"
 	},
 	kangaskhan: {
 		randomBattleMoves: ["bodyslam","hyperbeam","counter","earthquake","surf"],
