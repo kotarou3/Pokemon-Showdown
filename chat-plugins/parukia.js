@@ -230,6 +230,87 @@ exports.commands = {
 		}
 		this.sendReplyBox('<img ' + Object.keys(meme).map(function (attr) { return attr + '="' + meme[attr] + '"'; }).join(' ') + ' />');
 	},
+	
+	afk: function (target, room, user) {
+                this.parse('/away AFK', room, user);
+        },
+        smash: function (target, room, user) {
+                this.parse('/away SMASH', room, user);
+        },
+        smashing: function (target, room, user) {
+                this.parse('/away SMASHING', room, user);
+        },
+        busy: function (target, room, user) {
+                this.parse('/away BUSY', room, user);
+        },
+        work: function (target, room, user) {
+                this.parse('/away WORK', room, user);
+        },
+        working: function (target, room, user) {
+                this.parse('/away WORKING', room, user);
+        },
+        eating: function (target, room, user) {
+                this.parse('/away EATING', room, user);
+        },
+        gaming: function (target, room, user) {
+                this.parse('/away GAMING', room, user);
+        },
+        sleeping: function (target, room, user) {
+                this.parse('/away SLEEPING', room, user);
+        },
+        drunk: function (target, room, user) {
+                this.parse('/away DRUNK', room, user);
+        },
+        away: function (target, room, user) {
+                if (!user.isAway && user.name.length > 15) return this.sendReply('Your username is too long for any kind of use of this command.');
+ 
+                target = target ? target.replace(/[^a-zA-Z0-9]/g, '') : 'AWAY';
+                var newName = user.name;
+                var status = parseStatus(target, true);
+                var statusLen = status.length;
+                if (statusLen > 14) return this.sendReply('Your away status should be short and to-the-point, not a dissertation on why you are away.');
+ 
+                if (user.isAway) {
+                        var statusIdx = newName.search(/\s\-\s[\u24B6-\u24E9\u2460-\u2468\u24EA]+$/);
+                        if (statusIdx > -1) newName = newName.substr(0, statusIdx);
+                        if (user.name.substr(-statusLen) === status) return this.sendReply('Your away status is already set to "' + target + '".');
+                }
+ 
+                newName += ' - ' + status;
+                if (newName.length > 18) return this.sendReply('"' + target + '" is too long to use as your away status.');
+ 
+                // forcerename any possible impersonators
+                var targetUser = Users.getExact(user.userid + target);
+                if (targetUser && targetUser !== user && targetUser.name === user.name + ' - ' + target) {
+                        targetUser.resetName();
+                        targetUser.send('|nametaken||Your name conflicts with ' + user.name + (user.name.substr(-1) === 's' ? '\'' : '\'s') + ' new away status.');
+                }
+ 
+                if (user.can('lock', null, room)) this.add('|raw|-- <font color="' + Core.hashColor(user.userid) + '"><strong>' + Tools.escapeHTML(user.name) + '</strong></font> is now ' + target.toLowerCase() + '.');
+                user.forceRename(newName, user.registered);
+                user.updateIdentity();
+                user.isAway = true;
+        },
+ 
+        back: function (target, room, user) {
+                if (!user.isAway) return this.sendReply('You are not set as away.');
+                user.isAway = false;
+ 
+                var newName = user.name;
+                var statusIdx = newName.search(/\s\-\s[\u24B6-\u24E9\u2460-\u2468\u24EA]+$/);
+                if (statusIdx < 0) {
+                        user.isAway = false;
+                        if (user.can('lock', null, room)) this.add('|raw|-- <font color="' + Core.hashColor(user.userid) + '"><strong>' + Tools.escapeHTML(user.name) + '</strong></font> is no longer away.');
+                        return false;
+                }
+ 
+                var status = parseStatus(newName.substr(statusIdx + 3), false);
+                newName = newName.substr(0, statusIdx);
+                user.forceRename(newName, user.registered);
+                user.updateIdentity();
+                user.isAway = false;
+                if (user.can('lock', null, room)) this.add('|raw|-- <font color="' + Core.hashColor(user.userid) + '"><strong>' + Tools.escapeHTML(newName) + '</strong></font> is no longer ' + status.toLowerCase() + '.');
+        },
 
 	donate: function () {
 		if (!this.canBroadcast()) return;
