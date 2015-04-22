@@ -2,8 +2,10 @@
 // The rules that formats use are stored in data/rulesets.js
 
 exports.Formats = [
+	
 	// Violet Version
 	///////////////////////////////////////////////////////////////////
+	
 	{
 		name: "Violet Version",
 		section: "Violet Version",
@@ -12,11 +14,14 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
+	
 	// XY Singles
 	///////////////////////////////////////////////////////////////////
+	
 	{
 		name: "PP ORAS Ubers",
 		section: "ORAS Singles",
+		
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
 	},
