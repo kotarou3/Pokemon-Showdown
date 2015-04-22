@@ -4,6 +4,7 @@
 exports.Formats = [
 	// Violet Version
 	///////////////////////////////////////////////////////////////////
+
 	{
 		name: "Violet Version",
 		section: "Violet Version",
@@ -12,8 +13,10 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
+
 	// XY Singles
 	///////////////////////////////////////////////////////////////////
+
 	{
 		name: "PP ORAS Ubers",
 		section: "ORAS Singles",
