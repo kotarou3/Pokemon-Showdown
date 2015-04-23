@@ -283,8 +283,8 @@ exports.BattleScripts = {
 		// Moves that target the user do not suffer from the 1/256 miss chance.
 		if (move.target === 'self' && accuracy !== true) accuracy++;
 
-		// 1/256 chance of missing always, no matter what. Besides the aforementioned exceptions.
-		if (accuracy !== true && this.random(256) >= accuracy) {
+		// In RBY, there's a 1/256 chance of missing always, no matter what. Not in Violet.
+		if (accuracy !== true && this.random(256) > accuracy) {
 			this.attrLastMove('[miss]');
 			this.add('-miss', pokemon);
 			damage = false;
