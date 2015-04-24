@@ -112,7 +112,7 @@ exports.BattleMovedex = {
 	bind: {
 		inherit: true,
 		type: "Bug",
-		basePower: 30,
+		basePower: 40,
 		accuracy: 75,
 		pp: 5,
 		affectedByImmunities: false,
@@ -686,7 +686,8 @@ exports.BattleMovedex = {
 		target: "normal"
 	},
 	recover: {
-		inherit: true
+		inherit: true,
+		pp: 10
 	},
 	reflect: {
 		num: 115,
