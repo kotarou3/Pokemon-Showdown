@@ -134,12 +134,12 @@ exports.Formats = [
 	///////////////////////////////////////////////////////////////////
 
 	{
-		name: "[Gen 4] OU",
+		name: "[Gen 4] OU (Team Preview)",
 		section: "Past Generations",
 		column: 2,
 
 		mod: 'gen4',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
 	{
@@ -153,14 +153,14 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions
-		ruleset: ['Cancel Mod']
+		ruleset: ['Cancel Mod', 'Team Preview']
 	},
 	{
-		name: "[Gen 3] OU",
+		name: "[Gen 3] OU (Team Preview)",
 		section: "Past Generations",
 
 		mod: 'gen3',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Smeargle + Ingrain']
 	},
 	{
@@ -170,14 +170,14 @@ exports.Formats = [
 		mod: 'gen3',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview']
 	},
 	{
-		name: "[Gen 2] OU",
+		name: "[Gen 2] OU (Team Preview)",
 		section: "Past Generations",
 
 		mod: 'gen2',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
 	{
@@ -199,11 +199,11 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
-		name: "[Gen 1] OU",
+		name: "[Gen 1] OU (Weird)",
 		section: "Past Generations",
 
 		mod: 'gen1',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
 	{
@@ -248,12 +248,12 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "[Gen 1] Custom Game",
+		name: "[Gen 1] Custom Game (Weird)",
 		section: "Past Generations",
 
 		mod: 'gen1',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview']
 	}
 ];
