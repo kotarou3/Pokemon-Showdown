@@ -20,6 +20,7 @@ exports.Formats = [
 	{
 		name: "PP ORAS Ubers",
 		section: "ORAS Singles",
+
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
 	},
@@ -134,16 +135,16 @@ exports.Formats = [
 	///////////////////////////////////////////////////////////////////
 
 	{
-		name: "[Gen 4] OU",
+		name: "[Gen 4] OU (TP)",
 		section: "Past Generations",
 		column: 2,
 
 		mod: 'gen4',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
 	{
-		name: "[Gen 4] Custom Game",
+		name: "[Gen 4] Custom Game (TP)",
 		section: "Past Generations",
 
 		mod: 'gen4',
@@ -153,31 +154,31 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions
-		ruleset: ['Cancel Mod']
+		ruleset: ['Cancel Mod', 'Team Preview']
 	},
 	{
-		name: "[Gen 3] OU",
+		name: "[Gen 3] OU (TP)",
 		section: "Past Generations",
 
 		mod: 'gen3',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Smeargle + Ingrain']
 	},
 	{
-		name: "[Gen 3] Custom Game",
+		name: "[Gen 3] Custom Game (TP)",
 		section: "Past Generations",
 
 		mod: 'gen3',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview']
 	},
 	{
-		name: "[Gen 2] OU",
+		name: "[Gen 2] OU (TP)",
 		section: "Past Generations",
 
 		mod: 'gen2',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
 	{
@@ -190,20 +191,20 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard']
 	},
 	{
-		name: "[Gen 2] Custom Game",
+		name: "[Gen 2] Custom Game (TP)",
 		section: "Past Generations",
 
 		mod: 'gen2',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview']
 	},
 	{
-		name: "[Gen 1] OU",
+		name: "Test Violet",
 		section: "Past Generations",
 
 		mod: 'gen1',
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
 	{
