@@ -563,7 +563,7 @@ exports.BattleMovedex = {
 	skyattack: {
 		inherit: true,
 		basePower: 180
-	}
+	},
 	slam: {
 		inherit: true,
 		basePower: 85,
