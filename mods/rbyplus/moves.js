@@ -754,7 +754,7 @@ exports.BattleMovedex = {
 		secondary: {
 			chance: 30,
 			boosts: {
-				spa: -1
+				spa: -1,
 				spd: -1
 			}
 		}
