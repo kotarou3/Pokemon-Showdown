@@ -174,7 +174,7 @@ var lintData = [
 		jsHint: jsHintOptions.legacy,
 		jscs: jscsOptions.dataCompactArr
 	}, {
-		dirs: ['./data/pokedex.js', './mods/gen1/pokedex.js'],
+		dirs: ['./data/pokedex.js', './mods/gen1/pokedex.js', './mods/rbyplus/pokedex.js'],
 		jsHint: jsHintOptions.legacy,
 		jscs: jscsOptions.dataCompactAll
 	}, {
