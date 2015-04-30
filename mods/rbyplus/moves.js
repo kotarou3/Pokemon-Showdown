@@ -795,7 +795,7 @@ exports.BattleMovedex = {
 				this.add('-immune', target, '[msg]');
 				return null;
 			}
-		},
+		}
 	},
 	twineedle: {
 		inherit: true,
@@ -857,7 +857,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		type: "Flying",
 		basePower: 15,
-		accuracy: 70
+		accuracy: 70,
 		affectedByImmunities: false,
 		volatileStatus: 'partiallytrapped',
 		self: {
