@@ -124,7 +124,7 @@ exports.BattleMovedex = {
 	},
 	defensecurl: {
 		inherit: true,
-		heal: [1,2],
+		heal: [1, 2],
 		pp: 5
 	},
 	dig: {
@@ -453,7 +453,7 @@ exports.BattleMovedex = {
 	},
 	poisonsting: {
 		inherit: true,
-		secondary: false, 
+		secondary: false,
 		basePower: 35,
 		multihit: [2, 5]
 	},
@@ -533,7 +533,7 @@ exports.BattleMovedex = {
 		basePower: 80,
 		accuracy: 100,
 		pp: 5
-	}, 
+	},
 	scratch: {
 		inherit: true,
 		basePower: 85,
