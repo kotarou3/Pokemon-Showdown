@@ -220,7 +220,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 150,
 		accuracy: 85
-	}
+	},
 	focusenergy: {
 		inherit: true,
 		basePower: 180,
