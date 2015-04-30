@@ -525,7 +525,7 @@ exports.BattleMovedex = {
 	rockthrow: {
 		inherit: true,
 		basePower: 90,
-		accuracy, 100,
+		accuracy: 100,
 		pp: 10
 	},
 	rollingkick: {
