@@ -119,7 +119,7 @@ exports.BattleMovedex = {
 	cut: {
 		inherit: true,
 		critRatio: 2,
-		type: "Bug"
+		type: "Bug",
 		basePower: 55
 	},
 	defensecurl: {
