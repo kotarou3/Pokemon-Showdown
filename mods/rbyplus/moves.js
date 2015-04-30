@@ -290,7 +290,7 @@ exports.BattleMovedex = {
 	headbutt: {
 		inherit: true,
 		basePower: 100,
-		type: "Psychic",
+		type: "Psychic"
 	},
 	hijumpkick: {
 		inherit: true,
@@ -354,7 +354,7 @@ exports.BattleMovedex = {
 		accuracy: 95,
 		recoil: [25, 100],
 		pp: 5
-	}
+	},
 	kinesis: {
 		inherit: true,
 		accuracy: 90,
