@@ -631,7 +631,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		type: "Ground",
 		basePower: 80
-	}
+	},
 	strength: {
 		inherit: true,
 		type: "Fighting",
