@@ -227,7 +227,7 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
-		name: "Test",
+		name: "RBYPlus (beta)",
 		section: "Past Generations",
 
 		mod: 'rbyplus',
