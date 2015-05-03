@@ -115,7 +115,7 @@ exports.BattleMovedex = {
 		basePower: 40,
 		accuracy: 75,
 		pp: 5,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		volatileStatus: 'partiallytrapped',
 		self: {
 			volatileStatus: 'partialtrappinglock'
@@ -211,7 +211,7 @@ exports.BattleMovedex = {
 	},
 	counter: {
 		inherit: true,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		willCrit: false,
 		damageCallback: function (pokemon, target) {
 			// Counter mechanics on gen 1 might be hard to understand.
@@ -395,7 +395,7 @@ exports.BattleMovedex = {
 	},
 	glare: {
 		inherit: true,
-		affectedByImmunities: false
+		ignoreImmunity: true
 	},
 	growth: {
 		inherit: true,
@@ -430,15 +430,17 @@ exports.BattleMovedex = {
 						// Clears the status from the opponent
 						this.sides[i].active[j].clearStatus();
 					}
-					this.sides[i].removeSideCondition('lightscreen');
-					this.sides[i].removeSideCondition('reflect');
 					// Turns toxic to poison for user
 					if (hasTox && this.sides[i].active[j].id === source.id) {
 						this.sides[i].active[j].setStatus('psn');
 					}
 					// Clears volatile only from user
 					if (this.sides[i].active[j].id === source.id) {
-						this.sides[i].active[j].clearVolatile();
+						var volatiles = Object.keys(this.sides[i].active[j].volatiles);
+						for (var n = 0; n < volatiles.length; n++) {
+							this.sides[i].active[j].removeVolatile(volatiles[n]);
+							this.add('-end', this.sides[i].active[j], volatiles[n]);
+						}
 					}
 				}
 			}
@@ -467,9 +469,6 @@ exports.BattleMovedex = {
 		onMoveFail: function (target, source, move) {
 			this.damage(1, source);
 		}
-	},
-	karatechop: {
-		inherit: true
 	},
 	leechlife: {
 		inherit: true,
@@ -517,7 +516,7 @@ exports.BattleMovedex = {
 		name: "Light Screen",
 		pp: 30,
 		priority: 0,
-		secondary: false,
+		flags: {},
 		volatileStatus: 'lightscreen',
 		onTryHit: function (pokemon) {
 			if (pokemon.volatiles['lightscreen']) {
@@ -617,7 +616,7 @@ exports.BattleMovedex = {
 	},
 	nightshade: {
 		inherit: true,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		basePower: 1
 	},
 	petaldance: {
@@ -701,6 +700,7 @@ exports.BattleMovedex = {
 		name: "Reflect",
 		pp: 20,
 		priority: 0,
+		flags: {},
 		volatileStatus: 'reflect',
 		onTryHit: function (pokemon) {
 			if (pokemon.volatiles['reflect']) {
@@ -754,12 +754,12 @@ exports.BattleMovedex = {
 	},
 	sandattack: {
 		inherit: true,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		type: "Normal"
 	},
 	seismictoss: {
 		inherit: true,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		basePower: 1
 	},
 	selfdestruct: {
@@ -825,25 +825,8 @@ exports.BattleMovedex = {
 		}
 	},
 	struggle: {
-		num: 165,
-		accuracy: 100,
-		basePower: 50,
-		category: "Physical",
-		desc: "Deals typeless damage to one adjacent foe at random. If this move was successful, the user loses 1/2 of the damage dealt, rounded half up; the Ability Rock Head does not prevent this. This move can only be used if none of the user's known moves can be selected. Makes contact.",
-		shortDesc: "User loses half of the damage dealt as recoil.",
-		id: "struggle",
-		name: "Struggle",
-		pp: 1,
-		noPPBoosts: true,
-		priority: 0,
-		flags: {contact: 1, protect: 1},
-		beforeMoveCallback: function (pokemon) {
-			this.add('-activate', pokemon, 'move: Struggle');
-		},
-		recoil: [1, 2],
-		secondary: false,
-		target: "normal",
-		type: "Normal"
+		inherit: true,
+		onModifyMove: function () {}
 	},
 	submission: {
 		inherit: true,
@@ -938,7 +921,7 @@ exports.BattleMovedex = {
 	},
 	superfang: {
 		inherit: true,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		basePower: 1
 	},
 	thrash: {
@@ -999,7 +982,7 @@ exports.BattleMovedex = {
 		basePower: 40,
 		pp: 5,
 		accuracy: 85,
-		affectedByImmunities: false,
+		ignoreImmunity: true,
 		volatileStatus: 'partiallytrapped',
 		self: {
 			volatileStatus: 'partialtrappinglock'

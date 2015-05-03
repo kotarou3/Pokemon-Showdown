@@ -36,6 +36,7 @@ exports.Formats = [
 		name: "OU",
 		section: "ORAS Singles",
 
+		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite']
 	},
@@ -85,7 +86,8 @@ exports.Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod']
 	},
-	// BW2 Singles
+
+	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 	{
 		name: "RBYPlus (beta)",
@@ -94,6 +96,7 @@ exports.Formats = [
 		mod: 'rbyplus',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
+
 	// BW2 Singles
 	///////////////////////////////////////////////////////////////////
 
