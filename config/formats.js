@@ -85,7 +85,15 @@ exports.Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod']
 	},
+	// BW2 Singles
+	///////////////////////////////////////////////////////////////////
+	{
+		name: "RBYPlus (beta)",
+		section: "Other Mods",
 
+		mod: 'rbyplus',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+	},
 	// BW2 Singles
 	///////////////////////////////////////////////////////////////////
 
@@ -224,13 +232,6 @@ exports.Formats = [
 
 		mod: 'gen1',
 		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
-		name: "RBYPlus (beta)",
-		section: "Past Generations",
-
-		mod: 'rbyplus',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
