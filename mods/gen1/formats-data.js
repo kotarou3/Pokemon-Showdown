@@ -125,7 +125,7 @@ exports.BattleFormatsData = {
 	sandslash: {
 		randomBattleMoves: ["swordsdance","hyperbeam","bodyslam","rockslide","substitute"],
 		essentialMove: "earthquake",
-		tier: "UU"
+		tier: "Uber"
 	},
 	nidoranf: {
 		randomBattleMoves: ["bodyslam","doubleedge","leer","rest","substitute"],
@@ -225,7 +225,7 @@ exports.BattleFormatsData = {
 	dugtrio: {
 		randomBattleMoves: ["slash","sandattack","mimic","substitute"],
 		essentialMove: "earthquake",
-		tier: "Uber"
+		tier: "OU"
 	},
 	meowth: {
 		randomBattleMoves: ["bubblebeam","bodyslam","screech","thunderbolt","payday"],
