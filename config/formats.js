@@ -96,6 +96,14 @@ exports.Formats = [
 		mod: 'rbyplus',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
+	{
+		name: "Amazing 89",
+		section: "Other Mods",
+
+		mod: 'amazing',
+		searchShow: false,
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview']
+	},
 
 	// BW2 Singles
 	///////////////////////////////////////////////////////////////////
