@@ -102,7 +102,8 @@ exports.Formats = [
 
 		mod: 'amazing',
 		searchShow: false,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
 	},
 
 	// BW2 Singles
