@@ -6,7 +6,12 @@ body {
       font-family: helvetica,arial,sans-serif;
       background: url(http://i.imgur.com/H3NKycL.png) no-repeat right;
       background-color: #000;
+      border-color: #DDD;
       color: #FFF;
+}
+ 
+.ps-room.ps-room-opaque {
+      background: rgba(31, 35, 91, 0.9);
 }
  
 .header .logo {
@@ -74,7 +79,6 @@ body {
       text-shadow: none;
 }
  
- 
 .broadcast-red {
       background: none repeat scroll 0% 0% #EC5C4D;
       color: #000;
@@ -108,7 +112,7 @@ body {
       border: 1px solid #212121;
       background: #FFF;
 }
-   
+ 
 .pm-window h3:hover {
       color: #000;
       background: #FFF;
@@ -182,4 +186,150 @@ a.ilink:hover {
  
 .roomlist a.ilink small {
       color: #0093A2;
+}
+ 
+  /* Teambuilder CSS */
+ 
+.teamchartbox {
+      background: #000;
+      border-top: 1px solid #DDD;
+}
+ 
+.setchart, .setchart-nickname {
+      background: rgba(31, 35, 91, 0.8);
+      border-color: #9484FF;
+}
+ 
+.setchart label, .setchart-nickname label {
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+
+.utilichart .movenamecol, .utilichart .pokemonnamecol, .utilichart .namecol {
+      color: #FFF;
+      text-shadow: 0px 0px 2px #444;
+}
+ 
+.teambuilder-results .result a:hover, .teambuilder-results .firstresult a {
+      background: rgba(255, 255, 255, 0.3);
+}
+ 
+.utilichart .typecol img {
+      opacity: 0.75;
+}
+
+.utilichart .twoabilitycol, .utilichart .abilitycol, .utilichart .statcol, .utilichart .itemdesccol, .utilichart .abilitydesccol, .utilichart .movedesccol, .utilichart .labelcol, .utilichart .widelabelcol, .utilichart .pplabelcol {
+      color: #DDD;
+      text-shadow: 0px 0px 2px #444;
+}
+ 
+.utilichart .statcol em, .utilichart .bstcol em, .utilichart .labelcol em, .utilichart .widelabelcol em, .utilichart .pplabelcol em {
+      color: #BBB;
+      text-shadow: 0px 0px 2px #444;
+}
+ 
+.teambuilder-results h3, .teambuilder-results .utilichart h3 {
+      background: rgba(31, 35, 91, 0.8);
+      border-color: #9484FF;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.teambar button {
+      background: rgba(31, 35, 91, 0.8);
+      border-color: #DDD;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.teambar button:hover {
+      color: #191C49;
+      background: #9484FF;
+      border-color: #DDD;
+}
+ 
+.teambar button:disabled, .teambar button:disabled:hover, .teambar button:disabled:active {
+      background: rgba(31, 35, 91, 0.8);
+      border-color: #DDD;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.utilichart b {
+      color: #9484FF;
+}
+ 
+.setchart input, .setchart-nickname input, .statform input.inputform, .setdetails, .setstats {
+      background: rgba(31, 35, 91, 0.8);
+      border-color: #9484FF;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.setchart input:hover, .setchart-nickname input:hover, .statform input.inputform:hover, .setdetails:hover, .setstats:hover {
+      background: #42499F;
+      border-color: #9484FF;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.setchart input:focus, .setchart-nickname input:focus, .statform input.inputform:focus, .setdetails:focus, .setstats:focus {
+      background: #42499F;
+      border: 1px solid #9484FF;
+      color: #FFF;
+}
+ 
+.setmenu button {
+      color: #DDD;
+      text-shadow: 0px 0px 2px #444;
+}
+ 
+.setmenu button:hover {
+      background: rgba(255, 255, 255, 0.3);
+}
+ 
+.setstats .statrow-head em {
+      color: #9484FF;
+}
+ 
+.majorbutton, .teambuilder-clipboard-button-right, .teambuilder-clipboard-button-left {
+      background: rgba(31, 35, 91, 0.8);
+      border: 1px solid #9484FF;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.majorbutton:hover, .teambuilder-clipboard-button-right:hover, .teambuilder-clipboard-button-left:hover {
+      background: rgba(31, 35, 91, 0.95);
+      border: 1px solid #C0B6FF;
+      color: #C0B6FF;
+}
+ 
+.teambuilder-clipboard-data, .teambuilder-clipboard-data:hover {
+      background: rgba(31, 35, 91, 0.8);
+      border: 1px solid #9484FF;
+      color: #9484FF;
+      text-shadow: none;
+      font-family: helvetica,arial,sans-serif;
+}
+ 
+.teambuilder-clipboard-container {
+      border-color: #DDD;
+}
+ 
+.jslider .jslider-label {
+      color: #FFF;
+      text-shadow: 0px 0px #222;
+      opacity: 0.7;
+}
+ 
+.jslider .jslider-value {
+      color: #000;
 }
