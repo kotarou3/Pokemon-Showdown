@@ -55,6 +55,6 @@ exports.BattleMovedex = {
 				def: 1
 			}
 		}
-	},
+	}
 };
 	
