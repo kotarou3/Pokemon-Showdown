@@ -94,7 +94,7 @@ exports.Formats = [
 		section: "Other Mods",
 
 		mod: 'rbyplus',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
 		name: "Amazing 89",
@@ -102,7 +102,7 @@ exports.Formats = [
 
 		mod: 'amazing',
 		searchShow: false,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
 	},
 
@@ -219,14 +219,6 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
-		name: "[Gen 1] OU",
-		section: "Past Generations",
-
-		mod: 'gen1',
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber']
-	},
-	{
 		name: "[Gen 1] OU (tradeback)",
 		section: "Past Generations",
 
@@ -252,7 +244,7 @@ exports.Formats = [
 
 		mod: 'stadium',
 		searchShow: false,
-		ruleset: ['Pokemon', 'Standard'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber',
 			'Nidoking + Fury Attack + Thrash', 'Exeggutor + Poison Powder + Stomp', 'Exeggutor + Sleep Powder + Stomp',
 			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember'
