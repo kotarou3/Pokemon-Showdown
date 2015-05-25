@@ -1,5 +1,5 @@
 exports.BattleFormatsData = {
-	nidoqueen: {
+	nidoking: {
 		inherit: true,
 		tier: "OU"
 	},
@@ -27,7 +27,7 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "OU"
 	},
-	rhydon: {
+	golem: {
 		inherit: true,
 		tier: "OU"
 	},
@@ -36,10 +36,6 @@ exports.BattleFormatsData = {
 		tier: "OU"
 	},
 	jynx: {
-		inherit: true,
-		tier: "OU"
-	},
-	pinsir: {
 		inherit: true,
 		tier: "OU"
 	},
