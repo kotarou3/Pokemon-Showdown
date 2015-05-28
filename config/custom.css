@@ -1,5 +1,6 @@
 body {
     background-image: url(http://images.forwallpaper.com/files/images/c/c75d/c75d34d8/319146/circles-color-background.jpg) !important;
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .header .logo {
@@ -24,10 +25,21 @@ body {
     background-color: lime;
 }
 
-.button {
+.menugroup .button {
     background-color: black;
+    border-color: aqua;
 }
 
-.button .big {
+.menugroup .button.big {
     background-color: black;
+    border-color: aqua;
+}
+    
+.pm-log {
+    background-color: white;
+}
+
+.pm-window .pm-window-ktsuya .pm-log {
+    background-color: black;
+    color: white;
 }
