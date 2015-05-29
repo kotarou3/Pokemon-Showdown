@@ -12,7 +12,7 @@ exports.BattleMovedex = {
 					if (typeMod >= 2) factor = 4;
 					if (typeMod === -1) factor = 16;
 					if (typeMod <= -2) factor = 32;
-					var damage = this.damage(pokemon.maxhp/factor);
+					var damage = this.damage(pokemon.maxhp / factor);
 				}
 			}
 	}
