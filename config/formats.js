@@ -105,6 +105,15 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
 	},
+	{
+		name: "Dark Chocolate",
+		section: "Other Mods",
+
+		mod: 'darkchocolate',
+		searchShow: false,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Soul Dew']
+	},
 
 	// BW2 Singles
 	///////////////////////////////////////////////////////////////////
