@@ -2,10 +2,10 @@ exports.BattleMovedex = {
 	stealthrock: {
 		inherit: true,
 		effect: {
-				onStart: function(side) {
-					this.add('-sidestart',side,'move: Stealth Rock');
+				onStart: function (side) {
+					this.add('-sidestart', side, 'move: Stealth Rock');
 				},
-				onSwitchIn: function(pokemon) {
+				onSwitchIn: function (pokemon) {
 					var typeMod = this.getEffectiveness('Rock', pokemon);
 					var factor = 8;
 					if (typeMod == 1) factor = 6;
