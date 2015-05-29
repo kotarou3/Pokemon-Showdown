@@ -87,7 +87,7 @@ exports.Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod']
 	},
 
-	// Other Metagames
+	// Other Mods
 	///////////////////////////////////////////////////////////////////
 	{
 		name: "RBYPlus (beta)",
@@ -104,6 +104,15 @@ exports.Formats = [
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
+	},
+	{
+		name: "Dark Chocolate",
+		section: "Other Mods",
+
+		mod: 'darkchocolate',
+		searchShow: false,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Soul Dew']
 	},
 
 	// BW2 Singles
