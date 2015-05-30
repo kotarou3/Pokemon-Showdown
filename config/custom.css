@@ -26,20 +26,15 @@ body {
 }
 
 .menugroup .button {
-    background-color: black;
+    background: black;
     border-color: aqua;
 }
 
 .menugroup .button.big {
-    background-color: black;
+    background: black;
     border-color: aqua;
 }
     
 .pm-log {
     background-color: white;
-}
-
-.pm-window .pm-window-ktsuya .pm-log {
-    background-color: black;
-    color: white;
 }
