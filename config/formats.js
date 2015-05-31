@@ -24,6 +24,12 @@ exports.Formats = [
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
 	},
 	{
+		name: "PP ORAS Ubers (Geomancy)",
+		section: "ORAS Singles",
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
+		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag']
+	},
+	{
 		name: "Unrated Random Battle",
 		section: "ORAS Singles",
 
