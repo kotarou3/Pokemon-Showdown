@@ -6,5 +6,35 @@ exports.BattleAbilities = {
 				this.damage(source.maxhp / 4, source, target);
 			}
 		}
+	},
+	"forecast": {
+		inherit: true,
+		onUpdate: function (pokemon) {
+			if (pokemon.baseTemplate.species !== 'Altaria' || pokemon.transformed) return;
+			var forme = null;
+			switch (this.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				if (pokemon.template.speciesid !== 'altariasunray') forme = 'Altaria-Sunray';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				if (pokemon.template.speciesid !== 'altarianimbus') forme = 'Altaria-Nimbus';
+				break;
+			case 'hail':
+				if (pokemon.template.speciesid !== 'altariaflurry') forme = 'Altaria-Flurry';
+				break;
+			case 'sandstorm':
+				if (pokemon.template.speciesid !== 'altariadustbowl') forme = 'Altaria-Dustbowl';
+				break;
+			default:
+				if (pokemon.template.speciesid !== 'altaria') forme = 'Altaria';
+				break;
+			}
+			if (pokemon.isActive && forme) {
+				pokemon.formeChange(forme);
+				this.add('-formechange', pokemon, forme, '[msg]');
+			}
+		}
 	}
 };
