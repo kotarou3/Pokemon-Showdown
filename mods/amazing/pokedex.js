@@ -4,13 +4,13 @@ exports.BattlePokedex = {
 		baseStats: {hp:95,atk:70,def:105,spa:70,spd:135,spe:80},
 		abilities: {0:"Forecast"}
 	},
-	altariasunray: { 
+	altariasunray: {
 		num: 334,
 		species: "Altaria-Sunray",
 		baseSpecies: "Altaria",
 		forme: "Sunray",
 		formeLetter: "S",
-		types: ["Dragon", "Fire"],
+		types: ["Dragon","Fire"],
 		baseStats: {hp:95,atk:90,def:105,spa:115,spd:135,spe:90},
 		abilities: {0:"Forecast"},
 		heightm: 1.1,
@@ -20,13 +20,13 @@ exports.BattlePokedex = {
 		evoLevel: 35,
 		eggGroups: ["Flying","Dragon"]
 	},
-	altarianimbus: { 
+	altarianimbus: {
 		num: 334,
 		species: "Altaria-Nimbus",
 		baseSpecies: "Altaria",
 		forme: "Nimbus",
 		formeLetter: "N",
-		types: ["Dragon", "Water"],
+		types: ["Dragon","Water"],
 		baseStats: {hp:95,atk:90,def:105,spa:105,spd:135,spe:100},
 		abilities: {0:"Forecast"},
 		heightm: 1.1,
@@ -36,13 +36,13 @@ exports.BattlePokedex = {
 		evoLevel: 35,
 		eggGroups: ["Flying","Dragon"]
 	},
-	altariaflurry: { 
+	altariaflurry: {
 		num: 334,
 		species: "Altaria-Flurry",
 		baseSpecies: "Altaria",
 		forme: "Flurry",
 		formeLetter: "F",
-		types: ["Dragon", "Ice"],
+		types: ["Dragon","Ice"],
 		baseStats: {hp:95,atk:70,def:105,spa:120,spd:135,spe:115},
 		abilities: {0:"Forecast"},
 		heightm: 1.1,
@@ -52,13 +52,13 @@ exports.BattlePokedex = {
 		evoLevel: 35,
 		eggGroups: ["Flying","Dragon"]
 	},
-	altariadustbowl: { 
+	altariadustbowl: {
 		num: 334,
 		species: "Altaria-Dustbowl",
 		baseSpecies: "Altaria",
 		forme: "Dustbowl",
 		formeLetter: "D",
-		types: ["Dragon", "Rock"],
+		types: ["Dragon","Rock"],
 		baseStats: {hp:95,atk:70,def:115,spa:70,spd:135,spe:80},
 		abilities: {0:"Forecast"},
 		heightm: 1.1,
