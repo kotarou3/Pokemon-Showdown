@@ -36,5 +36,5 @@ exports.BattleAbilities = {
 				this.add('-formechange', pokemon, forme, '[msg]');
 			}
 		}
-	},
+	}
 };
