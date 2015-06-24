@@ -1,9 +1,13 @@
 exports.BattleFormatsData = {
-	nidoqueen: {
+	nidoking: {
 		inherit: true,
 		tier: "OU"
 	},
 	crobat: {
+		inherit: true,
+		tier: "OU"
+	},
+	golem: {
 		inherit: true,
 		tier: "OU"
 	},
@@ -27,19 +31,11 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "OU"
 	},
-	rhydon: {
-		inherit: true,
-		tier: "OU"
-	},
 	scizor: {
 		inherit: true,
 		tier: "OU"
 	},
 	jynx: {
-		inherit: true,
-		tier: "OU"
-	},
-	pinsir: {
 		inherit: true,
 		tier: "OU"
 	},

@@ -102,7 +102,7 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
-		name: "Amazing 89",
+		name: "Amazing 88",
 		section: "Other Mods",
 
 		mod: 'amazing',
