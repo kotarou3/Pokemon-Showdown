@@ -42,7 +42,6 @@ exports.Formats = [
 		name: "OU",
 		section: "ORAS Singles",
 
-		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite']
 	},
@@ -191,6 +190,20 @@ exports.Formats = [
 		ruleset: ['Cancel Mod']
 	},
 	{
+		name: "[Gen 4] Doubles Custom Game",
+		section: 'Past Generations',
+
+		mod: 'gen4',
+		gameType: 'doubles',
+		searchShow: false,
+		canUseRandomTeam: true,
+		debug: true,
+		maxLevel: 9999,
+		defaultLevel: 100,
+		// no restrictions
+		ruleset: ['Cancel Mod']
+	},
+	{
 		name: "[Gen 3] OU",
 		section: "Past Generations",
 
@@ -232,6 +245,15 @@ exports.Formats = [
 		searchShow: false,
 		debug: true,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+	},
+	{
+		name: "[Gen 1] Ubers",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		searchShow: false,
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: []
 	},
 	{
 		name: "[Gen 1] OU (tradeback)",
