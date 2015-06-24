@@ -1,12 +1,13 @@
 var elo = require('elo-rank')();
 
 function ratingToName(rating) {
-	if (rating > 1500)
+	if (rating > 1500) {
 		return "Gold";
-	else if (rating > 1200)
+	} else if (rating > 1200) {
 		return "Silver";
-	else
+	} else {
 		return "Bronze";
+	}
 }
 
 var getClan, War;
@@ -297,9 +298,11 @@ patchRooms();
 
 var getClans = exports.getClans = function () {
 	var results = [];
-	for (var r in Rooms.rooms)
-		if (Rooms.rooms[r] instanceof ClanRoom)
+	for (var r in Rooms.rooms) {
+		if (Rooms.rooms[r] instanceof ClanRoom) {
 			results.push(Rooms.rooms[r]);
+		}
+	}
 	return results;
 };
 var getClan = exports.get = function (name) {
@@ -309,9 +312,11 @@ var getClan = exports.get = function (name) {
 var getClansFromMember = exports.getFromMember = function (user) {
 	var results = [];
 	var userId = toId(user);
-	for (var r in Rooms.rooms)
-		if (Rooms.rooms[r] instanceof ClanRoom && Rooms.rooms[r].auth && Rooms.rooms[r].auth[userId])
+	for (var r in Rooms.rooms) {
+		if (Rooms.rooms[r] instanceof ClanRoom && Rooms.rooms[r].auth && Rooms.rooms[r].auth[userId]) {
 			results.push(Rooms.rooms[r]);
+		}
+	}
 	return results;
 };
 
