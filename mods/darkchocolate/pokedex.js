@@ -19,15 +19,15 @@ exports.BattlePokedex = {
 	},
 	glaceon: {
 		inherit: true,
-		abilities: {DW:"Regenerator"}
+		abilities: {H:"Regenerator"}
 	},
 	empoleon: {
 		inherit: true,
-		abilities: {DW:"Snow Cloak"}
+		abilities: {H:"Snow Cloak"}
 	},
 	moltres: {
 		inherit: true,
-		abilities: {DW:"Regenerator"}
+		abilities: {H:"Regenerator"}
 	},
 	electivire: {
 		inherit: true,
