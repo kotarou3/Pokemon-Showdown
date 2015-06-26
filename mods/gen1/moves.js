@@ -476,7 +476,6 @@ exports.BattleMovedex = {
 	},
 	leechlife: {
 		inherit: true,
-		critRatio: 2,
 		basePower: 60,
 		drain: [1, 1]
 	},
@@ -778,10 +777,10 @@ exports.BattleMovedex = {
 			return null;
 		}
 	},
-	slash: {
+	skyattack: {
 		inherit: true,
 		secondary: false,
-		critRatio: 2,
+		critRatio: 1,
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
