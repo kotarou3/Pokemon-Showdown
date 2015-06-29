@@ -95,14 +95,14 @@ exports.Formats = [
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 	{
-		name: "RBYPlus (beta)",
+		name: "RBYPlus",
 		section: "Other Mods",
 
 		mod: 'rbyplus',
 		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
-		name: "Amazing 88",
+		name: "Amazing 87",
 		section: "Other Mods",
 
 		mod: 'amazing',
