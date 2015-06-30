@@ -73,8 +73,7 @@ exports.BattlePokedex = {
 		baseStats: {hp:45,atk:100,def:150,spa:95,spd:90,spe:70}
 	},
 	ampharos: {
-		inherit: true,
-		types: ["Electric","Fighting"]
+		inherit: true
 	},
 	octillery: {
 		inherit: true,
@@ -97,5 +96,46 @@ exports.BattlePokedex = {
 	volbeat: {
 		inherit: true,
 		types: ["Bug","Electric"]
+	},
+	piloswine: {
+		inherit: true,
+		baseStats: {hp:100,atk:110,def:130,spa:95,spd:95,spe:50}
+	},
+	hariyama: {
+		inherit: true,
+		baseStats: {hp:154,atk:120,def:70,spa:40,spd:70,spe:50}
+	},
+	pelipper: {
+		inherit: true,
+		baseStats: {hp:100,atk:50,def:130,spa:85,spd:70,spe:65},
+		abilities: {0:"Thick Fat"}
+	},
+	ludicolo: {
+		inherit: true,
+		baseStats: {hp:80,atk:70,def:70,spa:100,spd:110,spe:70}
+	},
+	sceptile: {
+		inherit: true,
+		baseStats: {hp:70,atk:95,def:65,spa:115,spd:85,spe:120}
+	},
+	torkoal: {
+		inherit: true,
+		baseStats: {hp:80,atk:85,def:180,spa:85,spd:70,spe:20}
+	},
+	tropius: {
+		inherit: true,
+		baseStats: {hp:109,atk:136,def:103,spa:72,spd:107,spe:51}
+	},
+	gligar: {
+		inherit: true,
+		baseStats: {hp:75,atk:75,def:125,spa:45,spd:75,spe:85}
+	},
+	sneasel: {
+		inherit: true,
+		baseStats: {hp:70,atk:95,def:65,spa:75,spd:85,spe:125}
+	},
+	sharpedo: {
+		inherit: true,
+		baseStats: {hp:95,atk:130,def:40,spa:105,spd:40,spe:95}
 	}
 };
