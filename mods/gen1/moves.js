@@ -474,6 +474,10 @@ exports.BattleMovedex = {
 			this.damage(1, source);
 		}
 	},
+	karatechop: {
+		inherit: true,
+		critRatio: 2
+	},
 	leechlife: {
 		inherit: true,
 		basePower: 60,
@@ -795,6 +799,10 @@ exports.BattleMovedex = {
 			attacker.addVolatile('twoturnmove', defender);
 			return null;
 		}
+	},
+	slash: {
+		inherit: true,
+		critRatio: 2
 	},
 	softboiled: {
 		inherit: true
