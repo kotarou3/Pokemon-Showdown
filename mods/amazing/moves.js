@@ -7,6 +7,54 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 30
 	},
+	disable: {
+		accuracy: 100,
+		category: "Status",
+		id: "disable",
+		isViable: true,
+		name: "Disable",
+		pp: 3,
+		noPPBoosts: true,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		onHit: function (target, source) {
+			if (!target.moves.length) return false;
+			var sideCondition = target.side.sideConditions['disable'];
+			if (sideCondition) {
+				target.side.removeSideCondition('disable');
+			}
+			target.side.addSideCondition('disable', target);
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart: function (side, target) {
+				var moves = target.moves;
+				var moveId = moves[this.random(moves.length)];
+				if (!moveId) return false;
+				var move = this.getMove(moveId);
+				this.add('-start', target, 'Disable', move.name);
+				this.effectData.move = move.id;
+				return;
+			},
+			onBeforeMovePriority: 7,
+			onBeforeMove: function (attacker, defender, move) {
+				if (this.effectData.source !== attacker) return;
+				if (move.id === this.effectData.move) {
+					this.add('cant', attacker, 'Disable', move);
+					return false;
+				}
+			},
+			onDisableMove: function (pokemon) {
+				if (this.effectData.source !== pokemon) return;
+				var moves = pokemon.moveset;
+				for (var i = 0; i < moves.length; i++) {
+					if (moves[i].id === this.effectData.move) {
+						pokemon.disableMove(moves[i].id);
+					}
+				}
+			}
+		}
+	},
 	doomdesire: {
 		inherit: true,
 		accuracy: 100,
