@@ -53,7 +53,7 @@ exports.BattleFormatsData = {
 	},
 	ariados: {
 		inherit: true,
-		tier: "OU"
+		tier: "NU"
 	},
 	lanturn: {
 		inherit: true,
@@ -65,7 +65,7 @@ exports.BattleFormatsData = {
 	},
 	ampharos: {
 		inherit: true,
-		tier: "OU"
+		tier: "NU"
 	},
 	jumpluff: {
 		inherit: true,
@@ -89,7 +89,7 @@ exports.BattleFormatsData = {
 	},
 	shuckle: {
 		inherit: true,
-		tier: "OU"
+		tier: "NU"
 	},
 	sneasel: {
 		inherit: true,
@@ -137,7 +137,7 @@ exports.BattleFormatsData = {
 	},
 	surskit: {
 		inherit: true,
-		tier: "OU"
+		tier: "NU"
 	},
 	breloom: {
 		inherit: true,
