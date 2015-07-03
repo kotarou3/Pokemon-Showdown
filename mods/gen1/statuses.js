@@ -243,7 +243,11 @@ exports.BattleStatuses = {
 		// Outrage, Thrash, Petal Dance...
 		inherit: true,
 		durationCallback: function () {
-			return this.random(3, 5);
+			return this.random(2, 3);
+		},
+		onEnd: function (target) {
+			// Confusion begins even if already confused
+			this.boost({spe:-1});
 		}
 	},
 	futuremove: {

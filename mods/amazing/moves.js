@@ -7,6 +7,10 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 30
 	},
+	crushclaw: {
+		inherit: true,
+		breaksProtect: true
+	},
 	disable: {
 		accuracy: 100,
 		category: "Status",
@@ -63,6 +67,10 @@ exports.BattleMovedex = {
 	furycutter: {
 		inherit: true,
 		basePower: 40
+	},
+	furyswipes: {
+		inherit: true,
+		accuracy: 100
 	},
 	leechlife: {
 		inherit: true,
