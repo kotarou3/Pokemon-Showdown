@@ -30,15 +30,6 @@ exports.Formats = [
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag']
 	},
 	{
-		name: "Unrated Random Battle",
-		section: "ORAS Singles",
-
-		team: 'random',
-		challengeShow: false,
-		rated: false,
-		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
 		name: "OU",
 		section: "ORAS Singles",
 
@@ -58,40 +49,6 @@ exports.Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod']
 	},
 
-	// XY Doubles
-	///////////////////////////////////////////////////////////////////
-
-	{
-		name: "Doubles Custom Game",
-		section: "ORAS Doubles",
-
-		gameType: 'doubles',
-		searchShow: false,
-		canUseRandomTeam: true,
-		maxLevel: 9999,
-		defaultLevel: 100,
-		debug: true,
-		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
-	},
-
-	// XY Triples
-	///////////////////////////////////////////////////////////////////
-
-	{
-		name: "Triples Custom Game",
-		section: "ORAS Triples",
-
-		gameType: 'triples',
-		searchShow: false,
-		canUseRandomTeam: true,
-		maxLevel: 9999,
-		defaultLevel: 100,
-		debug: true,
-		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
-	},
-
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 	{
@@ -102,7 +59,7 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
-		name: "Amazing 87",
+		name: "Amazing 83",
 		section: "Other Mods",
 
 		mod: 'amazing',
@@ -146,24 +103,6 @@ exports.Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod']
 	},
 
-	// BW2 Doubles
-	///////////////////////////////////////////////////////////////////
-
-	{
-		name: "[Gen 5] Doubles Custom Game",
-		section: 'BW2 Doubles',
-
-		mod: 'gen5',
-		gameType: 'doubles',
-		searchShow: false,
-		canUseRandomTeam: true,
-		debug: true,
-		maxLevel: 9999,
-		defaultLevel: 100,
-		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
-	},
-
 	// Past Generations
 	///////////////////////////////////////////////////////////////////
 
@@ -181,20 +120,6 @@ exports.Formats = [
 		section: "Past Generations",
 
 		mod: 'gen4',
-		searchShow: false,
-		canUseRandomTeam: true,
-		debug: true,
-		maxLevel: 9999,
-		defaultLevel: 100,
-		// no restrictions
-		ruleset: ['Cancel Mod']
-	},
-	{
-		name: "[Gen 4] Doubles Custom Game",
-		section: 'Past Generations',
-
-		mod: 'gen4',
-		gameType: 'doubles',
 		searchShow: false,
 		canUseRandomTeam: true,
 		debug: true,
@@ -227,73 +152,5 @@ exports.Formats = [
 		mod: 'gen2',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
-	},
-	{
-		name: "[Gen 2] Random Battle",
-		section: "Past Generations",
-
-		mod: 'gen2',
-		searchShow: false,
-		team: 'random',
-		ruleset: ['Pokemon', 'Standard']
-	},
-	{
-		name: "[Gen 2] Custom Game",
-		section: "Past Generations",
-
-		mod: 'gen2',
-		searchShow: false,
-		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
-		name: "[Gen 1] Ubers",
-		section: "Past Generations",
-
-		mod: 'gen1',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard'],
-		banlist: []
-	},
-	{
-		name: "[Gen 1] OU (tradeback)",
-		section: "Past Generations",
-
-		mod: 'gen1',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Cancel Mod'],
-		banlist: ['Uber', 'Unreleased', 'Illegal',
-			'Nidoking + Fury Attack + Thrash', 'Exeggutor + Poison Powder + Stomp', 'Exeggutor + Sleep Powder + Stomp',
-			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember'
-		]
-	},
-	{
-		name: "[Gen 1] Random Battle",
-		section: "Past Generations",
-
-		mod: 'gen1',
-		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
-		name: "[Gen 1] Stadium",
-		section: "Past Generations",
-
-		mod: 'stadium',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber',
-			'Nidoking + Fury Attack + Thrash', 'Exeggutor + Poison Powder + Stomp', 'Exeggutor + Sleep Powder + Stomp',
-			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember'
-		]
-	},
-	{
-		name: "[Gen 1] Custom Game",
-		section: "Past Generations",
-
-		mod: 'gen1',
-		searchShow: false,
-		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
 	}
 ];
