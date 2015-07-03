@@ -184,7 +184,7 @@ exports.BattleMovedex = {
 				this.add('-immune', target, '[msg]');
 				return null;
 			}
-		}	
+		}
 	},
 	drillpeck: {
 		inherit: true,
