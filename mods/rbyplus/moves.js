@@ -37,7 +37,9 @@ exports.BattleMovedex = {
 		inherit: true,
 		type: "Grass",
 		basePower: 200,
-		selfdestruct: true
+		selfdestruct: true,
+		multihit: false,
+		category: "Special"
 	},
 	barrier: {
 		inherit: true,
@@ -50,6 +52,7 @@ exports.BattleMovedex = {
 	bind: {
 		inherit: true,
 		basePower: 15,
+		accuracy: 70,
 		type: "Rock"
 	},
 	bite: {
@@ -92,7 +95,9 @@ exports.BattleMovedex = {
 	},
 	clamp: {
 		inherit: true,
-		basePower: 15
+		basePower: 15,
+		accuracy: 70,
+		noPPBoosts: false
 	},
 	cometpunch: {
 		inherit: true,
@@ -109,7 +114,8 @@ exports.BattleMovedex = {
 	constrict: {
 		inherit: true,
 		category: "Status",
-		status: 'par'
+		status: 'par',
+		accuracy: 90
 	},
 	crabhammer: {
 		inherit: true,
@@ -158,7 +164,8 @@ exports.BattleMovedex = {
 		inherit: true,
 		type: "Psychic",
 		basePower: 60,
-		multihit: 2
+		multihit: 2,
+		category: "Special"
 	},
 	dragonrage: {
 		inherit: true,
@@ -168,9 +175,16 @@ exports.BattleMovedex = {
 	},
 	dreameater: {
 		inherit: true,
+		category: "Special",
 		basePower: 250,
 		type: "Psychic",
-		drain: [1, 2]
+		drain: [1, 2],
+		onTryHit: function (target) {
+			if (target.status !== 'slp') {
+				this.add('-immune', target, '[msg]');
+				return null;
+			}
+		}	
 	},
 	drillpeck: {
 		inherit: true,
@@ -181,6 +195,7 @@ exports.BattleMovedex = {
 		basePower: 100,
 		type: "Fire",
 		pp: 5,
+		category: "Special",
 		secondary: {
 			chance: 30,
 			status: 'brn'
@@ -224,6 +239,7 @@ exports.BattleMovedex = {
 	focusenergy: {
 		inherit: true,
 		basePower: 180,
+		category: "Physical",
 		type: "Bug",
 		isTwoTurnMove: true,
 		onTry: function (attacker, defender, move) {
@@ -296,22 +312,17 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 150,
 		accuracy: 85,
-		effect: {
-			duration: 2,
-			onLockMove: 'hijumpkick',
-			onAccuracy: function (accuracy, target, source, move) {
-				if (move.id === 'swift') return true;
-				this.add('-message', 'The foe ' + target.name + ' can\'t be hit while flying!');
-				return null;
-			},
-			onDamage: function (damage, target, source, move) {
-				if (!move || move.effectType !== 'Move') return;
-				if (!source || source.side === target.side) return;
-				if (move.id === 'gust' || move.id === 'thunder') {
-					this.add('-message', 'The foe ' + target.name + ' can\'t be hit while flying!');
-					return null;
-				}
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
 			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
 		}
 	},
 	hornattack: {
@@ -358,6 +369,7 @@ exports.BattleMovedex = {
 	kinesis: {
 		inherit: true,
 		accuracy: 90,
+		boosts: false,
 		status: 'par'
 	},
 	leechlife: {
@@ -401,6 +413,37 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		drain: [1, 2]
 	},
+	mimic: {
+		inherit: true,
+		onHit: function (target, source) {
+			var disallowedMoves = {mimic:1, struggle:1};
+			if (source.transformed) return false;
+			var moveslot = source.moves.indexOf('mimic');
+			if (moveslot < 0) return false;
+			var moves = target.moves;
+			moves = moves.randomize();
+			var move = false;
+			for (var i = 0; i < moves.length; i++) {
+				if (!(moves[i] in disallowedMoves)) {
+					move = moves[i];
+					break;
+				}
+			}
+			if (!move) return false;
+			move = this.getMove(move);
+			source.moveset[moveslot] = {
+				move: move.name,
+				id: move.id,
+				pp: move.pp,
+				maxpp: move.pp,
+				target: move.target,
+				disabled: false,
+				used: false
+			};
+			source.moves[moveslot] = toId(move.name);
+			this.add('-start', source, 'Mimic', move.name);
+		}
+	},
 	minimize: {
 		inherit: true,
 		boosts: {
@@ -409,6 +452,7 @@ exports.BattleMovedex = {
 	},
 	mist: {
 		inherit: true,
+		category: "Special",
 		type: "Ice",
 		basePower: 60,
 		priority: 1,
@@ -472,8 +516,17 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 130,
 		secondary: false,
-		self: {
-			volatileStatus: 'mustrecharge'
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
 		}
 	},
 	psywave: {
@@ -491,14 +544,17 @@ exports.BattleMovedex = {
 	},
 	rage: {
 		inherit: true,
+		self: false,
+		effect: false,
 		type: "Dragon",
+		category: "Special",
 		basePower: 85
 	},
 	razorwind: {
 		inherit: true,
 		type: "Bug",
 		basePower: 95,
-		isTwoTurnMove: false
+		onTry: false
 	},
 	recover: {
 		inherit: true,
@@ -563,6 +619,18 @@ exports.BattleMovedex = {
 	skyattack: {
 		inherit: true,
 		basePower: 180
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		}
 	},
 	slam: {
 		inherit: true,
@@ -596,6 +664,7 @@ exports.BattleMovedex = {
 		basePower: 150,
 		accuracy: 75,
 		pp: 5,
+		boosts: false,
 		secondary: {
 			chance: 10,
 			volatileStatus: 'confusion'
@@ -603,18 +672,32 @@ exports.BattleMovedex = {
 	},
 	solarbeam: {
 		inherit: true,
-		basePower: 180
+		basePower: 180,
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (this.isWeather(['sunnyday', 'desolateland']) || !this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		}
 	},
 	sonicboom: {
 		inherit: true,
 		damage: 0,
 		basePower: 200,
 		type: "Electric",
+		category: "Special",
 		selfdestruct: true
 	},
 	spikecannon: {
 		inherit: true,
 		type: "Water",
+		category: "Special",
 		basePower: 30,
 		accuracy: 95
 	},
@@ -645,6 +728,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		type: "Bug",
 		basePower: 100,
+		boosts: false,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -654,7 +738,8 @@ exports.BattleMovedex = {
 	},
 	struggle: {
 		inherit: true,
-		type: "Dragon"
+		type: "Dragon",
+		category: "Special"
 	},
 	stunspore: {
 		inherit: true,
@@ -673,6 +758,7 @@ exports.BattleMovedex = {
 	},
 	supersonic: {
 		inherit: true,
+		category: "Physical",
 		basePower: 100,
 		accuracy: 100,
 		secondary: {
@@ -691,12 +777,14 @@ exports.BattleMovedex = {
 	tackle: {
 		inherit: true,
 		type: "Electric",
+		category: "Special",
 		basePower: 120,
 		recoil: [25, 100],
 		pp: 5
 	},
 	tailwhip: {
 		inherit: true,
+		category: "Physical",
 		type: "Ghost",
 		basePower: 100
 	},
@@ -708,6 +796,7 @@ exports.BattleMovedex = {
 	},
 	teleport: {
 		inherit: true,
+		category: "Special",
 		type: "Electric",
 		basePower: 150,
 		accuracy: 85,
