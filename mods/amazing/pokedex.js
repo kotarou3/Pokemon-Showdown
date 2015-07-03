@@ -1,33 +1,21 @@
 exports.BattlePokedex = {
+	absol: {
+		inherit: true,
+		baseStats: {hp:65,atk:130,def:60,spa:105,spd:60,spe:75}
+	},
 	altaria: {
 		inherit: true,
 		baseStats: {hp:95,atk:70,def:105,spa:70,spd:135,spe:80},
 		abilities: {0:"Forecast"}
 	},
-	altariasunray: {
+	altariadustbowl: {
 		num: 334,
-		species: "Altaria-Sunray",
+		species: "Altaria-Dustbowl",
 		baseSpecies: "Altaria",
-		forme: "Sunray",
-		formeLetter: "S",
-		types: ["Dragon","Fire"],
-		baseStats: {hp:95,atk:90,def:105,spa:115,spd:135,spe:90},
-		abilities: {0:"Forecast"},
-		heightm: 1.1,
-		weightkg: 20.6,
-		color: "Blue",
-		prevo: "swablu",
-		evoLevel: 35,
-		eggGroups: ["Flying","Dragon"]
-	},
-	altarianimbus: {
-		num: 334,
-		species: "Altaria-Nimbus",
-		baseSpecies: "Altaria",
-		forme: "Nimbus",
-		formeLetter: "N",
-		types: ["Dragon","Water"],
-		baseStats: {hp:95,atk:90,def:105,spa:105,spd:135,spe:100},
+		forme: "Dustbowl",
+		formeLetter: "D",
+		types: ["Dragon","Rock"],
+		baseStats: {hp:95,atk:70,def:115,spa:70,spd:135,spe:80},
 		abilities: {0:"Forecast"},
 		heightm: 1.1,
 		weightkg: 20.6,
@@ -52,14 +40,14 @@ exports.BattlePokedex = {
 		evoLevel: 35,
 		eggGroups: ["Flying","Dragon"]
 	},
-	altariadustbowl: {
+	altarianimbus: {
 		num: 334,
-		species: "Altaria-Dustbowl",
+		species: "Altaria-Nimbus",
 		baseSpecies: "Altaria",
-		forme: "Dustbowl",
-		formeLetter: "D",
-		types: ["Dragon","Rock"],
-		baseStats: {hp:95,atk:70,def:115,spa:70,spd:135,spe:80},
+		forme: "Nimbus",
+		formeLetter: "N",
+		types: ["Dragon","Water"],
+		baseStats: {hp:95,atk:90,def:105,spa:105,spd:135,spe:100},
 		abilities: {0:"Forecast"},
 		heightm: 1.1,
 		weightkg: 20.6,
@@ -68,55 +56,112 @@ exports.BattlePokedex = {
 		evoLevel: 35,
 		eggGroups: ["Flying","Dragon"]
 	},
-	weezing: {
-		inherit: true,
-		baseStats: {hp:45,atk:100,def:150,spa:95,spd:90,spe:70}
+	altariasunray: {
+		num: 334,
+		species: "Altaria-Sunray",
+		baseSpecies: "Altaria",
+		forme: "Sunray",
+		formeLetter: "S",
+		types: ["Dragon","Fire"],
+		baseStats: {hp:95,atk:90,def:105,spa:115,spd:135,spe:90},
+		abilities: {0:"Forecast"},
+		heightm: 1.1,
+		weightkg: 20.6,
+		color: "Blue",
+		prevo: "swablu",
+		evoLevel: 35,
+		eggGroups: ["Flying","Dragon"]
 	},
-	ampharos: {
-		inherit: true
-	},
-	octillery: {
+	breloom: {
 		inherit: true,
-		types: ["Water","Fire"],
-		baseStats: {hp:75,atk:115,def:75,spa:115,spd:75,spe:45}
-	},
-	dusclops: {
-		inherit: true,
-		baseStats: {hp:10,atk:70,def:180,spa:60,spd:180,spe:25}
-	},
-	camerupt: {
-		inherit: true,
-		abilities: {0:"Water Absorb"}
+		baseStats: {hp:80,atk:130,def:80,spa:60,spd:60,spe:70}
 	},
 	cacturne: {
 		inherit: true,
 		baseStats: {hp:110,atk:115,def:60,spa:115,spd:60,spe:55},
 		abilities: {0:"Rough Skin"}
 	},
-	volbeat: {
+	camerupt: {
 		inherit: true,
-		types: ["Bug","Electric"]
+		abilities: {0:"Water Absorb"}
 	},
-	piloswine: {
+	crobat: {
 		inherit: true,
-		baseStats: {hp:100,atk:110,def:130,spa:95,spd:95,spe:50}
+		baseStats: {hp:95,atk:100,def:80,spa:70,spd:80,spe:130}
+	},
+	dusclops: {
+		inherit: true,
+		baseStats: {hp:10,atk:70,def:180,spa:60,spd:180,spe:25}
+	},
+	girafarig: {
+		inherit: true,
+		baseStats: {hp:70,atk:110,def:95,spa:100,spd:65,spe:105}
+	},
+	gligar: {
+		inherit: true,
+		baseStats: {hp:75,atk:75,def:125,spa:45,spd:75,spe:85}
 	},
 	hariyama: {
 		inherit: true,
 		baseStats: {hp:154,atk:120,def:70,spa:40,spd:70,spe:50}
+	},
+	lanturn: {
+		inherit: true,
+		baseStats: {hp:125,atk:58,def:58,spa:96,spd:76,spe:67}
+	},
+	ludicolo: {
+		inherit: true,
+		baseStats: {hp:80,atk:70,def:70,spa:100,spd:110,spe:70}
+	},
+	octillery: {
+		inherit: true,
+		types: ["Water","Fire"],
+		baseStats: {hp:85,atk:115,def:85,spa:115,spd:85,spe:45}
+	},
+	parasect: {
+		inherit: true,
+		baseStats: {hp:90,atk:115,def:130,spa:80,spd:80,spe:30}
 	},
 	pelipper: {
 		inherit: true,
 		baseStats: {hp:100,atk:50,def:130,spa:85,spd:70,spe:65},
 		abilities: {0:"Thick Fat"}
 	},
-	ludicolo: {
+	piloswine: {
 		inherit: true,
-		baseStats: {hp:80,atk:70,def:70,spa:100,spd:110,spe:70}
+		baseStats: {hp:100,atk:110,def:130,spa:95,spd:95,spe:50}
+	},
+	qwilfish: {
+		inherit: true,
+		baseStats: {hp:75,atk:105,def:85,spa:65,spd:65,spe:85}
+	},
+	relicanth: {
+		inherit: true,
+		baseStats: {hp:100,atk:100,def:130,spa:65,spd:75,spe:55}
+	},
+	sableye: {
+		inherit: true,
+		baseStats: {hp:60,atk:75,def:85,spa:65,spd:75,spe:50}
 	},
 	sceptile: {
 		inherit: true,
 		baseStats: {hp:70,atk:95,def:65,spa:115,spd:85,spe:120}
+	},
+	seviper: {
+		inherit: true,
+		baseStats: {hp:73,atk:100,def:70,spa:100,spd:80,spe:80}
+	},
+	sharpedo: {
+		inherit: true,
+		baseStats: {hp:95,atk:130,def:40,spa:105,spd:40,spe:95}
+	},
+	sneasel: {
+		inherit: true,
+		baseStats: {hp:70,atk:95,def:65,spa:75,spd:85,spe:125}
+	},
+	swellow: {
+		inherit: true,
+		baseStats: {hp:60,atk:95,def:60,spa:50,spd:50,spe:125}
 	},
 	torkoal: {
 		inherit: true,
@@ -126,16 +171,13 @@ exports.BattlePokedex = {
 		inherit: true,
 		baseStats: {hp:109,atk:136,def:103,spa:72,spd:107,spe:51}
 	},
-	gligar: {
+	volbeat: {
 		inherit: true,
-		baseStats: {hp:75,atk:75,def:125,spa:45,spd:75,spe:85}
+		types: ["Bug","Electric"],
+		baseStats: {hp:85,atk:93,def:75,spa:77,spd:95,spe:105}
 	},
-	sneasel: {
+	weezing: {
 		inherit: true,
-		baseStats: {hp:70,atk:95,def:65,spa:75,spd:85,spe:125}
-	},
-	sharpedo: {
-		inherit: true,
-		baseStats: {hp:95,atk:130,def:40,spa:105,spd:40,spe:95}
+		baseStats: {hp:45,atk:100,def:150,spa:95,spd:90,spe:70}
 	}
 };
