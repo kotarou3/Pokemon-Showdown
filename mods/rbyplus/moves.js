@@ -618,7 +618,7 @@ exports.BattleMovedex = {
 	},
 	skyattack: {
 		inherit: true,
-		basePower: 180
+		basePower: 180,
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
