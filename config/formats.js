@@ -13,6 +13,15 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
+	{
+		name: "Amethyst",
+		section: "Violet Version",
+
+		mod: 'amazing',
+		searchShow: false,
+		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
+	},
 
 	// XY Singles
 	///////////////////////////////////////////////////////////////////
@@ -58,40 +67,6 @@ exports.Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod']
 	},
 
-	// XY Doubles
-	///////////////////////////////////////////////////////////////////
-
-	{
-		name: "Doubles Custom Game",
-		section: "ORAS Doubles",
-
-		gameType: 'doubles',
-		searchShow: false,
-		canUseRandomTeam: true,
-		maxLevel: 9999,
-		defaultLevel: 100,
-		debug: true,
-		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
-	},
-
-	// XY Triples
-	///////////////////////////////////////////////////////////////////
-
-	{
-		name: "Triples Custom Game",
-		section: "ORAS Triples",
-
-		gameType: 'triples',
-		searchShow: false,
-		canUseRandomTeam: true,
-		maxLevel: 9999,
-		defaultLevel: 100,
-		debug: true,
-		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
-	},
-
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 	{
@@ -100,15 +75,6 @@ exports.Formats = [
 
 		mod: 'rbyplus',
 		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
-		name: "Amazing 87",
-		section: "Other Mods",
-
-		mod: 'amazing',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
 	},
 	{
 		name: "Dark Chocolate",
