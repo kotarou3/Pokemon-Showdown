@@ -13,6 +13,14 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber']
 	},
+	{
+		name: "Amethyst",
+		section: "Violet Version",
+
+		mod: 'amazing',
+		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
+	},
 
 	// XY Singles
 	///////////////////////////////////////////////////////////////////
@@ -100,15 +108,6 @@ exports.Formats = [
 
 		mod: 'rbyplus',
 		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
-		name: "Amazing 87",
-		section: "Other Mods",
-
-		mod: 'amazing',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
 	},
 	{
 		name: "Dark Chocolate",
