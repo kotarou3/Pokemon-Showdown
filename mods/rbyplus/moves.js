@@ -462,6 +462,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		damage: 0,
 		pp: 5,
+		category: "Physical",
 		basePower: 120,
 		accuracy: 80,
 		secondary: {
