@@ -189,7 +189,7 @@ const memes = {
 	},
 	"wood hammer": "http://i.imgur.com/kVOXqph.png",
 	"wrong neighborhood": "http://i.imgur.com/aiv8eyj.gif",
-	"wtf": "http://i.imgur.com/rcwmZSE.png",
+	"wtf": "http://i.imgur.com/zTXlKGd.png",
 	"yandere": {
 		src: "http://i.imgur.com/jVLJATk.jpg",
 		width: 375,
