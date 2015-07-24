@@ -67,7 +67,7 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "NU"
 	},
-	jumpluff: {
+	tropius: {
 		inherit: true,
 		tier: "OU"
 	},
