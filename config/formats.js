@@ -27,18 +27,32 @@ exports.Formats = [
 
 	{
 		name: "PP ORAS Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3522911/\">Ubers Metagame Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>"
+		],
 		section: "ORAS Singles",
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
 	},
 	{
 		name: "PP ORAS Ubers (Geomancy)",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3542640/\">np: UU Stage 3.2</a>",
+			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/uu/\">UU Banlist</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3541343/\">UU Viability Ranking</a>"
+		],
 		section: "ORAS Singles",
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag']
 	},
 	{
 		name: "Unrated Random Battle",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3538971/\">np: RU Stage 10</a>",
+			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ru/\">RU Banlist</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3538036/\">RU Viability Ranking</a>"
+		],
 		section: "ORAS Singles",
 
 		team: 'random',
@@ -48,6 +62,11 @@ exports.Formats = [
 	},
 	{
 		name: "OU",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3542109/\">np: NU Stage 7</a>",
+			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/nu/\">NU Banlist</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3523692/\">NU Viability Ranking</a>"
+		],
 		section: "ORAS Singles",
 
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
@@ -124,6 +143,7 @@ exports.Formats = [
 
 	{
 		name: "[Gen 5] OU",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522693\">BW Resources</a>"],
 		section: "BW2 Singles",
 		column: 2,
 
@@ -168,6 +188,7 @@ exports.Formats = [
 
 	{
 		name: "[Gen 4] OU",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522692\">DPP Resources</a>"],
 		section: "Past Generations",
 		column: 2,
 
@@ -205,6 +226,7 @@ exports.Formats = [
 	{
 		name: "[Gen 3] OU",
 		section: "Past Generations",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522690\">ADV Resources</a>"],
 
 		mod: 'gen3',
 		ruleset: ['Pokemon', 'Standard'],
@@ -221,6 +243,7 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 2] OU",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522689\">GSC Resources</a>"],
 		section: "Past Generations",
 
 		mod: 'gen2',
@@ -247,6 +270,7 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 1] Ubers",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522688\">RBY Resources</a>"],
 		section: "Past Generations",
 
 		mod: 'gen1',
