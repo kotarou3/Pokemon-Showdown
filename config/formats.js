@@ -9,9 +9,9 @@ exports.Formats = [
 		name: "Violet Version",
 		section: "Violet Version",
 
-		mod: 'gen1',
+		mod: 'violet',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber']
+		banlist: ['Uber','UU','NU','LC']
 	},
 	{
 		name: "Amethyst",
@@ -32,19 +32,8 @@ exports.Formats = [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>"
 		],
 		section: "ORAS Singles",
-		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause', 'Baton Pass Clause', 'Evasion Moves Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
-	},
-	{
-		name: "PP ORAS Ubers (Geomancy)",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3542640/\">np: UU Stage 3.2</a>",
-			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/uu/\">UU Banlist</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3541343/\">UU Viability Ranking</a>"
-		],
-		section: "ORAS Singles",
-		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Ban Mod', 'Baton Pass Clause', 'Evasion Moves Clause'],
-		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag']
 	},
 	{
 		name: "Unrated Random Battle",
@@ -267,6 +256,30 @@ exports.Formats = [
 		searchShow: false,
 		debug: true,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+	},
+	{
+		name: "[Gen 1] OU",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber']
+	},
+	{
+		name: "[Gen 1] UU",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL']
+	},
+	{
+		name: "[Gen 1] Tier Shift",
+		section: "Past Generations",
+
+		mod: 'rbytiershift',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber']
 	},
 	{
 		name: "[Gen 1] Ubers",

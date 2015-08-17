@@ -5,13 +5,7 @@
 exports.BattleMovedex = {
 	acid: {
 		inherit: true,
-		basePower: 70,
-		secondary: {
-			chance: 50,
-			boosts: {
-				def: -1
-			}
-		}
+		target: "normal"
 	},
 	amnesia: {
 		inherit: true,
@@ -111,10 +105,6 @@ exports.BattleMovedex = {
 	},
 	bind: {
 		inherit: true,
-		type: "Bug",
-		basePower: 40,
-		accuracy: 75,
-		pp: 5,
 		ignoreImmunity: true,
 		volatileStatus: 'partiallytrapped',
 		self: {
@@ -157,10 +147,8 @@ exports.BattleMovedex = {
 	},
 	clamp: {
 		inherit: true,
-		basePower: 70,
 		accuracy: 75,
-		pp: 5,
-		noPPBoosts: true,
+		pp: 10,
 		volatileStatus: 'partiallytrapped',
 		self: {
 			volatileStatus: 'partialtrappinglock'
@@ -253,7 +241,6 @@ exports.BattleMovedex = {
 	},
 	disable: {
 		inherit: true,
-		accuracy: 100,
 		desc: "The target cannot choose a random move for 0-6 turns. Disable only works on one move at a time and fails if the target has not yet used a move or if its move has run out of PP. The target does nothing if it is about to use a move that becomes disabled.",
 		effect: {
 			duration: 4,
@@ -308,19 +295,6 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 1
 	},
-	dreameater: {
-		inherit: true,
-		category: "Physical",
-		basePower: 200,
-		drain: [1, 1],
-		type: "Ghost",
-		onTryHit: function (target) {
-			if (target.status !== 'psn' && target.status !== 'tox' && target.status !== 'slp') {
-				this.add('-immune', target, '[msg]');
-				return null;
-			}
-		}
-	},
 	explosion: {
 		inherit: true,
 		basePower: 170,
@@ -337,9 +311,8 @@ exports.BattleMovedex = {
 	},
 	firespin: {
 		inherit: true,
-		pp: 5,
 		accuracy: 70,
-		basePower: 30,
+		basePower: 15,
 		volatileStatus: 'partiallytrapped',
 		self: {
 			volatileStatus: 'partialtrappinglock'
@@ -411,13 +384,7 @@ exports.BattleMovedex = {
 	},
 	gust: {
 		inherit: true,
-		basePower: 80,
-		secondary: {
-			chance: 30,
-			boosts: {
-				atk: -1
-			}
-		}
+		type: "Normal"
 	},
 	haze: {
 		inherit: true,
@@ -477,12 +444,8 @@ exports.BattleMovedex = {
 	},
 	karatechop: {
 		inherit: true,
-		critRatio: 2
-	},
-	leechlife: {
-		inherit: true,
-		basePower: 60,
-		drain: [1, 1]
+		critRatio: 2,
+		type: "Normal"
 	},
 	leechseed: {
 		inherit: true,
@@ -540,10 +503,6 @@ exports.BattleMovedex = {
 		target: "self",
 		type: "Psychic"
 	},
-	megadrain: {
-		inherit: true,
-		drain: [1, 1]
-	},
 	metronome: {
 		inherit: true,
 		onHit: function (target) {
@@ -579,7 +538,7 @@ exports.BattleMovedex = {
 			var move = moves[this.random(moves.length)];
 			if (!move) return false;
 			move = this.getMove(move);
-			var mimicMove = {
+			source.moveset[moveslot] = {
 				move: move.name,
 				id: move.id,
 				pp: source.moveset[moveslot].pp,
@@ -589,8 +548,6 @@ exports.BattleMovedex = {
 				used: false,
 				virtual: true
 			};
-			source.moveset[moveslot] = mimicMove;
-			source.baseMoveset[moveslot] = mimicMove;
 			source.moves[moveslot] = toId(move.name);
 			this.add('-start', source, 'Mimic', move.name);
 		}
@@ -610,15 +567,10 @@ exports.BattleMovedex = {
 		ignoreImmunity: true,
 		basePower: 1
 	},
-	petaldance: {
-		inherit: true,
-		basePower: 120
-	},
 	poisonsting: {
 		inherit: true,
-		basePower: 95,
 		secondary: {
-			chance: 30,
+			chance: 20,
 			status: 'psn'
 		}
 	},
@@ -677,7 +629,14 @@ exports.BattleMovedex = {
 	},
 	recover: {
 		inherit: true,
-		pp: 10
+		heal: null,
+		onHit: function (target) {
+			// Fail when health is 255 or 511 less than max
+			if (target.hp === (target.maxhp - 255) || target.hp === (target.maxhp - 511) || target.hp === target.maxhp) {
+				return false;
+			}
+			this.heal(Math.floor(target.maxhp / 2), target, target);
+		}
 	},
 	reflect: {
 		num: 115,
@@ -733,7 +692,6 @@ exports.BattleMovedex = {
 	},
 	rockslide: {
 		inherit: true,
-		basePower: 85,
 		desc: "Deals damage to a foe.",
 		shortDesc: "Deals damage.",
 		secondary: false,
@@ -774,59 +732,24 @@ exports.BattleMovedex = {
 			return null;
 		}
 	},
-	skyattack: {
-		inherit: true,
-		secondary: false,
-		critRatio: 1,
-		onTry: function (attacker, defender, move) {
-			if (attacker.removeVolatile(move.id)) {
-				return;
-			}
-			this.add('-prepare', attacker, move.name, defender);
-			this.boost({def:1}, attacker, attacker, this.getMove('skyattack'));
-			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
-				this.add('-anim', attacker, move.name, defender);
-				attacker.removeVolatile(move.id);
-				return;
-			}
-			attacker.addVolatile('twoturnmove', defender);
-			return null;
-		}
-	},
 	slash: {
 		inherit: true,
 		critRatio: 2
 	},
 	softboiled: {
-		inherit: true
-	},
-	solarbeam: {
 		inherit: true,
-		basePower: 100,
-		onTry: function (attacker, defender, move) {
-			if (attacker.removeVolatile(move.id)) {
-				return;
+		heal: null,
+		onHit: function (target) {
+			// Fail when health is 255 or 511 less than max
+			if (target.hp === (target.maxhp - 255) || target.hp === (target.maxhp - 511) || target.hp === target.maxhp) {
+				return false;
 			}
-			this.add('-prepare', attacker, move.name, defender);
-			this.boost({spa:1}, attacker, attacker, this.getMove('solarbeam'));
-			this.boost({spd:1}, attacker, attacker, this.getMove('solarbeam'));
-			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
-				this.add('-anim', attacker, move.name, defender);
-				attacker.removeVolatile(move.id);
-				return;
-			}
-			attacker.addVolatile('twoturnmove', defender);
-			return null;
+			this.heal(Math.floor(target.maxhp / 2), target, target);
 		}
 	},
 	struggle: {
 		inherit: true,
 		onModifyMove: function () {}
-	},
-	submission: {
-		inherit: true,
-		basePower: 100,
-		accuracy: 100
 	},
 	substitute: {
 		num: 164,
@@ -919,11 +842,6 @@ exports.BattleMovedex = {
 		ignoreImmunity: true,
 		basePower: 1
 	},
-	thrash: {
-		inherit: true,
-		basePower: 90,
-		type: "Dragon"
-	},
 	thunder: {
 		inherit: true,
 		secondary: {
@@ -941,22 +859,9 @@ exports.BattleMovedex = {
 			}
 		}
 	},
-	toxic: {
-		inherit: true,
-		accuracy: 100
-	},
 	triattack: {
 		inherit: true,
-		type: "Ghost"
-	},
-	twineedle: {
-		inherit: true,
-		basePower: 40
-	},
-	vicegrip: {
-		inherit: true,
-		type: "Bug",
-		critRatio: 2
+		secondary: false
 	},
 	whirlwind: {
 		inherit: true,
@@ -974,8 +879,6 @@ exports.BattleMovedex = {
 	},
 	wrap: {
 		inherit: true,
-		basePower: 40,
-		pp: 5,
 		accuracy: 85,
 		ignoreImmunity: true,
 		volatileStatus: 'partiallytrapped',
