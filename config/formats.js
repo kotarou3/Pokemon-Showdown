@@ -260,7 +260,7 @@ exports.Formats = [
 	{
 		name: "[Gen 1] OU",
 		section: "Past Generations",
-		
+
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
@@ -268,7 +268,7 @@ exports.Formats = [
 	{
 		name: "[Gen 1] UU",
 		section: "Past Generations",
-		
+
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber', 'OU', 'BL']
@@ -276,7 +276,7 @@ exports.Formats = [
 	{
 		name: "[Gen 1] Tier Shift",
 		section: "Past Generations",
-		
+
 		mod: 'rbytiershift',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
