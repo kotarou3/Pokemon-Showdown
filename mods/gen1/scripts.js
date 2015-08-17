@@ -129,7 +129,7 @@ exports.BattleScripts = {
 				} else {
 					if (pokemon.volatiles['partialtrappinglock'].locked !== target && target !== pokemon) {
 						// The target switched, therefor, we must re-roll the duration, damage, and accuracy.
-						var duration = [2, 3][this.random(2)];
+						var duration = [2, 2, 2, 3, 3, 3, 4, 5][this.random(8)];
 						pokemon.volatiles['partialtrappinglock'].duration = duration;
 						pokemon.volatiles['partialtrappinglock'].locked = target;
 						// Duration reset thus partially trapped at 2 always.
@@ -140,8 +140,8 @@ exports.BattleScripts = {
 							if (pokemon.moveset[m].id === move.id) usedMovePos = m;
 						}
 						if (usedMovePos > -1 && pokemon.moveset[usedMovePos].pp === 0) {
-							// If we were on the middle of the 0 PP sequence, the PPs don't get reset in Violet.
-							pokemon.moveset[usedMovePos].pp = 0;
+							// If we were on the middle of the 0 PP sequence, the PPs get reset to 63.
+							pokemon.moveset[usedMovePos].pp = 63;
 							pokemon.isStale = 2;
 							pokemon.isStaleSource = 'ppoverflow';
 						}
@@ -297,8 +297,8 @@ exports.BattleScripts = {
 		// Moves that target the user do not suffer from the 1/256 miss chance.
 		if (move.target === 'self' && accuracy !== true) accuracy++;
 
-		// In RBY, there's a 1/256 chance of missing always, no matter what. Not in Violet.
-		if (accuracy !== true && this.random(256) > accuracy) {
+		// 1/256 chance of missing always, no matter what. Besides the aforementioned exceptions.
+		if (accuracy !== true && this.random(256) >= accuracy) {
 			this.attrLastMove('[miss]');
 			this.add('-miss', pokemon);
 			damage = false;
@@ -565,7 +565,7 @@ exports.BattleScripts = {
 				// In the game, this is checked and if true, the random number generator is not called.
 				// That means that a move that does not share the type of the target can status it.
 				// If a move that was not fire-type would exist on Gen 1, it could burn a Pokémon.
-				if (!(moveData.secondaries[i].status && moveData.secondaries[i].status in {'brn':1, 'frz':1} && target && target.hasType(move.type))) {
+				if (!(moveData.secondaries[i].status && moveData.secondaries[i].status in {'par':1, 'brn':1, 'frz':1} && target && target.hasType(move.type))) {
 					var effectChance = Math.floor(moveData.secondaries[i].chance * 255 / 100);
 					if (typeof moveData.secondaries[i].chance === 'undefined' || this.random(256) < effectChance) {
 						this.moveHit(target, pokemon, move, moveData.secondaries[i], true, isSelf);
