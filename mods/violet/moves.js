@@ -339,8 +339,9 @@ exports.BattleMovedex = {
 	},
 	thrash: {
 		inherit: true,
-		basePower: 90,
-		type: "Dragon"
+		basePower: 100,
+		type: "Dragon",
+		category: "Special"
 	},
 	thunder: {
 		inherit: true,
