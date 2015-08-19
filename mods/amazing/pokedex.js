@@ -6,7 +6,7 @@ exports.BattlePokedex = {
 	altaria: {
 		inherit: true,
 		baseStats: {hp:95,atk:70,def:105,spa:70,spd:135,spe:80},
-		abilities: {0:"Forecast"}
+		abilities: {1:"Forecast"}
 	},
 	altariadustbowl: {
 		num: 334,
@@ -16,7 +16,7 @@ exports.BattlePokedex = {
 		formeLetter: "D",
 		types: ["Dragon","Rock"],
 		baseStats: {hp:95,atk:70,def:115,spa:70,spd:135,spe:80},
-		abilities: {0:"Forecast"},
+		abilities: {1:"Forecast"},
 		heightm: 1.1,
 		weightkg: 20.6,
 		color: "Blue",
@@ -32,7 +32,7 @@ exports.BattlePokedex = {
 		formeLetter: "F",
 		types: ["Dragon","Ice"],
 		baseStats: {hp:95,atk:70,def:105,spa:120,spd:135,spe:115},
-		abilities: {0:"Forecast"},
+		abilities: {1:"Forecast"},
 		heightm: 1.1,
 		weightkg: 20.6,
 		color: "Blue",
@@ -48,7 +48,7 @@ exports.BattlePokedex = {
 		formeLetter: "N",
 		types: ["Dragon","Water"],
 		baseStats: {hp:95,atk:90,def:105,spa:105,spd:135,spe:100},
-		abilities: {0:"Forecast"},
+		abilities: {1:"Forecast"},
 		heightm: 1.1,
 		weightkg: 20.6,
 		color: "Blue",
@@ -64,7 +64,7 @@ exports.BattlePokedex = {
 		formeLetter: "S",
 		types: ["Dragon","Fire"],
 		baseStats: {hp:95,atk:90,def:105,spa:115,spd:135,spe:90},
-		abilities: {0:"Forecast"},
+		abilities: {1:"Forecast"},
 		heightm: 1.1,
 		weightkg: 20.6,
 		color: "Blue",
@@ -79,11 +79,11 @@ exports.BattlePokedex = {
 	cacturne: {
 		inherit: true,
 		baseStats: {hp:110,atk:115,def:60,spa:115,spd:60,spe:55},
-		abilities: {0:"Rough Skin"}
+		abilities: {1:"Rough Skin"}
 	},
 	camerupt: {
 		inherit: true,
-		abilities: {0:"Water Absorb"}
+		abilities: {1:"Water Absorb"}
 	},
 	crobat: {
 		inherit: true,
@@ -125,7 +125,7 @@ exports.BattlePokedex = {
 	pelipper: {
 		inherit: true,
 		baseStats: {hp:100,atk:50,def:130,spa:85,spd:70,spe:65},
-		abilities: {0:"Thick Fat"}
+		abilities: {1:"Thick Fat"}
 	},
 	piloswine: {
 		inherit: true,
