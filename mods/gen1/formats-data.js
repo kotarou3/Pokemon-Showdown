@@ -542,7 +542,7 @@ exports.BattleFormatsData = {
 	starmie: {
 		randomBattleMoves: ["blizzard","thunderbolt","thunderwave","surf"],
 		essentialMove: "recover",
-		tier: "UU"
+		tier: "OU"
 	},
 	mrmime: {
 		randomBattleMoves: ["psychic","thunderwave","thunderbolt","seismictoss"],
