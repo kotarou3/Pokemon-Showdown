@@ -138,5 +138,9 @@ exports.BattleFormatsData = {
 	moltres: {
 		inherit: true,
 		tier: "OU"
+	},
+	starmie: {
+		inherit: true,
+		tier: "OU"
 	}
 };
