@@ -11,7 +11,7 @@ exports.Formats = [
 
 		mod: 'violet',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber','UU','NU','LC']
+		banlist: ['Uber', 'UU', 'NU', 'LC']
 	},
 	{
 		name: "Amethyst",
@@ -31,7 +31,7 @@ exports.Formats = [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3522911/\">Ubers Metagame Discussion</a>",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>"
 		],
-		section: "ORAS Singles",
+		section: "Other Formats",
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause', 'Baton Pass Clause', 'Evasion Moves Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
 	},
@@ -42,10 +42,10 @@ exports.Formats = [
 			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ru/\">RU Banlist</a>",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3538036/\">RU Viability Ranking</a>"
 		],
-		section: "ORAS Singles",
+		section: "Other Formats",
 
 		team: 'random',
-		challengeShow: false,
+		searchShow: false,
 		rated: false,
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
@@ -56,14 +56,15 @@ exports.Formats = [
 			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/nu/\">NU Banlist</a>",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3523692/\">NU Viability Ranking</a>"
 		],
-		section: "ORAS Singles",
+		section: "Other Formats",
 
+		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite']
 	},
 	{
 		name: "Custom Game",
-		section: "ORAS Singles",
+		section: "Other Formats",
 
 		searchShow: false,
 		canUseRandomTeam: true,
@@ -96,7 +97,7 @@ exports.Formats = [
 
 	{
 		name: "Triples Custom Game",
-		section: "ORAS Triples",
+		section: "Other Formats",
 
 		gameType: 'triples',
 		searchShow: false,
@@ -133,7 +134,7 @@ exports.Formats = [
 	{
 		name: "[Gen 5] OU",
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522693\">BW Resources</a>"],
-		section: "BW2 Singles",
+		section: "Past Generations",
 		column: 2,
 
 		mod: 'gen5',
@@ -159,7 +160,7 @@ exports.Formats = [
 
 	{
 		name: "[Gen 5] Doubles Custom Game",
-		section: 'BW2 Doubles',
+		section: 'Past Generations',
 
 		mod: 'gen5',
 		gameType: 'doubles',
@@ -182,6 +183,7 @@ exports.Formats = [
 		column: 2,
 
 		mod: 'gen4',
+		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
 	},
@@ -218,6 +220,7 @@ exports.Formats = [
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522690\">ADV Resources</a>"],
 
 		mod: 'gen3',
+		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber', 'Smeargle + Ingrain']
 	},
@@ -236,6 +239,7 @@ exports.Formats = [
 		section: "Past Generations",
 
 		mod: 'gen2',
+		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
 	},
@@ -323,6 +327,7 @@ exports.Formats = [
 		section: "Past Generations",
 
 		mod: 'gen1',
+		searchShow: false,
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
