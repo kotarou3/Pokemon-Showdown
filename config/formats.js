@@ -80,7 +80,7 @@ exports.Formats = [
 
 	{
 		name: "Doubles Custom Game",
-		section: "ORAS Doubles",
+		section: "Other Formats",
 
 		gameType: 'doubles',
 		searchShow: false,
@@ -137,13 +137,14 @@ exports.Formats = [
 		section: "Past Generations",
 		column: 2,
 
+		searchShow: false,
 		mod: 'gen5',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
 	{
 		name: "[Gen 5] Custom Game",
-		section: "BW2 Singles",
+		section: "Past Generations",
 
 		mod: 'gen5',
 		searchShow: false,
@@ -182,6 +183,7 @@ exports.Formats = [
 		section: "Past Generations",
 		column: 2,
 
+		searchShow: false,
 		mod: 'gen4',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
@@ -219,6 +221,7 @@ exports.Formats = [
 		section: "Past Generations",
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522690\">ADV Resources</a>"],
 
+		searchShow: false,
 		mod: 'gen3',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
@@ -238,6 +241,7 @@ exports.Formats = [
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522689\">GSC Resources</a>"],
 		section: "Past Generations",
 
+		searchShow: false,
 		mod: 'gen2',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
@@ -273,6 +277,7 @@ exports.Formats = [
 		name: "[Gen 1] OU",
 		section: "Past Generations",
 
+		searchShow: false,
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
@@ -326,6 +331,7 @@ exports.Formats = [
 		name: "[Gen 1] Random Battle",
 		section: "Past Generations",
 
+		searchShow: false,
 		mod: 'gen1',
 		searchShow: false,
 		team: 'random',
