@@ -17,7 +17,7 @@ exports.BattleFormatsData = {
 	},
 	raticate: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	arbok: {
 		inherit: true,
@@ -49,7 +49,7 @@ exports.BattleFormatsData = {
 	},
 	persian: {
 		inherit: true,
-		tier: "UU"
+		tier: "OU"
 	},
 	golduck: {
 		inherit: true,
