@@ -26,7 +26,7 @@ exports.Formats = [
 	///////////////////////////////////////////////////////////////////
 
 	{
-		name: "PP ORAS Ubers",
+		name: "ORAS 1U",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3522911/\">Ubers Metagame Discussion</a>",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>"
@@ -80,7 +80,7 @@ exports.Formats = [
 
 	{
 		name: "Doubles Custom Game",
-		section: "ORAS Doubles",
+		section: "Other Formats",
 
 		gameType: 'doubles',
 		searchShow: false,
@@ -143,7 +143,7 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 5] Custom Game",
-		section: "BW2 Singles",
+		section: "Past Generations",
 
 		mod: 'gen5',
 		searchShow: false,
