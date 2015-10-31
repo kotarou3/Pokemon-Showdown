@@ -72,6 +72,14 @@ exports.BattlePokedex = {
 		evoLevel: 35,
 		eggGroups: ["Flying","Dragon"]
 	},
+	ampharos: {
+		inherit: true,
+		baseStats: {hp:105,atk:75,def:95,spa:115,spd:90,spe:55}
+	},
+	banette: {
+		inherit: true,
+		baseStats: {hp:64,atk:115,def:65,spa:83,spd:63,spe:105}
+	},
 	breloom: {
 		inherit: true,
 		baseStats: {hp:80,atk:130,def:80,spa:60,spd:60,spe:70}
@@ -129,7 +137,8 @@ exports.BattlePokedex = {
 	},
 	piloswine: {
 		inherit: true,
-		baseStats: {hp:100,atk:110,def:130,spa:95,spd:95,spe:50}
+		baseStats: {hp:100,atk:110,def:130,spa:95,spd:95,spe:50},
+		abilities: {1:"Thick Fat"}
 	},
 	qwilfish: {
 		inherit: true,
