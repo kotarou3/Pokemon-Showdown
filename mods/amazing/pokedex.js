@@ -74,11 +74,11 @@ exports.BattlePokedex = {
 	},
 	ampharos: {
 		inherit: true,
-		baseStats: {hp:105,atk:75,def:95,spa:115,spd:90,spe:55},
+		baseStats: {hp:105,atk:75,def:95,spa:115,spd:90,spe:55}
 	},
 	banette: {
 		inherit: true,
-		baseStats: {hp:64,atk:115,def:65,spa:83,spd:63,spe:105},
+		baseStats: {hp:64,atk:115,def:65,spa:83,spd:63,spe:105}
 	},
 	breloom: {
 		inherit: true,
