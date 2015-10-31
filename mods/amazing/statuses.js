@@ -9,10 +9,10 @@ exports.BattleStatuses = {
 	},
 	sandstorm: {
 		inherit: true,
-		duration: 8,
+		duration: 8
 	},
 	sunnyday: {
 		inherit: true,
-		duration: 8,
+		duration: 8
 	}
 };
