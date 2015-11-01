@@ -112,7 +112,7 @@ var Validator;
 	global.Config = require('./config/config.js');
 
 	process.on('uncaughtException', function (err) {
-		require('./crashlogger.js')(err, 'A team validator process');
+		require('./crashlogger.js')(err, 'A team validator process', true);
 	});*/
 
 	/**
@@ -162,6 +162,7 @@ var Validator;
 		} catch (err) {
 			var stack = err.stack + '\n\n' +
 					'Additional information:\n' +
+					'format = ' + format + '\n' +
 					'team = ' + message.substr(pipeIndex2 + 1) + '\n';
 			var fakeErr = {stack: stack};
 
@@ -210,22 +211,16 @@ Validator = (function () {
 			}
 			return ["You sent invalid team data. If you're not using a custom client, please report this as a bug."];
 		}
-		if (team.length > 6) {
-			return ["Your team has more than 6 pokemon."];
+
+		var lengthRange = format.teamLength && format.teamLength.validate;
+		if (!lengthRange) {
+			lengthRange = [1, 6];
+			if (format.gameType === 'doubles') lengthRange[0] = 2;
+			if (format.gameType === 'triples' || format.gameType === 'rotation') lengthRange[0] = 3;
 		}
-		switch (format.gameType) {
-		case 'doubles':
-			if (team.length < 2) return ["Your Doubles team needs at least 2 pokemon."];
-			break;
-		case 'triples':
-			if (team.length < 3) return ["Your Triples team needs at least 3 pokemon."];
-			break;
-		case 'rotation':
-			if (team.length < 3) return ["Your Rotation team needs at least 3 pokemon."];
-			break;
-		default:
-			if (team.length < 1) return ["Your team has no pokemon."];
-		}
+		if (team.length < lengthRange[0]) return ["You must bring at least " + lengthRange[0] + " Pok\u00E9mon."];
+		if (team.length > lengthRange[1]) return ["You may only bring up to " + lengthRange[1] + " Pok\u00E9mon."];
+
 		var teamHas = {};
 		for (var i = 0; i < team.length; i++) {
 			if (!team[i]) return ["You sent invalid team data. If you're not using a custom client, please report this as a bug."];
@@ -335,6 +330,15 @@ Validator = (function () {
 			return ['"' + set.item + "' is an invalid item."];
 		}
 		ability = tools.getAbility(set.ability);
+		if (ability.id && !ability.exists) {
+			if (tools.gen < 3) {
+				// gen 1-2 don't have abilities, just silently remove
+				ability = tools.getAbility('');
+				set.ability = '';
+			} else {
+				return ['"' + set.ability + "' is an invalid ability."];
+			}
+		}
 
 		var banlistTable = tools.getBanlistTable(format);
 
@@ -416,6 +420,7 @@ Validator = (function () {
 			for (var i = 0; i < set.moves.length; i++) {
 				if (!set.moves[i]) continue;
 				var move = tools.getMove(Tools.getString(set.moves[i]));
+				if (!move.exists) return ['"' + move.name + '" is an invalid move.'];
 				set.moves[i] = move.name;
 				check = move.id;
 				setHas[check] = true;
@@ -463,8 +468,8 @@ Validator = (function () {
 						if (eventData.nature && eventData.nature !== set.nature) {
 							problems.push(name + " must have a " + eventData.nature + " nature because it has a move only available from a specific event.");
 						}
-						if (eventData.shiny) {
-							set.shiny = true;
+						if (eventData.shiny && !set.shiny) {
+							problems.push(name + " must be shiny because it has a move only available from a specific event.");
 						}
 						if (eventData.generation < 5) eventData.isHidden = false;
 						if (eventData.isHidden !== undefined && eventData.isHidden !== isHidden) {
@@ -623,12 +628,9 @@ Validator = (function () {
 					sometimesPossible = true;
 					var lset = template.learnset[move];
 					if (!lset || template.speciesid === 'smeargle') {
+						if (tools.getMove(move).noSketch) return true;
 						lset = template.learnset['sketch'];
 						sketch = true;
-						// Chatter, Struggle and Magikarp's Revenge cannot be sketched
-						if (move in {'chatter':1, 'struggle':1, 'magikarpsrevenge':1}) return true;
-						// In Gen 2, there is no way for Sketch to copy these moves
-						if (tools.gen === 2 && move in {'explosion':1, 'metronome':1, 'mimic':1, 'mirrormove':1, 'selfdestruct':1, 'sleeptalk':1, 'transform':1}) return true;
 					}
 					if (typeof lset === 'string') lset = [lset];
 

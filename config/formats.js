@@ -36,33 +36,6 @@ exports.Formats = [
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
 	},
 	{
-		name: "Unrated Random Battle",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3538971/\">np: RU Stage 10</a>",
-			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ru/\">RU Banlist</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3538036/\">RU Viability Ranking</a>"
-		],
-		section: "Other Formats",
-
-		team: 'random',
-		searchShow: false,
-		rated: false,
-		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
-	},
-	{
-		name: "OU",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3542109/\">np: NU Stage 7</a>",
-			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/nu/\">NU Banlist</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3523692/\">NU Viability Ranking</a>"
-		],
-		section: "Other Formats",
-
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Salamencite']
-	},
-	{
 		name: "Custom Game",
 		section: "Other Formats",
 
@@ -133,13 +106,16 @@ exports.Formats = [
 
 	{
 		name: "[Gen 5] OU",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522693\">BW Resources</a>"],
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3551993/\">BW2 OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431094/\">BW2 Sample Teams</a>"
+		],
 		section: "Past Generations",
 		column: 2,
 
 		mod: 'gen5',
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Team Preview'],
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Stream ++ Sand Rush', 'Soul Dew']
 	},
 	{
 		name: "[Gen 5] Custom Game",
@@ -178,7 +154,10 @@ exports.Formats = [
 
 	{
 		name: "[Gen 4] OU",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522692\">DPP Resources</a>"],
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3551992/\">DPP OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431088/\">DPP Sample Teams</a>"
+		],
 		section: "Past Generations",
 		column: 2,
 
@@ -217,7 +196,10 @@ exports.Formats = [
 	{
 		name: "[Gen 3] OU",
 		section: "Past Generations",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522690\">ADV Resources</a>"],
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3503019/\">ADV OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431087/\">ADV Sample Teams</a>"
+		],
 
 		mod: 'gen3',
 		searchShow: false,
@@ -235,7 +217,10 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 2] OU",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3509218/#post-5522689\">GSC Resources</a>"],
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3503082/\">GSC OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431086/\">GSC Sample Teams</a>"
+		],
 		section: "Past Generations",
 
 		mod: 'gen2',
@@ -245,6 +230,10 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 2] Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3507552/\">GSC Ubers Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431086/\">GSC Sample Teams</a>"
+		],
 		section: "Past Generations",
 
 		mod: 'gen2',
@@ -271,6 +260,10 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 1] OU",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3486845/\">RBY OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431045/\">RBY Sample Teams</a>"
+		],
 		section: "Past Generations",
 
 		mod: 'gen1',
@@ -304,6 +297,10 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 1] Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3541329/\">RBY Ubers Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431045/\">RBY Sample Teams</a>"
+		],
 		section: "Past Generations",
 
 		mod: 'gen1',
@@ -330,6 +327,15 @@ exports.Formats = [
 		mod: 'gen1',
 		searchShow: false,
 		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+	},
+	{
+		name: "[Gen 1] Challenge Cup",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		team: 'randomCC',
+		searchShow: false,
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
 	},
 	{
