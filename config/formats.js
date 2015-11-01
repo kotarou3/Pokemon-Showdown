@@ -298,6 +298,7 @@ exports.Formats = [
 		section: "Past Generations",
 
 		mod: 'abilityrby',
+		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
 	},
