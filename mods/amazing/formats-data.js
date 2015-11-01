@@ -65,7 +65,7 @@ exports.BattleFormatsData = {
 	},
 	ampharos: {
 		inherit: true,
-		tier: "NU"
+		tier: "OU"
 	},
 	tropius: {
 		inherit: true,
@@ -153,7 +153,7 @@ exports.BattleFormatsData = {
 	},
 	shedinja: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	hariyama: {
 		inherit: true,
