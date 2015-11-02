@@ -168,6 +168,10 @@ exports.BattlePokedex = {
 		inherit: true,
 		baseStats: {hp:70,atk:95,def:65,spa:75,spd:85,spe:125}
 	},
+	surskit: {
+		inherit: true,
+		baseStats: {hp:70,atk:60,def:62,spa:80,spd:82,spe:65}
+	},
 	swellow: {
 		inherit: true,
 		baseStats: {hp:60,atk:95,def:60,spa:50,spd:50,spe:125}
