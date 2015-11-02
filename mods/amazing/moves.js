@@ -7,6 +7,12 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 30
 	},
+	blizzard: {
+		inherit: true,
+		onModifyMove: function (move) {
+			if (this.isWeather('hail')) move.accuracy = true;
+		}
+	},
 	crushclaw: {
 		inherit: true,
 		breaksProtect: true
