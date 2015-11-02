@@ -9,7 +9,7 @@ exports.BattleFormatsData = {
 	},
 	golem: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	parasect: {
 		inherit: true,
@@ -21,7 +21,7 @@ exports.BattleFormatsData = {
 	},
 	slowking: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	steelix: {
 		inherit: true,
@@ -73,7 +73,7 @@ exports.BattleFormatsData = {
 	},
 	murkrow: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	girafarig: {
 		inherit: true,
@@ -137,7 +137,7 @@ exports.BattleFormatsData = {
 	},
 	surskit: {
 		inherit: true,
-		tier: "NU"
+		tier: "OU"
 	},
 	breloom: {
 		inherit: true,
@@ -205,7 +205,11 @@ exports.BattleFormatsData = {
 	},
 	lunatone: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
+	},
+	solrock: {
+		inherit: true,
+		tier: "UU"
 	},
 	cradily: {
 		inherit: true,
