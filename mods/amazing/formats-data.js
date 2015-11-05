@@ -33,7 +33,7 @@ exports.BattleFormatsData = {
 	},
 	scizor: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	jynx: {
 		inherit: true,
@@ -129,7 +129,7 @@ exports.BattleFormatsData = {
 	},
 	pelipper: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	gardevoir: {
 		inherit: true,
