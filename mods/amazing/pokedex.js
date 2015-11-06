@@ -93,6 +93,10 @@ exports.BattlePokedex = {
 		inherit: true,
 		abilities: {1:"Water Absorb"}
 	},
+	cradily: {
+		inherit: true,
+		baseStats: {hp:86,atk:81,def:97,spa:81,spd:127,spe:43}
+	},
 	crobat: {
 		inherit: true,
 		baseStats: {hp:95,atk:100,def:80,spa:70,spd:80,spe:130}
@@ -120,6 +124,10 @@ exports.BattlePokedex = {
 	ludicolo: {
 		inherit: true,
 		baseStats: {hp:80,atk:70,def:70,spa:100,spd:110,spe:70}
+	},
+	mawile: {
+		inherit: true,
+		baseStats: {hp:60,atk:95,def:95,spa:75,spd:65,spe:60}
 	},
 	octillery: {
 		inherit: true,

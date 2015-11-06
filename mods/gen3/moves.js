@@ -194,7 +194,8 @@ exports.BattleMovedex = {
 	doomdesire: {
 		inherit: true,
 		accuracy: 85,
-		basePower: 120
+		basePower: 120,
+		category: "Physical"
 	},
 	dreameater: {
 		inherit: true,
