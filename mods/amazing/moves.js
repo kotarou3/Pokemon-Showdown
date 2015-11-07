@@ -117,5 +117,20 @@ exports.BattleMovedex = {
 				def: 1
 			}
 		}
+	},
+	torment: {
+		inherit: true,
+		effect: {
+			duration: 5,
+			onStart: function (side) {
+				this.add('-start', side, 'Torment');
+			},
+			onEnd: function (side) {
+				this.add('-end', side, 'Torment');
+			},
+			onDisableMove: function (side) {
+				if (side.lastMove !== 'struggle') side.disableMove(side.lastMove);
+			}
+		}
 	}
 };
