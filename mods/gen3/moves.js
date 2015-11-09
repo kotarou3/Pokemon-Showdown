@@ -195,7 +195,28 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 85,
 		basePower: 120,
-		category: "Physical"
+		category: "Physical",
+		onTryHit: function (target, source) {
+			source.side.addSideCondition('futuremove');
+			if (source.side.sideConditions['futuremove'].positions[source.position]) {
+				return false;
+			}
+			source.side.sideConditions['futuremove'].positions[source.position] = {
+				duration: 3,
+				move: 'doomdesire',
+				targetPosition: target.position,
+				source: source,
+				moveData: {
+					name: "Doom Desire",
+					basePower: 140,
+					category: "Physical",
+					flags: {},
+					type: 'Steel'
+				}
+			};
+			this.add('-start', source, 'Doom Desire');
+			return null;
+		}
 	},
 	dreameater: {
 		inherit: true,
