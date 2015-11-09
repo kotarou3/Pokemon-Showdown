@@ -3,6 +3,10 @@ exports.BattlePokedex = {
 		inherit: true,
 		baseStats: {hp:65,atk:130,def:60,spa:105,spd:60,spe:75}
 	},
+	aggron: {
+		inherit: true,
+		baseStats: {hp:70,atk:110,def:180,spa:120,spd:60,spe:50}
+	},
 	altaria: {
 		inherit: true,
 		baseStats: {hp:95,atk:70,def:105,spa:70,spd:135,spe:80},
@@ -80,6 +84,10 @@ exports.BattlePokedex = {
 		inherit: true,
 		baseStats: {hp:64,atk:115,def:65,spa:83,spd:63,spe:105}
 	},
+	blaziken: {
+		inherit: true,
+		baseStats: {hp:80,atk:120,def:70,spa:110,spd:70,spe:100}
+	},
 	breloom: {
 		inherit: true,
 		baseStats: {hp:80,atk:130,def:80,spa:60,spd:60,spe:70}
@@ -127,7 +135,11 @@ exports.BattlePokedex = {
 	},
 	mawile: {
 		inherit: true,
-		baseStats: {hp:60,atk:95,def:95,spa:75,spd:65,spe:60}
+		baseStats: {hp:60,atk:95,def:65,spa:75,spd:115,spe:60}
+	},
+	medicham: {
+		inherit: true,
+		baseStats: {hp:70,atk:60,def:75,spa:80,spd:75,spe:80}
 	},
 	octillery: {
 		inherit: true,
