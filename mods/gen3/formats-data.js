@@ -543,7 +543,7 @@ exports.BattleFormatsData = {
 	},
 	cloyster: {
 		randomBattleMoves: ["shellsmash","hydropump","razorshell","rockblast","iciclespear","iceshard","rapidspin","spikes","toxicspikes"],
-		tier: "OU"
+		tier: "UU"
 	},
 	gastly: {
 		randomBattleMoves: ["shadowball","sludgebomb","hiddenpowerfighting","thunderbolt","substitute","disable","painsplit","hypnosis","gigadrain","trick"],
