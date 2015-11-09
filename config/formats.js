@@ -208,7 +208,7 @@ exports.Formats = [
 	{
 		name: "[Gen 3] UU",
 		section: "Past Generations",
-		
+
 		mod: 'gen3',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber', 'OU']
