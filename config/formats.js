@@ -202,9 +202,16 @@ exports.Formats = [
 		],
 
 		mod: 'gen3',
-		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber', 'Smeargle + Ingrain']
+	},
+	{
+		name: "[Gen 3] UU",
+		section: "Past Generations",
+
+		mod: 'gen3',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU']
 	},
 	{
 		name: "[Gen 3] Custom Game",
