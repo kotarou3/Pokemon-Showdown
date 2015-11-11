@@ -55,7 +55,30 @@ exports.BattleMovedex = {
 	beatup: {
 		inherit: true,
 		basePower: 10,
-		basePowerCallback: undefined
+		basePowerCallback: undefined,
+		effect: {
+			duration: 1,
+			onStart: function (pokemon) {
+				this.effectData.index = 0;
+				while (pokemon.side.pokemon[this.effectData.index] !== pokemon &&
+					(!pokemon.side.pokemon[this.effectData.index] ||
+					pokemon.side.pokemon[this.effectData.index].fainted ||
+					pokemon.side.pokemon[this.effectData.index].status)) {
+					this.effectData.index++;
+				}
+			},
+			onRestart: function (pokemon) {
+				do {
+					this.effectData.index++;
+					if (this.effectData.index >= 6) break;
+				} while (!pokemon.side.pokemon[this.effectData.index] || pokemon.side.pokemon[this.effectData.index].fainted || pokemon.side.pokemon[this.effectData.index].status);
+			}
+		},
+		onAfterMove: function (pokemon) {
+			pokemon.removeVolatile('beatup');
+		},
+		type: "???",
+		category: "Physical"
 	},
 	bide: {
 		inherit: true,
