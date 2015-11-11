@@ -120,6 +120,8 @@ exports.BattleMovedex = {
 	},
 	torment: {
 		inherit: true,
+		target: "foeSide",
+		sideCondition: 'torment',
 		effect: {
 			duration: 5,
 			onStart: function (side) {
