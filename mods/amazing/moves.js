@@ -139,10 +139,10 @@ exports.BattleMovedex = {
 			},
 			onDisableMove: function (side) {
 				if (side.lastMove !== 'struggle') side.disableMove(side.lastMove);
-			},
+			}
+		},
 		secondary: false,
 		target: "foeSide",
 		type: "Dark"
-		}
 	}
 };
