@@ -119,8 +119,15 @@ exports.BattleMovedex = {
 		}
 	},
 	torment: {
-		inherit: true,
-		target: "foeSide",
+		num: 259,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		id: "torment",
+		name: "Torment",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		sideCondition: 'torment',
 		effect: {
 			duration: 5,
@@ -132,7 +139,10 @@ exports.BattleMovedex = {
 			},
 			onDisableMove: function (side) {
 				if (side.lastMove !== 'struggle') side.disableMove(side.lastMove);
-			}
+			},
+		secondary: false,
+		target: "foeSide",
+		type: "Dark"
 		}
 	}
 };
