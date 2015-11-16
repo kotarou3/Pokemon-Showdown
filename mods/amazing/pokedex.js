@@ -194,7 +194,8 @@ exports.BattlePokedex = {
 	},
 	surskit: {
 		inherit: true,
-		baseStats: {hp:70,atk:60,def:62,spa:80,spd:82,spe:65}
+		baseStats: {hp:70,atk:95,def:62,spa:105,spd:82,spe:110},
+		abilities: {1:"Cloud Nine"}
 	},
 	swellow: {
 		inherit: true,

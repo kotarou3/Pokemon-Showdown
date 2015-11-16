@@ -130,17 +130,25 @@ exports.BattleMovedex = {
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		sideCondition: 'torment',
 		effect: {
-			duration: 5,
-			onStart: function (side) {
-				this.add('-sidestart', side, 'Torment');
-			},
-			onEnd: function (side) {
-				this.add('-sideend', side, 'Torment');
-			},
-			onDisableMove: function (side) {
-				if (side.lastMove !== 'struggle') side.disableMove(side.lastMove);
-			}
-		},
+                        duration: 5,
+                        onStart: function (side) {
+                                this.add('-sidestart', side, 'move: Torment');
+                        },
+                        onEnd: function (side) {
+                                this.add('-sideend', side, 'move: Torment');
+                                if (side.disabledMove !== undefined) delete this.disabledMove;
+                        },
+                        onDisableMove: function (pokemon) {
+                                if (!pokemon.lastMove && !pokemon.side.disabledMove) return;
+                                if (pokemon.lastMove !== 'struggle') {
+                                        var side = pokemon.side;
+                                        if (pokemon.lastMove) side.disabledMove = pokemon.lastMove;
+                                        for (var i = 0; i < side.pokemon.length; i++) {
+                                                side.pokemon[i].disableMove(side.disabledMove);
+                                        }
+                                }
+                        }
+                },
 		secondary: false,
 		target: "foeSide",
 		type: "Dark"
