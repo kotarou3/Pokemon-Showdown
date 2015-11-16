@@ -1,4 +1,14 @@
 exports.BattleAbilities = {
+	"cloudnine": {
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Cloud Nine');
+			this.setWeather('');
+		},
+		id: "cloudnine",
+		name: "Cloud Nine",
+		rating: 3,
+		num: 13
+	},
 	"roughskin": {
 		inherit: true,
 		onAfterDamage: function (damage, target, source, move) {
