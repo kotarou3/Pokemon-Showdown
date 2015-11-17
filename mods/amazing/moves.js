@@ -132,13 +132,21 @@ exports.BattleMovedex = {
 		effect: {
 			duration: 5,
 			onStart: function (side) {
-				this.add('-sidestart', side, 'Torment');
+				this.add('-sidestart', side, 'move: Torment');
 			},
 			onEnd: function (side) {
-				this.add('-sideend', side, 'Torment');
+				this.add('-sideend', side, 'move: Torment');
+				if (side.disabledMove !== undefined) delete this.disabledMove;
 			},
-			onDisableMove: function (side) {
-				if (side.lastMove !== 'struggle') side.disableMove(side.lastMove);
+			onDisableMove: function (pokemon) {
+				if (!pokemon.lastMove && !pokemon.side.disabledMove) return;
+				if (pokemon.lastMove !== 'struggle') {
+					var side = pokemon.side;
+					if (pokemon.lastMove) side.disabledMove = pokemon.lastMove;
+					for (var i = 0; i < side.pokemon.length; i++) {
+						side.pokemon[i].disableMove(side.disabledMove);
+					}
+				}
 			}
 		},
 		secondary: false,
