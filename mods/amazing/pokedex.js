@@ -141,6 +141,10 @@ exports.BattlePokedex = {
 		inherit: true,
 		baseStats: {hp:70,atk:60,def:75,spa:80,spd:75,spe:80}
 	},
+	nidoking: {
+		inherit: true,
+		baseStats: {hp:90,atk:102,def:87,spa:95,spd:85,spe:85}
+	},
 	octillery: {
 		inherit: true,
 		types: ["Water","Fire"],
@@ -148,7 +152,8 @@ exports.BattlePokedex = {
 	},
 	parasect: {
 		inherit: true,
-		baseStats: {hp:90,atk:115,def:130,spa:80,spd:80,spe:30}
+		baseStats: {hp:90,atk:115,def:130,spa:80,spd:80,spe:30},
+		abilities: {0:"Rain Dish",1:"Effect Spore"}
 	},
 	pelipper: {
 		inherit: true,
@@ -163,6 +168,10 @@ exports.BattlePokedex = {
 	qwilfish: {
 		inherit: true,
 		baseStats: {hp:75,atk:105,def:85,spa:65,spd:65,spe:85}
+	},
+	regirock: {
+		inherit: true,
+		baseStats: {hp:80,atk:100,def:200,spa:50,spd:115,spe:50}
 	},
 	relicanth: {
 		inherit: true,
@@ -187,6 +196,10 @@ exports.BattlePokedex = {
 	sneasel: {
 		inherit: true,
 		baseStats: {hp:70,atk:95,def:65,spa:75,spd:85,spe:125}
+	},
+	solrock: {
+		inherit: true,
+		baseStats: {hp:70,atk:95,def:95,spa:65,spd:75,spe:70}
 	},
 	steelix: {
 		inherit: true,
