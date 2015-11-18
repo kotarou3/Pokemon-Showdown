@@ -1,7 +1,7 @@
 exports.BattlePokedex = {
 	absol: {
 		inherit: true,
-		baseStats: {hp:65,atk:130,def:60,spa:105,spd:60,spe:75}
+		baseStats: {hp:65,atk:130,def:60,spa:90,spd:75,spe:105}
 	},
 	aggron: {
 		inherit: true,
@@ -135,7 +135,7 @@ exports.BattlePokedex = {
 	},
 	mawile: {
 		inherit: true,
-		baseStats: {hp:60,atk:95,def:65,spa:75,spd:115,spe:60}
+		baseStats: {hp:60,atk:95,def:85,spa:75,spd:115,spe:60}
 	},
 	medicham: {
 		inherit: true,
@@ -182,7 +182,7 @@ exports.BattlePokedex = {
 	},
 	sharpedo: {
 		inherit: true,
-		baseStats: {hp:95,atk:130,def:40,spa:105,spd:40,spe:95}
+		baseStats: {hp:95,atk:130,def:40,spa:105,spd:40,spe:120}
 	},
 	sneasel: {
 		inherit: true,
