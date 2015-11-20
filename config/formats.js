@@ -38,7 +38,7 @@ exports.Formats = [
 	{
 		name: "Poison Heal Paradise",
 		section: "Other Formats",
-		
+
 		mod: 'paradise',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew']
