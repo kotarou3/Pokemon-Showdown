@@ -509,7 +509,7 @@ exports.BattleAbilities = {
 		onDamage: function (damage, target, source, effect) {
 			if (effect && effect.id === 'brn') {
 				return damage / 2;
-			},
+			}
 			if (effect.id === 'psn' || effect.id === 'tox') {
 				this.heal(target.maxhp / 8);
 				return false;
