@@ -42,7 +42,7 @@ exports.Formats = [
 		mod: 'paradise',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew']
-	}
+	},
 	{
 		name: "Custom Game",
 		section: "Other Formats",
