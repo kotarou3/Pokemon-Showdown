@@ -84,6 +84,20 @@ exports.Formats = [
 
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
+
+	{
+		name: "Poison Heal Paradise",
+		section: "Other Formats",
+
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Uber', 'Soul Dew'],
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox') {
+				this.heal(target.maxhp / 8);
+				return false;
+			}
+		}
+	},
 	{
 		name: "RBYPlus",
 		section: "Other Mods",
