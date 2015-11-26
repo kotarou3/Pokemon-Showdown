@@ -49,7 +49,7 @@ exports.BattleFormatsData = {
 	},
 	persian: {
 		inherit: true,
-		tier: "OU"
+		tier: "UU"
 	},
 	golduck: {
 		inherit: true,
