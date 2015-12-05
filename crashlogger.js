@@ -8,11 +8,15 @@
  * @license MIT license
  */
 
-module.exports = (function () {
-	var lastCrashLog = 0;
-	var transport;
-	var logPath = require('path').resolve(__dirname, 'logs/errors.txt');
-	return function (err, description) {
+'use strict';
+
+exports = module.exports = (function () {
+	const logPath = require('path').resolve(__dirname, 'logs/errors.txt');
+	let lastCrashLog = 0;
+	let transport;
+
+	return function (err, description, isException) {
+		const datenow = Date.now();
 		console.log("\nCRASH: " + (err.stack || err) + "\n");
 		require('fs').createWriteStream(logPath, {'flags': 'a'}).on("open", function (fd) {
 			this.write("\n" + err.stack + "\n");
@@ -20,7 +24,6 @@ module.exports = (function () {
 		}).on("error", function (err) {
 			console.log("\nSUBCRASH: " + err.stack + "\n");
 		});
-		var datenow = Date.now();
 		if (Config.crashGuardEmail && ((datenow - lastCrashLog) > 1000 * 60 * 5)) {
 			lastCrashLog = datenow;
 			try {
@@ -33,11 +36,14 @@ module.exports = (function () {
 					from: Config.crashGuardEmail.from,
 					to: Config.crashGuardEmail.to,
 					subject: Config.crashGuardEmail.subject,
-					text: description + " crashed with this stack trace:\n" + (err.stack || err)
+					text: description + " crashed " + (exports.hadException ? "again " : "") + "with this stack trace:\n" + (err.stack || err)
 				}, function (err) {
 					if (err) console.log("Error sending email: " + err);
 				});
 			}
+		}
+		if (isException) {
+			exports.hadException = true;
 		}
 		if (process.uptime() > 60 * 60) {
 			// no need to lock down the server

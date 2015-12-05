@@ -1,3 +1,5 @@
+'use strict';
+
 exports.BattleItems = {
 	aguavberry: {
 		inherit: true,
@@ -400,6 +402,13 @@ exports.BattleItems = {
 		naturalGift: {
 			basePower: 70,
 			type: "Poison"
+		}
+	},
+	rabutaberry: {
+		inherit: true,
+		naturalGift: {
+			basePower: 70,
+			type: "Ghost"
 		}
 	},
 	rawstberry: {

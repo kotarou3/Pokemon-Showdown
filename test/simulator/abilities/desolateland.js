@@ -1,5 +1,7 @@
-var assert = require('assert');
-var battle;
+'use strict';
+
+const assert = require('assert');
+let battle;
 
 describe('Desolate Land', function () {
 	afterEach(function () {
@@ -13,14 +15,14 @@ describe('Desolate Land', function () {
 		assert.ok(battle.isWeather('desolateland'));
 	});
 
-	it('should increase the base power of Fire-type attacks by 50%', function () {
+	it('should not increase the base power of Fire-type attacks', function () {
 		battle = BattleEngine.Battle.construct();
 		battle.join('p1', 'Guest 1', 1, [{species: "Groudon", ability: 'desolateland', moves: ['helpinghand']}]);
 		battle.join('p2', 'Guest 2', 1, [{species: "Charizard", ability: 'blaze', moves: ['firepledge']}]);
 		battle.commitDecisions();
-		var move = Tools.getMove('firepledge');
-		var basePower = battle.runEvent('BasePower', battle.p2.active[0], battle.p1.active[0], move, move.basePower, true);
-		assert.strictEqual(basePower, battle.modify(move.basePower, 1.5));
+		let move = Tools.getMove('firepledge');
+		let basePower = battle.runEvent('BasePower', battle.p2.active[0], battle.p1.active[0], move, move.basePower, true);
+		assert.strictEqual(basePower, move.basePower);
 	});
 
 	it('should cause Water-type attacks to fail', function () {
@@ -50,7 +52,7 @@ describe('Desolate Land', function () {
 			{species: "Tyranitar", ability: 'sandstream', moves: ['sandstorm']},
 			{species: "Abomasnow", ability: 'snowwarning', moves: ['hail']}
 		]);
-		for (var i = 2; i <= 5; i++) {
+		for (let i = 2; i <= 5; i++) {
 			battle.choose('p1', 'switch ' + i);
 			battle.commitDecisions();
 			assert.ok(battle.isWeather('desolateland'));

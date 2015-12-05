@@ -1,3 +1,5 @@
+'use strict';
+
 // The server port - the port to run Pokemon Showdown under
 exports.port = 8000;
 
@@ -82,12 +84,19 @@ exports.reportBattles = true;
 //   Note that the feature of turning this off is deprecated.
 exports.reportBattleJoins = true;
 
-// moderated chat - prevent unvoiced users from speaking
-//   This should only be enabled in special situations, such as temporarily
-//   when you're dealing with huge influxes of spammy users.
+// whitelist - prevent users below a certain group from doing things
+//   For the modchat settings, false will allow any user to participate, while a string
+//   with a group symbol will restrict it to that group and above. The string
+//   'autoconfirmed' is also supported for chatmodchat and battlemodchat, to restrict
+//   chat to autoconfirmed users.
+//   This is usually intended to be used as a whitelist feature - set these to '+' and
+//   voice every user you want whitelisted on the server.
 exports.modchat = {
+	// chat modchat - default minimum group for speaking in chatrooms; changeable with /modchat
 	chat: false,
+	// battle modchat - default minimum group for speaking in battles; changeable with /modchat
 	battle: false,
+	// pm modchat - minimum group for PMing other users, challenging other users, and laddering
 	pm: false
 };
 
@@ -172,7 +181,7 @@ exports.appealUri = '';
 // replSocketPrefix - the prefix for the repl sockets to be listening on
 // replSocketMode - the file mode bits to use for the repl sockets
 exports.replSocketPrefix = './logs/repl/';
-exports.replSocketMode = 0600;
+exports.replSocketMode = 0o600;
 
 // Symbols, Groups and Permissions
 //   mutedSymbol - The symbol representing a muted user.
@@ -215,6 +224,7 @@ exports.replSocketMode = 0600;
 //     - console: Developer console (also requires IP or userid in the `consoleIps` array).
 //     - declare: /declare command.
 //     - disableladder: /disableladder and /enable ladder commands.
+//     - editroom: Set modjoin/privacy only for battles/groupchats
 //     - forcepromote: Ability to promote a user even if they're offline and unauthed.
 //     - forcerename: /forcerename command.
 //     - forcewin: /forcewin command.
@@ -272,7 +282,9 @@ exports.groups = {
 			banword: true,
 			declare: true,
 			disableladder: true,
+			editroom: true,
 			forcewin: true,
+			makeroom: true,
 			modchatall: true,
 			potd: true,
 			promote: 'u',
@@ -286,9 +298,11 @@ exports.groups = {
 			inherit: '@',
 			jurisdiction: 'u',
 			declare: true,
+			editroom: true,
 			modchatall: true,
 			privateroom: true,
 			roomdesc: true,
+			roomintro: true,
 			roompromote: 'u',
 			tournamentsmanagement: true
 		}, {
@@ -363,7 +377,7 @@ exports.groups.chatRoomByRank = exports.groups.byRank.filter(function (a) { retu
 exports.groups.battleRoomByRank = exports.groups.byRank.filter(function (a) { return exports.groups.battleRoom[a]; });
 exports.groups.byId = {};
 exports.groups.byRank.forEach(function (group, rank) {
-	var groupData = exports.groups.bySymbol[group];
+	let groupData = exports.groups.bySymbol[group];
 	if (groupData.id) exports.groups.byId[groupData.id] = group;
 	groupData.rank = rank;
 });
