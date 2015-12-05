@@ -1,3 +1,5 @@
+'use strict';
+
 exports.BattleAbilities = {
 	"roughskin": {
 		inherit: true,

@@ -1,3 +1,5 @@
+'use strict';
+
 exports.BattleScripts = {
 	inherit: 'gen1',
 	gen: 1,
@@ -30,7 +32,7 @@ exports.BattleScripts = {
 			}
 		}
 		pokemon.lastDamage = 0;
-		var lockedMove = this.runEvent('LockMove', pokemon);
+		let lockedMove = this.runEvent('LockMove', pokemon);
 		if (lockedMove === true) lockedMove = false;
 		if (!lockedMove && (!pokemon.volatiles['partialtrappinglock'] || pokemon.volatiles['partialtrappinglock'].locked !== target)) {
 			pokemon.deductPP(move, null, target);
@@ -65,14 +67,14 @@ exports.BattleScripts = {
 				} else {
 					if (pokemon.volatiles['partialtrappinglock'].locked !== target && target !== pokemon) {
 						// The target switched, therefor, we must re-roll the duration, damage, and accuracy.
-						var duration = [2, 3][this.random(2)];
+						let duration = [2, 3][this.random(2)];
 						pokemon.volatiles['partialtrappinglock'].duration = duration;
 						pokemon.volatiles['partialtrappinglock'].locked = target;
 						// Duration reset thus partially trapped at 2 always.
 						target.volatiles['partiallytrapped'].duration = 2;
 						// We get the move position for the PP change.
-						var usedMovePos = -1;
-						for (var m in pokemon.moveset) {
+						let usedMovePos = -1;
+						for (let m in pokemon.moveset) {
 							if (pokemon.moveset[m].id === move.id) usedMovePos = m;
 						}
 						if (usedMovePos > -1 && pokemon.moveset[usedMovePos].pp === 0) {
@@ -90,9 +92,9 @@ exports.BattleScripts = {
 	// This function attempts a move hit and returns the attempt result before the actual hit happens.
 	// It deals with partial trapping weirdness and accuracy bugs as well.
 	tryMoveHit: function (target, pokemon, move, spreadHit) {
-		var boostTable = [1, 4 / 3, 5 / 3, 2, 7 / 3, 8 / 3, 3];
-		var doSelfDestruct = true;
-		var damage = 0;
+		let boostTable = [1, 4 / 3, 5 / 3, 2, 7 / 3, 8 / 3, 3];
+		let doSelfDestruct = true;
+		let damage = 0;
 
 		// First, check if the Pokémon is immune to this move.
 		if (move.ignoreImmunity !== true && !move.ignoreImmunity[move.type] && !target.runImmunity(move.type, true)) {
@@ -103,7 +105,7 @@ exports.BattleScripts = {
 		}
 
 		// Now, let's calculate the accuracy.
-		var accuracy = move.accuracy;
+		let accuracy = move.accuracy;
 
 		// Partial trapping moves: true accuracy while it lasts
 		if (move.volatileStatus === 'partiallytrapped' && pokemon.volatiles['partialtrappinglock'] && target === pokemon.volatiles['partialtrappinglock'].locked) {
@@ -162,7 +164,7 @@ exports.BattleScripts = {
 		if (damage !== false) {
 			pokemon.lastDamage = 0;
 			if (move.multihit) {
-				var hits = move.multihit;
+				let hits = move.multihit;
 				if (hits.length) {
 					// Yes, it's hardcoded... meh
 					if (hits[0] === 2 && hits[1] === 5) {
@@ -173,9 +175,9 @@ exports.BattleScripts = {
 				}
 				hits = Math.floor(hits);
 				// In gen 1, all the hits have the same damage for multihits move
-				var moveDamage = 0;
-				var firstDamage;
-				var i;
+				let moveDamage = 0;
+				let firstDamage;
+				let i;
 				for (i = 0; i < hits && target.hp && pokemon.hp; i++) {
 					if (i === 0) {
 						// First hit, we calculate
@@ -229,11 +231,11 @@ exports.BattleScripts = {
 	// It deals with the actual move hit, as the name indicates, dealing damage and/or effects.
 	// This function also deals with the Gen 1 Substitute behaviour on the hitting process.
 	moveHit: function (target, pokemon, move, moveData, isSecondary, isSelf) {
-		var damage = 0;
+		let damage = 0;
 		move = this.getMoveCopy(move);
 
 		if (!isSecondary && !isSelf) this.setActiveMove(move, pokemon, target);
-		var hitResult = true;
+		let hitResult = true;
 		if (!moveData) moveData = move;
 
 		if (move.ignoreImmunity === undefined) {
@@ -241,8 +243,8 @@ exports.BattleScripts = {
 		}
 
 		// We get the sub to the target to see if it existed
-		var targetSub = (target) ? target.volatiles['substitute'] : false;
-		var targetHadSub = (targetSub !== null && targetSub !== false && (typeof targetSub !== 'undefined'));
+		let targetSub = (target) ? target.volatiles['substitute'] : false;
+		let targetHadSub = (targetSub !== null && targetSub !== false && (typeof targetSub !== 'undefined'));
 
 		if (target) {
 			hitResult = this.singleEvent('TryHit', moveData, {}, target, pokemon, move);
@@ -283,7 +285,7 @@ exports.BattleScripts = {
 		}
 
 		if (target) {
-			var didSomething = false;
+			let didSomething = false;
 
 			damage = this.getDamage(pokemon, target, moveData);
 
@@ -335,7 +337,7 @@ exports.BattleScripts = {
 				}
 			}
 			if (moveData.heal && !target.fainted) {
-				var d = target.heal(Math.floor(target.maxhp * moveData.heal[0] / moveData.heal[1]));
+				let d = target.heal(Math.floor(target.maxhp * moveData.heal[0] / moveData.heal[1]));
 				if (!d) {
 					this.add('-fail', target);
 					return false;
@@ -393,16 +395,16 @@ exports.BattleScripts = {
 				return false;
 			}
 		}
-		var targetHasSub = false;
+		let targetHasSub = false;
 		if (target) {
-			var targetSub = target.getVolatile('substitute');
+			let targetSub = target.getVolatile('substitute');
 			if (targetSub !== null) {
 				targetHasSub = (targetSub.hp > 0);
 			}
 		}
 
 		// Here's where self effects are applied.
-		var doSelf = (targetHadSub && targetHasSub) || !targetHadSub;
+		let doSelf = (targetHadSub && targetHasSub) || !targetHadSub;
 		if (moveData.self && (doSelf || moveData.self.volatileStatus === 'partialtrappinglock')) {
 			this.moveHit(pokemon, pokemon, move, moveData.self, isSecondary, true);
 		}
@@ -414,13 +416,13 @@ exports.BattleScripts = {
 
 		// Apply move secondaries.
 		if (moveData.secondaries) {
-			for (var i = 0; i < moveData.secondaries.length; i++) {
+			for (let i = 0; i < moveData.secondaries.length; i++) {
 				// We check here whether to negate the probable secondary status if it's para, burn, or freeze.
 				// In the game, this is checked and if true, the random number generator is not called.
 				// That means that a move that does not share the type of the target can status it.
 				// If a move that was not fire-type would exist on Gen 1, it could burn a Pokémon.
 				if (!(moveData.secondaries[i].status && moveData.secondaries[i].status in {'brn':1, 'frz':1} && target && target.hasType(move.type))) {
-					var effectChance = Math.floor(moveData.secondaries[i].chance * 255 / 100);
+					let effectChance = Math.floor(moveData.secondaries[i].chance * 255 / 100);
 					if (typeof moveData.secondaries[i].chance === 'undefined' || this.random(256) < effectChance) {
 						this.moveHit(target, pokemon, move, moveData.secondaries[i], true, isSelf);
 					}

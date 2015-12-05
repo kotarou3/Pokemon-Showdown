@@ -1,3 +1,5 @@
+'use strict';
+
 exports.BattleFormatsData = {
 	genesect: {
 		inherit: true,

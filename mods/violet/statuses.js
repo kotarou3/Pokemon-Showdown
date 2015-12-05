@@ -1,7 +1,9 @@
+'use strict';
+
 exports.BattleStatuses = {
 	partialtrappinglock: {
 		durationCallback: function () {
-			var duration = [2, 3][this.random(2)];
+			let duration = [2, 3][this.random(2)];
 			return duration;
 		},
 		onResidual: function (target) {
@@ -16,8 +18,8 @@ exports.BattleStatuses = {
 			if (!pokemon.hasMove(this.effectData.move)) {
 				return;
 			}
-			var moves = pokemon.moveset;
-			for (var i = 0; i < moves.length; i++) {
+			let moves = pokemon.moveset;
+			for (let i = 0; i < moves.length; i++) {
 				if (moves[i].id !== this.effectData.move) {
 					moves[i].disabled = true;
 				}

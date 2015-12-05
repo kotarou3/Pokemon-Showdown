@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * A lot of Gen 1 moves have to be updated due to different mechanics.
  * Some moves have had major changes, such as Bite's typing.
@@ -91,7 +93,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		onHit: function (target, source) {
 			if (!target.moves.length) return false;
-			var sideCondition = target.side.sideConditions['disable'];
+			let sideCondition = target.side.sideConditions['disable'];
 			if (sideCondition) {
 				target.side.removeSideCondition('disable');
 			}
@@ -100,10 +102,10 @@ exports.BattleMovedex = {
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart: function (side, target) {
-				var moves = target.moves;
-				var moveId = moves[this.random(moves.length)];
+				let moves = target.moves;
+				let moveId = moves[this.random(moves.length)];
 				if (!moveId) return false;
-				var move = this.getMove(moveId);
+				let move = this.getMove(moveId);
 				this.add('-start', target, 'Disable', move.name);
 				this.effectData.move = move.id;
 				return;
@@ -118,8 +120,8 @@ exports.BattleMovedex = {
 			},
 			onDisableMove: function (pokemon) {
 				if (this.effectData.source !== pokemon) return;
-				var moves = pokemon.moveset;
-				for (var i = 0; i < moves.length; i++) {
+				let moves = pokemon.moveset;
+				for (let i = 0; i < moves.length; i++) {
 					if (moves[i].id === this.effectData.move) {
 						pokemon.disableMove(moves[i].id);
 					}
@@ -183,9 +185,9 @@ exports.BattleMovedex = {
 		shortDesc: "Eliminates all stat changes and status.",
 		onHit: function (target, source) {
 			this.add('-clearallboost');
-			for (var i = 0; i < this.sides.length; i++) {
-				for (var j = 0; j < this.sides[i].active.length; j++) {
-					var pokemon = this.sides[i].active[j];
+			for (let i = 0; i < this.sides.length; i++) {
+				for (let j = 0; j < this.sides[i].active.length; j++) {
+					let pokemon = this.sides[i].active[j];
 					pokemon.clearBoosts();
 
 					if (pokemon !== source) {
@@ -195,9 +197,9 @@ exports.BattleMovedex = {
 					if (pokemon.status === 'tox') {
 						pokemon.setStatus('psn');
 					}
-					var volatiles = Object.keys(pokemon.volatiles);
-					for (var n = 0; n < volatiles.length; n++) {
-						var id = volatiles[n];
+					let volatiles = Object.keys(pokemon.volatiles);
+					for (let n = 0; n < volatiles.length; n++) {
+						let id = volatiles[n];
 						if (id === 'residualdmg') {
 							pokemon.volatiles[id].counter = 0;
 						} else {
@@ -229,13 +231,13 @@ exports.BattleMovedex = {
 		desc: "This move is replaced by a random move on target's moveset. The copied move has the maximum PP for that move. Ignores a target's Substitute.",
 		shortDesc: "A random target's move replaces this one.",
 		onHit: function (target, source) {
-			var moveslot = source.moves.indexOf('mimic');
+			let moveslot = source.moves.indexOf('mimic');
 			if (moveslot < 0) return false;
-			var moves = target.moves;
-			var move = moves[this.random(moves.length)];
+			let moves = target.moves;
+			let move = moves[this.random(moves.length)];
 			if (!move) return false;
 			move = this.getMove(move);
-			var mimicMove = {
+			let mimicMove = {
 				move: move.name,
 				id: move.id,
 				pp: source.moveset[moveslot].pp,
