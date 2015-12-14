@@ -103,6 +103,17 @@ class BattlePlayer {
 		}
 		this.game[this.slot] = null;
 	}
+	updateSubchannel(user) {
+		if (!user.connections) {
+			// "user" is actually a connection
+			Sockets.subchannelMove(user.worker, this.id, this.slotNum + 1, user.socketid);
+			return;
+		}
+		for (let i = 0; i < user.connections.length; i++) {
+			let connection = user.connections[i];
+			Sockets.subchannelMove(connection.worker, this.id, this.slotNum + 1, connection.socketid);
+		}
+	}
 
 	toString() {
 		return this.userid;
@@ -243,6 +254,7 @@ class Battle {
 		// the battle
 		let player = this.players[user];
 		if (!player) return;
+		player.updateSubchannel(connection || user);
 		let request = this.requests[player.slot];
 		if (request) {
 			(connection || user).sendTo(this.id, '|request|' + request);
@@ -252,8 +264,9 @@ class Battle {
 		this.onConnect(user, connection);
 	}
 	onRename(user, oldid) {
+		if (user.userid === oldid) return;
 		let player = this.players[oldid];
-		if (player && user.userid !== oldid) {
+		if (player) {
 			if (!this.allowRenames && user.userid !== oldid) {
 				this.room.forfeit(user, " forfeited by changing their name.");
 				return;
@@ -266,7 +279,7 @@ class Battle {
 				player.simSend('rename', user.name, user.avatar);
 			}
 		}
-		if (user in this.players) {
+		if (!player && user in this.players) {
 			// this handles a user renaming themselves into a user in the
 			// battle (e.g. by using /nick)
 			this.onConnect(user);
@@ -276,7 +289,7 @@ class Battle {
 		let player = this.players[user];
 		if (player && !player.active) {
 			player.active = true;
-			player.simSend('join', user.name);
+			player.simSend('join', user.name, user.avatar);
 		}
 	}
 	onLeave(user) {
