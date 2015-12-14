@@ -404,7 +404,7 @@ BattlePokemon = (function () {
 		}
 		this.battle.runEvent('ModifyPokemon', this);
 
-		this.speed = this.getStat('spe');
+		this.speed = this.getDecisionSpeed();
 	};
 	BattlePokemon.prototype.calculateStat = function (statName, boost, modifier) {
 		statName = toId(statName);
@@ -469,6 +469,14 @@ BattlePokemon = (function () {
 			stat = this.battle.getStatCallback(stat, statName, this, unboosted);
 		}
 		return stat;
+	};
+	BattlePokemon.prototype.getDecisionSpeed = function () {
+		let speed = this.getStat('spe');
+		if (speed > 10000) speed = 10000;
+		if (this.battle.getPseudoWeather('trickroom')) {
+			speed = 0x2710 - speed;
+		}
+		return speed & 0x1FFF;
 	};
 	BattlePokemon.prototype.getWeight = function () {
 		let weight = this.template.weightkg;
@@ -3177,10 +3185,10 @@ Battle = (function () {
 						this.add(msg, target, i, boost[i]);
 					} else {
 						if (effect.effectType === 'Ability' && !boosted) {
-							this.add('-activate', target, effect.fullname);
+							this.add('-ability', target, effect.name, 'boost');
 							boosted = true;
 						}
-						this.add(msg, target, i, boost[i], '[from] ' + effect.fullname);
+						this.add(msg, target, i, boost[i]);
 					}
 					break;
 				}

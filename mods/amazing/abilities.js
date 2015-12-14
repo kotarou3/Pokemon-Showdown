@@ -23,7 +23,7 @@ exports.BattleAbilities = {
 		inherit: true,
 		onUpdate: function (pokemon) {
 			if (pokemon.baseTemplate.species !== 'Altaria' || pokemon.transformed) return;
-			let forme = null;
+			var forme = null;
 			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':

@@ -418,14 +418,14 @@ exports.BattleMovedex = {
 	mimic: {
 		inherit: true,
 		onHit: function (target, source) {
-			let disallowedMoves = {mimic:1, struggle:1};
+			var disallowedMoves = {mimic:1, struggle:1};
 			if (source.transformed) return false;
-			let moveslot = source.moves.indexOf('mimic');
+			var moveslot = source.moves.indexOf('mimic');
 			if (moveslot < 0) return false;
-			let moves = target.moves;
+			var moves = target.moves;
 			moves = moves.randomize();
-			let move = false;
-			for (let i = 0; i < moves.length; i++) {
+			var move = false;
+			for (var i = 0; i < moves.length; i++) {
 				if (!(moves[i] in disallowedMoves)) {
 					move = moves[i];
 					break;
@@ -867,19 +867,19 @@ exports.BattleMovedex = {
 			},
 			onAfterMoveSelfPriority: 1,
 			onAfterMoveSelf: function (pokemon) {
-				let leecher = pokemon.side.foe.active[pokemon.volatiles['leechseed'].sourcePosition];
+				var leecher = pokemon.side.foe.active[pokemon.volatiles['leechseed'].sourcePosition];
 				if (!leecher || leecher.fainted || leecher.hp <= 0) {
 					this.debug('Nothing to leech into');
 					return;
 				}
 				// We check if leeched Pokémon has Toxic to increase leeched damage.
-				let toxicCounter = 1;
+				var toxicCounter = 1;
 				if (pokemon.volatiles['residualdmg']) {
 					if (pokemon.status === 'tox') pokemon.volatiles['residualdmg'].counter++;
 					toxicCounter = pokemon.volatiles['residualdmg'].counter;
 				}
-				let toLeech = this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1) * toxicCounter;
-				let damage = this.damage(toLeech, pokemon, leecher);
+				var toLeech = this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1) * toxicCounter;
+				var damage = this.damage(toLeech, pokemon, leecher);
 				if (damage) this.heal(damage, leecher, pokemon);
 			}
 		},
