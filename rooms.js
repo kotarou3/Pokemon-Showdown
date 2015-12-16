@@ -1618,7 +1618,7 @@ let ChatRoom = (function () {
 	ChatRoom.prototype.onConnect = function (user, connection) {
 		let userList = this.userList ? this.userList : this.getUserList();
 		this.sendUser(connection, '|init|chat\n|title|' + this.title + '\n' + userList + '\n' + this.getLogSlice(-100).join('\n') + this.getIntroMessage(user));
-		if (this.poll) this.poll.display(user, false);
+		if (this.poll) this.poll.onConnect(user, connection);
 		if (this.game && this.game.onConnect) this.game.onConnect(user, connection);
 		if (this.reminders && this.reminders.length > 0) {
 			CommandParser.parse('/reminder', this, user, connection);
