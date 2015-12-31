@@ -294,6 +294,14 @@ exports.Formats = [
 		banlist: ['Uber']
 	},
 	{
+		name: "[Gen 1] Green",
+		section: "Past Generations",
+
+		mod: 'green',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		banlist: ['Uber']
+	},
+	{
 		name: "[Gen 1] UU",
 		section: "Past Generations",
 
