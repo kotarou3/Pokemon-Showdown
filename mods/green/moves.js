@@ -8,4 +8,4 @@ exports.BattleScripts = {
 			status: 'frz'
 		}
 	}
-}
+};
