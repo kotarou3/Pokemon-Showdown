@@ -1,3 +1,5 @@
+'use strict';
+
 exports.BattleScripts = {
 	blizzard: {
 		inherit: true,
