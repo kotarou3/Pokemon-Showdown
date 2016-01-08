@@ -1,6 +1,6 @@
 'use strict';
 
-exports.BattleScripts = {
+exports.BattleMovedex = {
 	blizzard: {
 		inherit: true,
 		secondary: {
