@@ -14,8 +14,11 @@ exports.BattleScripts = {
 			switch (tier) {
 			case 'BL':
 			case 'UU':
-			case 'LC':
 				adjustment = 10;
+				break;
+			case 'RU':
+			case 'LC':
+				adjustment = 20;
 			}
 
 			if (adjustment) {

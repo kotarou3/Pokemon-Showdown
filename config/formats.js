@@ -294,6 +294,14 @@ exports.Formats = [
 		banlist: ['Uber']
 	},
 	{
+		name: "[Gen 1] Green",
+		section: "Past Generations",
+
+		mod: 'green',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		banlist: ['Uber']
+	},
+	{
 		name: "[Gen 1] UU",
 		section: "Past Generations",
 
@@ -302,7 +310,15 @@ exports.Formats = [
 		banlist: ['Uber', 'OU', 'BL']
 	},
 	{
-		name: "[Gen 1] Tier Shift",
+		name: "[Gen 1] RU",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL', 'UU']
+	},
+	{
+		name: "[Gen 1] Extreme Tier Shift",
 		section: "Past Generations",
 
 		mod: 'rbytiershift',
