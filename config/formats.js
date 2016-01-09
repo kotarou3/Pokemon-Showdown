@@ -230,6 +230,14 @@ exports.Formats = [
 		banlist: ['Uber', 'OU']
 	},
 	{
+		name: "[Gen 3] Extreme Tier Shift",
+		section: "Past Generations",
+
+		mod: 'rsetiershift',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber']
+	},
+	{
 		name: "[Gen 3] Custom Game",
 		section: "Past Generations",
 
