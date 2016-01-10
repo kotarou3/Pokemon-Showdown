@@ -1,6 +1,6 @@
 'use strict';
 
 exports.BattleScripts = {
-	inherit: 'gen2',
+	inherit: 'gen1',
 	gen: 1
 };
