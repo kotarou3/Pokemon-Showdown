@@ -21,7 +21,7 @@ exports.BattleScripts = {
 	// This is because there was actually no side, just Battle and active Pokémon effects.
 	// Side's lastMove is used for Counter and Mirror Move.
 	side: {
-		lastMove: ''
+		lastMove: '',
 	},
 	// BattlePokemon scripts.
 	pokemon: {
@@ -65,7 +65,7 @@ exports.BattleScripts = {
 			}
 			this.update();
 			return changed;
-		}
+		},
 	},
 	// Battle scripts.
 	// runMove can be found in scripts.js. This function is the main one when running a move.
@@ -103,6 +103,8 @@ exports.BattleScripts = {
 			// On gen 1 moves are stored when they are chosen and a PP is deducted.
 			pokemon.side.lastMove = move.id;
 			pokemon.lastMove = move.id;
+		} else {
+			if (lockedMove) sourceEffect = move;
 		}
 		this.useMove(move, pokemon, target, sourceEffect);
 		this.singleEvent('AfterMove', move, null, pokemon, target, move);
@@ -729,7 +731,7 @@ exports.BattleScripts = {
 				basePower: move,
 				type: '???',
 				category: 'Physical',
-				flags: {}
+				flags: {},
 			};
 		}
 
@@ -1003,7 +1005,7 @@ exports.BattleScripts = {
 				def: this.random(30),
 				spa: this.random(30),
 				spd: this.random(30),
-				spe: this.random(30)
+				spe: this.random(30),
 			};
 
 			// Maxed EVs.
@@ -1032,7 +1034,7 @@ exports.BattleScripts = {
 				level: level,
 				happiness: 0,
 				shiny: false,
-				nature: 'Serious'
+				nature: 'Serious',
 			});
 		}
 
@@ -1081,7 +1083,7 @@ exports.BattleScripts = {
 				if (uberCount >= 1 && !hasShitmon) continue;
 				break;
 			default:
-				if (uuTiers[tier] && (hasShitmon || (nuCount > 2 && this.random(2) >= 1))) continue;
+				if (uuTiers[tier] && pokemonPool.length > 1 && (hasShitmon || (nuCount > 2 && this.random(2) >= 1))) continue;
 			}
 
 			let skip = false;
@@ -1090,7 +1092,7 @@ exports.BattleScripts = {
 			// The second of a same type has halved chance of being added.
 			let types = template.types;
 			for (let t = 0; t < types.length; t++) {
-				if (typeCount[types[t]] > 1 || (typeCount[types[t]] === 1 && this.random(2))) {
+				if (typeCount[types[t]] > 1 || (typeCount[types[t]] === 1 && this.random(2) && pokemonPool.length > 1)) {
 					skip = true;
 					break;
 				}
@@ -1163,11 +1165,11 @@ exports.BattleScripts = {
 
 		// Moves that boost Attack:
 		let PhysicalSetup = {
-			swordsdance:1, sharpen:1
+			swordsdance:1, sharpen:1,
 		};
 		// Moves which boost Special Attack:
 		let SpecialSetup = {
-			amnesia:1, growth:1
+			amnesia:1, growth:1,
 		};
 
 		// Add the mandatory move
@@ -1330,13 +1332,13 @@ exports.BattleScripts = {
 			NU: 90,
 			UU: 85,
 			OU: 79,
-			Uber: 74
+			Uber: 74,
 		};
 		// Really bad Pokemon and jokemons, MEWTWO, Pokémon with higher tier in Wrap metas.
 		let customScale = {
 			Caterpie: 99, Kakuna: 99, Magikarp: 99, Metapod: 99, Weedle: 99,
 			Clefairy: 95, "Farfetch'd": 99, Jigglypuff: 99, Ditto: 99, Mewtwo: 70,
-			Dragonite: 85, Cloyster: 83, Staryu: 90
+			Dragonite: 85, Cloyster: 83, Staryu: 90,
 		};
 		let level = levelScale[template.tier] || 90;
 		if (customScale[template.name]) level = customScale[template.name];
@@ -1351,7 +1353,7 @@ exports.BattleScripts = {
 			item: '',
 			level: level,
 			shiny: false,
-			gender: false
+			gender: false,
 		};
-	}
+	},
 };

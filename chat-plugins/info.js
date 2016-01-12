@@ -117,9 +117,10 @@ exports.commands = {
 			for (let i = 0; i < Rooms.global.chatRooms.length; i++) {
 				let thisRoom = Rooms.global.chatRooms[i];
 				if (!thisRoom || thisRoom.isPrivate === true) continue;
-				if (thisRoom.bannedIps && (targetUser.latestIp in thisRoom.bannedIps || targetUser.userid in thisRoom.bannedUsers)) {
+				let roomBanned = ((thisRoom.bannedIps && thisRoom.bannedIps[targetUser.latestIp]) || (thisRoom.bannedUsers && thisRoom.bannedUsers[targetUser.userid]));
+				if (roomBanned) {
 					if (bannedFrom) bannedFrom += ", ";
-					bannedFrom += '<a href="/' + thisRoom + '">' + thisRoom + '</a>';
+					bannedFrom += '<a href="/' + thisRoom + '">' + thisRoom + '</a> (' + roomBanned + ')';
 				}
 			}
 			if (bannedFrom) buf += '<br />Banned from: ' + bannedFrom;
@@ -219,7 +220,7 @@ exports.commands = {
 		let buffer = '';
 		let targetId = toId(target);
 		if (!targetId) return this.parse('/help data');
-		let targetNum = parseInt(targetId, 10);
+		let targetNum = parseInt(targetId);
 		if (!isNaN(targetNum)) {
 			for (let p in Tools.data.Pokedex) {
 				let pokemon = Tools.getTemplate(p);
@@ -279,7 +280,7 @@ exports.commands = {
 					"Height": pokemon.heightm + " m",
 					"Weight": pokemon.weightkg + " kg <em>(" + weighthit + " BP)</em>",
 					"Dex Colour": pokemon.color,
-					"Egg Group(s)": pokemon.eggGroups.join(", ")
+					"Egg Group(s)": pokemon.eggGroups.join(", "),
 				};
 				if (!pokemon.evos.length) {
 					details["<font color=#585858>Does Not Evolve</font>"] = "";
@@ -293,7 +294,7 @@ exports.commands = {
 				let move = Tools.getMove(newTargets[0].name);
 				details = {
 					"Priority": move.priority,
-					"Gen": move.gen
+					"Gen": move.gen,
 				};
 
 				if (move.secondary || move.secondaries) details["<font color=black>&#10003; Secondary effect</font>"] = "";
@@ -325,12 +326,12 @@ exports.commands = {
 					'allyTeam': "User's Side",
 					'allAdjacent': "All Adjacent Pok\u00e9mon",
 					'any': "Any Pok\u00e9mon",
-					'all': "All Pok\u00e9mon"
+					'all': "All Pok\u00e9mon",
 				}[move.target] || "Unknown";
 			} else if (newTargets[0].searchType === 'item') {
 				let item = Tools.getItem(newTargets[0].name);
 				details = {
-					"Gen": item.gen
+					"Gen": item.gen,
 				};
 
 				if (item.fling) {
@@ -406,7 +407,7 @@ exports.commands = {
 		for (let i = 0; i < andGroups.length; i++) {
 			let orGroup = {abilities: {}, tiers: {}, colors: {}, gens: {}, moves: {}, types: {}, stats: {}, skip: false};
 			let parameters = andGroups[i].split("|");
-			if (parameters.length > 4) return this.sendReply("No more than 3 alternatives for each parameter may be used.");
+			if (parameters.length > 3) return this.sendReply("No more than 3 alternatives for each parameter may be used.");
 			for (let j = 0; j < parameters.length; j++) {
 				let isNotSearch = false;
 				target = parameters[j].trim().toLowerCase();
@@ -440,7 +441,7 @@ exports.commands = {
 				}
 
 				if (target.substr(0, 3) === 'gen' && Number.isInteger(parseFloat(target.substr(3)))) target = target.substr(3).trim();
-				let targetInt = parseInt(target, 10);
+				let targetInt = parseInt(target);
 				if (0 < targetInt && targetInt < 7) {
 					if (!validParameter("gens", target, isNotSearch)) return;
 					orGroup.gens[target] = !isNotSearch;
@@ -457,7 +458,7 @@ exports.commands = {
 
 				if (target.substr(0, 6) === 'random' && cmd === 'randpoke') {
 					//validation for this is in the /randpoke command
-					randomOutput = parseInt(target.substr(6), 10);
+					randomOutput = parseInt(target.substr(6));
 					orGroup.skip = true;
 					continue;
 				}
@@ -699,6 +700,29 @@ exports.commands = {
 		for (let mon in dex) {
 			if (dex[mon].baseSpecies && results.indexOf(dex[mon].baseSpecies) >= 0) continue;
 			results.push(dex[mon].species);
+		}
+
+		let moveGroups = searches
+			.filter(function (alts) {
+				return Object.any(alts.moves, function (move, isSearch) {
+					return isSearch;
+				});
+			})
+			.map(function (alts) {
+				return Object.keys(alts.moves);
+			});
+		if (moveGroups.length >= 2) {
+			results = results.filter(function (mon) {
+				let lsetData = {fastCheck: true, set: {}};
+				for (let group = 0; group < moveGroups.length; group++) {
+					for (let i = 0; i < moveGroups[group].length; i++) {
+						let problem = TeamValidator.checkLearnsetSync('anythinggoes', moveGroups[group][i], mon, lsetData);
+						if (!problem) break;
+						if (i === moveGroups[group].length - 1) return;
+					}
+				}
+				return true;
+			});
 		}
 
 		if (randomOutput && randomOutput < results.length) {
@@ -1227,7 +1251,7 @@ exports.commands = {
 					if (searchedWords[k].substr(searchedWords[k].length - 2) === 'bp' && searchedWords[k].length > 2) searchedWords[k] = searchedWords[k].substr(0, searchedWords[k].length - 2);
 					if (Number.isInteger(Number(searchedWords[k]))) {
 						if (basePower) return this.sendReplyBox("Only specify a number for base power once.");
-						basePower = parseInt(searchedWords[k], 10);
+						basePower = parseInt(searchedWords[k]);
 					}
 				}
 			}
@@ -1259,7 +1283,7 @@ exports.commands = {
 					if (searchedWords[k].substr(searchedWords[k].length - 2) === 'bp' && searchedWords[k].length > 2) searchedWords[k] = searchedWords[k].substr(0, searchedWords[k].length - 2);
 					if (Number.isInteger(Number(searchedWords[k]))) {
 						if (basePower) return this.sendReplyBox("Only specify a number for base power once.");
-						basePower = parseInt(searchedWords[k], 10);
+						basePower = parseInt(searchedWords[k]);
 					}
 				}
 			}
@@ -1757,7 +1781,7 @@ exports.commands = {
 					lvlSet = true;
 					continue;
 				} else if (lowercase.startsWith('lv') || lowercase.startsWith('level')) {
-					level = parseInt(targets[i].replace(/\D/g, ''), 10);
+					level = parseInt(targets[i].replace(/\D/g, ''));
 					lvlSet = true;
 					if (level < 1 || level > 9999) {
 						return this.sendReplyBox('Invalid value for level: ' + level);
@@ -1811,7 +1835,7 @@ exports.commands = {
 
 			if (!ivSet) {
 				if (lowercase.endsWith('iv') || lowercase.endsWith('ivs')) {
-					iv = parseInt(targets[i], 10);
+					iv = parseInt(targets[i]);
 					ivSet = true;
 
 					if (isNaN(iv)) {
@@ -1829,7 +1853,7 @@ exports.commands = {
 					ev = 0;
 					evSet = true;
 				} else if (lowercase.endsWith('ev') || lowercase.endsWith('evs')) {
-					ev = parseInt(targets[i], 10);
+					ev = parseInt(targets[i]);
 					evSet = true;
 
 					if (isNaN(ev)) {
@@ -1858,11 +1882,11 @@ exports.commands = {
 					modifier = 1;
 					modSet = true;
 				} else if (targets[i].charAt(0) === '+') {
-					modifier = parseInt(targets[i].charAt(1), 10);
+					modifier = parseInt(targets[i].charAt(1));
 					modSet = true;
 				} else if (targets[i].charAt(0) === '-') {
 					positiveMod = false;
-					modifier = parseInt(targets[i].charAt(1), 10);
+					modifier = parseInt(targets[i].charAt(1));
 					modSet = true;
 				}
 				if (isNaN(modifier)) {
@@ -1882,7 +1906,7 @@ exports.commands = {
 				}
 			}
 
-			let tempStat = parseInt(targets[i], 10);
+			let tempStat = parseInt(targets[i]);
 
 			if (!isNaN(tempStat) && !baseSet && tempStat > 0 && tempStat < 256) {
 				statValue = tempStat;
@@ -2248,6 +2272,9 @@ exports.commands = {
 			Rooms.global.writeChatRoomData();
 		}
 	},
+	ruleshelp: ["/rules - Show links to room rules and global rules.",
+		"!rules - Show everyone links to room rules and global rules. Requires: + % @ # & ~",
+		"/rules [url] - Change the room rules URL. Requires: # & ~"],
 
 	faq: function (target, room, user) {
 		if (!this.canBroadcast()) return;
@@ -2687,7 +2714,7 @@ exports.commands = {
 
 		this.sendReplyBox(target);
 	},
-	htmlboxhelp: ["/htmlbox [message] - Displays a message, parsing HTML code contained. Requires: " + Users.getGroupsThatCan('declare').join(" ") + " with global authority"]
+	htmlboxhelp: ["/htmlbox [message] - Displays a message, parsing HTML code contained. Requires: " + Users.getGroupsThatCan('declare').join(" ") + " with global authority"],
 };
 
 process.nextTick(function () {

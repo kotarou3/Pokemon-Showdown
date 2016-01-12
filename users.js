@@ -847,7 +847,7 @@ User = (function () {
 		}
 
 		let expiry = Config.tokenExpiry || 25 * 60 * 60;
-		if (Math.abs(parseInt(tokenDataSplit[3], 10) - Date.now() / 1000) > expiry) {
+		if (Math.abs(parseInt(tokenDataSplit[3]) - Date.now() / 1000) > expiry) {
 			console.log('stale assertion: ' + tokenData);
 			this.send('|nametaken|' + name + "|Your assertion is stale. This usually means that the clock on the server computer is incorrect. If this is your server, please set the clock to the correct time.");
 			return;
@@ -880,7 +880,7 @@ User = (function () {
 	User.prototype.handleRename = function (name, userid, newlyRegistered, userType) {
 		let conflictUser = users.get(userid);
 		if (conflictUser && !conflictUser.registered && conflictUser.connected) {
-			if (newlyRegistered) {
+			if (newlyRegistered && userType !== '1') {
 				if (conflictUser !== this) conflictUser.resetName();
 			} else {
 				this.send('|nametaken|' + name + "|Someone is already using the name \"" + conflictUser.name + "\".");
@@ -1072,7 +1072,7 @@ User = (function () {
 					connection.leaveRoom(room);
 					continue;
 				}
-				room.onJoin(this, connection, true);
+				room.onJoin(this, connection);
 				this.roomCount[i] = 0;
 			}
 			this.roomCount[i]++;
@@ -1080,6 +1080,7 @@ User = (function () {
 				room.game.onUpdateConnection(this, connection);
 			}
 		}
+		this.updateSearch(true, connection);
 	};
 	User.prototype.debugData = function () {
 		let str = '' + this.group + this.name + ' (' + this.userid + ')';
@@ -1506,12 +1507,27 @@ User = (function () {
 		if (challengeTo) {
 			challengeTo = {
 				to: challengeTo.to,
-				format: challengeTo.format
+				format: challengeTo.format,
 			};
 		}
 		this.send('|updatechallenges|' + JSON.stringify({
 			challengesFrom: Object.map(this.challengesFrom, 'format'),
-			challengeTo: challengeTo
+			challengeTo: challengeTo,
+		}));
+	};
+	User.prototype.updateSearch = function (onlyIfExists, connection) {
+		let games = {};
+		let atLeastOne = false;
+		for (let roomid in this.games) {
+			games[roomid] = this.games[roomid].title;
+			atLeastOne = true;
+		}
+		if (!atLeastOne) games = null;
+		let searching = Object.keys(this.searching);
+		if (onlyIfExists && !searching.length && !atLeastOne) return;
+		(connection || this).send('|updatesearch|' + JSON.stringify({
+			searching: searching,
+			games: games,
 		}));
 	};
 	User.prototype.makeChallenge = function (user, format/*, isPrivate*/) {
@@ -1533,7 +1549,7 @@ User = (function () {
 			to: user.userid,
 			format: '' + (format || ''),
 			//isPrivate: !!isPrivate, // currently unused
-			team: this.team
+			team: this.team,
 		};
 		this.lastChallenge = time;
 		this.challengeTo = challenge;

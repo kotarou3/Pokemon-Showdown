@@ -14,7 +14,7 @@ exports.BattleStatuses = {
 		onResidualOrder: 9,
 		onResidual: function (pokemon) {
 			this.damage(pokemon.maxhp / 8);
-		}
+		},
 	},
 	par: {
 		effectType: 'Status',
@@ -32,7 +32,7 @@ exports.BattleStatuses = {
 				this.add('cant', pokemon, 'par');
 				return false;
 			}
-		}
+		},
 	},
 	slp: {
 		effectType: 'Status',
@@ -57,7 +57,7 @@ exports.BattleStatuses = {
 				return;
 			}
 			return false;
-		}
+		},
 	},
 	frz: {
 		effectType: 'Status',
@@ -94,7 +94,7 @@ exports.BattleStatuses = {
 			if (move.thawsTarget || move.type === 'Fire' && move.category !== 'Status') {
 				target.cureStatus();
 			}
-		}
+		},
 	},
 	psn: {
 		effectType: 'Status',
@@ -104,7 +104,7 @@ exports.BattleStatuses = {
 		onResidualOrder: 9,
 		onResidual: function (pokemon) {
 			this.damage(pokemon.maxhp / 8);
-		}
+		},
 	},
 	tox: {
 		effectType: 'Status',
@@ -125,7 +125,7 @@ exports.BattleStatuses = {
 				this.effectData.stage++;
 			}
 			this.damage(this.clampIntRange(pokemon.maxhp / 16, 1) * this.effectData.stage);
-		}
+		},
 	},
 	confusion: {
 		// this is a volatile status
@@ -156,10 +156,10 @@ exports.BattleStatuses = {
 			this.damage(this.getDamage(pokemon, pokemon, 40), pokemon, pokemon, {
 				id: 'confused',
 				effectType: 'Move',
-				type: '???'
+				type: '???',
 			});
 			return false;
-		}
+		},
 	},
 	flinch: {
 		duration: 1,
@@ -170,19 +170,19 @@ exports.BattleStatuses = {
 			}
 			this.add('cant', pokemon, 'flinch');
 			return false;
-		}
+		},
 	},
 	trapped: {
 		noCopy: true,
-		onModifyPokemon: function (pokemon) {
+		onTrapPokemon: function (pokemon) {
 			pokemon.tryTrap();
 		},
 		onStart: function (target) {
 			this.add('-activate', target, 'trapped');
-		}
+		},
 	},
 	trapper: {
-		noCopy: true
+		noCopy: true,
 	},
 	partiallytrapped: {
 		duration: 5,
@@ -208,9 +208,9 @@ exports.BattleStatuses = {
 		onEnd: function (pokemon) {
 			this.add('-end', pokemon, this.effectData.sourceEffect, '[partiallytrapped]');
 		},
-		onModifyPokemon: function (pokemon) {
-			pokemon.tryTrap();
-		}
+		onTrapPokemon: function (pokemon) {
+			if (this.effectData.source && this.effectData.source.isActive) pokemon.tryTrap();
+		},
 	},
 	lockedmove: {
 		// Outrage, Thrash, Petal Dance...
@@ -237,7 +237,7 @@ exports.BattleStatuses = {
 		},
 		onLockMove: function (pokemon) {
 			return this.effectData.move;
-		}
+		},
 	},
 	twoturnmove: {
 		// Skull Bash, SolarBeam, Sky Drop...
@@ -257,7 +257,7 @@ exports.BattleStatuses = {
 		},
 		onLockMoveTarget: function () {
 			return this.effectData.targetLoc;
-		}
+		},
 	},
 	choicelock: {
 		onStart: function (pokemon) {
@@ -278,7 +278,7 @@ exports.BattleStatuses = {
 					pokemon.disableMove(moves[i].id, false, this.effectData.sourceEffect);
 				}
 			}
-		}
+		},
 	},
 	mustrecharge: {
 		duration: 2,
@@ -291,7 +291,7 @@ exports.BattleStatuses = {
 		onLockMove: function (pokemon) {
 			this.add('-mustrecharge', pokemon);
 			return 'recharge';
-		}
+		},
 	},
 	futuremove: {
 		// this is a side condition
@@ -328,13 +328,17 @@ exports.BattleStatuses = {
 				target.removeVolatile('Protect');
 				target.removeVolatile('Endure');
 
-				if (target.hasAbility('wonderguard') && this.gen > 5) {
+				if (target.hasAbility('wonderguard') && this.gen >= 5) {
 					this.debug('Wonder Guard immunity: ' + move.id);
 					if (target.runEffectiveness(move) <= 0) {
 						this.add('-activate', target, 'ability: Wonder Guard');
 						this.effectData.positions[i] = null;
 						return null;
 					}
+				}
+
+				if (posData.source.hasAbility('infiltrator') && this.gen >= 6) {
+					posData.moveData.infiltrates = true;
 				}
 
 				this.tryMoveHit(target, posData.source, posData.moveData);
@@ -344,7 +348,7 @@ exports.BattleStatuses = {
 			if (finished) {
 				side.removeSideCondition('futuremove');
 			}
-		}
+		},
 	},
 	stall: {
 		// Protect, Detect, Endure counter
@@ -365,7 +369,7 @@ exports.BattleStatuses = {
 				this.effectData.counter *= 3;
 			}
 			this.effectData.duration = 2;
-		}
+		},
 	},
 	gem: {
 		duration: 1,
@@ -373,7 +377,7 @@ exports.BattleStatuses = {
 		onBasePower: function (basePower, user, target, move) {
 			this.debug('Gem Boost');
 			return this.chainModify([0x14CD, 0x1000]);
-		}
+		},
 	},
 	aura: {
 		duration: 1,
@@ -386,7 +390,7 @@ exports.BattleStatuses = {
 				this.debug('Aura Boost reverted by Aura Break');
 			}
 			return this.chainModify([modifier, 0x1000]);
-		}
+		},
 	},
 
 	// weather is implemented here since it's so important to the game
@@ -425,7 +429,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 	primordialsea: {
 		effectType: 'Weather',
@@ -453,7 +457,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 	sunnyday: {
 		effectType: 'Weather',
@@ -492,7 +496,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 	desolateland: {
 		effectType: 'Weather',
@@ -523,7 +527,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 	sandstorm: {
 		effectType: 'Weather',
@@ -560,7 +564,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 	hail: {
 		effectType: 'Weather',
@@ -589,7 +593,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 	deltastream: {
 		effectType: 'Weather',
@@ -610,7 +614,7 @@ exports.BattleStatuses = {
 		},
 		onEnd: function () {
 			this.add('-weather', 'none');
-		}
+		},
 	},
 
 	arceus: {
@@ -630,6 +634,6 @@ exports.BattleStatuses = {
 				}
 			}
 			pokemon.setType(type, true);
-		}
-	}
+		},
+	},
 };

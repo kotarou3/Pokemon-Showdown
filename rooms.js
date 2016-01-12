@@ -244,7 +244,7 @@ let Room = (function () {
 					userid: userid,
 					time: time,
 					guestNum: user.guestNum,
-					autoconfirmed: user.autoconfirmed
+					autoconfirmed: user.autoconfirmed,
 				};
 				this.muteQueue.splice(i, 0, entry);
 				// The timer needs to be switched to the new entry if it is to be unmuted
@@ -268,7 +268,7 @@ let Room = (function () {
 			// If the user is not found, construct a dummy user object for them.
 			user = {
 				userid: userid,
-				autoconfirmed: userid
+				autoconfirmed: userid,
 			};
 		}
 
@@ -310,7 +310,7 @@ let GlobalRoom = (function () {
 		// but this is okay to prevent race conditions as we start up PS
 		this.lastBattle = 0;
 		try {
-			this.lastBattle = parseInt(fs.readFileSync('logs/lastbattle.txt', 'utf8'), 10) || 0;
+			this.lastBattle = parseInt(fs.readFileSync('logs/lastbattle.txt', 'utf8')) || 0;
 		} catch (e) {} // file doesn't exist [yet]
 
 		this.chatRoomData = [];
@@ -323,12 +323,12 @@ let GlobalRoom = (function () {
 			this.chatRoomData = [{
 				title: 'Lobby',
 				isOfficial: true,
-				autojoin: true
+				autojoin: true,
 			}, {
 				title: 'Staff',
 				isPrivate: true,
 				staffRoom: true,
-				staffAutojoin: true
+				staffAutojoin: true,
 			}];
 		}
 
@@ -442,13 +442,13 @@ let GlobalRoom = (function () {
 		if (this.maxUsersDate) {
 			LoginServer.request('updateuserstats', {
 				date: this.maxUsersDate,
-				users: this.maxUsers
+				users: this.maxUsers,
 			}, function () {});
 			this.maxUsersDate = 0;
 		}
 		LoginServer.request('updateuserstats', {
 			date: Date.now(),
-			users: this.userCount
+			users: this.userCount,
 		}, function () {});
 	};
 
@@ -511,7 +511,7 @@ let GlobalRoom = (function () {
 			(room.isOfficial ? roomsData.official : roomsData.chat).push({
 				title: room.title,
 				desc: room.desc,
-				userCount: room.userCount
+				userCount: room.userCount,
 			});
 		}
 		return roomsData;
@@ -534,7 +534,7 @@ let GlobalRoom = (function () {
 			}
 		}
 
-		user.send('|updatesearch|' + JSON.stringify({searching: Object.keys(user.searching)}));
+		user.updateSearch();
 		return true;
 	};
 	GlobalRoom.prototype.searchBattle = function (user, formatid) {
@@ -547,14 +547,11 @@ let GlobalRoom = (function () {
 	GlobalRoom.prototype.finishSearchBattle = function (user, formatid, result) {
 		if (!result) return;
 
-		// tell the user they've started searching
-		user.send('|updatesearch|' + JSON.stringify({searching: Object.keys(user.searching).concat(formatid)}));
-
 		let newSearch = {
 			userid: '',
 			team: user.team,
 			rating: 1000,
-			time: new Date().getTime()
+			time: new Date().getTime(),
 		};
 		let self = this;
 
@@ -605,12 +602,8 @@ let GlobalRoom = (function () {
 			let search = formatSearches[i];
 			let searchUser = Users.getExact(search.userid);
 			if (this.matchmakingOK(search, newSearch, searchUser, user, formatid)) {
-				let usersToUpdate = [user, searchUser];
-				for (let j = 0; j < 2; j++) {
-					delete usersToUpdate[j].searching[formatid];
-					let searchedFormats = Object.keys(usersToUpdate[j].searching);
-					usersToUpdate[j].send('|updatesearch|' + JSON.stringify({searching: searchedFormats}));
-				}
+				delete user.searching[formatid];
+				delete searchUser.searching[formatid];
 				formatSearches.splice(i, 1);
 				this.startBattle(searchUser, user, formatid, search.team, newSearch.team, {rated: true});
 				return;
@@ -618,6 +611,7 @@ let GlobalRoom = (function () {
 		}
 		user.searching[formatid] = 1;
 		formatSearches.push(newSearch);
+		user.updateSearch();
 	};
 	GlobalRoom.prototype.periodicMatch = function () {
 		for (let formatid in this.searches) {
@@ -632,12 +626,8 @@ let GlobalRoom = (function () {
 				let search = formatSearches[i];
 				let searchUser = Users.getExact(search.userid);
 				if (this.matchmakingOK(search, longestSearch, searchUser, longestSearcher, formatid)) {
-					let usersToUpdate = [longestSearcher, searchUser];
-					for (let j = 0; j < 2; j++) {
-						delete usersToUpdate[j].searching[formatid];
-						let searchedFormats = Object.keys(usersToUpdate[j].searching);
-						usersToUpdate[j].send('|updatesearch|' + JSON.stringify({searching: searchedFormats}));
-					}
+					delete longestSearcher.searching[formatid];
+					delete searchUser.searching[formatid];
 					formatSearches.splice(i, 1);
 					formatSearches.splice(0, 1);
 					this.startBattle(searchUser, longestSearcher, formatid, search.team, longestSearch.team, {rated: true});
@@ -674,7 +664,7 @@ let GlobalRoom = (function () {
 		if (rooms[id]) return false;
 
 		let chatRoomData = {
-			title: title
+			title: title,
 		};
 		let room = Rooms.createChatRoom(id, title, chatRoomData);
 		this.chatRoomData.push(chatRoomData);
@@ -757,7 +747,7 @@ let GlobalRoom = (function () {
 		connection.send(initdata + this.formatListText);
 		if (this.chatRooms.length > 2) connection.send('|queryresponse|rooms|null'); // should display room list
 	};
-	GlobalRoom.prototype.onJoin = function (user, connection, merging) {
+	GlobalRoom.prototype.onJoin = function (user, connection) {
 		if (!user) return false; // ???
 		if (this.users[user.userid]) return user;
 
@@ -873,7 +863,7 @@ let BattleRoom = (function () {
 			rated = {
 				p1: p1.userid,
 				p2: p2.userid,
-				format: format
+				format: format,
 			};
 		} else {
 			rated = false;
@@ -884,7 +874,7 @@ let BattleRoom = (function () {
 				p1: p1.userid,
 				p2: p2.userid,
 				format: format,
-				tour: options.tour
+				tour: options.tour,
 			};
 		} else {
 			this.tour = false;
