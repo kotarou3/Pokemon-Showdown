@@ -21,7 +21,7 @@ function toArtistId(artist) { // toId would return '' for foreign/sadistic artis
 let artistOfTheDay = {
 	pendingNominations: false,
 	nominations: new Map(),
-	removedNominators: []
+	removedNominators: [],
 };
 
 let theStudio = Rooms.get('thestudio');
@@ -178,12 +178,7 @@ let commands = {
 		if (!this.canBroadcast()) return false;
 		if (!artistOfTheDay.nominations.size) return this.sendReplyBox("No nominations have been submitted yet.");
 
-		let nominations = toArrayOfArrays(artistOfTheDay.nominations).sort(function (a, b) {
-			if (a[1] > b[1]) return 1;
-			if (a[1] < b[1]) return -1;
-			return 0;
-		});
-		nominations = nominations.sort();
+		let nominations = toArrayOfArrays(artistOfTheDay.nominations).sort(function (a, b) {return a[0].localeCompare(b[0]);});
 
 		buffer += "Current nominations (" + nominations.length + "):";
 		for (let i = 0; i < nominations.length; i++) {
@@ -264,7 +259,7 @@ let commands = {
 	},
 	quotehelp:  [
 		"/aotd quote - View the current Artist Quote of the Day.",
-		"/aotd quote [quote] - Set the Artist Quote of the Day. Requires: " + Users.getGroupsThatCan('aqotd').join(" ")
+		"/aotd quote [quote] - Set the Artist Quote of the Day. Requires: " + Users.getGroupsThatCan('aqotd').join(" "),
 	],
 
 	'': function (target, room) {
@@ -277,7 +272,7 @@ let commands = {
 		if (room.id !== 'thestudio') return this.errorReply('This command can only be used in The Studio.');
 		if (!room.chatRoomData || !this.canBroadcast()) return false;
 		this.sendReply("Use /help aotd to view help for all commands, or /help aotd [command] for help on a specific command.");
-	}
+	},
 };
 
 exports.commands = {
@@ -293,6 +288,6 @@ exports.commands = {
 		"- /aotd prenom [artist] - Nominate an artist for the Artist of the Day between nomination periods.",
 		"- /aotd set [artist] - Set the Artist of the Day. Requires: " + Users.getGroupsThatCan('aotd').join(" "),
 		"- /aotd quote - View the current Artist Quote of the Day.",
-		"- /aotd quote [quote] - Set the Artist Quote of the Day. Requires: " + Users.getGroupsThatCan('aqotd').join(" ")
-	]
+		"- /aotd quote [quote] - Set the Artist Quote of the Day. Requires: " + Users.getGroupsThatCan('aqotd').join(" "),
+	],
 };

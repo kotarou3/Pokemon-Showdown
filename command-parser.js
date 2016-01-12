@@ -62,7 +62,7 @@ fs.readdirSync(path.resolve(__dirname, 'chat-plugins')).forEach(function (file) 
 
 let modlog = exports.modlog = {
 	lobby: fs.createWriteStream(path.resolve(__dirname, 'logs/modlog/modlog_lobby.txt'), {flags:'a+'}),
-	battle: fs.createWriteStream(path.resolve(__dirname, 'logs/modlog/modlog_battle.txt'), {flags:'a+'})
+	battle: fs.createWriteStream(path.resolve(__dirname, 'logs/modlog/modlog_battle.txt'), {flags:'a+'}),
 };
 
 let writeModlog = exports.writeModlog = function (roomid, text) {
@@ -110,7 +110,7 @@ function canTalk(user, room, connection, message, targetUser) {
 					return false;
 				}
 			} else if (Config.groups.bySymbol[userGroup].rank < Config.groups.bySymbol[room.modchat].rank && !user.can('makeroom')) {
-				let groupName = Config.groups[room.modchat].name || room.modchat;
+				let groupName = Config.groups.bySymbol[room.modchat].name || room.modchat;
 				this.errorReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to speak in this room.");
 				return false;
 			}
@@ -132,7 +132,11 @@ function canTalk(user, room, connection, message, targetUser) {
 		}
 
 		// remove zalgo
-		message = message.replace(/[\u0300-\u036f\u0483-\u0489\u064b-\u065f\u0670\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]{3,}/g, '');
+		message = message.replace(/[\u0300-\u036f\u0483-\u0489\u0610-\u0615\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06ED\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]{3,}/g, '');
+		if (/[\u239b-\u23b9]/.test(message)) {
+			this.errorReply("Your message contains banned characters.");
+			return false;
+		}
 
 		if (room && room.id === 'lobby') {
 			let normalized = message.trim();
@@ -346,7 +350,7 @@ let Context = exports.Context = (function () {
 			'imageshack.us': 1,
 			'deviantart.net': 1,
 			'd.pr': 1,
-			'pokefans.net': 1
+			'pokefans.net': 1,
 		};
 		if (domain in approvedDomains) {
 			return '//' + uri;
@@ -366,7 +370,7 @@ let Context = exports.Context = (function () {
 				this.errorReply("Images are not allowed in personal rooms.");
 				return false;
 			}
-			let srcMatch = /src\w*\=\w*"?([^ "]+)(\w*")?/i.exec(match[0]);
+			let srcMatch = /src\s*\=\s*"?([^ "]+)(\s*")?/i.exec(match[0]);
 			if (srcMatch) {
 				let uri = this.canEmbedURI(srcMatch[1], true);
 				if (!uri) return false;
@@ -532,7 +536,7 @@ let parse = exports.parse = function (message, room, user, connection, levelsDee
 
 	let context = new Context({
 		target: target, room: room, user: user, connection: connection, cmd: cmd, message: message,
-		namespaces: namespaces, cmdToken: cmdToken, levelsDeep: levelsDeep
+		namespaces: namespaces, cmdToken: cmdToken, levelsDeep: levelsDeep,
 	});
 
 	if (commandHandler) {

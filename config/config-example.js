@@ -37,7 +37,7 @@ exports.loginServer = {
 		'0rwxwalCs/YzgX9Eq4jdx6yAHd7FNGEx4iu8qM78c7GKCisygZxF8kd0B7V7a5UO\n' +
 		'wdlWIlTxJ2dfCnnJBFEt/wDsL54q8KmGbzOTvRq5uz/tMvs6ycgLVgA9r1xmVU+1\n' +
 		'6lMr2wdSzyG7l3X3q1XyQ/CT5IP4unFs5HKpG31skxlfXv5a7KW5AfsCAwEAAQ==\n' +
-		'-----END RSA PUBLIC KEY-----\n'
+		'-----END RSA PUBLIC KEY-----\n',
 };
 
 // crashGuardEmail - if the server has been running for more than an hour
@@ -97,7 +97,7 @@ exports.modchat = {
 	// battle modchat - default minimum group for speaking in battles; changeable with /modchat
 	battle: false,
 	// pm modchat - minimum group for PMing other users, challenging other users, and laddering
-	pm: false
+	pm: false,
 };
 
 // forced timer - force the timer on for all battles
@@ -262,7 +262,7 @@ exports.groups = {
 	default: {
 		global: ' ',
 		chatRoom: ' ',
-		battleRoom: ' '
+		battleRoom: ' ',
 	},
 
 	list: [
@@ -271,7 +271,7 @@ exports.groups = {
 			id: 'admin',
 			name: "Administrator",
 			description: "They can do anything, like change what this message says",
-			root: true
+			root: true,
 		}, {
 			symbol: '&',
 			id: 'leader',
@@ -289,7 +289,7 @@ exports.groups = {
 			potd: true,
 			promote: 'u',
 			rangeban: true,
-			tournamentsmanagement: true
+			tournamentsmanagement: true,
 		}, {
 			symbol: '#',
 			id: 'owner',
@@ -304,7 +304,7 @@ exports.groups = {
 			roomdesc: true,
 			roomintro: true,
 			roompromote: 'u',
-			tournamentsmanagement: true
+			tournamentsmanagement: true,
 		}, {
 			symbol: '\u2605',
 			id: 'player',
@@ -314,7 +314,7 @@ exports.groups = {
 			joinbattle: true,
 			modchat: true,
 			privateroom: true,
-			roompromote: '\u2605u'
+			roompromote: '\u2605u',
 		}, {
 			symbol: '@',
 			id: 'mod',
@@ -329,7 +329,7 @@ exports.groups = {
 			modchat: true,
 			roompromote: '+ ',
 			scavengers: true,
-			tournaments: true
+			tournaments: true,
 		}, {
 			symbol: '%',
 			id: 'driver',
@@ -350,20 +350,20 @@ exports.groups = {
 			staff: true,
 			timer: true,
 			tournamentsmoderation: true,
-			warn: true
+			warn: true,
 		}, {
 			symbol: '+',
 			id: 'voice',
 			name: "Voice",
 			description: "They can use ! commands like !groups, and talk during moderated chat",
 			inherit: ' ',
-			broadcast: true
+			broadcast: true,
 		}, {
 			symbol: ' ',
 			alts: 's',
-			ip: 's'
-		}
-	]
+			ip: 's',
+		},
+	],
 };
 
 exports.groups.byRank = [];

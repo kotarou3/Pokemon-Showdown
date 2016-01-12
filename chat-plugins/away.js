@@ -14,5 +14,5 @@ exports.commands = {
 		user.isAway = !user.isAway;
 		user.updateIdentity();
 		this.sendReply("You are " + (user.isAway ? "now" : "no longer") + " away.");
-	}
+	},
 };

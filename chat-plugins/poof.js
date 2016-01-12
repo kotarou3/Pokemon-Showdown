@@ -47,7 +47,7 @@ const messages = [
 	"joined Finnism",
 	"dun goofed",
 	"did a shout out to {{user}}",
-	"got 6-0'd"
+	"got 6-0'd",
 ];
 
 exports.commands = {
@@ -84,5 +84,5 @@ exports.commands = {
 		if (!this.can('poofoff')) return false;
 		Config.poofOff = false;
 		return this.sendReply("Poof is now enabled.");
-	}
+	},
 };

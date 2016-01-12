@@ -36,7 +36,7 @@ exports = module.exports = (function () {
 					from: Config.crashGuardEmail.from,
 					to: Config.crashGuardEmail.to,
 					subject: Config.crashGuardEmail.subject,
-					text: description + " crashed " + (exports.hadException ? "again " : "") + "with this stack trace:\n" + (err.stack || err)
+					text: description + " crashed " + (exports.hadException ? "again " : "") + "with this stack trace:\n" + (err.stack || err),
 				}, function (err) {
 					if (err) console.log("Error sending email: " + err);
 				});

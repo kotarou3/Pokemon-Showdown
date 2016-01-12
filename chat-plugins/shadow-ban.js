@@ -183,7 +183,7 @@ exports.commands = {
 			return this.sendReply('||' + this.targetUsername + " is not shadow banned.");
 		}
 		this.privateModCommand("(" + user.name + " has shadow unbanned: " + targets.join(", ") + ")");
-	}
+	},
 };
 
 Users.ShadowBan = exports;

@@ -57,5 +57,5 @@ exports.commands = {
 	flip: function () {
 		if (!this.canBroadcast()) return;
 		return this.sendReplyBox("<center>The coin landed on <b>" + ["heads", "tails"].sample() + "</b>.</center>");
-	}
+	},
 };

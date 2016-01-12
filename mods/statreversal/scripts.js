@@ -9,8 +9,8 @@ exports.BattleScripts = {
 				def: this.data.Pokedex[i].baseStats.atk,
 				spa: this.data.Pokedex[i].baseStats.spd,
 				spd: this.data.Pokedex[i].baseStats.spa,
-				spe: this.data.Pokedex[i].baseStats.hp
+				spe: this.data.Pokedex[i].baseStats.hp,
 			};
 		}
-	}
+	},
 };

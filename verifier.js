@@ -57,7 +57,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		} catch (e) {}
 		fakeProcess.client.send({
 			success: success,
-			guid: message.guid
+			guid: message.guid,
 		});
 	});
 
