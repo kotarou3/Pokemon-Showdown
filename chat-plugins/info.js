@@ -280,8 +280,8 @@ exports.commands = {
 					"Height": pokemon.heightm + " m",
 					"Weight": pokemon.weightkg + " kg <em>(" + weighthit + " BP)</em>",
 					"Dex Colour": pokemon.color,
-					"Egg Group(s)": pokemon.eggGroups.join(", "),
 				};
+				if (pokemon.eggGroups) details["Egg Group(s)"] = pokemon.eggGroups.join(", ");
 				if (!pokemon.evos.length) {
 					details["<font color=#585858>Does Not Evolve</font>"] = "";
 				} else {
@@ -586,6 +586,7 @@ exports.commands = {
 				dex[pokemon] = template;
 			}
 		}
+		dex = JSON.parse(JSON.stringify(dex)); // Don't modify the original template (when compiling learnsets)
 
 		let learnSetsCompiled = false;
 		//ensure searches with the least alternatives are run first

@@ -636,12 +636,15 @@ exports.BattleScripts = {
 		return isValid;
 	},
 	sampleNoReplace: function (list) {
+		// The cute code to sample no replace is:
+		//   return list.splice(this.random(length), 1)[0];
+		// However manually removing the element is twice as fast.
+		// In fact, we don't even need to keep the array in order, so
+		// we just replace the removed element with the last element.
 		let length = list.length;
 		let index = this.random(length);
 		let element = list[index];
-		for (let nextIndex = index + 1; nextIndex < length; index += 1, nextIndex += 1) {
-			list[index] = list[nextIndex];
-		}
+		list[index] = list[length - 1];
 		list.pop();
 		return element;
 	},
@@ -1702,6 +1705,8 @@ exports.BattleScripts = {
 				rejectAbility = !counter['Bug'];
 			} else if (ability === 'Technician') {
 				rejectAbility = !counter['technician'] || (abilities.indexOf('Skill Link') >= 0 && counter['skilllink'] >= counter['technician']);
+			} else if (ability === 'Tinted Lens') {
+				rejectAbility = counter['damage'] >= counter.damagingMoves.length;
 			} else if (ability === 'Torrent') {
 				rejectAbility = !counter['Water'];
 			} else if (ability === 'Unburden') {
@@ -2898,6 +2903,8 @@ exports.BattleScripts = {
 				rejectAbility = !counter['Bug'];
 			} else if (ability === 'Technician') {
 				rejectAbility = !counter['technician'] || (abilities.indexOf('Skill Link') >= 0 && counter['skilllink'] >= counter['technician']);
+			} else if (ability === 'Tinted Lens') {
+				rejectAbility = counter['damage'] >= counter.damagingMoves.length;
 			} else if (ability === 'Torrent') {
 				rejectAbility = !counter['Water'];
 			} else if (ability === 'Unburden') {
