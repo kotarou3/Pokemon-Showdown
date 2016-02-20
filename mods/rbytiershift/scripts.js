@@ -17,8 +17,11 @@ exports.BattleScripts = {
 				adjustment = 10;
 				break;
 			case 'RU':
-			case 'LC':
 				adjustment = 20;
+				break;
+			case 'NU':
+			case 'LC':
+				adjustment = 30;
 			}
 
 			if (adjustment) {
