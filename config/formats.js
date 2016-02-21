@@ -326,19 +326,18 @@ exports.Formats = [
 		banlist: ['Uber', 'OU', 'BL', 'UU']
 	},
 	{
+		name: "[Gen 1] NU",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL', 'UU', 'RU']
+	},
+	{
 		name: "[Gen 1] Extreme Tier Shift",
 		section: "Past Generations",
 
 		mod: 'rbytiershift',
-		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber']
-	},
-	{
-		name: "[Gen 1] With Abilities",
-		section: "Past Generations",
-
-		mod: 'abilityrby',
-		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
 	},
