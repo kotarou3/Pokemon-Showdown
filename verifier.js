@@ -25,14 +25,14 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	let callbacks = {};
 	let callbackData = {};
 
-	//let child = require('child_process').fork('verifier.js', {cwd: __dirname});
+	//let child = exports.child = require('child_process').fork('verifier.js', {cwd: __dirname});
 	exports.verify = function (data, signature, callback) {
 		let localGuid = guid++;
 		callbacks[localGuid] = callback;
 		callbackData[localGuid] = data;
 		fakeProcess.server.send({data: data, sig: signature, guid: localGuid});
 	};
-	fakeProcess.server.on('message', function (response) {
+	fakeProcess.server.on('message', response => {
 		if (callbacks[response.guid]) {
 			callbacks[response.guid](response.success, callbackData[response.guid]);
 			delete callbacks[response.guid];
@@ -48,7 +48,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	let keyalgo = Config.loginServer.keyAlgorithm;
 	let pkey = Config.loginServer.publicKey;
 
-	fakeProcess.client.on('message', function (message) {
+	fakeProcess.client.on('message', message => {
 		let verifier = crypto.createVerify(keyalgo);
 		verifier.update(message.data);
 		let success = false;
@@ -61,9 +61,5 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		});
 	});
 
-	process.on('disconnect', function () {
-		process.exit();
-	});
-
-	require('./repl.js').start('verifier', function (cmd) { return eval(cmd); });
+	require('./repl.js').start('verifier', cmd => eval(cmd));
 //}

@@ -59,6 +59,13 @@ exports.loginServer = {
 	subject: "Pokemon Showdown has crashed!"
 };**/
 
+// basic name filter - removes characters used for impersonation
+//   The basic name filter removes Unicode characters that can be used for impersonation,
+//   like the upside-down exclamation mark (looks like an i), the Greek omicron (looks
+//   like an o), etc. Disable only if you need one of the alphabets it disables, such as
+//   Greek or Cyrillic.
+exports.disableBasicNameFilter = false;
+
 // report joins and leaves - shows messages like "<USERNAME> joined"
 //   Join and leave messages are small and consolidated, so there will never
 //   be more than one line of messages.
@@ -228,6 +235,8 @@ exports.replSocketMode = 0o600;
 //     - forcepromote: Ability to promote a user even if they're offline and unauthed.
 //     - forcerename: /forcerename command.
 //     - forcewin: /forcewin command.
+//     - game: make games.
+//     - gamemanagement: enable/disable games and minigames.
 //     - gdeclare: /gdeclare and /cdeclare commands.
 //     - hotpatch: /hotpatch, /updateserver and /crashfixed commands.
 //     - ignorelimits: Ignore limits such as chat message length.
@@ -237,6 +246,7 @@ exports.replSocketMode = 0o600;
 //     - lock: Locking and unlocking.
 //     - lockdown: /lockdown, /endlockdown and /kill commands.
 //     - makeroom: Permission required to create, delete and administer chat rooms.
+//     - minigame: make minigames (hangman, polls, etc.).
 //     - modchat: Set modchat to the second lowest ranked group.
 //     - modchatall: Set modchat to all available groups.
 //     - mute: Muting and unmuting.
@@ -284,6 +294,7 @@ exports.groups = {
 			disableladder: true,
 			editroom: true,
 			forcewin: true,
+			gamemanagement: true,
 			makeroom: true,
 			modchatall: true,
 			potd: true,
@@ -299,6 +310,7 @@ exports.groups = {
 			jurisdiction: 'u',
 			declare: true,
 			editroom: true,
+			gamemanagement: true,
 			modchatall: true,
 			privateroom: true,
 			roomdesc: true,
@@ -310,6 +322,7 @@ exports.groups = {
 			id: 'player',
 			name: "Player",
 			description: "Only in battles, they are the players that are battling",
+			editroom: true,
 			inherit: '+',
 			joinbattle: true,
 			modchat: true,
@@ -325,6 +338,7 @@ exports.groups = {
 			alts: '@u',
 			ban: true,
 			forcerename: true,
+			game: true,
 			ip: true,
 			modchat: true,
 			roompromote: '+ ',
@@ -342,9 +356,9 @@ exports.groups = {
 			bypassblocks: 'u%@&~',
 			forcerename: true,
 			jeopardy: true,
-			joinbattle: true,
 			kick: true,
 			lock: true,
+			minigame: true,
 			mute: true,
 			redirect: true,
 			staff: true,
@@ -358,6 +372,7 @@ exports.groups = {
 			description: "They can use ! commands like !groups, and talk during moderated chat",
 			inherit: ' ',
 			broadcast: true,
+			joinbattle: true,
 		}, {
 			symbol: ' ',
 			alts: 's',

@@ -179,25 +179,9 @@ exports.BattleMovedex = {
 		volatileStatus: 'conversion',
 		accuracy: true,
 		target: "normal",
-		effect: {
-			noCopy: true,
-			onStart: function (target, source) {
-				this.effectData.typesData = [];
-				for (let i = 0, l = target.typesData.length; i < l; i++) {
-					this.effectData.typesData.push(Object.clone(target.typesData[i]));
-				}
-				this.add('-start', source, 'typechange', target.getTypes(true).join(', '), '[from] move: Conversion', '[of] ' + target);
-			},
-			onRestart: function (target, source) {
-				this.effectData.typesData = [];
-				for (let i = 0, l = target.typesData.length; i < l; i++) {
-					this.effectData.typesData.push(Object.clone(target.typesData[i]));
-				}
-				this.add('-start', source, 'typechange', target.getTypes(true).join(', '), '[from] move: Conversion', '[of] ' + target);
-			},
-			onModifyPokemon: function (pokemon) {
-				pokemon.typesData = this.effectData.typesData;
-			},
+		onHit: function (target, source) {
+			source.types = target.types;
+			this.add('-start', source, 'typechange', source.types.join(', '), '[from] move: Conversion', '[of] ' + source);
 		},
 	},
 	counter: {
@@ -290,9 +274,6 @@ exports.BattleMovedex = {
 	doubleedge: {
 		inherit: true,
 		basePower: 100,
-		desc: "Deals damage to the target. If the target lost HP, the user takes recoil damage equal to 25% that HP, rounded half up, but not less than 1HP.",
-		shortDesc: "Has 25% recoil.",
-		recoil: [25, 100],
 	},
 	dragonrage: {
 		inherit: true,
@@ -402,7 +383,7 @@ exports.BattleMovedex = {
 
 					if (pokemon !== source) {
 						// Clears the status from the opponent
-						pokemon.clearStatus();
+						pokemon.setStatus('');
 					}
 					if (pokemon.status === 'tox') {
 						pokemon.setStatus('psn');
