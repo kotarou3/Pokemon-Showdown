@@ -21,6 +21,10 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: 'OU',
 	},
+	greninja: {
+		inherit: true,
+		tier: 'OU',
+	},
 	kangaskhanmega: {
 		inherit: true,
 		tier: 'OU',
@@ -47,7 +51,7 @@ exports.BattleFormatsData = {
 	},
 	hoopaunbound: {
 		inherit: true,
-		tier: 'Uber',
+		tier: 'OU',
 	},
 	kyurem: {
 		inherit: true,

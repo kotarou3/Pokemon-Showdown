@@ -29,7 +29,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		let worker = fakeProcess.server;
 		let id = worker.id;
 		workers[id] = worker;
-		worker.on('message', function (data) {
+		worker.on('message', data => {
 			// console.log('master received: ' + data);
 			switch (data.charAt(0)) {
 			case '*': {
@@ -61,6 +61,28 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		});
 	};
 
+	/*cluster.on('disconnect', worker => {
+		// worker crashed, try our best to clean up
+		require('./crashlogger.js')(new Error("Worker " + worker.id + " abruptly died"), "The main process");
+
+		// this could get called during cleanup; prevent it from crashing
+		worker.send = () => {};
+
+		let count = 0;
+		Users.connections.forEach(connection => {
+			if (connection.worker === worker) {
+				Users.socketDisconnect(worker, worker.id, connection.socketid);
+				count++;
+			}
+		});
+		console.error("" + count + " connections were lost.");
+
+		// don't delete the worker, so we can investigate it if necessary.
+
+		// attempt to recover
+		spawnWorker();
+	});*/
+
 	exports.listen = function (port, bindAddress, workerCount) {
 		if (port !== undefined && !isNaN(port)) {
 			Config.port = port;
@@ -88,7 +110,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	exports.killWorker = function (worker) {
 		/*let idd = worker.id + '-';
 		let count = 0;
-		Users.connections.forEach(function (connection, connectionid) {
+		Users.connections.forEach((connection, connectionid) => {
 			if (connectionid.substr(idd.length) === idd) {
 				Users.socketDisconnect(worker, worker.id, connection.socketid);
 				count++;
@@ -166,7 +188,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	global.Cidr = require('./cidr');
 
 	// graceful crash
-	/*process.on('uncaughtException', function (err) {
+	/*process.on('uncaughtException', err => {
 		require('./crashlogger.js')(err, 'Socket process ' + cluster.worker.id + ' (' + process.pid + ')', true);
 	});*/
 
@@ -176,40 +198,41 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		appssl = require('https').createServer(Config.ssl.options);
 	}
 	try {
-		(function () {
-			let nodestatic = require('node-static');
-			let cssserver = new nodestatic.Server('./config');
-			let avatarserver = new nodestatic.Server('./config/avatars');
-			let staticserver = new nodestatic.Server('./static');
-			let staticRequestHandler = function (request, response) {
-				// console.log("static rq: " + request.socket.remoteAddress + ":" + request.socket.remotePort + " -> " + request.socket.localAddress + ":" + request.socket.localPort + " - " + request.method + " " + request.url + " " + request.httpVersion + " - " + request.rawHeaders.join('|'));
-				request.resume();
-				request.addListener('end', function () {
-					if (Config.customHttpResponse && Config.customHttpResponse(request, response)) return;
-					let server;
-					if (request.url === '/custom.css') {
-						server = cssserver;
-					} else if (request.url.substr(0, 9) === '/avatars/') {
-						request.url = request.url.substr(8);
-						server = avatarserver;
-					} else {
-						if (/^\/([A-Za-z0-9][A-Za-z0-9-]*)\/?$/.test(request.url)) {
-							request.url = '/';
-						}
-						server = staticserver;
+		let nodestatic = require('node-static');
+		let cssserver = new nodestatic.Server('./config');
+		let avatarserver = new nodestatic.Server('./config/avatars');
+		let staticserver = new nodestatic.Server('./static');
+		let staticRequestHandler = (request, response) => {
+			// console.log("static rq: " + request.socket.remoteAddress + ":" + request.socket.remotePort + " -> " + request.socket.localAddress + ":" + request.socket.localPort + " - " + request.method + " " + request.url + " " + request.httpVersion + " - " + request.rawHeaders.join('|'));
+			request.resume();
+			request.addListener('end', () => {
+				if (Config.customHttpResponse &&
+						Config.customHttpResponse(request, response)) {
+					return;
+				}
+				let server;
+				if (request.url === '/custom.css') {
+					server = cssserver;
+				} else if (request.url.substr(0, 9) === '/avatars/') {
+					request.url = request.url.substr(8);
+					server = avatarserver;
+				} else {
+					if (/^\/([A-Za-z0-9][A-Za-z0-9-]*)\/?$/.test(request.url)) {
+						request.url = '/';
 					}
-					server.serve(request, response, function (e, res) {
-						if (e && (e.status === 404)) {
-							staticserver.serveFile('404.html', 404, {}, request, response);
-						}
-					});
+					server = staticserver;
+				}
+				server.serve(request, response, (e, res) => {
+					if (e && (e.status === 404)) {
+						staticserver.serveFile('404.html', 404, {}, request, response);
+					}
 				});
-			};
-			app.on('request', staticRequestHandler);
-			if (appssl) {
-				appssl.on('request', staticRequestHandler);
-			}
-		})();
+			});
+		};
+		app.on('request', staticRequestHandler);
+		if (appssl) {
+			appssl.on('request', staticRequestHandler);
+		}
 	} catch (e) {
 		console.log('Could not start node-static - try `npm install` if you want to use it');
 	}
@@ -223,7 +246,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 
 	let server = sockjs.createServer({
 		sockjs_url: "//play.pokemonshowdown.com/js/lib/sockjs-0.3.min.js",
-		log: function (severity, message) {
+		log: (severity, message) => {
 			if (severity === 'error') console.log('ERROR: ' + message);
 		},
 		prefix: '/showdown',
@@ -258,7 +281,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	};
 	let interval = setInterval(sweepClosedSockets, 1000 * 60 * 10); // eslint-disable-line no-unused-vars
 
-	fakeProcess.client.on('message', function (data) {
+	fakeProcess.client.on('message', data => {
 		// console.log('worker received: ' + data);
 		let socket = null, socketid = '';
 		let channel = null, channelid = '';
@@ -398,14 +421,10 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		}
 	});
 
-	process.on('disconnect', function () {
-		process.exit();
-	});
-
 	// this is global so it can be hotpatched if necessary
 	let isTrustedProxyIp = Cidr.checker(Config.proxyIps);
 	let socketCounter = 0;
-	server.on('connection', function (socket) {
+	server.on('connection', socket => {
 		if (!socket) {
 			// For reasons that are not entirely clear, SockJS sometimes triggers
 			// this event with a null `socket` argument.
@@ -435,7 +454,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 
 		fakeProcess.client.send('*' + socketid + '\n' + socket.remoteAddress);
 
-		socket.on('data', function (message) {
+		socket.on('data', message => {
 			// drop empty messages (DDoS?)
 			if (!message) return;
 			// drop legacy JSON messages
@@ -447,7 +466,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 			fakeProcess.client.send('<' + socketid + '\n' + message);
 		});
 
-		socket.on('close', function () {
+		socket.on('close', () => {
 			fakeProcess.client.send('!' + socketid);
 			delete sockets[socketid];
 			for (let channelid in channels) {
@@ -468,5 +487,5 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 
 	console.log('Test your server at http://' + (Config.bindAddress === '0.0.0.0' ? 'localhost' : Config.bindAddress) + ':' + Config.port);
 
-	require('./repl.js').start('sockets-', /*cluster.worker.id + '-' +*/ process.pid, function (cmd) { return eval(cmd); });
+	require('./repl.js').start('sockets-', /*cluster.worker.id + '-' +*/ process.pid, cmd => eval(cmd));
 //}

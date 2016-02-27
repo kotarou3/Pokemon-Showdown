@@ -123,8 +123,6 @@ exports.BattleStatuses = {
 				pokemon.ability = 'shadowtag';
 				pokemon.baseAbility = 'shadowtag';
 			}
-		},
-		onModifyPokemon: function (pokemon) {
 			if (pokemon.transformed) return;
 			pokemon.setType(pokemon.hpType || 'Dark');
 		},
@@ -258,6 +256,78 @@ exports.BattleStatuses = {
 			if (pokemon.ability === 'levitate') {
 				pokemon.ability = 'sheerforce';
 				pokemon.baseAbility = 'sheerforce';
+			}
+		},
+	},
+	rotom: {
+		// All Rotoms: Trace
+		onImmunity: function (type, pokemon) {
+			if (type === 'Ground' && (!this.suppressingAttackEvents() || this.activePokemon === pokemon)) return false;
+		},
+		onStart: function (pokemon) {
+			if (pokemon.ability === 'levitate') {
+				pokemon.ability = 'trace';
+				pokemon.baseAbility = 'trace';
+			}
+		},
+	},
+	rotomheat: {
+		// All Rotoms: Trace
+		onImmunity: function (type, pokemon) {
+			if (type === 'Ground' && (!this.suppressingAttackEvents() || this.activePokemon === pokemon)) return false;
+		},
+		onStart: function (pokemon) {
+			if (pokemon.ability === 'levitate') {
+				pokemon.ability = 'trace';
+				pokemon.baseAbility = 'trace';
+			}
+		},
+	},
+	rotomwash: {
+		// All Rotoms: Trace
+		onImmunity: function (type, pokemon) {
+			if (type === 'Ground' && (!this.suppressingAttackEvents() || this.activePokemon === pokemon)) return false;
+		},
+		onStart: function (pokemon) {
+			if (pokemon.ability === 'levitate') {
+				pokemon.ability = 'trace';
+				pokemon.baseAbility = 'trace';
+			}
+		},
+	},
+	rotomfan: {
+		// All Rotoms: Trace
+		onImmunity: function (type, pokemon) {
+			if (type === 'Ground' && (!this.suppressingAttackEvents() || this.activePokemon === pokemon)) return false;
+		},
+		onStart: function (pokemon) {
+			if (pokemon.ability === 'levitate') {
+				pokemon.ability = 'trace';
+				pokemon.baseAbility = 'trace';
+			}
+		},
+	},
+	rotomfrost: {
+		// All Rotoms: Trace
+		onImmunity: function (type, pokemon) {
+			if (type === 'Ground' && (!this.suppressingAttackEvents() || this.activePokemon === pokemon)) return false;
+		},
+		onStart: function (pokemon) {
+			if (pokemon.ability === 'levitate') {
+				pokemon.ability = 'trace';
+				pokemon.baseAbility = 'trace';
+			}
+		},
+	},
+	rotommow: {
+		// All Rotoms: Trace
+		onImmunity: function (type, pokemon) {
+			if (type === 'Ground' && (!this.suppressingAttackEvents() || this.activePokemon === pokemon)) return false;
+		},
+		onStart: function (pokemon) {
+			if (pokemon.ability === 'levitate') {
+				pokemon.ability = 'trace';
+				pokemon.baseAbility = 'trace';
 			}
 		},
 	},
