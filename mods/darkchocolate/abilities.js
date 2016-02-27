@@ -7,7 +7,7 @@ exports.BattleAbilities = {
 			if (source && source !== target && move && move.flags['contact']) {
 				this.damage(source.maxhp / 4, source, target);
 			}
-		}
+		},
 	},
 	"solidrock": {
 		inherit: true,
@@ -16,6 +16,6 @@ exports.BattleAbilities = {
 				this.debug('Solid Rock neutralize');
 				return this.chainModify(0.50);
 			}
-		}
-	}
+		},
+	},
 };

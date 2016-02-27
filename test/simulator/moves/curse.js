@@ -15,7 +15,7 @@ describe('Curse', function () {
 		assert.strictEqual(battle.p1.active[0].getRequestData().moves[0].target, 'normal');
 	});
 
-	it.skip('should request the Ghost target after the user becomes Ghost', function () {
+	it('should request the Ghost target after the user becomes Ghost', function () {
 		battle = BattleEngine.Battle.construct();
 		battle.join('p1', 'Guest 1', 1, [{species: "Rapidash", ability: 'levitate', item: '', moves: ['curse']}]);
 		battle.join('p2', 'Guest 2', 1, [{species: "Trevenant", ability: 'shedskin', item: 'laggingtail', moves: ['trickortreat']}]);
@@ -25,7 +25,7 @@ describe('Curse', function () {
 		assert.strictEqual(battle.p1.active[0].getRequestData().moves[0].target, 'normal');
 	});
 
-	it.skip('should not request a target after the user stops being Ghost', function () {
+	it('should not request a target after the user stops being Ghost', function () {
 		battle = BattleEngine.Battle.construct();
 		battle.join('p1', 'Guest 1', 1, [{species: "Gengar", ability: 'levitate', item: '', moves: ['curse']}]);
 		battle.join('p2', 'Guest 2', 1, [{species: "Jellicent", ability: 'waterabsorb', item: '', moves: ['soak']}]);
@@ -47,7 +47,7 @@ describe('Curse', function () {
 		battle.join('p1', 'Guest 1', 1, [{species: "Blastoise", ability: 'torrent', item: '', moves: ['curse', 'reflecttype']}]);
 		battle.join('p2', 'Guest 2', 1, [
 			{species: "Zoroark", ability: 'illusion', item: '', moves: ['nastyplot']},
-			{species: "Gengar", ability: 'levitate', item: '', moves: ['spite']}
+			{species: "Gengar", ability: 'levitate', item: '', moves: ['spite']},
 		]);
 		battle.choose('p1', 'move 2'); // Reflect Type!
 		battle.commitDecisions();
@@ -96,15 +96,15 @@ describe('XY/ORAS Curse targetting when becoming Ghost the same turn', function 
 
 	let doublesTeams = [[
 		{species: "Kecleon", ability: 'colorchange', item: 'laggingtail', moves: ['curse', 'calmmind']},
-		{species: "Greninja", ability: 'torrent', item: '', moves: ['growl', 'mudsport']}
+		{species: "Greninja", ability: 'torrent', item: '', moves: ['growl', 'mudsport']},
 	], [
 		{species: "Raikou", ability: 'pressure', item: '', moves: ['aurasphere', 'calmmind']},
-		{species: "Gastly", ability: 'levitate', item: '', moves: ['lick', 'calmmind']}
+		{species: "Gastly", ability: 'levitate', item: '', moves: ['lick', 'calmmind']},
 	]];
 
 	let triplesTeams = [
 		doublesTeams[0].concat({species: "Metapod", ability: 'shedskin', item: '', moves: ['harden', 'stringshot']}),
-		doublesTeams[1].concat({species: "Kakuna", ability: 'shedskin', item: '', moves: ['harden', 'stringshot']})
+		doublesTeams[1].concat({species: "Kakuna", ability: 'shedskin', item: '', moves: ['harden', 'stringshot']}),
 	];
 
 	function runDoublesTest(battle, curseUser) {
@@ -178,7 +178,7 @@ describe('XY/ORAS Curse targetting when becoming Ghost the same turn', function 
 		runDoublesTest(battle, battle.p1.active[1]);
 	});
 
-	[0, 1, 2].forEach(function (cursePos) {
+	for (let cursePos of [0, 1, 2]) {
 		it('should target an opponent in Triples even if the user is on position ' + cursePos, function () {
 			battle = BattleEngine.Battle.construct('battle-cursetest-' + (3 + cursePos), 'triplescustomgame');
 			let p1team = triplesTeams[0].slice(1);
@@ -191,5 +191,5 @@ describe('XY/ORAS Curse targetting when becoming Ghost the same turn', function 
 			battle.commitDecisions();
 			runTriplesTest(battle, battle.p1.active[cursePos]);
 		});
-	});
+	}
 });

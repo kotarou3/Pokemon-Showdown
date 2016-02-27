@@ -3,14 +3,14 @@
 exports.BattleFormatsData = {
 	genesect: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	excadrill: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	deoxysspeed: {
 		inherit: true,
-		tier: "OU"
-	}
+		tier: "OU",
+	},
 };

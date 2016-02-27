@@ -36,11 +36,11 @@ describe('Trick Room', function () {
 		battle = BattleEngine.Battle.construct();
 		battle.join('p1', 'Guest 1', 1, [
 			{species: 'Bronzong', ability: 'heatproof', moves: ['trickroom', 'explosion']},
-			{species: 'Hippowdon', ability: 'sandstream', moves: ['protect']}
+			{species: 'Hippowdon', ability: 'sandstream', moves: ['protect']},
 		]);
 		battle.join('p2', 'Guest 2', 1, [
 			{species: 'Ninjask', ability: 'speedboost', moves: ['shellsmash']},
-			{species: 'Ninetales', ability: 'drought', moves: ['protect']}
+			{species: 'Ninetales', ability: 'drought', moves: ['protect']},
 		]);
 		battle.commitDecisions();
 		battle.choose('p1', 'move 2');
@@ -73,7 +73,7 @@ describe('Trick Room', function () {
 		battle.commitDecisions();
 		assert.strictEqual(battle.p1.active[0].status, '');
 		assert.strictEqual(battle.p2.active[0].status, 'slp');
-		battle.p2.active[0].clearStatus();
+		battle.p2.active[0].setStatus('');
 		battle.p2.active[0].setItem('choicescarf'); // Deoxys is now much faster speed-wise than Ninjask, but should still be slower in Trick Room.
 		battle.choose('p1', 'move 2');
 		battle.commitDecisions();

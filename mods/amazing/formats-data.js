@@ -3,246 +3,246 @@
 exports.BattleFormatsData = {
 	nidoking: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	crobat: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	golem: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	parasect: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	poliwrath: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	slowking: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	steelix: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	weezing: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	scizor: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	jynx: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	umbreon: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	articuno: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	moltres: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	ariados: {
 		inherit: true,
-		tier: "NU"
+		tier: "NU",
 	},
 	lanturn: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	xatu: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	ampharos: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	tropius: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	murkrow: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	girafarig: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	gligar: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	qwilfish: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	shuckle: {
 		inherit: true,
-		tier: "NU"
+		tier: "NU",
 	},
 	sneasel: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	piloswine: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	octillery: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	houndoom: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	sceptile: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	blaziken: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	ludicolo: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	shiftry: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	swellow: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	pelipper: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	gardevoir: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	surskit: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	breloom: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	slaking: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	ninjask: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	shedinja: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	hariyama: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	sableye: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	mawile: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	aggron: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	medicham: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	volbeat: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	sharpedo: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	camerupt: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	torkoal: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	cacturne: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	altaria: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	seviper: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	lunatone: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	solrock: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	cradily: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	armaldo: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	kecleon: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	banette: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	dusclops: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	absol: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	relicanth: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	regirock: {
 		inherit: true,
-		tier: "OU"
-	}
+		tier: "OU",
+	},
 };

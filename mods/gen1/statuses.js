@@ -31,7 +31,7 @@ exports.BattleStatuses = {
 		},
 		onAfterSwitchInSelf: function (pokemon) {
 			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1));
-		}
+		},
 	},
 	par: {
 		effectType: 'Status',
@@ -55,7 +55,7 @@ exports.BattleStatuses = {
 		},
 		onSwitchIn: function (pokemon) {
 			pokemon.addVolatile('parspeeddrop');
-		}
+		},
 	},
 	slp: {
 		effectType: 'Status',
@@ -65,7 +65,7 @@ exports.BattleStatuses = {
 			this.effectData.startTime = this.random(1, 7);
 			this.effectData.time = this.effectData.startTime;
 		},
-		onBeforeMovePriority: 2,
+		onBeforeMovePriority: 10,
 		onBeforeMove: function (pokemon, target, move) {
 			pokemon.statusData.time--;
 			if (pokemon.statusData.time > 0) {
@@ -76,14 +76,14 @@ exports.BattleStatuses = {
 		},
 		onAfterMoveSelf: function (pokemon) {
 			if (pokemon.statusData.time <= 0) pokemon.cureStatus();
-		}
+		},
 	},
 	frz: {
 		effectType: 'Status',
 		onStart: function (target) {
 			this.add('-status', target, 'frz');
 		},
-		onBeforeMovePriority: 2,
+		onBeforeMovePriority: 10,
 		onBeforeMove: function (pokemon, target, move) {
 			this.add('cant', pokemon, 'frz');
 			pokemon.lastMove = '';
@@ -93,7 +93,7 @@ exports.BattleStatuses = {
 			if (move.type === 'Fire' && move.category !== 'Status') {
 				target.cureStatus();
 			}
-		}
+		},
 	},
 	psn: {
 		effectType: 'Status',
@@ -111,7 +111,7 @@ exports.BattleStatuses = {
 		},
 		onAfterSwitchInSelf: function (pokemon) {
 			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1));
-		}
+		},
 	},
 	tox: {
 		effectType: 'Status',
@@ -131,7 +131,7 @@ exports.BattleStatuses = {
 		},
 		onAfterSwitchInSelf: function (pokemon) {
 			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1));
-		}
+		},
 	},
 	confusion: {
 		// this is a volatile status
@@ -148,6 +148,7 @@ exports.BattleStatuses = {
 		onEnd: function (target) {
 			this.add('-end', target, 'confusion');
 		},
+		onBeforeMovePriority: 3,
 		onBeforeMove: function (pokemon, target) {
 			pokemon.volatiles.confusion.time--;
 			if (!pokemon.volatiles.confusion.time) {
@@ -178,42 +179,36 @@ exports.BattleStatuses = {
 				return false;
 			}
 			return;
-		}
+		},
 	},
 	flinch: {
 		duration: 1,
-		onBeforeMovePriority: 1,
+		onBeforeMovePriority: 4,
 		onBeforeMove: function (pokemon) {
 			if (!this.runEvent('Flinch', pokemon)) {
 				return;
 			}
 			this.add('cant', pokemon, 'flinch');
 			return false;
-		}
+		},
 	},
 	trapped: {
 		noCopy: true,
-		onModifyPokemon: function (pokemon) {
+		onTrapPokemon: function (pokemon) {
 			if (!this.effectData.source || !this.effectData.source.isActive) {
 				delete pokemon.volatiles['trapped'];
 				return;
 			}
 			pokemon.trapped = true;
-		}
+		},
 	},
 	partiallytrapped: {
 		duration: 2,
-		onBeforeMovePriority: 1,
-		onStart: function (target, source, effect) {
-			this.add('-activate', target, 'move: ' + effect, '[of] ' + source);
-		},
+		onBeforeMovePriority: 4,
 		onBeforeMove: function (pokemon) {
 			this.add('cant', pokemon, 'partiallytrapped');
 			return false;
 		},
-		onEnd: function (pokemon) {
-			this.add('-end', pokemon, this.effectData.sourceEffect, '[partiallytrapped]');
-		}
 	},
 	partialtrappinglock: {
 		durationCallback: function () {
@@ -228,24 +223,24 @@ exports.BattleStatuses = {
 		onStart: function (target, source, effect) {
 			this.effectData.move = effect.id;
 		},
-		onModifyPokemon: function (pokemon) {
+		onDisableMove: function (pokemon) {
 			if (!pokemon.hasMove(this.effectData.move)) {
 				return;
 			}
 			let moves = pokemon.moveset;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i].id !== this.effectData.move) {
-					moves[i].disabled = true;
+					pokemon.disableMove(moves[i].id);
 				}
 			}
-		}
+		},
 	},
 	lockedmove: {
 		// Outrage, Thrash, Petal Dance...
 		inherit: true,
 		durationCallback: function () {
 			return this.random(3, 5);
-		}
+		},
 	},
 	futuremove: {
 		// this is a side condition
@@ -293,7 +288,7 @@ exports.BattleStatuses = {
 			if (finished) {
 				side.removeSideCondition('futuremove');
 			}
-		}
+		},
 	},
 	stall: {
 		// Protect, Detect, Endure counter
@@ -318,6 +313,6 @@ exports.BattleStatuses = {
 				this.effectData.counter *= 2;
 			}
 			this.effectData.duration = 2;
-		}
-	}
+		},
+	},
 };

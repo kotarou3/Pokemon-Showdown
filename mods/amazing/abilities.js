@@ -9,7 +9,7 @@ exports.BattleAbilities = {
 		id: "cloudnine",
 		name: "Cloud Nine",
 		rating: 3,
-		num: 13
+		num: 13,
 	},
 	"roughskin": {
 		inherit: true,
@@ -17,13 +17,13 @@ exports.BattleAbilities = {
 			if (source && source !== target && move && move.flags['contact']) {
 				this.damage(damage / 4, source, target);
 			}
-		}
+		},
 	},
 	"forecast": {
 		inherit: true,
 		onUpdate: function (pokemon) {
 			if (pokemon.baseTemplate.species !== 'Altaria' || pokemon.transformed) return;
-			var forme = null;
+			let forme = null;
 			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
@@ -47,6 +47,6 @@ exports.BattleAbilities = {
 				pokemon.formeChange(forme);
 				this.add('-formechange', pokemon, forme, '[msg]');
 			}
-		}
-	}
+		},
+	},
 };

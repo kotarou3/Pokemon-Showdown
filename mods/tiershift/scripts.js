@@ -9,15 +9,7 @@ exports.BattleScripts = {
 			this.illusion = null;
 			this.template = template;
 			this.types = template.types;
-			this.typesData = [];
-			this.types = template.types;
-			for (let i = 0, l = this.types.length; i < l; i++) {
-				this.typesData.push({
-					type: this.types[i],
-					suppressed: false,
-					isAdded: false
-				});
-			}
+			this.addedType = '';
 			if (!dontRecalculateStats) {
 				let boosts = {
 					'UU': 5,
@@ -29,7 +21,7 @@ exports.BattleScripts = {
 					'PU': 20,
 					'NFE': 20,
 					'LC Uber': 20,
-					'LC': 20
+					'LC': 20,
 				};
 				let tier = template.tier;
 				if (this.set.item) {
@@ -60,6 +52,6 @@ exports.BattleScripts = {
 				this.speed = this.stats.spe;
 			}
 			return true;
-		}
-	}
+		},
+	},
 };

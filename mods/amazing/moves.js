@@ -3,21 +3,21 @@
 exports.BattleMovedex = {
 	armthrust: {
 		inherit: true,
-		basePower: 25
+		basePower: 25,
 	},
 	beatup: {
 		inherit: true,
-		basePower: 30
+		basePower: 30,
 	},
 	blizzard: {
 		inherit: true,
 		onModifyMove: function (move) {
 			if (this.isWeather('hail')) move.accuracy = true;
-		}
+		},
 	},
 	crushclaw: {
 		inherit: true,
-		breaksProtect: true
+		breaksProtect: true,
 	},
 	disable: {
 		accuracy: 100,
@@ -31,7 +31,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		onHit: function (target, source) {
 			if (!target.moves.length) return false;
-			var sideCondition = target.side.sideConditions['disable'];
+			let sideCondition = target.side.sideConditions['disable'];
 			if (sideCondition) {
 				target.side.removeSideCondition('disable');
 			}
@@ -40,10 +40,10 @@ exports.BattleMovedex = {
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart: function (side, target) {
-				var moves = target.moves;
-				var moveId = moves[this.random(moves.length)];
+				let moves = target.moves;
+				let moveId = moves[this.random(moves.length)];
 				if (!moveId) return false;
-				var move = this.getMove(moveId);
+				let move = this.getMove(moveId);
 				this.add('-start', target, 'Disable', move.name);
 				this.effectData.move = move.id;
 				return;
@@ -58,35 +58,35 @@ exports.BattleMovedex = {
 			},
 			onDisableMove: function (pokemon) {
 				if (this.effectData.source !== pokemon) return;
-				var moves = pokemon.moveset;
-				for (var i = 0; i < moves.length; i++) {
+				let moves = pokemon.moveset;
+				for (let i = 0; i < moves.length; i++) {
 					if (moves[i].id === this.effectData.move) {
 						pokemon.disableMove(moves[i].id);
 					}
 				}
-			}
-		}
+			},
+		},
 	},
 	doomdesire: {
 		inherit: true,
 		accuracy: 100,
-		basePower: 160
+		basePower: 160,
 	},
 	furycutter: {
 		inherit: true,
-		basePower: 40
+		basePower: 40,
 	},
 	furyswipes: {
 		inherit: true,
-		accuracy: 100
+		accuracy: 100,
 	},
 	leechlife: {
 		inherit: true,
-		basePower: 60
+		basePower: 60,
 	},
 	pinmissile: {
 		inherit: true,
-		basePower: 25
+		basePower: 25,
 	},
 	poisonfang: {
 		inherit: true,
@@ -97,17 +97,17 @@ exports.BattleMovedex = {
 		},
 		secondary: {
 			chance: 100,
-			status: 'tox'
-		}
+			status: 'tox',
+		},
 	},
 	rockblast: {
 		inherit: true,
-		accuracy: 90
+		accuracy: 90,
 	},
 	rocktomb: {
 		inherit: true,
 		accuracy: 100,
-		basePower: 80
+		basePower: 80,
 	},
 	steelwing: {
 		inherit: true,
@@ -116,9 +116,9 @@ exports.BattleMovedex = {
 		secondary: {
 			chance: 30,
 			boosts: {
-				def: 1
-			}
-		}
+				def: 1,
+			},
+		},
 	},
 	torment: {
 		num: 259,
@@ -143,16 +143,16 @@ exports.BattleMovedex = {
 			onDisableMove: function (pokemon) {
 				if (!pokemon.lastMove && !pokemon.side.disabledMove) return;
 				if (pokemon.lastMove !== 'struggle') {
-					var side = pokemon.side;
+					let side = pokemon.side;
 					if (pokemon.lastMove) side.disabledMove = pokemon.lastMove;
-					for (var i = 0; i < side.pokemon.length; i++) {
+					for (let i = 0; i < side.pokemon.length; i++) {
 						side.pokemon[i].disableMove(side.disabledMove);
 					}
 				}
-			}
+			},
 		},
 		secondary: false,
 		target: "foeSide",
-		type: "Dark"
-	}
+		type: "Dark",
+	},
 };

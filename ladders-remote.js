@@ -37,17 +37,17 @@ Ladder.prototype.getRating = function (userid) {
 	if (user && user.mmrCache[formatid]) {
 		return Promise.resolve(user.mmrCache[formatid]);
 	}
-	return new Promise(function (resolve, reject) {
+	return new Promise((resolve, reject) => {
 		LoginServer.request('mmr', {
 			format: formatid,
-			user: userid
-		}, function (data, statusCode, error) {
+			user: userid,
+		}, (data, statusCode, error) => {
 			if (!data) return resolve(1000);
 			if (data.errorip) {
 				return resolve(1000);
 			}
 
-			let mmr = parseInt(data, 10);
+			let mmr = parseInt(data);
 			if (isNaN(mmr)) return resolve(1000);
 			if (user.userid !== userid) return reject(new Error("Expired rating"));
 
@@ -66,8 +66,8 @@ Ladder.prototype.updateRating = function (p1name, p2name, p1score, room) {
 		p1: p1name,
 		p2: p2name,
 		score: p1score,
-		format: formatid
-	}, function (data, statusCode, error) {
+		format: formatid,
+	}, (data, statusCode, error) => {
 		if (!room.battle) {
 			console.log('room expired before ladder update was received');
 			return;

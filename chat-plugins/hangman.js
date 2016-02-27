@@ -5,7 +5,6 @@
 
 'use strict';
 
-const permission = 'announce';
 const maxMistakes = 6;
 
 class Hangman extends Rooms.RoomGame {
@@ -135,27 +134,21 @@ class Hangman extends Rooms.RoomGame {
 		output += '<p style="text-align:left;font-weight:bold;font-size:10pt;margin:5px 0 0 15px">' + (result === 1 ? 'Too bad! The mon has been hanged.' : (result === 2 ? 'The word has been guessed. Congratulations!' : 'Hangman')) + '</p>';
 		output += '<table><tr><td style="text-align:center;">' + this.hangingMan() + '</td><td style="text-align:center;width:100%;word-wrap:break-word">';
 
-		let wordString = '';
+		let wordString = this.wordSoFar.join('');
 		if (result === 1) {
-			for (let i = 0; i < this.wordSoFar.length; i++) {
-				if (i) wordString += '<small>&nbsp;</small>';
-				if (this.wordSoFar[i] === '_') {
-					wordString += '<font color="#7af87a">' + this.word[i] + '</font>';
-				} else {
-					wordString += this.wordSoFar[i];
-				}
-			}
-		} else {
-			wordString = this.wordSoFar.join('<small>&nbsp;</small>');
+			let word = this.word;
+			wordString = wordString.replace(/_+/g, (match, offset) =>
+				'<font color="#7af87a">' + word.substr(offset, match.length) + '</font>'
+			);
 		}
 
 		if (this.hint) output += '<div>(Hint: ' + Tools.escapeHTML(this.hint) + ')</div>';
-		output += '<p style="font-weight:bold;font-size:12pt">' + wordString + '</p>';
+		output += '<p style="font-weight:bold;font-size:12pt;letter-spacing:3pt">' + wordString + '</p>';
 		if (this.guesses.length) {
 			if (this.letterGuesses.length) {
-				output += 'Letters: ' + this.letterGuesses.map(function (g) {
-					return '<strong' + (g[1] === '1' ? '' : ' style="color: #DBA"') + '>' + Tools.escapeHTML(g[0]) + '</strong>';
-				}).join(', ');
+				output += 'Letters: ' + this.letterGuesses.map(g =>
+					'<strong' + (g[1] === '1' ? '' : ' style="color: #DBA"') + '>' + Tools.escapeHTML(g[0]) + '</strong>'
+				).join(', ');
 			}
 			if (result === 2) {
 				output += '<br />Winner: ' + Tools.escapeHTML(this.lastGuesser);
@@ -207,16 +200,16 @@ exports.commands = {
 		new: function (target, room, user) {
 			let params = target.split(',');
 
-			if (!this.can(permission, null, room)) return false;
+			if (!this.can('minigame', null, room)) return false;
 			if (room.hangmanDisabled) return this.errorReply("Hangman is disabled for this room.");
 			if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
-			if (room.game) return this.errorReply("There is already a game in progress in this room.");
+			if (room.game) return this.errorReply("There is already a game of " + room.game.title + " in progress in this room.");
 
 			if (!params) return this.errorReply("No word entered.");
 			let word = params[0].replace(/[^A-Za-z '-]/g, '');
 			if (word.replace(/ /g, '').length < 1) return this.errorReply("Enter a valid word");
 			if (word.length > 30) return this.errorReply("Phrase must be less than 30 characters.");
-			if (word.split(' ').some(function (w) { return w.length > 20; })) return this.errorReply("Each word in the phrase must be less than 20 characters.");
+			if (word.split(' ').some(w => w.length > 20)) return this.errorReply("Each word in the phrase must be less than 20 characters.");
 			if (!/[a-zA-Z]/.test(word)) return this.errorReply("Word must contain at least one letter.");
 
 			let hint;
@@ -244,7 +237,7 @@ exports.commands = {
 
 		stop: 'end',
 		end: function (target, room, user) {
-			if (!this.can(permission, null, room)) return false;
+			if (!this.can('minigame', null, room)) return false;
 			if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 			if (!room.game || room.game.gameid !== 'hangman') return this.errorReply("There is no game of hangman running in this room.");
 
@@ -254,7 +247,7 @@ exports.commands = {
 		endhelp: ["/hangman end - Ends the game of hangman before the man is hanged or word is guessed. Requires: % @ # & ~"],
 
 		disable: function (target, room, user) {
-			if (!this.can('tournamentsmanagement', null, room)) return;
+			if (!this.can('gamemanagement', null, room)) return;
 			if (room.hangmanDisabled) {
 				return this.errorReply("Hangman is already disabled.");
 			}
@@ -267,7 +260,7 @@ exports.commands = {
 		},
 
 		enable: function (target, room, user) {
-			if (!this.can('tournamentsmanagement', null, room)) return;
+			if (!this.can('gamemanagement', null, room)) return;
 			if (!room.hangmanDisabled) {
 				return this.errorReply("Hangman is already enabled.");
 			}
@@ -289,7 +282,7 @@ exports.commands = {
 
 		'': function (target, room, user) {
 			return this.parse('/help hangman');
-		}
+		},
 	},
 
 	hangmanhelp: ["/hangman allows users to play the popular game hangman in PS rooms.",
@@ -309,5 +302,5 @@ exports.commands = {
 		room.game.guess(target, user);
 	},
 	guesshelp: ["/guess - Shortcut for /hangman guess.", "/hangman guess [letter] - Makes a guess for the letter entered.",
-					"/hangman guess [word] - Same as a letter, but guesses an entire word."]
+					"/hangman guess [word] - Same as a letter, but guesses an entire word."],
 };

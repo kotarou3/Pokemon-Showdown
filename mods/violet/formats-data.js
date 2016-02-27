@@ -3,146 +3,146 @@
 exports.BattleFormatsData = {
 	charizard: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	butterfree: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	beedrill: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	pidgeot: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	raticate: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	arbok: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	nidoqueen: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	ninetales: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	golbat: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	vileplume: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	parasect: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	dugtrio: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	persian: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	golduck: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	primeape: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	poliwrath: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	alakazam: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	machamp: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	victreebel: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	magneton: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	muk: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	hypno: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	electrode: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	tangela: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	electabuzz: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	magmar: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	pinsir: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	gyarados: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	lapras: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	jolteon: {
 		inherit: true,
-		tier: "UU"
+		tier: "UU",
 	},
 	flareon: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	kabutops: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	aerodactyl: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	articuno: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	moltres: {
 		inherit: true,
-		tier: "OU"
+		tier: "OU",
 	},
 	starmie: {
 		inherit: true,
-		tier: "OU"
-	}
+		tier: "OU",
+	},
 };

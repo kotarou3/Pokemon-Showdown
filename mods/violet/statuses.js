@@ -24,13 +24,13 @@ exports.BattleStatuses = {
 					moves[i].disabled = true;
 				}
 			}
-		}
+		},
 	},
 	lockedmove: {
 		// Outrage, Thrash, Petal Dance...
 		inherit: true,
 		durationCallback: function () {
 			return this.random(2, 3);
-		}
-	}
+		},
+	},
 };

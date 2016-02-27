@@ -434,5 +434,5 @@ exports.BattleScripts = {
 		}
 
 		return damage;
-	}
+	},
 };

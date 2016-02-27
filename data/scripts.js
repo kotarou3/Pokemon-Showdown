@@ -103,15 +103,18 @@ exports.BattleScripts = {
 		}
 
 		let targets = pokemon.getMoveTargets(move, target);
-		let extraPP = 0;
-		for (let i = 0; i < targets.length; i++) {
-			let ppDrop = this.singleEvent('DeductPP', targets[i].getAbility(), targets[i].abilityData, targets[i], pokemon, move);
-			if (ppDrop !== true) {
-				extraPP += ppDrop || 0;
+
+		if (!sourceEffect) {
+			let extraPP = 0;
+			for (let i = 0; i < targets.length; i++) {
+				let ppDrop = this.singleEvent('DeductPP', targets[i].getAbility(), targets[i].abilityData, targets[i], pokemon, move);
+				if (ppDrop !== true) {
+					extraPP += ppDrop || 0;
+				}
 			}
-		}
-		if (extraPP > 0) {
-			pokemon.deductPP(move, extraPP);
+			if (extraPP > 0) {
+				pokemon.deductPP(move, extraPP);
+			}
 		}
 
 		if (!this.runEvent('TryMove', pokemon, target, move)) {
@@ -263,7 +266,7 @@ exports.BattleScripts = {
 		} else {
 			accuracy = this.runEvent('ModifyAccuracy', target, pokemon, move, accuracy);
 		}
-		if (move.alwaysHit) {
+		if (move.alwaysHit || (move.id === 'toxic' && this.gen >= 6 && pokemon.hasType('Poison'))) {
 			accuracy = true; // bypasses ohko accuracy modifiers
 		} else {
 			accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
@@ -636,12 +639,15 @@ exports.BattleScripts = {
 		return isValid;
 	},
 	sampleNoReplace: function (list) {
+		// The cute code to sample no replace is:
+		//   return list.splice(this.random(length), 1)[0];
+		// However manually removing the element is twice as fast.
+		// In fact, we don't even need to keep the array in order, so
+		// we just replace the removed element with the last element.
 		let length = list.length;
 		let index = this.random(length);
 		let element = list[index];
-		for (let nextIndex = index + 1; nextIndex < length; index += 1, nextIndex += 1) {
-			list[index] = list[nextIndex];
-		}
+		list[index] = list[length - 1];
 		list.pop();
 		return element;
 	},
@@ -702,18 +708,21 @@ exports.BattleScripts = {
 			let poke = formes[i][this.random(formes[i].length)];
 			let template = this.getTemplate(poke);
 
-			// Random item
-			let item = items[this.random(items.length)];
+			// Random legal item
+			let item = '';
+			do {
+				item = items[this.random(items.length)];
+			} while (this.data.Items[item].isNonstandard);
 
 			// Make sure forme is legal
-			if (template.battleOnly || template.requiredItem && item !== template.requiredItem) {
+			if (template.battleOnly || template.requiredItem && item !== toId(template.requiredItem)) {
 				template = this.getTemplate(template.baseSpecies);
 				poke = template.name;
 			}
 
 			// Make sure forme/item combo is correct
-			while ((poke === 'Arceus' && item.substr(-5) === 'plate') ||
-					(poke === 'Giratina' && item === 'griseousorb') ||
+			while ((poke === 'Giratina' && item === 'griseousorb') ||
+					(poke === 'Arceus' && item.substr(-5) === 'plate') ||
 					(poke === 'Genesect' && item.substr(-5) === 'drive')) {
 				item = items[this.random(items.length)];
 			}
@@ -732,9 +741,12 @@ exports.BattleScripts = {
 			let moves;
 			let pool = ['struggle'];
 			if (poke === 'Smeargle') {
-				pool = Object.keys(this.data.Movedex).exclude('chatter', 'struggle', 'magikarpsrevenge');
+				pool = Object.keys(this.data.Movedex).exclude('chatter', 'struggle', 'paleowave', 'shadowstrike', 'magikarpsrevenge');
 			} else if (template.learnset) {
 				pool = Object.keys(template.learnset);
+				if (template.species.substr(0, 6) === 'Rotom-' || template.species.substr(0, 10) === 'Pumpkaboo-') {
+					pool = pool.union(Object.keys(this.getTemplate(template.baseSpecies).learnset));
+				}
 			} else {
 				pool = Object.keys(this.getTemplate(template.baseSpecies).learnset);
 			}
@@ -797,7 +809,8 @@ exports.BattleScripts = {
 			let shiny = !this.random(1024);
 
 			team.push({
-				name: poke,
+				name: template.baseSpecies,
+				species: template.species,
 				item: item,
 				ability: ability,
 				moves: moves,
@@ -806,7 +819,7 @@ exports.BattleScripts = {
 				nature: nature,
 				level: level,
 				happiness: happiness,
-				shiny: shiny
+				shiny: shiny,
 			});
 		}
 
@@ -917,7 +930,8 @@ exports.BattleScripts = {
 			let shiny = !this.random(1024);
 
 			team.push({
-				name: pokemon,
+				name: template.baseSpecies,
+				species: template.species,
 				item: item,
 				ability: ability,
 				moves: m,
@@ -926,7 +940,7 @@ exports.BattleScripts = {
 				nature: nature,
 				level: level,
 				happiness: happiness,
-				shiny: shiny
+				shiny: shiny,
 			});
 		}
 
@@ -940,7 +954,7 @@ exports.BattleScripts = {
 			physicalsetup: 0, specialsetup: 0, mixedsetup: 0, speedsetup: 0, physicalpool: 0, specialpool: 0,
 			damagingMoves: [],
 			damagingMoveIndex: {},
-			setupType: ''
+			setupType: '',
 		};
 
 		for (let type in Tools.data.TypeChart) {
@@ -954,32 +968,32 @@ exports.BattleScripts = {
 
 		// Moves that heal a fixed amount:
 		let RecoveryMove = {
-			milkdrink: 1, recover: 1, roost: 1, slackoff: 1, softboiled: 1
+			milkdrink: 1, recover: 1, roost: 1, slackoff: 1, softboiled: 1,
 		};
 		// Moves which drop stats:
 		let ContraryMove = {
-			closecombat: 1, leafstorm: 1, overheat: 1, superpower: 1, vcreate: 1
+			closecombat: 1, leafstorm: 1, overheat: 1, superpower: 1, vcreate: 1,
 		};
 		// Moves that boost Attack:
 		let PhysicalSetup = {
-			bellydrum:1, bulkup:1, coil:1, curse:1, dragondance:1, honeclaws:1, howl:1, poweruppunch:1, shiftgear:1, swordsdance:1
+			bellydrum:1, bulkup:1, coil:1, curse:1, dragondance:1, honeclaws:1, howl:1, poweruppunch:1, shiftgear:1, swordsdance:1,
 		};
 		// Moves which boost Special Attack:
 		let SpecialSetup = {
-			calmmind:1, chargebeam:1, geomancy:1, nastyplot:1, quiverdance:1, tailglow:1
+			calmmind:1, chargebeam:1, geomancy:1, nastyplot:1, quiverdance:1, tailglow:1,
 		};
 		// Moves which boost Attack AND Special Attack:
 		let MixedSetup = {
-			growth:1, shellsmash:1, workup:1
+			growth:1, shellsmash:1, workup:1,
 		};
 		// Moves which boost Speed:
 		let SpeedSetup = {
-			agility:1, autotomize:1, rockpolish:1
+			agility:1, autotomize:1, rockpolish:1,
 		};
 		// Moves that shouldn't be the only STAB moves:
 		let NoStab = {
 			aquajet:1, bounce:1, fakeout:1, flamecharge:1, iceshard:1, pursuit:1, quickattack:1, skyattack:1,
-			chargebeam:1, clearsmog:1, eruption:1, vacuumwave:1, waterspout:1
+			chargebeam:1, clearsmog:1, eruption:1, vacuumwave:1, waterspout:1,
 		};
 
 		// Iterate through all moves we've chosen so far and keep track of what they do:
@@ -1078,22 +1092,21 @@ exports.BattleScripts = {
 	randomSet: function (template, slot, teamDetails) {
 		if (slot === undefined) slot = 1;
 		let baseTemplate = (template = this.getTemplate(template));
-		let name = template.name;
+		let species = template.species;
 
 		if (!template.exists || (!template.randomBattleMoves && !template.learnset)) {
 			// GET IT? UNOWN? BECAUSE WE CAN'T TELL WHAT THE POKEMON IS
 			template = this.getTemplate('unown');
 
-			let stack = 'Template incompatible with random battles: ' + name;
-			let fakeErr = {stack: stack};
-			require('../crashlogger.js')(fakeErr, 'The randbat set generator');
+			let err = new Error('Template incompatible with random battles: ' + species);
+			require('../crashlogger.js')(err, 'The randbat set generator');
 		}
 
 		if (typeof teamDetails !== 'object') teamDetails = {megaCount: teamDetails};
 
 		if (template.battleOnly) {
 			// Only change the species. The template has custom moves, and may have different typing and requirements.
-			name = template.baseSpecies;
+			species = template.baseSpecies;
 		}
 		let battleForme = this.checkBattleForme(template);
 		if (battleForme && battleForme.tier !== 'AG' && (battleForme.isMega ? !teamDetails.megaCount : this.random(2))) {
@@ -1110,7 +1123,7 @@ exports.BattleScripts = {
 			def: 85,
 			spa: 85,
 			spd: 85,
-			spe: 85
+			spe: 85,
 		};
 		let ivs = {
 			hp: 31,
@@ -1118,7 +1131,7 @@ exports.BattleScripts = {
 			def: 31,
 			spa: 31,
 			spd: 31,
-			spe: 31
+			spe: 31,
 		};
 		let hasType = {};
 		hasType[template.types[0]] = true;
@@ -1140,14 +1153,14 @@ exports.BattleScripts = {
 
 		// These moves can be used even if we aren't setting up to use them:
 		let SetupException = {
-			extremespeed:1, suckerpunch:1, superpower:1,
-			dracometeor:1, leafstorm:1, overheat:1
+			closecombat:1, extremespeed:1, suckerpunch:1, superpower:1,
+			dracometeor:1, leafstorm:1, overheat:1,
 		};
 		let counterAbilities = {
-			'Adaptability':1, 'Contrary':1, 'Hustle':1, 'Iron Fist':1, 'Sheer Force':1, 'Skill Link':1
+			'Adaptability':1, 'Contrary':1, 'Hustle':1, 'Iron Fist':1, 'Sheer Force':1, 'Skill Link':1,
 		};
 		let ateAbilities = {
-			'Aerilate':1, 'Pixilate':1, 'Refrigerate':1
+			'Aerilate':1, 'Pixilate':1, 'Refrigerate':1,
 		};
 
 		let hasMove, counter;
@@ -1198,15 +1211,17 @@ exports.BattleScripts = {
 					if (!hasMove['protect']) rejected = true;
 					break;
 				case 'rest': {
-					let sleepTalk = movePool.indexOf('sleeptalk');
-					if (sleepTalk >= 0) {
-						movePool.splice(sleepTalk, 1);
+					if (movePool.indexOf('sleeptalk') >= 0) {
 						rejected = true;
 					}
 					break;
 				}
 				case 'sleeptalk':
 					if (!hasMove['rest']) rejected = true;
+					if (movePool.length > 1) {
+						let rest = movePool.indexOf('rest');
+						if (rest >= 0) movePool.splice(rest, 1);
+					}
 					break;
 				case 'storedpower':
 					if (!counter.setupType && !hasMove['cosmicpower']) rejected = true;
@@ -1245,7 +1260,7 @@ exports.BattleScripts = {
 					if (!!counter['speedsetup'] || hasMove['encore'] || hasMove['raindance'] || hasMove['roar'] || hasMove['whirlwind']) rejected = true;
 					break;
 				case 'defog': case 'rapidspin':
-					if (counter.setupType || !!counter['speedsetup'] || (hasMove['rest'] && hasMove['sleeptalk']) || teamDetails.hazardClear >= 1) rejected = true;
+					if (counter.setupType || !!counter['speedsetup'] || (hasMove['rest'] && hasMove['sleeptalk']) || teamDetails.hazardClear) rejected = true;
 					break;
 				case 'fakeout': case 'superfang':
 					if (counter.setupType || hasMove['substitute'] || hasMove['switcheroo'] || hasMove['trick']) rejected = true;
@@ -1269,18 +1284,18 @@ exports.BattleScripts = {
 					if (counter.setupType && (hasAbility['Guts'] || hasAbility['Speed Boost']) && !hasMove['batonpass']) rejected = true;
 					if (hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
-				case 'roar':
+				case 'roar': case 'whirlwind':
 					if (counter.setupType || hasMove['dragontail']) rejected = true;
 					break;
 				case 'stealthrock':
-					if (counter.setupType || !!counter['speedsetup'] || hasMove['rest'] || teamDetails.stealthRock >= 1) rejected = true;
+					if (counter.setupType || !!counter['speedsetup'] || hasMove['rest'] || teamDetails.stealthRock) rejected = true;
 					break;
 				case 'switcheroo': case 'trick':
-					if (counter.Physical + counter.Special < 3) rejected = true;
-					if (hasMove['acrobatics'] || hasMove['lightscreen'] || hasMove['reflect'] || hasMove['trickroom']) rejected = true;
+					if (counter.Physical + counter.Special < 3 || counter.setupType) rejected = true;
+					if (hasMove['acrobatics'] || hasMove['lightscreen'] || hasMove['reflect'] || hasMove['suckerpunch'] || hasMove['trickroom']) rejected = true;
 					break;
 				case 'toxicspikes':
-					if (counter.setupType || teamDetails.toxicSpikes >= 1) rejected = true;
+					if (counter.setupType || teamDetails.toxicSpikes) rejected = true;
 					break;
 				case 'trickroom':
 					if (counter.setupType || !!counter['speedsetup'] || counter.damagingMoves.length < 2) rejected = true;
@@ -1292,11 +1307,12 @@ exports.BattleScripts = {
 					break;
 				case 'voltswitch':
 					if (counter.setupType || !!counter['speedsetup'] || hasMove['batonpass'] || hasMove['magnetrise'] || hasMove['uturn']) rejected = true;
+					if (hasMove['nuzzle'] && hasMove['thunderbolt']) rejected = true;
 					break;
 
 				// Bit redundant to have both
 				// Attacks:
-				case 'bugbite': case 'bugbuzz':
+				case 'bugbite': case 'bugbuzz': case 'signalbeam':
 					if (hasMove['uturn'] && !counter.setupType) rejected = true;
 					break;
 				case 'darkpulse':
@@ -1323,7 +1339,7 @@ exports.BattleScripts = {
 					if (hasMove['thunderbolt'] && !hasMove['raindance']) rejected = true;
 					break;
 				case 'thunderbolt':
-					if (hasMove['discharge'] || (hasMove['thunder'] && hasMove['raindance']) || (hasMove['voltswitch'] && hasMove['wildcharge'])) rejected = true;
+					if (hasMove['discharge'] || (hasMove['raindance'] || hasMove['thunder']) || (hasMove['voltswitch'] && hasMove['wildcharge'])) rejected = true;
 					break;
 				case 'dazzlinggleam':
 					if (hasMove['playrough'] && counter.setupType !== 'Special') rejected = true;
@@ -1331,19 +1347,17 @@ exports.BattleScripts = {
 				case 'drainingkiss':
 					if (hasMove['dazzlinggleam'] || counter.setupType !== 'Special') rejected = true;
 					break;
-				case 'aurasphere':
-					if (hasMove['closecombat'] && counter.setupType !== 'Special') rejected = true;
+				case 'aurasphere': case 'focusblast':
+					if ((hasMove['closecombat'] || hasMove['superpower']) && counter.setupType !== 'Special') rejected = true;
+					if (hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
 				case 'drainpunch':
 					if (!hasMove['bulkup'] && (hasMove['closecombat'] || hasMove['highjumpkick'])) rejected = true;
 					if (hasMove['focusblast'] || hasMove['superpower']) rejected = true;
 					break;
 				case 'closecombat': case 'highjumpkick':
+					if ((hasMove['aurasphere'] || hasMove['focusblast'] || movePool.indexOf('aurasphere') >= 0) && counter.setupType === 'Special') rejected = true;
 					if (hasMove['bulkup'] && hasMove['drainpunch']) rejected = true;
-					break;
-				case 'focusblast':
-					if (!counter.setupType && (hasMove['closecombat'] || hasMove['superpower'])) rejected = true;
-					if (hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
 				case 'machpunch':
 					if (hasType['Fighting'] && counter.stab < 2 && !hasAbility['Technician']) rejected = true;
@@ -1352,11 +1366,11 @@ exports.BattleScripts = {
 					if (hasMove['circlethrow'] && hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
 				case 'superpower':
-					if (counter.setupType && (hasMove['drainpunch'] || hasMove['focusblast'])) rejected = true;
+					if (counter['Fighting'] > 1 && counter.setupType) rejected = true;
 					if (hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
 				case 'vacuumwave':
-					if (counter.setupType !== 'Special' && (hasMove['closecombat'] || hasMove['machpunch'])) rejected = true;
+					if ((hasMove['closecombat'] || hasMove['machpunch']) && counter.setupType !== 'Special') rejected = true;
 					break;
 				case 'blazekick':
 					if (hasMove['flamethrower'] && counter.setupType !== 'Physical') rejected = true;
@@ -1386,8 +1400,8 @@ exports.BattleScripts = {
 					if (hasMove['phantomforce'] || (hasMove['shadowball'] && counter.setupType !== 'Physical') || hasMove['shadowsneak']) rejected = true;
 					break;
 				case 'shadowsneak':
+					if (hasType['Ghost'] && template.types.length > 1 && counter.stab < 2) rejected = true;
 					if (hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
-					if (hasType['Ghost'] && counter.stab < 2 && template.types.length > 1) rejected = true;
 					break;
 				case 'solarbeam':
 					if ((!hasAbility['Drought'] && !hasMove['sunnyday']) || hasMove['gigadrain'] || hasMove['leafstorm']) rejected = true;
@@ -1399,7 +1413,7 @@ exports.BattleScripts = {
 					if (hasMove['gigadrain'] && counter.setupType !== 'Physical') rejected = true;
 					break;
 				case 'leafstorm':
-					if (counter.setupType && hasMove['gigadrain']) rejected = true;
+					if (counter['Grass'] > 1 && counter.setupType) rejected = true;
 					break;
 				case 'bonemerang': case 'precipiceblades':
 					if (hasMove['earthquake']) rejected = true;
@@ -1422,6 +1436,9 @@ exports.BattleScripts = {
 				case 'explosion':
 					if (counter.setupType || (hasAbility['Refrigerate'] && hasMove['freezedry']) || hasMove['wish']) rejected = true;
 					break;
+				case 'extremespeed':
+					if (counter.setupType !== 'Physical' && hasMove['vacuumwave']) rejected = true;
+					break;
 				case 'hiddenpower':
 					if ((counter.damagingMoves.length < 2 && !counter.stab) || (hasMove['rest'] && hasMove['sleeptalk'])) rejected = true;
 					break;
@@ -1441,7 +1458,10 @@ exports.BattleScripts = {
 					if (hasMove['sludgebomb'] || counter.Special < 2) rejected = true;
 					break;
 				case 'poisonjab':
-					if (hasMove['gunkshot'] || hasMove['sludgewave'] && counter.setupType !== 'Physical') rejected = true;
+					if (hasMove['gunkshot']) rejected = true;
+					break;
+				case 'sludgewave':
+					if (hasMove['poisonjab']) rejected = true;
 					break;
 				case 'psychic':
 					if (hasMove['psyshock'] || hasMove['storedpower']) rejected = true;
@@ -1528,15 +1548,18 @@ exports.BattleScripts = {
 				}
 
 				// Pokemon should have moves that benefit their Ability/Type/Weather, as well as moves required by its forme
-				if (((hasAbility['Adaptability'] && template.types.length > 1 && (!counter[template.types[0]] || !counter[template.types[1]])) ||
+				if (((hasAbility['Adaptability'] && !counter.setupType && template.types.length > 1 && (!counter[template.types[0]] || !counter[template.types[1]])) ||
 					((hasAbility['Aerilate'] || hasAbility['Pixilate'] || hasAbility['Refrigerate']) && !counter['Normal']) ||
 					(hasAbility['Bad Dreams'] && movePool.indexOf('darkvoid') >= 0) ||
 					(hasAbility['Contrary'] && !counter['contrary'] && template.species !== 'Shuckle') ||
 					(hasAbility['Dark Aura'] && !counter['Dark']) ||
 					(hasAbility['Gale Wings'] && !counter['Flying']) ||
+					(hasAbility['Guts'] && hasType['Normal'] && movePool.indexOf('facade') >= 0) ||
 					(hasType['Dark'] && hasMove['suckerpunch'] && counter.stab < template.types.length) ||
 					(hasType['Dragon'] && !counter['Dragon'] && !hasAbility['Aerilate'] && !hasAbility['Pixilate'] && !hasMove['rest'] && !hasMove['sleeptalk']) ||
 					(hasType['Electric'] && !counter['Electric']) ||
+					(hasType['Fighting'] && !counter['Fighting'] && counter.setupType) ||
+					(hasType['Flying'] && !!counter['Flying'] && !hasType['Normal'] && !hasType['Poison'] && !hasType['Psychic'] && counter.Status < 3 && !hasAbility['Aerilate'] && template.types.length > 1 && counter.stab < 2) ||
 					(hasType['Fire'] && !counter['Fire']) ||
 					(hasType['Ground'] && !counter['Ground'] && (counter.setupType || counter['speedsetup'])) ||
 					(hasType['Ice'] && !counter['Ice']) ||
@@ -1545,7 +1568,19 @@ exports.BattleScripts = {
 					(movePool.indexOf('technoblast') >= 0 || template.requiredMove && movePool.indexOf(toId(template.requiredMove)) >= 0)) &&
 					(counter['physicalsetup'] + counter['specialsetup'] < 2 && (!counter.setupType || counter.setupType === 'Mixed' || (move.category !== counter.setupType && move.category !== 'Status') || counter[counter.setupType] + counter.Status > 3))) {
 					// Reject Status or non-STAB
-					if (!isSetup && !move.weather && (move.category === 'Status' || !hasType[move.type])) rejected = true;
+					if (!isSetup && !move.weather && moveid !== 'rest' && moveid !== 'sleeptalk' && (move.category === 'Status' || !hasType[move.type])) rejected = true;
+				}
+
+				// Sleep Talk shouldn't be selected without Rest
+				if (moveid === 'rest' && rejected) {
+					let sleeptalk = movePool.indexOf('sleeptalk');
+					if (sleeptalk >= 0) {
+						if (movePool.length < 2) {
+							rejected = false;
+						} else {
+							movePool.splice(sleeptalk, 1);
+						}
+					}
 				}
 
 				// Remove rejected moves from the move list
@@ -1599,6 +1634,11 @@ exports.BattleScripts = {
 			}
 		} while (moves.length < 4 && movePool.length);
 
+		// Moveset modifications
+		if (hasMove['autotomize'] && hasMove['heavyslam']) {
+			moves[moves.indexOf('autotomize')] = 'rockpolish';
+		}
+
 		// If Hidden Power has been removed, reset the IVs
 		if (!hasMove['hiddenpower']) {
 			ivs = {
@@ -1607,13 +1647,12 @@ exports.BattleScripts = {
 				def: 31,
 				spa: 31,
 				spd: 31,
-				spe: 31
+				spe: 31,
 			};
 		}
 
-		let abilities = Object.values(baseTemplate.abilities).sort(function (a, b) {
-			return this.getAbility(b).rating - this.getAbility(a).rating;
-		}.bind(this));
+		let abilities = Object.values(baseTemplate.abilities);
+		abilities.sort((a, b) => this.getAbility(b).rating - this.getAbility(a).rating);
 		let ability0 = this.getAbility(abilities[0]);
 		let ability1 = this.getAbility(abilities[1]);
 		let ability2 = this.getAbility(abilities[2]);
@@ -1644,10 +1683,10 @@ exports.BattleScripts = {
 				rejectAbility = !counter['Physical'] && !hasMove['batonpass'];
 			} else if (ability === 'Gluttony' || ability === 'Moody') {
 				rejectAbility = true;
-			} else if (ability === 'Limber') {
-				rejectAbility = template.types.indexOf('Electric') >= 0;
 			} else if (ability === 'Lightning Rod') {
 				rejectAbility = template.types.indexOf('Ground') >= 0;
+			} else if (ability === 'Limber') {
+				rejectAbility = template.types.indexOf('Electric') >= 0;
 			} else if (ability === 'Overgrow') {
 				rejectAbility = !counter['Grass'];
 			} else if (ability === 'Poison Heal') {
@@ -1676,6 +1715,8 @@ exports.BattleScripts = {
 				rejectAbility = !counter['Bug'];
 			} else if (ability === 'Technician') {
 				rejectAbility = !counter['technician'] || (abilities.indexOf('Skill Link') >= 0 && counter['skilllink'] >= counter['technician']);
+			} else if (ability === 'Tinted Lens') {
+				rejectAbility = counter['damage'] >= counter.damagingMoves.length;
 			} else if (ability === 'Torrent') {
 				rejectAbility = !counter['Water'];
 			} else if (ability === 'Unburden') {
@@ -1718,9 +1759,6 @@ exports.BattleScripts = {
 				}
 			} else if (template.baseSpecies === 'Basculin') {
 				ability = 'Adaptability';
-			} else if (template.id === 'combee') {
-				// Combee always gets Hustle but its only physical move is Endeavor, which loses accuracy
-				ability = 'Honey Gather';
 			} else if (template.id === 'lilligant' && hasMove['petaldance']) {
 				ability = 'Own Tempo';
 			} else if (template.id === 'lopunny' && hasMove['switcheroo'] && this.random(3)) {
@@ -1743,11 +1781,6 @@ exports.BattleScripts = {
 
 		if (hasMove['rockclimb'] && ability !== 'Sheer Force') {
 			moves[moves.indexOf('rockclimb')] = 'doubleedge';
-		}
-
-		if (hasMove['gyroball'] || hasMove['trickroom']) {
-			ivs.spe = 0;
-			evs.spe = 0;
 		}
 
 		item = 'Leftovers';
@@ -1819,8 +1852,6 @@ exports.BattleScripts = {
 			item = (hasMove['raindance'] && ability === 'Hydration') ? 'Damp Rock' : 'Chesto Berry';
 		} else if (hasMove['raindance']) {
 			item = 'Damp Rock';
-		} else if (hasMove['sandstorm']) {
-			item = 'Smooth Rock';
 		} else if (hasMove['sunnyday']) {
 			item = 'Heat Rock';
 		} else if (hasMove['lightscreen'] && hasMove['reflect']) {
@@ -1872,7 +1903,7 @@ exports.BattleScripts = {
 			item = 'Light Clay';
 		} else if (ability === 'Iron Barbs' || ability === 'Rough Skin') {
 			item = 'Rocky Helmet';
-		} else if (counter.Physical + counter.Special >= 4 && (template.baseStats.def + template.baseStats.spd > 189 || hasMove['rapidspin'])) {
+		} else if (counter.Physical + counter.Special >= 4 && template.baseStats.spd >= 65 && (template.baseStats.def + template.baseStats.spd >= 190 || hasMove['rapidspin'])) {
 			item = 'Assault Vest';
 		} else if (counter.damagingMoves.length >= 4) {
 			item = (!!counter['Normal'] || (hasMove['suckerpunch'] && !hasType['Dark'])) ? 'Life Orb' : 'Expert Belt';
@@ -1922,20 +1953,20 @@ exports.BattleScripts = {
 			UU: 77,
 			BL: 76,
 			OU: 75,
-			CAP: 75,
 			Unreleased: 75,
+			CAP: 75,
 			Uber: 73,
-			AG: 71
+			AG: 71,
 		};
 		let customScale = {
 			// Between OU and Uber
-			Aegislash: 74, Blaziken: 74, 'Blaziken-Mega': 74, Genesect: 74, 'Genesect-Burn': 74, 'Genesect-Chill': 74, 'Genesect-Douse': 74, 'Genesect-Shock': 74, Greninja: 74, 'Kangaskhan-Mega': 74, 'Lucario-Mega': 74, 'Mawile-Mega': 74,
+			Aegislash: 74, Blaziken: 74, 'Blaziken-Mega': 74, Genesect: 74, 'Genesect-Burn': 74, 'Genesect-Chill': 74, 'Genesect-Douse': 74, 'Genesect-Shock': 74, Greninja: 74, 'Lucario-Mega': 74, 'Mawile-Mega': 74,
 
 			// Banned Ability
 			Gothitelle: 74, Ninetales: 77, Politoed: 77, Wobbuffet: 74,
 
 			// Holistic judgement
-			Unown: 85
+			Unown: 85,
 		};
 		let tier = template.tier;
 		if (tier.charAt(0) === '(') {
@@ -1980,15 +2011,21 @@ exports.BattleScripts = {
 			ivs.atk = hasMove['hiddenpower'] ? ivs.atk - 30 : 0;
 		}
 
+		if (hasMove['gyroball'] || hasMove['trickroom']) {
+			evs.spe = 0;
+			ivs.spe = 0;
+		}
+
 		return {
-			name: name,
+			name: template.baseSpecies,
+			species: species,
 			moves: moves,
 			ability: ability,
 			evs: evs,
 			ivs: ivs,
 			item: item,
 			level: level,
-			shiny: !this.random(1024)
+			shiny: !this.random(1024),
 		};
 	},
 	randomTeam: function (side) {
@@ -2017,7 +2054,7 @@ exports.BattleScripts = {
 		let baseFormes = {};
 		let uberCount = 0;
 		let puCount = 0;
-		let teamDetails = {megaCount: 0, stealthRock: 0, toxicSpikes: 0, hazardClear: 0};
+		let teamDetails = {};
 
 		while (pokemonPool.length && pokemonLeft < 6) {
 			let template = this.getTemplate(this.sampleNoReplace(pokemonPool));
@@ -2025,9 +2062,6 @@ exports.BattleScripts = {
 
 			// Limit to one of each species (Species Clause)
 			if (baseFormes[template.baseSpecies]) continue;
-
-			// Not available on ORAS
-			if (template.species === 'Pichu-Spiky-eared') continue;
 
 			// Useless in Random Battle without greatly lowering the levels of everything else
 			if (template.species === 'Unown') continue;
@@ -2112,26 +2146,22 @@ exports.BattleScripts = {
 
 			let set = this.randomSet(template, pokemon.length, teamDetails);
 
-			// Illusion shouldn't be on the last pokemon of the team
+			// Illusion shouldn't be the last Pokemon of the team
 			if (set.ability === 'Illusion' && pokemonLeft > 4) continue;
 
 			// Limit 1 of any type combination
 			let typeCombo = types.join();
-			if (set.ability === 'Drought' || set.ability === 'Drizzle') {
-				// Drought and Drizzle don't count towards the type combo limit
+			if (set.ability === 'Drought' || set.ability === 'Drizzle' || set.ability === 'Sand Stream') {
+				// Drought, Drizzle and Sand Stream don't count towards the type combo limit
 				typeCombo = set.ability;
 			}
 			if (typeCombo in typeComboCount) continue;
-
-			// Limit the number of Megas to one
-			let forme = template.otherFormes && this.getTemplate(template.otherFormes[0]);
-			let isMegaSet = this.getItem(set.item).megaStone || (forme && forme.isMega && forme.requiredMove && set.moves.indexOf(toId(forme.requiredMove)) >= 0);
-			if (isMegaSet && teamDetails.megaCount > 0) continue;
 
 			// Okay, the set passes, add it to our team
 			pokemon.push(set);
 
 			// Now that our Pokemon has passed all checks, we can increment our counters
+			baseFormes[template.baseSpecies] = 1;
 			pokemonLeft++;
 
 			// Increment type counters
@@ -2145,21 +2175,20 @@ exports.BattleScripts = {
 			typeComboCount[typeCombo] = 1;
 
 			// Increment Uber/NU counters
-			if (tier === 'Uber' || tier === 'AG') {
+			if (tier === 'Uber') {
 				uberCount++;
 			} else if (tier === 'PU') {
 				puCount++;
 			}
 
-			// Increment Mega, weather, hazards, and base species counters
-			if (isMegaSet) teamDetails.megaCount++;
+			// Team has Mega/weather/hazards
+			if (this.getItem(set.item).megaStone) teamDetails['megaCount'] = 1;
 			if (set.ability === 'Snow Warning') teamDetails['hail'] = 1;
 			if (set.ability === 'Drizzle' || set.moves.indexOf('raindance') >= 0) teamDetails['rain'] = 1;
 			if (set.ability === 'Sand Stream') teamDetails['sand'] = 1;
-			if (set.moves.indexOf('stealthrock') >= 0) teamDetails.stealthRock++;
-			if (set.moves.indexOf('toxicspikes') >= 0) teamDetails.toxicSpikes++;
-			if (set.moves.indexOf('defog') >= 0 || set.moves.indexOf('rapidspin') >= 0) teamDetails.hazardClear++;
-			baseFormes[template.baseSpecies] = 1;
+			if (set.moves.indexOf('stealthrock') >= 0) teamDetails['stealthRock'] = 1;
+			if (set.moves.indexOf('toxicspikes') >= 0) teamDetails['toxicSpikes'] = 1;
+			if (set.moves.indexOf('defog') >= 0 || set.moves.indexOf('rapidspin') >= 0) teamDetails['hazardClear'] = 1;
 		}
 		return pokemon;
 	},
@@ -2319,21 +2348,20 @@ exports.BattleScripts = {
 	},
 	randomDoublesSet: function (template, slot, teamDetails) {
 		let baseTemplate = (template = this.getTemplate(template));
-		let name = template.name;
+		let species = template.species;
 
 		if (!template.exists || (!template.randomDoubleBattleMoves && !template.randomBattleMoves && !template.learnset)) {
 			template = this.getTemplate('unown');
 
-			let stack = 'Template incompatible with random battles: ' + name;
-			let fakeErr = {stack: stack};
-			require('../crashlogger.js')(fakeErr, 'The doubles randbat set generator');
+			let err = new Error('Template incompatible with random battles: ' + species);
+			require('../crashlogger.js')(err, 'The doubles randbat set generator');
 		}
 
 		if (typeof teamDetails !== 'object') teamDetails = {megaCount: teamDetails};
 
 		if (template.battleOnly) {
 			// Only change the species. The template has custom moves, and may have different typing and requirements.
-			name = template.baseSpecies;
+			species = template.baseSpecies;
 		}
 		let battleForme = this.checkBattleForme(template);
 		if (battleForme && (battleForme.isMega ? !teamDetails.megaCount : this.random(2))) {
@@ -2352,7 +2380,7 @@ exports.BattleScripts = {
 			def: 0,
 			spa: 0,
 			spd: 0,
-			spe: 0
+			spe: 0,
 		};
 		let ivs = {
 			hp: 31,
@@ -2360,7 +2388,7 @@ exports.BattleScripts = {
 			def: 31,
 			spa: 31,
 			spd: 31,
-			spe: 31
+			spe: 31,
 		};
 		let hasType = {};
 		hasType[template.types[0]] = true;
@@ -2383,14 +2411,14 @@ exports.BattleScripts = {
 		// These moves can be used even if we aren't setting up to use them:
 		let SetupException = {
 			dracometeor:1, leafstorm:1, overheat:1,
-			extremespeed:1, suckerpunch:1, superpower:1
+			extremespeed:1, suckerpunch:1, superpower:1,
 		};
 		let counterAbilities = {
-			'Adaptability':1, 'Contrary':1, 'Hustle':1, 'Iron Fist':1, 'Skill Link':1
+			'Adaptability':1, 'Contrary':1, 'Hustle':1, 'Iron Fist':1, 'Skill Link':1,
 		};
 		// -ate Abilities
 		let ateAbilities = {
-			'Aerilate':1, 'Pixilate':1, 'Refrigerate':1
+			'Aerilate':1, 'Pixilate':1, 'Refrigerate':1,
 		};
 
 		let hasMove, counter;
@@ -2426,7 +2454,6 @@ exports.BattleScripts = {
 				let moveid = moves[k];
 				let move = this.getMove(moveid);
 				let rejected = false;
-				let isSetup = false;
 
 				switch (moveid) {
 				// not very useful without their supporting moves
@@ -2450,17 +2477,14 @@ exports.BattleScripts = {
 				case 'swordsdance': case 'dragondance': case 'coil': case 'curse': case 'bulkup': case 'bellydrum':
 					if (counter.Physical < 2 && !hasMove['batonpass']) rejected = true;
 					if (counter.setupType !== 'Physical' || counter['physicalsetup'] > 1) rejected = true;
-					isSetup = true;
 					break;
 				case 'nastyplot': case 'tailglow': case 'quiverdance': case 'calmmind': case 'geomancy':
 					if (counter.Special < 2 && !hasMove['batonpass']) rejected = true;
 					if (counter.setupType !== 'Special' || counter['specialsetup'] > 1) rejected = true;
-					isSetup = true;
 					break;
 				case 'shellsmash': case 'growth': case 'workup':
 					if (counter.Physical + counter.Special < 2 && !hasMove['batonpass']) rejected = true;
 					if (counter.setupType !== 'Mixed' || counter['mixedsetup'] > 1) rejected = true;
-					isSetup = true;
 					break;
 
 				// bad after setup
@@ -2814,13 +2838,12 @@ exports.BattleScripts = {
 				def: 31,
 				spa: 31,
 				spd: 31,
-				spe: 31
+				spe: 31,
 			};
 		}
 
-		let abilities = Object.values(baseTemplate.abilities).sort(function (a, b) {
-			return this.getAbility(b).rating - this.getAbility(a).rating;
-		}.bind(this));
+		let abilities = Object.values(baseTemplate.abilities);
+		abilities.sort((a, b) => this.getAbility(b).rating - this.getAbility(a).rating);
 		let ability0 = this.getAbility(abilities[0]);
 		let ability1 = this.getAbility(abilities[1]);
 		let ability2 = this.getAbility(abilities[2]);
@@ -2884,6 +2907,8 @@ exports.BattleScripts = {
 				rejectAbility = !counter['Bug'];
 			} else if (ability === 'Technician') {
 				rejectAbility = !counter['technician'] || (abilities.indexOf('Skill Link') >= 0 && counter['skilllink'] >= counter['technician']);
+			} else if (ability === 'Tinted Lens') {
+				rejectAbility = counter['damage'] >= counter.damagingMoves.length;
 			} else if (ability === 'Torrent') {
 				rejectAbility = !counter['Water'];
 			} else if (ability === 'Unburden') {
@@ -3160,15 +3185,97 @@ exports.BattleScripts = {
 		let level = 70 + Math.floor(((600 - this.clampIntRange(bst, 300, 600)) / 10.34));
 
 		return {
-			name: name,
+			name: template.baseSpecies,
+			species: species,
 			moves: moves,
 			ability: ability,
 			evs: evs,
 			ivs: ivs,
 			item: item,
 			level: level,
-			shiny: !this.random(template.id === 'missingno' ? 4 : 1024)
+			shiny: !this.random(template.id === 'missingno' ? 4 : 1024),
 		};
+	},
+	randomSeasonalPolarTeam: function () {
+		let pokemonLeft = 0;
+		let pokemon = [];
+
+		let pokemonPool = [];
+		for (let id in this.data.FormatsData) {
+			let template = this.getTemplate(id);
+			if (!template.evos.length && !template.isMega && !template.isNonstandard && template.randomBattleMoves && template.types.indexOf("Ice") >= 0) {
+				pokemonPool.push(id);
+			}
+		}
+
+		let baseFormes = {};
+		let uberCount = 0;
+		let puCount = 0;
+		let weakCount = 0;
+		let teamDetails = {};
+
+		while (pokemonPool.length && pokemonLeft < 6) {
+			let template = this.getTemplate(this.sampleNoReplace(pokemonPool));
+			if (!template.exists) continue;
+			let types = template.types.sort().join('/');
+
+			// Limit to one of each species (Species Clause)
+			if (baseFormes[template.baseSpecies]) continue;
+
+			// Limit to 2 Water/Ice Pokemon (double weakness to Ice in an Ice-dominant format)
+			if (weakCount > 2 && types === 'Ice/Water' && this.random(5) >= 1) continue;
+
+			let tier = template.tier;
+			switch (tier) {
+			case 'Uber':
+				// Ubers are limited to 1 but have a 20% chance of being added anyway.
+				if (uberCount && this.random(5) >= 1) continue;
+				break;
+			case 'PU':
+				// PUs are limited to 2 but have a 20% chance of being added anyway.
+				if (puCount > 1 && this.random(5) >= 1) continue;
+				break;
+			case 'Unreleased':
+				// Unreleased Pokémon have 20% the normal rate
+				if (this.random(5) >= 1) continue;
+				break;
+			case 'CAP':
+				// CAPs have 20% the normal rate
+				if (this.random(5) >= 1) continue;
+			}
+
+			let set = this.randomSet(template, pokemon.length, teamDetails);
+
+			// Freeze-Dry is pointless because of Inverse Battle rules
+			let freezedry = set.moves.indexOf('freezedry');
+			if (freezedry >= 0 && set.moves.indexOf('icebeam') < 0) {
+				set.moves[freezedry] = 'icebeam';
+			}
+
+			pokemon.push(set);
+
+			// Now that our Pokemon has passed all checks, we can increment our counters
+			baseFormes[template.baseSpecies] = 1;
+			if (types === 'Ice/Water') weakCount++;
+			pokemonLeft++;
+
+			// Increment Uber/NU counters
+			if (tier === 'Uber') {
+				uberCount++;
+			} else if (tier === 'PU') {
+				puCount++;
+			}
+
+			// Team has Mega/weather/hazards
+			if (this.getItem(set.item).megaStone) teamDetails['megaCount'] = 1;
+			if (set.ability === 'Snow Warning') teamDetails['hail'] = 1;
+			if (set.ability === 'Drizzle' || set.moves.indexOf('raindance') >= 0) teamDetails['rain'] = 1;
+			if (set.ability === 'Sand Stream') teamDetails['sand'] = 1;
+			if (set.moves.indexOf('stealthrock') >= 0) teamDetails['stealthRock'] = 1;
+			if (set.moves.indexOf('toxicspikes') >= 0) teamDetails['toxicSpikes'] = 1;
+			if (set.moves.indexOf('defog') >= 0 || set.moves.indexOf('rapidspin') >= 0) teamDetails['hazardClear'] = 1;
+		}
+		return pokemon;
 	},
 	randomFactorySets: require('./factory-sets.json'),
 	randomFactorySet: function (template, slot, teamData, tier) {
@@ -3184,7 +3291,7 @@ exports.BattleScripts = {
 			'hydration': 'raindance', 'swiftswim': 'raindance',
 			'leafguard': 'sunnyday', 'solarpower': 'sunnyday', 'chlorophyll': 'sunnyday',
 			'sandforce': 'sandstorm', 'sandrush': 'sandstorm', 'sandveil': 'sandstorm',
-			'snowcloak': 'hail'
+			'snowcloak': 'hail',
 		};
 		let weatherAbilitiesSet = {'drizzle':1, 'drought':1, 'snowwarning':1, 'sandstream':1};
 
@@ -3238,7 +3345,7 @@ exports.BattleScripts = {
 		}
 
 		return {
-			name: setData.set.name || setData.set.species,
+			name: setData.set.name || template.baseSpecies,
 			species: setData.set.species,
 			gender: setData.set.gender || template.gender || (this.random() ? 'M' : 'F'),
 			item: setData.set.item || '',
@@ -3249,7 +3356,7 @@ exports.BattleScripts = {
 			evs: setData.set.evs || {hp: 84, atk: 84, def: 84, spa: 84, spd: 84, spe: 84},
 			ivs: setData.set.ivs || {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31},
 			nature: setData.set.nature || 'Serious',
-			moves: moves
+			moves: moves,
 		};
 	},
 	randomFactoryTeam: function (side, depth) {
@@ -3279,7 +3386,7 @@ exports.BattleScripts = {
 			'lightningrod': ['Electric'], 'motordrive': ['Electric'], 'voltabsorb': ['Electric'],
 			'sapsipper': ['Grass'],
 			'thickfat': ['Ice', 'Fire'],
-			'levitate': ['Ground']
+			'levitate': ['Ground'],
 		};
 
 		while (pokemonPool.length && pokemonLeft < 6) {
@@ -3495,5 +3602,5 @@ exports.BattleScripts = {
 			baseFormes[template.baseSpecies] = 1;
 		}
 		return pokemon;
-	}
+	},
 };

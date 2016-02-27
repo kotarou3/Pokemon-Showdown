@@ -51,10 +51,10 @@ let commands = exports.commands = Object.clone(baseCommands);
 // info always goes first so other plugins can shadow it
 Object.merge(commands, require('./chat-plugins/info.js').commands);
 
-fs.readdirSync(path.resolve(__dirname, 'chat-plugins')).forEach(function (file) {
-	if (file.substr(-3) !== '.js' || file === 'info.js') return;
+for (let file of fs.readdirSync(path.resolve(__dirname, 'chat-plugins'))) {
+	if (file.substr(-3) !== '.js' || file === 'info.js') continue;
 	Object.merge(commands, require('./chat-plugins/' + file).commands);
-});
+}
 
 /*********************************************************
  * Modlog
@@ -62,7 +62,7 @@ fs.readdirSync(path.resolve(__dirname, 'chat-plugins')).forEach(function (file) 
 
 let modlog = exports.modlog = {
 	lobby: fs.createWriteStream(path.resolve(__dirname, 'logs/modlog/modlog_lobby.txt'), {flags:'a+'}),
-	battle: fs.createWriteStream(path.resolve(__dirname, 'logs/modlog/modlog_battle.txt'), {flags:'a+'})
+	battle: fs.createWriteStream(path.resolve(__dirname, 'logs/modlog/modlog_battle.txt'), {flags:'a+'}),
 };
 
 let writeModlog = exports.writeModlog = function (roomid, text) {
@@ -110,7 +110,7 @@ function canTalk(user, room, connection, message, targetUser) {
 					return false;
 				}
 			} else if (Config.groups.bySymbol[userGroup].rank < Config.groups.bySymbol[room.modchat].rank && !user.can('makeroom')) {
-				let groupName = Config.groups[room.modchat].name || room.modchat;
+				let groupName = Config.groups.bySymbol[room.modchat].name || room.modchat;
 				this.errorReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to speak in this room.");
 				return false;
 			}
@@ -132,7 +132,11 @@ function canTalk(user, room, connection, message, targetUser) {
 		}
 
 		// remove zalgo
-		message = message.replace(/[\u0300-\u036f\u0483-\u0489\u064b-\u065f\u0670\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]{3,}/g, '');
+		message = message.replace(/[\u0300-\u036f\u0483-\u0489\u0610-\u0615\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06ED\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]{3,}/g, '');
+		if (/[\u239b-\u23b9]/.test(message)) {
+			this.errorReply("Your message contains banned characters.");
+			return false;
+		}
 
 		if (room && room.id === 'lobby') {
 			let normalized = message.trim();
@@ -155,7 +159,7 @@ function canTalk(user, room, connection, message, targetUser) {
 	return true;
 }
 
-let Context = exports.Context = (function () {
+let Context = exports.Context = (() => {
 	function Context(options) {
 		this.cmd = options.cmd || '';
 		this.cmdToken = options.cmdToken || '';
@@ -278,6 +282,7 @@ let Context = exports.Context = (function () {
 		return CommandParser.parse(message, room || this.room, this.user, this.connection, this.levelsDeep + 1);
 	};
 	Context.prototype.run = function (targetCmd, inNamespace) {
+		if (targetCmd === 'constructor') return this.sendReply("Access denied.");
 		let commandHandler;
 		if (typeof targetCmd === 'function') {
 			commandHandler = targetCmd;
@@ -295,14 +300,11 @@ let Context = exports.Context = (function () {
 		try {
 			result = commandHandler.call(this, this.target, this.room, this.user, this.connection, this.cmd, this.message);
 		} catch (err) {
-			let stack = err.stack + '\n\n' +
-					'Additional information:\n' +
-					'user = ' + this.user.name + '\n' +
-					'room = ' + this.room.id + '\n' +
-					'message = ' + this.message;
-			let fakeErr = {stack: stack};
-
-			if (!require('./crashlogger.js')(fakeErr, 'A chat command')) {
+			if (require('./crashlogger.js')(err, 'A chat command', {
+				user: this.user.name,
+				room: this.room.id,
+				message: this.message,
+			}) === 'lockdown') {
 				let ministack = ("" + err.stack).escapeHTML().split("\n").slice(0, 2).join("<br />");
 				if (Rooms.lobby) Rooms.lobby.send('|html|<div class="broadcast-red"><b>POKEMON SHOWDOWN HAS CRASHED:</b> ' + ministack + '</div>');
 			} else {
@@ -346,7 +348,7 @@ let Context = exports.Context = (function () {
 			'imageshack.us': 1,
 			'deviantart.net': 1,
 			'd.pr': 1,
-			'pokefans.net': 1
+			'pokefans.net': 1,
 		};
 		if (domain in approvedDomains) {
 			return '//' + uri;
@@ -366,7 +368,7 @@ let Context = exports.Context = (function () {
 				this.errorReply("Images are not allowed in personal rooms.");
 				return false;
 			}
-			let srcMatch = /src\w*\=\w*"?([^ "]+)(\w*")?/i.exec(match[0]);
+			let srcMatch = /src\s*\=\s*"?([^ "]+)(\s*")?/i.exec(match[0]);
 			if (srcMatch) {
 				let uri = this.canEmbedURI(srcMatch[1], true);
 				if (!uri) return false;
@@ -502,6 +504,9 @@ let parse = exports.parse = function (message, room, user, connection, levelsDee
 	let commandHandler;
 
 	do {
+		if (toId(cmd) === 'constructor') {
+			return connection.sendTo(room, "Error: Access denied.");
+		}
 		commandHandler = currentCommands[cmd];
 		if (typeof commandHandler === 'string') {
 			// in case someone messed up, don't loop
@@ -532,7 +537,7 @@ let parse = exports.parse = function (message, room, user, connection, levelsDee
 
 	let context = new Context({
 		target: target, room: room, user: user, connection: connection, cmd: cmd, message: message,
-		namespaces: namespaces, cmdToken: cmdToken, levelsDeep: levelsDeep
+		namespaces: namespaces, cmdToken: cmdToken, levelsDeep: levelsDeep,
 	});
 
 	if (commandHandler) {
@@ -578,7 +583,7 @@ let parse = exports.parse = function (message, room, user, connection, levelsDee
 };
 
 exports.package = {};
-fs.readFile(path.resolve(__dirname, 'package.json'), function (err, data) {
+fs.readFile(path.resolve(__dirname, 'package.json'), (err, data) => {
 	if (err) return;
 	exports.package = JSON.parse(data);
 });

@@ -13,7 +13,7 @@ exports.Formats = [
 
 		mod: 'violet',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'UU', 'NU', 'LC']
+		banlist: ['Uber', 'UU', 'NU', 'LC'],
 	},
 	{
 		name: "Amethyst",
@@ -21,7 +21,7 @@ exports.Formats = [
 
 		mod: 'amazing',
 		ruleset: ['Pokemon', 'Standard', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE']
+		banlist: ['Uber', 'UU', 'BL', 'NU', 'NFE'],
 	},
 
 	// XY Singles
@@ -31,11 +31,11 @@ exports.Formats = [
 		name: "ORAS 1U",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3522911/\">Ubers Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>",
 		],
 		section: "Other Formats",
 		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause', 'Baton Pass Clause', 'Evasion Moves Clause'],
-		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy']
+		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy'],
 	},
 	{
 		name: "Custom Game",
@@ -47,7 +47,7 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
+		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
 	// XY Doubles
@@ -64,7 +64,7 @@ exports.Formats = [
 		defaultLevel: 100,
 		debug: true,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
+		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
 	// XY Triples
@@ -81,7 +81,7 @@ exports.Formats = [
 		defaultLevel: 100,
 		debug: true,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
+		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
 	// Other Metagames
@@ -98,14 +98,14 @@ exports.Formats = [
 				this.heal(target.maxhp / 8);
 				return false;
 			}
-		}
+		},
 	},
 	{
 		name: "RBYPlus",
 		section: "Other Mods",
 
 		mod: 'rbyplus',
-		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "Dark Chocolate",
@@ -114,7 +114,7 @@ exports.Formats = [
 		mod: 'darkchocolate',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'Soul Dew']
+		banlist: ['Uber', 'Soul Dew'],
 	},
 
 	// BW2 Singles
@@ -124,14 +124,14 @@ exports.Formats = [
 		name: "[Gen 5] OU",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3551993/\">BW2 OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431094/\">BW2 Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431094/\">BW2 Sample Teams</a>",
 		],
 		section: "Past Generations",
 		column: 2,
 
 		mod: 'gen5',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Stream ++ Sand Rush', 'Soul Dew']
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Stream ++ Sand Rush', 'Soul Dew'],
 	},
 	{
 		name: "[Gen 5] Custom Game",
@@ -144,7 +144,7 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
+		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
 	// BW2 Doubles
@@ -162,7 +162,7 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod']
+		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
 	// Past Generations
@@ -172,7 +172,7 @@ exports.Formats = [
 		name: "[Gen 4] OU",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3551992/\">DPP OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431088/\">DPP Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431088/\">DPP Sample Teams</a>",
 		],
 		section: "Past Generations",
 		column: 2,
@@ -180,7 +180,7 @@ exports.Formats = [
 		mod: 'gen4',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber']
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 4] Custom Game",
@@ -193,7 +193,7 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions
-		ruleset: ['Cancel Mod']
+		ruleset: ['Cancel Mod'],
 	},
 	{
 		name: "[Gen 4] Doubles Custom Game",
@@ -207,27 +207,31 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		// no restrictions
-		ruleset: ['Cancel Mod']
+		ruleset: ['Cancel Mod'],
 	},
 	{
 		name: "[Gen 3] OU",
 		section: "Past Generations",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3503019/\">ADV OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431087/\">ADV Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431087/\">ADV Sample Teams</a>",
 		],
 
 		mod: 'gen3',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber', 'Smeargle + Ingrain']
+		banlist: ['Uber', 'Smeargle + Ingrain'],
 	},
 	{
-		name: "[Gen 3] UU",
+		name: "[Gen 3] Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3536426/\">ADV Ubers Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6446466/\">ADV Ubers Sample Teams</a>",
+		],
 		section: "Past Generations",
 
 		mod: 'gen3',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber', 'OU']
+		banlist: ['Uber', 'OU'],
 	},
 	{
 		name: "[Gen 3] Extreme Tier Shift",
@@ -235,7 +239,7 @@ exports.Formats = [
 
 		mod: 'rsetiershift',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber']
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 3] Custom Game",
@@ -244,32 +248,32 @@ exports.Formats = [
 		mod: 'gen3',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 2] OU",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3503082/\">GSC OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431086/\">GSC Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431086/\">GSC Sample Teams</a>",
 		],
 		section: "Past Generations",
 
 		mod: 'gen2',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber']
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 2] Ubers",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3507552/\">GSC Ubers Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431086/\">GSC Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431086/\">GSC Sample Teams</a>",
 		],
 		section: "Past Generations",
 
 		mod: 'gen2',
 		searchShow: false,
-		ruleset: ['Pokemon', 'Standard']
+		ruleset: ['Pokemon', 'Standard'],
 	},
 	{
 		name: "[Gen 2] Random Battle",
@@ -278,7 +282,7 @@ exports.Formats = [
 		mod: 'gen2',
 		searchShow: false,
 		team: 'random',
-		ruleset: ['Pokemon', 'Standard']
+		ruleset: ['Pokemon', 'Standard'],
 	},
 	{
 		name: "[Gen 2] Custom Game",
@@ -287,19 +291,19 @@ exports.Formats = [
 		mod: 'gen2',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 1] OU",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3486845/\">RBY OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431045/\">RBY Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431045/\">RBY Sample Teams</a>",
 		],
 		section: "Past Generations",
 
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber']
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 1] Green",
@@ -307,7 +311,7 @@ exports.Formats = [
 
 		mod: 'green',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Cancel Mod'],
-		banlist: ['Uber']
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 1] UU",
@@ -315,7 +319,7 @@ exports.Formats = [
 
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber', 'OU', 'BL']
+		banlist: ['Uber', 'OU', 'BL'],
 	},
 	{
 		name: "[Gen 1] RU",
@@ -323,7 +327,7 @@ exports.Formats = [
 
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber', 'OU', 'BL', 'UU']
+		banlist: ['Uber', 'OU', 'BL', 'UU'],
 	},
 	{
 		name: "[Gen 1] NU",
@@ -331,7 +335,7 @@ exports.Formats = [
 
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber', 'OU', 'BL', 'UU', 'RU']
+		banlist: ['Uber', 'OU', 'BL', 'UU', 'RU'],
 	},
 	{
 		name: "[Gen 1] Extreme Tier Shift",
@@ -339,20 +343,20 @@ exports.Formats = [
 
 		mod: 'rbytiershift',
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber']
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 1] Ubers",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3541329/\">RBY Ubers Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431045/\">RBY Sample Teams</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431045/\">RBY Sample Teams</a>",
 		],
 		section: "Past Generations",
 
 		mod: 'gen1',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard'],
-		banlist: []
+		banlist: [],
 	},
 	{
 		name: "[Gen 1] OU (tradeback)",
@@ -363,8 +367,8 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Uber', 'Unreleased', 'Illegal',
 			'Nidoking + Fury Attack + Thrash', 'Exeggutor + Poison Powder + Stomp', 'Exeggutor + Sleep Powder + Stomp',
-			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember'
-		]
+			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember',
+		],
 	},
 	{
 		name: "[Gen 1] Random Battle",
@@ -373,7 +377,7 @@ exports.Formats = [
 		mod: 'gen1',
 		searchShow: false,
 		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 1] Challenge Cup",
@@ -382,7 +386,7 @@ exports.Formats = [
 		mod: 'gen1',
 		team: 'randomCC',
 		searchShow: false,
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod']
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 1] Stadium",
@@ -393,8 +397,8 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber',
 			'Nidoking + Fury Attack + Thrash', 'Exeggutor + Poison Powder + Stomp', 'Exeggutor + Sleep Powder + Stomp',
-			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember'
-		]
+			'Exeggutor + Stun Spore + Stomp', 'Jolteon + Focus Energy + Thunder Shock', 'Flareon + Focus Energy + Ember',
+		],
 	},
 	{
 		name: "[Gen 1] Custom Game",
@@ -403,6 +407,6 @@ exports.Formats = [
 		mod: 'gen1',
 		searchShow: false,
 		debug: true,
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod']
-	}
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
+	},
 ];

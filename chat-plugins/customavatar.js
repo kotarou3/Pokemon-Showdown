@@ -148,5 +148,5 @@ exports.commands = {
 		default:
 			return this.sendReply("Invalid command. Valid commands are `/customavatar set, user, avatar` and `/customavatar delete, user`.");
 		}
-	}
+	},
 };

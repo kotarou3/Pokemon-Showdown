@@ -14,7 +14,7 @@ let scavengers = {
 	answers: null,
 	participants: {},
 	finished: [],
-	result: null
+	result: null,
 };
 
 let scavengersRoom = Rooms.get('scavengers');
@@ -41,7 +41,7 @@ exports.commands = {
 			return this.errorReply('You must specify three hints and three answers.');
 		}
 		if (cmd === 'startofficialhunt') {
-			scavengers.blitz = setTimeout(function () {
+			scavengers.blitz = setTimeout(() => {
 				scavengers.blitz = null;
 			}, 60000);
 		}
@@ -147,5 +147,5 @@ exports.commands = {
 			'- /endhunt - Finish the current hunt and announce the winners (Requires: % @ # & ~)<br />' +
 			'- /resethunt - Reset the scavenger hunt to mint status (Requires: % @ # & ~)'
 		);
-	}
+	},
 };

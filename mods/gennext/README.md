@@ -113,6 +113,9 @@ Major changes:
   double SR damage, heals 1/16 after using a Status move, and makes Twister
   do 1.5x Damage.
 
+- Swarm also makes the user take half damage from Rock, Ice, Electric moves,
+  and Stealth Rock if they are Flying type.
+
 - Relic Song switches Meloetta's SpA and Atk EVs, boosts, and certain natures,
   specifically: Modest <-> Adamant, Jolly <-> Timid, other natures are left
   untouched. It's now 60 base power +1 priority, with no secondary.
@@ -120,8 +123,11 @@ Major changes:
 - Shuckle gets Berry Shell (select "Stick" in the teambuilder), which gives a
   50% boost to Defense and Sp. Def.
 
-- Ambipom gets Sketch as an event move, allowing it to use exactly one move
-  not normally in its learnset.
+- Ambipom, Spinda, and Mr. Mime get Sketch as an egg move, allowing it to use
+  exactly one move not normally in its learnset.
+
+- Spinda gets V-Create, Superpower, Close Combat, Overheat, Leaf Storm, Draco
+  Meteor.
 
 - Echoed Voice now has 80 base power, hits once, and then, 2 turns later,
   hits again for 80 base power. It's like Doom Desire, except it still hits
@@ -139,7 +145,7 @@ Major changes:
 
 - Twister is now a 80 base power Flying move with a 30% confusion chance
 
-- - Floette-Eternal-Flower and Volcanion are released.
+- Floette-Eternal-Flower and Volcanion are released.
 
 New mechanic: Signature Pokémon:
 
@@ -207,8 +213,9 @@ New mechanic: Signature Pokémon:
 
 New mechanic: Intrinsics:
 
-- Pokémon that previously get Levitate are now immune to Ground intrinsically.
-  Instead, they get new abilities in addition to their Ground immunity:
+- Pokémon that previously get Levitate are now immune to Ground intrinsically, although
+  Mold Breaker still bypasses this immunity. Instead, many of them get new abilities
+  in addition to their Ground immunity:
 
   - Azelf: Steadfast
 
@@ -229,6 +236,8 @@ New mechanic: Intrinsics:
   - Mesprit: Serene Grace
 
   - Mismagius: Cursed Body
+
+  - Rotom (all formes): Trace
 
   - Unown: Shadow Tag
 
@@ -255,6 +264,11 @@ Minor move changes:
 - Parabolic Charge now has 40 base power, but gives -1 SpA, -1 SpD to the
   target and +1 SpA, +1 SpD to the user
 
+- Draining Kiss now has 40 base power, but gives -1 SpA, -1 Atk to the
+  target and +1 SpA, +1 Atk to the user
+
+- Defend Order and Heal Order now have +1 priority
+
 - Rock Throw now removes Stealth Rock from the user's side of the field,
   and has 100% accuracy
 
@@ -264,7 +278,7 @@ Minor move changes:
   Helmet etc. And double in power if they remove hazards.
 
 - All moves' accuracy is rounded up to the nearest multiple of 10%
-  (except Jump Kick, which will be rebalanced later)
+  (including Jump Kick)
 
 - Charge Beam and Rock Slide are now 100% accurate
 
@@ -300,6 +314,8 @@ Minor move changes:
 
 - Cut and Rock Smash are 50 base power and now have a 100% chance of
   lowering foe's Def
+
+- Psycho Cut's Base Power is now 90
 
 - Drill Peck, Needle Arm, Attack Order, and Leaf Blade's Base
   Powers are now 100
@@ -375,8 +391,6 @@ Minor learnset changes:
 
 - Scolipede and Steelix get Coil
 
-- Spinda gets Superpower with no incompatibilities
-
 - Rotom formes learn more things:
   - Rotom-Wash: BubbleBeam
   - Rotom-Fan: Hurricane, Twister
@@ -408,11 +422,6 @@ Minor learnset changes:
   nerf to Adaptability which is discussed below)
 
 Minor ability changes:
-
-- Justified now caps base power to 100 against non-Dark foes:
-  Musketeers are recommended to use Sacred Sword over Close Combat and
-  Surf over Hydro Pump, other Pokémon are recommended not to use
-  Justified
 
 - Static, Poison Point, and Cute Charm now always activate on
   contact.
@@ -473,6 +482,8 @@ Minor ability changes:
 
 - Gluttony allows a Pokémon to use a Berry twice
 
+- Heatproof now grants the user immunity to Fire and burns
+
 - Guts, Quick Feet, and Toxic Boost take half damage from poisoning
 
 - Guts, Quick Feet, and Flare Boost take half damage from burns
@@ -496,7 +507,7 @@ Minor item changes:
 Bans:
 
 - The OU banlist (i.e. Pokémon considered Uber) is now:
-  - Every Pokémon with over 600 BST except Slaking and Regigigas
+  - Every Pokémon with over 600 BST except Slaking, Regigigas, and Hoopa-Unbound
   - Deoxys (all formes)
   - Darkrai
   - Shaymin-Sky

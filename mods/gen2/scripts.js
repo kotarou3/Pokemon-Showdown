@@ -44,8 +44,10 @@ exports.BattleScripts = {
 			stat = this.battle.clampIntRange(stat, 1, 999);
 
 			// Screens
-			if ((this.side.sideConditions['reflect'] && statName === 'def') || (this.side.sideConditions['lightscreen'] && statName === 'spd')) {
-				stat *= 2;
+			if (!unboosted) {
+				if ((this.side.sideConditions['reflect'] && statName === 'def') || (this.side.sideConditions['lightscreen'] && statName === 'spd')) {
+					stat *= 2;
+				}
 			}
 
 			// Treat here the items.
@@ -57,7 +59,7 @@ exports.BattleScripts = {
 			}
 
 			return stat;
-		}
+		},
 	},
 	// Battle scripts.
 	runMove: function (move, pokemon, target, sourceEffect) {
@@ -290,7 +292,7 @@ exports.BattleScripts = {
 				basePower: move,
 				type: '???',
 				category: 'Physical',
-				flags: {}
+				flags: {},
 			};
 		}
 
@@ -381,8 +383,6 @@ exports.BattleScripts = {
 			// Level is doubled for damage calculation.
 			level *= 2;
 			if (!suppressMessages) this.add('-crit', target);
-			// If the attacker is burned, stat level modifications are always ignored. This includes screens.
-			if (attacker.status === 'brn') unboosted = true;
 			// Stat level modifications are ignored if they are neutral to or favour the defender.
 			// Reflect and Light Screen defensive boosts are only ignored if stat level modifications were also ignored as a result of that.
 			if (attacker.boosts[atkType] <= defender.boosts[defType]) {
@@ -485,7 +485,7 @@ exports.BattleScripts = {
 		if (damage !== 0) damage = this.clampIntRange(damage, 1);
 
 		if (effect.id !== 'struggle-recoil') { // Struggle recoil is not affected by effects
-			if (effect.effectType === 'Weather' && !target.runImmunity(effect.id)) {
+			if (effect.effectType === 'Weather' && !target.runStatusImmunity(effect.id)) {
 				this.debug('weather immunity');
 				return 0;
 			}
@@ -635,11 +635,11 @@ exports.BattleScripts = {
 
 		// Moves that boost Attack:
 		let PhysicalSetup = {
-			swordsdance:1, sharpen:1
+			swordsdance:1, sharpen:1,
 		};
 		// Moves which boost Special Attack:
 		let SpecialSetup = {
-			amnesia:1, growth:1
+			amnesia:1, growth:1,
 		};
 
 		do {
@@ -692,9 +692,9 @@ exports.BattleScripts = {
 				let rejected = false;
 				if (moveid.substr(0, 11) === 'hiddenpower') {
 					// Check for hidden power DVs
-					let HPivs = this.getType(move.type).HPivs;
-					for (let iv in HPivs) {
-						ivs[iv] = HPivs[iv];
+					let HPdvs = this.getType(move.type).HPdvs;
+					for (let dv in HPdvs) {
+						ivs[dv] = HPdvs[dv] * 2;
 					}
 					moveid = 'hiddenpower';
 				}
@@ -819,13 +819,13 @@ exports.BattleScripts = {
 			UU: 85,
 			BL: 83,
 			OU: 79,
-			Uber: 74
+			Uber: 74,
 		};
 		// Hollistic judgment.
 		let customScale = {
 			Caterpie: 99, Kakuna: 99, Magikarp: 99, Metapod: 99, Weedle: 99, Pichu: 99, Smoochum: 99,
 			Clefairy: 95, "Farfetch'd": 99, Igglybuff: 99, Jigglypuff: 99, Ditto: 99, Mewtwo: 70,
-			Dragonite: 85, Cloyster: 83, Staryu: 90
+			Dragonite: 85, Cloyster: 83, Staryu: 90,
 		};
 		let level = levelScale[template.tier] || 90;
 		if (customScale[template.name]) level = customScale[template.name];
@@ -839,7 +839,7 @@ exports.BattleScripts = {
 			item: item,
 			level: level,
 			shiny: false,
-			gender: 'M'
+			gender: 'M',
 		};
-	}
+	},
 };

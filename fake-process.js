@@ -16,7 +16,7 @@ FakeProcessHelper.prototype = {
 	send: function (message) {
 		setImmediate(this.output.emit.bind(this.output, 'message', message));
 		return this;
-	}
+	},
 };
 
 function FakeProcess() {

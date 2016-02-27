@@ -26,7 +26,15 @@ You can use your own computer as a server, but for other people to connect to yo
 Installing
 ------------------------------------------------------------------------
 
-Pokémon Showdown requires you to have [Node.js][5] installed, 4.x or later. (Alternatively, most versions of [io.js][6] also work, but is not recommended.)
+    ./pokemon-showdown
+
+(Requires Node.js 4+)
+
+
+Detailed installation instructions
+------------------------------------------------------------------------
+
+Pokémon Showdown requires you to have [Node.js][5] installed, 4.x or later.
 
 Next, obtain a copy of Pokémon Showdown. If you're reading this outside of GitHub, you've probably already done this. If you're reading this in GitHub, there's a "Save" icon button near the top right (next to "Download ZIP"), or if you're really lazy, you can use the "Download ZIP" button. I recommend the Save method - it's more time-consuming to set up, but much easier to update.
 
@@ -38,21 +46,19 @@ Replace `LOCATION` with the location Pokémon Showdown is in (ending up with, fo
 
 This will set your command line's location to Pokémon Showdown's folder. You'll have to do this each time you open a command line to run commands for Pokémon Showdown.
 
-To install dependencies, run the command:
-
-    npm install --production
-
 Copy `config/config-example.js` into `config/config.js`, and edit as you please.
 
 Congratulations, you're done setting up Pokémon Showdown.
 
 Now, to start Pokémon Showdown, run the command:
 
-    node app.js
+    node pokemon-showdown
+
+(If you're not on Windows, we recommend doing `./pokemon-showdown` instead.)
 
 You can also specify a port:
 
-    node app.js 8000
+    node pokemon-showdown 8000
 
 Visit your server at `http://SERVER:8000`
 
@@ -62,11 +68,10 @@ Yes, you can test even if you are behind a NAT without port forwarding: `http://
 
 You will be redirected to `http://SERVER.psim.us`. The reason your server is visited through `psim.us` is to make it more difficult for servers to see a user's password in any form, by handling logins globally. You can embed this in an `iframe` in your website if the URL is a big deal with you.
 
-If you truly want to host the client yourself, there is [a repository for the Pokémon Showdown Client][7]. It's not recommended for beginners, though.
+If you truly want to host the client yourself, there is [a repository for the Pokémon Showdown Client][6]. It's not recommended for beginners, though.
 
-  [5]: http://nodejs.org/
-  [6]: https://iojs.org/
-  [7]: https://github.com/Zarel/Pokemon-Showdown-Client
+  [5]: https://nodejs.org/
+  [6]: https://github.com/Zarel/Pokemon-Showdown-Client
 
 
 Setting up an Administrator account
@@ -94,15 +99,17 @@ Pokémon Showdown currently supports, in order of preference:
 
  - Chrome
  - Firefox
- - Safari
- - Chrome/Firefox/Safari for various mobile devices
  - Opera
- - Firefox for Android
+ - Safari 5+
+ - IE11+
+ - Chrome/Firefox/Safari for various mobile devices
+
+Pokémon Showdown is usable, but expect degraded performance and certain features not to work in:
+
+ - Safari 4+
  - IE9+
 
-IE8 support can technically be added without too much difficulty, but it doesn't run PS fast enough to be usable.
-
-As for older browsers (Firefox 3.6), I won't go out of my way to support them, but if there's a simple fix, you can suggest it to me and I'll implement it.
+Pokémon Showdown is mostly developed on Chrome, and Chrome or the desktop client is required for certain features like dragging-and-dropping teams from PS to your computer. However, bugs reported on any supported browser will usually be fixed pretty quickly.
 
 
 Community
@@ -110,17 +117,17 @@ Community
 
 PS has a built-in chat service. Join our main server to talk to us!
 
-You can also visit the [Pokémon Showdown forums][8] for discussion and help.
+You can also visit the [Pokémon Showdown forums][7] for discussion and help.
 
-  [8]: http://www.smogon.com/forums/forums/pok%C3%A9mon-showdown.209/
+  [7]: http://www.smogon.com/forums/forums/pok%C3%A9mon-showdown.209/
 
 
 License
 ------------------------------------------------------------------------
 
-Pokémon Showdown's server is distributed under the terms of the [MIT License][9].
+Pokémon Showdown's server is distributed under the terms of the [MIT License][8].
 
-  [9]: https://github.com/Zarel/Pokemon-Showdown/blob/master/LICENSE
+  [8]: https://github.com/Zarel/Pokemon-Showdown/blob/master/LICENSE
 
 
 Credits
@@ -161,6 +168,7 @@ Contributors
 - Jacob Zimmer [SolarisFox] - Development
 - Neil Rashbrook [urkerab] - Development
 - Robin Vandenbrande [Quinella] - Development
+- [Ridaz] - Art (battle animations)
 
 Special thanks
 
