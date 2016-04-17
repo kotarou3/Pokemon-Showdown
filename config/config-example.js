@@ -339,6 +339,7 @@ exports.grouplist = [
 		id: 'player',
 		name: "Player",
 		description: "They are the players currently battling, and can promote room voices",
+		battleonly: true,
 		roomonly: true,
 		inherit: '+',
 		editroom: true,

@@ -168,6 +168,68 @@ function cacheGroupData() {
 }
 cacheGroupData();
 
+Users.can = function (group, permission, targetGroup, room, isSelf) {
+	// `room` is intentionally unused, but kept to be consistent with other
+	// permissions functions
+
+	let groupData = Config.groups[group];
+	if (!groupData) return false;
+
+	if (groupData['root']) {
+		return true;
+	}
+
+	if (permission in groupData) {
+		let jurisdiction = groupData[permission];
+		if (!targetGroup) {
+			return !!jurisdiction;
+		}
+		if (jurisdiction === true && permission !== 'jurisdiction') {
+			return Users.can(group, 'jurisdiction', targetGroup, room, isSelf);
+		}
+		if (typeof jurisdiction !== 'string') {
+			return !!jurisdiction;
+		}
+		if (jurisdiction.includes(targetGroup)) {
+			return true;
+		}
+		if (jurisdiction.includes('s') && isSelf) {
+			return true;
+		}
+		if (jurisdiction.includes('u') && groupData.rank > Config.groups[targetGroup].rank) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
+Users.getGroupsThatCan = function (permission, target, room, isSelf) {
+	// `target` can either be a user object or a group symbol
+	let targetGroup = null;
+	if (target && typeof target === 'object') {
+		targetGroup = target.group;
+	} else if (typeof target === 'string') {
+		targetGroup = target;
+	}
+	target = null;
+
+	let groupsByRank = Config.groupsranking;
+	if (room && room.auth) {
+		if (room.type === 'chat') {
+			groupsByRank = groupsByRank.filter(symbol => !Config.groups[symbol].globalonly && !Config.groups[symbol].battleonly);
+		} else {
+			// XXX: Hardcoded because it's very hard to extract this from the
+			// config with the current config structure
+			groupsByRank = [' ', '+', '\u2605'];
+		}
+	} else {
+		groupsByRank = groupsByRank.filter(symbol => !Config.groups[symbol].roomonly && !Config.groups[symbol].battleonly);
+	}
+
+	return groupsByRank.filter(group => Users.can(group, permission, targetGroup, room, isSelf));
+};
+
 Users.setOfflineGroup = function (name, group, forceConfirmed) {
 	if (!group) throw new Error("Falsy value passed to setOfflineGroup");
 	let userid = toId(name);
@@ -371,14 +433,21 @@ class User {
 	can(permission, target, room) {
 		if (this.hasSysopAccess()) return true;
 
+		// Admins bypass room restrictions
 		let group = this.group;
-		let targetGroup = '';
-		if (target) targetGroup = target.group;
 		let groupData = Config.groups[group];
-
 		if (groupData && groupData['root']) {
 			return true;
 		}
+
+		// `target` can either be a user object or a group symbol
+		let targetGroup = null;
+		if (target && typeof target === 'object') {
+			targetGroup = target.group;
+		} else if (typeof target === 'string') {
+			targetGroup = target;
+		}
+		target = null;
 
 		if (room && room.auth) {
 			if (room.auth[this.userid]) {
@@ -386,7 +455,7 @@ class User {
 			} else if (room.isPrivate === true) {
 				group = ' ';
 			}
-			groupData = Config.groups[group];
+
 			if (target) {
 				if (room.auth[target.userid]) {
 					targetGroup = room.auth[target.userid];
@@ -396,30 +465,7 @@ class User {
 			}
 		}
 
-		if (typeof target === 'string') targetGroup = target;
-
-		if (groupData && groupData[permission]) {
-			let jurisdiction = groupData[permission];
-			if (!target) {
-				return !!jurisdiction;
-			}
-			if (jurisdiction === true && permission !== 'jurisdiction') {
-				return this.can('jurisdiction', target, room);
-			}
-			if (typeof jurisdiction !== 'string') {
-				return !!jurisdiction;
-			}
-			if (jurisdiction.includes(targetGroup)) {
-				return true;
-			}
-			if (jurisdiction.includes('s') && target === this) {
-				return true;
-			}
-			if (jurisdiction.includes('u') && Config.groupsranking.indexOf(group) > Config.groupsranking.indexOf(targetGroup)) {
-				return true;
-			}
-		}
-		return false;
+		return Users.can(group, permission, targetGroup, room, this === target);
 	}
 	/**
 	 * Special permission check for system operators

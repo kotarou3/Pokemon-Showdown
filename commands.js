@@ -821,10 +821,10 @@ exports.commands = {
 			return this.errorReply("User '" + name + "' is already a " + groupName + " in this room.");
 		}
 		if (!user.can('makeroom')) {
-			if (!user.can('roompromote', {group: currentGroup}, room)) {
+			if (!user.can('roompromote', currentGroup, room)) {
 				return this.errorReply("/" + cmd + " - Access denied for removing " + ((Config.groups[currentGroup] ? Config.groups[currentGroup].name : "an undefined group") || "regular user") + ".");
 			}
-			if (!user.can('roompromote', {group: nextGroup}, room)) {
+			if (!user.can('roompromote', nextGroup, room)) {
 				return this.errorReply("/" + cmd + " - Access denied for giving " + groupName + ".");
 			}
 		}
@@ -1548,10 +1548,10 @@ exports.commands = {
 		if (currentGroup === nextGroup) {
 			return this.errorReply("User '" + name + "' is already a " + groupName);
 		}
-		if (!user.can('promote', {group: currentGroup})) {
+		if (!user.can('promote', currentGroup)) {
 			return this.errorReply("/" + cmd + " - Access denied for removing " + (Config.groups[currentGroup].name || "regular user") + ".");
 		}
-		if (!user.can('promote', {group: nextGroup})) {
+		if (!user.can('promote', nextGroup)) {
 			return this.errorReply("/" + cmd + " - Access denied for giving " + groupName + ".");
 		}
 
