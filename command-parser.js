@@ -161,12 +161,10 @@ class CommandContext {
 	}
 	sendModCommand(data) {
 		let users = this.room.users;
-		let auth = this.room.auth;
 
 		for (let i in users) {
 			let user = users[i];
-			// hardcoded for performance reasons (this is an inner loop)
-			if (user.isStaff || (auth && (auth[user.userid] || '+') !== '+')) {
+			if (user.isStaff || user.can('receiveauthmessages', this.room)) {
 				user.sendTo(this.room, data);
 			}
 		}
