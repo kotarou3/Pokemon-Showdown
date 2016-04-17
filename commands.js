@@ -205,7 +205,7 @@ exports.commands = {
 				if (!targetRoom || targetRoom === Rooms.global) return this.errorReply('The room "' + innerTarget + '" does not exist.');
 				if (targetRoom.staffRoom && !targetUser.isStaff) return this.errorReply('User "' + this.targetUsername + '" requires global auth to join room "' + targetRoom.id + '".');
 				if (targetRoom.modjoin) {
-					if (targetRoom.auth && (targetRoom.isPrivate === true || targetUser.group === ' ') && !(targetUser.userid in targetRoom.auth)) {
+					if (targetRoom.auth && (targetRoom.isPrivate === true || targetUser.group === Config.groups.default.global) && !(targetUser.userid in targetRoom.auth)) {
 						this.parse('/roomvoice ' + targetUser.name, false, targetRoom);
 						if (!(targetUser.userid in targetRoom.auth)) {
 							return;
@@ -414,7 +414,7 @@ exports.commands = {
 		});
 		if (targetRoom) {
 			// The creator is RO.
-			targetRoom.auth[user.userid] = '#';
+			targetRoom.auth[user.userid] = Config.groups.chatRoomByRank.slice().reverse()[0];
 			// Join after creating room. No other response is given.
 			user.joinRoom(targetRoom.id);
 			return;
@@ -796,7 +796,7 @@ exports.commands = {
 		}
 
 		let roomType = room.type + 'Room';
-		let currentGroup = ((room.auth && room.auth[userid]) || (room.isPrivate !== true && Users.usergroups[userid]) || ' ');
+		let currentGroup = ((room.auth && room.auth[userid]) || (room.isPrivate !== true && Users.usergroups[userid]) || Config.groups.default[roomType]);
 		let nextGroup = target;
 		if (target === 'deauth') nextGroup = Config.groups.default[roomType];
 		if (!nextGroup) {
@@ -809,9 +809,9 @@ exports.commands = {
 			return this.errorReply("Group 'room" + Config.groups.bySymbol[nextGroup].id + "' does not exist as a room rank.");
 		}
 
-		if (!room.auth && nextGroup !== '#') {
+		if (!room.auth && nextGroup !== Config.groups[roomType + 'ByRank'].slice().reverse()[0]) {
 			this.sendReply("/roompromote - This room isn't designed for per-room moderation");
-			return this.sendReply("Before setting room auth, you need to set it up with /room" + Config.groups.bySymbol['#'].id);
+			return this.sendReply("Before setting room auth, you need to set it up with /room" + Config.groups.bySymbol[Config.groups[roomType + 'ByRank'].slice().reverse()[0]].id);
 		}
 
 		let groupName = Config.groups.bySymbol[nextGroup].name;
@@ -837,7 +837,7 @@ exports.commands = {
 		}
 
 		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-		if (nextGroup === ' ') {
+		if (nextGroup === Config.groups.default[roomType]) {
 			delete room.auth[userid];
 		} else {
 			room.auth[userid] = nextGroup;
@@ -1212,7 +1212,7 @@ exports.commands = {
 		for (let i in targetUser.roomCount) {
 			if (i === 'global') continue;
 			let targetRoom = Rooms.get(i);
-			if (targetRoom.isPersonal && targetRoom.auth[userid] && targetRoom.auth[userid] === '#') {
+			if (targetRoom.isPersonal && targetRoom.auth[userid] && targetRoom.auth[userid] === Config.groups.chatRoomByRank.slice().reverse()[0]) {
 				targetRoom.destroy();
 			}
 		}
@@ -1354,7 +1354,7 @@ exports.commands = {
 		for (let i in targetUser.roomCount) {
 			if (i === 'global') continue;
 			let targetRoom = Rooms.get(i);
-			if (targetRoom.isPersonal && targetRoom.auth[userid] && targetRoom.auth[userid] === '#') {
+			if (targetRoom.isPersonal && targetRoom.auth[userid] && targetRoom.auth[userid] === Config.groups.chatRoomByRank.slice().reverse()[0]) {
 				targetRoom.destroy();
 			}
 		}
@@ -1529,7 +1529,7 @@ exports.commands = {
 
 		if (!userid) return this.parse('/help promote');
 
-		let currentGroup = ((targetUser && targetUser.group) || Users.usergroups[userid] || ' ')[0];
+		let currentGroup = ((targetUser && targetUser.group) || Users.usergroups[userid] || Config.groups.default.global)[0];
 		let nextGroup = target;
 		if (target === 'deauth') nextGroup = Config.groups.default.global;
 		if (!nextGroup) {
@@ -1591,7 +1591,7 @@ exports.commands = {
 
 		if (targetUser.confirmed) return this.errorReply("User '" + name + "' is already confirmed.");
 
-		targetUser.setGroup(' ', true);
+		targetUser.setGroup(Config.groups.default.global, true);
 		this.sendReply("User '" + name + "' is now confirmed.");
 	},
 	confirmuserhelp: ["/confirmuser [username] - Confirms the user (makes them immune to locks). Requires: & ~"],
@@ -1673,7 +1673,7 @@ exports.commands = {
 			if (Config.groups.bySymbol[target][roomType + 'Rank'] > 1 && !user.can('modchatall', room)) {
 				return this.errorReply("/modchat - Access denied for setting higher than " + Config.groups[roomType + 'ByRank'][1] + ".");
 			}
-			let roomGroup = (room.auth && room.isPrivate === true ? ' ' : user.group);
+			let roomGroup = (room.auth && room.isPrivate === true ? Config.groups.default[roomType] : user.group);
 			if (room.auth && user.userid in room.auth) roomGroup = room.auth[user.userid];
 			if (Config.groups.bySymbol[target][roomType + 'Rank'] > Config.groups.bySymbol[roomGroup][roomType + 'Rank'] && !user.can('makeroom')) {
 				return this.errorReply("/modchat - Access denied for setting higher than " + roomGroup + ".");

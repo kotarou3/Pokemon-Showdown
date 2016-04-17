@@ -510,7 +510,7 @@ let GlobalRoom = (() => {
 		for (let i = 0; i < this.chatRooms.length; i++) {
 			let room = this.chatRooms[i];
 			if (!room) continue;
-			if (room.isPrivate && !(room.isPrivate === 'voice' && user.group !== ' ')) continue;
+			if (room.isPrivate && !(room.isPrivate === 'voice' && user.group !== Config.groups.default.global)) continue;
 			(room.isOfficial ? roomsData.official : roomsData.chat).push({
 				title: room.title,
 				desc: room.desc,

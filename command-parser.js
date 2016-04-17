@@ -316,16 +316,17 @@ class CommandContext {
 				}
 			}
 			if (room && room.modchat) {
+				let roomType = room.type + 'Room';
 				let userGroup = user.group;
 				if (room.auth && !user.can('makeroom')) {
 					if (room.auth[user.userid]) {
 						userGroup = room.auth[user.userid];
 					} else if (room.isPrivate === true) {
-						userGroup = ' ';
+						userGroup = Config.groups.default[roomType];
 					}
 				}
 				if (room.modchat === 'autoconfirmed') {
-					if (!user.autoconfirmed && userGroup === ' ') {
+					if (!user.autoconfirmed && userGroup === Config.groups.default[roomType]) {
 						this.errorReply("Because moderated chat is set, your account must be at least one week old and you must have won at least one ladder game to speak in this room.");
 						return false;
 					}

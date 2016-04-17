@@ -403,7 +403,7 @@ class User {
 				if (room.auth[this.userid]) {
 					return room.auth[this.userid] + this.name;
 				}
-				if (room.isPrivate === true) return ' ' + this.name;
+				if (room.isPrivate === true) return Config.groups.default[room.type + 'Room'] + this.name;
 			}
 		}
 		return this.group + this.name;
@@ -435,14 +435,14 @@ class User {
 			if (room.auth[this.userid]) {
 				group = room.auth[this.userid];
 			} else if (room.isPrivate === true) {
-				group = ' ';
+				group = Config.groups.default[room.type + 'Room'];
 			}
 
 			if (target) {
 				if (room.auth[target.userid]) {
 					targetGroup = room.auth[target.userid];
 				} else if (room.isPrivate === true) {
-					targetGroup = ' ';
+					targetGroup = Config.groups.default[room.type + 'Room'];
 				}
 			}
 		}
@@ -961,7 +961,7 @@ class User {
 		if (this.ignorePMs && this.can('lock') && !this.can('bypassall')) this.ignorePMs = false;
 	}
 	/**
-	 * Set a user's group. Pass (' ', true) to force confirmed
+	 * Set a user's group. Pass (Config.groups.default.global, true) to force confirmed
 	 * status without giving the user a group.
 	 */
 	setGroup(group, forceConfirmed) {
@@ -1001,7 +1001,7 @@ class User {
 			let room = Rooms.global.chatRooms[i];
 			if (!room.isPrivate && room.auth && userid in room.auth && Users.can(room.auth[userid], 'receiveauthmessages', null, room)) {
 				removed.push(room.auth[userid] + room.id);
-				room.auth[userid] = '+';
+				room.auth[userid] = Config.groups.chatRoomByRank[Config.groups.bySymbol[Users.getGroupsThatCan('receiveauthmessages', room)[0]].chatRoomRank - 1];
 			}
 		}
 		this.confirmed = '';
@@ -1131,7 +1131,7 @@ class User {
 			let userGroup = this.group;
 			if (room.auth && !makeRoom) {
 				if (room.isPrivate === true) {
-					userGroup = ' ';
+					userGroup = Config.groups.default[room.type + 'Room'];
 				}
 				userGroup = room.auth[this.userid] || userGroup;
 			}
@@ -1407,7 +1407,7 @@ class User {
 		}
 
 		let throttleDelay = THROTTLE_DELAY;
-		if (this.group !== ' ') throttleDelay /= 2;
+		if (this.group !== Config.groups.default.global) throttleDelay /= 2;
 
 		if (this.chatQueueTimeout) {
 			if (!this.chatQueue) this.chatQueue = []; // this should never happen
@@ -1453,7 +1453,7 @@ class User {
 		}
 
 		let throttleDelay = THROTTLE_DELAY;
-		if (this.group !== ' ') throttleDelay /= 2;
+		if (this.group !== Config.groups.default.global) throttleDelay /= 2;
 
 		if (this.chatQueue && this.chatQueue.length) {
 			this.chatQueueTimeout = setTimeout(

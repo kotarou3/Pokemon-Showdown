@@ -23,7 +23,7 @@ exports.commands = {
 	whoare: 'whois',
 	whois: function (target, room, user, connection, cmd) {
 		if (room.id === 'staff' && !this.runBroadcast()) return;
-		let targetUser = this.targetUserOrSelf(target, user.group === ' ');
+		let targetUser = this.targetUserOrSelf(target, user.group === Config.groups.default.global);
 		if (!targetUser) {
 			return this.errorReply("User " + this.targetUsername + " not found.");
 		}
@@ -115,7 +115,7 @@ exports.commands = {
 		if ((user.can('ip', targetUser) || user === targetUser)) {
 			let ips = Object.keys(targetUser.ips);
 			buf += "<br /> IP" + ((ips.length > 1) ? "s" : "") + ": " + ips.join(", ") +
-					(user.group !== ' ' && targetUser.latestHost ? "<br />Host: " + Tools.escapeHTML(targetUser.latestHost) : "");
+					"<br />Host: " + Tools.escapeHTML(targetUser.latestHost);
 		}
 		if ((user === targetUser || user.can('alts', targetUser)) && hiddenrooms) {
 			buf += '<br />Hidden rooms: ' + hiddenrooms;
