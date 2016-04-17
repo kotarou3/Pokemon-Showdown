@@ -21,7 +21,7 @@ exports.commands = {
 				"\"" + room.chatRoomData.quote + "\""
 			);
 		}
-		if (!this.can('declare', null, room)) return false;
+		if (!this.can('declare', room)) return false;
 		if (target === 'off' || target === 'disable' || target === 'reset') {
 			if (!room.chatRoomData.quote) return this.sendReply("The Quote of the Day has already been reset.");
 			delete room.chatRoomData.quote;

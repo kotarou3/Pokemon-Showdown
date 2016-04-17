@@ -1224,7 +1224,7 @@ exports.commands = {
 				"- <a href=\"https://pokemonshowdown.com/rules\">" + (room.rulesLink ? "Global rules" : "Rules") + "</a>");
 			return;
 		}
-		if (!this.can('roommod', null, room)) return;
+		if (!this.can('roommod', room)) return;
 		if (target.length > 100) {
 			return this.errorReply("Error: Room rules link is too long (must be under 100 characters). You can use a URL shortener to shorten the link.");
 		}
@@ -1584,7 +1584,7 @@ exports.commands = {
 
 	showimage: function (target, room, user) {
 		if (!target) return this.parse('/help showimage');
-		if (!this.can('declare', null, room)) return false;
+		if (!this.can('declare', room)) return false;
 		if (!this.runBroadcast()) return;
 		if (this.room.isPersonal && !this.user.can('announce')) {
 			return this.errorReply("Images are not allowed in personal rooms.");
@@ -1633,10 +1633,10 @@ exports.commands = {
 		if (!target) return;
 
 		if (user.userid === 'github') {
-			if (!this.can('announce', null, room)) return;
+			if (!this.can('announce', room)) return;
 			if (message.charAt(0) === '!') this.broadcasting = true;
 		} else {
-			if (!this.can('declare', null, room)) return;
+			if (!this.can('declare', room)) return;
 			if (!this.runBroadcast('!htmlbox')) return;
 		}
 

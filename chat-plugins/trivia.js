@@ -557,7 +557,7 @@ let commands = {
 	// trivia game commands
 	new: function (target, room, user) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.can('broadcast', null, room) || !target) return false;
+		if (!this.can('broadcast', room) || !target) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		if (trivia[room.id]) return this.errorReply("There is already a trivia game in progress.");
 
@@ -592,7 +592,7 @@ let commands = {
 
 	start: function (target, room, user) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.can('broadcast', null, room)) return false;
+		if (!this.can('broadcast', room)) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		let trivium = trivia[room.id];
 		if (!trivium) return this.errorReply("There is no trivia game to start.");
@@ -602,7 +602,7 @@ let commands = {
 
 	kick: function (target, room, user) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.can('mute', null, room) || !target) return false;
+		if (!this.can('mute', room) || !target) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		let trivium = trivia[room.id];
 		if (!trivium) return this.errorReply("There is no trivia game in progress.");
@@ -625,7 +625,7 @@ let commands = {
 
 	end: function (target, room, user) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.can('broadcast', null, room)) return false;
+		if (!this.can('broadcast', room)) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		let trivium = trivia[room.id];
 		if (!trivium) return this.errorReply("There is no trivia game in progress.");
@@ -637,7 +637,7 @@ let commands = {
 	submit: 'add',
 	add: function (target, room, user, connection, cmd) {
 		if (room.id !== 'questionworkshop') return this.errorReply('This command can only be used in Question Workshop.');
-		if (cmd === 'add' && !this.can('mute', null, room) || !target) return false;
+		if (cmd === 'add' && !this.can('mute', room) || !target) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 
 		target = target.split('|');
@@ -678,7 +678,7 @@ let commands = {
 
 		submissions.splice(findEndOfCategory(category, true), 0, submission);
 		writeTriviaData();
-		if (!user.can('mute', null, room)) this.sendReply("Question '" + target[1] + "' was submitted for review.");
+		if (!user.can('mute', room)) this.sendReply("Question '" + target[1] + "' was submitted for review.");
 		this.privateModCommand("(" + user.name + " submitted question '" + target[1] + "' for review.)");
 	},
 	submithelp: ["/trivia submit [category] | [question] | [answer1], [answer2] ... [answern] - Add a question to the submission database for staff to review."],
@@ -686,7 +686,7 @@ let commands = {
 
 	review: function (target, room) {
 		if (room.id !== 'questionworkshop') return this.errorReply('This command can only be used in Question Workshop.');
-		if (!this.can('mute', null, room)) return false;
+		if (!this.can('mute', room)) return false;
 
 		let submissions = triviaData.submissions;
 		let submissionsLen = submissions.length;
@@ -710,7 +710,7 @@ let commands = {
 	reject: 'accept',
 	accept: function (target, room, user, connection, cmd) {
 		if (room.id !== 'questionworkshop') return this.errorReply('This command can only be used in Question Workshop.');
-		if (!this.can('mute', null, room)) return false;
+		if (!this.can('mute', room)) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 
 		target = target.trim();
@@ -794,7 +794,7 @@ let commands = {
 
 	delete: function (target, room, user) {
 		if (room.id !== 'questionworkshop') return this.errorReply('This command can only be used in Question Workshop.');
-		if (!this.can('mute', null, room)) return false;
+		if (!this.can('mute', room)) return false;
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 
 		target = target.trim();
@@ -842,7 +842,7 @@ let commands = {
 			return this.sendReply(buffer);
 		}
 
-		if (!this.can('mute', null, room)) return false;
+		if (!this.can('mute', room)) return false;
 
 		let category = toId(target);
 		if (category === 'random') return false;
@@ -855,7 +855,7 @@ let commands = {
 			return this.sendReply(buffer);
 		}
 
-		if (user.can('declare', null, room)) {
+		if (user.can('declare', room)) {
 			buffer += "<tr><td colspan=\"3\">There are <strong>" + listLen + "</strong> questions in the " + target + " category.</td></tr>" +
 				"<tr><th>#</th><th>Question</th><th>Answer(s)</th></tr>";
 			for (let i = 0; i < listLen; i++) {

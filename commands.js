@@ -444,7 +444,7 @@ exports.commands = {
 	deletegroupchat: 'deleteroom',
 	deleteroom: function (target, room, user) {
 		if (room.isPersonal) {
-			if (!this.can('editroom', null, room)) return;
+			if (!this.can('editroom', room)) return;
 		} else {
 			if (!this.can('makeroom')) return;
 		}
@@ -488,7 +488,7 @@ exports.commands = {
 	publicroom: 'privateroom',
 	privateroom: function (target, room, user, connection, cmd) {
 		if (room.battle || room.isPersonal) {
-			if (!this.can('editroom', null, room)) return;
+			if (!this.can('editroom', room)) return;
 		} else {
 			// registered chatrooms show up on the room list and so require
 			// higher permissions to modify privacy settings
@@ -542,7 +542,7 @@ exports.commands = {
 
 	modjoin: function (target, room, user) {
 		if (room.battle || room.isPersonal) {
-			if (!this.can('editroom', null, room)) return;
+			if (!this.can('editroom', room)) return;
 		} else {
 			if (!this.can('makeroom')) return;
 		}
@@ -637,7 +637,7 @@ exports.commands = {
 			if (!this.runBroadcast()) return;
 			if (!room.introMessage) return this.sendReply("This room does not have an introduction set.");
 			this.sendReply('|raw|<div class="infobox infobox-limited">' + room.introMessage.replace(/\n/g, '') + '</div>');
-			if (!this.broadcasting && user.can('declare', null, room)) {
+			if (!this.broadcasting && user.can('declare', room)) {
 				this.sendReply('Source:');
 				this.sendReplyBox(
 					'<code>/roomintro ' + Tools.escapeHTML(room.introMessage).split('\n').map(line => {
@@ -647,7 +647,7 @@ exports.commands = {
 			}
 			return;
 		}
-		if (!this.can('declare', null, room)) return false;
+		if (!this.can('declare', room)) return false;
 		target = this.canHTML(target);
 		if (!target) return;
 		if (!/</.test(target)) {
@@ -671,7 +671,7 @@ exports.commands = {
 	},
 	deletetopic: 'deleteroomintro',
 	deleteroomintro: function (target, room, user) {
-		if (!this.can('declare', null, room)) return false;
+		if (!this.can('declare', room)) return false;
 		if (!room.introMessage) return this.errorReply("This room does not have a introduction set.");
 
 		this.privateModCommand("(" + user.name + " deleted the roomintro.)");
@@ -687,10 +687,10 @@ exports.commands = {
 	stafftopic: 'staffintro',
 	staffintro: function (target, room, user) {
 		if (!target) {
-			if (!this.can('mute', null, room)) return false;
+			if (!this.can('mute', room)) return false;
 			if (!room.staffMessage) return this.sendReply("This room does not have a staff introduction set.");
 			this.sendReply('|raw|<div class="infobox">' + room.staffMessage.replace(/\n/g, '') + '</div>');
-			if (user.can('ban', null, room)) {
+			if (user.can('ban', room)) {
 				this.sendReply('Source:');
 				this.sendReplyBox(
 					'<code>/staffintro ' + Tools.escapeHTML(room.staffMessage).split('\n').map(line => {
@@ -700,7 +700,7 @@ exports.commands = {
 			}
 			return;
 		}
-		if (!this.can('ban', null, room)) return false;
+		if (!this.can('ban', room)) return false;
 		target = this.canHTML(target);
 		if (!target) return;
 		if (!/</.test(target)) {
@@ -724,7 +724,7 @@ exports.commands = {
 	},
 	deletestafftopic: 'deletestaffintro',
 	deletestaffintro: function (target, room, user) {
-		if (!this.can('ban', null, room)) return false;
+		if (!this.can('ban', room)) return false;
 		if (!room.staffMessage) return this.errorReply("This room does not have a staff introduction set.");
 
 		this.privateModCommand("(" + user.name + " deleted the staffintro.)");
@@ -1160,7 +1160,7 @@ exports.commands = {
 		if (!target) return this.parse('/help unmute');
 		target = this.splitTarget(target);
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
-		if (!this.can('mute', null, room)) return false;
+		if (!this.can('mute', room)) return false;
 
 		let targetUser = this.targetUser;
 		let successfullyUnmuted = room.unmute(targetUser ? targetUser.userid : this.targetUsername, "Your mute in '" + room.title + "' has been lifted.");
@@ -1419,7 +1419,7 @@ exports.commands = {
 	unbanallhelp: ["/unbanall - Unban all IP addresses. Requires: & ~"],
 
 	deroomvoiceall: function (target, room, user) {
-		if (!this.can('editroom', null, room)) return false;
+		if (!this.can('editroom', room)) return false;
 		if (!room.auth) return this.errorReply("Room does not have roomauth.");
 		if (!target) {
 			user.lastCommand = '/deroomvoiceall';
@@ -1511,7 +1511,7 @@ exports.commands = {
 		if (target.length > MAX_REASON_LENGTH) {
 			return this.errorReply("The note is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
-		if (!this.can('receiveauthmessages', null, room)) return false;
+		if (!this.can('receiveauthmessages', room)) return false;
 		return this.privateModCommand("(" + user.name + " notes: " + target + ")");
 	},
 	modnotehelp: ["/modnote [note] - Adds a moderator note that can be read through modlog. Requires: % @ # & ~"],
@@ -1640,9 +1640,9 @@ exports.commands = {
 	modchat: function (target, room, user) {
 		if (!target) return this.sendReply("Moderated chat is currently set to: " + room.modchat);
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
-		if (!this.can('modchat', null, room)) return false;
+		if (!this.can('modchat', room)) return false;
 
-		if (room.modchat && room.modchat.length <= 1 && Config.groupsranking.indexOf(room.modchat) > 1 && !user.can('modchatall', null, room)) {
+		if (room.modchat && room.modchat.length <= 1 && Config.groupsranking.indexOf(room.modchat) > 1 && !user.can('modchatall', room)) {
 			return this.errorReply("/modchat - Access denied for removing a setting higher than " + Config.groupsranking[1] + ".");
 		}
 		if (room.requestModchat) {
@@ -1671,7 +1671,7 @@ exports.commands = {
 				this.errorReply("The rank '" + target + '" was unrecognized as a modchat level.');
 				return this.parse('/help modchat');
 			}
-			if (Config.groupsranking.indexOf(target) > 1 && !user.can('modchatall', null, room)) {
+			if (Config.groupsranking.indexOf(target) > 1 && !user.can('modchatall', room)) {
 				return this.errorReply("/modchat - Access denied for setting higher than " + Config.groupsranking[1] + ".");
 			}
 			let roomGroup = (room.auth && room.isPrivate === true ? ' ' : user.group);
@@ -1703,7 +1703,7 @@ exports.commands = {
 
 	declare: function (target, room, user) {
 		if (!target) return this.parse('/help declare');
-		if (!this.can('declare', null, room)) return false;
+		if (!this.can('declare', room)) return false;
 		if (!this.canTalk()) return;
 
 		this.add('|raw|<div class="broadcast-blue"><b>' + Tools.escapeHTML(target) + '</b></div>');
@@ -1713,7 +1713,7 @@ exports.commands = {
 
 	htmldeclare: function (target, room, user) {
 		if (!target) return this.parse('/help htmldeclare');
-		if (!this.can('gdeclare', null, room)) return false;
+		if (!this.can('gdeclare', room)) return false;
 		if (!this.canTalk()) return;
 		target = this.canHTML(target);
 		if (!target) return;
@@ -1755,7 +1755,7 @@ exports.commands = {
 	announce: function (target, room, user) {
 		if (!target) return this.parse('/help announce');
 
-		if (!this.can('announce', null, room)) return false;
+		if (!this.can('announce', room)) return false;
 
 		target = this.canTalk(target);
 		if (!target) return;
@@ -1864,7 +1864,7 @@ exports.commands = {
 	banword: {
 		add: function (target, room, user) {
 			if (!target) return this.parse('/help banword');
-			if (!user.can('declare', null, room)) return;
+			if (!user.can('declare', room)) return;
 
 			if (!room.banwords) room.banwords = [];
 
@@ -1904,7 +1904,7 @@ exports.commands = {
 
 		delete: function (target, room, user) {
 			if (!target) return this.parse('/help banword');
-			if (!user.can('declare', null, room)) return;
+			if (!user.can('declare', room)) return;
 
 			if (!room.banwords) return this.errorReply("This room has no banned phrases.");
 
@@ -1934,7 +1934,7 @@ exports.commands = {
 		},
 
 		list: function (target, room, user) {
-			if (!user.can('ban', null, room)) return;
+			if (!user.can('ban', room)) return;
 
 			if (!room.banwords) return this.sendReply("This room has no banned phrases.");
 
@@ -1987,7 +1987,7 @@ exports.commands = {
 		} else if (roomId.startsWith('battle-') || roomId.startsWith('groupchat-')) {
 			return this.errorReply("Battles and groupchats do not have modlogs.");
 		} else {
-			if (!this.can('modlog', null, Rooms.get(roomId))) return;
+			if (!this.can('modlog', Rooms.get(roomId))) return;
 			roomNames = "the room " + roomId;
 			filename = path.normalize(__dirname + '/' + logPath + 'modlog_' + roomId + '.txt');
 		}
@@ -2220,7 +2220,7 @@ exports.commands = {
 			if (curRoom.requestKickInactive && !curRoom.battle.ended) {
 				curRoom.requestKickInactive(user, true);
 				if (!curRoom.modchat) {
-					let modchatGroup = Users.getGroupsThatCan('broadcast', null, curRoom)[0];
+					let modchatGroup = Users.getGroupsThatCan('broadcast', curRoom)[0];
 					curRoom.modchat = modchatGroup;
 					curRoom.addRaw("<div class=\"broadcast-red\"><b>Moderated chat was set to " + modchatGroup + "!</b><br />Only users of rank " + modchatGroup + " and higher can talk.</div>");
 				}
@@ -2640,12 +2640,12 @@ exports.commands = {
 		let name = this.targetUsername;
 
 		if (!targetUser) return this.errorReply("User " + name + " not found.");
-		if (targetUser.can('joinbattle', null, room)) {
+		if (targetUser.can('joinbattle', room)) {
 			return this.sendReply("" + name + " can already join battles as a Player.");
 		}
-		if (!this.can('joinbattle', null, room)) return;
+		if (!this.can('joinbattle', room)) return;
 
-		let requiredGroup = Users.getGroupsThatCan('joinbattle', null, room)[0];
+		let requiredGroup = Users.getGroupsThatCan('joinbattle', room)[0];
 		room.auth[targetUser.userid] = requiredGroup;
 		this.addModCommand("" + name + " was promoted to " + Config.groups[requiredGroup].name + " by " + user.name + ".");
 	},
@@ -2700,7 +2700,7 @@ exports.commands = {
 		target = toId(target);
 		if (room.requestKickInactive) {
 			if (target === 'off' || target === 'false' || target === 'stop') {
-				let canForceTimer = user.can('timer', null, room);
+				let canForceTimer = user.can('timer', room);
 				if (room.resetTimer) {
 					room.stopKickInactive(user, canForceTimer);
 					if (canForceTimer) room.send('|inactiveoff|Timer was turned off by staff. Please do not turn it back on until our staff say it\'s okay');

@@ -197,8 +197,8 @@ exports.commands = {
 
 			let params = target.split(separator[0]).map(param => param.trim());
 
-			if (!this.can('minigame', null, room)) return false;
-			if (supportHTML && !this.can('declare', null, room)) return false;
+			if (!this.can('minigame', room)) return false;
+			if (supportHTML && !this.can('declare', room)) return false;
 			if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 			if (room.poll) return this.errorReply("There is already a poll in progress in this room.");
 			if (params.length < 3) return this.errorReply("Not enough arguments for /poll new.");
@@ -241,7 +241,7 @@ exports.commands = {
 			if (!room.poll) return this.errorReply("There is no poll running in this room.");
 
 			if (target) {
-				if (!this.can('minigame', null, room)) return false;
+				if (!this.can('minigame', room)) return false;
 				if (target === 'clear') {
 					if (!room.poll.timeout) return this.errorReply("There is no timer to clear.");
 					clearTimeout(room.poll.timeout);
@@ -280,7 +280,7 @@ exports.commands = {
 		close: 'end',
 		stop: 'end',
 		end: function (target, room, user) {
-			if (!this.can('minigame', null, room)) return false;
+			if (!this.can('minigame', room)) return false;
 			if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 			if (!room.poll) return this.errorReply("There is no poll running in this room.");
 			if (room.poll.timeout) clearTimeout(room.poll.timeout);

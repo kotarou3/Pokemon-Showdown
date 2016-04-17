@@ -205,10 +205,15 @@ Users.can = function (group, permission, targetGroup, room, isSelf) {
 };
 
 Users.getGroupsThatCan = function (permission, target, room, isSelf) {
-	// `target` can either be a user object or a group symbol
+	// `target` is optional, and can either be a user object or a group symbol
 	let targetGroup = null;
 	if (target && typeof target === 'object') {
-		targetGroup = target.group;
+		if (target.group) {
+			targetGroup = target.group;
+		} else {
+			isSelf = room;
+			room = target;
+		}
 	} else if (typeof target === 'string') {
 		targetGroup = target;
 	}
@@ -440,10 +445,14 @@ class User {
 			return true;
 		}
 
-		// `target` can either be a user object or a group symbol
+		// `target` is optional, and can either be a user object or a group symbol
 		let targetGroup = null;
 		if (target && typeof target === 'object') {
-			targetGroup = target.group;
+			if (target.group) {
+				targetGroup = target.group;
+			} else {
+				room = target;
+			}
 		} else if (typeof target === 'string') {
 			targetGroup = target;
 		}

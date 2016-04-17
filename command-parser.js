@@ -211,7 +211,7 @@ class CommandContext {
 
 			let message = this.canTalk(suppressMessage || this.message);
 			if (!message) return false;
-			if (!this.user.can('broadcast', null, this.room)) {
+			if (!this.user.can('broadcast', this.room)) {
 				this.errorReply("You need to be voiced to broadcast this command's information.");
 				this.errorReply("To see it for yourself, use: /" + this.message.substr(1));
 				return false;
@@ -362,7 +362,7 @@ class CommandContext {
 				return false;
 			}
 
-			if (!this.checkBanwords(room, message) && !user.can('mute', null, room)) {
+			if (!this.checkBanwords(room, message) && !user.can('mute', room)) {
 				this.errorReply("Your message contained banned words.");
 				return false;
 			}

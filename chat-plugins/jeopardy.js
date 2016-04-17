@@ -516,7 +516,7 @@ let commands = {
 		let questions = null;
 
 		if (!jeopardy) {
-			if (!this.can('jeopardy', null, room)) return;
+			if (!this.can('jeopardy', room)) return;
 			questions = new JeopardyQuestions(room, MAX_CATEGORY_COUNT, MAX_QUESTION_COUNT);
 		} else {
 			if (target && !jeopardy.checkPermission(user, this, 'host')) return;
@@ -556,7 +556,7 @@ let commands = {
 		let questions = null;
 
 		if (!jeopardy) {
-			if (!this.can('jeopardy', null, room)) return;
+			if (!this.can('jeopardy', room)) return;
 			questions = new JeopardyQuestions(room, MAX_CATEGORY_COUNT, MAX_QUESTION_COUNT);
 		} else {
 			if (!jeopardy.checkPermission(user, this, 'notstarted', 'host')) return;
@@ -611,7 +611,7 @@ let commands = {
 		let questions = null;
 
 		if (!jeopardy) {
-			if (!this.can('jeopardy', null, room)) return;
+			if (!this.can('jeopardy', room)) return;
 			questions = new JeopardyQuestions(room, MAX_CATEGORY_COUNT, MAX_QUESTION_COUNT);
 		} else {
 			if (!jeopardy.checkPermission(user, this, 'host')) return;
@@ -636,7 +636,7 @@ let commands = {
 		let questions = null;
 
 		if (!jeopardy) {
-			if (!this.can('jeopardy', null, room)) return;
+			if (!this.can('jeopardy', room)) return;
 			questions = new JeopardyQuestions(room, MAX_CATEGORY_COUNT, MAX_QUESTION_COUNT);
 		} else {
 			if (!jeopardy.checkPermission(user, this, 'notstarted', 'host')) return;
@@ -674,7 +674,7 @@ let commands = {
 		let params = target.split(',');
 
 		if (jeopardies[room.id]) return this.sendReply("There is already a Jeopardy match in this room.");
-		if (!this.can('jeopardy', null, room)) return;
+		if (!this.can('jeopardy', room)) return;
 
 		let categoryCount = parseInt(params[0]) || MAX_CATEGORY_COUNT;
 		let questionCount = parseInt(params[1]) || MAX_QUESTION_COUNT;
@@ -691,7 +691,7 @@ let commands = {
 	},
 	end: function (target, room, user) {
 		if (!jeopardies[room.id]) return this.sendReply("There is no Jeopardy match currently in this room.");
-		if (!this.can('jeopardy', null, room)) return;
+		if (!this.can('jeopardy', room)) return;
 
 		delete jeopardies[room.id];
 		room.add("The Jeopardy match was forcibly ended by " + user.name);

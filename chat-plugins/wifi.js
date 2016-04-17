@@ -290,7 +290,7 @@ let commands = {
 		if (params.length < 4) return this.errorReply("Invalid arguments specified - /question giver, prize, question, answer(s)");
 		let targetUser = Users(params[0]);
 		if (!targetUser || !targetUser.connected) return this.errorReply("User '" + params[0] + "' is not online.");
-		if (!this.can('warn', null, room) && !(this.can('broadcast', null, room) && user === targetUser)) return this.errorReply("Permission denied.");
+		if (!this.can('warn', room) && !(this.can('broadcast', room) && user === targetUser)) return this.errorReply("Permission denied.");
 		if (!targetUser.autoconfirmed) return this.errorReply("User '" + targetUser.name + "' needs to be autoconfirmed to give something away.");
 
 		room.giveaway = new QuestionGiveaway(user, targetUser, room, params[1], params[2], params.slice(3).join(','));
@@ -338,7 +338,7 @@ let commands = {
 		if (params.length < 2) return this.errorReply("Invalid arguments specified - /lottery giver, prize [, maxwinners]");
 		let targetUser = Users(params[0]);
 		if (!targetUser || !targetUser.connected) return this.errorReply("User '" + params[0] + "' is not online.");
-		if (!this.can('warn', null, room) && !(this.can('broadcast', null, room) && user === targetUser)) return this.errorReply("Permission denied.");
+		if (!this.can('warn', room) && !(this.can('broadcast', room) && user === targetUser)) return this.errorReply("Permission denied.");
 		if (!targetUser.autoconfirmed) return this.errorReply("User '" + targetUser.name + "' needs to be autoconfirmed to give something away.");
 
 		let numWinners = 1;
@@ -380,7 +380,7 @@ let commands = {
 	ban: function (target, room, user) {
 		if (!target) return false;
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
-		if (!this.can('warn', null, room)) return false;
+		if (!this.can('warn', room)) return false;
 
 		target = this.splitTarget(target);
 		let targetUser = this.targetUser;
@@ -396,7 +396,7 @@ let commands = {
 	unban: function (target, room, user) {
 		if (!target) return false;
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
-		if (!this.can('warn', null, room)) return false;
+		if (!this.can('warn', room)) return false;
 
 		this.splitTarget(target);
 		let targetUser = this.targetUser;
@@ -416,7 +416,7 @@ let commands = {
 	end: function (target, room, user) {
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
 		if (!room.giveaway) return this.errorReply("There is no giveaway going on at the moment.");
-		if (!this.can('warn', null, room) && user.userid !== room.giveaway.host.userid) return false;
+		if (!this.can('warn', room) && user.userid !== room.giveaway.host.userid) return false;
 
 		if (target && target.length > 300) {
 			return this.errorReply("The reason is too long. It cannot exceed 300 characters.");
@@ -444,7 +444,7 @@ let commands = {
 		let reply = '';
 		switch (target) {
 		case 'staff':
-			if (!this.can('warn', null, room)) return;
+			if (!this.can('warn', room)) return;
 			reply = '<strong>Staff commands:</strong><br />' +
 			        '- question or qg <em>User | Prize | Question | Answer[,Answer2,Answer3]</em> - Start a new question giveaway (voices can only host for themselves, staff can for all users) (Requires: + % @ # & ~)<br />' +
 			        '- lottery or lg <em>User | Prize[| Number of Winners]</em> - Starts a lottery giveaway (voices can only host for themselves, staff can for all users) (Requires: + % @ # & ~)<br />' +
