@@ -56,7 +56,7 @@ exports.commands = {
 
 			let output = (targetRoom.auth && targetRoom.auth[targetUser.userid] ? targetRoom.auth[targetUser.userid] : '') + '<a href="/' + i + '">' + i + '</a>';
 			if (targetRoom.isPrivate === true) {
-				if (targetRoom.modjoin === '~') continue;
+				if (Users.can(targetRoom.modjoin, 'root')) continue;
 				if (privaterooms) privaterooms += " | ";
 				privaterooms += output;
 			} else if (targetRoom.isPrivate) {
@@ -81,7 +81,7 @@ exports.commands = {
 			for (let j = 0; j < alts.length; ++j) {
 				let targetAlt = Users.get(alts[j]);
 				if (!targetAlt.named && !targetAlt.connected) continue;
-				if (targetAlt.group === '~' && user.group !== '~') continue;
+				if (targetAlt.can('root') && !user.can('root')) continue;
 
 				buf += '<br />Alt: <span class="username">' + Tools.escapeHTML(targetAlt.name) + '</span>' + (!targetAlt.connected ? " <em style=\"color:gray\">(offline)</em>" : "");
 				output = Object.keys(targetAlt.prevNames).join(", ");

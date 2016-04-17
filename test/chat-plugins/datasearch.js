@@ -10,7 +10,7 @@ describe('Learn', function () {
 
 			const user = new User();
 			user.forceRename("Staff Member", false);
-			user.group = '%';
+			user.group = Users.getGroupsThatCan('receiveauthmessages')[0];
 			user.isStaff = true;
 			user.joinRoom(room);
 			room.update();

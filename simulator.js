@@ -189,7 +189,7 @@ class Battle {
 			user.popup("Failed to leave battle.");
 			return false;
 		}
-		this.room.auth[user.userid] = '+';
+		this.room.auth[user.userid] = Users.getGroupsThatCan('broadcast', null, this.room)[0];
 		this.room.update();
 		this.room.kickInactiveUpdate();
 		return true;
@@ -374,7 +374,7 @@ class Battle {
 		if (!player) return false;
 		this.players[user.userid] = player;
 		this.playerCount++;
-		this.room.auth[user.userid] = '\u2605';
+		this.room.auth[user.userid] = Users.getGroupsThatCan('joinbattle', null, this.room).reverse()[0];
 		if (this.playerCount >= 2) {
 			this.room.title = "" + this.p1.name + " vs. " + this.p2.name;
 			this.room.send('|title|' + this.room.title);

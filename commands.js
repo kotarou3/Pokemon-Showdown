@@ -46,7 +46,7 @@ exports.commands = {
 		let ranks = Object.keys(Config.groups);
 		for (let u in Users.usergroups) {
 			let rank = Users.usergroups[u].charAt(0);
-			if (rank === ' ' || rank === '+') continue;
+			if (!Users.can(rank, 'receiveauthmessages')) continue;
 			// In case the usergroups.csv file is not proper, we check for the server ranks.
 			if (ranks.includes(rank)) {
 				let name = Users.usergroups[u].substr(1);
@@ -166,7 +166,7 @@ exports.commands = {
 		}
 
 		if (user.locked && !targetUser.can('lock')) {
-			return this.errorReply("You can only private message members of the moderation team (users marked by %, @, &, or ~) when locked.");
+			return this.errorReply("You can only private message members of the moderation team (users marked by " + Users.getGroupsThatCan('lock').join(", ") + ") when locked.");
 		}
 		if (targetUser.locked && !user.can('lock')) {
 			return this.errorReply("This user is locked and cannot PM.");
@@ -560,7 +560,9 @@ exports.commands = {
 				this.addModCommand("" + user.name + " turned on modjoin.");
 			} else if (target in Config.groups) {
 				if (room.battle && !this.can('makeroom')) return;
-				if (room.isPersonal && !user.can('makeroom') && target !== '+') return this.errorReply("/modjoin - Access denied from setting modjoin past + in group chats.");
+				if (room.isPersonal && !user.can('makeroom') && Config.groupsranking.indexOf(target) > 1) {
+					return this.errorReply("/modjoin - Access denied from setting modjoin past " + Config.groupsranking[1] + " in group chats.");
+				}
 				room.modjoin = target;
 				this.addModCommand("" + user.name + " set modjoin to " + target + ".");
 			} else {
@@ -828,7 +830,7 @@ exports.commands = {
 				return this.errorReply("/" + cmd + " - Access denied for giving " + groupName + ".");
 			}
 		}
-		if (targetUser && targetUser.locked && !room.isPrivate && !room.battle && !room.isPersonal && (nextGroup === '%' || nextGroup === '@')) {
+		if (targetUser && targetUser.locked && !room.isPrivate && !room.battle && !room.isPersonal && Users.can(nextGroup, 'mute', null, room)) {
 			return this.errorReply("Locked users can't be promoted.");
 		}
 
@@ -1213,7 +1215,7 @@ exports.commands = {
 			}
 		}
 
-		targetUser.popup("|modal|" + user.name + " has locked you from talking in chats, battles, and PMing regular users." + (target ? "\n\nReason: " + target : "") + "\n\nIf you feel that your lock was unjustified, you can still PM staff members (%, @, &, and ~) to discuss it" + (Config.appealurl ? " or you can appeal:\n" + Config.appealurl : ".") + "\n\nYour lock will expire in a few days.");
+		targetUser.popup("|modal|" + user.name + " has locked you from talking in chats, battles, and PMing regular users." + (target ? "\n\nReason: " + target : "") + "\n\nIf you feel that your lock was unjustified, you can still PM staff members (" + Users.getGroupsThatCan('lock', user).join(", ") + ") to discuss it" + (Config.appealurl ? " or you can appeal:\n" + Config.appealurl : ".") + "\n\nYour lock will expire in a few days.");
 
 		this.addModCommand("" + name + " was locked from talking by " + user.name + "." + (target ? " (" + target + ")" : ""), " (" + targetUser.latestIp + ")");
 		let alts = targetUser.getAlts();
@@ -2217,9 +2219,10 @@ exports.commands = {
 			curRoom.addRaw("<div class=\"broadcast-red\"><b>The server is restarting soon.</b><br />Please finish your battles quickly. No new battles can be started until the server resets in a few minutes.</div>");
 			if (curRoom.requestKickInactive && !curRoom.battle.ended) {
 				curRoom.requestKickInactive(user, true);
-				if (curRoom.modchat !== '+') {
-					curRoom.modchat = '+';
-					curRoom.addRaw("<div class=\"broadcast-red\"><b>Moderated chat was set to +!</b><br />Only users of rank + and higher can talk.</div>");
+				if (!curRoom.modchat) {
+					let modchatGroup = Users.getGroupsThatCan('broadcast', null, curRoom)[0];
+					curRoom.modchat = modchatGroup;
+					curRoom.addRaw("<div class=\"broadcast-red\"><b>Moderated chat was set to " + modchatGroup + "!</b><br />Only users of rank " + modchatGroup + " and higher can talk.</div>");
 				}
 			}
 		}
@@ -2642,8 +2645,9 @@ exports.commands = {
 		}
 		if (!this.can('joinbattle', null, room)) return;
 
-		room.auth[targetUser.userid] = '\u2605';
-		this.addModCommand("" + name + " was promoted to Player by " + user.name + ".");
+		let requiredGroup = Users.getGroupsThatCan('joinbattle', null, room)[0];
+		room.auth[targetUser.userid] = requiredGroup;
+		this.addModCommand("" + name + " was promoted to " + Config.groups[requiredGroup].name + " by " + user.name + ".");
 	},
 	addplayerhelp: ["/addplayer [username] - Allow the specified user to join the battle as a player."],
 

@@ -948,7 +948,7 @@ class User {
 			this.group = Config.groupsranking[0];
 			for (let i = 0; i < Rooms.global.chatRooms.length; i++) {
 				let room = Rooms.global.chatRooms[i];
-				if (!room.isPrivate && !room.isPersonal && room.auth && this.userid in room.auth && room.auth[this.userid] !== '+') {
+				if (!room.isPrivate && !room.isPersonal && room.auth && this.userid in room.auth && Users.can(room.auth[this.userid], 'receiveauthmessages', null, room)) {
 					this.confirmed = this.userid;
 					this.autoconfirmed = this.userid;
 					break;
@@ -960,7 +960,7 @@ class User {
 			this.avatar = Config.customavatars[this.userid];
 		}
 
-		this.isStaff = (this.group in {'%':1, '@':1, '&':1, '~':1});
+		this.isStaff = Users.can(this.group, 'receiveauthmessages');
 		if (!this.isStaff) {
 			let staffRoom = Rooms('staff');
 			this.isStaff = (staffRoom && staffRoom.auth && staffRoom.auth[this.userid]);
@@ -985,7 +985,7 @@ class User {
 	setGroup(group, forceConfirmed) {
 		if (!group) throw new Error("Falsy value passed to setGroup");
 		this.group = group.charAt(0);
-		this.isStaff = (this.group in {'%':1, '@':1, '&':1, '~':1});
+		this.isStaff = Users.can(this.group, 'receiveauthmessages');
 		if (!this.isStaff) {
 			let staffRoom = Rooms('staff');
 			this.isStaff = (staffRoom && staffRoom.auth && staffRoom.auth[this.userid]);
@@ -1017,7 +1017,7 @@ class User {
 		}
 		for (let i = 0; i < Rooms.global.chatRooms.length; i++) {
 			let room = Rooms.global.chatRooms[i];
-			if (!room.isPrivate && room.auth && userid in room.auth && room.auth[userid] !== '+') {
+			if (!room.isPrivate && room.auth && userid in room.auth && Users.can(room.auth[userid], 'receiveauthmessages', null, room)) {
 				removed.push(room.auth[userid] + room.id);
 				room.auth[userid] = '+';
 			}
