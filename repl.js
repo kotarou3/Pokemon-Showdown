@@ -30,7 +30,7 @@ exports.start = function (prefix, suffix, evalFunction) {
 	if (!REPL_ENABLED) return;
 	if (process.platform === 'win32') return; // Windows doesn't support sockets mounted in the filesystem
 
-	let resolvedPrefix = path.resolve(__dirname, Config.replsocketprefix || 'logs/repl', prefix);
+	let resolvedPrefix = path.resolve(__dirname, Config.replSocketPrefix || 'logs/repl', prefix);
 	if (!evalFunction) {
 		evalFunction = suffix;
 		suffix = "";
@@ -69,7 +69,7 @@ exports.start = function (prefix, suffix, evalFunction) {
 		}).on('exit', () => socket.end());
 		socket.on('error', () => socket.destroy());
 	}).listen(name, () => {
-		fs.chmodSync(name, Config.replsocketmode || 0o600);
+		fs.chmodSync(name, Config.replSocketMode || 0o600);
 		sockets.push(name);
 	}).on('error', e => {
 		if (e.code === "EADDRINUSE") {

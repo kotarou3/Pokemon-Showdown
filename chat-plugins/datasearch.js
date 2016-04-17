@@ -239,7 +239,7 @@ if (process.send && module === process.mainModule) {
 
 	global.Config = require('../config/config.js');
 
-	if (Config.crashguard) {
+	if (Config.crashGuard) {
 		process.on('uncaughtException', err => {
 			require('../crashlogger.js')(err, 'A dexsearch process', true);
 		});

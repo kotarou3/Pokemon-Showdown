@@ -44,11 +44,11 @@ const PM = exports.PM = new ProcessManager({
 		process.send(id + '|' + this.receive(data));
 	},
 	receive: function (data) {
-		let verifier = crypto.createVerify(Config.loginserver.keyAlgorithm);
+		let verifier = crypto.createVerify(Config.loginServer.keyAlgorithm);
 		verifier.update(data.data);
 		let success = false;
 		try {
-			success = verifier.verify(Config.loginserver.publicKey, data.sig, 'hex');
+			success = verifier.verify(Config.loginServer.publicKey, data.sig, 'hex');
 		} catch (e) {}
 
 		return success ? 1 : 0;

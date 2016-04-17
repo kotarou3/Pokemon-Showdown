@@ -158,7 +158,7 @@ exports.commands = {
 
 		if (Config.modchat.pm) {
 			let userGroup = user.group;
-			if (Config.groupsranking.indexOf(userGroup) < Config.groupsranking.indexOf(Config.modchat.pm)) {
+			if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(Config.modchat.pm)) {
 				let groupName = Config.groups[Config.modchat.pm].name || Config.modchat.pm;
 				this.errorReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to PM users.");
 				return false;
@@ -217,7 +217,7 @@ exports.commands = {
 					if (!(user.userid in targetRoom.auth)) {
 						return this.errorReply('The room "' + innerTarget + '" does not exist.');
 					}
-					if (Config.groupsranking.indexOf(targetRoom.auth[targetUser.userid] || ' ') < Config.groupsranking.indexOf(targetRoom.modjoin) && !targetUser.can('bypassall')) {
+					if (Config.groupsRanking.indexOf(targetRoom.auth[targetUser.userid] || ' ') < Config.groupsRanking.indexOf(targetRoom.modjoin) && !targetUser.can('bypassall')) {
 						return this.errorReply('The user "' + targetUser.name + '" does not have permission to join "' + innerTarget + '".');
 					}
 				}
@@ -357,8 +357,8 @@ exports.commands = {
 			return this.errorReply("Title must be under 32 characters long.");
 		} else if (!title) {
 			title = ('' + Math.floor(Math.random() * 100000000));
-		} else if (Config.chatfilter) {
-			let filterResult = Config.chatfilter.call(this, title, user, null, connection);
+		} else if (Config.chatFilter) {
+			let filterResult = Config.chatFilter.call(this, title, user, null, connection);
 			if (!filterResult) return;
 			if (title !== filterResult) {
 				return this.errorReply("Invalid title.");
@@ -396,8 +396,8 @@ exports.commands = {
 
 		let groupChatLink = '<code>&lt;&lt;' + roomid + '>></code>';
 		let groupChatURL = '';
-		if (Config.serverid) {
-			groupChatURL = 'http://' + (Config.serverid === 'showdown' ? 'psim.us' : Config.serverid + '.psim.us') + '/' + roomid;
+		if (Config.serverId) {
+			groupChatURL = 'http://' + (Config.serverId === 'showdown' ? 'psim.us' : Config.serverId + '.psim.us') + '/' + roomid;
 			groupChatLink = '<a href="' + groupChatURL + '">' + groupChatLink + '</a>';
 		}
 		let titleHTML = '';
@@ -560,8 +560,8 @@ exports.commands = {
 				this.addModCommand("" + user.name + " turned on modjoin.");
 			} else if (target in Config.groups) {
 				if (room.battle && !this.can('makeroom')) return;
-				if (room.isPersonal && !user.can('makeroom') && Config.groupsranking.indexOf(target) > 1) {
-					return this.errorReply("/modjoin - Access denied from setting modjoin past " + Config.groupsranking[1] + " in group chats.");
+				if (room.isPersonal && !user.can('makeroom') && Config.groupsRanking.indexOf(target) > 1) {
+					return this.errorReply("/modjoin - Access denied from setting modjoin past " + Config.groupsRanking[1] + " in group chats.");
 				}
 				room.modjoin = target;
 				this.addModCommand("" + user.name + " set modjoin to " + target + ".");
@@ -573,7 +573,7 @@ exports.commands = {
 				room.chatRoomData.modjoin = room.modjoin;
 				Rooms.global.writeChatRoomData();
 			}
-			if (!room.modchat) this.parse('/modchat ' + Config.groupsranking[1]);
+			if (!room.modchat) this.parse('/modchat ' + Config.groupsRanking[1]);
 			if (!room.isPrivate) this.parse('/hiddenroom');
 		}
 	},
@@ -796,7 +796,7 @@ exports.commands = {
 
 		let currentGroup = ((room.auth && room.auth[userid]) || (room.isPrivate !== true && Users.usergroups[userid]) || ' ');
 		let nextGroup = target;
-		if (target === 'deauth') nextGroup = Config.groupsranking[0];
+		if (target === 'deauth') nextGroup = Config.groupsRanking[0];
 		if (!nextGroup) {
 			return this.errorReply("Please specify a group such as /roomvoice or /roomdeauth");
 		}
@@ -819,7 +819,7 @@ exports.commands = {
 			groupName = "Room " + groupName;
 		}
 
-		if (((room.auth && room.auth[userid]) || Config.groupsranking[0]) === nextGroup) {
+		if (((room.auth && room.auth[userid]) || Config.groupsRanking[0]) === nextGroup) {
 			return this.errorReply("User '" + name + "' is already a " + groupName + " in this room.");
 		}
 		if (!user.can('makeroom')) {
@@ -1215,7 +1215,7 @@ exports.commands = {
 			}
 		}
 
-		targetUser.popup("|modal|" + user.name + " has locked you from talking in chats, battles, and PMing regular users." + (target ? "\n\nReason: " + target : "") + "\n\nIf you feel that your lock was unjustified, you can still PM staff members (" + Users.getGroupsThatCan('lock', user).join(", ") + ") to discuss it" + (Config.appealurl ? " or you can appeal:\n" + Config.appealurl : ".") + "\n\nYour lock will expire in a few days.");
+		targetUser.popup("|modal|" + user.name + " has locked you from talking in chats, battles, and PMing regular users." + (target ? "\n\nReason: " + target : "") + "\n\nIf you feel that your lock was unjustified, you can still PM staff members (" + Users.getGroupsThatCan('lock', user).join(", ") + ") to discuss it" + (Config.appealUri ? " or you can appeal:\n" + Config.appealUri : ".") + "\n\nYour lock will expire in a few days.");
 
 		this.addModCommand("" + name + " was locked from talking by " + user.name + "." + (target ? " (" + target + ")" : ""), " (" + targetUser.latestIp + ")");
 		let alts = targetUser.getAlts();
@@ -1274,7 +1274,7 @@ exports.commands = {
 			}
 		}
 
-		targetUser.popup("|modal|" + user.name + " has locked you from talking in chats, battles, and PMing regular users for a week." + (target ? "\n\nReason: " + target : "") + "\n\nIf you feel that your lock was unjustified, you can still PM staff members (%, @, &, and ~) to discuss it" + (Config.appealurl ? " or you can appeal:\n" + Config.appealurl : ".") + "\n\nYour lock will expire in a few days.");
+		targetUser.popup("|modal|" + user.name + " has locked you from talking in chats, battles, and PMing regular users for a week." + (target ? "\n\nReason: " + target : "") + "\n\nIf you feel that your lock was unjustified, you can still PM staff members (%, @, &, and ~) to discuss it" + (Config.appealUri ? " or you can appeal:\n" + Config.appealUri : ".") + "\n\nYour lock will expire in a few days.");
 
 		this.addModCommand("" + name + " was locked from talking for a week by " + user.name + "." + (target ? " (" + target + ")" : ""), " (" + targetUser.latestIp + ")");
 		let alts = targetUser.getAlts();
@@ -1357,7 +1357,7 @@ exports.commands = {
 			}
 		}
 
-		targetUser.popup("|modal|" + user.name + " has banned you." + (target ? "\n\nReason: " + target : "") + (Config.appealurl ? "\n\nIf you feel that your ban was unjustified, you can appeal:\n" + Config.appealurl : "") + "\n\nYour ban will expire in a few days.");
+		targetUser.popup("|modal|" + user.name + " has banned you." + (target ? "\n\nReason: " + target : "") + (Config.appealUri ? "\n\nIf you feel that your ban was unjustified, you can appeal:\n" + Config.appealUri : "") + "\n\nYour ban will expire in a few days.");
 
 		this.addModCommand("" + name + " was banned by " + user.name + "." + (target ? " (" + target + ")" : ""), " (" + targetUser.latestIp + ")");
 		let alts = targetUser.getAlts();
@@ -1529,7 +1529,7 @@ exports.commands = {
 
 		let currentGroup = ((targetUser && targetUser.group) || Users.usergroups[userid] || ' ')[0];
 		let nextGroup = target;
-		if (target === 'deauth') nextGroup = Config.groupsranking[0];
+		if (target === 'deauth') nextGroup = Config.groupsRanking[0];
 		if (!nextGroup) {
 			return this.errorReply("Please specify a group such as /globalvoice or /globaldeauth");
 		}
@@ -1538,7 +1538,7 @@ exports.commands = {
 		}
 		if (!cmd.startsWith('global')) {
 			let groupid = Config.groups[nextGroup].id;
-			if (!groupid && nextGroup === Config.groupsranking[0]) groupid = 'deauth';
+			if (!groupid && nextGroup === Config.groupsRanking[0]) groupid = 'deauth';
 			if (Config.groups[nextGroup].globalonly) return this.errorReply('Did you mean /global' + groupid + '"?');
 			return this.errorReply('Did you mean "/room' + groupid + '" or "/global' + groupid + '"?');
 		}
@@ -1642,8 +1642,8 @@ exports.commands = {
 		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		if (!this.can('modchat', room)) return false;
 
-		if (room.modchat && room.modchat.length <= 1 && Config.groupsranking.indexOf(room.modchat) > 1 && !user.can('modchatall', room)) {
-			return this.errorReply("/modchat - Access denied for removing a setting higher than " + Config.groupsranking[1] + ".");
+		if (room.modchat && room.modchat.length <= 1 && Config.groupsRanking.indexOf(room.modchat) > 1 && !user.can('modchatall', room)) {
+			return this.errorReply("/modchat - Access denied for removing a setting higher than " + Config.groupsRanking[1] + ".");
 		}
 		if (room.requestModchat) {
 			let error = room.requestModchat(user);
@@ -1671,13 +1671,13 @@ exports.commands = {
 				this.errorReply("The rank '" + target + '" was unrecognized as a modchat level.');
 				return this.parse('/help modchat');
 			}
-			if (Config.groupsranking.indexOf(target) > 1 && !user.can('modchatall', room)) {
-				return this.errorReply("/modchat - Access denied for setting higher than " + Config.groupsranking[1] + ".");
+			if (Config.groupsRanking.indexOf(target) > 1 && !user.can('modchatall', room)) {
+				return this.errorReply("/modchat - Access denied for setting higher than " + Config.groupsRanking[1] + ".");
 			}
 			let roomGroup = (room.auth && room.isPrivate === true ? ' ' : user.group);
 			if (room.auth && user.userid in room.auth) roomGroup = room.auth[user.userid];
-			if (Config.groupsranking.indexOf(target) > Math.max(1, Config.groupsranking.indexOf(roomGroup)) && !user.can('makeroom')) {
-				return this.errorReply("/modchat - Access denied for setting higher than " + Config.groupsranking[1] + ".");
+			if (Config.groupsRanking.indexOf(target) > Math.max(1, Config.groupsRanking.indexOf(roomGroup)) && !user.can('makeroom')) {
+				return this.errorReply("/modchat - Access denied for setting higher than " + Config.groupsRanking[1] + ".");
 			}
 			room.modchat = target;
 			break;
@@ -2052,8 +2052,8 @@ exports.commands = {
 				let timestamp = Tools.toTimeStamp(new Date(time), {hour12: true});
 				parenIndex = line.indexOf(')');
 				let roomid = line.slice(bracketIndex + 3, parenIndex);
-				if (!hideIps && Config.modloglink) {
-					let url = Config.modloglink(time, roomid);
+				if (!hideIps && Config.modlogLink) {
+					let url = Config.modlogLink(time, roomid);
 					if (url) timestamp = '<a href="' + url + '">' + timestamp + '</a>';
 				}
 				return '<small>[' + timestamp + '] (' + roomid + ')</small>' + Tools.escapeHTML(line.slice(parenIndex + 1));
@@ -2720,10 +2720,10 @@ exports.commands = {
 		target = toId(target);
 		if (!this.can('autotimer')) return;
 		if (target === 'off' || target === 'false' || target === 'stop') {
-			Config.forcetimer = false;
+			Config.forceTimer = false;
 			this.addModCommand("Forcetimer is now OFF: The timer is now opt-in. (set by " + user.name + ")");
 		} else if (target === 'on' || target === 'true' || !target) {
-			Config.forcetimer = true;
+			Config.forceTimer = true;
 			this.addModCommand("Forcetimer is now ON: All battles will be timed. (set by " + user.name + ")");
 		} else {
 			this.errorReply("'" + target + "' is not a recognized forcetimer setting.");
@@ -2766,7 +2766,7 @@ exports.commands = {
 		if (target) {
 			if (Config.modchat.pm) {
 				let userGroup = user.group;
-				if (Config.groupsranking.indexOf(userGroup) < Config.groupsranking.indexOf(Config.modchat.pm)) {
+				if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(Config.modchat.pm)) {
 					let groupName = Config.groups[Config.modchat.pm].name || Config.modchat.pm;
 					this.popupReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to search for a battle.");
 					return false;
@@ -2793,7 +2793,7 @@ exports.commands = {
 		}
 		if (Config.modchat.pm) {
 			let userGroup = user.group;
-			if (Config.groupsranking.indexOf(userGroup) < Config.groupsranking.indexOf(Config.modchat.pm)) {
+			if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(Config.modchat.pm)) {
 				let groupName = Config.groups[Config.modchat.pm].name || Config.modchat.pm;
 				this.popupReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to challenge users.");
 				return false;
@@ -2986,7 +2986,7 @@ exports.commands = {
 		} else if (!target) {
 			this.sendReply("COMMANDS: /nick, /avatar, /rating, /whois, /msg, /reply, /ignore, /away, /back, /timestamps, /highlight");
 			this.sendReply("INFORMATIONAL COMMANDS: /data, /dexsearch, /movesearch, /groups, /faq, /rules, /intro, /formatshelp, /othermetas, /learn, /analysis, /calc (replace / with ! to broadcast. Broadcasting requires: + % @ # & ~)");
-			if (user.group !== Config.groupsranking[0]) {
+			if (user.group !== Config.groupsRanking[0]) {
 				this.sendReply("DRIVER COMMANDS: /warn, /mute, /hourmute, /unmute, /alts, /forcerename, /modlog, /modnote, /lock, /unlock, /announce, /redirect");
 				this.sendReply("MODERATOR COMMANDS: /ban, /unban, /ip, /modchat");
 				this.sendReply("LEADER COMMANDS: /declare, /forcetie, /forcewin, /promote, /demote, /banip, /host, /unbanall");

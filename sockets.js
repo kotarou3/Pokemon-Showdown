@@ -24,7 +24,7 @@ if (cluster.isMaster) {
 	let workers = exports.workers = {};
 
 	let spawnWorker = exports.spawnWorker = function () {
-		let worker = cluster.fork({PSPORT: Config.port, PSBINDADDR: Config.bindaddress || '', PSNOSSL: Config.ssl ? 0 : 1});
+		let worker = cluster.fork({PSPORT: Config.port, PSBINDADDR: Config.bindAddress || '', PSNOSSL: Config.ssl ? 0 : 1});
 		let id = worker.id;
 		workers[id] = worker;
 		worker.on('message', data => {
@@ -95,7 +95,7 @@ if (cluster.isMaster) {
 			} catch (e) {}
 		}
 		if (bindAddress !== undefined) {
-			Config.bindaddress = bindAddress;
+			Config.bindAddress = bindAddress;
 		}
 		if (workerCount === undefined) {
 			workerCount = (Config.workers !== undefined ? Config.workers : 1);
@@ -166,7 +166,7 @@ if (cluster.isMaster) {
 	// is worker
 
 	if (process.env.PSPORT) Config.port = +process.env.PSPORT;
-	if (process.env.PSBINDADDR) Config.bindaddress = process.env.PSBINDADDR;
+	if (process.env.PSBINDADDR) Config.bindAddress = process.env.PSBINDADDR;
 	if (+process.env.PSNOSSL) Config.ssl = null;
 
 	// ofe is optional
@@ -184,7 +184,7 @@ if (cluster.isMaster) {
 
 	global.Cidr = require('./cidr');
 
-	if (Config.crashguard) {
+	if (Config.crashGuard) {
 		// graceful crash
 		process.on('uncaughtException', err => {
 			require('./crashlogger.js')(err, 'Socket process ' + cluster.worker.id + ' (' + process.pid + ')', true);
@@ -205,8 +205,8 @@ if (cluster.isMaster) {
 			// console.log("static rq: " + request.socket.remoteAddress + ":" + request.socket.remotePort + " -> " + request.socket.localAddress + ":" + request.socket.localPort + " - " + request.method + " " + request.url + " " + request.httpVersion + " - " + request.rawHeaders.join('|'));
 			request.resume();
 			request.addListener('end', () => {
-				if (Config.customhttpresponse &&
-						Config.customhttpresponse(request, response)) {
+				if (Config.customHttpResponse &&
+						Config.customHttpResponse(request, response)) {
 					return;
 				}
 				let server;
@@ -424,7 +424,7 @@ if (cluster.isMaster) {
 	});
 
 	// this is global so it can be hotpatched if necessary
-	let isTrustedProxyIp = Cidr.checker(Config.proxyip);
+	let isTrustedProxyIp = Cidr.checker(Config.proxyIps);
 	let socketCounter = 0;
 	server.on('connection', socket => {
 		if (!socket) {
@@ -483,17 +483,17 @@ if (cluster.isMaster) {
 		});
 	});
 	server.installHandlers(app, {});
-	if (!Config.bindaddress) Config.bindaddress = '0.0.0.0';
-	app.listen(Config.port, Config.bindaddress);
-	console.log('Worker ' + cluster.worker.id + ' now listening on ' + Config.bindaddress + ':' + Config.port);
+	if (!Config.bindAddress) Config.bindAddress = '0.0.0.0';
+	app.listen(Config.port, Config.bindAddress);
+	console.log('Worker ' + cluster.worker.id + ' now listening on ' + Config.bindAddress + ':' + Config.port);
 
 	if (appssl) {
 		server.installHandlers(appssl, {});
-		appssl.listen(Config.ssl.port, Config.bindaddress);
+		appssl.listen(Config.ssl.port, Config.bindAddress);
 		console.log('Worker ' + cluster.worker.id + ' now listening for SSL on port ' + Config.ssl.port);
 	}
 
-	console.log('Test your server at http://' + (Config.bindaddress === '0.0.0.0' ? 'localhost' : Config.bindaddress) + ':' + Config.port);
+	console.log('Test your server at http://' + (Config.bindAddress === '0.0.0.0' ? 'localhost' : Config.bindAddress) + ':' + Config.port);
 
 	require('./repl.js').start('sockets-', cluster.worker.id + '-' + process.pid, cmd => eval(cmd));
 }

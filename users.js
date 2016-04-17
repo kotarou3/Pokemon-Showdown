@@ -102,7 +102,7 @@ function importUsergroups() {
 		for (let i = 0; i < data.length; i++) {
 			if (!data[i]) continue;
 			let row = data[i].split(",");
-			usergroups[toId(row[0])] = (row[1] || Config.groupsranking[0]) + row[0];
+			usergroups[toId(row[0])] = (row[1] || Config.groupsRanking[0]) + row[0];
 		}
 	});
 }
@@ -116,18 +116,9 @@ function exportUsergroups() {
 importUsergroups();
 
 function cacheGroupData() {
-	if (Config.groups) {
-		// Support for old config groups format.
-		// Should be removed soon.
-		console.log(
-			"You are using a deprecated version of user group specification in config.\n" +
-			"Support for this will be removed soon.\n" +
-			"Please ensure that you update your config.js to the new format (see config-example.js, line 220)\n"
-		);
-	} else {
-		Config.groups = Object.create(null);
-		Config.groupsranking = [];
-	}
+	Config.groups = Object.create(null);
+	Config.groupsRanking = [];
+
 	let groups = Config.groups;
 	let cachedGroups = {};
 
@@ -150,14 +141,14 @@ function cacheGroupData() {
 		return (cachedGroups[sym] = true);
 	}
 
-	if (Config.grouplist) { // Using new groups format.
-		let grouplist = Config.grouplist;
-		let numGroups = grouplist.length;
+	if (Config.groupList) { // Using new groups format.
+		let groupList = Config.groupList;
+		let numGroups = groupList.length;
 		for (let i = 0; i < numGroups; i++) {
-			let groupData = grouplist[i];
+			let groupData = groupList[i];
 			groupData.rank = numGroups - i - 1;
 			groups[groupData.symbol] = groupData;
-			Config.groupsranking.unshift(groupData.symbol);
+			Config.groupsRanking.unshift(groupData.symbol);
 		}
 	}
 
@@ -219,7 +210,7 @@ Users.getGroupsThatCan = function (permission, target, room, isSelf) {
 	}
 	target = null;
 
-	let groupsByRank = Config.groupsranking;
+	let groupsByRank = Config.groupsRanking;
 	if (room && room.auth) {
 		if (room.type === 'chat') {
 			groupsByRank = groupsByRank.filter(symbol => !Config.groups[symbol].globalonly && !Config.groups[symbol].battleonly);
@@ -243,7 +234,7 @@ Users.setOfflineGroup = function (name, group, forceConfirmed) {
 		user.setGroup(group, forceConfirmed);
 		return true;
 	}
-	if (group === Config.groupsranking[0] && !forceConfirmed) {
+	if (group === Config.groupsRanking[0] && !forceConfirmed) {
 		delete usergroups[userid];
 	} else {
 		let usergroup = usergroups[userid];
@@ -338,7 +329,7 @@ class User {
 		this.named = !!this.namelocked;
 		this.registered = false;
 		this.userid = toId(this.name);
-		this.group = Config.groupsranking[0];
+		this.group = Config.groupsRanking[0];
 
 		let trainersprites = [1, 2, 101, 102, 169, 170, 265, 266];
 		this.avatar = trainersprites[Math.floor(Math.random() * trainersprites.length)];
@@ -510,7 +501,7 @@ class User {
 		if (this.hasSysopAccess()) return true;
 		if (!this.can('console')) return false; // normal permission check
 
-		let whitelist = Config.consoleips || ['127.0.0.1'];
+		let whitelist = Config.consoleIps || ['127.0.0.1'];
 		if (whitelist.includes(connection.ip)) {
 			return true; // on the IP whitelist
 		}
@@ -547,7 +538,7 @@ class User {
 		this.userid = userid;
 		users.set(this.userid, this);
 		this.registered = false;
-		this.group = Config.groupsranking[0];
+		this.group = Config.groupsRanking[0];
 		this.isStaff = false;
 		this.isSysop = false;
 
@@ -574,7 +565,7 @@ class User {
 		}
 	}
 	filterName(name) {
-		if (!Config.disablebasicnamefilter) {
+		if (!Config.disableBasicNameFilter) {
 			// whitelist
 			// \u00A1-\u00BF\u00D7\u00F7  Latin punctuation/symbols
 			// \u02B9-\u0362              basic combining accents
@@ -606,8 +597,8 @@ class User {
 		}
 
 		name = Tools.getName(name);
-		if (Config.namefilter) {
-			name = Config.namefilter(name, this);
+		if (Config.nameFilter) {
+			name = Config.nameFilter(name, this);
 		}
 		return name;
 	}
@@ -715,7 +706,7 @@ class User {
 			return;
 		}
 
-		let expiry = Config.tokenexpiry || 25 * 60 * 60;
+		let expiry = Config.tokenExpiry || 25 * 60 * 60;
 		if (Math.abs(parseInt(tokenDataSplit[3]) - Date.now() / 1000) > expiry) {
 			console.log('stale assertion: ' + tokenData);
 			this.send('|nametaken|' + name + "|Your assertion is stale. This usually means that the clock on the server computer is incorrect. If this is your server, please set the clock to the correct time.");
@@ -787,14 +778,14 @@ class User {
 			if (this.named) user.prevNames[this.userid] = this.name;
 			this.destroy();
 			Rooms.global.checkAutojoin(user);
-			if (Config.loginfilter) Config.loginfilter(user, this, userType);
+			if (Config.loginFilter) Config.loginFilter(user, this, userType);
 			return true;
 		}
 
 		// rename success
 		if (this.forceRename(name, registered)) {
 			Rooms.global.checkAutojoin(this);
-			if (Config.loginfilter) Config.loginfilter(this, null, userType);
+			if (Config.loginFilter) Config.loginFilter(this, null, userType);
 			return true;
 		}
 		return false;
@@ -944,7 +935,7 @@ class User {
 	updateGroup(registered) {
 		if (!registered) {
 			this.registered = false;
-			this.group = Config.groupsranking[0];
+			this.group = Config.groupsRanking[0];
 			this.isStaff = false;
 			return;
 		}
@@ -954,7 +945,7 @@ class User {
 			this.confirmed = this.userid;
 			this.autoconfirmed = this.userid;
 		} else {
-			this.group = Config.groupsranking[0];
+			this.group = Config.groupsRanking[0];
 			for (let i = 0; i < Rooms.global.chatRooms.length; i++) {
 				let room = Rooms.global.chatRooms[i];
 				if (!room.isPrivate && !room.isPersonal && room.auth && this.userid in room.auth && Users.can(room.auth[this.userid], 'receiveauthmessages', null, room)) {
@@ -965,8 +956,8 @@ class User {
 			}
 		}
 
-		if (Config.customavatars && Config.customavatars[this.userid]) {
-			this.avatar = Config.customavatars[this.userid];
+		if (Config.customAvatars && Config.customAvatars[this.userid]) {
+			this.avatar = Config.customAvatars[this.userid];
 		}
 
 		this.isStaff = Users.can(this.group, 'receiveauthmessages');
@@ -1001,7 +992,7 @@ class User {
 		}
 		Rooms.global.checkAutojoin(this);
 		if (this.registered) {
-			if (forceConfirmed || this.group !== Config.groupsranking[0]) {
+			if (forceConfirmed || this.group !== Config.groupsRanking[0]) {
 				usergroups[this.userid] = this.group + this.name;
 				this.confirmed = this.userid;
 				this.autoconfirmed = this.userid;
@@ -1039,7 +1030,7 @@ class User {
 		this.lastConnected = Date.now();
 		if (!this.registered) {
 			// for "safety"
-			this.group = Config.groupsranking[0];
+			this.group = Config.groupsRanking[0];
 			this.isSysop = false; // should never happen
 			this.isStaff = false;
 			// This isn't strictly necessary since we don't reuse User objects
@@ -1163,7 +1154,7 @@ class User {
 				userGroup = room.auth[this.userid] || userGroup;
 			}
 			let modjoinGroup = room.modjoin !== true ? room.modjoin : room.modchat;
-			if (Config.groupsranking.indexOf(userGroup) < Config.groupsranking.indexOf(modjoinGroup)) {
+			if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(modjoinGroup)) {
 				if (!this.named) {
 					return null;
 				} else if (!this.can('bypassall')) {
@@ -1521,7 +1512,7 @@ Users.pruneInactive = User.pruneInactive;
 Users.pruneInactiveTimer = setInterval(
 	User.pruneInactive,
 	1000 * 60 * 30,
-	Config.inactiveuserthreshold || 1000 * 60 * 60
+	Config.inactiveUserThreshold || 1000 * 60 * 60
 );
 
 /*********************************************************
@@ -1562,7 +1553,7 @@ Users.socketConnect = function (worker, workerid, socketid, ip) {
 		} else if (connection.user) {	// if user is still connected
 			connection.challenge = buffer.toString('hex');
 			// console.log('JOIN: ' + connection.user.name + ' [' + connection.challenge.substr(0, 15) + '] [' + socket.id + ']');
-			let keyid = Config.loginserver.publicKeyId || 0;
+			let keyid = Config.loginServer.publicKeyId || 0;
 			connection.sendTo(null, '|challstr|' + keyid + '|' + connection.challenge);
 		}
 	});

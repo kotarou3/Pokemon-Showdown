@@ -862,7 +862,7 @@ function getValidator(format) {
 const ProcessManager = require('./process-manager');
 
 PM = TeamValidator.PM = new ProcessManager({
-	maxProcesses: global.Config && Config.validatorprocesses,
+	maxProcesses: global.Config && Config.validatorProcesses,
 	execFile: 'team-validator.js',
 	onMessageUpstream: function (message) {
 		// Protocol:
@@ -919,7 +919,7 @@ if (process.send && module === process.mainModule) {
 
 	global.Config = require('./config/config.js');
 
-	if (Config.crashguard) {
+	if (Config.crashGuard) {
 		process.on('uncaughtException', err => {
 			require('./crashlogger.js')(err, 'A team validator process', true);
 		});

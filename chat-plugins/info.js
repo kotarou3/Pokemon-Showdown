@@ -910,7 +910,7 @@ exports.commands = {
 	groups: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
-			Config.groupsranking
+			Config.groupsRanking
 				.map(group => Config.groups[group])
 				.filter(group => group.name && group.description)
 				.map(group => Tools.escapeHTML(group.symbol) + " <strong>" + Tools.escapeHTML(group.name) + "</strong> - " + Tools.escapeHTML(group.description))

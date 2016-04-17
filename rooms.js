@@ -28,7 +28,7 @@ let Room = (() => {
 	function Room(roomid, title) {
 		this.id = roomid;
 		this.title = (title || roomid);
-		this.reportJoins = Config.reportjoins;
+		this.reportJoins = Config.reportJoins;
 
 		this.users = Object.create(null);
 
@@ -341,7 +341,7 @@ let GlobalRoom = (() => {
 				continue;
 			}
 			let id = toId(this.chatRoomData[i].title);
-			if (!Config.quietconsole) console.log("NEW CHATROOM: " + id);
+			if (!Config.quietConsole) console.log("NEW CHATROOM: " + id);
 			let room = Rooms.createChatRoom(id, this.chatRoomData[i].title, this.chatRoomData[i]);
 			if (room.aliases) {
 				for (let a = 0; a < room.aliases.length; a++) {
@@ -821,14 +821,14 @@ let GlobalRoom = (() => {
 		newRoom.battle.addPlayer(p2, p2team);
 		this.cancelSearch(p1);
 		this.cancelSearch(p2);
-		if (Config.reportbattles) {
-			let reportRoom = Rooms(Config.reportbattles === true ? 'lobby' : Config.reportbattles);
+		if (Config.reportBattles) {
+			let reportRoom = Rooms(Config.reportBattles === true ? 'lobby' : Config.reportBattles);
 			if (reportRoom) {
 				reportRoom.add('|b|' + newRoom.id + '|' + p1.getIdentity() + '|' + p2.getIdentity());
 				reportRoom.update();
 			}
 		}
-		if (Config.logladderip && options.rated) {
+		if (Config.logLadderIp && options.rated) {
 			if (!this.ladderIpLog) {
 				this.ladderIpLog = fs.createWriteStream('logs/ladderip/ladderip.txt', {flags: 'a'});
 			}
@@ -851,7 +851,7 @@ let BattleRoom = (() => {
 	function BattleRoom(roomid, format, p1, p2, options) {
 		Room.call(this, roomid, "" + p1.name + " vs. " + p2.name);
 		this.modchat = (Config.modchat.battle || false);
-		this.reportJoins = Config.reportbattlejoins;
+		this.reportJoins = Config.reportBattleJoins;
 
 		format = '' + (format || '');
 
@@ -891,7 +891,7 @@ let BattleRoom = (() => {
 		this.sideTurnTicks = [0, 0];
 		this.disconnectTickDiff = [0, 0];
 
-		if (Config.forcetimer) this.requestKickInactive(false);
+		if (Config.forceTimer) this.requestKickInactive(false);
 	}
 	BattleRoom.prototype = Object.create(Room.prototype);
 	BattleRoom.prototype.type = 'battle';
@@ -929,7 +929,7 @@ let BattleRoom = (() => {
 			let p1name = p1.name;
 			let p2name = p2.name;
 
-			//update.updates.push('[DEBUG] uri: ' + Config.loginserver + 'action.php?act=ladderupdate&serverid=' + Config.serverid + '&p1=' + encodeURIComponent(p1) + '&p2=' + encodeURIComponent(p2) + '&score=' + p1score + '&format=' + toId(rated.format) + '&servertoken=[token]');
+			//update.updates.push('[DEBUG] uri: ' + Config.loginServer + 'action.php?act=ladderupdate&serverid=' + Config.serverId + '&p1=' + encodeURIComponent(p1) + '&p2=' + encodeURIComponent(p2) + '&score=' + p1score + '&format=' + toId(rated.format) + '&servertoken=[token]');
 
 			winner = Users.get(winnerid);
 			if (winner && !winner.registered) {
@@ -937,7 +937,7 @@ let BattleRoom = (() => {
 			}
 			// update rankings
 			Ladders(this.battle.format).updateRating(p1name, p2name, p1score, this);
-		} else if (Config.logchallenges) {
+		} else if (Config.logChallenges) {
 			// Log challenges if the challenge logging config is enabled.
 			if (winnerid === this.p1.userid) {
 				p1score = 1;
@@ -947,7 +947,7 @@ let BattleRoom = (() => {
 			this.update();
 			this.logBattle(p1score);
 		}
-		if (Config.autosavereplays) {
+		if (Config.autoSaveReplays) {
 			let uploader = Users.get(winnerid);
 			if (uploader && uploader.connections[0]) {
 				CommandParser.parse('/savereplay', this, uploader, uploader.connections[0]);
@@ -1331,7 +1331,7 @@ let ChatRoom = (() => {
 		this.destroyingLog = false;
 		if (!this.modchat) this.modchat = (Config.modchat.chat || false);
 
-		if (Config.logchat) {
+		if (Config.logChat) {
 			this.rollLogFile(true);
 			this.logEntry = function (entry, date) {
 				const timestamp = Tools.toTimeStamp(new Date()).split(' ')[1] + ' ';
@@ -1339,12 +1339,12 @@ let ChatRoom = (() => {
 				this.logFile.write(timestamp + entry + '\n');
 			};
 			this.logEntry('NEW CHATROOM: ' + this.id);
-			if (Config.loguserstats) {
-				this.logUserStatsInterval = setInterval(() => this.logUserStats(), Config.loguserstats);
+			if (Config.logUserStats) {
+				this.logUserStatsInterval = setInterval(() => this.logUserStats(), Config.logUserStats);
 			}
 		}
 
-		if (Config.reportjoinsperiod) {
+		if (Config.reportJoinsPeriod) {
 			this.userList = this.getUserList();
 			this.reportJoinsQueue = [];
 		}
@@ -1417,7 +1417,7 @@ let ChatRoom = (() => {
 		let total = 0;
 		let guests = 0;
 		let groups = {};
-		for (let group of Config.groupsranking) {
+		for (let group of Config.groupsRanking) {
 			groups[group] = 0;
 		}
 		for (let i in this.users) {
@@ -1461,7 +1461,7 @@ let ChatRoom = (() => {
 		if (this.reportJoinsQueue) {
 			if (!this.reportJoinsInterval) {
 				this.reportJoinsInterval = setTimeout(
-					() => this.reportRecentJoins(), Config.reportjoinsperiod
+					() => this.reportRecentJoins(), Config.reportJoinsPeriod
 				);
 			}
 
@@ -1644,7 +1644,7 @@ Rooms.createChatRoom = function (roomid, title, data) {
 	return room;
 };
 
-if (!Config.quietconsole) console.log("NEW GLOBAL: global");
+if (!Config.quietConsole) console.log("NEW GLOBAL: global");
 rooms.global = new GlobalRoom('global');
 
 Rooms.Room = Room;

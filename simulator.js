@@ -16,7 +16,7 @@
 const ProcessManager = require('./process-manager');
 
 const SimulatorProcess = new ProcessManager({
-	maxProcesses: Config.simulatorprocesses,
+	maxProcesses: Config.simulatorProcesses,
 	execFile: 'battle-engine.js',
 	onMessageUpstream: function (message) {
 		let lines = message.split('\n');

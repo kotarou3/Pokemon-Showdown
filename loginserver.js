@@ -40,7 +40,7 @@ function parseJSON(json) {
 
 class LoginServerInstance {
 	constructor() {
-		this.uri = Config.loginserver.uri;
+		this.uri = Config.loginServer.uri;
 		this.requestQueue = [];
 
 		this.requestTimer = null;
@@ -66,7 +66,7 @@ class LoginServerInstance {
 				dataString += '&' + i + '=' + encodeURIComponent('' + data[i]);
 			}
 		}
-		let req = http.get(url.parse(this.uri + 'action.php?act=' + action + '&serverid=' + Config.serverid + '&servertoken=' + encodeURIComponent(Config.servertoken) + '&nocache=' + new Date().getTime() + dataString), res => {
+		let req = http.get(url.parse(this.uri + 'action.php?act=' + action + '&serverid=' + Config.serverId + '&servertoken=' + encodeURIComponent(Config.serverToken) + '&nocache=' + new Date().getTime() + dataString), res => {
 			let buffer = '';
 			res.setEncoding('utf8');
 
@@ -133,7 +133,7 @@ class LoginServerInstance {
 		}
 
 		this.requestStart(requests.length);
-		let postData = 'serverid=' + Config.serverid + '&servertoken=' + encodeURIComponent(Config.servertoken) + '&nocache=' + new Date().getTime() + '&json=' + encodeURIComponent(JSON.stringify(requests)) + '\n';
+		let postData = 'serverid=' + Config.serverId + '&servertoken=' + encodeURIComponent(Config.serverToken) + '&nocache=' + new Date().getTime() + '&json=' + encodeURIComponent(JSON.stringify(requests)) + '\n';
 		let requestOptions = url.parse(this.uri + 'action.php');
 		requestOptions.method = 'post';
 		requestOptions.headers = {
@@ -231,7 +231,7 @@ let LoginServer = module.exports = new LoginServerInstance();
 
 LoginServer.TimeoutError = TimeoutError;
 
-if (Config.remoteladder) LoginServer.ladderupdateServer = new LoginServerInstance();
+if (Config.remoteLadder) LoginServer.ladderupdateServer = new LoginServerInstance();
 LoginServer.prepreplayServer = new LoginServerInstance();
 
 require('fs').watchFile('./config/custom.css', (curr, prev) => {

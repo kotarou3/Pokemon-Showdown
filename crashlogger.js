@@ -36,18 +36,18 @@ exports = module.exports = function (err, description, data) {
 		console.error("\nSUBCRASH: " + err.stack + "\n");
 	});
 
-	if (Config.crashguardemail && ((datenow - lastCrashLog) > CRASH_EMAIL_THROTTLE)) {
+	if (Config.crashGuardEmail && ((datenow - lastCrashLog) > CRASH_EMAIL_THROTTLE)) {
 		lastCrashLog = datenow;
 		try {
-			if (!transport) transport = require('nodemailer').createTransport(Config.crashguardemail.options);
+			if (!transport) transport = require('nodemailer').createTransport(Config.crashGuardEmail.options);
 		} catch (e) {
 			console.error("Could not start nodemailer - try `npm install` if you want to use it");
 		}
 		if (transport) {
 			transport.sendMail({
-				from: Config.crashguardemail.from,
-				to: Config.crashguardemail.to,
-				subject: Config.crashguardemail.subject,
+				from: Config.crashGuardEmail.from,
+				to: Config.crashGuardEmail.to,
+				subject: Config.crashGuardEmail.subject,
 				text: description + " crashed " + (exports.hadException ? "again " : "") + "with this stack trace:\n" + stack,
 			}, err => {
 				if (err) console.error("Error sending email: " + err);

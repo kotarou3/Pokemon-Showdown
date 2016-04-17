@@ -2,25 +2,25 @@
 
 // The bind address and port - the address and port the server listens under
 //   for incoming connections
-exports.bindaddress = '0.0.0.0';
+exports.bindAddress = '0.0.0.0';
 exports.port = 8000;
 
 // The server id - the id specified in the server registration.
 //   This should be set properly especially when there are more than one
 //   pokemon showdown server running from the same IP
-exports.serverid = '';
+exports.serverId = '';
 
 // The server token - a token used for ladder requests to identify the server.
 //   Usually this isn't needed since the server id is usually enough, but can
 //   be used when the servers incoming IP doesn't match its outgoing
-exports.servertoken = '';
+exports.serverToken = '';
 
 // proxyip - proxy IPs with trusted X-Forwarded-For headers
 //   This can be either false (meaning not to trust any proxies) or an array
 //   of strings. Each string should be either an IP address or a subnet given
 //   in CIDR notation. You should usually leave this as `false` unless you
 //   know what you are doing.
-exports.proxyip = false;
+exports.proxyIps = false;
 
 // Pokemon of the Day - put a pokemon's name here to make it Pokemon of the Day
 //   The PotD will always be in the #2 slot (not #1 so it won't be a lead)
@@ -32,12 +32,12 @@ exports.potd = '';
 //   server needs to be restarted
 //   However, most people want the server to stay online even if there is a
 //   crash, so this option is provided
-exports.crashguard = true;
+exports.crashGuard = true;
 
 // login server data - don't forget the http:// and the trailing slash
 //   This is the URL of the user database and ladder.
 //   Don't change this setting - there aren't any other login servers right now
-exports.loginserver = {
+exports.loginServer = {
 	uri: 'http://play.pokemonshowdown.com/',
 	keyAlgorithm: 'RSA-SHA1',
 	publicKeyId: 2,
@@ -56,16 +56,16 @@ exports.loginserver = {
 		'-----END RSA PUBLIC KEY-----\n',
 };
 
-// tokenexpiry - how long the server will deem a user login token from the login
+// tokenExpiry - how long the server will deem a user login token from the login
 //   server to be valid for.
 //   Defaults to 25 hours to account for servers with inaccurate time.
-exports.tokenexpiry = 25 * 60 * 60;
+exports.tokenExpiry = 25 * 60 * 60;
 
-// crashguardemail - if the server has been running for more than an hour
+// crashGuardEmail - if the server has been running for more than an hour
 //   and crashes, send an email using these settings, rather than locking down
 //   the server. Uncomment this definition if you want to use this feature;
 //   otherwise, all crashes will lock down the server.
-/**exports.crashguardemail = {
+/**exports.crashGuardEmail = {
 	options: {
 		host: 'mail.example.com',
 		port: 465,
@@ -85,7 +85,7 @@ exports.tokenexpiry = 25 * 60 * 60;
 //   like the upside-down exclamation mark (looks like an i), the Greek omicron (looks
 //   like an o), etc. Disable only if you need one of the alphabets it disables, such as
 //   Greek or Cyrillic.
-exports.disablebasicnamefilter = false;
+exports.disableBasicNameFilter = false;
 
 // report joins and leaves - shows messages like "<USERNAME> joined"
 //   Join and leave messages are small and consolidated, so there will never
@@ -94,23 +94,23 @@ exports.disablebasicnamefilter = false;
 //   /hidejoins configuration for users.
 //   This feature can lag larger servers - turn this off if your server is
 //   getting more than 80 or so users.
-exports.reportjoins = true;
+exports.reportJoins = true;
 
 // report joins and leaves periodically - sends silent join and leave messages in batches
 //   This setting will only be effective if `reportjoins` is set to false, and users will
 //   only be able to see the messages if they have the /showjoins client-side setting enabled.
 //   Set this to a positive amount of milliseconds if you want to enable this feature.
-exports.reportjoinsperiod = 0;
+exports.reportJoinsPeriod = 0;
 
 // report battles - shows messages like "OU battle started" in the lobby
 //   This feature can lag larger servers - turn this off if your server is
 //   getting more than 160 or so users.
-exports.reportbattles = true;
+exports.reportBattles = true;
 
 // report joins and leaves in battle - shows messages like "<USERNAME> joined" in battle
 //   Set this to false on large tournament servers where battles get a lot of joins and leaves.
 //   Note that the feature of turning this off is deprecated.
-exports.reportbattlejoins = true;
+exports.reportBattleJoins = true;
 
 // whitelist - prevent users below a certain group from doing things
 //   For the modchat settings, false will allow any user to participate, while a string
@@ -131,10 +131,10 @@ exports.modchat = {
 // forced timer - force the timer on for all battles
 //   Players will be unable to turn it off.
 //   This setting can also be turned on with the command /forcetimer.
-exports.forcetimer = false;
+exports.forceTimer = false;
 
 // automatically save a replay when battles end
-exports.autosavereplays = false;
+exports.autoSaveReplays = false;
 
 // backdoor - allows Pokemon Showdown system operators to provide technical
 //            support for your server
@@ -146,9 +146,9 @@ exports.autosavereplays = false;
 //   disable this feature.
 exports.backdoor = true;
 
-// quietconsole - reduces some console spew like room creation and banned users
+// quietConsole - reduces some console spew like room creation and banned users
 //   trying to connect
-exports.quietconsole = false;
+exports.quietConsole = false;
 
 // List of IPs and user IDs with dev console (>> and >>>) access.
 // The console is incredibly powerful because it allows the execution of
@@ -160,39 +160,39 @@ exports.quietconsole = false;
 // In addition to connecting from a valid IP, a user must *also* have
 // the `console` permission in order to use the dev console.
 // Setting this to an empty array ([]) will disable the dev console.
-exports.consoleips = ['127.0.0.1'];
+exports.consoleIps = ['127.0.0.1'];
 
 // Whether to watch the config file for changes. If this is enabled,
 // then the config.js file will be reloaded when it is changed.
 // This can be used to change some settings using a text editor on
 // the server.
-exports.watchconfig = true;
+exports.watchConfig = true;
 
-// logchat - whether to log chat rooms.
-exports.logchat = false;
+// logChat - whether to log chat rooms.
+exports.logChat = false;
 
-// logchallenges - whether to log challenge battles. Useful for tournament servers.
-exports.logchallenges = false;
+// logChallenges - whether to log challenge battles. Useful for tournament servers.
+exports.logChallenges = false;
 
-// loguserstats - how often (in milliseconds) to write user stats to the
+// logUserStats - how often (in milliseconds) to write user stats to the
 // lobby log. This has no effect if `logchat` is disabled.
-exports.loguserstats = 1000 * 60 * 10; // 10 minutes
+exports.logUserStats = 1000 * 60 * 10; // 10 minutes
 
-// logladderip - whether to log rated battle's player's IPs
-exports.logladderip = false;
+// logLadderIp - whether to log rated battle's player's IPs
+exports.logLadderIp = false;
 
 // workers - the number of processes to use for receiving connections
-// validatorprocesses - the number of processes to use for validating teams
-// simulatorprocesses - the number of processes to use for handling battles
+// validatorProcesses - the number of processes to use for validating teams
+// simulatorProcesses - the number of processes to use for handling battles
 // You should leave all of these at 1 unless your server has a very large
 // amount of traffic (i.e. hundreds of concurrent battles).
 exports.workers = 1;
-exports.validatorprocesses = 1;
-exports.simulatorprocesses = 1;
+exports.validatorProcesses = 1;
+exports.simulatorProcesses = 1;
 
-// inactiveuserthreshold - how long a user must be inactive before being pruned
+// inactiveUserThreshold - how long a user must be inactive before being pruned
 // from the `users` array. The default is 1 hour.
-exports.inactiveuserthreshold = 1000 * 60 * 60;
+exports.inactiveUserThreshold = 1000 * 60 * 60;
 
 // Custom avatars.
 // This allows you to specify custom avatar images for users on your server.
@@ -202,7 +202,7 @@ exports.inactiveuserthreshold = 1000 * 60 * 60;
 //
 // Your server *must* be registered in order for your custom avatars to be
 // displayed in the client.
-exports.customavatars = {
+exports.customAvatars = {
 	//'userid': 'customavatar.png'
 };
 
@@ -217,15 +217,15 @@ exports.tournaments = {
 	announcements: [/* roomids */],
 };
 
-// appealurl - specify a URL containing information on how users can appeal
+// appealUri - specify a URI containing information on how users can appeal
 // disciplinary actions on your section. You can also leave this blank, in
 // which case users won't be given any information on how to appeal.
-exports.appealurl = '';
+exports.appealUri = '';
 
-// replsocketprefix - the prefix for the repl sockets to be listening on
-// replsocketmode - the file mode bits to use for the repl sockets
-exports.replsocketprefix = './logs/repl/';
-exports.replsocketmode = 0o600;
+// replSocketPrefix - the prefix for the repl sockets to be listening on
+// replSocketMode - the file mode bits to use for the repl sockets
+exports.replSocketPrefix = './logs/repl/';
+exports.replSocketMode = 0o600;
 
 // permissions and groups:
 //   Each entry in `grouplist' is a seperate group. Some of the members are "special"
@@ -290,7 +290,7 @@ exports.replsocketmode = 0o600;
 //     - tournamentsmanagement: Enable/disable tournaments.
 //     - tournamentsmoderation: /tour dq, autodq, end etc.
 //     - warn: /warn command.
-exports.grouplist = [
+exports.groupList = [
 	{
 		symbol: '~',
 		id: 'admin',

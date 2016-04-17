@@ -84,7 +84,7 @@ try {
 	global.Config = require('./config/config.js');
 }
 
-if (Config.watchconfig) {
+if (Config.watchConfig) {
 	fs.watchFile(path.resolve(__dirname, 'config/config.js'), (curr, prev) => {
 		if (curr.mtime <= prev.mtime) return;
 		try {
@@ -109,7 +109,7 @@ global.toId = Tools.getId;
 
 global.LoginServer = require('./loginserver.js');
 
-global.Ladders = require(Config.remoteladder ? './ladders-remote.js' : './ladders.js');
+global.Ladders = require(Config.remoteLadder ? './ladders-remote.js' : './ladders.js');
 
 global.Users = require('./users.js');
 
@@ -135,7 +135,7 @@ try {
 	global.Dnsbl = {query: () => {}, reverse: require('dns').reverse};
 }
 
-if (Config.crashguard) {
+if (Config.crashGuard) {
 	// graceful crash - allow current battles to finish before restarting
 	process.on('uncaughtException', err => {
 		let crashMessage = require('./crashlogger.js')(err, 'The main process');

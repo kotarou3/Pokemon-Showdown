@@ -329,7 +329,7 @@ class CommandContext {
 						this.errorReply("Because moderated chat is set, your account must be at least one week old and you must have won at least one ladder game to speak in this room.");
 						return false;
 					}
-				} else if (Config.groupsranking.indexOf(userGroup) < Config.groupsranking.indexOf(room.modchat)) {
+				} else if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(room.modchat)) {
 					let groupName = Config.groups[room.modchat].name || room.modchat;
 					this.errorReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to speak in this room.");
 					return false;
@@ -376,8 +376,8 @@ class CommandContext {
 				user.lastMessageTime = Date.now();
 			}
 
-			if (Config.chatfilter) {
-				return Config.chatfilter.call(this, message, user, room, connection, targetUser);
+			if (Config.chatFilter) {
+				return Config.chatFilter.call(this, message, user, room, connection, targetUser);
 			}
 			return message;
 		}

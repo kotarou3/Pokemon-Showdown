@@ -14,7 +14,7 @@
 
 global.Config = require('./config/config.js');
 
-if (Config.crashguard) {
+if (Config.crashGuard) {
 	// graceful crash - allow current battles to finish before restarting
 	process.on('uncaughtException', err => {
 		require('./crashlogger.js')(err, 'A simulator process');
@@ -5103,7 +5103,7 @@ Battle = (() => {
 
 		if (this.log.length > logPos) {
 			if (alreadyEnded !== undefined && this.ended && !alreadyEnded) {
-				if (this.rated || Config.logchallenges) {
+				if (this.rated || Config.logChallenges) {
 					let log = {
 						seed: this.startingSeed,
 						turns: this.turn,
