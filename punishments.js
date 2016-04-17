@@ -449,7 +449,7 @@ Punishments.checkName = function (user, registered) {
 		user.resetName();
 		user.updateIdentity();
 	}
-	// if (user.group === Config.groupsRanking[0]) {
+	// if (user.group === Config.groups.default.global) {
 	// 	let range = user.locked || Punishments.shortenHost(user.latestHost);
 	// 	if (Punishments.lockedRanges[range]) {
 	// 		user.send("|popup|You are in a range that has been temporarily locked from talking in chats and PMing regular users.");
@@ -476,7 +476,7 @@ Punishments.checkIp = function (user, connection) {
 		if (hosts && hosts[0]) {
 			user.latestHost = hosts[0];
 			if (Config.hostFilter) Config.hostFilter(hosts[0], user, connection);
-			if (user.named && !user.locked && user.group === Config.groupsRanking[0]) {
+			if (user.named && !user.locked && user.group === Config.groups.default.global) {
 				let shortHost = Punishments.shortenHost(hosts[0]);
 				let punishment = Punishments.hosts.get(shortHost);
 				if (punishment) {

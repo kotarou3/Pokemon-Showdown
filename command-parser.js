@@ -329,8 +329,8 @@ class CommandContext {
 						this.errorReply("Because moderated chat is set, your account must be at least one week old and you must have won at least one ladder game to speak in this room.");
 						return false;
 					}
-				} else if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(room.modchat)) {
-					let groupName = Config.groups[room.modchat].name || room.modchat;
+				} else if (Config.groups.bySymbol[userGroup].rank < Config.groups.bySymbol[room.modchat].rank) {
+					let groupName = Config.groups.bySymbol[room.modchat].name || room.modchat;
 					this.errorReply("Because moderated chat is set, you must be of rank " + groupName + " or higher to speak in this room.");
 					return false;
 				}
@@ -630,8 +630,8 @@ let parse = exports.parse = function (message, room, user, connection, levelsDee
 			prefix = 'room';
 			promoteCmd = promoteCmd.slice(4);
 		}
-		for (let g in Config.groups) {
-			let groupId = Config.groups[g].id;
+		for (let g in Config.groups.bySymbol) {
+			let groupId = Config.groups.bySymbol[g].id;
 			let isDemote = promoteCmd === 'de' + groupId || promoteCmd === 'un' + groupId;
 			if (promoteCmd === groupId || isDemote) {
 				return parse('/' + prefix + (isDemote ? 'demote' : 'promote') + ' ' + toId(target) + (isDemote ? '' : ',' + g), room, user, connection, levelsDeep + 1);

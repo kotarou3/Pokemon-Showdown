@@ -102,7 +102,7 @@ function importUsergroups() {
 		for (let i = 0; i < data.length; i++) {
 			if (!data[i]) continue;
 			let row = data[i].split(",");
-			usergroups[toId(row[0])] = (row[1] || Config.groupsRanking[0]) + row[0];
+			usergroups[toId(row[0])] = (row[1] || Config.groups.default.global) + row[0];
 		}
 	});
 }
@@ -116,10 +116,7 @@ function exportUsergroups() {
 importUsergroups();
 
 function cacheGroupData() {
-	Config.groups = Object.create(null);
-	Config.groupsRanking = [];
-
-	let groups = Config.groups;
+	let groups = Config.groups.bySymbol;
 	let cachedGroups = {};
 
 	function cacheGroup(sym, groupData) {
@@ -141,20 +138,13 @@ function cacheGroupData() {
 		return (cachedGroups[sym] = true);
 	}
 
-	if (Config.groupList) { // Using new groups format.
-		let groupList = Config.groupList;
-		let numGroups = groupList.length;
-		for (let i = 0; i < numGroups; i++) {
-			let groupData = groupList[i];
-			groupData.rank = numGroups - i - 1;
-			groups[groupData.symbol] = groupData;
-			Config.groupsRanking.unshift(groupData.symbol);
-		}
-	}
-
 	for (let sym in groups) {
-		let groupData = groups[sym];
-		cacheGroup(sym, groupData);
+		cacheGroup(sym, groups[sym]);
+	}
+	for (let sym in groups) {
+		if (Config.groups.globalByRank[groups[sym].globalRank] !== sym) delete groups[sym].globalRank;
+		if (Config.groups.chatRoomByRank[groups[sym].chatRoomRank] !== sym) delete groups[sym].chatRoomRank;
+		if (Config.groups.battleRoomByRank[groups[sym].battleRoomRank] !== sym) delete groups[sym].battleRoomRank;
 	}
 }
 cacheGroupData();
@@ -163,7 +153,7 @@ Users.can = function (group, permission, targetGroup, room, isSelf) {
 	// `room` is intentionally unused, but kept to be consistent with other
 	// permissions functions
 
-	let groupData = Config.groups[group];
+	let groupData = Config.groups.bySymbol[group];
 	if (!groupData) return false;
 
 	if (groupData['root']) {
@@ -187,7 +177,7 @@ Users.can = function (group, permission, targetGroup, room, isSelf) {
 		if (jurisdiction.includes('s') && isSelf) {
 			return true;
 		}
-		if (jurisdiction.includes('u') && groupData.rank > Config.groups[targetGroup].rank) {
+		if (jurisdiction.includes('u') && groupData.rank > Config.groups.bySymbol[targetGroup].rank) {
 			return true;
 		}
 	}
@@ -210,17 +200,9 @@ Users.getGroupsThatCan = function (permission, target, room, isSelf) {
 	}
 	target = null;
 
-	let groupsByRank = Config.groupsRanking;
+	let groupsByRank = Config.groups.globalByRank;
 	if (room && room.auth) {
-		if (room.type === 'chat') {
-			groupsByRank = groupsByRank.filter(symbol => !Config.groups[symbol].globalonly && !Config.groups[symbol].battleonly);
-		} else {
-			// XXX: Hardcoded because it's very hard to extract this from the
-			// config with the current config structure
-			groupsByRank = [' ', '+', '\u2605'];
-		}
-	} else {
-		groupsByRank = groupsByRank.filter(symbol => !Config.groups[symbol].roomonly && !Config.groups[symbol].battleonly);
+		groupsByRank = Config.groups[room.type + 'RoomByRank'];
 	}
 
 	return groupsByRank.filter(group => Users.can(group, permission, targetGroup, room, isSelf));
@@ -234,7 +216,7 @@ Users.setOfflineGroup = function (name, group, forceConfirmed) {
 		user.setGroup(group, forceConfirmed);
 		return true;
 	}
-	if (group === Config.groupsRanking[0] && !forceConfirmed) {
+	if (group === Config.groups.default.global && !forceConfirmed) {
 		delete usergroups[userid];
 	} else {
 		let usergroup = usergroups[userid];
@@ -329,7 +311,7 @@ class User {
 		this.named = !!this.namelocked;
 		this.registered = false;
 		this.userid = toId(this.name);
-		this.group = Config.groupsRanking[0];
+		this.group = Config.groups.default.global;
 
 		let trainersprites = [1, 2, 101, 102, 169, 170, 265, 266];
 		this.avatar = trainersprites[Math.floor(Math.random() * trainersprites.length)];
@@ -431,7 +413,7 @@ class User {
 
 		// Admins bypass room restrictions
 		let group = this.group;
-		let groupData = Config.groups[group];
+		let groupData = Config.groups.bySymbol[group];
 		if (groupData && groupData['root']) {
 			return true;
 		}
@@ -538,7 +520,7 @@ class User {
 		this.userid = userid;
 		users.set(this.userid, this);
 		this.registered = false;
-		this.group = Config.groupsRanking[0];
+		this.group = Config.groups.default.global;
 		this.isStaff = false;
 		this.isSysop = false;
 
@@ -935,7 +917,7 @@ class User {
 	updateGroup(registered) {
 		if (!registered) {
 			this.registered = false;
-			this.group = Config.groupsRanking[0];
+			this.group = Config.groups.default.global;
 			this.isStaff = false;
 			return;
 		}
@@ -945,7 +927,7 @@ class User {
 			this.confirmed = this.userid;
 			this.autoconfirmed = this.userid;
 		} else {
-			this.group = Config.groupsRanking[0];
+			this.group = Config.groups.default.global;
 			for (let i = 0; i < Rooms.global.chatRooms.length; i++) {
 				let room = Rooms.global.chatRooms[i];
 				if (!room.isPrivate && !room.isPersonal && room.auth && this.userid in room.auth && Users.can(room.auth[this.userid], 'receiveauthmessages', null, room)) {
@@ -992,7 +974,7 @@ class User {
 		}
 		Rooms.global.checkAutojoin(this);
 		if (this.registered) {
-			if (forceConfirmed || this.group !== Config.groupsRanking[0]) {
+			if (forceConfirmed || this.group !== Config.groups.default.global) {
 				usergroups[this.userid] = this.group + this.name;
 				this.confirmed = this.userid;
 				this.autoconfirmed = this.userid;
@@ -1030,7 +1012,7 @@ class User {
 		this.lastConnected = Date.now();
 		if (!this.registered) {
 			// for "safety"
-			this.group = Config.groupsRanking[0];
+			this.group = Config.groups.default.global;
 			this.isSysop = false; // should never happen
 			this.isStaff = false;
 			// This isn't strictly necessary since we don't reuse User objects
@@ -1154,7 +1136,7 @@ class User {
 				userGroup = room.auth[this.userid] || userGroup;
 			}
 			let modjoinGroup = room.modjoin !== true ? room.modjoin : room.modchat;
-			if (Config.groupsRanking.indexOf(userGroup) < Config.groupsRanking.indexOf(modjoinGroup)) {
+			if (Config.groups.bySymbol[userGroup].rank < Config.groups.bySymbol[modjoinGroup].rank) {
 				if (!this.named) {
 					return null;
 				} else if (!this.can('bypassall')) {

@@ -35,11 +35,11 @@ exports.commands = {
 		let buf = '<strong class="username"><small style="display:none">' + targetUser.group + '</small>' + Tools.escapeHTML(targetUser.name) + '</strong> ' + (!targetUser.connected ? ' <em style="color:gray">(offline)</em>' : '');
 		let roomauth = '';
 		if (room.auth && targetUser.userid in room.auth) roomauth = room.auth[targetUser.userid];
-		if (Config.groups[roomauth] && Config.groups[roomauth].name) {
-			buf += "<br />" + Config.groups[roomauth].name + " (" + roomauth + ")";
+		if (Config.groups.bySymbol[roomauth] && Config.groups.bySymbol[roomauth].name) {
+			buf += "<br />" + Config.groups.bySymbol[roomauth].name + " (" + roomauth + ")";
 		}
-		if (Config.groups[targetUser.group] && Config.groups[targetUser.group].name) {
-			buf += "<br />Global " + Config.groups[targetUser.group].name + " (" + targetUser.group + ")";
+		if (Config.groups.bySymbol[targetUser.group] && Config.groups.bySymbol[targetUser.group].name) {
+			buf += "<br />Global " + Config.groups.bySymbol[targetUser.group].name + " (" + targetUser.group + ")";
 		}
 		if (targetUser.isSysop) {
 			buf += "<br />(Pok&eacute;mon Showdown System Operator)";
@@ -910,8 +910,8 @@ exports.commands = {
 	groups: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
-			Config.groupsRanking
-				.map(group => Config.groups[group])
+			Config.groups.byRank
+				.map(group => Config.groups.bySymbol[group])
 				.filter(group => group.name && group.description)
 				.map(group => Tools.escapeHTML(group.symbol) + " <strong>" + Tools.escapeHTML(group.name) + "</strong> - " + Tools.escapeHTML(group.description))
 				.join("<br />")

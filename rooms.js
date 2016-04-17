@@ -1417,7 +1417,7 @@ let ChatRoom = (() => {
 		let total = 0;
 		let guests = 0;
 		let groups = {};
-		for (let group of Config.groupsRanking) {
+		for (let group of Config.groups.byRank) {
 			groups[group] = 0;
 		}
 		for (let i in this.users) {

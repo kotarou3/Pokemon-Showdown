@@ -227,10 +227,20 @@ exports.appealUri = '';
 exports.replSocketPrefix = './logs/repl/';
 exports.replSocketMode = 0o600;
 
-// permissions and groups:
-//   Each entry in `grouplist' is a seperate group. Some of the members are "special"
-//     while the rest is just a normal permission.
-//   The order of the groups determines their ranking.
+// Groups and Permissions
+//   groups - {
+//       global - All the possible global groups.
+//       chatRoom - All the possible chat room groups.
+//       battleRoom - All the possible battle room groups.
+//       default - {
+//           global - The default global group.
+//           chatRoom - The default chat room group.
+//           battleRoom - The default battle room group.
+//       }
+//       list - All the possible groups arranged in descending order of rank.
+//   }
+//   Each entry in `groups.list` is a separate group. Some of the members are "special"
+//     while the rest are just normal permissions.
 //   The special members are as follows:
 //     - symbol: Specifies the symbol of the group (as shown in front of the username)
 //     - id: Specifies an id for the group.
@@ -246,8 +256,6 @@ exports.replSocketMode = 0o600;
 //                       's' is a special group where it means the user itself only
 //                       and 'u' is another special group where it means all groups
 //                       lower in rank than the current group.
-//     - roomonly: forces the group to be a per-room moderation rank only.
-//     - globalonly: forces the group to be a global rank only.
 //   All the possible permissions are as follows:
 //     - alts: Ability to check alts.
 //     - announce: /announce command.
@@ -290,114 +298,140 @@ exports.replSocketMode = 0o600;
 //     - tournamentsmanagement: Enable/disable tournaments.
 //     - tournamentsmoderation: /tour dq, autodq, end etc.
 //     - warn: /warn command.
-exports.groupList = [
-	{
-		symbol: '~',
-		id: 'admin',
-		name: "Administrator",
-		description: "They can do anything, like change what this message says",
-		globalonly: true,
-		root: true,
+exports.groups = {
+	global: {' ': 1, '+': 1, '%': 1, '@': 1, '&': 1, '~': 1},
+	chatRoom: {' ': 1, '+': 1, '%': 1, '@': 1, '#': 1},
+	battleRoom: {' ': 1, '+': 1, '\u2605': 1},
+
+	default: {
+		global: ' ',
+		chatRoom: ' ',
+		battleRoom: ' ',
 	},
-	{
-		symbol: '&',
-		id: 'leader',
-		name: "Leader",
-		description: "The above, and they can promote to moderator and force ties",
-		globalonly: true,
-		inherit: '@',
-		jurisdiction: '@u',
-		declare: true,
-		disableladder: true,
-		editroom: true,
-		forcewin: true,
-		gamemanagement: true,
-		makeroom: true,
-		modchatall: true,
-		potd: true,
-		promote: 'u',
-		rangeban: true,
-		tournamentsmanagement: true,
-	},
-	{
-		symbol: '#',
-		id: 'owner',
-		name: "Room Owner",
-		description: "They are leaders of the room and can almost totally control it",
-		roomonly: true,
-		inherit: '@',
-		jurisdiction: 'u',
-		declare: true,
-		editroom: true,
-		gamemanagement: true,
-		modchatall: true,
-		roompromote: 'u',
-		tournamentsmanagement: true,
-	},
-	{
-		symbol: '\u2605',
-		id: 'player',
-		name: "Player",
-		description: "They are the players currently battling, and can promote room voices",
-		battleonly: true,
-		roomonly: true,
-		inherit: '+',
-		editroom: true,
-		joinbattle: true,
-		modchat: true,
-		roompromote: '\u2605u',
-	},
-	{
-		symbol: '@',
-		id: 'mod',
-		name: "Moderator",
-		description: "The above, and they can ban users",
-		inherit: '%',
-		jurisdiction: 'u',
-		alts: '@u',
-		ban: true,
-		forcerename: true,
-		game: true,
-		ip: true,
-		modchat: true,
-		roompromote: '+ ',
-		tournaments: true,
-	},
-	{
-		symbol: '%',
-		id: 'driver',
-		name: "Driver",
-		description: "The above, and they can mute. Global % can also lock users and check for alts",
-		inherit: '+',
-		jurisdiction: 'u',
-		alts: '%u',
-		announce: true,
-		bypassblocks: 'u%@&~',
-		forcerename: true,
-		jeopardy: true,
-		joinbattle: true,
-		kick: true,
-		lock: true,
-		minigame: true,
-		modlog: true,
-		mute: '\u2605u',
-		receiveauthmessages: true,
-		redirect: '\u2605u',
-		timer: true,
-		tournamentsmoderation: true,
-		warn: '\u2605u',
-	},
-	{
-		symbol: '+',
-		id: 'voice',
-		name: "Voice",
-		description: "They can use ! commands like !groups, and talk during moderated chat",
-		inherit: ' ',
-		alts: 's',
-		broadcast: true,
-	},
-	{
-		symbol: ' ',
-		ip: 's',
-	},
-];
+
+	list: [
+		{
+			symbol: '~',
+			id: 'admin',
+			name: "Administrator",
+			description: "They can do anything, like change what this message says",
+			root: true,
+		},
+		{
+			symbol: '&',
+			id: 'leader',
+			name: "Leader",
+			description: "The above, and they can promote to moderator and force ties",
+			inherit: '@',
+			jurisdiction: '@u',
+			declare: true,
+			disableladder: true,
+			editroom: true,
+			forcewin: true,
+			gamemanagement: true,
+			makeroom: true,
+			modchatall: true,
+			potd: true,
+			promote: 'u',
+			rangeban: true,
+			tournamentsmanagement: true,
+		},
+		{
+			symbol: '#',
+			id: 'owner',
+			name: "Room Owner",
+			description: "They are leaders of the room and can almost totally control it",
+			inherit: '@',
+			jurisdiction: 'u',
+			declare: true,
+			editroom: true,
+			gamemanagement: true,
+			modchatall: true,
+			roompromote: 'u',
+			tournamentsmanagement: true,
+		},
+		{
+			symbol: '\u2605',
+			id: 'player',
+			name: "Player",
+			description: "They are the players currently battling, and can promote room voices",
+			inherit: '+',
+			editroom: true,
+			joinbattle: true,
+			modchat: true,
+			roompromote: '\u2605u',
+		},
+		{
+			symbol: '@',
+			id: 'mod',
+			name: "Moderator",
+			description: "The above, and they can ban users",
+			inherit: '%',
+			jurisdiction: 'u',
+			alts: '@u',
+			ban: true,
+			forcerename: true,
+			game: true,
+			ip: true,
+			modchat: true,
+			roompromote: '+ ',
+			tournaments: true,
+		},
+		{
+			symbol: '%',
+			id: 'driver',
+			name: "Driver",
+			description: "The above, and they can mute. Global % can also lock users and check for alts",
+			inherit: '+',
+			jurisdiction: 'u',
+			alts: '%u',
+			announce: true,
+			bypassblocks: 'u%@&~',
+			forcerename: true,
+			jeopardy: true,
+			joinbattle: true,
+			kick: true,
+			lock: true,
+			minigame: true,
+			modlog: true,
+			mute: '\u2605u',
+			receiveauthmessages: true,
+			redirect: '\u2605u',
+			timer: true,
+			tournamentsmoderation: true,
+			warn: '\u2605u',
+		},
+		{
+			symbol: '+',
+			id: 'voice',
+			name: "Voice",
+			description: "They can use ! commands like !groups, and talk during moderated chat",
+			inherit: ' ',
+			alts: 's',
+			broadcast: true,
+		},
+		{
+			symbol: ' ',
+			ip: 's',
+		},
+	],
+};
+
+exports.groups.byRank = [];
+exports.groups.bySymbol = {};
+exports.groups.list.forEach(group => {
+	exports.groups.byRank.unshift(group.symbol);
+	exports.groups.bySymbol[group.symbol] = group;
+});
+exports.groups.globalByRank = exports.groups.byRank.filter(a => exports.groups.global[a]);
+exports.groups.chatRoomByRank = exports.groups.byRank.filter(a => exports.groups.chatRoom[a]);
+exports.groups.battleRoomByRank = exports.groups.byRank.filter(a => exports.groups.battleRoom[a]);
+exports.groups.byId = {};
+exports.groups.byRank.forEach((group, rank) => {
+	let groupData = exports.groups.bySymbol[group];
+	if (groupData.id) exports.groups.byId[groupData.id] = group;
+	groupData.rank = rank;
+});
+exports.groups.globalByRank.forEach((group, rank) => {exports.groups.bySymbol[group].globalRank = rank;});
+exports.groups.chatRoomByRank.forEach((group, rank) => {exports.groups.bySymbol[group].chatRoomRank = rank;});
+exports.groups.battleRoomByRank.forEach((group, rank) => {exports.groups.bySymbol[group].battleRoomRank = rank;});

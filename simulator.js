@@ -374,7 +374,7 @@ class Battle {
 		if (!player) return false;
 		this.players[user.userid] = player;
 		this.playerCount++;
-		this.room.auth[user.userid] = Users.getGroupsThatCan('joinbattle', this.room).reverse()[0];
+		this.room.auth[user.userid] = Config.groups.battleRoomByRank.slice().reverse()[0];
 		if (this.playerCount >= 2) {
 			this.room.title = "" + this.p1.name + " vs. " + this.p2.name;
 			this.room.send('|title|' + this.room.title);
