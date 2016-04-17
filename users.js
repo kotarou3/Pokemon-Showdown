@@ -386,10 +386,10 @@ class User {
 	}
 	getIdentity(roomid) {
 		if (this.locked) {
-			return '‽' + this.name;
+			return Config.lockedSymbol + this.name;
 		}
 		if (this.namelocked) {
-			return '‽' + this.name;
+			return Config.lockedSymbol + this.name;
 		}
 		if (roomid) {
 			let room = Rooms.rooms[roomid];
@@ -397,7 +397,7 @@ class User {
 				throw new Error("Room doesn't exist: " + roomid);
 			}
 			if (room.isMuted(this)) {
-				return '!' + this.name;
+				return Config.mutedSymbol + this.name;
 			}
 			if (room && room.auth) {
 				if (room.auth[this.userid]) {

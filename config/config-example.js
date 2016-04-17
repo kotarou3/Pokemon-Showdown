@@ -227,7 +227,9 @@ exports.appealUri = '';
 exports.replSocketPrefix = './logs/repl/';
 exports.replSocketMode = 0o600;
 
-// Groups and Permissions
+// Symbols, Groups and Permissions
+//   mutedSymbol - The symbol representing a muted user.
+//   lockedSymbol - The symbol representing a locked user.
 //   groups - {
 //       global - All the possible global groups.
 //       chatRoom - All the possible chat room groups.
@@ -298,6 +300,8 @@ exports.replSocketMode = 0o600;
 //     - tournamentsmanagement: Enable/disable tournaments.
 //     - tournamentsmoderation: /tour dq, autodq, end etc.
 //     - warn: /warn command.
+exports.mutedSymbol = '!';
+exports.lockedSymbol = '\u203d';
 exports.groups = {
 	global: {' ': 1, '+': 1, '%': 1, '@': 1, '&': 1, '~': 1},
 	chatRoom: {' ': 1, '+': 1, '%': 1, '@': 1, '#': 1},
