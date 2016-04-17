@@ -57,6 +57,7 @@ exports.BattleFormats = {
 			'Zygarde',
 			'Diancie',
 			'Hoopa', 'Hoopa-Unbound',
+			'Volcanion',
 		],
 	},
 	standarddoubles: {
@@ -629,7 +630,7 @@ exports.BattleFormats = {
 				template = this.getTemplate(team[i].species);
 				if (!template.types) return ["Your team must share a type."];
 
-				typeTable = typeTable.intersect(template.types);
+				typeTable = typeTable.filter(type => template.types.indexOf(type) >= 0);
 				if (!typeTable.length) return ["Your team must share a type."];
 			}
 			if (format.id === 'monotype') {

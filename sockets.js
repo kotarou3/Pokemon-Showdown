@@ -184,10 +184,12 @@ if (cluster.isMaster) {
 
 	global.Cidr = require('./cidr');
 
-	// graceful crash
-	process.on('uncaughtException', err => {
-		require('./crashlogger.js')(err, 'Socket process ' + cluster.worker.id + ' (' + process.pid + ')', true);
-	});
+	if (Config.crashGuard) {
+		// graceful crash
+		process.on('uncaughtException', err => {
+			require('./crashlogger.js')(err, 'Socket process ' + cluster.worker.id + ' (' + process.pid + ')', true);
+		});
+	}
 
 	let app = require('http').createServer();
 	let appssl;
@@ -247,7 +249,6 @@ if (cluster.isMaster) {
 			if (severity === 'error') console.log('ERROR: ' + message);
 		},
 		prefix: '/showdown',
-		websocket: !Config.disableWebsocket,
 	});
 
 	let sockets = {};

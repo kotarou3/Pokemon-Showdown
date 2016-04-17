@@ -248,7 +248,7 @@ let commands = {
 	quiz: 'question',
 	qg: 'question',
 	question: function (target, room, user) {
-		if (room.id !== 'wifi' || !this.can('wifigiveaway', room) || !target) return false;
+		if (room.id !== 'wifi' || !this.can('warn', room) || !target) return false;
 		if (giveaways[room.id]) return this.errorReply("There is already a giveaway going on!");
 
 		target = this.splitTarget(target);
@@ -296,6 +296,7 @@ let commands = {
 	guessanswer: 'guess',
 	guess: function (target, room, user) {
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
+		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		if (!giveaways[room.id]) return this.errorReply("There is no giveaway going on at the moment.");
 		if (giveaways[room.id].type !== 'question') return this.errorReply("This is not a question giveaway.");
 		giveaways[room.id].guessAnswer(user, target, this);
@@ -305,7 +306,7 @@ let commands = {
 	lg: 'lottery',
 	lotto: 'lottery',
 	lottery: function (target, room, user) {
-		if (room.id !== 'wifi' || !this.can('wifigiveaway', room) || !target) return false;
+		if (room.id !== 'wifi' || !this.can('warn', room) || !target) return false;
 		if (giveaways[room.id]) return this.errorReply("There is already a giveaway going on!");
 
 		target = this.splitTarget(target);
@@ -330,6 +331,7 @@ let commands = {
 	joinlottery: 'join',
 	join: function (target, room, user, conn, cmd) {
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
+		if (!this.canTalk()) return this.errorReply("You cannot do this while unable to talk.");
 		let giveaway = giveaways[room.id];
 		if (!giveaway) return this.errorReply("There is no giveaway going on at the moment.");
 		if (giveaway.type !== 'lottery') return this.errorReply("This is not a lottery giveaway.");
@@ -352,7 +354,7 @@ let commands = {
 	end: function (target, room, user) {
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
 		if (!giveaways[room.id]) return this.errorReply("There is no giveaway going on at the moment.");
-		if (!this.can('wifigiveaway', room) && user.userid !== giveaways[room.id].host.userid) return false;
+		if (!this.can('warn', room) && user.userid !== giveaways[room.id].host.userid) return false;
 
 		giveaways[room.id].onEnd(true);
 	},
@@ -361,7 +363,7 @@ let commands = {
 		if (room.id !== 'wifi') return this.errorReply("This command can only be used in the Wi-Fi room.");
 		let giveaway = giveaways[room.id];
 		if (!giveaway) return this.errorReply("There is no giveaway going on at the moment.");
-		if (!this.canBroadcast()) return;
+		if (!this.runBroadcast()) return;
 		if (giveaway.type === 'question') {
 			if (giveaway.phase !== 'started') return this.errorReply("The giveaway has not started yet.");
 			this.sendReply("|html|<div class='broadcast-blue'><font size='1'>Question Giveaway started by " + Tools.escapeHTML(giveaway.host.name) + "</font><br/>" +
@@ -378,7 +380,7 @@ let commands = {
 		let reply = '';
 		switch (target) {
 		case 'staff':
-			if (!this.can('wifigiveaway', room)) return;
+			if (!this.can('warn', room)) return;
 			reply = '<strong>Staff commands:</strong><br />' +
 			        '- question or qg <em>User, Prize, Question, Answer</em> - Start a new question giveaway (Requires: % @ # & ~)<br />' +
 			        '- lottery or lg <em>User, Prize[, Number of Winners]</em> - Starts a lottery giveaway (Requires: % @ # & ~)<br />' +
@@ -390,7 +392,7 @@ let commands = {
 		case 'game':
 		case 'giveaway':
 		case 'user':
-			if (!this.canBroadcast()) return;
+			if (!this.runBroadcast()) return;
 			reply = '<strong>Giveaway participation commands: </strong> (start with /giveaway, except for /ga) <br />' +
 			        '- guess or /ga <em>answer</em> - Guesses the answer for a question giveaway<br />' +
 			        '- viewanswer - Shows the answer in a question giveaway (only to host/giver)<br />' +
@@ -399,7 +401,7 @@ let commands = {
 			        '- leave or leavelottery - Leaves a lottery giveaway<br />';
 			break;
 		default:
-			if (!this.canBroadcast()) return;
+			if (!this.runBroadcast()) return;
 			reply = '<b>Wi-Fi room Giveaway help and info</b><br />' +
 			'- help user - shows list of participation commands<br />' +
 			'- help staff - shows giveaway staff commands (Requires: % @ # & ~)';

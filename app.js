@@ -57,7 +57,7 @@ const path = require('path');
 // aren't
 
 try {
-	require('sugar');
+	require.resolve('sockjs');
 } catch (e) {
 	if (require.main !== module) throw new Error("Dependencies unmet");
 
@@ -92,7 +92,9 @@ if (Config.watchConfig) {
 			global.Config = require('./config/config.js');
 			if (global.Users) Users.cacheGroupData();
 			console.log('Reloaded config/config.js');
-		} catch (e) {}
+		} catch (e) {
+			console.log('Error reloading config/config.js: ' + e.stack);
+		}
 	});
 }
 
@@ -115,6 +117,7 @@ global.Rooms = require('./rooms.js');
 
 delete process.send; // in case we're a child process
 global.Verifier = require('./verifier.js');
+Verifier.PM.spawn();
 
 global.CommandParser = require('./command-parser.js');
 
@@ -130,24 +133,27 @@ try {
 
 global.Cidr = require('./cidr.js');
 
-// graceful crash - allow current battles to finish before restarting
-process.on('uncaughtException', err => {
-	let crashMessage = require('./crashlogger.js')(err, 'The main process');
-	if (crashMessage !== 'lockdown') return;
-	let stack = ("" + err.stack).escapeHTML().split("\n").slice(0, 2).join("<br />");
-	if (Rooms.lobby) {
-		Rooms.lobby.addRaw('<div class="broadcast-red"><b>THE SERVER HAS CRASHED:</b> ' + stack + '<br />Please restart the server.</div>');
-		Rooms.lobby.addRaw('<div class="broadcast-red">You will not be able to start new battles until the server restarts.</div>');
-		Rooms.lobby.update();
-	}
-	Rooms.global.lockdown = true;
-});
+if (Config.crashGuard) {
+	// graceful crash - allow current battles to finish before restarting
+	process.on('uncaughtException', err => {
+		let crashMessage = require('./crashlogger.js')(err, 'The main process');
+		if (crashMessage !== 'lockdown') return;
+		let stack = Tools.escapeHTML(err.stack).split("\n").slice(0, 2).join("<br />");
+		if (Rooms.lobby) {
+			Rooms.lobby.addRaw('<div class="broadcast-red"><b>THE SERVER HAS CRASHED:</b> ' + stack + '<br />Please restart the server.</div>');
+			Rooms.lobby.addRaw('<div class="broadcast-red">You will not be able to start new battles until the server restarts.</div>');
+			Rooms.lobby.update();
+		}
+		Rooms.global.lockdown = true;
+	});
+}
 
 /*********************************************************
  * Start networking processes to be connected to
  *********************************************************/
 
-global.Sockets = require('./sockets.js');
+// global.Sockets = require('./sockets.js');
+global.Sockets = require('./sockets-nocluster.js');
 
 exports.listen = function (port, bindAddress, workerCount) {
 	Sockets.listen(port, bindAddress, workerCount);
@@ -172,6 +178,7 @@ Tools.includeFormats();
 Rooms.global.formatListText = Rooms.global.getFormatListText();
 
 global.TeamValidator = require('./team-validator.js');
+TeamValidator.PM.spawn();
 
 // load ipbans at our leisure
 fs.readFile(path.resolve(__dirname, 'config/ipbans.txt'), (err, data) => {

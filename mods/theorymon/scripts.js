@@ -56,5 +56,9 @@ exports.BattleScripts = {
 		this.modData('Pokedex', 'stunfisk').abilities['1'] = 'Regenerator';
 		this.modData('Learnsets', 'stunfisk').learnset.voltswitch = ['6T'];
 		this.modData('Pokedex', 'crobat').abilities['1'] = 'Intimidate';
+		this.modData('Pokedex', 'xatu').types = ['Steel', 'Flying'];
+		this.modData('Learnsets', 'xatu').learnset.flashcannon = ['6T'];
+		this.modData('Pokedex', 'meloetta').abilities['1'] = 'Prankster';
+		this.modData('Learnsets', 'meloetta').learnset.naturepower = ['6T'];
 	},
 };

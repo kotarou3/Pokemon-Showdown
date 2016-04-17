@@ -115,7 +115,7 @@ exports.BattleAbilities = {
 	"angerpoint": {
 		desc: "If this Pokemon, but not its substitute, is struck by a critical hit, its Attack is raised by 12 stages.",
 		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
-		onAfterDamage: function (damage, target, source, move) {
+		onHit: function (target, source, move) {
 			if (!target.hp) return;
 			if (move && move.effectType === 'Move' && move.crit) {
 				target.setBoost({atk: 6});
@@ -1189,6 +1189,7 @@ exports.BattleAbilities = {
 		desc: "On switch-in, this Pokemon Transforms into the opposing Pokemon that is facing it. If there is no Pokemon at that position, this Pokemon does not Transform.",
 		shortDesc: "On switch-in, this Pokemon Transforms into the opposing Pokemon that is facing it.",
 		onStart: function (pokemon) {
+			if (this.activeMove && this.activeMove.id === 'skillswap') return;
 			let target = pokemon.side.foe.active[pokemon.side.foe.active.length - 1 - pokemon.position];
 			if (target) {
 				pokemon.transformInto(target, pokemon, this.getAbility('imposter'));
@@ -1379,6 +1380,7 @@ exports.BattleAbilities = {
 			if (this.validTarget(this.effectData.target, source, move.target)) {
 				if (this.effectData.target !== target) {
 					this.add('-activate', this.effectData.target, 'ability: Lightning Rod');
+					this.retargetLastMove(this.effectData.target);
 				}
 				return this.effectData.target;
 			}
@@ -1468,7 +1470,7 @@ exports.BattleAbilities = {
 		onSourceHit: function (target, source, move) {
 			if (!move || !target) return;
 			if (target !== source && move.category !== 'Status') {
-				if (source.item) return;
+				if (source.item || source.volatiles['gem'] || source.volatiles['fling']) return;
 				let yourItem = target.takeItem(source);
 				if (!yourItem) return;
 				if (!source.setItem(yourItem)) {
@@ -1781,7 +1783,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon's moves are changed to be Normal type.",
 		onModifyMovePriority: 1,
 		onModifyMove: function (move) {
-			if (move.id !== 'struggle') {
+			if (move.id !== 'struggle' && this.getMove(move.id).type !== 'Normal') {
 				move.type = 'Normal';
 			}
 		},
@@ -1924,7 +1926,7 @@ exports.BattleAbilities = {
 			pokemon.setItem(randomTarget.lastItem);
 			randomTarget.lastItem = '';
 			let item = pokemon.getItem();
-			this.add('-item', pokemon, item, '[from] Pickup');
+			this.add('-item', pokemon, item, '[from] ability: Pickup');
 		},
 		id: "pickup",
 		name: "Pickup",
@@ -2474,6 +2476,9 @@ exports.BattleAbilities = {
 			if (move.multihit && move.multihit.length) {
 				move.multihit = move.multihit[1];
 			}
+			if (move.multiaccuracy) {
+				delete move.multiaccuracy;
+			}
 		},
 		id: "skilllink",
 		name: "Skill Link",
@@ -2690,7 +2695,7 @@ exports.BattleAbilities = {
 	"stickyhold": {
 		shortDesc: "This Pokemon cannot lose its held item due to another Pokemon's attack.",
 		onTakeItem: function (item, pokemon, source) {
-			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp) return;
+			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || pokemon.item === 'stickybarb') return;
 			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
 				this.add('-activate', pokemon, 'ability: Sticky Hold');
 				return false;
@@ -2717,6 +2722,7 @@ exports.BattleAbilities = {
 			if (this.validTarget(this.effectData.target, source, move.target)) {
 				if (this.effectData.target !== target) {
 					this.add('-activate', this.effectData.target, 'ability: Storm Drain');
+					this.retargetLastMove(this.effectData.target);
 				}
 				return this.effectData.target;
 			}
@@ -2775,8 +2781,8 @@ exports.BattleAbilities = {
 	},
 	"superluck": {
 		shortDesc: "This Pokemon's critical hit ratio is raised by 1 stage.",
-		onModifyMove: function (move) {
-			move.critRatio++;
+		onModifyCritRatio: function (critRatio) {
+			return critRatio + 1;
 		},
 		id: "superluck",
 		name: "Super Luck",
@@ -3045,7 +3051,7 @@ exports.BattleAbilities = {
 		onBeforeMovePriority: 9,
 		onBeforeMove: function (pokemon, target, move) {
 			if (pokemon.removeVolatile('truant')) {
-				this.add('cant', pokemon, 'ability: Truant', move);
+				this.add('cant', pokemon, 'ability: Truant');
 				return false;
 			}
 			pokemon.addVolatile('truant');
@@ -3121,7 +3127,7 @@ exports.BattleAbilities = {
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Unnerve', pokemon.side.foe);
 		},
-		onFoeEatItem: false,
+		onFoeTryEatItem: false,
 		id: "unnerve",
 		name: "Unnerve",
 		rating: 1.5,

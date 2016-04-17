@@ -34,7 +34,7 @@ exports.commands = {
 	startofficialhunt: 'starthunt',
 	starthunt: function (target, room, user, connection, cmd) {
 		if (room.id !== 'scavengers') return this.errorReply('This command can only be used in the Scavengers room.');
-		if (!this.can('scavengers', room)) return false;
+		if (!this.can('mute', room)) return false;
 		if (scavengers.status === 'on') return this.errorReply('There is already an active scavenger hunt.');
 		let targets = target.split(target.includes('|') ? '|' : ',');
 		if (!targets[0] || !targets[1] || !targets[2] || !targets[3] || !targets[4] || !targets[5] || targets[6]) {
@@ -48,6 +48,7 @@ exports.commands = {
 		scavengers.status = 'on';
 		scavengers.hints = [targets[0].trim(), targets[2].trim(), targets[4].trim()];
 		scavengers.answers = [toId(targets[1]), toId(targets[3]), toId(targets[5])];
+		scavengers.startTime = Date.now();
 		let result = (cmd === 'startofficialhunt' ? 'An official' : 'A new') + ' Scavenger Hunt has been started by <em> ' + Tools.escapeHTML(user.name) + '</em>! The first hint is: ' + Tools.escapeHTML(scavengers.hints[0]);
 		Rooms.rooms.scavengers.addRaw('<div class="broadcast-blue"><strong>' + result + '</strong></div>');
 	},
@@ -76,6 +77,7 @@ exports.commands = {
 				let result = '<em>' + Tools.escapeHTML(user.name) + '</em> has finished the hunt ';
 				result += (position === 1) ? 'and is the winner!' : (position === 2) ? 'in 2nd place!' : (position === 3) ? 'in 3rd place!' : 'in ' + position + 'th place!';
 				result += (position < 4 && scavengers.blitz ? ' [BLITZ]' : '');
+				result += ' (' + Tools.toDurationString(Date.now() - scavengers.startTime, {hhmmss: true}) + ')';
 				Rooms.rooms.scavengers.addRaw('<div class="broadcast-blue"><strong>' + result + '</strong></div>');
 			}
 		} else {
@@ -93,7 +95,7 @@ exports.commands = {
 	},
 	endhunt: function (target, room, user) {
 		if (room.id !== 'scavengers') return this.errorReply('This command can only be used in the Scavengers room.');
-		if (!this.can('scavengers', room)) return false;
+		if (!this.can('mute', room)) return false;
 		if (scavengers.status !== 'on') return this.errorReply('There is no active scavenger hunt.');
 		let winner = scavengers.finished[0];
 		let second = scavengers.finished[1];
@@ -114,7 +116,7 @@ exports.commands = {
 	},
 	resethunt: function (target, room, user) {
 		if (room.id !== 'scavengers') return this.errorReply('This command can only be used in the Scavengers room.');
-		if (!this.can('scavengers', room)) return false;
+		if (!this.can('mute', room)) return false;
 		if (scavengers.status !== 'on') return this.errorReply('There is no active scavenger hunt.');
 		scavengers.status = 'off';
 		if (scavengers.blitz) clearTimeout(scavengers.blitz);
@@ -133,7 +135,7 @@ exports.commands = {
 	scavengershelp: 'scavengerhelp',
 	scavengerhelp: function (target, room, user) {
 		if (room.id !== 'scavengers') return this.errorReply('This command can only be used in the Scavengers room.');
-		if (!this.canBroadcast()) return;
+		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
 			'<strong>Player commands:</strong><br />' +
 			'- /scavengers - Join the scavengers room<br />' +

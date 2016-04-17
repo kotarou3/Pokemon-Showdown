@@ -1,14 +1,21 @@
 'use strict';
 
-// The server port - the port to run Pokemon Showdown under
+// The bind address and port - the address and port the server listens under
+//   for incoming connections
+exports.bindAddress = '0.0.0.0';
 exports.port = 8000;
 
 // The server id - the id specified in the server registration.
 //   This should be set properly especially when there are more than one
 //   pokemon showdown server running from the same IP
-exports.serverId = 'example';
+exports.serverId = '';
 
-// proxyIps - proxy IPs with trusted X-Forwarded-For headers
+// The server token - a token used for ladder requests to identify the server.
+//   Usually this isn't needed since the server id is usually enough, but can
+//   be used when the servers incoming IP doesn't match its outgoing
+exports.serverToken = '';
+
+// proxyip - proxy IPs with trusted X-Forwarded-For headers
 //   This can be either false (meaning not to trust any proxies) or an array
 //   of strings. Each string should be either an IP address or a subnet given
 //   in CIDR notation. You should usually leave this as `false` unless you
@@ -20,7 +27,16 @@ exports.proxyIps = false;
 //   in every Random Battle team.
 exports.potd = '';
 
-// login server data - don't change these unless you know what you're doing
+// crash guard - write errors to log file instead of crashing
+//   This is normally not recommended - if Node wants to crash, the
+//   server needs to be restarted
+//   However, most people want the server to stay online even if there is a
+//   crash, so this option is provided
+exports.crashGuard = true;
+
+// login server data - don't forget the http:// and the trailing slash
+//   This is the URL of the user database and ladder.
+//   Don't change this setting - there aren't any other login servers right now
 exports.loginServer = {
 	uri: 'http://play.pokemonshowdown.com/',
 	keyAlgorithm: 'RSA-SHA1',
@@ -39,6 +55,11 @@ exports.loginServer = {
 		'6lMr2wdSzyG7l3X3q1XyQ/CT5IP4unFs5HKpG31skxlfXv5a7KW5AfsCAwEAAQ==\n' +
 		'-----END RSA PUBLIC KEY-----\n',
 };
+
+// tokenExpiry - how long the server will deem a user login token from the login
+//   server to be valid for.
+//   Defaults to 25 hours to account for servers with inaccurate time.
+exports.tokenExpiry = 25 * 60 * 60;
 
 // crashGuardEmail - if the server has been running for more than an hour
 //   and crashes, send an email using these settings, rather than locking down
@@ -94,7 +115,7 @@ exports.reportBattleJoins = true;
 // whitelist - prevent users below a certain group from doing things
 //   For the modchat settings, false will allow any user to participate, while a string
 //   with a group symbol will restrict it to that group and above. The string
-//   'autoconfirmed' is also supported for chatmodchat and battlemodchat, to restrict
+//   'autoconfirmed' is also supported for modchat.chat and modchat.battle, to restrict
 //   chat to autoconfirmed users.
 //   This is usually intended to be used as a whitelist feature - set these to '+' and
 //   voice every user you want whitelisted on the server.
@@ -112,6 +133,9 @@ exports.modchat = {
 //   This setting can also be turned on with the command /forcetimer.
 exports.forceTimer = false;
 
+// automatically save a replay when battles end
+exports.autoSaveReplays = false;
+
 // backdoor - allows Pokemon Showdown system operators to provide technical
 //            support for your server
 //   This backdoor gives system operators (such as Zarel) console admin
@@ -121,6 +145,10 @@ exports.forceTimer = false;
 //   etc. If you do not trust Pokemon Showdown with admin access, you should
 //   disable this feature.
 exports.backdoor = true;
+
+// quietConsole - reduces some console spew like room creation and banned users
+//   trying to connect
+exports.quietConsole = false;
 
 // List of IPs and user IDs with dev console (>> and >>>) access.
 // The console is incredibly powerful because it allows the execution of
@@ -150,10 +178,15 @@ exports.logChallenges = false;
 // lobby log. This has no effect if `logchat` is disabled.
 exports.logUserStats = 1000 * 60 * 10; // 10 minutes
 
+// logLadderIp - whether to log rated battle's player's IPs
+exports.logLadderIp = false;
+
+// workers - the number of processes to use for receiving connections
 // validatorProcesses - the number of processes to use for validating teams
 // simulatorProcesses - the number of processes to use for handling battles
-// You should leave both of these at 1 unless your server has a very large
+// You should leave all of these at 1 unless your server has a very large
 // amount of traffic (i.e. hundreds of concurrent battles).
+exports.workers = 1;
 exports.validatorProcesses = 1;
 exports.simulatorProcesses = 1;
 
@@ -173,12 +206,16 @@ exports.customAvatars = {
 	//'userid': 'customavatar.png'
 };
 
-// Tournament announcements
-// When tournaments are created in rooms listed below, they will be announced in
-// the server's main tournament room (either the specified tourroom or by default
-// the room 'tournaments')
-exports.tourRoom = '';
-exports.tourAnnouncements = [/* roomids */];
+exports.tournaments = {
+	// whether tournament battles are rated by default
+	defaultRated: false,
+	// default player cap. 0 to disable
+	defaultPlayerCap: 0,
+	// a room to receive tournament announcements
+	room: 'tournaments',
+	// tournament announcements are only allowed from these rooms
+	announcements: [/* roomids */],
+};
 
 // appealUri - specify a URI containing information on how users can appeal
 // disciplinary actions on your section. You can also leave this blank, in
@@ -207,8 +244,8 @@ exports.replSocketMode = 0o600;
 //   Each entry in `groups.list` is a separate group. Some of the members are "special"
 //     while the rest are just normal permissions.
 //   The special members are as follows:
-//     - symbol: Specifies the symbol for the group
-//     - id: Specifies the id for the group.
+//     - symbol: Specifies the symbol of the group (as shown in front of the username)
+//     - id: Specifies an id for the group.
 //     - name: Specifies the human-readable name for the group.
 //     - description: Specifies the description for the group.
 //     - root: If this is true, the group can do anything.
@@ -226,41 +263,42 @@ exports.replSocketMode = 0o600;
 //     - announce: /announce command.
 //     - ban: Banning and unbanning.
 //     - broadcast: Broadcast informational commands.
-//     - bypassall: Bypass all limitations. Also used to identify an admin.
+//     - bypassall: Bypass all limitations.
 //     - bypassblocks: Bypass blocks such as your challenge being blocked.
 //     - console: Developer console (also requires IP or userid in the `consoleIps` array).
-//     - declare: /declare command.
+//     - declare: /declare command and the ability to change room descriptions and intros.
 //     - disableladder: /disableladder and /enable ladder commands.
 //     - editroom: Set modjoin/privacy only for battles/groupchats
 //     - forcepromote: Ability to promote a user even if they're offline and unauthed.
 //     - forcerename: /forcerename command.
-//     - forcewin: /forcewin command.
-//     - game: make games.
-//     - gamemanagement: enable/disable games and minigames.
+//     - forcewin: /forcewin and /forcetie command.
+//     - game: Make games.
+//     - gamemanagement: Enable/disable games and minigames.
 //     - gdeclare: /gdeclare and /cdeclare commands.
-//     - hotpatch: /hotpatch, /updateserver and /crashfixed commands.
+//     - hotpatch: /hotpatch, /updateserver, /crashfixed and /refreshpage commands.
 //     - ignorelimits: Ignore limits such as chat message length.
 //     - ip: Ability to check IPs.
 //     - joinbattle: Ability to join an existing battle as a player.
 //     - kick: /kickbattle command.
-//     - lock: Locking and unlocking.
+//     - lock: Locking (ipmute) and unlocking.
 //     - lockdown: /lockdown, /endlockdown and /kill commands.
-//     - makeroom: Permission required to create, delete and administer chat rooms.
+//     - makeroom: Create/delete chatrooms, and set modjoin/roomdesc/privacy
 //     - minigame: make minigames (hangman, polls, etc.).
 //     - modchat: Set modchat to the second lowest ranked group.
 //     - modchatall: Set modchat to all available groups.
+//     - modlog: View the moderator logs.
 //     - mute: Muting and unmuting.
 //     - potd: Set the Pokemon of the Day.
 //     - privateroom: /privateroom and /modjoin commands.
 //     - promote: Global promoting and demoting. Will only work if both to and from groups are in jurisdiction.
 //     - rangeban: /ipban command.
-//     - rawpacket: Ability to add a raw packet into the room's packet log.
+//     - rawpacket: Ability to add a raw packet into the room's packet log (/a).
 //     - redirect: /redir command.
-//     - refreshpage: /refreshpage command.
-//     - roomdesc: Ability to change the room description.
 //     - roompromote: Room counterpart to the global `promote` permission.
-//     - staff: Indicates a staff member.
 //     - timer: Ability to forcibly start and stop the inactive timer in battle rooms with the /timer command.
+//     - tournaments: Creating tournaments (/tour new, settype etc.)
+//     - tournamentsmanagement: Enable/disable tournaments.
+//     - tournamentsmoderation: /tour dq, autodq, end etc.
 //     - warn: /warn command.
 exports.mutedSymbol = '!';
 exports.lockedSymbol = '\u203d';
@@ -282,14 +320,14 @@ exports.groups = {
 			name: "Administrator",
 			description: "They can do anything, like change what this message says",
 			root: true,
-		}, {
+		},
+		{
 			symbol: '&',
 			id: 'leader',
 			name: "Leader",
-			description: "They can promote to moderator and force ties",
+			description: "The above, and they can promote to moderator and force ties",
 			inherit: '@',
 			jurisdiction: '@u',
-			banword: true,
 			declare: true,
 			disableladder: true,
 			editroom: true,
@@ -301,38 +339,37 @@ exports.groups = {
 			promote: 'u',
 			rangeban: true,
 			tournamentsmanagement: true,
-		}, {
+		},
+		{
 			symbol: '#',
 			id: 'owner',
 			name: "Room Owner",
-			description: "They are administrators of the room and can almost totally control it",
+			description: "They are leaders of the room and can almost totally control it",
 			inherit: '@',
 			jurisdiction: 'u',
 			declare: true,
 			editroom: true,
 			gamemanagement: true,
 			modchatall: true,
-			privateroom: true,
-			roomdesc: true,
-			roomintro: true,
 			roompromote: 'u',
 			tournamentsmanagement: true,
-		}, {
+		},
+		{
 			symbol: '\u2605',
 			id: 'player',
 			name: "Player",
-			description: "Only in battles, they are the players that are battling",
-			editroom: true,
+			description: "They are the players currently battling, and can promote room voices",
 			inherit: '+',
+			editroom: true,
 			joinbattle: true,
 			modchat: true,
-			privateroom: true,
 			roompromote: '\u2605u',
-		}, {
+		},
+		{
 			symbol: '@',
 			id: 'mod',
 			name: "Moderator",
-			description: "They can ban users and set modchat",
+			description: "The above, and they can ban users",
 			inherit: '%',
 			jurisdiction: 'u',
 			alts: '@u',
@@ -342,13 +379,13 @@ exports.groups = {
 			ip: true,
 			modchat: true,
 			roompromote: '+ ',
-			scavengers: true,
 			tournaments: true,
-		}, {
+		},
+		{
 			symbol: '%',
 			id: 'driver',
 			name: "Driver",
-			description: "They can mute. Global % can also lock and check users for alts",
+			description: "The above, and they can mute. Global % can also lock users and check for alts",
 			inherit: '+',
 			jurisdiction: 'u',
 			alts: '%u',
@@ -356,26 +393,29 @@ exports.groups = {
 			bypassblocks: 'u%@&~',
 			forcerename: true,
 			jeopardy: true,
+			joinbattle: true,
 			kick: true,
 			lock: true,
 			minigame: true,
-			mute: true,
-			redirect: true,
-			staff: true,
+			modlog: true,
+			mute: '\u2605u',
+			receiveauthmessages: true,
+			redirect: '\u2605u',
 			timer: true,
 			tournamentsmoderation: true,
-			warn: true,
-		}, {
+			warn: '\u2605u',
+		},
+		{
 			symbol: '+',
 			id: 'voice',
 			name: "Voice",
 			description: "They can use ! commands like !groups, and talk during moderated chat",
 			inherit: ' ',
-			broadcast: true,
-			joinbattle: true,
-		}, {
-			symbol: ' ',
 			alts: 's',
+			broadcast: true,
+		},
+		{
+			symbol: ' ',
 			ip: 's',
 		},
 	],
@@ -383,19 +423,19 @@ exports.groups = {
 
 exports.groups.byRank = [];
 exports.groups.bySymbol = {};
-exports.groups.list.forEach(function (group) {
+exports.groups.list.forEach(group => {
 	exports.groups.byRank.unshift(group.symbol);
 	exports.groups.bySymbol[group.symbol] = group;
 });
-exports.groups.globalByRank = exports.groups.byRank.filter(function (a) { return exports.groups.global[a]; });
-exports.groups.chatRoomByRank = exports.groups.byRank.filter(function (a) { return exports.groups.chatRoom[a]; });
-exports.groups.battleRoomByRank = exports.groups.byRank.filter(function (a) { return exports.groups.battleRoom[a]; });
+exports.groups.globalByRank = exports.groups.byRank.filter(a => exports.groups.global[a]);
+exports.groups.chatRoomByRank = exports.groups.byRank.filter(a => exports.groups.chatRoom[a]);
+exports.groups.battleRoomByRank = exports.groups.byRank.filter(a => exports.groups.battleRoom[a]);
 exports.groups.byId = {};
-exports.groups.byRank.forEach(function (group, rank) {
+exports.groups.byRank.forEach((group, rank) => {
 	let groupData = exports.groups.bySymbol[group];
 	if (groupData.id) exports.groups.byId[groupData.id] = group;
 	groupData.rank = rank;
 });
-exports.groups.globalByRank.forEach(function (group, rank) { exports.groups.bySymbol[group].globalRank = rank; });
-exports.groups.chatRoomByRank.forEach(function (group, rank) { exports.groups.bySymbol[group].chatRoomRank = rank; });
-exports.groups.battleRoomByRank.forEach(function (group, rank) { exports.groups.bySymbol[group].battleRoomRank = rank; });
+exports.groups.globalByRank.forEach((group, rank) => exports.groups.bySymbol[group].globalRank = rank);
+exports.groups.chatRoomByRank.forEach((group, rank) => exports.groups.bySymbol[group].chatRoomRank = rank);
+exports.groups.battleRoomByRank.forEach((group, rank) => exports.groups.bySymbol[group].battleRoomRank = rank);

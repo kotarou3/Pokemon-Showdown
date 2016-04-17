@@ -20,9 +20,6 @@ function getDirTypedContentsSync(dir, forceType) {
 
 function init(callback) {
 	require('./../app.js');
-	for (let listener of process.listeners('uncaughtException')) {
-		process.removeListener('uncaughtException', listener);
-	}
 
 	// Run the battle engine in the main process to keep our sanity
 	let BattleEngine = global.BattleEngine = require('./../battle-engine.js');
@@ -80,10 +77,13 @@ before('initialization', function (done) {
 		chatRoomsData.loaded = true;
 	} catch (e) {}
 
+	// Actually crash if we crash
+	config.crashGuard = false;
+
 	// Don't try to write to file system
-	config.logladderip = false;
-	config.logchallenges = false;
-	config.logchat = false;
+	config.logLadderIp = false;
+	config.logChallenges = false;
+	config.logChat = false;
 
 	// Don't create a REPL
 	require('./../repl.js').start = noop;

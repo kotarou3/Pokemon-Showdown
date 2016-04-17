@@ -36,8 +36,8 @@ let triviaData = {};
 try {
 	triviaData = require('../config/chat-plugins/triviadata.json');
 } catch (e) {} // file doesn't exist or contains invalid JSON
-if (!Object.isObject(triviaData)) triviaData = {};
-if (!Object.isObject(triviaData.leaderboard)) triviaData.leaderboard = {};
+if (!triviaData || typeof triviaData !== 'object') triviaData = {};
+if (!triviaData || typeof triviaData.leaderboard !== 'object') triviaData.leaderboard = {};
 if (!Array.isArray(triviaData.ladder)) triviaData.ladder = [];
 if (!Array.isArray(triviaData.questions)) triviaData.questions = [];
 if (!Array.isArray(triviaData.submissions)) triviaData.submissions = [];
@@ -204,9 +204,9 @@ let Trivia = (() => {
 		if (this.participants.size < 3) return output.sendReply("Not enough users have signed up yet! Trivia games require at least three participants to run.");
 
 		if (this.category === 'random') {
-			this.currentQuestions = triviaData.questions.randomize();
+			this.currentQuestions = Tools.shuffle(triviaData.questions.slice());
 		} else {
-			this.currentQuestions = sliceCategory(this.category).randomize();
+			this.currentQuestions = Tools.shuffle(sliceCategory(this.category).slice());
 		}
 
 		if (!this.currentQuestions.length) {
@@ -822,7 +822,7 @@ let commands = {
 		let buffer = "|raw|<div class=\"ladder\"><table>";
 
 		if (!target) {
-			if (!this.canBroadcast()) return false;
+			if (!this.runBroadcast()) return false;
 
 			let questions = triviaData.questions;
 			let questionsLen = questions.length;
@@ -882,7 +882,7 @@ let commands = {
 	'': 'status',
 	status: function (target, room, user) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let trivium = trivia[room.id];
 		if (!trivium) return this.errorReply("There is no trivia game in progress.");
 		trivium.getStatus(this, user);
@@ -891,7 +891,7 @@ let commands = {
 
 	players: function (target, room) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let trivium = trivia[room.id];
 		if (!trivium) return this.errorReply("There is no trivia game in progress.");
 		trivium.getParticipants(this);
@@ -926,7 +926,7 @@ let commands = {
 
 	ladder: function (target, room) {
 		if (room.id !== 'trivia') return this.errorReply('This command can only be used in Trivia.');
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 
 		let ladder = triviaData.ladder;
 		let leaderboard = triviaData.leaderboard;
