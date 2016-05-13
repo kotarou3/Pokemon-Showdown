@@ -34,7 +34,7 @@ exports.Formats = [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>",
 		],
 		section: "Other Formats",
-		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause', 'Baton Pass Clause', 'Evasion Moves Clause'],
+		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause', 'Baton Pass Clause'],
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy'],
 	},
 	{
@@ -336,6 +336,14 @@ exports.Formats = [
 		mod: 'gen1',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber', 'OU', 'BL', 'UU', 'RU'],
+	},
+	{
+		name: "[Gen 1] PU",
+		section: "Past Generations",
+
+		mod: 'gen1',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL', 'UU', 'RU', 'NU'],
 	},
 	{
 		name: "[Gen 1] Extreme Tier Shift",
