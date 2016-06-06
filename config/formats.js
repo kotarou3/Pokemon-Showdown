@@ -38,6 +38,16 @@ exports.Formats = [
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy'],
 	},
 	{
+		name: "ORAS 2U",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3522911/\">Ubers Metagame Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3535106/\">Ubers Viability Ranking</a>",
+		],
+		section: "Other Formats",
+		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause', 'Baton Pass Clause'],
+		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy', '1U'],
+	},
+	{
 		name: "Custom Game",
 		section: "Other Formats",
 
@@ -220,6 +230,18 @@ exports.Formats = [
 		mod: 'gen3',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber', 'Smeargle + Ingrain'],
+	},
+	{
+		name: "[Gen 3] UU",
+		section: "Past Generations",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3503019/\">ADV OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431087/\">ADV Sample Teams</a>",
+		],
+
+		mod: 'gen3',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL', 'Smeargle + Ingrain'],
 	},
 	{
 		name: "[Gen 3] Ubers",
