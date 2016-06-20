@@ -197,6 +197,11 @@ fs.readFile(path.resolve(__dirname, 'config/ipbans.txt'), (err, data) => {
 	Users.checkRangeBanned = Cidr.checker(rangebans);
 });
 
+//Custom
+
+global.Clans = require('./clans.js');
+global.War = require('./war.js');
+
 /*********************************************************
  * Start up the REPL server
  *********************************************************/
