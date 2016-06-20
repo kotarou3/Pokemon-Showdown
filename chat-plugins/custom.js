@@ -1,3 +1,5 @@
+'use strict';
+
 exports.commands = {
 	foro: function () {
 		if (!this.canBroadcast()) return;
@@ -7,7 +9,7 @@ exports.commands = {
 	genius: function () {
 		if (!this.canBroadcast()) return;
 
-		var img = '<center><img src="http://i.imgur.com/Jc7Grp5.png" width="320" height="246"></center><b><center><big><big><big><marquee><blink>Bryan la xupa doblada</blink></marquee></big></big></big></center><b>';
+		let img = '<center><img src="http://i.imgur.com/Jc7Grp5.png" width="320" height="246"></center><b><center><big><big><big><marquee><blink>Bryan la xupa doblada</blink></marquee></big></big></big></center><b>';
 
 		this.sendReplyBox(img);
 	},
@@ -108,7 +110,7 @@ exports.commands = {
 	clanes: 'clans',
 	clans: function (target, room, user) {
 		if (!this.canBroadcast()) return false;
-		var clansTableTitle = "Lista de Clanes";
+		let clansTableTitle = "Lista de Clanes";
 		if (toId(target) === 'rank' || toId(target) === 'puntos' || toId(target) === 'prestigio' || toId(target) === 'puntuacion') {
 			target = "rank";
 			clansTableTitle = "Lista de Clanes por Puntuaci&oacute;n";
@@ -117,13 +119,13 @@ exports.commands = {
 			target = "members";
 			clansTableTitle = "Lista de Clanes por Miembros";
 		}
-		var clansTable = '<center><big><big><strong>' + clansTableTitle + '</strong></big></big><center><br /><table class="clanstable" width="100%" border="1" cellspacing="0" cellpadding="3" target="_blank"><tr><td><center><strong>Clan</strong></center></td><td><center><strong>Nombre Completo</strong></center></td><td><center><strong>Miembros</strong></center></td><td><center><strong>Sala</strong></center></td><td><center><strong>Wars</strong></center></td><td><center><strong>Puntuaci&oacute;n</strong></center></td></tr>';
-		var clansList = Clans.getClansList(toId(target));
-		var auxRating = {};
-		var nMembers = 0;
-		var membersClan = {};
-		var auxGxe = 0;
-		for (var m in clansList) {
+		let clansTable = '<center><big><big><strong>' + clansTableTitle + '</strong></big></big><center><br /><table class="clanstable" width="100%" border="1" cellspacing="0" cellpadding="3" target="_blank"><tr><td><center><strong>Clan</strong></center></td><td><center><strong>Nombre Completo</strong></center></td><td><center><strong>Miembros</strong></center></td><td><center><strong>Sala</strong></center></td><td><center><strong>Wars</strong></center></td><td><center><strong>Puntuaci&oacute;n</strong></center></td></tr>';
+		let clansList = Clans.getClansList(toId(target));
+		let auxRating = {};
+		let nMembers = 0;
+		let membersClan = {};
+		let auxGxe = 0;
+		for (let m in clansList) {
 			auxRating = Clans.getElementalData(m);
 			membersClan = Clans.getMembers(m);
 			if (!membersClan) {
@@ -138,10 +140,10 @@ exports.commands = {
 	},
 
 	clanauth: function (target, room, user) {
-		var autoclan = false;
+		let autoclan = false;
 		if (!target) autoclan = true;
 		if (!this.canBroadcast()) return false;
-		var clan = Clans.getRating(target);
+		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
 			if (target)
@@ -157,19 +159,19 @@ exports.commands = {
 			return;
 		}
 		//html codes for clan ranks
-		var leaderClanSource = Clans.getAuthMembers(target, 3);
+		let leaderClanSource = Clans.getAuthMembers(target, 3);
 		if (leaderClanSource !== "") {
 			leaderClanSource = "<big><b>Líderes</b></big><br /><br />" + leaderClanSource + "</b></big></big><br /><br />";
 		}
-		var subLeaderClanSource = Clans.getAuthMembers(target, 2);
+		let subLeaderClanSource = Clans.getAuthMembers(target, 2);
 		if (subLeaderClanSource !== "") {
 			subLeaderClanSource = "<big><b>Sub-Líderes</b></big><br /><br />" + subLeaderClanSource + "</b></big></big><br /><br />";
 		}
-		var oficialClanSource = Clans.getAuthMembers(target, 1);
+		let oficialClanSource = Clans.getAuthMembers(target, 1);
 		if (oficialClanSource !== "") {
 			oficialClanSource = "<big><b>Oficiales</b></big><br /><br />" + oficialClanSource + "</b></big></big><br /><br />";
 		}
-		var memberClanSource = Clans.getAuthMembers(target, 0);
+		let memberClanSource = Clans.getAuthMembers(target, 0);
 		if (memberClanSource !== "") {
 			memberClanSource = "<big><b>Resto de Miembros</b></big><br /><br />" + memberClanSource + "</b></big></big><br /><br />";
 		}
@@ -181,10 +183,10 @@ exports.commands = {
 
 	clanmembers: 'miembrosclan',
 	miembrosclan: function (target, room, user) {
-		var autoclan = false;
+		let autoclan = false;
 		if (!target) autoclan = true;
 		if (!this.canBroadcast()) return false;
-		var clan = Clans.getRating(target);
+		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
 			if (target)
@@ -199,8 +201,8 @@ exports.commands = {
 			this.sendReply("El clan especificado no existe o no está disponible.");
 			return;
 		}
-		var nMembers = 0;
-		var membersClan = Clans.getMembers(target);
+		let nMembers = 0;
+		let membersClan = Clans.getMembers(target);
 		if (!membersClan) {
 			nMembers = 0;
 		} else {
@@ -211,10 +213,10 @@ exports.commands = {
 		);
 	},
 	invitacionesclan: function (target, room, user) {
-		var autoclan = false;
+		let autoclan = false;
 		if (!target) autoclan = true;
 		if (!this.canBroadcast()) return false;
-		var clan = Clans.getRating(target);
+		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
 			if (target)
@@ -235,12 +237,12 @@ exports.commands = {
 	},
 	clan: 'getclan',
 	getclan: function (target, room, user) {
-		var autoClan = false;
-		var memberClanProfile = false;
-		var clanMember = "";
+		let autoClan = false;
+		let memberClanProfile = false;
+		let clanMember = "";
 		if (!target) autoClan = true;
 		if (!this.canBroadcast()) return false;
-		var clan = Clans.getProfile(target);
+		let clan = Clans.getProfile(target);
 		if (!clan) {
 			clanMember = target;
 			target = Clans.findClanFromMember(target);
@@ -259,15 +261,15 @@ exports.commands = {
 			this.sendReply("El clan especificado no existe o no está disponible.");
 			return;
 		}
-		var salaClanSource = "";
+		let salaClanSource = "";
 		if (clan.sala === "none") {
 			salaClanSource = 'Aún no establecida.';
 		} else {
 			salaClanSource = '<button name="send" value="/join ' + Tools.escapeHTML(clan.sala) + '" target="_blank">' + Tools.escapeHTML(clan.sala) + '</button>';
 		}
-		var clanTitle = "";
+		let clanTitle = "";
 		if (memberClanProfile) {
-			var authValue = Clans.authMember(target, clanMember);
+			let authValue = Clans.authMember(target, clanMember);
 			if (authValue === 3) {
 				clanTitle = clanMember + " - Líder del clan " + clan.compname;
 			} else if (authValue === 2) {
@@ -280,9 +282,9 @@ exports.commands = {
 		} else {
 			clanTitle = clan.compname;
 		}
-		var medalsClan = '';
+		let medalsClan = '';
 		if (clan.medals) {
-			for (var u in clan.medals) {
+			for (let u in clan.medals) {
 				medalsClan += '<img id="' + u + '" src="' + encodeURI(clan.medals[u].logo) + '" width="32" title="' + Tools.escapeHTML(clan.medals[u].desc) + '" />&nbsp;&nbsp;';
 			}
 		}
@@ -301,7 +303,7 @@ exports.commands = {
 
 	setlemaclan: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 2) return this.sendReply("Usage: /setlemaclan clan, lema");
 
 		if (!Clans.setLema(params[0], params[1]))
@@ -313,7 +315,8 @@ exports.commands = {
 
 	setlogoclan: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let
+		params = target.split(',');
 		if (!params || params.length !== 2) return this.sendReply("Usage: /setlogoclan clan, logo");
 
 		if (!Clans.setLogo(params[0], params[1]))
@@ -325,7 +328,7 @@ exports.commands = {
 
 	settitleclan: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 2) return this.sendReply("Usage: /settitleclan clan, titulo");
 
 		if (!Clans.setCompname(params[0], params[1]))
@@ -337,7 +340,7 @@ exports.commands = {
 
 	setrankclan: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 2) return this.sendReply("Usage: /setrankclan clan, valor");
 
 		if (!Clans.setRanking(params[0], params[1]))
@@ -349,7 +352,7 @@ exports.commands = {
 
 	setgxeclan: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 4) return this.sendReply("Usage: /setgxeclan clan, wins, losses, ties");
 
 		if (!Clans.setGxe(params[0], params[1], params[2], params[3]))
@@ -361,7 +364,7 @@ exports.commands = {
 
 	setsalaclan: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 2) return this.sendReply("Usage: /setsalaclan clan, sala");
 
 		if (!Clans.setSala(params[0], params[1]))
@@ -373,7 +376,7 @@ exports.commands = {
 
 	giveclanmedal: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 4) return this.sendReply("Usage: /giveclanmedal clan, medallaId, imagen, desc");
 
 		if (!Clans.addMedal(params[0], params[1], params[2], params[3]))
@@ -385,7 +388,7 @@ exports.commands = {
 
 	removeclanmedal: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params || params.length !== 2) return this.sendReply("Usage: /removeclanmedal clan, medallaId");
 
 		if (!Clans.deleteMedal(params[0], params[1]))
@@ -396,19 +399,19 @@ exports.commands = {
 	},
 
 	lemaclan: function (target, room, user) {
-		var permisionClan = false;
+		let permisionClan = false;
 		if (!target) return this.sendReply("Debe especificar un lema.");
-		var clanUser = Clans.findClanFromMember(user.name);
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var iduserwrit = toId(user.name);
-			var perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let iduserwrit = toId(user.name);
+			let perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionvalue === 3) permisionClan = true;
 			if (!permisionClan && !this.can('clans')) return false;
 		} else {
 			return false;
 		}
-		var claninfo = Clans.getElementalData (clanUser);
+		let claninfo = Clans.getElementalData (clanUser);
 		if (room && room.id === toId(claninfo.sala)) {
 			if (!Clans.setLema(clanUser, target))
 				this.sendReply("El lema es mayor de 80 caracteres.");
@@ -421,19 +424,19 @@ exports.commands = {
 	},
 
 	logoclan: function (target, room, user) {
-		var permisionClan = false;
+		let permisionClan = false;
 		if (!target) return this.sendReply("Debe especificar un logo.");
-		var clanUser = Clans.findClanFromMember(user.name);
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var iduserwrit = toId(user.name);
-			var perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let iduserwrit = toId(user.name);
+			let perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionvalue === 3) permisionClan = true;
 			if (!permisionClan && !this.can('clans')) return false;
 		} else {
 			return false;
 		}
-		var claninfo = Clans.getElementalData (clanUser);
+		let claninfo = Clans.getElementalData (clanUser);
 		if (room && room.id === toId(claninfo.sala)) {
 			if (!Clans.setLogo(clanUser, target))
 				this.sendReply("El logo es mayor de 120 caracteres.");
@@ -447,22 +450,22 @@ exports.commands = {
 
 	llamarmiembros: 'fjg',
 	fjg: function (target, room, user) {
-		var permisionClan = false;
-		var clanUser = Clans.findClanFromMember(user.name);
+		let permisionClan = false;
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var iduserwrit = toId(user.name);
-			var perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let iduserwrit = toId(user.name);
+			let perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionvalue === 2 || perminsionvalue === 3) permisionClan = true;
 			if (!permisionClan && !this.can('clans')) return false;
 		} else {
 			return false;
 		}
-		var claninfo = Clans.getElementalData (clanUser);
+		let claninfo = Clans.getElementalData (clanUser);
 		if (room && room.id === toId(claninfo.sala)) {
-			var clanMembers = Clans.getMembers(clanUser);
-			var targetUser;
-			for (var i = 0; i < clanMembers.length; ++i) {
+			let clanMembers = Clans.getMembers(clanUser);
+			let targetUser;
+			for (let i = 0; i < clanMembers.length; ++i) {
 				if (!room.users[toId(clanMembers[i])]) {
 					targetUser = Users.get(clanMembers[i])
 					if (targetUser && targetUser.connected) {
@@ -479,10 +482,10 @@ exports.commands = {
 
 	addclanmember: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (params.length !== 2) return this.sendReply("Usage: /addclanmember clan, member");
 
-		var user = Users.getExact(params[1]);
+		let user = Users.getExact(params[1]);
 		if (!user || !user.connected) return this.sendReply("User: " + params[1] + " is not online.");
 
 		if (!Clans.addMember(params[0], params[1]))
@@ -496,16 +499,16 @@ exports.commands = {
 	clanleader: 'liderclan',
 	liderclan: function (target, room, user) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params) return this.sendReply("Usage: /liderclan member");
 
-		var userk = Users.getExact(params[0]);
+		let userk = Users.getExact(params[0]);
 		if (!userk || !userk.connected) return this.sendReply("Usuario: " + params[0] + " no existe o no está disponible.");
 
 		if (!Clans.addLeader(params[0]))
 			this.sendReply("El usuario no existe, no pertenece a ningún clan o ya era líder de su clan.");
 		else {
-			var clanUser = Clans.findClanFromMember(params[0]);
+			let clanUser = Clans.findClanFromMember(params[0]);
 			this.sendReply("Usuario: " + userk.name + " nombrado correctamente líder del clan " + clanUser + ".");
 			userk.popup(user.name + " te ha nombrado Líder del clan " + clanUser + ".\nUtiliza el comando /clanhelp para más información.");
 		}
@@ -513,26 +516,27 @@ exports.commands = {
 
 	clanoficial: 'oficialclan',
 	oficialclan: function (target, room, user) {
-		var permisionClan = false;
-		var params = target.split(',');
+		let permisionClan = false;
+		let params = target.split(',');
 		if (!params) {
 				return this.sendReply("Usage: /oficialclan member");
 		}
-		var clanUser = Clans.findClanFromMember(user.name);
-		var clanTarget = Clans.findClanFromMember(params[0]);
+		let
+		clanUser = Clans.findClanFromMember(user.name);
+		let clanTarget = Clans.findClanFromMember(params[0]);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var userb = toId(params[0]);
-			var iduserwrit = toId(user.name);
-			var perminsionValue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let userb = toId(params[0]);
+			let iduserwrit = toId(user.name);
+			let perminsionValue = Clans.authMember(clanUserid, iduserwrit);
 			if ((perminsionValue === 2 || perminsionValue === 3) && clanTarget === clanUser) permisionClan = true;
 		}
 		if (!permisionClan && !this.can('clans')) return;
-		var userk = Users.getExact(params[0]);
+		let userk = Users.getExact(params[0]);
 		if (!userk || !userk.connected) return this.sendReply("Usuario: " + params[0] + " no existe o no está disponible.");
 		if (clanTarget) {
-			var clanId = toId(clanTarget);
-			var userId = toId(params[0]);
+			let clanId = toId(clanTarget);
+			let userId = toId(params[0]);
 			if ((Clans.authMember(clanId, userId) > 2 && !this.can('clans')) || (Clans.authMember(clanId, userId) === 2 && perminsionValue < 3 && !this.can('clans'))) return false;
 		}
 		if (!Clans.addOficial(params[0]))
@@ -545,26 +549,26 @@ exports.commands = {
 
 	clansubleader: 'subliderclan',
 	subliderclan: function (target, room, user) {
-		var permisionClan = false;
-		var params = target.split(',');
+		let permisionClan = false;
+		let params = target.split(',');
 		if (!params) {
 				return this.sendReply("Usage: /subliderclan member");
 		}
-		var clanUser = Clans.findClanFromMember(user.name);
-		var clanTarget = Clans.findClanFromMember(params[0]);
+		let clanUser = Clans.findClanFromMember(user.name);
+		let clanTarget = Clans.findClanFromMember(params[0]);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var userb = toId(params[0]);
-			var iduserwrit = toId(user.name);
-			var perminsionValue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let userb = toId(params[0]);
+			let iduserwrit = toId(user.name);
+			let perminsionValue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionValue === 3 && clanTarget === clanUser) permisionClan = true;
 		}
 		if (!permisionClan && !this.can('clans')) return;
-		var userk = Users.getExact(params[0]);
+		let userk = Users.getExact(params[0]);
 		if (!userk || !userk.connected) return this.sendReply("Usuario: " + params[0] + " no existe o no está disponible.");
 		if (clanTarget) {
-			var clanId = toId(clanTarget);
-			var userId = toId(params[0]);
+			let clanId = toId(clanTarget);
+			let userId = toId(params[0]);
 			if ((Clans.authMember(clanId, userId) > 2 && !this.can('clans')) || (Clans.authMember(clanId, userId) === 2 && perminsionValue < 3 && !this.can('clans'))) return false;
 		}
 		if (!Clans.addSubLeader(params[0]))
@@ -578,27 +582,27 @@ exports.commands = {
 	degradarclan: 'declanauth',
 	demoteclan: 'declanauth',
 	declanauth: function (target, room, user) {
-		var permisionClan = false;
-		var params = target.split(',');
+		let permisionClan = false;
+		let params = target.split(',');
 		if (!params) {
 			return this.sendReply("Usage: /demoteclan member");
 		}
-		var clanUser = Clans.findClanFromMember(user.name);
-		var clanTarget = Clans.findClanFromMember(params[0]);
+		let clanUser = Clans.findClanFromMember(user.name);
+		let clanTarget = Clans.findClanFromMember(params[0]);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var userb = toId(params[0]);
-			var iduserwrit = toId(user.name);
-			var perminsionValue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let userb = toId(params[0]);
+			let iduserwrit = toId(user.name);
+			let perminsionValue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionValue >= 2 && clanTarget === clanUser) permisionClan = true;
 		}
 		if (!permisionClan && !this.can('clans')) return;
-		var userk = Users.getExact(params[0]);
+		let userk = Users.getExact(params[0]);
 		if (!clanTarget) {
 			return this.sendReply("El usuario no existe o no pertenece a ningún clan.");
 		} else {
-			var clanId = toId(clanTarget);
-			var userId = toId(params[0]);
+			let clanId = toId(clanTarget);
+			let userId = toId(params[0]);
 			if ((Clans.authMember(clanId, userId) > 2 && !this.can('clans')) || (Clans.authMember(clanId, userId) === 2 && perminsionValue < 3 && !this.can('clans'))) return false;
 		}
 		if (!Clans.deleteLeader(params[0])) {
@@ -612,7 +616,7 @@ exports.commands = {
 				}
 			}
 		} else {
-			var oficialDemote = Clans.deleteOficial(params[0]);
+			let oficialDemote = Clans.deleteOficial(params[0]);
 			if (!userk || !userk.connected) {
 				this.addModCommand(params[0] + " ha sido degradado de rango en " + clanTarget + " por " + user.name);
 			} else {
@@ -622,18 +626,18 @@ exports.commands = {
 	},
 
 	invitarclan: function (target, room, user) {
-		var permisionClan = false;
-		var clanUser = Clans.findClanFromMember(user.name);
+		let permisionClan = false;
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var iduserwrit = toId(user.name);
-			var permisionValue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let iduserwrit = toId(user.name);
+			let permisionValue = Clans.authMember(clanUserid, iduserwrit);
 			if (permisionValue > 0) permisionClan = true;
 		}
 		if (!permisionClan) return this.sendReply("/invitarclan - Acceso denegado");
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params) return this.sendReply("Usage: /invitarclan user");
-		var userk = Users.getExact(params[0]);
+		let userk = Users.getExact(params[0]);
 		if (!userk || !userk.connected) return this.sendReply("Usuario: " + params[0] + " no existe o no está disponible.");
 		if (!Clans.addInvite(clanUser, params[0]))
 			this.sendReply("No se pudo invitar al usuario. ¿No existe, ya está invitado o está en otro clan?");
@@ -644,13 +648,13 @@ exports.commands = {
 		}
 	},
 	aceptarclan: function (target, room, user) {
-		var clanUser = Clans.findClanFromMember(user.name);
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser) {
 			return this.sendReply("Ya perteneces a un clan. No te puedes unir a otro.");
 		}
-		var params = target.split(',');
+		let params = target.split(',');
 		if (!params) return this.sendReply("Usage: /aceptarclan clan");
-		var clanpropio = Clans.getClanName(params[0]);
+		let clanpropio = Clans.getClanName(params[0]);
 		if (!clanpropio) return this.sendReply("El clan no existe o no está disponible.");
 
 		if (!Clans.aceptInvite(params[0], user.name))
@@ -662,13 +666,13 @@ exports.commands = {
 	},
 	inviteclear: 'borrarinvitaciones',
 	borrarinvitaciones: function (target, room, user) {
-		var permisionClan = false;
-		var clanUser = Clans.findClanFromMember(user.name);
+		let permisionClan = false;
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (!target) {
 			if (clanUser) {
-				var clanUserid = toId(clanUser);
-				var iduserwrit = toId(user.name);
-				var perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
+				let clanUserid = toId(clanUser);
+				let iduserwrit = toId(user.name);
+				let perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
 				if (perminsionvalue === 3) permisionClan = true;
 			}
 			if (!permisionClan) return false;
@@ -685,7 +689,7 @@ exports.commands = {
 
 	removeclanmember: function (target) {
 		if (!this.can('clans')) return false;
-		var params = target.split(',');
+		let params = target.split(',');
 		if (params.length !== 2) return this.sendReply("Usage: /removeclanmember clan, member");
 		if (!Clans.removeMember(params[0], params[1]))
 			this.sendReply("Could not remove the user from the clan. Does the clan exist or has the user already been removed from it?");
@@ -696,32 +700,32 @@ exports.commands = {
 	},
 
 	expulsarclan: function (target, room, user) {
-		var permisionClan = false;
-		var params = target.split(',');
+		let permisionClan = false;
+		let params = target.split(',');
 		if (!params) {
 				return this.sendReply("Usage: /expulsarclan member");
 		}
-		var clanUser = Clans.findClanFromMember(user.name);
-		var clanTarget = Clans.findClanFromMember(params[0]);
+		let clanUser = Clans.findClanFromMember(user.name);
+		let clanTarget = Clans.findClanFromMember(params[0]);
 		if (clanUser) {
-			var clanUserid = toId(clanUser);
-			var userb = toId(params[0]);
-			var iduserwrit = toId(user.name);
-			var perminsionValue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let userb = toId(params[0]);
+			let iduserwrit = toId(user.name);
+			let perminsionValue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionValue >= 2 && clanTarget === clanUser) permisionClan = true;
 		}
 		if (!permisionClan && !this.can('clans')) return;
-		var currentWar = War.findClan(clanTarget);
+		let currentWar = War.findClan(clanTarget);
 		if (currentWar) {
-			var currentWarParticipants = War.getTourData(currentWar);
+			let currentWarParticipants = War.getTourData(currentWar);
 			if (currentWarParticipants.teamAMembers[toId(params[0])] || currentWarParticipants.teamBMembers[toId(params[0])]) return this.sendReply("No puedes expulsar del clan si el miembro estaba participando en una war.");
 		}
-		var userk = Users.getExact(params[0]);
+		let userk = Users.getExact(params[0]);
 		if (!clanTarget) {
 			return this.sendReply("El usuario no existe o no pertenece a ningún clan.");
 		} else {
-			var clanId = toId(clanTarget);
-			var userId = toId(params[0]);
+			let clanId = toId(clanTarget);
+			let userId = toId(params[0]);
 			if ((Clans.authMember(clanId, userId) > 2 && !this.can('clans')) || (Clans.authMember(clanId, userId) === 2 && perminsionValue < 3 && !this.can('clans'))) return false;
 		}
 		if (!Clans.removeMember(clanTarget, params[0])) {
@@ -738,13 +742,13 @@ exports.commands = {
 	 salirdelclan: 'abandonarclan',
 	 clanleave: 'abandonarclan',
 	 abandonarclan: function (target, room, user) {
-		var clanUser = Clans.findClanFromMember(user.name);
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (!clanUser) {
 			return this.sendReply("No perteneces a ningún clan.");
 		}
-		var currentWar = War.findClan(clanUser);
+		let currentWar = War.findClan(clanUser);
 		if (currentWar) {
-			var currentWarParticipants = War.getTourData(currentWar);
+			let currentWarParticipants = War.getTourData(currentWar);
 			if (currentWarParticipants.teamAMembers[toId(user.name)] || currentWarParticipants.teamBMembers[toId(user.name)]) return this.sendReply("No puedes salir del clan si estabas participando en una war.");
 		}
 		if (!Clans.removeMember(clanUser, user.name)) {
@@ -787,10 +791,10 @@ exports.commands = {
 	},
 
 	warlog: function (target, room, user) {
-		var autoclan = false;
+		let autoclan = false;
 		if (!target) autoclan = true;
 		if (!this.canBroadcast()) return false;
-		var clan = Clans.getRating(target);
+		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
 			if (target)
@@ -805,8 +809,8 @@ exports.commands = {
 			this.sendReply("El clan especificado no existe o no está disponible.");
 			return;
 		}
-		var f = new Date();
-		var dateWar = f.getDate() + '-' + f.getMonth() + ' ' + f.getHours() + 'h';
+		let f = new Date();
+		let dateWar = f.getDate() + '-' + f.getMonth() + ' ' + f.getHours() + 'h';
 		this.sendReply(
 			"|raw| <center><big><big><b>Ultimas Wars del clan " + Tools.escapeHTML(Clans.getClanName(target)) + "</b></big></big> <br /><br />" + Clans.getWarLogTable(target) + '<br /> Fecha del servidor: ' + dateWar + '</center>'
 		);
@@ -814,14 +818,14 @@ exports.commands = {
 
 	cerrarsalaclan: 'closeclanroom',
 	closeclanroom: function (target, room, user) {
-		var permisionClan = false;
-		var clanRoom = Clans.findClanFromRoom(room.id);
+		let permisionClan = false;
+		let clanRoom = Clans.findClanFromRoom(room.id);
 		if (!clanRoom) return this.sendReply("Esta no es una sala de Clan.");
-		var clanUser = Clans.findClanFromMember(user.name);
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser && toId(clanRoom) === toId(clanUser)) {
-			var clanUserid = toId(clanUser);
-			var iduserwrit = toId(user.name);
-			var perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let iduserwrit = toId(user.name);
+			let perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionvalue >= 2) permisionClan = true;
 
 		}
@@ -835,14 +839,14 @@ exports.commands = {
 
 	abrirsalaclan: 'openclanroom',
 	openclanroom: function (target, room, user) {
-		var permisionClan = false;
-		var clanRoom = Clans.findClanFromRoom(room.id);
+		let permisionClan = false;
+		let clanRoom = Clans.findClanFromRoom(room.id);
 		if (!clanRoom) return this.sendReply("Esta no es una sala de Clan.");
-		var clanUser = Clans.findClanFromMember(user.name);
+		let clanUser = Clans.findClanFromMember(user.name);
 		if (clanUser && toId(clanRoom) === toId(clanUser)) {
-			var clanUserid = toId(clanUser);
-			var iduserwrit = toId(user.name);
-			var perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
+			let clanUserid = toId(clanUser);
+			let iduserwrit = toId(user.name);
+			let perminsionvalue = Clans.authMember(clanUserid, iduserwrit);
 			if (perminsionvalue >= 2) permisionClan = true;
 
 		}
@@ -857,8 +861,8 @@ exports.commands = {
 	kickall: function (target, room, user, connection) {
 		if (user.locked || user.mutedRooms[room.id]) return this.sendReply("You cannot do this while unable to talk.");
 		if (!this.can('makeroom')) return false;
-		var targetUser;
-		for (var f in room.users) {
+		let targetUser;
+		for (let f in room.users) {
 			targetUser = Users.getExact(room.users[f]);
 			if (!targetUser) {
 				delete room.users[f];
