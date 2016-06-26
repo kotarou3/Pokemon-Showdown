@@ -10,23 +10,21 @@
  *
  * @license MIT license
  */
-/* eslint indent: 0 */
 
 'use strict';
 
-//const cluster = require('cluster');
+const cluster = require('cluster');
 global.Config = require('./config/config');
-let fakeProcess = new (require('./fake-process').FakeProcess)();
 
-/*if (cluster.isMaster) {
+if (cluster.isMaster) {
 	cluster.setupMaster({
 		exec: require('path').resolve(__dirname, 'sockets.js'),
-	});*/
+	});
 
 	let workers = exports.workers = {};
 
 	let spawnWorker = exports.spawnWorker = function () {
-		let worker = fakeProcess.server;
+		let worker = cluster.fork({PSPORT: Config.port, PSBINDADDR: Config.bindAddress || '', PSNOSSL: Config.ssl ? 0 : 1});
 		let id = worker.id;
 		workers[id] = worker;
 		worker.on('message', data => {
@@ -61,7 +59,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		});
 	};
 
-	/*cluster.on('disconnect', worker => {
+	cluster.on('disconnect', worker => {
 		// worker crashed, try our best to clean up
 		require('./crashlogger.js')(new Error("Worker " + worker.id + " abruptly died"), "The main process");
 
@@ -81,7 +79,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 
 		// attempt to recover
 		spawnWorker();
-	});*/
+	});
 
 	exports.listen = function (port, bindAddress, workerCount) {
 		if (port !== undefined && !isNaN(port)) {
@@ -102,13 +100,13 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		if (workerCount === undefined) {
 			workerCount = (Config.workers !== undefined ? Config.workers : 1);
 		}
-		//for (let i = 0; i < workerCount; i++) {
+		for (let i = 0; i < workerCount; i++) {
 			spawnWorker();
-		//}
+		}
 	};
 
 	exports.killWorker = function (worker) {
-		/*let idd = worker.id + '-';
+		let idd = worker.id + '-';
 		let count = 0;
 		Users.connections.forEach((connection, connectionid) => {
 			if (connectionid.substr(idd.length) === idd) {
@@ -120,18 +118,17 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 			worker.kill();
 		} catch (e) {}
 		delete workers[worker.id];
-		return count;*/
-		return 0;
+		return count;
 	};
 
 	exports.killPid = function (pid) {
-		/*pid = '' + pid;
+		pid = '' + pid;
 		for (let id in workers) {
 			let worker = workers[id];
 			if (pid === '' + worker.process.pid) {
 				return this.killWorker(worker);
 			}
-		}*/
+		}
 		return false;
 	};
 
@@ -165,7 +162,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	exports.subchannelMove = function (worker, channelid, subchannelid, socketid) {
 		worker.send('.' + channelid + '\n' + subchannelid + '\n' + socketid);
 	};
-//} else {
+} else {
 	// is worker
 
 	if (process.env.PSPORT) Config.port = +process.env.PSPORT;
@@ -187,10 +184,12 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 
 	global.Cidr = require('./cidr');
 
-	// graceful crash
-	/*process.on('uncaughtException', err => {
-		require('./crashlogger.js')(err, 'Socket process ' + cluster.worker.id + ' (' + process.pid + ')', true);
-	});*/
+	if (Config.crashGuard) {
+		// graceful crash
+		process.on('uncaughtException', err => {
+			require('./crashlogger.js')(err, 'Socket process ' + cluster.worker.id + ' (' + process.pid + ')', true);
+		});
+	}
 
 	let app = require('http').createServer();
 	let appssl;
@@ -250,7 +249,6 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 			if (severity === 'error') console.log('ERROR: ' + message);
 		},
 		prefix: '/showdown',
-		websocket: !Config.disableWebsocket,
 	});
 
 	let sockets = {};
@@ -281,7 +279,7 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	};
 	let interval = setInterval(sweepClosedSockets, 1000 * 60 * 10); // eslint-disable-line no-unused-vars
 
-	fakeProcess.client.on('message', data => {
+	process.on('message', data => {
 		// console.log('worker received: ' + data);
 		let socket = null, socketid = '';
 		let channel = null, channelid = '';
@@ -421,6 +419,10 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 		}
 	});
 
+	process.on('disconnect', () => {
+		process.exit();
+	});
+
 	// this is global so it can be hotpatched if necessary
 	let isTrustedProxyIp = Cidr.checker(Config.proxyIps);
 	let socketCounter = 0;
@@ -452,22 +454,28 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 			}
 		}
 
-		fakeProcess.client.send('*' + socketid + '\n' + socket.remoteAddress);
+		process.send('*' + socketid + '\n' + socket.remoteAddress);
 
 		socket.on('data', message => {
 			// drop empty messages (DDoS?)
 			if (!message) return;
+			// drop messages over 100KB
+			if (message.length > 100000) {
+				console.log("Dropping client message " + (message.length / 1024) + " KB...");
+				console.log(message.slice(0, 160));
+				return;
+			}
 			// drop legacy JSON messages
 			if (typeof message !== 'string' || message.charAt(0) === '{') return;
 			// drop blank messages (DDoS?)
 			let pipeIndex = message.indexOf('|');
 			if (pipeIndex < 0 || pipeIndex === message.length - 1) return;
 
-			fakeProcess.client.send('<' + socketid + '\n' + message);
+			process.send('<' + socketid + '\n' + message);
 		});
 
 		socket.on('close', () => {
-			fakeProcess.client.send('!' + socketid);
+			process.send('!' + socketid);
 			delete sockets[socketid];
 			for (let channelid in channels) {
 				delete channels[channelid][socketid];
@@ -477,15 +485,15 @@ let fakeProcess = new (require('./fake-process').FakeProcess)();
 	server.installHandlers(app, {});
 	if (!Config.bindAddress) Config.bindAddress = '0.0.0.0';
 	app.listen(Config.port, Config.bindAddress);
-	console.log('Worker ' /*+ cluster.worker.id*/ + ' now listening on ' + Config.bindAddress + ':' + Config.port);
+	console.log('Worker ' + cluster.worker.id + ' now listening on ' + Config.bindAddress + ':' + Config.port);
 
 	if (appssl) {
 		server.installHandlers(appssl, {});
 		appssl.listen(Config.ssl.port, Config.bindAddress);
-		console.log('Worker ' /*+ cluster.worker.id*/ + ' now listening for SSL on port ' + Config.ssl.port);
+		console.log('Worker ' + cluster.worker.id + ' now listening for SSL on port ' + Config.ssl.port);
 	}
 
 	console.log('Test your server at http://' + (Config.bindAddress === '0.0.0.0' ? 'localhost' : Config.bindAddress) + ':' + Config.port);
 
-	require('./repl.js').start('sockets-', /*cluster.worker.id + '-' +*/ process.pid, cmd => eval(cmd));
-//}
+	require('./repl.js').start('sockets-', cluster.worker.id + '-' + process.pid, cmd => eval(cmd));
+}

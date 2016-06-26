@@ -4,8 +4,7 @@
   "description": "The server for the Pokémon Showdown battle simulator",
   "version": "0.10.2",
   "dependencies": {
-    "sockjs": "0.3.15",
-    "sugar": "1.4.1"
+    "sockjs": "0.3.15"
   },
   "optionalDependencies": {
     "cloud-env": "0.1.1",
@@ -22,7 +21,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "eslint --rulesdir=dev-tools/eslint --cache . && mocha"
+    "test": "eslint --rulesdir=dev-tools/eslint --cache *.js chat-plugins/ config/ data/ dev-tools/ mods/ tournaments/ test/ && mocha"
   },
   "bin": "./pokemon-showdown",
   "homepage": "http://pokemonshowdown.com",
@@ -50,8 +49,9 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "eslint": "~1.9.0",
-    "mocha": "~2.3.2",
-    "mock-fs": "~3.5.0"
+    "eslint": "^2.8.0",
+    "mocha": "^2.4.5",
+    "mock-fs": "^3.8.0",
+    "fuzzur": "0.1.2"
   }
 }

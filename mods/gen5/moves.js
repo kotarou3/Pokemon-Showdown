@@ -16,11 +16,14 @@ exports.BattleMovedex = {
 	aromatherapy: {
 		inherit: true,
 		onHit: function (pokemon, source) {
+			this.add('-cureteam', source, '[from] move: Aromatherapy');
 			let side = pokemon.side;
 			for (let i = 0; i < side.pokemon.length; i++) {
-				side.pokemon[i].status = '';
+				if (side.pokemon[i].status && side.pokemon[i].hp) {
+					this.add('-curestatus', side.pokemon[i], side.pokemon[i].status);
+					side.pokemon[i].status = '';
+				}
 			}
-			this.add('-cureteam', source, '[from] move: Aromatherapy');
 		},
 	},
 	assist: {
@@ -133,7 +136,8 @@ exports.BattleMovedex = {
 				if (move.id !== 'conversion' && !target.hasType(move.type)) {
 					return move.type;
 				}
-			}).compact();
+				return '';
+			}).filter(type => type);
 			if (!possibleTypes.length) {
 				return false;
 			}
@@ -319,13 +323,16 @@ exports.BattleMovedex = {
 	},
 	healbell: {
 		inherit: true,
-		flags: {protect: 1, mirror: 1, sound: 1},
+		flags: {snatch: 1, sound: 1},
 		onHit: function (pokemon, source) {
+			this.add('-cureteam', source, '[from] move: Heal Bell');
 			let side = pokemon.side;
 			for (let i = 0; i < side.pokemon.length; i++) {
-				side.pokemon[i].status = '';
+				if (side.pokemon[i].status && side.pokemon[i].hp) {
+					this.add('-curestatus', side.pokemon[i], side.pokemon[i].status);
+					side.pokemon[i].status = '';
+				}
 			}
-			this.add('-cureteam', source, '[from] move: Heal Bell');
 		},
 	},
 	healblock: {
@@ -871,7 +878,7 @@ exports.BattleMovedex = {
 					this.add('-activate', target, 'Substitute', '[damage]');
 				}
 				if (move.recoil && damage) {
-					this.damage(this.clampIntRange(Math.round(damage * move.recoil[0] / move.recoil[1]), 1), source, target, 'recoil');
+					this.damage(this.calcRecoilDamage(damage, move), source, target, 'recoil');
 				}
 				if (move.drain) {
 					this.heal(Math.ceil(damage * move.drain[0] / move.drain[1]), source, target, 'drain');

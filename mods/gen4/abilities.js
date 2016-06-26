@@ -122,7 +122,6 @@ exports.BattleAbilities = {
 	},
 	"normalize": {
 		inherit: true,
-		onModifyMovePriority: -1,
 		onModifyMove: function (move) {
 			if (move.id !== 'struggle') {
 				move.type = 'Normal';
@@ -255,7 +254,7 @@ exports.BattleAbilities = {
 			if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle' || move.id === 'firefang') return;
 			this.debug('Wonder Guard immunity: ' + move.id);
 			if (target.runEffectiveness(move) <= 0) {
-				this.add('-activate', target, 'ability: Wonder Guard');
+				this.add('-immune', target, '[msg]', '[from] ability: Wonder Guard');
 				return null;
 			}
 		},

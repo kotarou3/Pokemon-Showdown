@@ -1,5 +1,7 @@
 'use strict';
 
+const REPL_ENABLED = true;
+
 const fs = require('fs');
 const path = require('path');
 const net = require('net');
@@ -25,6 +27,7 @@ if (process.listeners('SIGINT').length === 0) {
 
 // The eval function is passed in because there is no other way to access a file's non-global context
 exports.start = function (prefix, suffix, evalFunction) {
+	if (!REPL_ENABLED) return;
 	if (process.platform === 'win32') return; // Windows doesn't support sockets mounted in the filesystem
 
 	let resolvedPrefix = path.resolve(__dirname, Config.replSocketPrefix || 'logs/repl', prefix);
@@ -58,9 +61,9 @@ exports.start = function (prefix, suffix, evalFunction) {
 			output: socket,
 			eval: (cmd, context, filename, callback) => {
 				try {
-					callback(null, evalFunction(cmd));
+					return callback(null, evalFunction(cmd));
 				} catch (e) {
-					callback(e);
+					return callback(e);
 				}
 			},
 		}).on('exit', () => socket.end());

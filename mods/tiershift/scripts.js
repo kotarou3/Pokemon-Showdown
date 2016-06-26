@@ -8,8 +8,10 @@ exports.BattleScripts = {
 			if (!template.abilities) return false;
 			this.illusion = null;
 			this.template = template;
+
 			this.types = template.types;
 			this.addedType = '';
+
 			if (!dontRecalculateStats) {
 				let boosts = {
 					'UU': 5,
@@ -25,7 +27,7 @@ exports.BattleScripts = {
 				};
 				let tier = template.tier;
 				if (this.set.item) {
-					const item = this.battle.getItem(this.set.item);
+					let item = this.battle.getItem(this.set.item);
 					if (item.megaEvolves === template.species) tier = this.battle.getTemplate(item.megaStone).tier;
 				}
 				if (tier.charAt(0) === '(') tier = tier.slice(1, -1);
@@ -36,8 +38,9 @@ exports.BattleScripts = {
 					boost = 15;
 				}
 
-				const boostedHP = Math.floor(Math.floor(2 * this.template.baseStats['hp'] + boost + this.set.ivs['hp'] + Math.floor(this.set.evs['hp'] / 4) + 100) * this.level / 100 + 10);
-				if (this.maxhp > 1 && this.maxhp < boostedHP) this.hp = this.maxhp = boostedHP;
+				let hp = this.battle.clampIntRange(this.template.baseStats['hp'] + boost, 1, 255);
+				hp = Math.floor(Math.floor(2 * hp + this.set.ivs['hp'] + Math.floor(this.set.evs['hp'] / 4) + 100) * this.level / 100 + 10);
+				if (this.maxhp > 1 && this.maxhp < hp) this.hp = this.maxhp = hp;
 
 				for (let statName in this.stats) {
 					let stat = this.template.baseStats[statName];
