@@ -1,6 +1,5 @@
 /config/*
 /logs/*
-/repl/*
 /node_modules
 /eslint-cache
 /chat-plugins/private.js

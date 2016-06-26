@@ -9,7 +9,7 @@ exports.BattleScripts = {
 			let adjustment = 0;
 
 			if (this.data.FormatsData[i]) tier = this.data.FormatsData[i].tier;
-			if (!tier && this.data.Pokedex[i].baseSpecies) tier = this.data.FormatsData[toId(this.data.Pokedex[i].baseSpecies)].tier;
+			if (!tier && this.data.Pokedex[i].baseSpecies) tier = this.data.FormatsData[this.data.Pokedex[i].baseSpecies.toLowerCase()].tier;
 
 			switch (tier) {
 			case 'BL':

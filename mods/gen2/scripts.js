@@ -186,17 +186,9 @@ exports.BattleScripts = {
 				didSomething = true;
 			}
 			if (moveData.status) {
-				if (!target.status) {
-					hitResult = target.setStatus(moveData.status, pokemon, move);
-					didSomething = didSomething || hitResult;
-				} else if (!isSecondary) {
-					if (target.status === moveData.status) {
-						this.add('-fail', target, target.status);
-					} else {
-						this.add('-fail', target);
-					}
-					return false;
-				}
+				hitResult = target.trySetStatus(moveData.status, pokemon, move);
+				if (!hitResult && move.status) return hitResult;
+				didSomething = didSomething || hitResult;
 			}
 			if (moveData.forceStatus) {
 				hitResult = target.setStatus(moveData.forceStatus, pokemon, move);
@@ -292,6 +284,7 @@ exports.BattleScripts = {
 				basePower: move,
 				type: '???',
 				category: 'Physical',
+				willCrit: false,
 				flags: {},
 			};
 		}
@@ -525,7 +518,7 @@ exports.BattleScripts = {
 		}
 
 		if (target.fainted || target.hp <= 0) {
-			this.debug('instafaint: ' + this.faintQueue.map('target').map('name'));
+			this.debug('instafaint: ' + this.faintQueue.map(entry => entry.target).map(pokemon => pokemon.name));
 			this.faintMessages(true);
 			target.faint();
 		} else {

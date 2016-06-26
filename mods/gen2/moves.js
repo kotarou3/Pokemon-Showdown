@@ -44,6 +44,17 @@ exports.BattleMovedex = {
 		inherit: true,
 		critRatio: 3,
 	},
+	curse: {
+		inherit: true,
+		effect: {
+			onStart: function (pokemon, source) {
+				this.add('-start', pokemon, 'Curse', '[of] ' + source);
+			},
+			onAfterMoveSelf: function (pokemon) {
+				this.damage(pokemon.maxhp / 4);
+			},
+		},
+	},
 	dig: {
 		inherit: true,
 		effect: {
@@ -151,9 +162,8 @@ exports.BattleMovedex = {
 			onStart: function (pokemon) {
 				this.add('-start', pokemon, 'move: Focus Energy');
 			},
-			onModifyMovePriority: 1,
-			onModifyMove: function (move) {
-				move.critRatio += 1;
+			onModifyCritRatio: function (critRatio) {
+				return critRatio + 1;
 			},
 		},
 	},
@@ -186,6 +196,7 @@ exports.BattleMovedex = {
 			onStart: function (target) {
 				this.add('-start', target, 'move: Leech Seed');
 			},
+			onAfterMoveSelfPriority: 2,
 			onAfterMoveSelf: function (pokemon) {
 				let leecher = pokemon.side.foe.active[pokemon.volatiles['leechseed'].sourcePosition];
 				if (!leecher || leecher.fainted || leecher.hp <= 0) {
@@ -309,6 +320,28 @@ exports.BattleMovedex = {
 			} else {
 				this.heal(pokemon.maxhp / 2);
 			}
+		},
+	},
+	nightmare: {
+		inherit: true,
+		effect: {
+			noCopy: true,
+			onStart: function (pokemon) {
+				if (pokemon.status !== 'slp') {
+					return false;
+				}
+				this.add('-start', pokemon, 'Nightmare');
+			},
+			onAfterMoveSelfPriority: 1,
+			onAfterMoveSelf: function (pokemon) {
+				if (pokemon.status === 'slp') this.damage(pokemon.maxhp / 4);
+			},
+			onUpdate: function (pokemon) {
+				if (pokemon.status !== 'slp') {
+					pokemon.removeVolatile('nightmare');
+					this.add('-end', pokemon, 'Nightmare', '[silent]');
+				}
+			},
 		},
 	},
 	outrage: {

@@ -13,9 +13,26 @@
 
 'use strict';
 
-require('sugar');
 const fs = require('fs');
 const path = require('path');
+
+// shim Object.values
+if (!Object.values) {
+	Object.values = function (object) {
+		let values = [];
+		for (let k in object) values.push(object[k]);
+		return values;
+	};
+}
+// shim Array.prototype.includes
+if (!Array.prototype.includes) {
+	Object.defineProperty(Array.prototype, 'includes', { // eslint-disable-line no-extend-native
+		writable: true, configurable: true,
+		value: function (object) {
+			return this.indexOf(object) !== -1;
+		},
+	});
+}
 
 module.exports = (() => {
 	let moddedTools = {};
@@ -73,6 +90,18 @@ module.exports = (() => {
 		}
 	}
 
+	function deepClone(obj) {
+		if (typeof obj === 'function') return obj;
+		if (obj === null || typeof obj !== 'object') return obj;
+		if (Array.isArray(obj)) return obj.map(deepClone);
+		const clone = Object.create(Object.getPrototypeOf(obj));
+		const keys = Object.keys(obj);
+		for (let i = 0; i < keys.length; i++) {
+			clone[keys[i]] = deepClone(obj[keys[i]]);
+		}
+		return clone;
+	}
+
 	function Tools(mod) {
 		if (!mod) mod = 'base';
 		this.isBase = (mod === 'base');
@@ -110,7 +139,7 @@ module.exports = (() => {
 	Tools.prototype.modData = function (dataType, id) {
 		if (this.isBase) return this.data[dataType][id];
 		if (this.data[dataType][id] !== moddedTools[this.parentMod].data[dataType][id]) return this.data[dataType][id];
-		return (this.data[dataType][id] = Object.clone(this.data[dataType][id], true));
+		return (this.data[dataType][id] = deepClone(this.data[dataType][id]));
 	};
 
 	Tools.prototype.effectToString = function () {
@@ -158,7 +187,6 @@ module.exports = (() => {
 	 * If we're expecting a string and being given anything that isn't a string
 	 * or a number, it's safe to assume it's an error, and return ''
 	 */
-
 	Tools.prototype.getString = function (str) {
 		if (typeof str === 'string' || typeof str === 'number') return '' + str;
 		return '';
@@ -184,7 +212,6 @@ module.exports = (() => {
 	 * getName also enforces that there are not multiple space characters
 	 * in the name, although this is not strictly necessary for safety.
 	 */
-
 	Tools.prototype.getName = function (name) {
 		if (typeof name !== 'string' && typeof name !== 'number') return '';
 		name = ('' + name).replace(/[\|\s\[\]\,\u202e]+/g, ' ').trim();
@@ -216,6 +243,18 @@ module.exports = (() => {
 	};
 	let toId = Tools.prototype.getId;
 
+	Tools.prototype.getSpecies = function (species) {
+		let id = toId(species || '');
+		let template = this.getTemplate(id);
+		if (template.otherForms && template.otherForms.indexOf(id) >= 0) {
+			let form = id.slice(template.species.length);
+			species = template.species + '-' + form[0].toUpperCase() + form.slice(1);
+		} else {
+			species = template.species;
+		}
+		return species;
+	};
+
 	Tools.prototype.getTemplate = function (template) {
 		if (!template || typeof template === 'string') {
 			let name = (template || '').trim();
@@ -227,7 +266,7 @@ module.exports = (() => {
 			if (!this.data.Pokedex[id]) {
 				if (id.startsWith('mega') && this.data.Pokedex[id.slice(4) + 'mega']) {
 					id = id.slice(4) + 'mega';
-				} else if (id.startsWith('m') && this.data.Pokedex[id.slice(1) + 'mega'])  {
+				} else if (id.startsWith('m') && this.data.Pokedex[id.slice(1) + 'mega']) {
 					id = id.slice(1) + 'mega';
 				} else if (id.startsWith('primal') && this.data.Pokedex[id.slice(6) + 'primal']) {
 					id = id.slice(6) + 'primal';
@@ -244,10 +283,10 @@ module.exports = (() => {
 			}
 			name = template.species || template.name || name;
 			if (this.data.FormatsData[id]) {
-				Object.merge(template, this.data.FormatsData[id]);
+				Object.assign(template, this.data.FormatsData[id]);
 			}
 			if (this.data.Learnsets[id]) {
-				Object.merge(template, this.data.Learnsets[id]);
+				Object.assign(template, this.data.Learnsets[id]);
 			}
 			if (!template.id) template.id = id;
 			if (!template.name) template.name = name;
@@ -360,7 +399,7 @@ module.exports = (() => {
 	Tools.prototype.getMoveCopy = function (move) {
 		if (move && move.isCopy) return move;
 		move = this.getMove(move);
-		let moveCopy = Object.clone(move, true);
+		let moveCopy = deepClone(move);
 		moveCopy.isCopy = true;
 		return moveCopy;
 	};
@@ -437,6 +476,9 @@ module.exports = (() => {
 			if (this.data.Aliases[id]) {
 				name = this.data.Aliases[id];
 				id = toId(name);
+			}
+			if (id && !this.data.Items[id] && this.data.Items[id + 'berry']) {
+				id += 'berry';
 			}
 			item = {};
 			if (id && this.data.Items[id]) {
@@ -594,7 +636,7 @@ module.exports = (() => {
 					if (banlistTable['Rule:' + toId(subformat.ruleset[i])]) continue;
 
 					banlistTable['Rule:' + toId(subformat.ruleset[i])] = subformat.ruleset[i];
-					if (format.ruleset.indexOf(subformat.ruleset[i]) < 0) format.ruleset.push(subformat.ruleset[i]);
+					if (!format.ruleset.includes(subformat.ruleset[i])) format.ruleset.push(subformat.ruleset[i]);
 
 					let subsubformat = this.getFormat(subformat.ruleset[i]);
 					if (subsubformat.ruleset || subsubformat.banlist) {
@@ -604,6 +646,17 @@ module.exports = (() => {
 			}
 		}
 		return banlistTable;
+	};
+
+	Tools.prototype.shuffle = function (arr) {
+		// In-place shuffle by Fisher-Yates algorithm
+		for (let i = arr.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * (i + 1));
+			let temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+		return arr;
 	};
 
 	Tools.prototype.levenshtein = function (s, t, l) { // s = string 1, t = string 2, l = limit
@@ -663,7 +716,34 @@ module.exports = (() => {
 
 	Tools.prototype.escapeHTML = function (str) {
 		if (!str) return '';
-		return ('' + str).escapeHTML();
+		return ('' + str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;').replace(/\//g, '&#x2f;');
+	};
+
+	Tools.prototype.toTimeStamp = function (date, options) {
+		// Return a timestamp in the form {yyyy}-{MM}-{dd} {hh}:{mm}:{ss}.
+		// Optionally reports hours in mod-12 format.
+		const isHour12 = options && options.hour12;
+		let parts = [date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()];
+		if (isHour12) {
+			parts.push(parts[3] >= 12 ? 'pm' : 'am');
+			parts[3] = parts[3] % 12 || 12;
+		}
+		parts = parts.map(val => val < 10 ? '0' + val : '' + val);
+		return parts.slice(0, 3).join("-") + " " + parts.slice(3, 6).join(":") + (isHour12 ? " " + parts[6] : "");
+	};
+
+	Tools.prototype.toDurationString = function (number, options) {
+		// TODO: replace by Intl.DurationFormat or equivalent when it becomes available (ECMA-402)
+		// https://github.com/tc39/ecma402/issues/47
+		const date = new Date(+number);
+		const parts = [date.getUTCFullYear() - 1970, date.getUTCMonth(), date.getUTCDate() - 1, date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()];
+		const unitNames = ["second", "minute", "hour", "day", "month", "year"];
+		const positiveIndex = parts.findIndex(elem => elem > 0);
+		if (options && options.hhmmss) {
+			let string = parts.slice(positiveIndex).map(value => value < 10 ? "0" + value : "" + value).join(":");
+			return string.length === 2 ? "00:" + string : string;
+		}
+		return parts.slice(positiveIndex).reverse().map((value, index) => value ? value + " " + unitNames[index] + (value > 1 ? "s" : "") : "").reverse().join(" ").trim();
 	};
 
 	Tools.prototype.dataSearch = function (target, searchIn, isInexact) {
@@ -993,32 +1073,37 @@ module.exports = (() => {
 			}
 			let BattleData = maybeData['Battle' + dataType];
 			if (!BattleData || typeof BattleData !== 'object') throw new TypeError("Exported property `Battle" + dataType + "`from `" + './data/' + dataFiles[dataType] + "` must be an object except `null`.");
-			if (BattleData !== data[dataType]) data[dataType] = Object.merge(BattleData, data[dataType]);
+			if (BattleData !== data[dataType]) data[dataType] = Object.assign(BattleData, data[dataType]);
 		}
 		if (this.isBase) {
 			// Formats are inherited by mods
 			this.includeFormats();
 		} else {
 			for (let dataType of dataTypes) {
-				let parentTypedData = parentTools.data[dataType];
-				if (!data[dataType]) data[dataType] = {};
-				for (let key in parentTypedData) {
-					if (data[dataType][key] === null) {
+				const parentTypedData = parentTools.data[dataType];
+				const childTypedData = data[dataType] || (data[dataType] = {});
+				for (let entryId in parentTypedData) {
+					if (childTypedData[entryId] === null) {
 						// null means don't inherit
-						delete data[dataType][key];
-					} else if (!(key in data[dataType])) {
+						delete childTypedData[entryId];
+					} else if (!(entryId in childTypedData)) {
 						// If it doesn't exist it's inherited from the parent data
 						if (dataType === 'Pokedex') {
 							// Pokedex entries can be modified too many different ways
-							data[dataType][key] = Object.clone(parentTypedData[key], true);
+							childTypedData[entryId] = deepClone(parentTypedData[entryId]);
 						} else {
-							data[dataType][key] = parentTypedData[key];
+							childTypedData[entryId] = parentTypedData[entryId];
 						}
-					} else if (data[dataType][key] && data[dataType][key].inherit) {
+					} else if (childTypedData[entryId] && childTypedData[entryId].inherit) {
 						// {inherit: true} can be used to modify only parts of the parent data,
 						// instead of overwriting entirely
-						delete data[dataType][key].inherit;
-						Object.merge(data[dataType][key], parentTypedData[key], false, false);
+						delete childTypedData[entryId].inherit;
+
+						// Merge parent into children entry, preserving existing childs' properties.
+						for (let key in parentTypedData[entryId]) {
+							if (key in childTypedData[entryId]) continue;
+							childTypedData[entryId][key] = parentTypedData[entryId][key];
+						}
 					}
 				}
 			}
@@ -1070,11 +1155,18 @@ module.exports = (() => {
 			if (format.tournamentShow === undefined) format.tournamentShow = true;
 			if (format.mod === undefined) format.mod = 'base';
 			if (!moddedTools[format.mod]) throw new Error("Format `" + format.name + "` requires nonexistent mod: `" + format.mod + "`");
-			this.data.Formats[id] = format;
+			this.installFormat(id, format);
 		}
 
 		this.formatsLoaded = true;
 		return this;
+	};
+
+	Tools.prototype.installFormat = function (id, format) {
+		this.data.Formats[id] = format;
+		if (!this.isBase) {
+			moddedTools.base.data.Formats[id] = format;
+		}
 	};
 
 	/**

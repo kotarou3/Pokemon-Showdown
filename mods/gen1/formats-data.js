@@ -354,7 +354,7 @@ exports.BattleFormatsData = {
 		eventPokemon: [
 			{"generation":1, "level":40, "moves":["ember", "firespin", "stomp", "payday"]},
 		],
-		tier: "NU",
+		tier: "UU",
 	},
 	slowpoke: {
 		randomBattleMoves: ["amnesia", "surf", "thunderwave", "rest"],
@@ -420,7 +420,7 @@ exports.BattleFormatsData = {
 	haunter: {
 		randomBattleMoves: ["explosion", "thunderbolt", "megadrain", "psychic", "confuseray"],
 		essentialMove: "hypnosis",
-		tier: "UU",
+		tier: "NFE",
 	},
 	gengar: {
 		randomBattleMoves: ["explosion", "thunderbolt", "megadrain", "psychic"],
@@ -552,7 +552,7 @@ exports.BattleFormatsData = {
 	},
 	scyther: {
 		randomBattleMoves: ["slash", "swordsdance", "agility", "hyperbeam"],
-		tier: "NU",
+		tier: "UU",
 	},
 	jynx: {
 		randomBattleMoves: ["lovelykiss", "blizzard", "psychic", "mimic"],
@@ -624,7 +624,7 @@ exports.BattleFormatsData = {
 	omastar: {
 		randomBattleMoves: ["hydropump", "surf", "mimic", "rest", "seismictoss"],
 		essentialMove: "blizzard",
-		tier: "NU",
+		tier: "UU",
 	},
 	kabuto: {
 		randomBattleMoves: ["swordsdance", "bodyslam", "surf", "toxic", "harden", "slash"],
@@ -666,7 +666,7 @@ exports.BattleFormatsData = {
 	},
 	dragonite: {
 		randomBattleMoves: ["agility", "hyperbeam", "blizzard", "surf", "bodyslam", "icebeam", "substitute", "thunder", "thunderwave", "thunderbolt"],
-		tier: "OU",
+		tier: "UU",
 	},
 	mewtwo: {
 		randomBattleMoves: ["recover", "blizzard", "thunderbolt", "amnesia", "icebeam", "rest", "barrier", "thunderwave", "bodyslam", "hyperbeam"],
