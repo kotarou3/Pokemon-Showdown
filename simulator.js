@@ -13,70 +13,25 @@
 
 'use strict';
 
-let battles = Object.create(null);
+const ProcessManager = require('./process-manager');
 
-class SimulatorProcess {
-	constructor() {
-		this.load = 0;
-		this.active = true;
-
-		global.battleEngineFakeProcess = new (require('./fake-process').FakeProcess)();
-		this.process = battleEngineFakeProcess.server;
-		this.process.on('message', message => {
-			let lines = message.split('\n');
-			let battle = battles[lines[0]];
-			if (battle) {
-				battle.receive(lines);
-			}
-		});
-		setImmediate(require.bind(global, './battle-engine'));
-	}
-	send(data) {
-		this.process.send(data);
-	}
-	static init(num) {
-		this.processes = [];
-		if (num === undefined) num = Config.simulatorProcesses || 1;
-		this.spawn(num);
-	}
-	static spawn(num) {
-		/*for (let i = this.processes.length; i < num; ++i) {
-			this.processes.push(new SimulatorProcess());
-		}*/
-	}
-	static reinit() {
-		/*for (let process of this.processes) {
-			process.active = false;
-			if (!process.load) process.process.disconnect();
-		}
-		this.init();*/
-	}
-	static acquire() {
-		let process = this.processes[0];
-		for (let i = 1; i < this.processes.length; ++i) {
-			if (this.processes[i].load < process.load) {
-				process = this.processes[i];
-			}
-		}
-		process.load++;
-		return process;
-	}
-	static release(process) {
-		process.load--;
-		/*if (!process.load && !process.active) {
-			process.process.disconnect();
-		}*/
-	}
-	static eval(code) {
+const SimulatorProcess = new ProcessManager({
+	maxProcesses: Config.simulatorProcesses,
+	execFile: 'battle-engine.js',
+	onMessageUpstream: function (message) {
+		let lines = message.split('\n');
+		let battle = this.pendingTasks.get(lines[0]);
+		if (battle) battle.receive(lines);
+	},
+	eval: function (code) {
 		for (let process of this.processes) {
 			process.send('|eval|' + code);
 		}
-	}
-}
+	},
+});
 
 // Create the initial set of simulator processes.
-SimulatorProcess.init();
-SimulatorProcess.processes.push(new SimulatorProcess());
+SimulatorProcess.spawn();
 
 let slice = Array.prototype.slice;
 
@@ -140,10 +95,6 @@ class BattlePlayer {
 
 class Battle {
 	constructor(room, format, rated) {
-		if (battles[room.id]) {
-			throw new Error("Battle with ID " + room.id + " already exists.");
-		}
-
 		this.id = room.id;
 		this.room = room;
 		this.title = Tools.getFormat(format).name;
@@ -173,9 +124,12 @@ class Battle {
 		this.inactiveQueued = false;
 
 		this.process = SimulatorProcess.acquire();
-		this.send('init', this.format, rated ? '1' : '');
+		if (this.process.pendingTasks.has(room.id)) {
+			throw new Error("Battle with ID " + room.id + " already exists.");
+		}
 
-		battles[room.id] = this;
+		this.send('init', this.format, rated ? '1' : '');
+		this.process.pendingTasks.set(room.id, this);
 	}
 
 	send() {
@@ -235,7 +189,7 @@ class Battle {
 			user.popup("Failed to leave battle.");
 			return false;
 		}
-		this.room.auth[user.userid] = Users.getGroupsThatCan('joinbattle', this.room)[0];
+		this.room.auth[user.userid] = Users.getGroupsThatCan('broadcast', this.room)[0];
 		this.room.update();
 		this.room.kickInactiveUpdate();
 		return true;
@@ -277,13 +231,30 @@ class Battle {
 		case 'request': {
 			let player = this[lines[2]];
 			let rqid = lines[3];
-			if (player) {
-				this.requests[player.slot] = lines[4];
-				player.sendRoom('|request|' + lines[4]);
-			}
+
 			if (rqid !== this.rqid) {
 				this.rqid = rqid;
 				this.inactiveQueued = true;
+			}
+			if (player) {
+				const isNewRequest = !this.requests[player.slot] || +this.requests[player.slot][0] < +rqid;
+				if (isNewRequest) {
+					player.choiceIndex = 0;
+				}
+				this.requests[player.slot] = [rqid, lines[4]];
+				player.sendRoom('|request|' + (player.choiceIndex ? player.choiceIndex + '|' + player.choiceData + '\n' : '') + lines[4]);
+			}
+			break;
+		}
+
+		case 'choice': {
+			let player = this[lines[2]];
+			let rqid = lines[3];
+			let choiceIndex = +lines[4];
+			let choiceData = lines[5];
+			if (rqid === this.rqid && player) {
+				player.choiceIndex = choiceIndex;
+				player.choiceData = choiceData;
 			}
 			break;
 		}
@@ -312,33 +283,38 @@ class Battle {
 		player.updateSubchannel(connection || user);
 		let request = this.requests[player.slot];
 		if (request) {
-			(connection || user).sendTo(this.id, '|request|' + request);
+			(connection || user).sendTo(this.id, '|request|' + (player.choiceIndex ? player.choiceIndex + '|' + player.choiceData + '\n' : '') + request[1]);
 		}
 	}
 	onUpdateConnection(user, connection) {
 		this.onConnect(user, connection);
 	}
-	onRename(user, oldid) {
-		if (user.userid === oldid) return;
-		let player = this.players[oldid];
-		if (player) {
-			if (!this.allowRenames && user.userid !== oldid) {
-				this.forfeit(user, " forfeited by changing their name.");
-				return;
-			}
-			if (!this.players[user]) {
-				this.players[user] = player;
-				player.userid = user.userid;
-				player.name = user.name;
-				delete this.players[oldid];
-				player.simSend('rename', user.name, user.avatar);
-			}
+	onRename(user, oldUserid) {
+		if (user.userid === oldUserid) return;
+		if (!this.players) {
+			// !! should never happen but somehow still does
+			delete user.games[this.id];
+			return;
 		}
-		if (!player && user in this.players) {
-			// this handles a user renaming themselves into a user in the
-			// battle (e.g. by using /nick)
-			this.onConnect(user);
+		if (!(oldUserid in this.players)) {
+			if (user.userid in this.players) {
+				// this handles a user renaming themselves into a user in the
+				// battle (e.g. by using /nick)
+				this.onConnect(user);
+			}
+			return;
 		}
+		if (!this.allowRenames) {
+			this.forfeit(user, " forfeited by changing their name.");
+			return;
+		}
+		if (user.userid in this.players) return;
+		let player = this.players[oldUserid];
+		this.players[user.userid] = player;
+		player.userid = user.userid;
+		player.name = user.name;
+		delete this.players[oldUserid];
+		player.simSend('rename', user.name, user.avatar);
 	}
 	onJoin(user) {
 		let player = this.players[user];
@@ -398,7 +374,7 @@ class Battle {
 		if (!player) return false;
 		this.players[user.userid] = player;
 		this.playerCount++;
-		this.room.auth[user.userid] = Users.getGroupsThatCan('roompromote', '+', this.room)[0];
+		this.room.auth[user.userid] = Config.groups.battleRoomByRank.slice().reverse()[0];
 		if (this.playerCount >= 2) {
 			this.room.title = "" + this.p1.name + " vs. " + this.p2.name;
 			this.room.send('|title|' + this.room.title);
@@ -453,18 +429,16 @@ class Battle {
 		}
 		this.players = null;
 		this.room = null;
-		SimulatorProcess.release(this.process);
+		this.process.pendingTasks.delete(this.id);
+		this.process.release();
 		this.process = null;
-		delete battles[this.id];
 	}
 }
 
 exports.BattlePlayer = BattlePlayer;
 exports.Battle = Battle;
-exports.battles = battles;
 exports.SimulatorProcess = SimulatorProcess;
 
 exports.create = function (id, format, rated, room) {
-	if (battles[id]) return battles[id];
 	return new Battle(room, format, rated);
 };

@@ -14,14 +14,14 @@ exports.commands = {
 		if (room.id !== 'thehappyplace') return this.errorReply("This command can only be used in The Happy Place.");
 		if (!room.chatRoomData) return;
 		if (!target) {
-			if (!this.canBroadcast()) return;
+			if (!this.runBroadcast()) return;
 			if (!room.chatRoomData.quote) return this.sendReplyBox("The Quote of the Day has not been set.");
 			return this.sendReplyBox(
 				"The current <strong>Inspirational Quote of the Day</strong> is:<br />" +
 				"\"" + room.chatRoomData.quote + "\""
 			);
 		}
-		if (!this.can('qotd', room)) return false;
+		if (!this.can('declare', room)) return false;
 		if (target === 'off' || target === 'disable' || target === 'reset') {
 			if (!room.chatRoomData.quote) return this.sendReply("The Quote of the Day has already been reset.");
 			delete room.chatRoomData.quote;

@@ -55,7 +55,7 @@ let Room = (() => {
 	Room.prototype.sendAuth = function (message) {
 		for (let i in this.users) {
 			let user = this.users[i];
-			if (user.connected && user.can('staff', this)) {
+			if (user.connected && user.can('receiveauthmessages', this)) {
 				user.sendTo(this, message);
 			}
 		}
@@ -102,7 +102,7 @@ let Room = (() => {
 
 		message = CommandParser.parse(message, this, user, connection);
 
-		if (message && message !== true) {
+		if (message && message !== true && typeof message.then !== 'function') {
 			if (Users.ShadowBan.checkBanned(user)) {
 				Users.ShadowBan.addMessage(user, "To " + this.id, message);
 				connection.sendTo(this, '|c|' + user.getIdentity(this.id) + '|' + message);
@@ -423,7 +423,7 @@ let GlobalRoom = (() => {
 
 		// init users
 		this.users = Object.create(null);
-		this.userCount = 0; // cache of `Object.size(this.users)`
+		this.userCount = 0; // cache of `size(this.users)`
 		this.maxUsers = 0;
 		this.maxUsersDate = 0;
 
@@ -515,7 +515,7 @@ let GlobalRoom = (() => {
 		for (let i = 0; i < this.chatRooms.length; i++) {
 			let room = this.chatRooms[i];
 			if (!room) continue;
-			if (room.isPrivate && !(room.isPrivate === 'voice' && user.group !== Config.groups.default.chatRoom)) continue;
+			if (room.isPrivate && !(room.isPrivate === 'voice' && user.group !== Config.groups.default.global)) continue;
 			(room.isOfficial ? roomsData.official : roomsData.chat).push({
 				title: room.title,
 				desc: room.desc,
@@ -550,7 +550,7 @@ let GlobalRoom = (() => {
 
 		formatid = Tools.getFormat(formatid).id;
 
-		user.prepBattle(formatid, 'search', null, result => this.finishSearchBattle(user, formatid, result));
+		user.prepBattle(formatid, 'search', null).then(result => this.finishSearchBattle(user, formatid, result));
 	};
 	GlobalRoom.prototype.finishSearchBattle = function (user, formatid, result) {
 		if (!result) return;
@@ -589,7 +589,8 @@ let GlobalRoom = (() => {
 		let searchRange = 100, elapsed = Date.now() - Math.min(search1.time, search2.time);
 		if (formatid === 'ou' || formatid === 'oucurrent' || formatid === 'randombattle') searchRange = 50;
 		searchRange += elapsed / 300; // +1 every .3 seconds
-		if (searchRange > 300) searchRange = 300;
+		if (searchRange > 300) searchRange = 300 + (searchRange - 300) / 10; // +1 every 3 sec after 300
+		if (searchRange > 600) searchRange = 600;
 		if (Math.abs(search1.rating - search2.rating) > searchRange) return false;
 
 		user1.lastMatch = user2.userid;
@@ -655,7 +656,7 @@ let GlobalRoom = (() => {
 	GlobalRoom.prototype.sendAuth = function (message) {
 		for (let i in this.users) {
 			let user = this.users[i];
-			if (user.connected && user.can('staff')) {
+			if (user.connected && user.can('receiveauthmessages', this)) {
 				user.sendTo(this, message);
 			}
 		}
@@ -734,10 +735,12 @@ let GlobalRoom = (() => {
 				i--;
 				continue;
 			}
-			if (room.staffAutojoin === true && user.can('staff') ||
-					typeof room.staffAutojoin === 'string' && room.staffAutojoin.indexOf(user.group) >= 0) {
+			if (room.staffAutojoin === true && user.isStaff ||
+					typeof room.staffAutojoin === 'string' && room.staffAutojoin.includes(user.group) ||
+					room.auth && user.userid in room.auth) {
 				// if staffAutojoin is true: autojoin if isStaff
 				// if staffAutojoin is String: autojoin if user.group in staffAutojoin
+				// if staffAutojoin is anything truthy: autojoin if user has any roomauth
 				user.joinRoom(room.id, connection);
 			}
 		}
@@ -919,17 +922,19 @@ let BattleRoom = (() => {
 		// Check if the battle was rated to update the ladder, return its response, and log the battle.
 		if (this.rated) {
 			this.rated = false;
+			let p1 = this.battle.p1;
+			let p2 = this.battle.p2;
 
-			if (winnerid === this.p1.userid) {
+			if (winnerid === p1.userid) {
 				p1score = 1;
-			} else if (winnerid === this.p2.userid) {
+			} else if (winnerid === p2.userid) {
 				p1score = 0;
 			}
 
-			let p1name = this.p1.name;
-			let p2name = this.p2.name;
+			let p1name = p1.name;
+			let p2name = p2.name;
 
-			//update.updates.push('[DEBUG] uri: ' + Config.loginServer.uri + 'action.php?act=ladderupdate&serverid=' + Config.serverId + '&p1=' + encodeURIComponent(p1) + '&p2=' + encodeURIComponent(p2) + '&score=' + p1score + '&format=' + toId(rated.format) + '&servertoken=[token]');
+			//update.updates.push('[DEBUG] uri: ' + Config.loginServer + 'action.php?act=ladderupdate&serverid=' + Config.serverId + '&p1=' + encodeURIComponent(p1) + '&p2=' + encodeURIComponent(p2) + '&score=' + p1score + '&format=' + toId(rated.format) + '&servertoken=[token]');
 
 			winner = Users.get(winnerid);
 			if (winner && !winner.registered) {
@@ -947,15 +952,14 @@ let BattleRoom = (() => {
 			this.update();
 			this.logBattle(p1score);
 		}
-		if (Config.autosaveReplays) {
+		if (Config.autoSaveReplays) {
 			let uploader = Users.get(winnerid);
 			if (uploader && uploader.connections[0]) {
 				CommandParser.parse('/savereplay', this, uploader, uploader.connections[0]);
 			}
 		}
 		if (this.tour) {
-			winner = Users.get(winner);
-			this.tour.onBattleWin(this, winner);
+			this.tour.onBattleWin(this, winnerid);
 		}
 		this.update();
 	};
@@ -1007,9 +1011,10 @@ let BattleRoom = (() => {
 		logData.endType = this.battle.endType;
 		if (!p1rating) logData.ladderError = true;
 		logData.log = BattleRoom.prototype.getLog.call(logData, 3); // replay log (exact damage)
-		let date = new Date();
-		let logfolder = date.format('{yyyy}-{MM}');
-		let logsubfolder = date.format('{yyyy}-{MM}-{dd}');
+		const date = new Date();
+		const logsubfolder = Tools.toTimeStamp(date).split(' ')[0];
+		const logfolder = logsubfolder.split('-', 2).join('-');
+
 		let curpath = 'logs/' + logfolder;
 		fs.mkdir(curpath, '0755', () => {
 			let tier = this.format.toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -1254,7 +1259,6 @@ let BattleRoom = (() => {
 		}
 		delete this.users[oldid];
 		this.users[user.userid] = user;
-		if (this.game && this.game.onRename) this.game.onRename(user, oldid, joining);
 		this.update();
 		return user;
 	};
@@ -1322,7 +1326,7 @@ let ChatRoom = (() => {
 	function ChatRoom(roomid, title, options) {
 		Room.call(this, roomid, title);
 		if (options) {
-			Object.merge(this, options);
+			Object.assign(this, options);
 			if (!this.isPersonal) this.chatRoomData = options;
 		}
 
@@ -1335,7 +1339,7 @@ let ChatRoom = (() => {
 		if (Config.logChat) {
 			this.rollLogFile(true);
 			this.logEntry = function (entry, date) {
-				let timestamp = (new Date()).format('{HH}:{mm}:{ss} ');
+				const timestamp = Tools.toTimeStamp(new Date()).split(' ')[1] + ' ';
 				entry = entry.replace(/<img[^>]* src="data:image\/png;base64,[^">]+"[^>]*>/g, '');
 				this.logFile.write(timestamp + entry + '\n');
 			};
@@ -1374,10 +1378,11 @@ let ChatRoom = (() => {
 		let date = new Date();
 		let basepath = 'logs/chat/' + this.id + '/';
 		mkdir(basepath, '0755', () => {
-			let path = date.format('{yyyy}-{MM}');
+			const dateString = Tools.toTimeStamp(date).split(' ')[0];
+			let path = dateString.split('-', 2).join('-');
 			mkdir(basepath + path, '0755', () => {
 				if (this.destroyingLog) return;
-				path += '/' + date.format('{yyyy}-{MM}-{dd}') + '.txt';
+				path += '/' + dateString + '.txt';
 				if (path !== this.logFilename) {
 					this.logFilename = path;
 					if (this.logFile) this.logFile.destroySoon();
@@ -1396,9 +1401,9 @@ let ChatRoom = (() => {
 						} catch (e) {} // OS doesn't support atomic rename
 					} catch (e) {} // OS doesn't support symlinks
 				}
-				let timestamp = +date;
-				date.advance('1 hour').reset('minutes').advance('1 second');
-				setTimeout(() => this.rollLogFile(), +date - timestamp);
+				let currentTime = date.getTime();
+				let nextHour = new Date(date.setMinutes(60)).setSeconds(1);
+				setTimeout(() => this.rollLogFile(), nextHour - currentTime);
 			});
 		});
 	};
@@ -1500,8 +1505,8 @@ let ChatRoom = (() => {
 	};
 	ChatRoom.prototype.getIntroMessage = function (user) {
 		let message = '';
-		if (this.introMessage) message += '\n|raw|<div class="infobox"><div>' + this.introMessage + '</div>';
-		if (this.staffMessage && user.can('mute', this)) message += (message ? '<br />' : '\n|raw|<div class="infobox">') + '(Staff intro:)<br /><div>' + this.staffMessage + '</div>';
+		if (this.introMessage) message += '\n|raw|<div class="infobox infobox-roomintro"><div>' + this.introMessage.replace(/\n/g, '') + '</div>';
+		if (this.staffMessage && user.can('mute', this)) message += (message ? '<br />' : '\n|raw|<div class="infobox">') + '(Staff intro:)<br /><div>' + this.staffMessage.replace(/\n/g, '') + '</div>';
 		if (this.modchat) {
 			message += (message ? '<br />' : '\n|raw|<div class="infobox">') + '<div class="broadcast-red">' +
 				'Must be rank ' + this.modchat + ' or higher to talk right now.' +
@@ -1538,7 +1543,7 @@ let ChatRoom = (() => {
 		this.users[user.userid] = user;
 		if (joining) {
 			this.reportJoin('j', user.getIdentity(this.id));
-			if (this.staffMessage && user.can('mute', null, this)) this.sendUser(user, '|raw|<div class="infobox">(Staff intro:)<br /><div>' + this.staffMessage + '</div></div>');
+			if (this.staffMessage && user.can('mute', this)) this.sendUser(user, '|raw|<div class="infobox">(Staff intro:)<br /><div>' + this.staffMessage + '</div></div>');
 		} else if (!user.named) {
 			this.reportJoin('l', oldid);
 		} else {
@@ -1548,7 +1553,6 @@ let ChatRoom = (() => {
 			return;
 		}
 		if (this.poll && user.userid in this.poll.voters) this.poll.updateFor(user);
-		if (this.game && this.game.onRename) this.game.onRename(user, oldid, joining);
 		return user;
 	};
 	/**
