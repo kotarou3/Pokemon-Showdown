@@ -184,6 +184,10 @@ Rooms.global.formatListText = Rooms.global.getFormatListText();
 global.TeamValidator = require('./team-validator.js');
 TeamValidator.PM.spawn();
 
+// Clans
+global.Clans = require('./clans.js');
+global.War = require('./war.js');
+
 /*********************************************************
  * Start up the REPL server
  *********************************************************/

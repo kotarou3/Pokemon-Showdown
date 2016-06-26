@@ -91,7 +91,7 @@ before('initialization', function (done) {
 	// Sandbox file system: it's possible for a production server to be running in the same directory.
 	// And using a sandbox is safer anyway.
 	const fsSandbox = {
-		'config': {'avatars': {}},
+		'config': {'avatars': {}, 'clans.json': '{}', 'warlog.json': '{}'},
 		'chat-plugins': getDirTypedContentsSync('chat-plugins', 'file'),
 		'mods': getDirTypedContentsSync('mods', 'dir'),
 		'logs': {
