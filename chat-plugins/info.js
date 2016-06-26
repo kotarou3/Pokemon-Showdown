@@ -100,6 +100,13 @@ exports.commands = {
 					buf += " - host is permanently locked for being a proxy";
 					break;
 				}
+				let punishment = Punishments.userids.get(targetUser.locked);
+				if (punishment) {
+					let expiresIn = new Date(punishment[2]).getTime() - Date.now();
+					let expiresDays = Math.round(expiresIn / 1000 / 60 / 60 / 24);
+					buf += ' (expires in around ' + expiresDays + ' day' + (expiresDays === 1 ? '' : 's') + ')';
+					if (punishment[3]) buf += ' (reason: ' + punishment[3] + ')';
+				}
 			}
 			if (targetUser.semilocked) {
 				buf += '<br />Semilocked: ' + targetUser.semilocked;
@@ -138,7 +145,8 @@ exports.commands = {
 	host: function (target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help host');
 		if (!this.can('rangeban')) return;
-		if (!/[0-9.]+/.test(target)) return this.errorReply('You must pass a valid IPv4 IP to /host.');
+		target = target.trim();
+		if (!/^[0-9.]+$/.test(target)) return this.errorReply('You must pass a valid IPv4 IP to /host.');
 		Dnsbl.reverse(target, (err, hosts) => {
 			this.sendReply('IP ' + target + ': ' + (hosts ? hosts[0] : 'NULL'));
 		});
@@ -219,6 +227,7 @@ exports.commands = {
 	dex: 'data',
 	pokedex: 'data',
 	data: function (target, room, user, connection, cmd) {
+		if (toId(target) === 'constructor') return this.errorReply("Invalid data lookup command.");
 		if (!this.runBroadcast()) return;
 
 		let buffer = '';
@@ -495,7 +504,7 @@ exports.commands = {
 			factor = Math.pow(2, totalTypeMod);
 		}
 
-		let hasThousandArrows = source.id === 'thousandarrows' && defender.types.indexOf('Flying') >= 0;
+		let hasThousandArrows = source.id === 'thousandarrows' && defender.types.includes('Flying');
 		let additionalInfo = hasThousandArrows ? "<br>However, Thousand Arrows will be 1x effective on the first hit." : "";
 
 		this.sendReplyBox("" + atkName + " is " + factor + "x effective against " + defName + "." + additionalInfo);
@@ -798,10 +807,10 @@ exports.commands = {
 					}
 
 					if (!natureSet) {
-						if (targets[i].indexOf('+') > -1) {
+						if (targets[i].includes('+')) {
 							nature = 1.1;
 							natureSet = true;
-						} else if (targets[i].indexOf('-') > -1) {
+						} else if (targets[i].includes('-')) {
 							nature = 0.9;
 							natureSet = true;
 						}
@@ -968,7 +977,7 @@ exports.commands = {
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
 			"New to competitive Pok&eacute;mon?<br />" +
-			"- <a href=\"https://www.smogon.com/sim/ps_guide\">Beginner's Guide to Pok&eacute;mon Showdown</a><br />" +
+			"- <a href=\"https://www.smogon.com/forums/threads/3570628/#post-6774481\">Beginner's Guide to Pok&eacute;mon Showdown</a><br />" +
 			"- <a href=\"https://www.smogon.com/dp/articles/intro_comp_pokemon\">An introduction to competitive Pok&eacute;mon</a><br />" +
 			"- <a href=\"https://www.smogon.com/bw/articles/bw_tiers\">What do 'OU', 'UU', etc mean?</a><br />" +
 			"- <a href=\"https://www.smogon.com/xyhub/tiers\">What are the rules for each format? What is 'Sleep Clause'?</a>"
@@ -1131,8 +1140,8 @@ exports.commands = {
 	},
 
 	roomhelp: function (target, room, user) {
-		if (room.id === 'lobby' || room.battle) return this.sendReply("This command is too spammy for lobby/battles.");
 		if (!this.runBroadcast()) return;
+		if (this.broadcasting && (room.id === 'lobby' || room.battle)) return this.sendReply("This command is too spammy for lobby/battles.");
 		this.sendReplyBox(
 			"Room drivers (%) can use:<br />" +
 			"- /warn OR /k <em>username</em>: warn a user and show the Pok&eacute;mon Showdown rules<br />" +
@@ -1235,69 +1244,28 @@ exports.commands = {
 	faq: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		target = target.toLowerCase();
-		let buffer = "";
-		let matched = false;
-
-		if (target === 'all' && this.broadcasting) {
+		let showAll = target === 'all';
+		if (showAll && this.broadcasting) {
 			return this.sendReplyBox("You cannot broadcast all FAQs at once.");
 		}
 
-		if (!target || target === 'all') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq\">Frequently Asked Questions</a><br />";
+		let buffer = [];
+		if (showAll || target === 'staff') {
+			buffer.push("<a href=\"https://www.smogon.com/forums/threads/3570628/#post-6774482\">Staff FAQ</a>");
 		}
-		if (target === 'all' || target === 'elo') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#elo\">Why did this user gain or lose so many points?</a><br />";
+		if (showAll || target === 'autoconfirmed' || target === 'ac') {
+			buffer.push("A user is autoconfirmed when they have won at least one rated battle and have been registered for one week or longer.");
 		}
-		if (target === 'all' || target === 'doubles' || target === 'triples' || target === 'rotation') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#doubles\">Can I play doubles/triples/rotation battles here?</a><br />";
+		if (showAll || target === 'coil') {
+			buffer.push("<a href=\"https://www.smogon.com/forums/threads/3508013/\">What is COIL?</a>");
 		}
-		if (target === 'all' || target === 'restarts') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#restarts\">Why is the server restarting?</a><br />";
+		if (showAll || target === 'tiering' || target === 'tiers' || target === 'tier') {
+			buffer.push("<a href=\"https://www.smogon.com/ingame/battle/tiering-faq\">Tiering FAQ</a>");
 		}
-		if (target === 'all' || target === 'star' || target === 'player') {
-			matched = true;
-			buffer += '<a href="https://www.smogon.com/sim/faq#star">Why is there this star (&starf;) in front of my username?</a><br />';
+		if (showAll || !buffer.length) {
+			buffer.unshift("<a href=\"https://www.smogon.com/forums/threads/3570628/#post-6774128\">Frequently Asked Questions</a>");
 		}
-		if (target === 'all' || target === 'staff') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/staff_faq\">Staff FAQ</a><br />";
-		}
-		if (target === 'all' || target === 'autoconfirmed' || target === 'ac') {
-			matched = true;
-			buffer += "A user is autoconfirmed when they have won at least one rated battle and have been registered for a week or longer.<br />";
-		}
-		if (target === 'all' || target === 'customavatar' || target === 'ca') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#customavatar\">How can I get a custom avatar?</a><br />";
-		}
-		if (target === 'all' || target === 'pm' || target === 'msg' || target === 'w') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#pm\">How can I send a user a private message?</a><br />";
-		}
-		if (target === 'all' || target === 'challenge' || target === 'chall') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#challenge\">How can I battle a specific user?</a><br />";
-		}
-		if (target === 'all' || target === 'gxe') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/sim/faq#gxe\">What does GXE mean?</a><br />";
-		}
-		if (target === 'all' || target === 'coil') {
-			matched = true;
-			buffer += "<a href=\"http://www.smogon.com/forums/threads/coil-explained.3508013\">What is COIL?</a><br />";
-		}
-		if (target === 'all' || target === 'tiering' || target === 'tiers' || target === 'tier') {
-			matched = true;
-			buffer += "<a href=\"https://www.smogon.com/ingame/battle/tiering-faq\">Tiering FAQ</a><br />";
-		}
-		if (!matched) {
-			return this.sendReply("The FAQ entry '" + target + "' was not found. Try /faq for general help.");
-		}
-		this.sendReplyBox(buffer);
+		this.sendReplyBox(buffer.join("<br />"));
 	},
 	faqhelp: ["/faq [theme] - Provides a link to the FAQ. Add deviation, doubles, randomcap, restart, or staff for a link to these questions. Add all for all of them.",
 		"!faq [theme] - Shows everyone a link to the FAQ. Add deviation, doubles, randomcap, restart, or staff for a link to these questions. Add all for all of them. Requires: + % @ # & ~"],

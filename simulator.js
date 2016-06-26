@@ -231,13 +231,30 @@ class Battle {
 		case 'request': {
 			let player = this[lines[2]];
 			let rqid = lines[3];
-			if (player) {
-				this.requests[player.slot] = lines[4];
-				player.sendRoom('|request|' + lines[4]);
-			}
+
 			if (rqid !== this.rqid) {
 				this.rqid = rqid;
 				this.inactiveQueued = true;
+			}
+			if (player) {
+				const isNewRequest = !this.requests[player.slot] || +this.requests[player.slot][0] < +rqid;
+				if (isNewRequest) {
+					player.choiceIndex = 0;
+				}
+				this.requests[player.slot] = [rqid, lines[4]];
+				player.sendRoom('|request|' + (player.choiceIndex ? player.choiceIndex + '|' + player.choiceData + '\n' : '') + lines[4]);
+			}
+			break;
+		}
+
+		case 'choice': {
+			let player = this[lines[2]];
+			let rqid = lines[3];
+			let choiceIndex = +lines[4];
+			let choiceData = lines[5];
+			if (rqid === this.rqid && player) {
+				player.choiceIndex = choiceIndex;
+				player.choiceData = choiceData;
 			}
 			break;
 		}
@@ -266,33 +283,38 @@ class Battle {
 		player.updateSubchannel(connection || user);
 		let request = this.requests[player.slot];
 		if (request) {
-			(connection || user).sendTo(this.id, '|request|' + request);
+			(connection || user).sendTo(this.id, '|request|' + (player.choiceIndex ? player.choiceIndex + '|' + player.choiceData + '\n' : '') + request[1]);
 		}
 	}
 	onUpdateConnection(user, connection) {
 		this.onConnect(user, connection);
 	}
-	onRename(user, oldid) {
-		if (user.userid === oldid) return;
-		let player = this.players[oldid];
-		if (player) {
-			if (!this.allowRenames && user.userid !== oldid) {
-				this.forfeit(user, " forfeited by changing their name.");
-				return;
-			}
-			if (!this.players[user]) {
-				this.players[user] = player;
-				player.userid = user.userid;
-				player.name = user.name;
-				delete this.players[oldid];
-				player.simSend('rename', user.name, user.avatar);
-			}
+	onRename(user, oldUserid) {
+		if (user.userid === oldUserid) return;
+		if (!this.players) {
+			// !! should never happen but somehow still does
+			delete user.games[this.id];
+			return;
 		}
-		if (!player && user in this.players) {
-			// this handles a user renaming themselves into a user in the
-			// battle (e.g. by using /nick)
-			this.onConnect(user);
+		if (!(oldUserid in this.players)) {
+			if (user.userid in this.players) {
+				// this handles a user renaming themselves into a user in the
+				// battle (e.g. by using /nick)
+				this.onConnect(user);
+			}
+			return;
 		}
+		if (!this.allowRenames) {
+			this.forfeit(user, " forfeited by changing their name.");
+			return;
+		}
+		if (user.userid in this.players) return;
+		let player = this.players[oldUserid];
+		this.players[user.userid] = player;
+		player.userid = user.userid;
+		player.name = user.name;
+		delete this.players[oldUserid];
+		player.simSend('rename', user.name, user.avatar);
 	}
 	onJoin(user) {
 		let player = this.players[user];

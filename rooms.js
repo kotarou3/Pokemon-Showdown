@@ -731,7 +731,7 @@ let GlobalRoom = (() => {
 				continue;
 			}
 			if (room.staffAutojoin === true && user.isStaff ||
-					typeof room.staffAutojoin === 'string' && room.staffAutojoin.indexOf(user.group) >= 0 ||
+					typeof room.staffAutojoin === 'string' && room.staffAutojoin.includes(user.group) ||
 					room.auth && user.userid in room.auth) {
 				// if staffAutojoin is true: autojoin if isStaff
 				// if staffAutojoin is String: autojoin if user.group in staffAutojoin
@@ -954,8 +954,7 @@ let BattleRoom = (() => {
 			}
 		}
 		if (this.tour) {
-			winner = Users.get(winner);
-			this.tour.onBattleWin(this, winner);
+			this.tour.onBattleWin(this, winnerid);
 		}
 		this.update();
 	};
@@ -1255,7 +1254,6 @@ let BattleRoom = (() => {
 		}
 		delete this.users[oldid];
 		this.users[user.userid] = user;
-		if (this.game && this.game.onRename) this.game.onRename(user, oldid, joining);
 		this.update();
 		return user;
 	};
@@ -1502,8 +1500,8 @@ let ChatRoom = (() => {
 	};
 	ChatRoom.prototype.getIntroMessage = function (user) {
 		let message = '';
-		if (this.introMessage) message += '\n|raw|<div class="infobox infobox-roomintro"><div' + (!this.isOfficial ? ' class="infobox-limited"' : '') + '>' + this.introMessage + '</div>';
-		if (this.staffMessage && user.can('mute', this)) message += (message ? '<br />' : '\n|raw|<div class="infobox">') + '(Staff intro:)<br /><div>' + this.staffMessage + '</div>';
+		if (this.introMessage) message += '\n|raw|<div class="infobox infobox-roomintro"><div' + (!this.isOfficial ? ' class="infobox-limited"' : '') + '>' + this.introMessage.replace(/\n/g, '') + '</div>';
+		if (this.staffMessage && user.can('mute', this)) message += (message ? '<br />' : '\n|raw|<div class="infobox">') + '(Staff intro:)<br /><div>' + this.staffMessage.replace(/\n/g, '') + '</div>';
 		if (this.modchat) {
 			message += (message ? '<br />' : '\n|raw|<div class="infobox">') + '<div class="broadcast-red">' +
 				'Must be rank ' + this.modchat + ' or higher to talk right now.' +
@@ -1547,7 +1545,6 @@ let ChatRoom = (() => {
 			return;
 		}
 		if (this.poll && user.userid in this.poll.voters) this.poll.updateFor(user);
-		if (this.game && this.game.onRename) this.game.onRename(user, oldid, joining);
 		return user;
 	};
 	/**

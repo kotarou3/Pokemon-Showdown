@@ -113,6 +113,10 @@ global.Ladders = require(Config.remoteLadder ? './ladders-remote.js' : './ladder
 
 global.Users = require('./users.js');
 
+global.Cidr = require('./cidr.js');
+
+global.Punishments = require('./punishments.js');
+
 global.Rooms = require('./rooms.js');
 
 delete process.send; // in case we're a child process
@@ -131,8 +135,6 @@ try {
 	global.Dnsbl = {query: () => {}, reverse: require('dns').reverse};
 }
 
-global.Cidr = require('./cidr.js');
-
 if (Config.crashGuard) {
 	// graceful crash - allow current battles to finish before restarting
 	process.on('uncaughtException', err => {
@@ -146,14 +148,16 @@ if (Config.crashGuard) {
 		}
 		Rooms.global.lockdown = true;
 	});
+	process.on('unhandledRejection', function (err) {
+		throw err;
+	});
 }
 
 /*********************************************************
  * Start networking processes to be connected to
  *********************************************************/
 
-// global.Sockets = require('./sockets.js');
-global.Sockets = require('./sockets-nocluster.js');
+global.Sockets = require('./sockets.js');
 
 exports.listen = function (port, bindAddress, workerCount) {
 	Sockets.listen(port, bindAddress, workerCount);
@@ -179,23 +183,6 @@ Rooms.global.formatListText = Rooms.global.getFormatListText();
 
 global.TeamValidator = require('./team-validator.js');
 TeamValidator.PM.spawn();
-
-// load ipbans at our leisure
-fs.readFile(path.resolve(__dirname, 'config/ipbans.txt'), (err, data) => {
-	if (err) return;
-	data = ('' + data).split("\n");
-	let rangebans = [];
-	for (let i = 0; i < data.length; i++) {
-		data[i] = data[i].split('#')[0].trim();
-		if (!data[i]) continue;
-		if (data[i].includes('/')) {
-			rangebans.push(data[i]);
-		} else if (!Users.bannedIps[data[i]]) {
-			Users.bannedIps[data[i]] = '#ipban';
-		}
-	}
-	Users.checkRangeBanned = Cidr.checker(rangebans);
-});
 
 /*********************************************************
  * Start up the REPL server

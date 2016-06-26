@@ -24,6 +24,15 @@ if (!Object.values) {
 		return values;
 	};
 }
+// shim Array.prototype.includes
+if (!Array.prototype.includes) {
+	Object.defineProperty(Array.prototype, 'includes', { // eslint-disable-line no-extend-native
+		writable: true, configurable: true,
+		value: function (object) {
+			return this.indexOf(object) !== -1;
+		},
+	});
+}
 
 module.exports = (() => {
 	let moddedTools = {};
@@ -178,7 +187,6 @@ module.exports = (() => {
 	 * If we're expecting a string and being given anything that isn't a string
 	 * or a number, it's safe to assume it's an error, and return ''
 	 */
-
 	Tools.prototype.getString = function (str) {
 		if (typeof str === 'string' || typeof str === 'number') return '' + str;
 		return '';
@@ -204,7 +212,6 @@ module.exports = (() => {
 	 * getName also enforces that there are not multiple space characters
 	 * in the name, although this is not strictly necessary for safety.
 	 */
-
 	Tools.prototype.getName = function (name) {
 		if (typeof name !== 'string' && typeof name !== 'number') return '';
 		name = ('' + name).replace(/[\|\s\[\]\,\u202e]+/g, ' ').trim();
@@ -236,6 +243,18 @@ module.exports = (() => {
 	};
 	let toId = Tools.prototype.getId;
 
+	Tools.prototype.getSpecies = function (species) {
+		let id = toId(species || '');
+		let template = this.getTemplate(id);
+		if (template.otherForms && template.otherForms.indexOf(id) >= 0) {
+			let form = id.slice(template.species.length);
+			species = template.species + '-' + form[0].toUpperCase() + form.slice(1);
+		} else {
+			species = template.species;
+		}
+		return species;
+	};
+
 	Tools.prototype.getTemplate = function (template) {
 		if (!template || typeof template === 'string') {
 			let name = (template || '').trim();
@@ -247,7 +266,7 @@ module.exports = (() => {
 			if (!this.data.Pokedex[id]) {
 				if (id.startsWith('mega') && this.data.Pokedex[id.slice(4) + 'mega']) {
 					id = id.slice(4) + 'mega';
-				} else if (id.startsWith('m') && this.data.Pokedex[id.slice(1) + 'mega'])  {
+				} else if (id.startsWith('m') && this.data.Pokedex[id.slice(1) + 'mega']) {
 					id = id.slice(1) + 'mega';
 				} else if (id.startsWith('primal') && this.data.Pokedex[id.slice(6) + 'primal']) {
 					id = id.slice(6) + 'primal';
@@ -458,6 +477,9 @@ module.exports = (() => {
 				name = this.data.Aliases[id];
 				id = toId(name);
 			}
+			if (id && !this.data.Items[id] && this.data.Items[id + 'berry']) {
+				id += 'berry';
+			}
 			item = {};
 			if (id && this.data.Items[id]) {
 				item = this.data.Items[id];
@@ -614,7 +636,7 @@ module.exports = (() => {
 					if (banlistTable['Rule:' + toId(subformat.ruleset[i])]) continue;
 
 					banlistTable['Rule:' + toId(subformat.ruleset[i])] = subformat.ruleset[i];
-					if (format.ruleset.indexOf(subformat.ruleset[i]) < 0) format.ruleset.push(subformat.ruleset[i]);
+					if (!format.ruleset.includes(subformat.ruleset[i])) format.ruleset.push(subformat.ruleset[i]);
 
 					let subsubformat = this.getFormat(subformat.ruleset[i]);
 					if (subsubformat.ruleset || subsubformat.banlist) {
@@ -1133,11 +1155,18 @@ module.exports = (() => {
 			if (format.tournamentShow === undefined) format.tournamentShow = true;
 			if (format.mod === undefined) format.mod = 'base';
 			if (!moddedTools[format.mod]) throw new Error("Format `" + format.name + "` requires nonexistent mod: `" + format.mod + "`");
-			this.data.Formats[id] = format;
+			this.installFormat(id, format);
 		}
 
 		this.formatsLoaded = true;
 		return this;
+	};
+
+	Tools.prototype.installFormat = function (id, format) {
+		this.data.Formats[id] = format;
+		if (!this.isBase) {
+			moddedTools.base.data.Formats[id] = format;
+		}
 	};
 
 	/**

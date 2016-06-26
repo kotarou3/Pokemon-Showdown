@@ -25,6 +25,18 @@ exports.BattleMovedex = {
 			}
 		},
 	},
+	aromatherapy: {
+		inherit: true,
+		onHit: function (pokemon, source) {
+			this.add('-cureteam', source, '[from] move: Aromatherapy');
+			let side = pokemon.side;
+			for (let i = 0; i < side.pokemon.length; i++) {
+				if (side.pokemon[i].status && side.pokemon[i].hp) {
+					side.pokemon[i].status = '';
+				}
+			}
+		},
+	},
 	assist: {
 		inherit: true,
 		desc: "The user performs a random move from any of the Pokemon on its team. Assist cannot generate itself, Chatter, Copycat, Counter, Covet, Destiny Bond, Detect, Endure, Feint, Focus Punch, Follow Me, Helping Hand, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Protect, Sketch, Sleep Talk, Snatch, Struggle, Switcheroo, Thief or Trick.",
@@ -147,6 +159,10 @@ exports.BattleMovedex = {
 	bonerush: {
 		inherit: true,
 		accuracy: 80,
+	},
+	bravebird: {
+		inherit: true,
+		recoil: [1, 3],
 	},
 	brickbreak: {
 		inherit: true,
@@ -339,6 +355,10 @@ exports.BattleMovedex = {
 			return null;
 		},
 	},
+	doubleedge: {
+		inherit: true,
+		recoil: [1, 3],
+	},
 	drainpunch: {
 		inherit: true,
 		basePower: 60,
@@ -472,6 +492,10 @@ exports.BattleMovedex = {
 			return 20;
 		},
 	},
+	flareblitz: {
+		inherit: true,
+		recoil: [1, 3],
+	},
 	focuspunch: {
 		inherit: true,
 		beforeMoveCallback: function () { },
@@ -545,6 +569,18 @@ exports.BattleMovedex = {
 		onModifyMove: function () { },
 		boosts: {
 			spa: 1,
+		},
+	},
+	healbell: {
+		inherit: true,
+		onHit: function (pokemon, source) {
+			this.add('-cureteam', source, '[from] move: Heal Bell');
+			let side = pokemon.side;
+			for (let i = 0; i < side.pokemon.length; i++) {
+				if (side.pokemon[i].status && side.pokemon[i].hp) {
+					side.pokemon[i].status = '';
+				}
+			}
 		},
 	},
 	healblock: {
@@ -1214,6 +1250,10 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 50,
 	},
+	volttackle: {
+		inherit: true,
+		recoil: [1, 3],
+	},
 	whirlpool: {
 		inherit: true,
 		accuracy: 70,
@@ -1240,6 +1280,10 @@ exports.BattleMovedex = {
 				}
 			},
 		},
+	},
+	woodhammer: {
+		inherit: true,
+		recoil: [1, 3],
 	},
 	worryseed: {
 		inherit: true,

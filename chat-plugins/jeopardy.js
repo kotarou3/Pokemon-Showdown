@@ -133,7 +133,7 @@ let Jeopardy = (() => {
 		let checks = Array.prototype.slice.call(arguments, 2);
 
 		let currentCheck = '';
-		while (!!(currentCheck = checks.pop())) {
+		while ((currentCheck = checks.pop())) {
 			switch (currentCheck) {
 			case 'started':
 				if (this.isStarted) break;
@@ -433,7 +433,7 @@ let Jeopardy = (() => {
 
 	Jeopardy.prototype.end = function () {
 		let results = [];
-		for (let data, usersIterator = this.users.entries(); !!(data = usersIterator.next().value);) { // Replace with for-of loop when available
+		for (let data of this.users) {
 			results.push({user: data[0], points: data[1].points});
 		}
 		results.sort((a, b) => b.points - a.points);
@@ -679,7 +679,7 @@ let commands = {
 		let categoryCount = parseInt(params[0]) || MAX_CATEGORY_COUNT;
 		let questionCount = parseInt(params[1]) || MAX_QUESTION_COUNT;
 		if (categoryCount > MAX_CATEGORY_COUNT) return this.sendReply("A match with more than " + MAX_CATEGORY_COUNT + " categories cannot be created.");
-		if (questionCount > MAX_QUESTION_COUNT) return this.sendReply("A match with more than " + MAX_CATEGORY_COUNT + " questions per category cannot be created.");
+		if (questionCount > MAX_QUESTION_COUNT) return this.sendReply("A match with more than " + MAX_QUESTION_COUNT + " questions per category cannot be created.");
 
 		jeopardies[room.id] = new Jeopardy(user, room, categoryCount, questionCount);
 	},

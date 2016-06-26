@@ -436,6 +436,6 @@ exports.groups.byRank.forEach((group, rank) => {
 	if (groupData.id) exports.groups.byId[groupData.id] = group;
 	groupData.rank = rank;
 });
-exports.groups.globalByRank.forEach((group, rank) => exports.groups.bySymbol[group].globalRank = rank);
-exports.groups.chatRoomByRank.forEach((group, rank) => exports.groups.bySymbol[group].chatRoomRank = rank);
-exports.groups.battleRoomByRank.forEach((group, rank) => exports.groups.bySymbol[group].battleRoomRank = rank);
+exports.groups.globalByRank.forEach((group, rank) => {exports.groups.bySymbol[group].globalRank = rank;});
+exports.groups.chatRoomByRank.forEach((group, rank) => {exports.groups.bySymbol[group].chatRoomRank = rank;});
+exports.groups.battleRoomByRank.forEach((group, rank) => {exports.groups.bySymbol[group].battleRoomRank = rank;});
