@@ -244,6 +244,18 @@ exports.Formats = [
 		banlist: ['Uber', 'OU', 'BL', 'Smeargle + Ingrain'],
 	},
 	{
+		name: "[Gen 3] RU",
+		section: "Past Generations",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3503019/\">ADV OU Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/posts/6431087/\">ADV Sample Teams</a>",
+		],
+
+		mod: 'gen3',
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'BL', 'UU', 'Smeargle + Ingrain'],
+	},
+	{
 		name: "[Gen 3] Ubers",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3536426/\">ADV Ubers Viability Ranking</a>",
