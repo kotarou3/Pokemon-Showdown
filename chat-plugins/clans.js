@@ -8,7 +8,7 @@ exports.commands = {
 	ayudaclan: 'clanshelp',
 	clanhelp: 'clanshelp',
 	clanshelp: function () {
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		this.sendReplyBox(
 			"<big><b>Comandos Básicos:</b></big><br /><br />" +
 			"/clanes - Lista los clanes.<br />" +
@@ -72,7 +72,7 @@ exports.commands = {
 	getclans: 'clans',
 	clanes: 'clans',
 	clans: function (target, room, user) {
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let clansTableTitle = "Lista de Clanes";
 		if (toId(target) === 'rank' || toId(target) === 'puntos' || toId(target) === 'prestigio' || toId(target) === 'puntuacion') {
 			target = "rank";
@@ -104,7 +104,7 @@ exports.commands = {
 	clanauth: function (target, room, user) {
 		let autoclan = false;
 		if (!target) autoclan = true;
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
@@ -145,7 +145,7 @@ exports.commands = {
 	miembrosclan: function (target, room, user) {
 		let autoclan = false;
 		if (!target) autoclan = true;
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
@@ -173,7 +173,7 @@ exports.commands = {
 	invitacionesclan: function (target, room, user) {
 		let autoclan = false;
 		if (!target) autoclan = true;
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
@@ -744,7 +744,7 @@ exports.commands = {
 	warlog: function (target, room, user) {
 		let autoclan = false;
 		if (!target) autoclan = true;
-		if (!this.canBroadcast()) return false;
+		if (!this.runBroadcast()) return false;
 		let clan = Clans.getRating(target);
 		if (!clan) {
 			target = Clans.findClanFromMember(target);
