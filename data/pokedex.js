@@ -6101,7 +6101,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Grass", "Poison"],
-		baseStats: {hp: 60, atk: 70, def: 85, spa: 145, spd: 135, spe:120 }, // Testing...
+		baseStats: {hp: 60, atk: 70, def: 85, spa: 145, spd: 135, spe:120 },
 		abilities: {0: "Competitive"},
 		heightm: 1,
 		weightkg: 14.5,
