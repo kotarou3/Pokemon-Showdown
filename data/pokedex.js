@@ -6106,7 +6106,7 @@ exports.BattlePokedex = {
 		heightm: 1,
 		weightkg: 14.5,
 		color: "Green",
-		eggGroups: ["Fairy", "Grass"].
+		eggGroups: ["Fairy", "Grass"],
 	},
 	cranidos: {
 		num: 408,
