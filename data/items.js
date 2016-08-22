@@ -5211,7 +5211,7 @@ exports.BattleItems = {
 
 	//Custom Megas Item (Soul)
 
-		"roseradite": {
+	"roseradite": {
 		id: "roseradite",
 		name: "Roseradite",
 		spritenum: 608,
