@@ -1,0 +1,302 @@
+body {
+  background: url(https://mrjoystickdamien.files.wordpress.com/2015/05/f2701-original.jpg) no-repeat;
+  background-color: #A9ABBD;
+}
+
+.broadcast-red {
+  background: none repeat scroll 0% 0% #EC5C4D;
+  color: #000;
+  border: 2px solid #000;
+  padding: 5px;
+  font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+  font-size: 10pt;
+}
+
+.broadcast-blue {
+  background: none repeat scroll 0% 0% #8FA6B3;
+  color: #000;
+  border: 2px solid #000;
+  padding: 5px;
+  font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+  font-size: 10pt;
+}
+
+.broadcast-green {
+  background: none repeat scroll 0% 0% #9BB38F;
+  color: #000;
+  border: 2px solid #000;
+  padding: 5px;
+  font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+  font-size: 10pt;
+}
+
+.pm-log {
+  border: none;
+  background: #E6E6E6;
+  opacity: 0.9
+}
+
+.maintabbarbottom {
+  background: #000000;
+  border-color:#000;
+}
+
+.tabbar a.button.cur, .tabbar a.button.cur:hover {
+  background: #000000;
+  border-color:#000;
+  color: #FFF;
+}
+
+.tabbar a.button {
+  background:#000000;
+  color:#FFF;
+  border-color:#000;
+}
+
+.tabbar a.button:hover {
+  background:#000000;
+  border-color:#000;
+}
+
+.header .logo {
+  opacity: 0;
+}
+
+.mainmenufooter a {
+  color: #000000;
+  text-shadow: 0px 0px 1px #474747, 0px 0px 1px #474747, 0px 0px 1px #474747;
+}
+
+.mainmenufooter a:hover {
+  color: #000000;
+}
+
+.menugroup .button {
+  background: #000000;
+  box-sizing: border-box;
+  font-size: 10pt;
+  font-family: Verdana,Helvetica,Arial,sans-serif;
+  display: inline-block;
+  padding: 5px 7px 3px;
+  width: 200px;
+  outline: medium none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #0F1923;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.8) inset;
+  color: #ffffff;
+  border: 3px solid #474747;
+}
+
+.menugroup button.big {
+  font-size: 12pt;
+}
+
+.menugroup .button:hover {
+	color: #ffffff;
+  background-color: #000000;
+}
+
+.menugroup .button.big:hover {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.pm-window h3 {
+  color:#ffffff;
+  border: 3px solid #ffffff;
+  background: #000000;
+  margin: 0px;
+  padding: 2px 5px;
+  font-size: 10pt;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+
+.pm-window h3:hover {
+  color:#0000FF;
+  border: 3px solid #474747;
+}
+
+.pm-window.focused h3, .pm-window.focused h3:hover {
+  background: #000000;
+  color: #ffffff;
+  border: 3px solid #474747;
+}
+
+.pm-window h3 small {
+  color:#C4B2D5;
+}
+
+.closebutton, .minimizebutton {
+  color: #E4E4E4;
+}
+
+.pm-log-add {
+  border: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #474747;
+}
+
+.popupmenu h3 {
+  margin: 5px 0px 0px -2px;
+  padding: 1px 0px;
+  font-size: 8pt;
+  color: #6F9BB5;
+}
+
+.ps-popup {
+  position: absolute;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  text-align: left;
+  background: url(http://i.imgur.com/Q8vHT0Y.png);
+  color: #000;
+  border: 1px solid #999;
+  padding: 2px 10px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 0px #FFF inset, -1px -1px 0px #DDD inset, 2px 2px 3px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+.popupmenu button:hover {
+  height: 17px;
+  background: #B8A5C9;
+}
+
+.popupmenu button.sel:hover {
+  padding: 0px 3px;
+  border: 1px solid #000;
+  background: #B8A5C9;
+}
+
+.message-pm {
+  color: #B8A5C9;
+}
+
+.select {
+    border: 3px solid #474747;
+    color:#ffffff;
+    background: #000000;
+    box-shadow: 0px 1px 0px #D2D2D2 inset;
+  }
+
+.select:hover {
+  border: 3px solid #474747;
+  background: #ffffff;
+  color:#000000;
+  box-shadow: 0px 1px 0px #D2D2D2 inset;
+  }
+
+.menugroup {
+  background:rgba(0, 0, 0, 0);
+}
+
+.battleform label {
+  background: url("http://i.imgur.com/yFWeHx0.png") no-repeat scroll left center transparent !important;
+  padding: 4px;
+	opacity:0.9;
+}
+
+.tournament-title {
+  background: #B8A5C9;
+  color:#FFF;
+}
+
+a {
+    color: #AD8BCA;
+}
+
+a:hover {
+    color: #9962CA;
+}
+
+.tournament-status, .tournament-toggle {
+    color: black;
+}
+
+.userlist {
+	color: #000000;
+}
+/* #A4A4A4 Suspect: #CEE3F6 */
+.userlist, .userlist li {
+	color: #000000;
+  background-color: #CEE3F6;
+}
+
+.roomlist a.ilink {
+  display: block;
+  margin: 2px 7px 4px;
+  padding: 1px 4px 2px;
+  border: 1px solid #474747;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #474747;
+  text-shadow: 0px -1px 0px #FFF;
+  box-shadow: 1px 1px 1px #D5D5D5;
+  cursor: pointer;
+  font-size: 10pt;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ps-room.ps-room-light.scrollable {
+  color:#000000;
+  background-color: #000000;
+}
+
+.tournament-bracket {
+  background:url(http://i.imgur.com/Q8vHT0Y.png);
+}
+
+.tournament-tools {
+  padding: 10px;
+  background:url(http://i.imgur.com/Q8vHT0Y.png);
+  border-top: 1px solid #aaa;
+}
+
+a.ilink {
+  text-decoration: none;
+  color: #6F9BB5;
+}
+
+.setchart-nickname {
+  background: #B8A5C9;
+}
+
+.setdetails, .setstats, .setstats:hover, .setdetails:hover {
+  background:url(http://i.imgur.com/Q8vHT0Y.png);
+}
+  
+.ps-room .battle-log {
+  background-color: #000000;
+}
+
+.ps-room.ps-room-opaque {
+  background:url(http://i.imgur.com/Q8vHT0Y.png);
+}
+
+.switchmenu button, .movemenu button {
+  position: relative;
+  outline: medium none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  margin-top: 2px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px -1px 2px #FFF inset;
+  border: 3px solid #474747;
+  color:#474747;
+  background: -moz-linear-gradient(center top , #F6F6F6, #E3E3E3) repeat scroll 0% 0% transparent;
+}
+
+.header {
+  background:rgba(111, 155, 181, 0.5);
+}
