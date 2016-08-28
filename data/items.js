@@ -5209,6 +5209,24 @@ exports.BattleItems = {
 		desc: "(Gen 2) Holder is cured if it is poisoned. Single use.",
 	},
 
+	//Custom Megas Item (Soul)
+
+	"roseradite": {
+		id: "roseradite",
+		name: "Roseradite",
+		spritenum: 608,
+		megaStone: "Roserade-Mega",
+		megaEvolves: "Roserade",
+		onTakeItem: function (item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: -2,
+		gen: 6,
+		isNonstandard: true,
+		desc: "If holder is a Roserade, this item allows it to Mega Evolve in battle.",
+	},
+
 	// CAP items
 
 	"crucibellite": {
