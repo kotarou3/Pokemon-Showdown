@@ -552,7 +552,7 @@ exports.BattleFormatsData = {
 	},
 	scyther: {
 		randomBattleMoves: ["slash", "swordsdance", "agility", "hyperbeam"],
-		tier: "UU",
+		tier: "NU",
 	},
 	jynx: {
 		randomBattleMoves: ["lovelykiss", "blizzard", "psychic", "mimic"],
@@ -624,7 +624,7 @@ exports.BattleFormatsData = {
 	omastar: {
 		randomBattleMoves: ["hydropump", "surf", "mimic", "rest", "seismictoss"],
 		essentialMove: "blizzard",
-		tier: "UU",
+		tier: "NU",
 	},
 	kabuto: {
 		randomBattleMoves: ["swordsdance", "bodyslam", "surf", "toxic", "harden", "slash"],
