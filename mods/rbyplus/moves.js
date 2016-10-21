@@ -5,10 +5,12 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 60,
 		type: "Water",
+		pp: 10,
 	},
 	acid: {
 		inherit: true,
 		basePower: 95,
+		pp: 15,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -27,6 +29,7 @@ exports.BattleMovedex = {
 	aurorabeam: {
 		inherit: true,
 		basePower: 90,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -37,6 +40,7 @@ exports.BattleMovedex = {
 	},
 	barrage: {
 		inherit: true,
+		pp: 1,
 		type: "Grass",
 		basePower: 200,
 		selfdestruct: true,
@@ -53,6 +57,7 @@ exports.BattleMovedex = {
 	},
 	bind: {
 		inherit: true,
+		pp: 10,
 		basePower: 15,
 		accuracy: 70,
 		type: "Rock",
@@ -60,6 +65,7 @@ exports.BattleMovedex = {
 	bite: {
 		inherit: true,
 		basePower: 80,
+		pp: 15,
 		secondary: {
 			chance: 30,
 			volatilestatus: 'flinch',
@@ -72,16 +78,19 @@ exports.BattleMovedex = {
 	boneclub: {
 		inherit: true,
 		type: "Ghost",
+		pp: 5,
 		priority: 1,
 		basePower: 60,
 	},
 	bonemerang: {
 		inherit: true,
 		type: "Ghost",
+		pp: 5,
 		basePower: 60,
 	},
 	bubble: {
 		inherit: true,
+		pp: 15,
 		basePower: 80,
 		secondary: {
 			chance: 30,
@@ -90,6 +99,7 @@ exports.BattleMovedex = {
 	},
 	bubblebeam: {
 		inherit: true,
+		pp: 5,
 		basePower: 150,
 		self: {
 			volatileStatus: 'mustrecharge',
@@ -97,19 +107,26 @@ exports.BattleMovedex = {
 	},
 	clamp: {
 		inherit: true,
+		pp: 10,
 		basePower: 15,
 		accuracy: 70,
 		noPPBoosts: false,
 	},
 	cometpunch: {
 		inherit: true,
+		pp: 5,
 		type: "Fighting",
 		multihit: false,
 		basePower: 80,
 		priority: 1,
 	},
+	confuseray: {
+		inherit: true,
+		pp: 10,
+	},
 	confusion: {
 		inherit: true,
+		pp: 5,
 		basePower: 120,
 		accuracy: 85,
 	},
@@ -117,10 +134,20 @@ exports.BattleMovedex = {
 		inherit: true,
 		category: "Status",
 		status: 'par',
+		pp: 10,
 		accuracy: 90,
+	},
+	conversion: {
+		inherit: true,
+		pp: 20,
+	},
+	counter: {
+		inherit: true,
+		pp: 15,
 	},
 	crabhammer: {
 		inherit: true,
+		pp: 10,
 		basePower: 90,
 		accuracy: 100,
 	},
@@ -129,6 +156,7 @@ exports.BattleMovedex = {
 		critRatio: 2,
 		type: "Bug",
 		basePower: 55,
+		pp: 10,
 	},
 	defensecurl: {
 		inherit: true,
@@ -138,12 +166,14 @@ exports.BattleMovedex = {
 	dig: {
 		inherit: true,
 		basePower: 150,
+		pp: 10,
 		accuracy: 85,
 	},
 	dizzypunch: {
 		inherit: true,
 		basePower: 150,
 		accuracy: 75,
+		pp: 5,
 		secondary: {
 			chance: 10,
 			volatileStatus: 'confusion',
@@ -152,15 +182,18 @@ exports.BattleMovedex = {
 	doublekick: {
 		inherit: true,
 		basePower: 50,
+		pp: 5,
 	},
 	doubleteam: {
 		inherit: true,
 		secondary: false,
+		pp: 10,
 		volatileStatus: 'confusion',
 	},
 	doubleedge: {
 		inherit: true,
 		basePower: 120,
+		pp: 5,
 	},
 	doubleslap: {
 		inherit: true,
@@ -168,6 +201,7 @@ exports.BattleMovedex = {
 		basePower: 60,
 		multihit: 2,
 		category: "Special",
+		pp: 5,
 	},
 	dragonrage: {
 		inherit: true,
@@ -178,6 +212,7 @@ exports.BattleMovedex = {
 	dreameater: {
 		inherit: true,
 		category: "Special",
+		pp: 10,
 		basePower: 250,
 		type: "Psychic",
 		drain: [1, 2],
@@ -190,6 +225,7 @@ exports.BattleMovedex = {
 	},
 	drillpeck: {
 		inherit: true,
+		pp: 10,
 		basePower: 90,
 	},
 	eggbomb: {
@@ -206,6 +242,7 @@ exports.BattleMovedex = {
 	ember: {
 		inherit: true,
 		basePower: 90,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -232,15 +269,18 @@ exports.BattleMovedex = {
 	fissure: {
 		inherit: true,
 		accuracy: 20,
+		pp: 5,
 	},
 	fly: {
 		inherit: true,
 		basePower: 150,
 		accuracy: 85,
+		pp: 10,
 	},
 	focusenergy: {
 		inherit: true,
 		basePower: 180,
+		pp: 5,
 		category: "Physical",
 		type: "Bug",
 		isTwoTurnMove: true,
@@ -261,22 +301,30 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 35,
 		accuracy: 95,
+		pp: 10,
 	},
 	furyswipes: {
 		inherit: true,
 		basePower: 35,
 		accuracy: 95,
+		pp: 10,
 		type: "Fighting",
 	},
 	glare: {
 		inherit: true,
 		accuracy: 100,
+		pp: 10,
 	},
 	growl: {
 		inherit: true,
+		pp: 15,
 		boosts: {
 			atk: -2,
 		},
+	},
+	growth: {
+		inherit: true,
+		pp: 20,
 	},
 	guillotine: {
 		inherit: true,
@@ -301,19 +349,26 @@ exports.BattleMovedex = {
 	},
 	harden: {
 		inherit: true,
+		pp: 20,
 		boosts: {
 			atk: 1,
 		},
 	},
+	haze: {
+		inherit: true,
+		pp: 15,
+	},
 	headbutt: {
 		inherit: true,
 		basePower: 100,
+		pp: 15,
 		type: "Psychic",
 	},
 	highjumpkick: {
 		inherit: true,
 		basePower: 150,
 		accuracy: 85,
+		pp: 10,
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -333,10 +388,12 @@ exports.BattleMovedex = {
 		multihit: [2, 5],
 		basePower: 35,
 		accuracy: 95,
+		pp: 10,
 	},
 	horndrill: {
 		inherit: true,
 		accuracy: 20,
+		pp: 5,
 	},
 	hydropump: {
 		inherit: true,
@@ -347,6 +404,7 @@ exports.BattleMovedex = {
 		type: "Ghost",
 		basePower: 80,
 		accuracy: 100,
+		pp: 15,
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch',
@@ -355,6 +413,7 @@ exports.BattleMovedex = {
 	hypnosis: {
 		inherit: true,
 		accuracy: 65,
+		pp: 10,
 	},
 	icepunch: {
 		inherit: true,
@@ -368,55 +427,81 @@ exports.BattleMovedex = {
 		recoil: [25, 100],
 		pp: 5,
 	},
+	karatechop: {
+		inherit: true,
+		pp: 10,
+	},
 	kinesis: {
 		inherit: true,
 		accuracy: 90,
 		boosts: false,
 		status: 'par',
+		pp: 10,
 	},
 	leechlife: {
 		inherit: true,
 		basePower: 100,
 		drain: [1, 2],
+		pp: 10,
 	},
 	leechseed: {
 		inherit: true,
 		accuracy: 100,
+		pp: 10,
+	},
+	leer: {
+		inherit: true,
+		pp: 15,
 	},
 	lick: {
 		inherit: true,
 		basePower: 85,
+		pp: 15,
+	},
+	lightscreen: {
+		inherit: true,
+		pp: 15,
+	},
+	lovelykiss: {
+		inherit: true,
+		pp: 10,
 	},
 	lowkick: {
 		inherit: true,
 		basePower: 80,
 		accuracy: 75,
+		pp: 15,
 	},
 	meditate: {
 		inherit: true,
 		boosts: {
 			atk: 2,
 		},
+		pp: 20,
 	},
 	megadrain: {
 		inherit: true,
 		basePower: 60,
+		pp: 10,
 		drain: [1, 2],
 	},
 	megakick: {
 		inherit: true,
 		basePower: 120,
 		accuracy: 90,
+		pp: 10,
 		drain: [1, 2],
 	},
 	megapunch: {
 		inherit: true,
 		basePower: 100,
 		accuracy: 100,
+		pp: 10,
 		drain: [1, 2],
 	},
 	mimic: {
 		inherit: true,
+		pp: 10,
 		onHit: function (target, source) {
 			let disallowedMoves = {mimic:1, struggle:1};
 			if (source.transformed) return false;
@@ -448,12 +533,16 @@ exports.BattleMovedex = {
 	},
 	minimize: {
 		inherit: true,
+		pp: 20,
 		boosts: {
 			def: 1,
 		},
 	},
-	mist: {
+	mirrormove: {
 		inherit: true,
+		pp: 15,
+	},
+	mist: {
 		category: "Special",
 		type: "Ice",
 		basePower: 60,
@@ -483,31 +572,37 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 60,
 		priority: 1,
+		pp: 5,
 	},
 	petaldance: {
 		inherit: true,
 		basePower: 140,
+		pp: 5,
 	},
 	pinmissile: {
 		inherit: true,
 		basePower: 35,
 		accuracy: 100,
+		pp: 10,
 	},
 	poisongas: {
 		inherit: true,
 		basePower: 0,
 		ohko: true,
 		accuracy: 20,
+		pp: 5,
 	},
 	poisonsting: {
 		inherit: true,
 		secondary: false,
 		basePower: 35,
 		multihit: [2, 5],
+		pp: 10,
 	},
 	poisonpowder: {
 		inherit: true,
 		accuracy: 100,
+		pp: 10,
 	},
 	pound: {
 		inherit: true,
@@ -515,10 +610,12 @@ exports.BattleMovedex = {
 		self: {
 			volatileStatus: 'lockedmove',
 		},
+		pp: 5,
 	},
 	psybeam: {
 		inherit: true,
 		basePower: 130,
+		pp: 5,
 		secondary: false,
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
@@ -537,6 +634,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 100,
 		damage: 0,
+		pp: 15,
 		boosts: {
 			atk: -1,
 		},
@@ -553,14 +651,24 @@ exports.BattleMovedex = {
 		type: "Dragon",
 		category: "Special",
 		basePower: 85,
+		pp: 15,
+	},
+	razorleaf: {
+		inherit: true,
+		pp: 10,
 	},
 	razorwind: {
 		inherit: true,
 		type: "Bug",
 		basePower: 95,
 		onTry: true,
+		pp: 5,
 	},
 	recover: {
+		inherit: true,
+		pp: 15,
+	},
+	reflect: {
 		inherit: true,
 		pp: 15,
 	},
@@ -594,13 +702,26 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		pp: 5,
 	},
+	sandattack: {
+		inherit: true,
+		pp: 20,
+	},
 	scratch: {
 		inherit: true,
 		basePower: 85,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			status: 'brn',
 		},
+	},
+	screech: {
+		inherit: true,
+		pp: 15,
+	},
+	seismictoss: {
+		inherit: true,
+		pp: 15,
 	},
 	selfdestruct: {
 		inherit: true,
@@ -608,6 +729,7 @@ exports.BattleMovedex = {
 	},
 	sharpen: {
 		inherit: true,
+		pp: 20,
 		boosts: {
 			atk: 2,
 		},
@@ -615,14 +737,17 @@ exports.BattleMovedex = {
 	sing: {
 		inherit: true,
 		accuracy: 90,
+		pp: 10,
 	},
 	skullbash: {
 		inherit: true,
 		basePower: 180,
+		pp: 5,
 	},
 	skyattack: {
 		inherit: true,
 		basePower: 180,
+		pp: 5,
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -640,16 +765,26 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 85,
 		accuracy: 100,
+		pp: 10,
 		type: "Fighting",
 		secondary: {
 			chance: 30,
 			status: 'par',
 		},
 	},
+	slash: {
+		inherit: true,
+		pp: 10,
+	},
+	sleeppowder: {
+		inherit: true,
+		pp: 10,
+	},
 	sludge: {
 		inherit: true,
 		basePower: 150,
 		accuracy: 85,
+		pp: 5,
 		secondary: {
 			chance: 40,
 			status: 'psn',
@@ -661,6 +796,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		secondary: false,
 		selfdestruct: true,
+		pp: 1,
 	},
 	smokescreen: {
 		inherit: true,
@@ -694,6 +830,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		damage: 0,
 		basePower: 200,
+		pp: 1,
 		type: "Electric",
 		category: "Special",
 		selfdestruct: true,
@@ -703,6 +840,7 @@ exports.BattleMovedex = {
 		type: "Water",
 		category: "Special",
 		basePower: 30,
+		pp: 10,
 		accuracy: 95,
 	},
 	splash: {
@@ -714,10 +852,15 @@ exports.BattleMovedex = {
 			volatileStatus: 'lockedmove',
 		},
 	},
+	spore: {
+		inherit: true,
+		pp: 10,
+	},
 	stomp: {
 		inherit: true,
 		type: "Ground",
 		basePower: 80,
+		pp: 15,
 	},
 	strength: {
 		inherit: true,
@@ -733,6 +876,7 @@ exports.BattleMovedex = {
 		type: "Bug",
 		basePower: 100,
 		boosts: false,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -764,6 +908,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		category: "Physical",
 		basePower: 100,
+		pp: 15,
 		accuracy: 100,
 		secondary: {
 			chance: 30,
@@ -777,6 +922,7 @@ exports.BattleMovedex = {
 	swift: {
 		inherit: true,
 		basePower: 95,
+		pp: 10,
 	},
 	tackle: {
 		inherit: true,
@@ -791,12 +937,14 @@ exports.BattleMovedex = {
 		category: "Physical",
 		type: "Ghost",
 		basePower: 100,
+		pp: 10,
 	},
 	takedown: {
 		inherit: true,
 		type: "Ground",
 		basePower: 120,
 		accuracy: 100,
+		pp: 5,
 	},
 	teleport: {
 		inherit: true,
@@ -804,6 +952,7 @@ exports.BattleMovedex = {
 		type: "Electric",
 		basePower: 150,
 		accuracy: 85,
+		pp: 10,
 		effect: {
 			duration: 2,
 			onLockMove: 'teleport',
@@ -831,10 +980,15 @@ exports.BattleMovedex = {
 	thunder: {
 		inherit: true,
 		accuracy: 75,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			status: 'par',
 		},
+	},
+	thunderwave: {
+		inherit: true,
+		pp: 10,
 	},
 	thunderpunch: {
 		inherit: true,
@@ -844,6 +998,7 @@ exports.BattleMovedex = {
 	thundershock: {
 		inherit: true,
 		basePower: 90,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -856,6 +1011,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		type: "Psychic",
 		basePower: 0,
+		pp: 10,
 		volatileStatus: 'leechseed',
 		onHit: function () {},
 		effect: {
@@ -900,6 +1056,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		critRatio: 1,
 		basePower: 95,
+		pp: 15,
 		secondary: {
 			chance: 10,
 			status: 'par',
@@ -908,6 +1065,7 @@ exports.BattleMovedex = {
 	vinewhip: {
 		inherit: true,
 		basePower: 85,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			status: 'par',
@@ -916,6 +1074,7 @@ exports.BattleMovedex = {
 	watergun: {
 		inherit: true,
 		basePower: 90,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -928,6 +1087,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 150,
 		accuracy: 85,
+		pp: 10,
 		effect: {
 			duration: 2,
 			onLockMove: 'waterfall',
@@ -951,6 +1111,7 @@ exports.BattleMovedex = {
 		type: "Flying",
 		basePower: 15,
 		accuracy: 70,
+		pp: 10,
 		affectedByImmunities: false,
 		volatileStatus: 'partiallytrapped',
 		self: {
@@ -977,10 +1138,12 @@ exports.BattleMovedex = {
 	wingattack: {
 		inherit: true,
 		basePower: 55,
+		pp: 10,
 		critRatio: 2,
 	},
 	withdraw: {
 		inherit: true,
+		pp: 20,
 		boosts: {
 			spa: 1,
 			spd: 1,
@@ -989,6 +1152,7 @@ exports.BattleMovedex = {
 	wrap: {
 		inherit: true,
 		basePower: 15,
+		pp: 10,
 		accuracy: 70,
 	},
 };
