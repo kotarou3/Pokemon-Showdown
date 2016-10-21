@@ -206,7 +206,6 @@ exports.BattleMovedex = {
 	dragonrage: {
 		inherit: true,
 		basePower: 120,
-		pp: 5,
 		damage: 0,
 		pp: 5,
 	},
