@@ -5,10 +5,12 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 60,
 		type: "Water",
+		pp: 10,
 	},
 	acid: {
 		inherit: true,
 		basePower: 95,
+		pp: 15,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -27,6 +29,7 @@ exports.BattleMovedex = {
 	aurorabeam: {
 		inherit: true,
 		basePower: 90,
+		pp: 10,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -37,15 +40,12 @@ exports.BattleMovedex = {
 	},
 	barrage: {
 		inherit: true,
+		pp: 1,
 		type: "Grass",
 		basePower: 200,
 		selfdestruct: true,
 		multihit: false,
 		category: "Special",
-	},
-	barrier: {
-		inherit: true,
-		pp: 20,
 	},
 	bide: {
 		inherit: true,
