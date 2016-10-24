@@ -453,7 +453,6 @@ exports.BattleMovedex = {
 		},
 	},
 	mist: {
-		inherit: true,
 		category: "Special",
 		type: "Ice",
 		basePower: 60,
