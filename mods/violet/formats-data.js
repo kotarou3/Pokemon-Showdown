@@ -145,4 +145,8 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "OU",
 	},
+	dragonite: {
+		inherit: true,
+		tier: "OU",
+	}
 };
