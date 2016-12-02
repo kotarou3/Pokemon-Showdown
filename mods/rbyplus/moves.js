@@ -732,6 +732,7 @@ exports.BattleMovedex = {
 		type: "Bug",
 		basePower: 100,
 		boosts: false,
+		category: "Physical",
 		secondary: {
 			chance: 30,
 			boosts: {
