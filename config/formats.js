@@ -48,6 +48,14 @@ exports.Formats = [
 		banlist: ['Red orb', 'Blue orb', 'Salamencite', 'Gengarite', 'Shadow Tag', 'Geomancy', '1U'],
 	},
 	{
+		name: "Poison Heal Paradise",
+		section: "Other Formats",
+
+		mod: 'paradise',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Uber', 'Soul Dew']
+	},
+	{
 		name: "Custom Game",
 		section: "Other Formats",
 
