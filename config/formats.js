@@ -115,7 +115,7 @@ exports.Formats = [
 		section: "Other Mods",
 
 		mod: 'rbyplus',
-		ruleset: ['Pokemon', 'Standard', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Pokemon,' 'Sleep Clause Mod', 'Freeze Clause Mod', 'Species Clause', 'OHKO Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "Dark Chocolate",
